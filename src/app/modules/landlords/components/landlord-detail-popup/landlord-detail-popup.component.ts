@@ -29,14 +29,14 @@ export class LandlordDetailPopupComponent implements OnInit {
 
   buildItemForm(item) {
     this.itemForm = this.fb.group({
-      firstName: [item.name || '', Validators.required],
-      lastName: [item.name || '', Validators.required],
+      firstName: [item.firstName || '', Validators.required],
+      lastName: [item.lastName || '', Validators.required],
       profilePicture: [item.profilePicture || '', Validators.required],
       email: [item.email || '', Validators.required],
       isPerson: [item.isPerson || false, Validators.required],
       mobile: [item.mobile || '', Validators.required],
-      placeOfBirthCountry: [item.placeOfBirth || '', Validators.required],
-      placeOfBirthCity: [item.placeOfBirth || '', Validators.required],
+      placeOfBirthCountry: [!item.placeOfBirth ? '' : item.placeOfBirth.country, Validators.required],
+      placeOfBirthCity: [!item.placeOfBirth ? '' : item.placeOfBirth.city, Validators.required],
       nameOfAgency: [item.nameOfAgency || '', Validators.required],
       spokenLanguage: [item.spokenLanguage || '', Validators.required],
     });
@@ -58,6 +58,9 @@ export class LandlordDetailPopupComponent implements OnInit {
       spokenLanguage: this.itemForm.value.spokenLanguage
     };
 
+    if (!this.data.payload.isNew) {
+      landlord['_id'] = this.data.payload['_id'];
+    }
     this.dialogRef.close(landlord);
   }
 

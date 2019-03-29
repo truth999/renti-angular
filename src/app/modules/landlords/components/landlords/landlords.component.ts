@@ -49,7 +49,7 @@ export class LandlordsComponent implements OnInit {
     let dialogRef: MatDialogRef<any> = this.dialog.open(LandlordDetailPopupComponent, {
       width: '720px',
       disableClose: true,
-      data: { title: title, payload: data }
+      data: { title: title, payload: data, isNew }
     });
     dialogRef.afterClosed()
       .subscribe(async (res) => {
@@ -64,7 +64,7 @@ export class LandlordsComponent implements OnInit {
           this.loader.close();
           this.snack.open('Created!', 'OK', { duration: 4000 })
         } else {
-          await this.landlordService.updateLandlord(res.id);
+          await this.landlordService.updateLandlord(res);
           this.getItems();
           this.loader.close();
           this.snack.open('Updated!', 'OK', { duration: 4000 })
@@ -73,11 +73,11 @@ export class LandlordsComponent implements OnInit {
   }
 
   deleteItem(row) {
-    this.confirmService.confirm({message: `Delete ${row.name}?`})
+    this.confirmService.confirm({message: `Delete ${row.firstName} ${row.lastName}?`})
       .subscribe(async (res) => {
         if (res) {
           this.loader.open();
-          await this.landlordService.deleteLandlord(row.id);
+          await this.landlordService.deleteLandlord(row._id);
           this.getItems();
           this.loader.close();
           this.snack.open('Deleted!', 'OK', { duration: 4000 })

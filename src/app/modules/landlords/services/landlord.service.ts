@@ -14,8 +14,8 @@ export class LandlordService {
     return this.apiService.get(url);
   }
 
-  getLandlord(id: string): Promise<any> {
-    return this.apiService.get(`landlords/${id}`);
+  getLandlord(_id: string): Promise<any> {
+    return this.apiService.get(`landlords/${_id}`);
   }
 
   createLandlord(landlord: Landlord): Promise<any> {
@@ -23,10 +23,10 @@ export class LandlordService {
   }
 
   updateLandlord(landlord: Landlord): Promise<any> {
-    return this.apiService.put(`landlords/${landlord}`, landlord);
+    return this.apiService.put(`landlords/${landlord._id}`, landlord);
   }
 
-  deleteLandlord(id: string): Promise<any> {
-    return this.apiService.delete(`landlords/${id}`);
+  deleteLandlord(_id: string): Promise<any> {
+    return this.apiService.delete(`landlords/${_id}`);
   }
 }
