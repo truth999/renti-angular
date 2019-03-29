@@ -1,0 +1,107 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+
+<form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="firstName"
+          formControlName="firstName"
+          placeholder="First Name">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="lastName"
+          formControlName="lastName"
+          placeholder="Last Name">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="email"
+          name="email"
+          formControlName="email"
+          placeholder="Email">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="mobile"
+          formControlName="mobile"
+          placeholder="Mobile/Phone">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="placeOfBirthCountry"
+          formControlName="placeOfBirthCountry"
+          placeholder="City of Birth">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="placeOfBirthCity"
+          formControlName="placeOfBirthCity"
+          placeholder="Contry of Birth">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="nameOfAgency"
+          formControlName="nameOfAgency"
+          placeholder="Name of Agency">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-label>Spoken Language</mat-label>
+        <mat-select formControlName="spokenLanguage" multiple>
+          <mat-option *ngFor="let language of languages" [value]="language">{{language}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pt-1 pr-1">
+      <mat-slide-toggle formControlName="isPerson">Is Person?</mat-slide-toggle>
+    </div>
+
+    <div fxFlex="100"  class="pr-1">
+      <p>Upload a profile picture</p>
+      <div>
+        <input type="file" (change)="onProfilePictureChange($event)"/>
+        <button
+          mat-raised-button
+          class="mat-primary"
+          (click)="uploadProfilePicture($event)">Upload</button>
+      </div>
+    </div>
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="itemForm.invalid" type="submit" (submit)="submit()">SAVE</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+</form>
