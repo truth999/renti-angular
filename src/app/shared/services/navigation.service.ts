@@ -34,35 +34,35 @@ export class NavigationService {
       type: 'link',
       tooltip: 'Landlord',
       icon: 'account_balance',
-      state: 'landlord'
+      state: 'landlords'
     },
     {
       name: 'common.tenant',
       type: 'link',
       tooltip: 'Tenant',
       icon: 'security',
-      state: 'tenant'
+      state: 'tenants'
     },
     {
       name: 'common.apartment',
       type: 'link',
       tooltip: 'Apartment',
       icon: 'account_balance',
-      state: 'apartment'
+      state: 'apartments'
     },
     {
       name: 'common.room',
       type: 'link',
       tooltip: 'Room',
       icon: 'account_balance',
-      state: 'room'
+      state: 'rooms'
     },
     {
       name: 'common.offer',
       type: 'link',
       tooltip: 'Offer',
       icon: 'account_balance',
-      state: 'offer'
+      state: 'offers'
     },
   ];
 

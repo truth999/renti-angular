@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
-import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 import { LandlordsComponent } from './components/landlords/landlords.component';
-import {LandlordsRoutes} from "./landlords.routing";
 import {LandlordDetailPopupComponent} from "./components/landlord-detail-popup/landlord-detail-popup.component";
 import {LandlordService} from "./services/landlord.service";
 import {LandlordDetailComponent} from "./components/landlord-detail/landlord-detail.component";
+
+const landlordsRoutes: Routes = [
+  {
+    path: '',
+    component: LandlordsComponent,
+    data: { title: 'Landlords', breadcrumb: 'landlords' }
+  }
+];
 
 @NgModule({
   declarations: [
@@ -17,8 +23,7 @@ import {LandlordDetailComponent} from "./components/landlord-detail/landlord-det
   ],
   imports: [
     SharedModule,
-    RouterModule.forChild(LandlordsRoutes),
-    FileUploadModule,
+    RouterModule.forChild(landlordsRoutes),
   ],
   providers: [
     LandlordService

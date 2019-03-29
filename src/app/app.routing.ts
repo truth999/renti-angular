@@ -29,13 +29,18 @@ export const rootRouterConfig: Routes = [
       {
         path: 'landlords',
         loadChildren: './modules/landlords/landlords.module#LandlordsModule',
-        data: { title: 'Landlord', breadcrumb: 'common.landlord'}
+        data: { title: 'Landlords', breadcrumb: 'Landlords'}
+      },
+      {
+        path: 'tenants',
+        loadChildren: './modules/tenants/tenants.module#TenantsModule',
+        data: { title: 'Tenants', breadcrumb: 'Tenants'}
       }
     ]
   },
-  {
-    path: '**',
-    redirectTo: 'auth/404'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: 'auth/404'
+  // }
 ];
 

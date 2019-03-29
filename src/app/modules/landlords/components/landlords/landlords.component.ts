@@ -28,7 +28,7 @@ export class LandlordsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.page.perPage = config.landlord.perPage;
+    this.page.perPage = 10;
     this.page.pageNumber = 1;
 
     this.getItems();
@@ -37,9 +37,9 @@ export class LandlordsComponent implements OnInit {
   async getItems() {
     try {
       const response = await this.landlordService.getLandlords(this.page);
-      this.items = response.landlords;
-      this.page.totalPages = response.totalPages;
-      this.page.totalElements = response.totalElements;
+      this.items = !!response ? response.landlords : [];
+      this.page.totalPages =  !!response ? response.totalPages : 0;
+      this.page.totalElements =  !!response ? response.totalElements : 0;
     } finally {
     }
   }

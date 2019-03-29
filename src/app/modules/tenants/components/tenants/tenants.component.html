@@ -1,5 +1,5 @@
 <div class="m-333">
-  <button mat-raised-button class="mb-05" color="primary" (click)="openPopUp({}, true)">Add Landlord</button>
+  <button mat-raised-button class="mb-05" color="primary" (click)="goDetail({}, true)">Add Tenant</button>
 </div>
 <mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
   <mat-card-content class="p-0">
@@ -43,7 +43,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="Actions" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="openPopUp(row)"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button mat-sm-button color="primary" class="mr-1" (click)="goDetail(row._id)"><mat-icon>edit</mat-icon></button>
           <button mat-icon-button mat-sm-button color="warn" (click)="deleteItem(row)"><mat-icon>delete</mat-icon></button>
         </ng-template>
       </ngx-datatable-column>
