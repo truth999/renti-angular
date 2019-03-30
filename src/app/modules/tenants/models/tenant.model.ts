@@ -6,8 +6,6 @@ export class Tenant {
   lastName:  string;
   email: string;
   mobile: string;
-  isPerson: string;
-  nameOfAgency: string;
   profilePicture: string;
   placeOfBirth: LocationTemp;
   currentPlace: LocationTemp;
@@ -20,7 +18,7 @@ export class Tenant {
   currentWorkplace: string;
   formerWorkplaces: string[];
   monthlyIncome: number;
-  spokenLanguage: string[];
+  spokenLanguages: string[];
   otherText: string;
   freeTextIntroduction: string;
   socialMediaAvailabilities: SocialMediaAvailabilities;

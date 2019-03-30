@@ -4,11 +4,11 @@
     <mat-divider></mat-divider>
   </mat-card-title>
   <mat-card-content>
-    <form [formGroup]="itemForm" (ngSubmit)="submit()">
+    <form *ngIf="itemForm" [formGroup]="itemForm" (ngSubmit)="submit()">
       <div fxLayout="row wrap" fxLayout.lt-sm="column">
 
         <div fxFlex="100"  class="pr-1">
-          <p>Upload a profile picture</p>
+          <div>Upload a profile picture</div>
           <div>
             <input type="file" (change)="onProfilePictureChange($event)"/>
             <button
@@ -115,7 +115,7 @@
               matInput
               name="highestLevelOfQualification"
               formControlName="highestLevelOfQualification"
-              placeholder="highestLevelOfQualification">
+              placeholder="The highest Level Of Qualification">
           </mat-form-field>
         </div>
 
@@ -125,7 +125,7 @@
               matInput
               name="nameOfSchool"
               formControlName="nameOfSchool"
-              placeholder="nameOfSchool">
+              placeholder="Name Of School">
           </mat-form-field>
         </div>
 
@@ -135,7 +135,7 @@
               matInput
               name="yearOfGraduation"
               formControlName="yearOfGraduation"
-              placeholder="yearOfGraduation">
+              placeholder="Year Of Graduation">
           </mat-form-field>
         </div>
 
@@ -145,7 +145,7 @@
               matInput
               name="jobTitle"
               formControlName="jobTitle"
-              placeholder="jobTitle">
+              placeholder="Job Title">
           </mat-form-field>
         </div>
 
@@ -155,7 +155,7 @@
               matInput
               name="universitySpeciality"
               formControlName="universitySpeciality"
-              placeholder="universitySpeciality">
+              placeholder="University Speciality">
           </mat-form-field>
         </div>
 
@@ -165,7 +165,7 @@
               matInput
               name="currentWorkplace"
               formControlName="currentWorkplace"
-              placeholder="currentWorkplace">
+              placeholder="Current Workplace">
           </mat-form-field>
         </div>
 
@@ -175,7 +175,7 @@
               matInput
               name="formerWorkplaces"
               formControlName="formerWorkplaces"
-              placeholder="Former Workplaces (*separate with lines)">
+              placeholder="Former Workplaces (separate with lines)">
             </textarea>
           </mat-form-field>
         </div>
@@ -186,14 +186,14 @@
               matInput
               name="monthlyIncome"
               formControlName="monthlyIncome"
-              placeholder="Monthly Incomes">
+              placeholder="Monthly Income">
           </mat-form-field>
         </div>
 
         <div fxFlex="50"  class="pr-1">
           <mat-form-field class="full-width">
             <mat-label>Spoken Language</mat-label>
-            <mat-select formControlName="spokenLanguage" multiple>
+            <mat-select formControlName="spokenLanguages" multiple>
               <mat-option *ngFor="let language of languages" [value]="language">{{language}}</mat-option>
             </mat-select>
           </mat-form-field>

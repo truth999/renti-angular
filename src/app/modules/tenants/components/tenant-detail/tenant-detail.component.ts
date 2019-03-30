@@ -34,13 +34,14 @@ export class TenantDetailComponent implements OnInit {
   async ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id']) {
-        this.tenant = params['id'];
+        this.tenantId = params['id'];
       }
     });
 
     try {
       if (!!this.tenantId) {
-        this.tenant = await this.tenantService.getTenant(this.tenantId);
+        const response = await this.tenantService.getTenant(this.tenantId);
+        this.tenant = response.tenant;
       }
       this.buildItemForm();
     } finally {
@@ -52,10 +53,9 @@ export class TenantDetailComponent implements OnInit {
     this.itemForm = this.fb.group({
       firstName: [!!this.tenant ? this.tenant.firstName : '', Validators.required],
       lastName: [!!this.tenant ? this.tenant.lastName : '', Validators.required],
-      profilePicture: [!!this.tenant ? this.tenant.profilePicture : '', Validators.required],
       email: [!!this.tenant ? this.tenant.email :'' ,Validators.required],
-      isPerson: [!!this.tenant ? this.tenant.isPerson : false, Validators.required],
       mobile: [!!this.tenant ? this.tenant.mobile : '', Validators.required],
+      profilePicture: [!!this.tenant ? this.tenant.profilePicture : '', Validators.required],
       placeOfBirthCountry: [!!this.tenant ? this.tenant.placeOfBirth.country : '' , Validators.required],
       placeOfBirthCity: [!!this.tenant ? this.tenant.placeOfBirth.city : '' , Validators.required],
       currentPlaceCountry: [!!this.tenant ? this.tenant.currentPlace.country : '' , Validators.required],
@@ -67,25 +67,23 @@ export class TenantDetailComponent implements OnInit {
       jobTitle: [!!this.tenant ? this.tenant.jobTitle: '', Validators.required],
       universitySpeciality: [!!this.tenant ? this.tenant.universitySpeciality: '', Validators.required],
       currentWorkplace: [!!this.tenant ? this.tenant.currentWorkplace: '', Validators.required],
-      formerWorkplaces: [!!this.tenant ? this.tenant.formerWorkplaces: '', Validators.required],
+      formerWorkplaces: [!!this.tenant ? this.tenant.formerWorkplaces.join('\n'): '', Validators.required],
       monthlyIncome: [!!this.tenant ? this.tenant.monthlyIncome: '', Validators.required],
-      spokenLanguage: [!!this.tenant ? this.tenant.spokenLanguage : '', Validators.required],
+      spokenLanguages: [!!this.tenant ? this.tenant.spokenLanguages : '', Validators.required],
       otherText: [!!this.tenant ? this.tenant.otherText : '', Validators.required],
       freeTextIntroduction: [!!this.tenant ? this.tenant.freeTextIntroduction : '', Validators.required],
       socialMediaFacebook: [!!this.tenant ? this.tenant.socialMediaAvailabilities.facebook : '', Validators.required],
       socialMediaLinkedIn: [!!this.tenant ? this.tenant.socialMediaAvailabilities.linkedIn : '', Validators.required],
-      socialMediaTwitter: [!!this.tenant ? this.tenant.socialMediaAvailabilities.twitter : '', Validators.required],
+      socialMediaTwitter: [!!this.tenant ? this.tenant.socialMediaAvailabilities.twitter : '', Validators.required]
     });
   }
 
   async submit() {
-    const tenant = {
+    const tempTenant = {
       firstName: this.itemForm.value.firstName,
       lastName:  this.itemForm.value.lastName,
       email: this.itemForm.value.email,
       mobile: this.itemForm.value.mobile,
-      isPerson: this.itemForm.value.isPerson,
-      nameOfAgency: this.itemForm.value.nameOfAgency,
       profilePicture: this.itemForm.value.profilePicture,
       placeOfBirth: {
         country: this.itemForm.value.placeOfBirthCountry,
@@ -104,7 +102,7 @@ export class TenantDetailComponent implements OnInit {
       currentWorkplace: this.itemForm.value.currentWorkplace,
       formerWorkplaces: this.itemForm.value.formerWorkplaces.split('\n'),
       monthlyIncome: this.itemForm.value.monthlyIncome,
-      spokenLanguage: this.itemForm.value.spokenLanguage,
+      spokenLanguages: this.itemForm.value.spokenLanguages,
       otherText: this.itemForm.value.otherText,
       freeTextIntroduction: this.itemForm.value.freeTextIntroduction,
       socialMediaAvailabilities: {
@@ -113,12 +111,12 @@ export class TenantDetailComponent implements OnInit {
         twitter: this.itemForm.value.socialMediaTwitter,
       }
     };
+    this.tenant = {...this.tenant, ...tempTenant};
 
     try {
       if (!this.tenantId) {
         await this.tenantService.createTenant(this.tenant);
       } else {
-        this.tenant = {...this.tenant, ...tenant};
         await this.tenantService.updateTenant(this.tenant);
       }
       this.router.navigate(['/tenants']);

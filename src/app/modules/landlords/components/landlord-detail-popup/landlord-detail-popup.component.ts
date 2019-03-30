@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {ImageUploaderService} from "../../../../core/services/image-uploader.service";
-import {Feedback, PlaceOfBirth} from "../../../../shared/models/shared.model";
 
 @Component({
   selector: 'app-landlord-detail-popup',
@@ -38,7 +37,7 @@ export class LandlordDetailPopupComponent implements OnInit {
       placeOfBirthCountry: [!item.placeOfBirth ? '' : item.placeOfBirth.country, Validators.required],
       placeOfBirthCity: [!item.placeOfBirth ? '' : item.placeOfBirth.city, Validators.required],
       nameOfAgency: [item.nameOfAgency || '', Validators.required],
-      spokenLanguage: [item.spokenLanguage || '', Validators.required],
+      spokenLanguages: [item.spokenLanguages || '', Validators.required],
     });
   }
 
@@ -55,7 +54,7 @@ export class LandlordDetailPopupComponent implements OnInit {
         country: this.itemForm.value.placeOfBirthCountry,
         city: this.itemForm.value.placeOfBirthCity
       },
-      spokenLanguage: this.itemForm.value.spokenLanguage
+      spokenLanguages: this.itemForm.value.spokenLanguages
     };
 
     if (!this.data.payload.isNew) {

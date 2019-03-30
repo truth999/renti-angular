@@ -10,5 +10,5 @@ export class Landlord {
   nameOfAgency: string;
   profilePicture: string;
   placeOfBirth: LocationTemp;
-  spokenLanguage: string[];
+  spokenLanguages: string[];
 }

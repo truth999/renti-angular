@@ -3,6 +3,17 @@
 <form [formGroup]="itemForm" (ngSubmit)="submit()">
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
 
+    <div fxFlex="100"  class="pr-1">
+      <div>Upload a profile picture</div>
+      <div>
+        <input type="file" (change)="onProfilePictureChange($event)"/>
+        <button
+          mat-raised-button
+          class="mat-primary"
+          (click)="uploadProfilePicture($event)">Upload</button>
+      </div>
+    </div>
+
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
         <input
@@ -85,17 +96,6 @@
 
     <div fxFlex="50"  class="pt-1 pr-1">
       <mat-slide-toggle formControlName="isPerson">Is Person?</mat-slide-toggle>
-    </div>
-
-    <div fxFlex="100"  class="pr-1">
-      <p>Upload a profile picture</p>
-      <div>
-        <input type="file" (change)="onProfilePictureChange($event)"/>
-        <button
-          mat-raised-button
-          class="mat-primary"
-          (click)="uploadProfilePicture($event)">Upload</button>
-      </div>
     </div>
 
     <div fxFlex="100" class="mt-1">
