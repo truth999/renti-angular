@@ -1,14 +1,14 @@
-import {Feedback, PlaceOfBirth} from '../../../shared/models/shared.model';
+import {Feedback, LocationTemp} from '../../../shared/models/shared.model';
 
 export class Landlord {
   _id: string;
-  firstName: String;
-  lastName:  String;
-  email: String;
-  mobile: String;
-  isPerson: String;
-  nameOfAgency: String;
-  profilePicture: String;
-  placeOfBirth: PlaceOfBirth;
-  spokenLanguage: String[];
+  firstName: string;
+  lastName:  string;
+  email: string;
+  mobile: string;
+  isPerson: string;
+  nameOfAgency: string;
+  profilePicture: string;
+  placeOfBirth: LocationTemp;
+  spokenLanguage: string[];
 }

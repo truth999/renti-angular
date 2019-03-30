@@ -1,5 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Location} from '@angular/common';
+
 import {ImageUploaderService} from '../../../../core/services/image-uploader.service';
 import {TenantService} from '../../services/tenant.service';
 import {Tenant} from '../../models/tenant.model';
@@ -25,7 +27,8 @@ export class TenantDetailComponent implements OnInit {
     private fileUploaderService: ImageUploaderService,
     private tenantService: TenantService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location,
   ) { }
 
   async ngOnInit() {
@@ -55,8 +58,23 @@ export class TenantDetailComponent implements OnInit {
       mobile: [!!this.tenant ? this.tenant.mobile : '', Validators.required],
       placeOfBirthCountry: [!!this.tenant ? this.tenant.placeOfBirth.country : '' , Validators.required],
       placeOfBirthCity: [!!this.tenant ? this.tenant.placeOfBirth.city : '' , Validators.required],
-      nameOfAgency: [!!this.tenant ? this.tenant.nameOfAgency: '', Validators.required],
+      currentPlaceCountry: [!!this.tenant ? this.tenant.currentPlace.country : '' , Validators.required],
+      currentPlaceCity: [!!this.tenant ? this.tenant.currentPlace.city : '' , Validators.required],
+      nationality: [!!this.tenant ? this.tenant.nationality: '', Validators.required],
+      highestLevelOfQualification: [!!this.tenant ? this.tenant.highestLevelOfQualification: '', Validators.required],
+      nameOfSchool: [!!this.tenant ? this.tenant.nameOfSchool: '', Validators.required],
+      yearOfGraduation: [!!this.tenant ? this.tenant.yearOfGraduation: '', Validators.required],
+      jobTitle: [!!this.tenant ? this.tenant.jobTitle: '', Validators.required],
+      universitySpeciality: [!!this.tenant ? this.tenant.universitySpeciality: '', Validators.required],
+      currentWorkplace: [!!this.tenant ? this.tenant.currentWorkplace: '', Validators.required],
+      formerWorkplaces: [!!this.tenant ? this.tenant.formerWorkplaces: '', Validators.required],
+      monthlyIncome: [!!this.tenant ? this.tenant.monthlyIncome: '', Validators.required],
       spokenLanguage: [!!this.tenant ? this.tenant.spokenLanguage : '', Validators.required],
+      otherText: [!!this.tenant ? this.tenant.otherText : '', Validators.required],
+      freeTextIntroduction: [!!this.tenant ? this.tenant.freeTextIntroduction : '', Validators.required],
+      socialMediaFacebook: [!!this.tenant ? this.tenant.socialMediaAvailabilities.facebook : '', Validators.required],
+      socialMediaLinkedIn: [!!this.tenant ? this.tenant.socialMediaAvailabilities.linkedIn : '', Validators.required],
+      socialMediaTwitter: [!!this.tenant ? this.tenant.socialMediaAvailabilities.twitter : '', Validators.required],
     });
   }
 
@@ -73,7 +91,27 @@ export class TenantDetailComponent implements OnInit {
         country: this.itemForm.value.placeOfBirthCountry,
         city: this.itemForm.value.placeOfBirthCity
       },
-      spokenLanguage: this.itemForm.value.spokenLanguage
+      currentPlace: {
+        country: this.itemForm.value.currentPlaceCountry,
+        city: this.itemForm.value.currentPlaceCity
+      },
+      nationality: this.itemForm.value.nationality,
+      highestLevelOfQualification: this.itemForm.value.highestLevelOfQualification,
+      nameOfSchool: this.itemForm.value.nameOfSchool,
+      yearOfGraduation: this.itemForm.value.yearOfGraduation,
+      jobTitle: this.itemForm.value.jobTitle,
+      universitySpeciality: this.itemForm.value.universitySpeciality,
+      currentWorkplace: this.itemForm.value.currentWorkplace,
+      formerWorkplaces: this.itemForm.value.formerWorkplaces.split('\n'),
+      monthlyIncome: this.itemForm.value.monthlyIncome,
+      spokenLanguage: this.itemForm.value.spokenLanguage,
+      otherText: this.itemForm.value.otherText,
+      freeTextIntroduction: this.itemForm.value.freeTextIntroduction,
+      socialMediaAvailabilities: {
+        facebook: this.itemForm.value.socialMediaFacebook,
+        linkedIn: this.itemForm.value.socialMediaLinkedIn,
+        twitter: this.itemForm.value.socialMediaTwitter,
+      }
     };
 
     try {
@@ -86,6 +124,10 @@ export class TenantDetailComponent implements OnInit {
       this.router.navigate(['/tenants']);
     } finally {
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   async uploadProfilePicture(event) {

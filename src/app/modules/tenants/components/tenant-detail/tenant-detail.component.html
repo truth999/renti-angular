@@ -1,0 +1,263 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">Tenant Detail</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="itemForm" (ngSubmit)="submit()">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+        <div fxFlex="100"  class="pr-1">
+          <p>Upload a profile picture</p>
+          <div>
+            <input type="file" (change)="onProfilePictureChange($event)"/>
+            <button
+              mat-raised-button
+              class="mat-primary"
+              (click)="uploadProfilePicture($event)">Upload</button>
+          </div>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="firstName"
+              formControlName="firstName"
+              placeholder="First Name">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="lastName"
+              formControlName="lastName"
+              placeholder="Last Name">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="email"
+              name="email"
+              formControlName="email"
+              placeholder="Email">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="mobile"
+              formControlName="mobile"
+              placeholder="Mobile/Phone">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="placeOfBirthCountry"
+              formControlName="placeOfBirthCountry"
+              placeholder="Country of Birth">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="placeOfBirthCity"
+              formControlName="placeOfBirthCity"
+              placeholder="City of Birth">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="currentPlaceCountry"
+              formControlName="currentPlaceCountry"
+              placeholder="Current Country">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="currentPlaceCity"
+              formControlName="currentPlaceCity"
+              placeholder="Current City">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="nationality"
+              formControlName="nationality"
+              placeholder="Nationality">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="highestLevelOfQualification"
+              formControlName="highestLevelOfQualification"
+              placeholder="highestLevelOfQualification">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="nameOfSchool"
+              formControlName="nameOfSchool"
+              placeholder="nameOfSchool">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="yearOfGraduation"
+              formControlName="yearOfGraduation"
+              placeholder="yearOfGraduation">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="jobTitle"
+              formControlName="jobTitle"
+              placeholder="jobTitle">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="universitySpeciality"
+              formControlName="universitySpeciality"
+              placeholder="universitySpeciality">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="currentWorkplace"
+              formControlName="currentWorkplace"
+              placeholder="currentWorkplace">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <textarea
+              matInput
+              name="formerWorkplaces"
+              formControlName="formerWorkplaces"
+              placeholder="Former Workplaces (*separate with lines)">
+            </textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="monthlyIncome"
+              formControlName="monthlyIncome"
+              placeholder="Monthly Incomes">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <mat-label>Spoken Language</mat-label>
+            <mat-select formControlName="spokenLanguage" multiple>
+              <mat-option *ngFor="let language of languages" [value]="language">{{language}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <textarea
+              matInput
+              name="otherText"
+              formControlName="otherText"
+              placeholder="Other Text">
+            </textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <textarea
+              matInput
+              name="freeTextIntroduction"
+              formControlName="freeTextIntroduction"
+              placeholder="Introduction">
+            </textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="socialMediaFacebook"
+              formControlName="socialMediaFacebook"
+              placeholder="Facebook">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="socialMediaLinkedIn"
+              formControlName="socialMediaLinkedIn"
+              placeholder="LinkedIn">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50"  class="pr-1">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              name="socialMediaTwitter"
+              formControlName="socialMediaTwitter"
+              placeholder="Twitter">
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="100" fxLayoutAlign="" class="mt-1">
+          <button mat-raised-button color="primary" [disabled]="itemForm.invalid" type="submit" (submit)="submit()">SAVE</button>
+          <button mat-button color="warn" type="button" (click)="goBack()">Cancel</button>
+        </div>
+      </div>
+    </form>
+
+  </mat-card-content>
+</mat-card>
+
