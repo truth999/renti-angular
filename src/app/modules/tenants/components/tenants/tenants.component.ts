@@ -40,7 +40,7 @@ export class TenantsComponent implements OnInit {
       const response = await this.tenantService.getTenants(this.page);
       this.items = !response ? [] : response.tenants;
       this.page.totalPages = !response ? 0 : response.totalPages;
-      this.page.totalElements = !response ? response.totalElements : 0;
+      this.page.totalElements = !response ? 0 : response.totalElements;
     } finally {
     }
   }
