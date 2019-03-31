@@ -33,14 +33,14 @@ export class NavigationService {
       name: 'common.landlord',
       type: 'link',
       tooltip: 'Landlord',
-      icon: 'account_balance',
+      icon: 'person',
       state: 'landlords'
     },
     {
       name: 'common.tenant',
       type: 'link',
       tooltip: 'Tenant',
-      icon: 'security',
+      icon: 'person_outline',
       state: 'tenants'
     },
     {
@@ -51,17 +51,10 @@ export class NavigationService {
       state: 'apartments'
     },
     {
-      name: 'common.room',
-      type: 'link',
-      tooltip: 'Room',
-      icon: 'account_balance',
-      state: 'rooms'
-    },
-    {
       name: 'common.offer',
       type: 'link',
       tooltip: 'Offer',
-      icon: 'account_balance',
+      icon: 'local_offer',
       state: 'offers'
     },
   ];

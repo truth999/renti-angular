@@ -106,8 +106,8 @@
       <mat-form-field class="full-width">
         <mat-label>Tenant</mat-label>
         <mat-select formControlName="tenantId">
-          <mat-option *ngFor="let tenant of tenants" [value]="tenant._id">
-            {{tenant.firstName + ' ' + tenant.lastName}}
+          <mat-option *ngFor="let tenantItem of tenants" [value]="tenantItem._id">
+            {{tenantItem.firstName + ' ' + tenantItem.lastName}}
           </mat-option>
         </mat-select>
       </mat-form-field>

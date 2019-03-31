@@ -5,9 +5,15 @@ export class Feedback {
   feedbackTexts: string[];
 }
 
-export class PlaceOfBirth {
+export class LocationTemp {
   country: String;
   city: String;
+}
+
+export class SocialMediaAvailabilities {
+  facebook: string;
+  linkedIn: string;
+  twitter: string
 }
 
 export class Page {

@@ -25,7 +25,6 @@ export class OfferDetailPopupComponent implements OnInit {
   }
 
   buildItemForm(item) {
-    debugger;
     this.itemForm = this.fb.group({
       rentalFee: [item.rentalFee || '', Validators.required],
       overhead: [item.overhead || '', Validators.required],
@@ -38,7 +37,7 @@ export class OfferDetailPopupComponent implements OnInit {
       socialMediaLinkedIn: [item.socialMediaAvailabilities ? item.socialMediaAvailabilities.linkedIn : '', Validators.required],
       socialMediaTwitter: [item.socialMediaAvailabilities ? item.socialMediaAvailabilities.twitter : '', Validators.required],
       whyChooseMe: [item.whyChooseMe || '', Validators.required],
-      tenantId: [item.tenantId || '', Validators.required],
+      tenant: [item.tenant || '', Validators.required],
     });
   }
 
@@ -57,11 +56,11 @@ export class OfferDetailPopupComponent implements OnInit {
         twitter: this.itemForm.value.socialMediaTwitter
       },
       whyChooseMe: this.itemForm.value.whyChooseMe,
-      tenantId: this.itemForm.value.tenantId
+      tenant: this.itemForm.value.tenant
     };
 
     if (!this.data.payload.isNew) {
-      offer['_id'] = this.data.payload['_id'];
+      offer['_id'] = this.data.payload.offer['_id'];
     }
     this.dialogRef.close(offer);
   }

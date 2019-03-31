@@ -35,6 +35,11 @@ export const rootRouterConfig: Routes = [
         path: 'tenants',
         loadChildren: './modules/tenants/tenants.module#TenantsModule',
         data: { title: 'Tenants', breadcrumb: 'Tenants'}
+      },
+      {
+        path: 'offers',
+        loadChildren: './modules/offers/offers.module#OffersModule',
+        data: { title: 'Offers', breadcrumb: 'Offers'}
       }
     ]
   },
