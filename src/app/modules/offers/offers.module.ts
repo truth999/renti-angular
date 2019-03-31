@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
+import {SharedModule} from '../../shared/shared.module';
 
 import {OffersComponent} from './components/offers/offers.component';
 import { OfferDetailPopupComponent } from './components/offer-detail-popup/offer-detail-popup.component';
-import {Routes} from '@angular/router';
+import {OfferService} from './services/offer.service';
 
 const offersRoutes: Routes = [
   {
     path: '',
     component: OffersComponent,
-    data: { title: 'Offers', breadcrumb: 'offers' }
+    data: { title: 'Offers', breadcrumb: 'Offers' }
   }
 ];
 
@@ -18,9 +19,15 @@ const offersRoutes: Routes = [
     OffersComponent,
     OfferDetailPopupComponent
   ],
-
   imports: [
-    CommonModule
+    SharedModule,
+    RouterModule.forChild(offersRoutes),
+  ],
+  providers: [
+    OfferService,
+  ],
+  entryComponents: [
+    OfferDetailPopupComponent
   ]
 })
 export class OffersModule { }

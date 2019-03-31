@@ -1,3 +1,122 @@
-<p>
-  offer-detail-popup works!
-</p>
+<h1 matDialogTitle>{{data.title}}</h1>
+
+<form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="rentalFee"
+          formControlName="rentalFee"
+          placeholder="rentalFee">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="overhead"
+          formControlName="overhead"
+          placeholder="overhead">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="minRentingTime"
+          formControlName="minRentingTime"
+          placeholder="minRentingTime">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="dateOfMovingIn"
+          formControlName="dateOfMovingIn"
+          placeholder="dateOfMovingIn">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pt-1 pr-1">
+      <mat-slide-toggle formControlName="movingWith">Moving with?</mat-slide-toggle>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="typeOfTenants"
+          formControlName="typeOfTenants"
+          placeholder="typeOfTenants">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pt-1 pr-1">
+      <mat-slide-toggle formControlName="movingWithPets">Moving with pets?</mat-slide-toggle>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="socialMediaFacebook"
+          formControlName="socialMediaFacebook"
+          placeholder="socialMediaFacebook">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="socialMediaLinkedIn"
+          formControlName="socialMediaLinkedIn"
+          placeholder="socialMediaLinkedIn">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          name="socialMediaTwitter"
+          formControlName="socialMediaTwitter"
+          placeholder="socialMediaTwitter">
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <textarea
+          matInput
+          name="whyChooseMe"
+          formControlName="whyChooseMe"
+          placeholder="whyChooseMe">
+        </textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
+        <mat-label>Tenant</mat-label>
+        <mat-select formControlName="tenantId">
+          <mat-option *ngFor="let tenant of tenants" [value]="tenant._id">
+            {{tenant.firstName + ' ' + tenant.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="mt-1">
+      <button mat-raised-button color="primary" [disabled]="itemForm.invalid" type="submit" (submit)="submit()">SAVE</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">Cancel</button>
+    </div>
+  </div>
+</form>

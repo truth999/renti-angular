@@ -37,9 +37,8 @@ export class LandlordsComponent implements OnInit {
   async getItems() {
     try {
       const response = await this.landlordService.getLandlords(this.page);
-      this.items = !!response ? response.landlords : [];
-      this.page.totalPages =  !!response ? response.totalPages : 0;
-      this.page.totalElements =  !!response ? response.totalElements : 0;
+      this.items = !response ? [] : response.landlords;
+      this.page.totalElements =  !response ? 0 : response.totalElements;
     } finally {
     }
   }
@@ -54,7 +53,6 @@ export class LandlordsComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(async (res) => {
         if(!res) {
-          // If user press cancel
           return;
         }
         this.loader.open();

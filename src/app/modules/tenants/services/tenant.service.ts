@@ -10,7 +10,8 @@ export class TenantService {
   ) { }
 
   getTenants(page): Promise<any> {
-    const url = `tenants?page=${page.pageNumber}&perPage=${page.perPage}`;
+    let url = `tenants?page=${page.pageNumber}`;
+    url += page.perPage ? `&perPage=${page.perPage}` : '';
     return this.apiService.get(url);
   }
 
