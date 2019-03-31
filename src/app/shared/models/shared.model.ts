@@ -13,12 +13,18 @@ export class LocationTemp {
 export class SocialMediaAvailabilities {
   facebook: string;
   linkedIn: string;
-  twitter: string
+  twitter: string;
 }
 
 export class Page {
-  perPage: number = 0;
-  totalElements: number = 0;
-  totalPages: number = 0;
-  pageNumber: number = 0;
+  perPage = 0;
+  totalElements = 0;
+  totalPages = 0;
+  pageNumber = 0;
 }
+
+export class PlaceOfBirth {
+  country: string;
+  city: string;
+}
+

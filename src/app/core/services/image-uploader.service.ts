@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {ApiService} from "./api.service";
-import {catchError} from "rxjs/operators";
-import {environment} from "../../../environments/environment";
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {Observable, of} from "rxjs";
+import {ApiService} from './api.service';
+import {catchError} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
 
 @Injectable()
 export class ImageUploaderService {
@@ -19,7 +19,7 @@ export class ImageUploaderService {
       formData.append('image', images[0]);
       return this.post('image', formData);
     } else {
-      for(let index = 0; index < images.length; index++) {
+      for (let index = 0; index < images.length; index++) {
         formData.append('images[]', images[index]);
       }
       return this.post('images', formData);

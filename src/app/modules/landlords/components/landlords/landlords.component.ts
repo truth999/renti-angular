@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {AppLoaderService} from "../../../../shared/services/app-loader/app-loader.service";
-import {AppConfirmService} from "../../../../shared/services/app-confirm/app-confirm.service";
-import {MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
-import {LandlordService} from "../../services/landlord.service";
-import {LandlordDetailPopupComponent} from "../landlord-detail-popup/landlord-detail-popup.component";
-import {Page} from "../../../../shared/models/shared.model";
-import {config} from "../../../../../config";
-import {egretAnimations} from "../../../../shared/animations/egret-animations";
+import {AppLoaderService} from '../../../../shared/services/app-loader/app-loader.service';
+import {AppConfirmService} from '../../../../shared/services/app-confirm/app-confirm.service';
+import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import {LandlordService} from '../../services/landlord.service';
+import {LandlordDetailPopupComponent} from '../landlord-detail-popup/landlord-detail-popup.component';
+import {Page} from '../../../../shared/models/shared.model';
+import {config} from '../../../../../config';
+import {egretAnimations} from '../../../../shared/animations/egret-animations';
 
 @Component({
   selector: 'app-landlords',
@@ -53,6 +53,7 @@ export class LandlordsComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(async (res) => {
         if(!res) {
+          // If user press cancel
           return;
         }
         this.loader.open();
@@ -60,14 +61,14 @@ export class LandlordsComponent implements OnInit {
           await this.landlordService.createLandlord(res);
           this.getItems();
           this.loader.close();
-          this.snack.open('Created!', 'OK', { duration: 4000 })
+          this.snack.open('Created!', 'OK', { duration: 4000 });
         } else {
           await this.landlordService.updateLandlord(res);
           this.getItems();
           this.loader.close();
-          this.snack.open('Updated!', 'OK', { duration: 4000 })
+          this.snack.open('Updated!', 'OK', { duration: 4000 });
         }
-      })
+      });
   }
 
   deleteItem(row) {
@@ -78,7 +79,7 @@ export class LandlordsComponent implements OnInit {
           await this.landlordService.deleteLandlord(row._id);
           this.getItems();
           this.loader.close();
-          this.snack.open('Deleted!', 'OK', { duration: 4000 })
+          this.snack.open('Deleted!', 'OK', { duration: 4000 });
         }
       })
     ;
