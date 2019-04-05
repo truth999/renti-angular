@@ -1,5 +1,3 @@
-import {SocialMediaAvailabilities} from '../../../shared/models/shared.model';
-
 export class Offer {
   _id: string;
   rentalFee: number;
@@ -8,8 +6,7 @@ export class Offer {
   dateOfMovingIn: string;
   movingWith: boolean;
   typeOfTenants: string;
-  socialMediaAvailabilities: SocialMediaAvailabilities;
   movingWithPets: boolean;
   whyChooseMe: string;
-  tenantId: string;
+  tenant: string;
 }

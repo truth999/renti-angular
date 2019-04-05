@@ -2,7 +2,8 @@ import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {ImageUploaderService} from '../../../../core/services/image-uploader.service';
-import {Feedback, PlaceOfBirth} from 'app/shared/models/shared.model';
+import {environment} from '../../../../../environments/environment';
+import {Landlord} from '../../models/landlord.model';
 
 @Component({
   selector: 'app-landlord-detail-popup',
@@ -11,15 +12,16 @@ import {Feedback, PlaceOfBirth} from 'app/shared/models/shared.model';
 })
 export class LandlordDetailPopupComponent implements OnInit {
 
+  public landlord: Landlord;
   public itemForm: FormGroup;
-  public profilePicture: any;
-  public localPath;
 
   public languages = ['English', 'Hungarian', 'Russian', 'French'];
-  @ViewChild('fileChooser')
-  fileChooser: ElementRef;
 
-  public baseURL = 'http://localhost:8080/';
+  @ViewChild('profilePictureChooser') profilePictureChooser: ElementRef;
+  public newProfilePicture: any;
+  public previewProfilePicture: any;
+
+  public uploadBase = environment.uploadBase;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,22 +32,23 @@ export class LandlordDetailPopupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.landlord = this.data.payload;
     this.buildItemForm(this.data.payload);
   }
 
   buildItemForm(item) {
     this.itemForm = this.fb.group({
-      firstName:            [item.firstName || '',                                Validators.required],
-      lastName:             [item.lastName || '',                                 Validators.required],
-      profilePicture:       [item.profilePicture || '',                           Validators.required],
-      email:                [item.email || '',
+      firstName: [item.firstName || '', Validators.required],
+      lastName: [item.lastName || '', Validators.required],
+      profilePicture: [item.profilePicture || '', Validators.required],
+      email: [item.email || '',
         [
           Validators.required,
           Validators.email,
         ]
       ],
-      isPerson:             [item.isPerson || false,                              Validators.required],
-      mobile:               [item.mobile || '',
+      isPerson: [item.isPerson || false, Validators.required],
+      mobile: [item.mobile || '',
         [
           Validators.required,
           Validators.minLength(8),
@@ -53,18 +56,14 @@ export class LandlordDetailPopupComponent implements OnInit {
           Validators.pattern('[0-9]+'),
         ]
       ],
-      placeOfBirthCountry:  [!item.placeOfBirth ? '' : item.placeOfBirth.country, Validators.required],
-      placeOfBirthCity:     [!item.placeOfBirth ? '' : item.placeOfBirth.city,    Validators.required],
-      nameOfAgency:         [item.nameOfAgency || '',                             Validators.required],
-      spokenLanguages:      [item.spokenLanguages || '',                          Validators.required],
+      placeOfBirthCountry: [!item.placeOfBirth ? '' : item.placeOfBirth.country, Validators.required],
+      placeOfBirthCity: [!item.placeOfBirth ? '' : item.placeOfBirth.city, Validators.required],
+      nameOfAgency: [item.nameOfAgency || '', Validators.required],
+      spokenLanguages: [item.spokenLanguages || '', Validators.required],
     });
   }
 
   submit() {
-    console.log(this.itemForm.status);
-    console.log(this.itemForm.value);
-
-    // TODO: May we change this to this.itemForm.value?
     const landlord = {
       firstName: this.itemForm.value.firstName,
       lastName:  this.itemForm.value.lastName,
@@ -80,35 +79,38 @@ export class LandlordDetailPopupComponent implements OnInit {
       spokenLanguages: this.itemForm.value.spokenLanguages
     };
 
-    if (!this.data.payload.isNew) {
+    if (!this.data.isNew) {
       landlord['_id'] = this.data.payload['_id'];
     }
     this.dialogRef.close(landlord);
   }
 
   async uploadProfilePicture(event) {
-    event.preventDefault();
-    if (!this.profilePicture) {
+    event.stopPropagation();
+    if (!this.newProfilePicture) {
       return;
     }
-    const filePath = await this.fileUploaderService.upload(this.profilePicture);
+    const filePath = await this.fileUploaderService.upload(this.newProfilePicture);
     this.itemForm.controls['profilePicture'].setValue(filePath);
+    this.newProfilePicture = null;
+    this.profilePictureChooser.nativeElement.value = null;
   }
 
   cancelProfilePicture(event) {
-    console.log(this.fileChooser.nativeElement.files);
-    this.fileChooser.nativeElement.value = '';
-    console.log(this.fileChooser.nativeElement.files);
+    event.stopPropagation();
+    this.newProfilePicture = null;
+    this.previewProfilePicture = null;
+    this.profilePictureChooser.nativeElement.value = null;
   }
 
   onProfilePictureChange(event) {
-    this.profilePicture = event.target.files;
+    this.newProfilePicture = event.target.files;
 
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent) => {
-        this.localPath = (<FileReader>e.target).result;
-      }
+        this.previewProfilePicture = (<FileReader>e.target).result;
+      };
       reader.readAsDataURL(event.target.files[0]);
     }
   }

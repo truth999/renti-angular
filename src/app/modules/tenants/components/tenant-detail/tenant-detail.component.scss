@@ -1,0 +1,27 @@
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  background: #e5e5e5;
+  position: relative;
+
+  input[type="file"] {
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    width: calc(100% - 1rem);
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  img {
+    max-height: 100%;
+  }
+
+  .buttons-wrapper {
+    position: absolute;
+    bottom: 10px;
+    z-index: 2;
+  }
+}

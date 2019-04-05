@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Location} from '@angular/common';
 
@@ -6,6 +6,7 @@ import {ImageUploaderService} from '../../../../core/services/image-uploader.ser
 import {TenantService} from '../../services/tenant.service';
 import {Tenant} from '../../models/tenant.model';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-tenant-detail',
@@ -18,9 +19,14 @@ export class TenantDetailComponent implements OnInit {
   public tenant: Tenant;
 
   public itemForm: FormGroup;
-  public profilePicture: any;
 
   public languages = ['English', 'Hungarian', 'Russian', 'French'];
+
+  @ViewChild('profilePictureChooser') profilePictureChooser: ElementRef;
+  public newProfilePicture: any;
+  public previewProfilePicture: any;
+
+  public uploadBase = environment.uploadBase;
 
   constructor(
     private fb: FormBuilder,
@@ -53,7 +59,7 @@ export class TenantDetailComponent implements OnInit {
     this.itemForm = this.fb.group({
       firstName: [!!this.tenant ? this.tenant.firstName : '', Validators.required],
       lastName: [!!this.tenant ? this.tenant.lastName : '', Validators.required],
-      email: [!!this.tenant ? this.tenant.email :'' ,Validators.required],
+      email: [!!this.tenant ? this.tenant.email : '' , Validators.required],
       mobile: [!!this.tenant ? this.tenant.mobile : '', Validators.required],
       profilePicture: [!!this.tenant ? this.tenant.profilePicture : '', Validators.required],
       placeOfBirthCountry: [!!this.tenant ? this.tenant.placeOfBirth.country : '' , Validators.required],
@@ -62,12 +68,12 @@ export class TenantDetailComponent implements OnInit {
       currentPlaceCity: [!!this.tenant ? this.tenant.currentPlace.city : '' , Validators.required],
       nationality: [!!this.tenant ? this.tenant.nationality: '', Validators.required],
       highestLevelOfQualification: [!!this.tenant ? this.tenant.highestLevelOfQualification: '', Validators.required],
-      nameOfSchool: [!!this.tenant ? this.tenant.nameOfSchool: '', Validators.required],
-      yearOfGraduation: [!!this.tenant ? this.tenant.yearOfGraduation: '', Validators.required],
+      nameOfSchool: [!!this.tenant ? this.tenant.nameOfSchool : '', Validators.required],
+      yearOfGraduation: [!!this.tenant ? this.tenant.yearOfGraduation : '', Validators.required],
       jobTitle: [!!this.tenant ? this.tenant.jobTitle: '', Validators.required],
-      universitySpeciality: [!!this.tenant ? this.tenant.universitySpeciality: '', Validators.required],
-      currentWorkplace: [!!this.tenant ? this.tenant.currentWorkplace: '', Validators.required],
-      formerWorkplaces: [!!this.tenant ? this.tenant.formerWorkplaces.join('\n'): '', Validators.required],
+      universitySpeciality: [!!this.tenant ? this.tenant.universitySpeciality : '', Validators.required],
+      currentWorkplace: [!!this.tenant ? this.tenant.currentWorkplace : '', Validators.required],
+      formerWorkplaces: [!!this.tenant ? this.tenant.formerWorkplaces.join('\n') : '', Validators.required],
       monthlyIncome: [!!this.tenant ? this.tenant.monthlyIncome: '', Validators.required],
       spokenLanguages: [!!this.tenant ? this.tenant.spokenLanguages : '', Validators.required],
       otherText: [!!this.tenant ? this.tenant.otherText : '', Validators.required],
@@ -130,15 +136,30 @@ export class TenantDetailComponent implements OnInit {
 
   async uploadProfilePicture(event) {
     event.preventDefault();
-    if (!this.profilePicture) {
+    if (!this.newProfilePicture) {
       return;
     }
-    const filePath = await this.fileUploaderService.upload(this.profilePicture);
+    const filePath = await this.fileUploaderService.upload(this.newProfilePicture);
     this.itemForm.controls['profilePicture'].setValue(filePath);
   }
 
+  cancelProfilePicture(event) {
+    event.stopPropagation();
+    this.newProfilePicture = null;
+    this.previewProfilePicture = null;
+    this.profilePictureChooser.nativeElement.value = null;
+  }
+
   onProfilePictureChange(event) {
-    this.profilePicture = event.target.files;
+    this.newProfilePicture = event.target.files;
+
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent) => {
+        this.previewProfilePicture = (<FileReader>e.target).result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
 }

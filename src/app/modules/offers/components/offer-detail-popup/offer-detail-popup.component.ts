@@ -33,9 +33,6 @@ export class OfferDetailPopupComponent implements OnInit {
       movingWith: [item.movingWith || false, Validators.required],
       typeOfTenants: [item.typeOfTenants || '', Validators.required],
       movingWithPets: [item.movingWithPets || false, Validators.required],
-      socialMediaFacebook: [item.socialMediaAvailabilities ? item.socialMediaAvailabilities.facebook : '', Validators.required],
-      socialMediaLinkedIn: [item.socialMediaAvailabilities ? item.socialMediaAvailabilities.linkedIn : '', Validators.required],
-      socialMediaTwitter: [item.socialMediaAvailabilities ? item.socialMediaAvailabilities.twitter : '', Validators.required],
       whyChooseMe: [item.whyChooseMe || '', Validators.required],
       tenant: [item.tenant || '', Validators.required],
     });
@@ -50,11 +47,6 @@ export class OfferDetailPopupComponent implements OnInit {
       movingWith: this.itemForm.value.movingWith,
       typeOfTenants: this.itemForm.value.typeOfTenants,
       movingWithPets: this.itemForm.value.movingWithPets,
-      socialMediaAvailabilities: {
-        facebook: this.itemForm.value.socialMediaFacebook,
-        linkedIn: this.itemForm.value.socialMediaLinkedIn,
-        twitter: this.itemForm.value.socialMediaTwitter
-      },
       whyChooseMe: this.itemForm.value.whyChooseMe,
       tenant: this.itemForm.value.tenant
     };

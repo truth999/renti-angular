@@ -7,9 +7,10 @@
       <mat-form-field class="full-width">
         <input
           matInput
+          type="number"
           name="rentalFee"
           formControlName="rentalFee"
-          placeholder="rentalFee">
+          placeholder="Rental Fee">
       </mat-form-field>
     </div>
 
@@ -17,9 +18,10 @@
       <mat-form-field class="full-width">
         <input
           matInput
+          type="number"
           name="overhead"
           formControlName="overhead"
-          placeholder="overhead">
+          placeholder="Overhead">
       </mat-form-field>
     </div>
 
@@ -27,34 +29,23 @@
       <mat-form-field class="full-width">
         <input
           matInput
+          type="number"
           name="minRentingTime"
           formControlName="minRentingTime"
-          placeholder="minRentingTime">
+          placeholder="Minimum Renting Time(months)">
       </mat-form-field>
     </div>
 
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
-        <input
-          matInput
-          name="dateOfMovingIn"
-          formControlName="dateOfMovingIn"
-          placeholder="dateOfMovingIn">
+        <input matInput [matDatepicker]="datepickerOfMovingIn" name="dateOfMovingIn" placeholder="Date Of Moving in" formControlName="dateOfMovingIn">
+        <mat-datepicker-toggle matSuffix [for]="datepickerOfMovingIn"></mat-datepicker-toggle>
+        <mat-datepicker #datepickerOfMovingIn></mat-datepicker>
       </mat-form-field>
     </div>
 
     <div fxFlex="50"  class="pt-1 pr-1">
       <mat-slide-toggle formControlName="movingWith">Moving with?</mat-slide-toggle>
-    </div>
-
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-          matInput
-          name="typeOfTenants"
-          formControlName="typeOfTenants"
-          placeholder="typeOfTenants">
-      </mat-form-field>
     </div>
 
     <div fxFlex="50"  class="pt-1 pr-1">
@@ -65,51 +56,31 @@
       <mat-form-field class="full-width">
         <input
           matInput
-          name="socialMediaFacebook"
-          formControlName="socialMediaFacebook"
-          placeholder="socialMediaFacebook">
-      </mat-form-field>
-    </div>
-
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-          matInput
-          name="socialMediaLinkedIn"
-          formControlName="socialMediaLinkedIn"
-          placeholder="socialMediaLinkedIn">
-      </mat-form-field>
-    </div>
-
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <input
-          matInput
-          name="socialMediaTwitter"
-          formControlName="socialMediaTwitter"
-          placeholder="socialMediaTwitter">
-      </mat-form-field>
-    </div>
-
-    <div fxFlex="50"  class="pr-1">
-      <mat-form-field class="full-width">
-        <textarea
-          matInput
-          name="whyChooseMe"
-          formControlName="whyChooseMe"
-          placeholder="whyChooseMe">
-        </textarea>
+          name="typeOfTenants"
+          formControlName="typeOfTenants"
+          placeholder="Type Of Tenants">
       </mat-form-field>
     </div>
 
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
         <mat-label>Tenant</mat-label>
-        <mat-select formControlName="tenantId">
+        <mat-select formControlName="tenant">
           <mat-option *ngFor="let tenantItem of tenants" [value]="tenantItem._id">
             {{tenantItem.firstName + ' ' + tenantItem.lastName}}
           </mat-option>
         </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100"  class="pr-1">
+      <mat-form-field class="full-width">
+        <textarea
+          matInput
+          name="whyChooseMe"
+          formControlName="whyChooseMe"
+          placeholder="Why choose me?">
+        </textarea>
       </mat-form-field>
     </div>
 

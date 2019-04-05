@@ -1,46 +1,24 @@
 <h1 matDialogTitle>{{data.title}}</h1>
 
 <form [formGroup]="itemForm" (ngSubmit)="submit()">
-  <input type="file" #fileChooser style="visibility: hidden" (change)="onProfilePictureChange($event)"/>
+
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
-
     <div fxFlex="50" class="pr-1">
-      <ng-container *ngIf="!itemForm.profilePicture else previewProfile">
-        <ng-container *ngIf="!fileChooser.value else selected">
-          <div class="employee-avatar mt-1 mb-1 p-1 rounded" fxLayout="column wrap" fxLayoutAlign="center center">
-            <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" (click)="fileChooser.click()">
-              <mat-icon role="img" aria-hidden="true">photo_camera</mat-icon>
-              <span>Upload <br/>picture</span>
-            </div>
+      <div class="profile-picture mt-1 mb-1 p-1 rounded" fxLayout="column wrap" fxLayoutAlign="center center">
+        <input type="file" #profilePictureChooser (change)="onProfilePictureChange($event)"/>
+        <div *ngIf="!landlord?.profilePicture && !previewProfilePicture" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+          <mat-icon role="img" aria-hidden="true">photo_camera</mat-icon>
+          <span>Upload a picture</span>
+        </div>
+        <ng-container *ngIf="landlord?.profilePicture || previewProfilePicture">
+          <img *ngIf="!previewProfilePicture" [src]="uploadBase + landlord?.profilePicture"/>
+          <img *ngIf="previewProfilePicture" [src]="previewProfilePicture"/>
+          <div *ngIf="previewProfilePicture && newProfilePicture" class="buttons-wrapper text-center">
+            <button mat-raised-button type="button" (click)="uploadProfilePicture($event)" class="mat-primary mr-1" >Upload</button>
+            <button mat-raised-button type="button" (click)="cancelProfilePicture($event)">Cancel</button>
           </div>
         </ng-container>
-
-        <ng-template #selected>
-          <div class="employee-avatar mt-1 mb-1 p-1 rounded" fxLayout="column wrap" fxLayoutAlign="center center">
-            <img [src]="localPath" (click)="fileChooser.click()"/>
-          </div>
-          <div class="text-center">
-            <button mat-raised-button (click)="uploadProfilePicture($event)" class="mat-primary mr-1" >Upload</button>
-            <button mat-raised-button (click)="cancelProfilePicture($event)">Cancel</button>
-          </div>
-        </ng-template>
-      </ng-container>
-
-      <ng-template #previewProfile>
-        <ng-container *ngIf="!fileChooser.value else selected">
-          <ng-container fxLayout="row wrap" fxLayoutAlign="space-evenly center" (click)="fileChooser.click()">
-            <img [src]="baseURL + itemForm.profilePicture" (click)="fileChooser.click()"/>
-          </ng-container>
-        </ng-container>
-
-        <ng-template #selected>
-          <img [src]="localPath" (click)="fileChooser.click()"/>
-          <div class="text-center">
-            <button mat-raised-button (click)="uploadProfilePicture($event)" class="mat-primary mr-1" >Upload</button>
-            <button mat-raised-button (click)="cancelProfilePicture($event)">Cancel</button>
-          </div>
-        </ng-template>
-      </ng-template>
+      </div>
     </div>
 
     <div fxFlex="50" class="pr-1" fxLayout="column wrap" fxLayoutAlign="center center">
@@ -88,7 +66,7 @@
           matInput
           name="placeOfBirthCountry"
           formControlName="placeOfBirthCountry"
-          placeholder="City of Birth">
+          placeholder="Country of Birth">
       </mat-form-field>
     </div>
 
@@ -98,7 +76,7 @@
           matInput
           name="placeOfBirthCity"
           formControlName="placeOfBirthCity"
-          placeholder="Contry of Birth">
+          placeholder="City of Birth">
       </mat-form-field>
     </div>
 
