@@ -26,14 +26,14 @@ export class OfferDetailPopupComponent implements OnInit {
 
   buildItemForm(item) {
     this.itemForm = this.fb.group({
-      rentalFee: [item.rentalFee || '', Validators.required],
-      overhead: [item.overhead || '', Validators.required],
-      minRentingTime: [item.minRentingTime || '', Validators.required],
+      rentalFee: [item.rentalFee || null, Validators.required],
+      overhead: [item.overhead || null, Validators.required],
+      minRentingTime: [item.minRentingTime || null, Validators.required],
       dateOfMovingIn: [item.dateOfMovingIn || '', Validators.required],
       movingWith: [item.movingWith || false, Validators.required],
       typeOfTenants: [item.typeOfTenants || '', Validators.required],
       movingWithPets: [item.movingWithPets || false, Validators.required],
-      whyChooseMe: [item.whyChooseMe || '', Validators.required],
+      whyChooseMe: [item.whyChooseMe || ''],
       tenant: [item.tenant || '', Validators.required],
     });
   }

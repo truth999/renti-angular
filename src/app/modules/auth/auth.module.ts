@@ -13,13 +13,13 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // import { CommonDirectivesModule } from './sdirectives/common/common-directives.module';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { LockscreenComponent } from './lockscreen/lockscreen.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { LockscreenComponent } from './components/lockscreen/lockscreen.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
 import {AuthRoutes} from './auth.routing';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ErrorComponent } from './error/error.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   imports: [

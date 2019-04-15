@@ -5,7 +5,7 @@
   <div fxLayout="row wrap" fxLayout.lt-sm="column">
     <div fxFlex="50" class="pr-1">
       <div class="profile-picture mt-1 mb-1 p-1 rounded" fxLayout="column wrap" fxLayoutAlign="center center">
-        <input type="file" #profilePictureChooser (change)="onProfilePictureChange($event)"/>
+        <input type="file" #profilePictureChooser accept=".png, .jpeg, .jpg" (change)="onProfilePictureChange($event)"/>
         <div *ngIf="!landlord?.profilePicture && !previewProfilePicture" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
           <mat-icon role="img" aria-hidden="true">photo_camera</mat-icon>
           <span>Upload a picture</span>
@@ -80,6 +80,10 @@
       </mat-form-field>
     </div>
 
+    <div fxFlex="50"  class="pt-1 pr-1">
+      <mat-checkbox formControlName="isPerson">Is Person?</mat-checkbox>
+    </div>
+
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
         <input
@@ -92,15 +96,20 @@
 
     <div fxFlex="50"  class="pr-1">
       <mat-form-field class="full-width">
+        <mat-label>Nationality</mat-label>
+        <mat-select formControlName="nationality">
+          <mat-option *ngFor="let nationality of nationalities" [value]="nationality">{{nationality}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50"  class="pr-1">
+      <mat-form-field class="full-width">
         <mat-label>Spoken Language</mat-label>
         <mat-select formControlName="spokenLanguages" multiple>
           <mat-option *ngFor="let language of languages" [value]="language">{{language}}</mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-
-    <div fxFlex="50"  class="pt-1 pr-1">
-      <mat-slide-toggle formControlName="isPerson">Is Person?</mat-slide-toggle>
     </div>
 
     <div fxFlex="100" class="mt-1">

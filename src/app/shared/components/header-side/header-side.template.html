@@ -23,15 +23,20 @@
     </button>
   </mat-menu>
 
+  <button mat-icon-button (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+
   <!-- Top left user menu -->
   <button
+    *ngIf="false"
     mat-icon-button
     [matMenuTriggerFor]="accountMenu"
     class="topbar-button-right img-button"
   >
     <img src="assets/images/default-avatar.png" alt="" />
   </button>
-  <mat-menu #accountMenu="matMenu">
+  <mat-menu *ngIf="false" #accountMenu="matMenu">
     <button mat-menu-item [routerLink]="['/profile/overview']">
       <mat-icon>account_box</mat-icon>
       <span>{{'common.profile' | translate}}</span>

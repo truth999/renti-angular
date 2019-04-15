@@ -1,6 +1,6 @@
 <mat-card class="p-0">
   <mat-card-title class="">
-    <div class="card-title-text">Tenant Detail</div>
+    <div class="card-title-text">{{!tenantId ? 'New Tenant' : 'Tenant Detail'}}</div>
     <mat-divider></mat-divider>
   </mat-card-title>
   <mat-card-content>
@@ -106,11 +106,10 @@
 
         <div fxFlex="50"  class="pr-1">
           <mat-form-field class="full-width">
-            <input
-              matInput
-              name="nationality"
-              formControlName="nationality"
-              placeholder="Nationality">
+            <mat-label>Nationality</mat-label>
+            <mat-select formControlName="nationality">
+              <mat-option *ngFor="let nationality of nationalities" [value]="nationality">{{nationality}}</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
 
@@ -138,6 +137,7 @@
           <mat-form-field class="full-width">
             <input
               matInput
+              type="number"
               name="yearOfGraduation"
               formControlName="yearOfGraduation"
               placeholder="Year Of Graduation">
@@ -189,6 +189,7 @@
           <mat-form-field class="full-width">
             <input
               matInput
+              type="number"
               name="monthlyIncome"
               formControlName="monthlyIncome"
               placeholder="Monthly Income">

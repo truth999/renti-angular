@@ -30,32 +30,43 @@ export class NavigationService {
 
   iconMenu: IMenuItem[] = [
     {
-      name: 'common.landlord',
+      name: 'Landlords',
       type: 'link',
       tooltip: 'Landlord',
-      icon: 'person',
+      icon: 'people',
       state: 'landlords'
     },
     {
-      name: 'common.tenant',
+      name: 'Tenants',
       type: 'link',
       tooltip: 'Tenant',
-      icon: 'person_outline',
+      icon: 'people_outline',
       state: 'tenants'
     },
     {
-      name: 'common.apartment',
-      type: 'link',
-      tooltip: 'Apartment',
+      name: 'Rentals',
+      type: 'dropDown',
+      tooltip: 'Rentals',
       icon: 'account_balance',
-      state: 'apartments'
+      state: 'rentals',
+      sub: [
+        { name: 'Apartments', state: 'apartments' },
+        { name: 'Rooms', state: 'rooms' },
+      ]
     },
     {
-      name: 'common.offer',
+      name: 'Offers',
       type: 'link',
       tooltip: 'Offer',
       icon: 'local_offer',
       state: 'offers'
+    },
+    {
+      name: 'History',
+      type: 'link',
+      tooltip: 'History',
+      icon: 'show_chart',
+      state: 'history'
     },
   ];
 

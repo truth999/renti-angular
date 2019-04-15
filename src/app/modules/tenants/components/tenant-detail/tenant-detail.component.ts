@@ -7,6 +7,7 @@ import {TenantService} from '../../services/tenant.service';
 import {Tenant} from '../../models/tenant.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../../environments/environment';
+import { config } from '../../../../../config';
 
 @Component({
   selector: 'app-tenant-detail',
@@ -20,7 +21,8 @@ export class TenantDetailComponent implements OnInit {
 
   public itemForm: FormGroup;
 
-  public languages = ['English', 'Hungarian', 'Russian', 'French'];
+  public languages = config.availableLanguages;
+  public nationalities = config.nationalities;
 
   @ViewChild('profilePictureChooser') profilePictureChooser: ElementRef;
   public newProfilePicture: any;
@@ -66,21 +68,21 @@ export class TenantDetailComponent implements OnInit {
       placeOfBirthCity: [!!this.tenant ? this.tenant.placeOfBirth.city : '' , Validators.required],
       currentPlaceCountry: [!!this.tenant ? this.tenant.currentPlace.country : '' , Validators.required],
       currentPlaceCity: [!!this.tenant ? this.tenant.currentPlace.city : '' , Validators.required],
-      nationality: [!!this.tenant ? this.tenant.nationality: '', Validators.required],
-      highestLevelOfQualification: [!!this.tenant ? this.tenant.highestLevelOfQualification: '', Validators.required],
-      nameOfSchool: [!!this.tenant ? this.tenant.nameOfSchool : '', Validators.required],
-      yearOfGraduation: [!!this.tenant ? this.tenant.yearOfGraduation : '', Validators.required],
-      jobTitle: [!!this.tenant ? this.tenant.jobTitle: '', Validators.required],
-      universitySpeciality: [!!this.tenant ? this.tenant.universitySpeciality : '', Validators.required],
+      nationality: [!!this.tenant ? this.tenant.nationality : '', Validators.required],
+      highestLevelOfQualification: [!!this.tenant ? this.tenant.highestLevelOfQualification : '', Validators.required],
+      nameOfSchool: [!!this.tenant ? this.tenant.nameOfSchool : ''],
+      yearOfGraduation: [!!this.tenant ? this.tenant.yearOfGraduation : null],
+      jobTitle: [!!this.tenant ? this.tenant.jobTitle : '', Validators.required],
+      universitySpeciality: [!!this.tenant ? this.tenant.universitySpeciality : ''],
       currentWorkplace: [!!this.tenant ? this.tenant.currentWorkplace : '', Validators.required],
       formerWorkplaces: [!!this.tenant ? this.tenant.formerWorkplaces.join('\n') : '', Validators.required],
-      monthlyIncome: [!!this.tenant ? this.tenant.monthlyIncome: '', Validators.required],
-      spokenLanguages: [!!this.tenant ? this.tenant.spokenLanguages : '', Validators.required],
-      otherText: [!!this.tenant ? this.tenant.otherText : '', Validators.required],
-      freeTextIntroduction: [!!this.tenant ? this.tenant.freeTextIntroduction : '', Validators.required],
-      socialMediaFacebook: [!!this.tenant ? this.tenant.socialMediaAvailabilities.facebook : '', Validators.required],
-      socialMediaLinkedIn: [!!this.tenant ? this.tenant.socialMediaAvailabilities.linkedIn : '', Validators.required],
-      socialMediaTwitter: [!!this.tenant ? this.tenant.socialMediaAvailabilities.twitter : '', Validators.required]
+      monthlyIncome: [!!this.tenant ? this.tenant.monthlyIncome : null, Validators.required],
+      spokenLanguages: [!!this.tenant ? this.tenant.spokenLanguages : null, Validators.required],
+      otherText: [!!this.tenant ? this.tenant.otherText : ''],
+      freeTextIntroduction: [!!this.tenant ? this.tenant.freeTextIntroduction : ''],
+      socialMediaFacebook: [!!this.tenant ? this.tenant.socialMediaAvailabilities.facebook : ''],
+      socialMediaLinkedIn: [!!this.tenant ? this.tenant.socialMediaAvailabilities.linkedIn : ''],
+      socialMediaTwitter: [!!this.tenant ? this.tenant.socialMediaAvailabilities.twitter : '']
     });
   }
 
@@ -139,8 +141,10 @@ export class TenantDetailComponent implements OnInit {
     if (!this.newProfilePicture) {
       return;
     }
-    const filePath = await this.fileUploaderService.upload(this.newProfilePicture);
-    this.itemForm.controls['profilePicture'].setValue(filePath);
+    const filenames = await this.fileUploaderService.upload(this.newProfilePicture);
+    this.itemForm.controls['profilePicture'].setValue(filenames[0]);
+    this.newProfilePicture = null;
+    this.profilePictureChooser.nativeElement.value = null;
   }
 
   cancelProfilePicture(event) {

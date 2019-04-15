@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {ImageUploaderService} from '../../../../core/services/image-uploader.service';
 import {environment} from '../../../../../environments/environment';
 import {Landlord} from '../../models/landlord.model';
+import { config } from '../../../../../config';
 
 @Component({
   selector: 'app-landlord-detail-popup',
@@ -15,7 +16,8 @@ export class LandlordDetailPopupComponent implements OnInit {
   public landlord: Landlord;
   public itemForm: FormGroup;
 
-  public languages = ['English', 'Hungarian', 'Russian', 'French'];
+  public languages = config.availableLanguages;
+  public nationalities = config.nationalities;
 
   @ViewChild('profilePictureChooser') profilePictureChooser: ElementRef;
   public newProfilePicture: any;
@@ -48,6 +50,7 @@ export class LandlordDetailPopupComponent implements OnInit {
         ]
       ],
       isPerson: [item.isPerson || false, Validators.required],
+      nameOfAgency: [item.nameOfAgency || '', Validators.required],
       mobile: [item.mobile || '',
         [
           Validators.required,
@@ -58,8 +61,8 @@ export class LandlordDetailPopupComponent implements OnInit {
       ],
       placeOfBirthCountry: [!item.placeOfBirth ? '' : item.placeOfBirth.country, Validators.required],
       placeOfBirthCity: [!item.placeOfBirth ? '' : item.placeOfBirth.city, Validators.required],
-      nameOfAgency: [item.nameOfAgency || '', Validators.required],
-      spokenLanguages: [item.spokenLanguages || '', Validators.required],
+      nationality: [item.nationality || ''],
+      spokenLanguages: [item.spokenLanguages || null, Validators.required]
     });
   }
 
@@ -76,6 +79,7 @@ export class LandlordDetailPopupComponent implements OnInit {
         city: this.itemForm.value.placeOfBirthCity
       },
       nameOfAgency: this.itemForm.value.nameOfAgency,
+      nationality: this.itemForm.value.nationality,
       spokenLanguages: this.itemForm.value.spokenLanguages
     };
 
@@ -90,8 +94,8 @@ export class LandlordDetailPopupComponent implements OnInit {
     if (!this.newProfilePicture) {
       return;
     }
-    const filePath = await this.fileUploaderService.upload(this.newProfilePicture);
-    this.itemForm.controls['profilePicture'].setValue(filePath);
+    const filenames = await this.fileUploaderService.upload(this.newProfilePicture);
+    this.itemForm.controls['profilePicture'].setValue(filenames[0]);
     this.newProfilePicture = null;
     this.profilePictureChooser.nativeElement.value = null;
   }

@@ -15,20 +15,15 @@ export class ImageUploaderService {
 
   upload(images) {
     const formData = new FormData();
-    if (images.length === 1) {
-      formData.append('image', images[0]);
-      return this.post('image', formData);
-    } else {
-      for (let index = 0; index < images.length; index++) {
-        formData.append('images[]', images[index]);
-      }
-      return this.post('images', formData);
+    for (let index = 0; index < images.length; index++) {
+      formData.append(`images`, images[index]);
     }
+    formData.append(`images`, images);
+    return this.post('images', formData);
   }
 
   private post(url, formData): Promise<string | string[]> {
     const fullUrl = this.makeFullUrl(url);
-    const headers = this.makeHeaders();
     return this.http.post<string | string[]>(fullUrl, formData)
       .pipe(catchError(this.processHttpError()))
       .toPromise();

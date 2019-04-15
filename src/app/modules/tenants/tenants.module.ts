@@ -3,8 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 
 import { TenantsComponent } from './components/tenants/tenants.component';
-import {TenantDetailComponent} from "./components/tenant-detail/tenant-detail.component";
-import {TenantService} from "./services/tenant.service";
+import {TenantDetailComponent} from './components/tenant-detail/tenant-detail.component';
+import {TenantService} from './services/tenant.service';
 
 const tenantsRoutes: Routes = [
   {

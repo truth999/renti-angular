@@ -9,6 +9,7 @@ export class Landlord {
   isPerson: string;
   nameOfAgency: string;
   profilePicture: string;
+  nationality: string;
   placeOfBirth: LocationTemp;
   spokenLanguages: string[];
 }

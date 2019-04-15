@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { LockscreenComponent } from './lockscreen/lockscreen.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ErrorComponent } from './error/error.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { LockscreenComponent } from './components/lockscreen/lockscreen.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ErrorComponent } from './components/error/error.component';
 
 export const AuthRoutes: Routes = [
   {

@@ -54,7 +54,7 @@ export class LayoutService {
       "sidebarColor": "black",      // http://demos.ui-lib.com/egret-doc/#egret-colors
       "sidebarCompactToggle": false, // applied when "sidebarStyle" is "compact"
       "dir": "ltr",                 // ltr, rtl
-      "useBreadcrumb": true,
+      "useBreadcrumb": false,
       "topbarFixed": true,
       "topbarColor": "white",       // http://demos.ui-lib.com/egret-doc/#egret-colors
       "matTheme": "egret-blue",     // egret-blue, egret-navy, egret-dark-purple, egret-dark-pink

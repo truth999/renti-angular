@@ -40,6 +40,16 @@ export const rootRouterConfig: Routes = [
         path: 'offers',
         loadChildren: './modules/offers/offers.module#OffersModule',
         data: { title: 'Offers', breadcrumb: 'Offers'}
+      },
+      {
+        path: 'rentals',
+        loadChildren: './modules/rentals/rentals.module#RentalsModule',
+        data: { title: 'Rentals', breadcrumb: 'Rentals'}
+      },
+      {
+        path: 'history',
+        loadChildren: './modules/history/history.module#HistoryModule',
+        data: { title: 'History', breadcrumb: 'History'}
       }
     ]
   },
