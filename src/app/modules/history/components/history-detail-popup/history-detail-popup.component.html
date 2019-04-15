@@ -1,0 +1,11 @@
+<mat-toolbar matDialogTitle class="m-0">
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">{{data.title}}</span>
+    <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<div mat-dialog-content class="p-1 m-0">
+  {{item | json}}
+</div>

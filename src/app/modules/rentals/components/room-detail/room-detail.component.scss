@@ -1,0 +1,19 @@
+.picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  background: #e5e5e5;
+  position: relative;
+
+  img {
+    max-height: 100%;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
