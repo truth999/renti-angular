@@ -1,0 +1,40 @@
+{
+  "COMMON": {
+    "FOOTER": "Minden jog fenntartva. ©2019 Renti",
+    "REGISTRATION": "Regisztráljon ingyenesen",
+    "LOGIN": "Bejelentkezés",
+    "EMAIL": "Email",
+    "PASSWORD": "Jelszó",
+    "CONTINUE": "Folytatás",
+    "OR": "vagy",
+    "MEMBER_LOGIN": "Regisztrált tag belépése",
+    "TERMS": "Felhasználási feltételek"
+  },
+  "HOME": {
+    "TITLE": "Renti - az albérletek Kánaánja",
+    "SUBTITLE": "Találja meg pár lépéssel:",
+    "SELECT1": "Álmai albérletét",
+    "SELECT2": "Álmai albérlőjét",
+    "ABOUT": "Rólunk",
+    "KIT": "Sajtóinformációk",
+  },
+  "LOGIN": {
+    "EMAIL_PLACEHOLDER": "Email címe:",
+    "PASSWORD_PLACEHOLDER": "Jelszava:",
+    "FORGOT_PASSWORD": "Elfelejtette a jelszavát?",
+    "NEW_USER": "Új felhasználó? Regisztráljon itt."
+  },
+  "SIGNUP": {
+    "SIGNUP_TITLE": "Regisztráljon ingyenesen hogy láthassa az albérleti lehetőségeket az Ön környékén",
+    "SIGNUP_FACEBOOK": "Folytatás Facebook fiókkal",
+    "TAKE_MINUTES": "A regisztráció 2 percet vesz igénybe",
+    "I": "Én vagyok",
+    "LANDLORD": "Kiadó",
+    "TENANT": "Bérlő",
+    "FULL_NAME": "Teljes név",
+    "NAME_PLACEHOLDER": "Adja meg a teljes nevét:",
+    "SECURE_PASSWORD": "Válasszon egy biztonságos jelszót:",
+    "EMAIL_PLACEHOLDER": "Az ön email címe:",
+    "TERMS": "A regisztrációval elfogadom a Renti"
+  }
+}

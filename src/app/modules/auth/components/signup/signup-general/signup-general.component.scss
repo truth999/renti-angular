@@ -1,5 +1,4 @@
-@import "~src/assets/styles/scss/variable";
-@import "~bootstrap/scss/mixins/breakpoints";
+@import "~src/assets/styles/scss/variables";
 
 .signup-general {
   .btn-facebook {
@@ -22,6 +21,16 @@
 
     span {
       background-color: $white;
+    }
+  }
+
+  .take-minutes {
+    font-family: NeueEinstellung-Bold;
+  }
+
+  .role {
+    button {
+      font-family: NeueEinstellung-Medium;
     }
   }
 

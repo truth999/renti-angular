@@ -1,3 +1,7 @@
+label {
+  font-family: NeueEinstellung-ExtraBold;
+}
+
 .form-check-input {
   display: none;
 }
@@ -19,19 +23,17 @@
     left: 0;
     margin-left: -$form-check-input-gutter;
   }
+}
 
-  &::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    left: 0;
-    top: 0;
-    margin-left: -20px;
-    padding-left: 3px;
-    padding-top: 1px;
-    font-size: 11px;
-    color: #555555;
-  }
+.form-check-input:checked + label::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: -12px;
+  width: 6px;
+  height: 12px;
+  border: solid $blue;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }

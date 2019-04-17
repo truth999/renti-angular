@@ -1,31 +1,31 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Login</h5>
+    <h5 class="card-title">{{ 'COMMON.LOGIN' | translate }}</h5>
     <form>
       <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="email">{{ 'COMMON.EMAIL' | translate }}:</label>
         <input type="email"
                class="form-control"
                id="email"
-               placeholder="Your email:">
+               placeholder="{{ 'LOGIN.EMAIL_PLACEHOLDER' | translate }}">
       </div>
       <div class="form-group">
-        <label for="password">Password:</label>
+        <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
         <input type="password"
                class="form-control"
                id="password"
-               placeholder="Your password:">
+               placeholder="{{ 'LOGIN.PASSWORD_PLACEHOLDER' | translate }}">
       </div>
       <div class="link text-center">
         <div class="forgot-password my-4">
-          <a href="#">Forgot password?</a>
+          <a href="#">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
         </div>
         <div class="new-user">
-          <a routerLink="/auth/signup">New user? Sign up here.</a>
+          <a routerLink="/auth/signup">{{ 'LOGIN.NEW_USER' | translate }}</a>
         </div>
       </div>
       <div class="continue mt-sm-5 bg-white">
-        <button class="btn btn-primary w-100">Continue</button>
+        <button class="btn btn-primary w-100">{{ 'COMMON.CONTINUE' | translate }}</button>
       </div>
     </form>
   </div>

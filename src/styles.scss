@@ -1,2 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "assets/styles/app";
+@import "assets/styles/scss/font";
+@import "assets/styles/scss/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "assets/styles/scss/main";

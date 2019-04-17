@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Create a free profile quickly to see  the average rent prices in your area</h5>
+    <h5 class="card-title">{{ 'SIGNUP.SIGNUP_TITLE' | translate }}</h5>
     <form>
       <app-signup-general *ngIf="generalStep == 0"></app-signup-general>
       <app-signup-email *ngIf="generalStep == 1"></app-signup-email>
       <div class="continue mt-sm-5 bg-white">
         <button class="btn btn-primary w-100"
-                (click)="nextStep()">Continue</button>
+                (click)="nextStep()">{{ 'COMMON.CONTINUE' | translate }}</button>
       </div>
     </form>
   </div>

@@ -6,38 +6,38 @@
       </a>
     </div>
     <div class="banner-text mt-5">
-      <h1 class="banner-title font-weight-bold mb-3">Renti - az albérletek Kánaánja</h1>
-      <h3 class="banner-subtitle">Találja meg pár lépéssel:</h3>
+      <h1 class="banner-title mb-3">{{ 'HOME.TITLE' | translate }}</h1>
+      <h3 class="banner-subtitle">{{ 'HOME.SUBTITLE' | translate }}</h3>
     </div>
   </section>
   <section class="items d-flex position-relative">
     <div class="item item-left d-flex flex-grow-1 align-items-center justify-content-center">
-      <button class="btn btn-primary item-button">Álmai albérletét</button>
+      <button class="btn btn-primary item-button">{{ 'HOME.SELECT1' | translate }}</button>
     </div>
     <div class="item item-right d-flex flex-grow-1 align-items-center justify-content-center">
-      <button class="btn btn-primary item-button">Álmai albérlőjét</button>
+      <button class="btn btn-primary item-button">{{ 'HOME.SELECT2' | translate }}</button>
     </div>
-    <button class="btn vs position-absolute bg-white">vagy</button>
+    <button class="btn vs position-absolute bg-white">{{ 'COMMON.OR' | translate }}</button>
   </section>
   <section class="footer-menu text-center pb-sm-5">
     <ul class="list-unstyled font-size-lg">
       <li class="mb-2"><a routerLink="/"><img src="assets/images/logo.png" alt="Renti" class="logo-image"></a></li>
-      <li class="mb-2"><a href="#">Rólunk</a></li>
-      <li class="mb-2"><a href="#">Press kit</a></li>
-      <li><a href="#">Felhasználási feltételek</a></li>
+      <li class="mb-2"><a href="#">{{ 'HOME.ABOUT' | translate }}</a></li>
+      <li class="mb-2"><a href="#">{{ 'HOME.KIT' | translate }}</a></li>
+      <li><a href="#">{{ 'COMMON.TERMS' | translate }}</a></li>
     </ul>
-    <p class="footer-text text-muted font-size-sm">Minden jog fenntartva. ©2019 Renti</p>
+    <p class="footer-text text-muted font-size-sm">{{ 'COMMON.FOOTER' | translate }}</p>
   </section>
   <section class="auth py-2 position-fixed fixed-bottom shadow w-100 bg-white">
     <div class="container">
       <div class="row">
         <div class="col-md-6 py-1">
           <button class="btn btn-primary w-100"
-                  (click)="onSignup()">Regisztráljon ingyenesen</button>
+                  (click)="onSignup()">{{ 'COMMON.REGISTRATION' | translate }}</button>
         </div>
         <div class="col-md-6 py-1">
           <button class="btn btn-outline-primary w-100"
-                  (click)="onLogin()">Bejelentkezés</button>
+                  (click)="onLogin()">{{ 'COMMON.LOGIN' | translate }}</button>
         </div>
       </div>
     </div>

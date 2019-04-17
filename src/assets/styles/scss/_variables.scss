@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/mixins/breakpoints";
+
 $white: #fff;
 $gray-400: #dbdce8;
 $gray-600: #7b7b7b;
@@ -27,7 +29,11 @@ $border-radius-xxl: 1rem;
 
 $box-shadow: 0 0 1.25rem rgba($black, .16);
 
+$font-family-sans-serif: NeueEinstellung;
+
 $btn-border-radius-xl: $border-radius-xl;
+
+$input-font-family: NeueEinstellung-Medium;
 
 $card-spacer-y: 2rem;
 $card-spacer-x: 3rem;

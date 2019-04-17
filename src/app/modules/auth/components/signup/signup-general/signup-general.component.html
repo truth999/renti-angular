@@ -1,34 +1,34 @@
 <div class="signup-general">
   <div class="facebook mb-4">
-    <button class="btn btn-facebook w-100">Continue with Facebook</button>
+    <button class="btn btn-facebook w-100">{{ 'SIGNUP.SIGNUP_FACEBOOK' | translate }}</button>
     <p class="font-size-sm text-center">We never post on your behalf</p>
   </div>
   <div class="or text-center mx-auto">
-    <span class="px-3">or</span>
+    <span class="px-3">{{ 'COMMON.OR' | translate }}</span>
   </div>
   <div class="main mt-4">
-    <h5 class="text-center mb-4">Take 2 min to register:</h5>
+    <h5 class="text-center mb-4 take-minutes">{{ 'SIGNUP.TAKE_MINUTES' | translate }}:</h5>
     <div>
       <div class="form-group">
-        <label>I'm a:</label>
-        <div class="gender">
-          <button class="btn btn-outline-primary rounded-pill mr-2">Landlord</button>
-          <button class="btn btn-outline-primary rounded-pill">Tenant</button>
+        <label>{{ 'SIGNUP.I' | translate }}:</label>
+        <div class="role">
+          <button class="btn btn-outline-primary rounded-pill mr-2">{{ 'SIGNUP.LANDLORD' | translate }}</button>
+          <button class="btn btn-outline-primary rounded-pill">{{ 'SIGNUP.TENANT' | translate }}</button>
         </div>
       </div>
       <div class="form-group">
-        <label for="name">Full name:</label>
+        <label for="name">{{ 'SIGNUP.FULL_NAME' | translate }}:</label>
         <input type="text"
                class="form-control"
                id="name"
-               placeholder="Please add your real full name:">
+               placeholder="{{ 'SIGNUP.NAME_PLACEHOLDER' | translate }}">
       </div>
       <div class="form-group">
-        <label for="password">Password:</label>
+        <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
         <input type="password"
                class="form-control"
                id="password"
-               placeholder="Choose a secure password:">
+               placeholder="{{ 'SIGNUP.SECURE_PASSWORD' | translate }}">
         <div class="password-status d-flex justify-content-between mt-2">
           <div class="status-step rounded-pill"></div>
           <div class="status-step rounded-pill"></div>

@@ -1,5 +1,4 @@
-@import "~src/assets/styles/scss/variable";
-@import "~bootstrap/scss/mixins/breakpoints";
+@import "~src/assets/styles/scss/variables";
 
 .card {
   @include media-breakpoint-down(xs) {

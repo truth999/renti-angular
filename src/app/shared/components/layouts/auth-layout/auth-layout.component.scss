@@ -1,5 +1,4 @@
-@import "~src/assets/styles/scss/variable";
-@import "~bootstrap/scss/mixins/breakpoints";
+@import "~src/assets/styles/scss/variables";
 
 .auth {
   @include media-breakpoint-up(sm) {
