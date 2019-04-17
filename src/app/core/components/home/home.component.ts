@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
   }
 
   onSignup() {
-    this.router.navigate(['auth/signup'], { relativeTo: this.route });
+    this.router.navigate(['signup'], { relativeTo: this.route });
   }
 
   onLogin() {
-    this.router.navigate(['auth/login'], { relativeTo: this.route });
+    this.router.navigate(['login'], { relativeTo: this.route });
   }
 
 }

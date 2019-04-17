@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: AuthLayoutComponent,
     children: [
-      { path: 'auth', loadChildren: './modules/auth/auth.module#AuthModule' }
+      { path: '', loadChildren: './modules/auth/auth.module#AuthModule' }
     ]
   }
 ];
