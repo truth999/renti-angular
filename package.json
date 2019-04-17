@@ -1,10 +1,14 @@
 {
-  "name": "renti-app",
-  "version": "0.0.0",
+  "name": "renti-frontend",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve -c dev --host 0.0.0.0 --port 4200 --disableHostCheck=true",
+    "start:dev": "ng serve -c dev --host 0.0.0.0 --port 4200 --disableHostCheck=true",
+    "start:deploy": "npm run deploy:prepare && npm run deploy:start",
+    "deploy:prepare": "git pull && npm i",
+    "deploy:start": "npm run build && node server.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
