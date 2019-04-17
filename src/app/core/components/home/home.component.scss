@@ -16,7 +16,7 @@
   }
 
   .banner {
-    background: url("/assets/images/banner.png") no-repeat;
+    background: url("/assets/images/home/banner.png") no-repeat;
     background-size: cover;
     background-position: center center;
     padding-bottom: 15%;
@@ -46,13 +46,13 @@
     height: 38vw;
 
     .item-left {
-      background: url("/assets/images/gallery1.png") no-repeat;
+      background: url("/assets/images/home/gallery1.png") no-repeat;
       background-size: cover;
       background-position: center center;
     }
 
     .item-right {
-      background: url("/assets/images/gallery2.png") no-repeat;
+      background: url("/assets/images/home/gallery2.png") no-repeat;
       background-size: cover;
       background-position: center center;
     }

@@ -7,7 +7,7 @@
     </div>
     <div class="banner-text mt-5">
       <h1 class="banner-title mb-3">{{ 'HOME.TITLE' | translate }}</h1>
-      <h3 class="banner-subtitle">{{ 'HOME.SUBTITLE' | translate }}</h3>
+      <h3 class="banner-subtitle">{{ 'HOME.FIND_YOUR' | translate }}:</h3>
     </div>
   </section>
   <section class="items d-flex position-relative">
@@ -22,22 +22,22 @@
   <section class="footer-menu text-center pb-sm-5">
     <ul class="list-unstyled font-size-lg">
       <li class="mb-2"><a routerLink="/"><img src="assets/images/logo.png" alt="Renti" class="logo-image"></a></li>
-      <li class="mb-2"><a href="#">{{ 'HOME.ABOUT' | translate }}</a></li>
-      <li class="mb-2"><a href="#">{{ 'HOME.KIT' | translate }}</a></li>
-      <li><a href="#">{{ 'COMMON.TERMS' | translate }}</a></li>
+      <li class="mb-2"><a href="#">{{ 'COMMON.ABOUT_US' | translate }}</a></li>
+      <li class="mb-2"><a href="#">{{ 'COMMON.PRESS_KIT' | translate }}</a></li>
+      <li><a href="#">{{ 'COMMON.TERMS_CONDITIONS' | translate }}</a></li>
     </ul>
-    <p class="footer-text text-muted font-size-sm">{{ 'COMMON.FOOTER' | translate }}</p>
+    <p class="footer-text text-muted font-size-sm">{{ 'COMMON.ALL_RIGHT' | translate }}</p>
   </section>
   <section class="auth py-2 position-fixed fixed-bottom shadow w-100 bg-white">
     <div class="container">
       <div class="row">
         <div class="col-md-6 py-1">
           <button class="btn btn-primary w-100"
-                  (click)="onSignup()">{{ 'COMMON.REGISTRATION' | translate }}</button>
+                  (click)="onSignup()">{{ 'SIGNUP.FREE_REGISTRATION' | translate }}</button>
         </div>
         <div class="col-md-6 py-1">
           <button class="btn btn-outline-primary w-100"
-                  (click)="onLogin()">{{ 'COMMON.LOGIN' | translate }}</button>
+                  (click)="onLogin()">{{ 'LOGIN.LOGIN' | translate }}</button>
         </div>
       </div>
     </div>

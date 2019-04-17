@@ -1,40 +1,42 @@
 {
   "COMMON": {
-    "FOOTER": "Minden jog fenntartva. ©2019 Renti",
-    "REGISTRATION": "Regisztráljon ingyenesen",
-    "LOGIN": "Bejelentkezés",
+    "All_RIGHT": "Minden jog fenntartva. ©2019 Renti",
     "EMAIL": "Email",
     "PASSWORD": "Jelszó",
     "CONTINUE": "Folytatás",
     "OR": "vagy",
-    "MEMBER_LOGIN": "Regisztrált tag belépése",
-    "TERMS": "Felhasználási feltételek"
-  },
-  "HOME": {
-    "TITLE": "Renti - az albérletek Kánaánja",
-    "SUBTITLE": "Találja meg pár lépéssel:",
-    "SELECT1": "Álmai albérletét",
-    "SELECT2": "Álmai albérlőjét",
-    "ABOUT": "Rólunk",
-    "KIT": "Sajtóinformációk",
-  },
-  "LOGIN": {
-    "EMAIL_PLACEHOLDER": "Email címe:",
-    "PASSWORD_PLACEHOLDER": "Jelszava:",
-    "FORGOT_PASSWORD": "Elfelejtette a jelszavát?",
-    "NEW_USER": "Új felhasználó? Regisztráljon itt."
-  },
-  "SIGNUP": {
-    "SIGNUP_TITLE": "Regisztráljon ingyenesen hogy láthassa az albérleti lehetőségeket az Ön környékén",
-    "SIGNUP_FACEBOOK": "Folytatás Facebook fiókkal",
-    "TAKE_MINUTES": "A regisztráció 2 percet vesz igénybe",
+    "ABOUT_US": "Rólunk",
+    "PRESS_KIT": "Sajtóinformációk",
+    "TERMS_CONDITIONS": "Felhasználási feltételek",
+    "YOUR_EMAIL": "Email címe",
+    "YOUR_PASSWORD": "Jelszava",
     "I": "Én vagyok",
     "LANDLORD": "Kiadó",
     "TENANT": "Bérlő",
     "FULL_NAME": "Teljes név",
-    "NAME_PLACEHOLDER": "Adja meg a teljes nevét:",
-    "SECURE_PASSWORD": "Válasszon egy biztonságos jelszót:",
-    "EMAIL_PLACEHOLDER": "Az ön email címe:",
-    "TERMS": "A regisztrációval elfogadom a Renti"
+    "ADD_REAL_FULL_NAME": "Adja meg a teljes nevét",
+    "CHOOSE_SECURE_PASSWORD": "Válasszon egy biztonságos jelszót",
+    "YOUR_EMAIL_ADDRESS": "Az ön email címe"
+  },
+  "HOME": {
+    "TITLE": "Renti - az albérletek Kánaánja",
+    "FIND_YOUR": "Találja meg pár lépéssel",
+    "SELECT1": "Álmai albérletét",
+    "SELECT2": "Álmai albérlőjét"
+  },
+  "LOGIN": {
+    "LOGIN": "Bejelentkezés",
+    "MEMBER_LOGIN": "Regisztrált tag belépése",
+    "FORGOT_PASSWORD": "Elfelejtette a jelszavát?",
+    "NEW_USER": "Új felhasználó? Regisztráljon itt."
+  },
+  "SIGNUP": {
+    "FREE_REGISTRATION": "Regisztráljon ingyenesen",
+    "TITLE": "Regisztráljon ingyenesen hogy láthassa az albérleti lehetőségeket az Ön környékén",
+    "CONTINUE_WITH_FACEBOOK": "Folytatás Facebook fiókkal",
+    "WE_NEVER_POST": "",
+    "TAKE_MINUTES": "A regisztráció 2 percet vesz igénybe",
+    "BY_REGISTERING": "A regisztrációval elfogadom a Renti",
+    "PROMOTION_EMAIL": ""
   }
 }
