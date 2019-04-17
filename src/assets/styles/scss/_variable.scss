@@ -1,0 +1,34 @@
+$white: #fff;
+$gray-400: #dbdce8;
+$gray-600: #7b7b7b;
+$gray-900: #1b1b1b;
+$black: #000;
+
+$blue: #0b75e3;
+
+$primary: $blue;
+
+$spacer: 1rem;
+
+$body-color: $gray-900;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+$border-width: 2px;
+
+$border-radius-xl: .5rem;
+$border-radius-xxl: 1rem;
+
+$box-shadow: 0 0 1.25rem rgba($black, .16);
+
+$btn-border-radius-xl: $border-radius-xl;
+
+$card-spacer-y: 2rem;
+$card-spacer-x: 3rem;
+$card-border-radius: $border-radius-xxl;

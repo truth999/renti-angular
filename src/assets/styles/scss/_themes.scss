@@ -1,8 +1,0 @@
-@import '~@angular/material/theming';
-@include mat-core();
-
-// Keep at least one file
-@import "themes/egret-blue"; // based on egret-blue color skin
-
-$background: map-get($egret-theme, background);
-$foreground: map-get($egret-theme, foreground);

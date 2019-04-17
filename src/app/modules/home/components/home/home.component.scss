@@ -1,0 +1,88 @@
+@import "~src/assets/styles/scss/variable";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+.landing {
+  padding-bottom: 62px;
+
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 108px;
+  }
+
+  .logo-image {
+    width: 93px;
+
+    @include media-breakpoint-down(xs) {
+      width: 61px;
+    }
+  }
+
+  .banner {
+    background: url("/assets/images/banner.png") no-repeat;
+    background-size: cover;
+    background-position: center center;
+    padding-bottom: 15%;
+
+    .banner-title {
+      font-size: 3.5vw;
+    }
+
+    .banner-subtitle {
+      font-size: 2.5vw;
+    }
+
+
+    @include media-breakpoint-down(xs) {
+      .banner-title {
+        font-size: 21px;
+      }
+
+      .banner-subtitle {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .items {
+    height: 38vw;
+
+    .item-left {
+      background: url("/assets/images/gallery1.png") no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .item-right {
+      background: url("/assets/images/gallery2.png") no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .item-button {
+      width: 25vw;
+      height: 18vw;
+      max-width: 218px;
+      max-height: 163px;
+      font-size: 4vw;
+
+      @include media-breakpoint-up(xl) {
+        font-size: 35px;
+      }
+    }
+
+    .vs {
+      border: 1px solid #979797;
+      color: #191919;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .footer-menu {
+    padding-top: 10rem;
+
+    @include media-breakpoint-down(xs) {
+      padding-top: 5rem;
+    }
+  }
+}

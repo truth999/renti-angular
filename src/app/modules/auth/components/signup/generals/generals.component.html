@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Create a free profile quickly to see  the average rent prices in your area</h5>
+    <form>
+      <app-general *ngIf="generalStep == 0"></app-general>
+      <app-email *ngIf="generalStep == 1"></app-email>
+      <div class="continue mt-sm-5 bg-white">
+        <button class="btn btn-primary w-100"
+                (click)="nextStep()">Continue</button>
+      </div>
+    </form>
+  </div>
+</div>

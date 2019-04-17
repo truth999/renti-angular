@@ -1,0 +1,33 @@
+@import "~src/assets/styles/scss/variable";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+.general {
+  .btn-facebook {
+    background-color: #3b5998;
+    color: $white;
+
+    &:hover {
+      background-color: #31497d;
+    }
+
+    &:active {
+      background-color: #2f4473;
+    }
+  }
+
+  .or {
+    width: 50%;
+    border-bottom: 2px dashed #979797;
+    line-height: .5rem;
+
+    span {
+      background-color: $white;
+    }
+  }
+
+  .status-step {
+    height: .4rem;
+    background-color: $gray-400;
+    width: 32%;
+  }
+}

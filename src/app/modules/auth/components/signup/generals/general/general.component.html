@@ -1,0 +1,41 @@
+<div class="general">
+  <div class="facebook mb-4">
+    <button class="btn btn-facebook w-100">Continue with Facebook</button>
+    <p class="font-size-sm text-center">We never post on your behalf</p>
+  </div>
+  <div class="or text-center mx-auto">
+    <span class="px-3">or</span>
+  </div>
+  <div class="main mt-4">
+    <h5 class="text-center mb-4">Take 2 min to register:</h5>
+    <div>
+      <div class="form-group">
+        <label>I'm a:</label>
+        <div class="gender">
+          <button class="btn btn-outline-primary rounded-pill mr-2">Landlord</button>
+          <button class="btn btn-outline-primary rounded-pill">Tenant</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Full name:</label>
+        <input type="text"
+               class="form-control"
+               id="name"
+               placeholder="Please add your real full name:">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password"
+               class="form-control"
+               id="password"
+               placeholder="Choose a secure password:">
+        <div class="password-status d-flex justify-content-between mt-2">
+          <div class="status-step rounded-pill"></div>
+          <div class="status-step rounded-pill"></div>
+          <div class="status-step rounded-pill"></div>
+        </div>
+      </div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

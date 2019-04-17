@@ -1,0 +1,16 @@
+@import "~src/assets/styles/scss/variable";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+.auth {
+  @include media-breakpoint-up(sm) {
+    background: url("/assets/images/banner.png") no-repeat;
+    background-size: 100%;
+    margin-bottom: 53px;
+  }
+
+  .logo {
+    img {
+      width: 45px;
+    }
+  }
+}

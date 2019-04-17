@@ -1,0 +1,22 @@
+.card {
+  border: none;
+  box-shadow: $box-shadow;
+
+  @include media-breakpoint-down(xs) {
+    box-shadow: none;
+  }
+}
+
+.card-body {
+  padding: $card-spacer-y $card-spacer-x;
+
+  @include media-breakpoint-down(xs) {
+    padding: $spacer * .25;
+  }
+}
+
+.card-title {
+  text-align: center;
+  color: $gray-600;
+  font-weight: $font-weight-base;
+}

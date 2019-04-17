@@ -1,0 +1,18 @@
+@import "~src/assets/styles/scss/variable";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+.card {
+  @include media-breakpoint-down(xs) {
+    margin-bottom: 68px;
+  }
+
+  .continue {
+    @include media-breakpoint-down(xs) {
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      padding: 15px;
+    }
+  }
+}
