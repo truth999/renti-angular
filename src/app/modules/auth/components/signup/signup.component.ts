@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  generalStep = 0;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  nextStep() {
+    this.generalStep = this.generalStep + 1;
   }
 
 }
