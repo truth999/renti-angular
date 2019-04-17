@@ -1,40 +1,42 @@
 {
   "COMMON": {
-    "FOOTER": "All rights reserved. ©2019 Renti",
-    "REGISTRATION": "Free registration",
-    "LOGIN": "Login",
+    "ALL_RIGHT": "All rights reserved. ©2019 Renti",
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "CONTINUE": "Continue",
     "OR": "or",
-    "MEMBER_LOGIN": "Member login",
-    "TERMS": "Terms and conditions"
-  },
-  "HOME": {
-    "TITLE": "Renti - Canaan of diggings",
-    "SUBTITLE": "Find your:",
-    "SELECT1": "Dreamt diggings",
-    "SELECT2": "Dreamt tenant",
-    "ABOUT": "About us",
-    "KIT": "Press kit"
-  },
-  "LOGIN": {
-    "EMAIL_PLACEHOLDER": "Your email:",
-    "PASSWORD_PLACEHOLDER": "Your password:",
-    "FORGOT_PASSWORD": "Forgot password?",
-    "NEW_USER": "New user? Sign up here."
-  },
-  "SIGNUP": {
-    "SIGNUP_TITLE": "Create a free profile quickly to see the average rent prices in your area",
-    "SIGNUP_FACEBOOK": "Continue with Facebook",
-    "TAKE_MINUTES": "Take 2 min to register",
+    "ABOUT_US": "About us",
+    "PRESS_KIT": "Press kit",
+    "TERMS_CONDITIONS": "Terms and conditions",
+    "YOUR_EMAIL": "Your email",
+    "YOUR_PASSWORD": "Your password",
     "I": "I'm a",
     "LANDLORD": "Landlord",
     "TENANT": "Tenant",
     "FULL_NAME": "Full name",
-    "NAME_PLACEHOLDER": "Please add your real full name:",
-    "SECURE_PASSWORD": "Choose a secure password:",
-    "EMAIL_PLACEHOLDER": "Your email address:",
-    "TERMS": "By registering, I agree to Renti’s"
+    "ADD_REAL_FULL_NAME": "Please add your real full name",
+    "CHOOSE_SECURE_PASSWORD": "Choose a secure password",
+    "YOUR_EMAIL_ADDRESS": "Your email address"
+  },
+  "HOME": {
+    "TITLE": "Renti - Canaan of diggings",
+    "FIND_YOUR": "Find your",
+    "SELECT1": "Dreamt diggings",
+    "SELECT2": "Dreamt tenant"
+  },
+  "LOGIN": {
+    "LOGIN": "Login",
+    "MEMBER_LOGIN": "Member login",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "NEW_USER": "New user? Sign up here."
+  },
+  "SIGNUP": {
+    "FREE_REGISTRATION": "Free registration",
+    "TITLE": "Create a free profile quickly to see the average rent prices in your area",
+    "CONTINUE_WITH_FACEBOOK": "Continue with Facebook",
+    "WE_NEVER_POST": "We never post on your behalf",
+    "TAKE_MINUTES": "Take 2 min to register",
+    "BY_REGISTERING": "By registering, I agree to Renti’s",
+    "PROMOTION_EMAIL": "I agree to sign up for promotion emails from Renti"
   }
 }

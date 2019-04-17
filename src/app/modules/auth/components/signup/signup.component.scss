@@ -1,13 +1,7 @@
 @import "~src/assets/styles/scss/variables";
 
 .card {
-  @include media-breakpoint-down(xs) {
-    margin-bottom: 68px;
-  }
-
-  @include media-breakpoint-up(sm) {
-    margin-bottom: 70px;
-  }
+  margin-bottom: 70px;
 
   .continue {
     @include media-breakpoint-down(xs) {

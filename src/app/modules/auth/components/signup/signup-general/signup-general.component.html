@@ -1,7 +1,7 @@
 <div class="signup-general">
   <div class="facebook mb-4">
-    <button class="btn btn-facebook w-100">{{ 'SIGNUP.SIGNUP_FACEBOOK' | translate }}</button>
-    <p class="font-size-sm text-center">We never post on your behalf</p>
+    <button class="btn btn-facebook w-100">{{ 'SIGNUP.CONTINUE_WITH_FACEBOOK' | translate }}</button>
+    <p class="font-size-sm text-center">{{ 'SIGNUP.WE_NEVER_POST' | translate }}</p>
   </div>
   <div class="or text-center mx-auto">
     <span class="px-3">{{ 'COMMON.OR' | translate }}</span>
@@ -10,25 +10,25 @@
     <h5 class="text-center mb-4 take-minutes">{{ 'SIGNUP.TAKE_MINUTES' | translate }}:</h5>
     <div>
       <div class="form-group">
-        <label>{{ 'SIGNUP.I' | translate }}:</label>
+        <label>{{ 'COMMON.I' | translate }}:</label>
         <div class="role">
-          <button class="btn btn-outline-primary rounded-pill mr-2">{{ 'SIGNUP.LANDLORD' | translate }}</button>
-          <button class="btn btn-outline-primary rounded-pill">{{ 'SIGNUP.TENANT' | translate }}</button>
+          <button class="btn btn-outline-primary rounded-pill mr-2">{{ 'COMMON.LANDLORD' | translate }}</button>
+          <button class="btn btn-outline-primary rounded-pill">{{ 'COMMON.TENANT' | translate }}</button>
         </div>
       </div>
       <div class="form-group">
-        <label for="name">{{ 'SIGNUP.FULL_NAME' | translate }}:</label>
+        <label for="name">{{ 'COMMON.FULL_NAME' | translate }}:</label>
         <input type="text"
                class="form-control"
                id="name"
-               placeholder="{{ 'SIGNUP.NAME_PLACEHOLDER' | translate }}">
+               placeholder="{{ 'COMMON.ADD_REAL_FULL_NAME' | translate }}:">
       </div>
       <div class="form-group">
         <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
         <input type="password"
                class="form-control"
                id="password"
-               placeholder="{{ 'SIGNUP.SECURE_PASSWORD' | translate }}">
+               placeholder="{{ 'COMMON.CHOOSE_SECURE_PASSWORD' | translate }}:">
         <div class="password-status d-flex justify-content-between mt-2">
           <div class="status-step rounded-pill"></div>
           <div class="status-step rounded-pill"></div>
