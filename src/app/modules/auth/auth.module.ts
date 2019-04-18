@@ -8,18 +8,28 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SignupGeneralComponent } from './components/signup/signup-general/signup-general.component';
 import { SignupEmailComponent } from './components/signup/signup-email/signup-email.component';
+import { SignupInfoComponent } from './components/signup/signup-info/signup-info.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignupEducationComponent } from './components/signup/signup-education/signup-education.component';
+import { SignupOccupationComponent } from './components/signup/signup-occupation/signup-occupation.component';
+import { SignupAboutComponent } from './components/signup/signup-about/signup-about.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignupComponent,
     SignupGeneralComponent,
-    SignupEmailComponent
+    SignupEmailComponent,
+    SignupInfoComponent,
+    SignupEducationComponent,
+    SignupOccupationComponent,
+    SignupAboutComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }

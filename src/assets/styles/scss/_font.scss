@@ -42,3 +42,9 @@
   font-family: NeueEinstellung-Thin;
   src: url("/assets/fonts/NeueEinstellung/NeueEinstellung-Thin.woff");
 }
+
+[data-icon],
+[class^="icon-"],
+[class*=" icon-"]{
+  display: inline-flex;
+}

@@ -4,7 +4,13 @@
     <form>
       <app-signup-general *ngIf="generalStep == 0"></app-signup-general>
       <app-signup-email *ngIf="generalStep == 1"></app-signup-email>
-      <div class="continue mt-sm-5 bg-white">
+      <app-signup-info *ngIf="generalStep == 2"></app-signup-info>
+      <app-signup-education *ngIf="generalStep == 3"></app-signup-education>
+      <app-signup-occupation *ngIf="generalStep == 4"></app-signup-occupation>
+      <app-signup-about *ngIf="generalStep == 5"></app-signup-about>
+      <div class="continue mt-sm-5 bg-white d-flex align-items-center">
+        <span class="icon-left-circle mr-4"
+              *ngIf="generalStep != 0" (click)="previewStep()"></span>
         <button class="btn btn-primary w-100"
                 (click)="nextStep()">{{ 'COMMON.CONTINUE' | translate }}</button>
       </div>

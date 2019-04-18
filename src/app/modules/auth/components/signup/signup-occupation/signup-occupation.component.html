@@ -1,0 +1,33 @@
+<div class="signup-occupation">
+  <div class="form-group" *ngIf="!addOccupation">
+    <label for="occupation">{{ 'COMMON.MOST_RECENT_WORK_OCCUPATION' | translate }}:</label>
+    <input type="text" class="form-control" id="occupation" placeholder="{{ 'COMMON.ADD_WORK' | translate }}:">
+  </div>
+  <div class="form-group" *ngIf="addOccupation">
+    <label for="other-occupation">{{ 'COMMON.OTHER_WORK_OCCUPATION' | translate }}:</label>
+    <input type="text" class="form-control" id="other-occupation" placeholder="{{ 'COMMON.ADD_WORK' | translate }}:">
+  </div>
+  <div class="form-group">
+    <label for="where">{{ 'COMMON.WHERE' | translate }}?</label>
+    <input type="text" class="form-control" id="where" placeholder="{{ 'COMMON.ADD_WORKSPACE_COMPANY' | translate }}:">
+  </div>
+  <div class="form-group">
+    <label>{{ 'COMMON.WHEN' | translate }}?</label>
+    <div class="form-row">
+      <div class="form-group col">
+        <select name="start-year" class="form-control">
+          <option value="">{{ 'COMMON.STARTING_YEAR' | translate }}:</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <select name="finish-year" class="form-control">
+          <option value="">{{ 'COMMON.FINISHING_YEAR' | translate }}:</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="form-group text-center">
+    <button class="btn btn-outline-primary"
+            (click)="onAddOccupation()">{{ 'COMMON.ADD_OTHER_OCCUPATION' | translate }}</button>
+  </div>
+</div>

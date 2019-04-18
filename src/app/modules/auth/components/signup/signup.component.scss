@@ -11,5 +11,15 @@
       left: 0;
       padding: 15px;
     }
+
+    .icon-left-circle {
+      font-size: 28px;
+      cursor: pointer;
+      color: $blue;
+
+      &:before {
+        display: block;
+      }
+    }
   }
 }
