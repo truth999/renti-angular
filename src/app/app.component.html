@@ -1,10 +1,1 @@
-<div class="position-relative">
-  <div ngbDropdown class="position-absolute language">
-    <button class="btn btn-outline-primary btn-sm" id="language" ngbDropdownToggle>{{ 'COMMON.LANGUAGE' | translate }}</button>
-    <div ngbDropdownMenu aria-labelledby="language">
-      <button ngbDropdownItem (click)="translate.use('en')"><span class="flag-icon flag-icon-gb mr-2"></span>English</button>
-      <button ngbDropdownItem (click)="translate.use('hu')"><span class="flag-icon flag-icon-hu mr-2"></span>Magyar</button>
-    </div>
-  </div>
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
