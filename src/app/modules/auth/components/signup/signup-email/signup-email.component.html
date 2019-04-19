@@ -3,6 +3,18 @@
     <label for="email">{{ 'COMMON.EMAIL' | translate }}:</label>
     <input type="email" class="form-control" id="email" placeholder="{{ 'COMMON.YOUR_EMAIL_ADDRESS' | translate }}:">
   </div>
+  <div class="form-group">
+    <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
+    <input type="password"
+           name="password"
+           class="form-control"
+           id="password"
+           placeholder="{{ 'COMMON.CHOOSE_SECURE_PASSWORD' | translate }}:"
+           [(ngModel)]="password">
+    <ng2-password-strength-bar [passwordToCheck]="password"
+                               [barLabel]="passwordStrengthBarLabel"
+                               [baseColor]="baseColor"></ng2-password-strength-bar>
+  </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="terms">
     <label for="terms" class="form-check-label">{{ 'SIGNUP.BY_REGISTERING' | translate }} <a href="#">{{ 'COMMON.TERMS_CONDITIONS' | translate }}</a></label>

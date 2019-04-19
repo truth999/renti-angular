@@ -1,0 +1,8 @@
+<div class="apartment-room">
+  <!--  -->
+  <h5>{{ 'COMMON.DRAG_ROOM_NUMBER' | translate }}:</h5>
+  <app-apartment-room-name *ngFor="let number of arrayNumber(roomCount); let i = index" [number]="i + 1"></app-apartment-room-name>
+  <div class="form-group">
+    <i class="icon-plus" (click)="onAddRoom()"></i>
+  </div>
+</div>

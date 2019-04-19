@@ -1,0 +1,18 @@
+@import "~src/assets/styles/scss/variables";
+
+.apartment-floor {
+  .count-button {
+    font-size: 3.5rem;
+    color: $blue;
+    cursor: pointer;
+
+    &.disabled {
+      color: $gray-600;
+      cursor: not-allowed;
+    }
+  }
+
+  .number {
+    font-family: NeueEinstellung-Bold;
+  }
+}

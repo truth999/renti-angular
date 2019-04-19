@@ -1,0 +1,30 @@
+<div class="apartment-upload">
+  <h5>{{ 'COMMON.ADD_PICTURES' | translate }}</h5>
+  <ul class="list-unstyled list-inline">
+    <li class="list-inline-item">1: Living room</li>
+    <li class="list-inline-item disabled">2: Bathroom</li>
+    <li class="list-inline-item disabled">3: Bedroom</li>
+  </ul>
+  <div class="form-group text-center">
+    <input type="file"
+           #picturesChooser
+           style="display: none;"
+           accept="image/png, image/jpeg, image/jpg"
+           multiple
+           (change)="onFilesChange($event)">
+    <div class="row mb-5">
+      <div class="col-sm-4 col-xs-4 col-6 position-relative my-3"
+           *ngFor="let previewPicture of previewNewRoomPictures; let i = index;">
+        <div class="img-item position-relative">
+          <img [src]="previewPicture"
+               class="position-absolute rounded w-100 h-100"
+               alt="">
+        </div>
+        <i class="icon-delete position-absolute text-danger"
+           (click)="removeRoomPicture(i)"></i>
+      </div>
+    </div>
+    <button class="btn btn-primary w-75"
+            (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_FROM_GALLERY' | translate }}</button>
+  </div>
+</div>

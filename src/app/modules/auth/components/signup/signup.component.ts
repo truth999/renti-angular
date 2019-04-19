@@ -16,8 +16,8 @@ export class SignupComponent implements OnInit {
   nextStep() {
     this.generalStep = this.generalStep + 1;
 
-    if (this.generalStep > 5) {
-      this.generalStep = 5;
+    if (this.generalStep > 6) {
+      this.generalStep = 6;
     }
   }
 

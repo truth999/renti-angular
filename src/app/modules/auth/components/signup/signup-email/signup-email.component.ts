@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup-email.component.scss']
 })
 export class SignupEmailComponent implements OnInit {
+  password = '';
+  passwordStrengthBarLabel = '';
+  baseColor = '#dbdce8';
 
   constructor() { }
 

@@ -1,0 +1,11 @@
+.custom-select {
+  background: none;
+}
+
+.custom-select + i.icon-caret {
+  float: right;
+  margin-top: -28px;
+  margin-right: 18px;
+  pointer-events: none;
+  color: $blue;
+}

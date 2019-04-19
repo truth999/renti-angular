@@ -1,0 +1,15 @@
+@import "~flag-icon-css/css/flag-icon.min.css";
+
+.language {
+  top: 1.5rem;
+  right: 4%;
+  z-index: 999;
+
+  .dropdown-menu {
+    transform: translate(-77px, 33px) !important;
+  }
+
+  .flag-icon {
+    background-size: 100%;
+  }
+}

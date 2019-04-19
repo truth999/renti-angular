@@ -28,6 +28,8 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
+    "flag-icon-css": "^3.3.0",
+    "ng2-password-strength-bar": "^1.2.3",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

@@ -1,0 +1,37 @@
+@import "~src/assets/styles/scss/variables";
+
+.apartment-upload {
+  .list-inline-item {
+    font-family: NeueEinstellung-Bold;
+    color: $blue;
+    cursor: pointer;
+
+    &.disabled {
+      color: $gray-600;
+      font-family: inherit;
+    }
+  }
+
+  .img-item {
+    &::after {
+      content: '';
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    img {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .icon-delete {
+    font-size: 20px;
+    top: -10px;
+    right: 5px;
+  }
+}

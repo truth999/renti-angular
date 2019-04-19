@@ -2,6 +2,10 @@
   border: none;
   box-shadow: $box-shadow;
 
+  h5 {
+    font-family: NeueEinstellung-Bold;
+  }
+
   @include media-breakpoint-down(xs) {
     box-shadow: none;
   }

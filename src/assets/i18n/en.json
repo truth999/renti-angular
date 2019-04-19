@@ -1,5 +1,6 @@
 {
   "COMMON": {
+    "LANGUAGE": "English",
     "ALL_RIGHT": "All rights reserved. ©2019 Renti",
     "EMAIL": "Email",
     "PASSWORD": "Password",
@@ -14,7 +15,11 @@
     "LANDLORD": "Landlord",
     "TENANT": "Tenant",
     "FULL_NAME": "Full name",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
     "ADD_REAL_FULL_NAME": "Please add your real full name",
+    "ADD_REAL_FIRST_NAME": "Please add your real first name",
+    "ADD_REAL_LAST_NAME": "Please add your real last name",
     "CHOOSE_SECURE_PASSWORD": "Choose a secure password",
     "YOUR_EMAIL_ADDRESS": "Your email address",
     "YOUR_GENDER": "Your gender",
@@ -50,7 +55,22 @@
     "ABOUT_YOU": "About you",
     "WRITE_ABOUT_YOU": "Please write a couple words about yourself",
     "YOUR_IDEAL_PLACE_TO_RENT": "Your ideal place to rent",
-    "WRITE_YOUR_IDEAL_PLACE_TO_RENT": "Please write a couple words about your ideal place to rent"
+    "WRITE_YOUR_IDEAL_PLACE_TO_RENT": "Please write a couple words about your ideal place to rent",
+    "CONGRATULATIONS": "Congratulations",
+    "PROFILE_READY": "Your profile is ready",
+    "CAN_ADD_FIRST_UNIT": "Now you can add your first unit for rent",
+    "HAVE_FLOORS": "How many floors does your listing have?",
+    "FLOOR_PLAN": "Floor plan",
+    "INCREASE_CHANCES_FLOOR_PLAN": "Having a floor plan greatly increases your chances of renting our your unit",
+    "LETS_DRAW_ONE": "Let’s draw one",
+    "UPLOAD_AN_IMAGE": "Upload an image",
+    "LATER": "Later",
+    "DRAG_ROOM_NUMBER": "Drag room numbers to their places and name each room",
+    "ROOM_NAME": "Room name",
+    "ADD_PICTURES": "Add pictures to each room",
+    "UPLOAD_FROM_GALLERY": "Upload from gallery",
+    "ADD_ALL_DATA": "Add all data to the apartment",
+    "PLEASE_SELECT": "Please select"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of diggings",

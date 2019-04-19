@@ -1,0 +1,15 @@
+<div class="apartment-floor">
+  <h5>{{ 'COMMON.HAVE_FLOORS' | translate }}</h5>
+  <div class="count text-center d-flex flex-column align-items-center mt-5">
+    <div class="count-button"
+         (click)="onPlus()">
+      <i class="icon-plus"></i>
+    </div>
+    <span class="number h1">{{ counter }}</span>
+    <div class="count-button"
+         [class.disabled] = "counter == 0"
+         (click)="onMinus()">
+      <i class="icon-minus"></i>
+    </div>
+  </div>
+</div>
