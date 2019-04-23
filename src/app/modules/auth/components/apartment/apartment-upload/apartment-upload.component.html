@@ -1,9 +1,9 @@
 <div class="apartment-upload">
   <h5>{{ 'COMMON.ADD_PICTURES' | translate }}</h5>
   <ul class="list-unstyled list-inline">
-    <li class="list-inline-item">1: Living room</li>
-    <li class="list-inline-item disabled">2: Bathroom</li>
-    <li class="list-inline-item disabled">3: Bedroom</li>
+    <li class="list-inline-item font-size-lg">1: Living room</li>
+    <li class="list-inline-item font-size-lg disabled">2: Bathroom</li>
+    <li class="list-inline-item font-size-lg disabled">3: Bedroom</li>
   </ul>
   <div class="form-group text-center">
     <input type="file"
@@ -24,7 +24,7 @@
            (click)="removeRoomPicture(i)"></i>
       </div>
     </div>
-    <button class="btn btn-primary w-75"
+    <button class="btn btn-primary btn-lg w-75"
             (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_FROM_GALLERY' | translate }}</button>
   </div>
 </div>

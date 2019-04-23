@@ -8,11 +8,14 @@ $black: #000;
 
 $blue: #0b75e3;
 $red: #fa2f47;
+$yellow: #f4ca59;
 $green: #29c74a;
 
 $spacer: 1rem;
 
 $body-color: $gray-900;
+
+$paragraph-margin-bottom: .8125rem;
 
 $grid-breakpoints: (
   xs: 0,
@@ -22,21 +25,41 @@ $grid-breakpoints: (
   xl: 1200px
 );
 
-$border-width: 2px;
+$border-color: $gray-400;
 
-$border-radius-xl: .5rem;
-$border-radius-xxl: 1rem;
+$border-radius-lg: .5rem;
+$border-radius-xl: 1rem;
 
+$box-shadow-sm: 0 0 .9375rem rgba($black, .15);
 $box-shadow: 0 0 1.25rem rgba($black, .16);
 
 $font-family-sans-serif: NeueEinstellung;
 
-$btn-border-radius-xl: $border-radius-xl;
+$font-size-base: .8125rem;
+$font-size-lg: .9375rem;
+$font-size-sm: .625rem;
+
+$h1-font-size: 2.125rem;
+$h2-font-size: 1.625rem;
+$h3-font-size: 1.375rem;
+$h4-font-size: 1.25rem;
+$h5-font-size: 1.125rem;
+
+$input-btn-padding-y: .516rem;
+
+$input-btn-border-width: 2px;
 
 $input-font-family: NeueEinstellung-Medium;
 
+$nav-link-padding-y: .875rem;
+
 $card-spacer-y: 2rem;
 $card-spacer-x: 3rem;
-$card-border-radius: $border-radius-xxl;
+$card-border-radius: $border-radius-xl;
 
 $progress-bg: $gray-400;
+
+$list-group-border-color: $gray-400;
+$list-group-border-width: 1px;
+
+$list-group-item-padding-x: .3rem;

@@ -1,6 +1,7 @@
 {
   "COMMON": {
-    "LANGUAGE": "English",
+    "ENGLISH": "English",
+    "HUNGARIAN": "Hungarian",
     "ALL_RIGHT": "All rights reserved. ©2019 Renti",
     "EMAIL": "Email",
     "PASSWORD": "Password",
@@ -70,7 +71,23 @@
     "ADD_PICTURES": "Add pictures to each room",
     "UPLOAD_FROM_GALLERY": "Upload from gallery",
     "ADD_ALL_DATA": "Add all data to the apartment",
-    "PLEASE_SELECT": "Please select"
+    "PLEASE_SELECT": "Please select",
+    "SAVE_TO_FAVORITES": "Save to Favorites",
+    "GENDER": "Gender",
+    "OCCUPATION": "Occupation",
+    "STUDENT": "Student",
+    "SINGLE": "Single",
+    "NO": "no",
+    "CAT": "cat",
+    "SPANISH": "Spanish",
+    "EDUCATION": "Education",
+    "WORK": "Work",
+    "SETTINGS": "Settings",
+    "VIEW_AS": "View as",
+    "MANAGE_MY_PROPERTIES": "Manage my properties",
+    "TURKISH": "Turkish",
+    "RUSSIAN": "Russian",
+    "ITALIAN": "Italian"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of diggings",
@@ -92,5 +109,17 @@
     "TAKE_MINUTES": "Take 2 min to register",
     "BY_REGISTERING": "By registering, I agree to Renti’s",
     "PROMOTION_EMAIL": "I agree to sign up for promotion emails from Renti"
+  },
+  "PROFILE": {
+    "SINGLE_TENANT": "Single tenant",
+    "PROFILE_COMPLETION": "Profile completion",
+    "ABOUT_ME": "About me",
+    "MY_IDEAL_PLACE_TO_RENT": "My ideal place to rent",
+    "MARITAL_STATUS": "Marital status",
+    "LOOKING_FOR_COTENANCY": "Looking for cotenancy",
+    "MOVING_WITH_PETS": "Moving with pets",
+    "SPOKEN_LANGUAGE": "Spoken languages",
+    "MY_SOCIAL_PROFILES": "My social profiles",
+    "OWNER": "Owner"
   }
 }

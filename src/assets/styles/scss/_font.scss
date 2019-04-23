@@ -1,6 +1,6 @@
 @font-face {
   font-family: NeueEinstellung;
-  src: url("/assets/fonts/NeueEinstellung/NeueEinstellung-Regular.woff");
+  src: url("/assets/fonts/NeueEinstellung/NeueEinstellung-Normal.woff");
 }
 
 @font-face {
@@ -29,11 +29,6 @@
 }
 
 @font-face {
-  font-family: NeueEinstellung-Normal;
-  src: url("/assets/fonts/NeueEinstellung/NeueEinstellung-Normal.woff");
-}
-
-@font-face {
   font-family: NeueEinstellung-SemiBold;
   src: url("/assets/fonts/NeueEinstellung/NeueEinstellung-SemiBold.woff");
 }
@@ -41,6 +36,11 @@
 @font-face {
   font-family: NeueEinstellung-Thin;
   src: url("/assets/fonts/NeueEinstellung/NeueEinstellung-Thin.woff");
+}
+
+@font-face {
+  font-family: NeueEinstellung-Regular;
+  src: url("/assets/fonts/NeueEinstellung/NeueEinstellung-Regular.woff");
 }
 
 [data-icon],

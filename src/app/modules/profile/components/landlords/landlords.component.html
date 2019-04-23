@@ -1,0 +1,76 @@
+<div class="landlords-profile position-relative">
+  <div class="back mb-sm-4 d-sm-block d-none">
+    <button class="btn btn-back">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      Vissza
+    </button>
+  </div>
+  <div class="avatar">
+    <i class="icon-left position-absolute h4 mb-0 d-sm-none"></i>
+    <img src="/assets/images/profile/landlord.png"
+         alt="Avatar">
+  </div>
+  <div class="card profile-info">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="row name-info">
+            <div class="col-sm-12 col-8 pr-0">
+              <h1 class="name font-weight-bolder">Peter Kovacs</h1>
+              <p class="info text-muted font-weight-bold">{{ 'PROFILE.OWNER' | translate }}</p>
+            </div>
+            <div class="col-sm-12 col-4 text-sm-left text-right pl-0 pl-sm-3">
+              <p class="role text-muted font-weight-bold">{{ 'PROFILE.SINGLE_TENANT' | translate }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="profile-complete w-100">
+                <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
+                  <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
+                  <span>11/12</span>
+                </div>
+                <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 py-2">
+          <div class="text-right mb-sm-5 mb-3">
+            <button class="btn btn-outline-primary btn-lg">{{ 'COMMON.SAVE_TO_FAVORITES' | translate }}</button>
+          </div>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="border-top-0">{{ 'COMMON.NATIONALITY' | translate }}</td>
+                <td class="font-weight-bold text-right border-top-0">US</td>
+              </tr>
+              <tr>
+                <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}</td>
+                <td class="font-weight-bold text-right">
+                  {{ 'COMMON.ENGLISH' | translate }}, {{ 'COMMON.HUNGARIAN' | translate }}, {{ 'COMMON.TURKISH' | translate }}, {{ 'COMMON.RUSSIAN' | translate }}, {{ 'COMMON.ITALIAN' | translate }},
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-sm-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="rating">
+            <ngb-rating [(rate)]="currentRate" [readonly]="true" max="5">
+              <ng-template let-fill="fill">
+                <i class="icon-star-fill" *ngIf="fill === 100"></i>
+                <i class="icon-star" *ngIf="fill !== 100"></i>
+              </ng-template>
+            </ngb-rating>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

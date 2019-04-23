@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SharedModule } from '../shared/shared.module';
@@ -18,7 +17,6 @@ import { HomeComponent } from './components/home/home.component';
     HomeComponent
   ],
   imports: [
-    CommonModule,
     SharedModule
   ],
   providers: [

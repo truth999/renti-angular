@@ -9,7 +9,7 @@
       <app-apartment-data *ngIf="step == 4"></app-apartment-data>
       <div class="continue mt-sm-5 bg-white d-flex align-items-center">
         <span class="icon-left-circle mr-4" (click)="onPreviewStep()" *ngIf="step != 1"></span>
-        <button class="btn btn-primary w-100" (click)="onNextStep()" *ngIf="step != 1">{{ 'COMMON.CONTINUE' | translate }}</button>
+        <button class="btn btn-primary btn-lg w-100" (click)="onNextStep()" *ngIf="step != 1">{{ 'COMMON.CONTINUE' | translate }}</button>
       </div>
     </form>
   </div>

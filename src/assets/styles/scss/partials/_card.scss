@@ -2,10 +2,6 @@
   border: none;
   box-shadow: $box-shadow;
 
-  h5 {
-    font-family: NeueEinstellung-Bold;
-  }
-
   @include media-breakpoint-down(xs) {
     box-shadow: none;
   }
@@ -22,6 +18,12 @@
 .card-title {
   text-align: center;
   color: $gray-600;
-  font-family: NeueEinstellung-Bold;
-  font-weight: $font-weight-base;
+}
+
+.card-sm {
+  @include media-breakpoint-down(xs) {
+    box-shadow: $box-shadow-sm;
+    @include border-radius($border-radius-lg);
+    padding: 1.125rem 1rem;
+  }
 }

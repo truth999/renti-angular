@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-apartment',
@@ -8,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class ApartmentComponent implements OnInit {
   step = 0;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   onNextStep() {
     this.step = this.step + 1;
+
+    if (this.step > 4) {
+      this.step = 4;
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   onPreviewStep() {

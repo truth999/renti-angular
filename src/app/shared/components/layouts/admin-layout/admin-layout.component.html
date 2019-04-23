@@ -1,0 +1,68 @@
+<div class="wrapper"
+     [class.toggled]="toggled">
+  <nav class="sidebar position-fixed shadow h-100">
+    <div class="sidebar-close position-absolute d-md-none"
+         (click)="toggled = false">
+      <i class="icon-close"></i>
+    </div>
+    <div class="nav-logo position-absolute text-center border-bottom w-100 py-4">
+      <a routerLink="/">
+        <img src="/assets/images/logo.png"
+             width="40">
+      </a>
+    </div>
+    <ul class="nav flex-column nav-content py-3">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="icon-search mr-2"></i>
+          Keresés
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="icon-alert mr-2"></i>
+          Értesítések
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="icon-person mr-2"></i>
+          Profilom
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="icon-setting mr-2"></i>
+          Beállítások
+        </a>
+      </li>
+    </ul>
+    <ul class="nav flex-column nav-logout position-absolute w-100">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="icon-exit mr-2"></i>
+          Kijelentkezés
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="overlay position-fixed"
+       (click)="toggled = false"></div>
+  <main class="page-content position-relative py-3">
+    <div class="content-logo d-md-none pb-3 border-bottom">
+      <div class="container position-relative text-center">
+        <button class="btn btn-toggler position-absolute d-md-none"
+                type="button"
+                (click)="toggled = true">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="/assets/images/logo-no-title.png" width="40" alt="">
+      </div>
+    </div>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

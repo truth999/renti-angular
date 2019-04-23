@@ -1,6 +1,7 @@
 {
   "COMMON": {
-    "LANGUAGE": "Magyar",
+    "ENGLISH": "",
+    "HUNGARIAN": "Magyar",
     "ALL_RIGHT": "Minden jog fenntartva. ©2019 Renti",
     "EMAIL": "Email",
     "PASSWORD": "Jelszó",
@@ -70,7 +71,23 @@
     "ADD_PICTURES": "",
     "UPLOAD_FROM_GALLERY": "",
     "ADD_ALL_DATA": "",
-    "PLEASE_SELECT": ""
+    "PLEASE_SELECT": "",
+    "SAVE_TO_FAVORITES": "",
+    "GENDER": "",
+    "OCCUPATION": "",
+    "STUDENT": "",
+    "SINGLE": "",
+    "NO": "",
+    "CAT": "",
+    "SPANISH": "",
+    "EDUCATION": "",
+    "WORK": "",
+    "SETTINGS": "",
+    "VIEW_AS": "",
+    "MANAGE_MY_PROPERTIES": "",
+    "TURKISH": "",
+    "RUSSIAN": "",
+    "ITALIAN": ""
   },
   "HOME": {
     "TITLE": "Renti - az albérletek Kánaánja",
@@ -92,5 +109,17 @@
     "TAKE_MINUTES": "A regisztráció 2 percet vesz igénybe",
     "BY_REGISTERING": "A regisztrációval elfogadom a Renti",
     "PROMOTION_EMAIL": ""
+  },
+  "PROFILE": {
+    "SINGLE_TENANT": "",
+    "PROFILE_COMPLETION": "",
+    "ABOUT_ME": "",
+    "MY_IDEAL_PLACE_TO_RENT": "",
+    "MARITAL_STATUS": "",
+    "LOOKING_FOR_COTENANCY": "",
+    "MOVING_WITH_PETS": "",
+    "SPOKEN_LANGUAGE": "",
+    "MY_SOCIAL_PROFILES": "",
+    "OWNER": ""
   }
 }
