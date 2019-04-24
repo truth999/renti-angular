@@ -46,10 +46,20 @@ $h4-font-size: 1.25rem;
 $h5-font-size: 1.125rem;
 
 $input-btn-padding-y: .516rem;
+$input-btn-padding-x: .75rem;
+
+$input-btn-padding-y-lg: .5rem;
+$input-btn-padding-x-lg: 1rem;
 
 $input-btn-border-width: 2px;
 
+$input-padding-x: $input-btn-padding-x;
 $input-font-family: NeueEinstellung-Medium;
+
+$custom-select-padding-x: $input-padding-x;
+$custom-select-indicator-padding: 1rem;
+$custom-select-indicator: url("/assets/images/caret.png");
+$custom-select-background: $custom-select-indicator no-repeat right $custom-select-padding-x center;
 
 $nav-link-padding-y: .875rem;
 

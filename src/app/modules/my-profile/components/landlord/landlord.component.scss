@@ -1,6 +1,6 @@
 @import "~src/assets/styles/scss/variables";
 
-.landlords-profile {
+.landlords-profile-edit {
   .btn-back {
     i {
       vertical-align: middle;
@@ -70,9 +70,23 @@
       }
     }
 
-    .btn {
+    .button-group {
       @include media-breakpoint-down(xs) {
-        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .btn {
+        width: 160px;
+
+        @include media-breakpoint-up(sm) {
+          display: block;
+          margin-left: auto;
+        }
+
+        @include media-breakpoint-down(xs) {
+          width: 45%;
+        }
       }
     }
   }
@@ -80,16 +94,34 @@
   .rating {
     border: 2px solid $yellow;
     border-radius: $border-radius-lg;
+    padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
 
-    ngb-rating {
-      &:focus {
-        outline: none;
-      }
+    @include media-breakpoint-down(xs) {
+      width: 100%;
+      border-style: dashed;
+    }
+  }
 
+  ngb-rating {
+    &:focus {
+      outline: none;
+    }
+
+    i {
+      color: $yellow;
+    }
+
+    &.all-rating {
       i {
-        color: $yellow;
         font-size: 1.6rem;
         margin-right: .4rem;
+      }
+    }
+
+    &.item-rating {
+      i {
+        font-size: 1rem;
+        margin-right: .2rem;
       }
     }
   }

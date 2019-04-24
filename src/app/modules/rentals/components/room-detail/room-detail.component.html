@@ -1,0 +1,58 @@
+<div class="room-detail">
+  <div class="back mb-4">
+    <button class="btn btn-back">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      Vissza
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="room-name d-flex justify-content-between">
+        <h4>Nappali</h4>
+        <div class="square font-weight-bold">
+          <i class="icon-fullscreen align-middle"></i>
+          30 m<sup>2</sup>
+        </div>
+      </div>
+      <div class="room-image mt-2">
+        <img src="/assets/images/room/room1.png" alt="" class="img-room" width="100" height="100">
+        <img src="/assets/images/room/room2.png" alt="" class="img-room" width="100" height="100">
+      </div>
+      <table class="table mt-2">
+        <tbody>
+          <tr>
+            <td class="border-top-0">Felújítás éve:</td>
+            <td class="border-top-0 font-weight-bold text-right">2011</td>
+          </tr>
+          <tr>
+            <td>Burkolat:</td>
+            <td class="font-weight-bold text-right">Laminált</td>
+          </tr>
+          <tr>
+            <td>Ablak típusa:</td>
+            <td class="font-weight-bold text-right">Műanyag hőszigetelt</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6 text-sm-right">
+      <div class="rating d-inline-flex align-items-center justify-content-between">
+        <ngb-rating [rate]="4"
+                    [readonly]="true"
+                    max="5"
+                    class="all-rating mr-2">
+          <ng-template let-fill="fill">
+            <i class="icon-star-fill"
+               *ngIf="fill === 100"></i>
+            <i class="icon-star"
+               *ngIf="fill !== 100"></i>
+          </ng-template>
+        </ngb-rating>
+        <div class="rating-text">
+          <span class="font-size-lg font-weight-bold">4 star rating</span><br>
+          <span>(Based on 3 ratings)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+@import "~src/assets/styles/scss/variables";
+
+.room-detail {
+  .icon-fullscreen {
+    font-size: 1rem;
+    color: $blue;
+  }
+
+  .img-room {
+    margin-right: .6rem;
+    border-radius: $border-radius-lg;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .rating {
+    border: 2px solid $yellow;
+    border-radius: $border-radius-lg;
+    padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
+
+    @include media-breakpoint-down(xs) {
+      width: 100%;
+      border-style: dashed;
+    }
+
+    ngb-rating {
+      &:focus {
+        outline: none;
+      }
+
+      i {
+        color: $yellow;
+      }
+
+      &.all-rating {
+        i {
+          font-size: 1.6rem;
+          margin-right: .4rem;
+        }
+      }
+
+      &.item-rating {
+        i {
+          font-size: 1rem;
+          margin-right: .2rem;
+        }
+      }
+    }
+  }
+}

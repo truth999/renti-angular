@@ -1,0 +1,91 @@
+<div class="apartment-detail">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="slider">
+        <img src="/assets/images/apartment/apartment1.png" alt="">
+      </div>
+      <div class="rooms mt-4">
+        <h3>Szobák:</h3>
+        <p>A megtekintéshez kattintson a szoba nevére  vagy az alaprajzban elfoglalt helyére!</p>
+      </div>
+      <div class="rating d-inline-flex align-items-center justify-content-between mt-4">
+        <ngb-rating [rate]="4"
+                    [readonly]="true"
+                    max="5"
+                    class="all-rating mr-2">
+          <ng-template let-fill="fill">
+            <i class="icon-star-fill"
+               *ngIf="fill === 100"></i>
+            <i class="icon-star"
+               *ngIf="fill !== 100"></i>
+          </ng-template>
+        </ngb-rating>
+        <div class="rating-text">
+          <span class="font-size-lg font-weight-bold">4 star rating</span><br>
+          <span>(Based on 3 ratings)</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h2>Luxury apartment in the heart of Budapest</h2>
+      <div class="unit d-flex justify-content-between">
+        <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
+        <span class="square font-weight-bold">
+          <i class="icon-fullscreen"></i>
+          140m<sup>2</sup>
+        </span>
+        <span class="unit-rooms font-weight-bold">
+          <i class="icon-bed"></i>
+          4 {{ 'COMMON.ROOMS' | translate }}
+        </span>
+      </div>
+      <p class="mt-3">Budapest, Andrássy út 72, 3/32.</p>
+      <div class="data-complete w-100">
+        <div class="data-status d-flex justify-content-between font-weight-bold mb-2">
+          <span>{{ 'APARTMENT.DATA_COMPLETION' | translate }}:</span>
+          <span>97/132</span>
+        </div>
+        <p><ngb-progressbar [value]="73" height="10px"></ngb-progressbar></p>
+      </div>
+      <div class="button-group d-flex justify-content-between mt-4">
+        <button class="btn btn-outline-primary btn-lg">{{ 'COMMON.SAVE_TO_FAVORITES' | translate }}</button>
+        <button class="btn btn-primary btn-lg">{{ 'COMMON.SEND_OFFER' | translate }}</button>
+      </div>
+      <p class="mt-4">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+      </p>
+      <table class="table mt-4">
+        <tbody>
+          <tr>
+            <td class="border-top-0">Épület típusa</td>
+            <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+          </tr>
+          <tr>
+            <td>Épület építési éve</td>
+            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+          </tr>
+          <tr>
+            <td>Ingatlan állapota</td>
+            <td class="font-weight-bold text-right">2011</td>
+          </tr>
+          <tr>
+            <td>Épület típusa</td>
+            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+          </tr>
+          <tr>
+            <td>Épület építési éve</td>
+            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+          </tr>
+          <tr>
+            <td>Ingatlan állapota</td>
+            <td class="font-weight-bold text-right">2011</td>
+          </tr>
+          <tr>
+            <td>Épület típusa</td>
+            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

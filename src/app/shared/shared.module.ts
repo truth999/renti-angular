@@ -6,14 +6,14 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
-import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
-import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 
 @NgModule({
   declarations: [
     LanguageSelectorComponent,
-    AuthLayoutComponent,
-    AdminLayoutComponent
+    LayoutComponent,
+    AuthLayoutComponent
   ],
   imports: [
     CommonModule,
@@ -27,8 +27,8 @@ import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-la
     NgbModule,
     TranslateModule,
     LanguageSelectorComponent,
-    AuthLayoutComponent,
-    AdminLayoutComponent
+    LayoutComponent,
+    AuthLayoutComponent
   ]
 })
 export class SharedModule { }

@@ -77,7 +77,7 @@
     "OCCUPATION": "Occupation",
     "STUDENT": "Student",
     "SINGLE": "Single",
-    "NO": "no",
+    "NO": "No",
     "CAT": "cat",
     "SPANISH": "Spanish",
     "EDUCATION": "Education",
@@ -87,13 +87,23 @@
     "MANAGE_MY_PROPERTIES": "Manage my properties",
     "TURKISH": "Turkish",
     "RUSSIAN": "Russian",
-    "ITALIAN": "Italian"
+    "ITALIAN": "Italian",
+    "LOOKING_TO_RENT_IN": "Looking to rent in",
+    "BIRTHDATE": "Birthdate",
+    "PLEASE_WRITE_A_COUPLE_WORDS": "Please write a couple words",
+    "ADD_NEW": "Add new",
+    "YES": "Yes",
+    "OFFERING_A_ROOM": "Offering a room",
+    "OFFERING_AN_APARTMENT": "Offering an apartment",
+    "SEARCHING_APARTMENT": "Searching a apartment",
+    "ROOMS": "rooms",
+    "SEND_OFFER": "Send Offer"
   },
   "HOME": {
-    "TITLE": "Renti - Canaan of diggings",
+    "TITLE": "Renti - Canaan of flats",
     "FIND_YOUR": "Find your",
-    "SELECT1": "Dreamt diggings",
-    "SELECT2": "Dreamt tenant"
+    "SELECT1": "Dream flat",
+    "SELECT2": "Dream tenant"
   },
   "LOGIN": {
     "LOGIN": "Login",
@@ -121,5 +131,10 @@
     "SPOKEN_LANGUAGE": "Spoken languages",
     "MY_SOCIAL_PROFILES": "My social profiles",
     "OWNER": "Owner"
+  },
+  "APARTMENT": {
+    "DATA_COMPLETION": "Data completion",
+    "APARTMENT": "Apartment",
+    "BRICK": "Brick"
   }
 }

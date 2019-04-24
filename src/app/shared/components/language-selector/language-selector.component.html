@@ -4,7 +4,8 @@
   <button class="btn btn-outline-primary"
           id="language"
           ngbDropdownToggle>
-    <span class="flag-icon mr-2 {{ currentLanguage.flag }}"></span>{{ currentLanguage.name }}
+    <span class="flag-icon mr-2 {{ currentLanguage.flag }}"></span>
+    <span class="lang-name d-none d-sm-inline">{{ currentLanguage.name }}</span>
   </button>
   <div ngbDropdownMenu
        aria-labelledby="language">

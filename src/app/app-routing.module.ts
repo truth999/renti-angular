@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './core/components/home/home.component';
-import { AuthLayoutComponent } from './shared/components/layouts/auth-layout/auth-layout.component';
-import { AdminLayoutComponent } from './shared/components/layouts/admin-layout/admin-layout.component';
+import { AuthLayoutComponent } from './shared/components/auth-layout/auth-layout.component';
+import { LayoutComponent } from './shared/components/layout/layout.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,13 +15,16 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
-    component: AdminLayoutComponent,
+    path: 'app',
+    component: LayoutComponent,
     children: [
       { path: '', loadChildren: './modules/dashboard/dashboard.module#DashboardModule' },
-      { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule' }
+      { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule' },
+      { path: 'my-profile', loadChildren: './modules/my-profile/my-profile.module#MyProfileModule' },
+      { path: 'rentals', loadChildren: './modules/rentals/rentals.module#RentalsModule' }
     ]
-  }
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../../shared/shared.module';
-import { ProfileRoutingModule } from './profile-routing.module';
+import { MyProfileRoutingModule } from './my-profile-routing.module';
 import { TenantComponent } from './components/tenant/tenant.component';
 import { LandlordComponent } from './components/landlord/landlord.component';
 
@@ -12,7 +12,7 @@ import { LandlordComponent } from './components/landlord/landlord.component';
   ],
   imports: [
     SharedModule,
-    ProfileRoutingModule
+    MyProfileRoutingModule
   ]
 })
-export class ProfileModule { }
+export class MyProfileModule { }
