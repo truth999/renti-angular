@@ -1,0 +1,17 @@
+<div class="rating d-inline-flex align-items-center justify-content-between mb-3">
+  <ngb-rating [rate]="5"
+              [readonly]="true"
+              max="5"
+              class="all-rating mr-2">
+    <ng-template let-fill="fill">
+      <i class="icon-star-fill"
+         *ngIf="fill === 100"></i>
+      <i class="icon-star"
+         *ngIf="fill !== 100"></i>
+    </ng-template>
+  </ngb-rating>
+  <div class="rating-text">
+    <span class="font-size-lg font-weight-bold">5 star rating</span><br>
+    <span>(Based on 2 ratings)</span>
+  </div>
+</div>
