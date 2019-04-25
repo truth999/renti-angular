@@ -14,7 +14,7 @@ export class ApartmentItemComponent implements OnInit {
   @Input() rooms: number;
   @Input() data: number;
   @Input() topRated: boolean;
-  @ViewChild('explain') explainParagraph: ElementRef;
+  @ViewChild('explainParagraph') explainParagraph: ElementRef;
 
   constructor() { }
 
