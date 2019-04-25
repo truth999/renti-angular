@@ -1,0 +1,13 @@
+@import "~src/assets/styles/scss/variables";
+
+.search-apartment {
+  .btn-search {
+    color: $blue;
+    box-shadow: $box-shadow-sm;
+    border-radius: $border-radius-lg;
+
+    .icon-ellipsis {
+      font-size: 1.25rem;
+    }
+  }
+}

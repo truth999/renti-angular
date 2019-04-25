@@ -1,0 +1,27 @@
+<div class="search-apartment">
+  <div class="d-flex justify-content-between align-items-center">
+    <h4>{{ 'COMMON.AVAILABLE_FOR_RENT_NEAR_YOU' | translate }}</h4>
+    <button class="btn btn-search d-flex justify-content-between align-items-center text-left font-weight-bold">
+      <span class="d-sm-inline d-none">találatok<br>szűrése</span>
+      <i class="icon-ellipsis"></i>
+    </button>
+  </div>
+  <div class="row">
+    <app-apartment-item class="col-sm-6 py-3"
+                        [imgUrl]="'/assets/images/apartment/apartment1.png'"
+                        [name]="'Luxury apartment in the  heart of Budapest'"
+                        [explain]="'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…'"
+                        [mo]="389000"
+                        [square]="140"
+                        [rooms]="4"
+                        [data]="98"
+                        [topRated]="true"></app-apartment-item>
+    <app-apartment-item class="col-sm-6 py-3"></app-apartment-item>
+    <app-apartment-item class="col-sm-6 py-3"></app-apartment-item>
+    <app-apartment-item class="col-sm-6 py-3"></app-apartment-item>
+    <app-apartment-item class="col-sm-6 py-3"></app-apartment-item>
+    <app-apartment-item class="col-sm-6 py-3"></app-apartment-item>
+    <app-apartment-item class="col-sm-6 py-3"></app-apartment-item>
+    <app-apartment-item class="col-sm-6 py-3"></app-apartment-item>
+  </div>
+</div>

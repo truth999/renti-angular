@@ -1,0 +1,52 @@
+@import "~src/assets/styles/scss/variables";
+
+.card-sm {
+  margin-left: $font-size-base;
+  height: 10rem;
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid;
+
+  &:hover {
+    border-color: $blue;
+  }
+
+  .apartment-image {
+    top: -$font-size-base;
+    left: -$font-size-base;
+
+    img {
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .image-badge {
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  .explain {
+    margin-left: 6.5rem;
+
+    p {
+      height: $font-size-base * 3 * $line-height-base;
+    }
+  }
+
+  .unit {
+    .mo {
+      color: $blue;
+    }
+
+    i {
+      font-size: 1.125rem;
+      color: $blue;
+    }
+  }
+
+  .card-badge {
+    right: -2px;
+    bottom: -1rem;
+  }
+}
