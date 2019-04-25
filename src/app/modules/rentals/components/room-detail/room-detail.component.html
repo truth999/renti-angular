@@ -1,6 +1,7 @@
 <div class="room-detail">
   <div class="back mb-4">
-    <button class="btn btn-back">
+    <button class="btn btn-back"
+            (click)="onBack()">
       <i class="icon-left h4 align-middle mb-0"></i>
       Vissza
     </button>
@@ -36,21 +37,23 @@
       </table>
     </div>
     <div class="col-sm-6 text-sm-right">
-      <div class="rating d-inline-flex align-items-center justify-content-between">
-        <ngb-rating [rate]="4"
-                    [readonly]="true"
-                    max="5"
-                    class="all-rating mr-2">
-          <ng-template let-fill="fill">
-            <i class="icon-star-fill"
-               *ngIf="fill === 100"></i>
-            <i class="icon-star"
-               *ngIf="fill !== 100"></i>
-          </ng-template>
-        </ngb-rating>
-        <div class="rating-text">
-          <span class="font-size-lg font-weight-bold">4 star rating</span><br>
-          <span>(Based on 3 ratings)</span>
+      <app-feedback></app-feedback>
+      <div class="text-left">
+        <div class="feedback mt-4">
+          <div class="client">
+            <span class="client-name font-weight-bold">Kelsey Taylor</span>
+          </div>
+          <p class="feedback-content mt-2">
+            Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+          </p>
+        </div>
+        <div class="feedback mt-4">
+          <div class="client">
+            <span class="client-name font-weight-bold">Kate Tomlins</span>
+          </div>
+          <p class="feedback-content mt-2">
+            We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+          </p>
         </div>
       </div>
     </div>

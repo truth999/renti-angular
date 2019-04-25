@@ -3,6 +3,13 @@
   right: 4%;
   z-index: 999;
 
+  .dropdown-menu {
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    transform: none !important;
+  }
+
   .flag-icon {
     background-size: 100%;
   }

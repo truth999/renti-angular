@@ -21,7 +21,8 @@ const routes: Routes = [
       { path: '', loadChildren: './modules/dashboard/dashboard.module#DashboardModule' },
       { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule' },
       { path: 'my-profile', loadChildren: './modules/my-profile/my-profile.module#MyProfileModule' },
-      { path: 'rentals', loadChildren: './modules/rentals/rentals.module#RentalsModule' }
+      { path: 'rentals', loadChildren: './modules/rentals/rentals.module#RentalsModule' },
+      { path: 'offers', loadChildren: './modules/offers/offers.module#OffersModule' }
     ]
   },
   { path: '**', redirectTo: '' }

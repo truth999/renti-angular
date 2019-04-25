@@ -1,12 +1,14 @@
 <div class="landlords-profile position-relative">
   <div class="back mb-sm-4 d-sm-block d-none">
-    <button class="btn btn-back">
+    <button class="btn btn-back"
+            (click)="onBack()">
       <i class="icon-left h4 align-middle mb-0"></i>
       Vissza
     </button>
   </div>
   <div class="avatar">
-    <i class="icon-left position-absolute h4 mb-0 d-sm-none"></i>
+    <i class="icon-left position-absolute h4 mb-0 d-sm-none"
+       (click)="onBack()"></i>
     <img src="/assets/images/profile/landlord.png"
          alt="Avatar">
   </div>
@@ -61,23 +63,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-sm-6">
-          <div class="rating d-inline-flex align-items-center mb-3">
-            <ngb-rating [rate]="5"
-                        [readonly]="true"
-                        max="5"
-                        class="all-rating mr-2">
-              <ng-template let-fill="fill">
-                <i class="icon-star-fill"
-                   *ngIf="fill === 100"></i>
-                <i class="icon-star"
-                   *ngIf="fill !== 100"></i>
-              </ng-template>
-            </ngb-rating>
-            <div class="rating-text">
-              <span class="font-size-lg font-weight-bold">5 star rating</span><br>
-              <span>(Based on 2 ratings)</span>
-            </div>
-          </div>
+          <app-feedback></app-feedback>
           <div class="feedback">
             <div class="client d-flex justify-content-between">
               <span class="client-name font-weight-bold">Kelsey Taylor</span>

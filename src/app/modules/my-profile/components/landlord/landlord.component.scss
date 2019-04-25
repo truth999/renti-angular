@@ -91,17 +91,6 @@
     }
   }
 
-  .rating {
-    border: 2px solid $yellow;
-    border-radius: $border-radius-lg;
-    padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
-
-    @include media-breakpoint-down(xs) {
-      width: 100%;
-      border-style: dashed;
-    }
-  }
-
   ngb-rating {
     &:focus {
       outline: none;

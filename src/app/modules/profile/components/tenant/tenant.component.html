@@ -1,12 +1,14 @@
 <div class="tenants-profile position-relative">
   <div class="back mb-sm-4 d-sm-block d-none">
-    <button class="btn btn-back">
+    <button class="btn btn-back"
+            (click)="onBack()">
       <i class="icon-left h4 align-middle mb-0"></i>
       Vissza
     </button>
   </div>
   <div class="avatar">
-    <i class="icon-left position-absolute h4 mb-0 d-sm-none"></i>
+    <i class="icon-left position-absolute h4 mb-0 d-sm-none"
+       (click)="onBack()"></i>
     <img src="/assets/images/profile/tenant.png"
          alt="Avatar">
   </div>
@@ -97,7 +99,7 @@
           </table>
         </div>
         <div class="col-12 d-sm-none py-2">
-          <div class="card-sm">
+          <div class="card-sm-screen">
             <h5 class="font-weight-bolder">{{ 'PROFILE.ABOUT_ME' | translate }}:</h5>
             <p>
               I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
@@ -105,7 +107,7 @@
           </div>
         </div>
         <div class="col-12 d-sm-none py-2">
-          <div class="card-sm">
+          <div class="card-sm-screen">
             <h5 class="font-weight-bolder">{{ 'PROFILE.MY_IDEAL_PLACE_TO_RENT' | translate }}:</h5>
             <p>
               I’d like to rent a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s

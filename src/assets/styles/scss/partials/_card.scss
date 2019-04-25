@@ -21,6 +21,12 @@
 }
 
 .card-sm {
+  box-shadow: $box-shadow-sm;
+  @include border-radius($border-radius-lg);
+  padding: 1.125rem 1rem;
+}
+
+.card-sm-screen {
   @include media-breakpoint-down(xs) {
     box-shadow: $box-shadow-sm;
     @include border-radius($border-radius-lg);

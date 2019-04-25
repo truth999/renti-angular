@@ -45,12 +45,6 @@
   .items {
     height: 38vw;
 
-    .item {
-      @include media-breakpoint-up(sm) {
-        align-items: center;
-      }
-    }
-
     .item-left {
       background: url("/assets/images/home/gallery1.png") no-repeat;
       background-size: cover;
@@ -69,6 +63,7 @@
       max-width: 218px;
       max-height: 163px;
       font-size: 3.5vw;
+      margin-top: -10%;
 
       @include media-breakpoint-up(xl) {
         font-size: 35px;
@@ -82,13 +77,9 @@
     .vs {
       border: 1px solid #979797;
       color: #191919;
-      top: 50%;
+      top: 0;
       left: 50%;
       transform: translate(-50%, -50%);
-
-      @include media-breakpoint-down(xs) {
-        top: 0;
-      }
     }
   }
 
@@ -98,5 +89,9 @@
     @include media-breakpoint-down(xs) {
       padding-top: 5rem;
     }
+  }
+
+  .auth {
+    bottom: 0;
   }
 }

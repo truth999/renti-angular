@@ -31,6 +31,7 @@
     "YOUR_DATE_OF_BIRTH": "Your date of birth",
     "DAY": "Day",
     "MONTH": "Month",
+    "MONTHS": "Months",
     "YEAR": "Year",
     "NATIONALITY": "Nationality",
     "CHOOSE_NATIONALITY": "Please choose your nationality",
@@ -96,8 +97,9 @@
     "OFFERING_A_ROOM": "Offering a room",
     "OFFERING_AN_APARTMENT": "Offering an apartment",
     "SEARCHING_APARTMENT": "Searching a apartment",
-    "ROOMS": "rooms",
-    "SEND_OFFER": "Send Offer"
+    "ROOMS": "Rooms",
+    "SEND_OFFER": "Send Offer",
+    "PHONE": "Telefon"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
@@ -135,6 +137,30 @@
   "APARTMENT": {
     "DATA_COMPLETION": "Data completion",
     "APARTMENT": "Apartment",
-    "BRICK": "Brick"
+    "BRICK": "Brick",
+    "TYPE_OF_BUILDING": "Type of building",
+    "ENERGY_PERFORMANCE_CERTIFICATE": "Energy performance certificate",
+    "FLOORS_OF_THE_BUILDING": "Floors of the building",
+    "BUILDING_SITING": "Building siting",
+    "TYPE_OF_HEATING": "Type of heating",
+    "HEADROOM": "Headroom",
+    "PARKING": "Parking",
+    "CHILD_FRIENDLY": "Child-friendly",
+    "PET_FRIENDLY": "Pet-friendly",
+    "EXTERNAL_ISOLATION": "External isolation",
+    "AVAILABLE_MEDIA_SERVICE_PROVIDERS": "Available media service providers",
+    "HANDICAP_ACCESSIBLE": "Handicap accessible",
+    "BALCONY": "Balcony",
+    "GARDEN": "Garden",
+    "TERRACE": "Terrace",
+    "AIRCONDITIONER": "Airconditioner",
+    "GARAGE": "Garage",
+    "RENTAL_FEE": "Rental fee",
+    "MINIMUM_RENTING_TIME": "Minimum renting time"
+  },
+  "OFFER": {
+    "MOVING_IN_WITH": "Moving in with",
+    "SOCIAL_MEDIA_AVAILABILITIES": "Social media availabilities",
+    "WHY_CHOOSE_ME": "Why choose me"
   }
 }
