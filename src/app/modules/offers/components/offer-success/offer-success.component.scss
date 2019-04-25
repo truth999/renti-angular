@@ -1,0 +1,19 @@
+@import "~src/assets/styles/scss/variables";
+
+.offer-success {
+  .text {
+    margin-bottom: 5rem;
+  }
+  .icon-check-circle {
+    font-size: 3.25rem;
+    color: $green;
+  }
+
+  .avatar {
+    margin-top: calc(-1.125rem - 40px);
+  }
+
+  .year {
+    color: $blue;
+  }
+}

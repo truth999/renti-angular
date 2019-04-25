@@ -9,13 +9,15 @@ import { LanguageSelectorComponent } from './components/language-selector/langua
 import { LayoutComponent } from './components/layout/layout.component';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { ApartmentItemComponent } from './components/apartment-item/apartment-item.component';
 
 @NgModule({
   declarations: [
     LanguageSelectorComponent,
     LayoutComponent,
     AuthLayoutComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ApartmentItemComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     LanguageSelectorComponent,
     LayoutComponent,
     AuthLayoutComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ApartmentItemComponent
   ]
 })
 export class SharedModule { }

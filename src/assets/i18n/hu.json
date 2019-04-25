@@ -98,8 +98,12 @@
     "OFFERING_AN_APARTMENT": "Offering an apartment",
     "SEARCHING_APARTMENT": "Searching a apartment",
     "ROOMS": "Rooms",
+    "ROOM": "Room",
     "SEND_OFFER": "Send Offer",
-    "PHONE": "Telefon"
+    "PHONE": "Telefon",
+    "AVAILABLE_FOR_RENT_NEAR_YOU": "Available for rent near you",
+    "TOP_RATED": "Top Rated",
+    "DATA": "data"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
