@@ -39,7 +39,8 @@
         </div>
         <div class="col-sm-6 py-2">
           <div class="button-group text-sm-right py-2">
-            <button class="btn btn-outline-primary btn-lg mb-sm-3">{{ 'COMMON.SETTINGS' | translate }}</button>
+            <button class="btn btn-outline-primary btn-lg mb-sm-3"
+                    (click)="onSettings()">{{ 'COMMON.SETTINGS' | translate }}</button>
             <button class="btn btn-outline-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}...</button>
           </div>
           <table class="table">
@@ -117,7 +118,8 @@
           </div>
         </div>
         <div class="col-sm-6 text-sm-right text-center">
-          <button class="btn btn-primary btn-lg">{{ 'COMMON.MANAGE_MY_PROPERTIES' | translate }}</button>
+          <button class="btn btn-primary btn-lg"
+                  (click)="onMyProperties()">{{ 'COMMON.MANAGE_MY_PROPERTIES' | translate }}</button>
         </div>
       </div>
     </div>

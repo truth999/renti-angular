@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-landlord',
+  selector: 'app-profile-landlord',
   templateUrl: './landlord.component.html',
   styleUrls: ['./landlord.component.scss']
 })

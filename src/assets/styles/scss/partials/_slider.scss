@@ -1,0 +1,44 @@
+nouislider {
+  margin-top: 3rem !important;
+  margin-bottom: 2rem !important;
+
+  .noUi-target {
+    background-color: $gray-400;
+    border-radius: 3px;
+    border: none;
+  }
+
+  .noUi-horizontal {
+    height: 6px;
+
+    .noUi-connect {
+      background-color: $blue;
+    }
+
+    .noUi-handle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50rem;
+      border: none;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.3);
+      outline: none;
+      top: -8px;
+      right: -11px !important;
+
+      &:before {
+        display: none;
+      }
+
+      &:after {
+        display: none;
+      }
+
+      .noUi-tooltip {
+        border: none;
+        background: none;
+        font-family: NeueEinstellung-Medium;
+        color: $gray-600;
+      }
+    }
+  }
+}

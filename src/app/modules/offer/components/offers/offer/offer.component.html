@@ -1,0 +1,48 @@
+<div class="card-sm mt-5">
+  <div class="avatar text-center">
+    <img src="/assets/images/profile/tenant.png" alt="" width="80" height="80" class="rounded-pill">
+  </div>
+  <h4 class="text-center">Kate</h4>
+  <p class="text-center text-muted font-weight-bold"><span class="year font-size-lg">23</span>, Student</p>
+  <table class="table">
+    <tbody>
+    <tr>
+      <td class="border-top-0">{{ 'APARTMENT.RENTAL_FEE' | translate }}:</td>
+      <td class="border-top-0 font-weight-bold text-right">410000 Ft</td>
+    </tr>
+    <tr>
+      <td>Kaukció:</td>
+      <td class="font-weight-bold text-right">3 {{ 'COMMON.MONTHS' | translate }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}:</td>
+      <td class="font-weight-bold text-right">12 {{ 'COMMON.MONTHS' | translate }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'OFFER.MOVING_IN_WITH' | translate }}:</td>
+      <td class="font-weight-bold text-right">Egyedül</td>
+    </tr>
+    <tr>
+      <td>Személy típusa:</td>
+      <td class="font-weight-bold text-right">-</td>
+    </tr>
+    <tr>
+      <td>{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}:</td>
+      <td class="font-weight-bold text-right">ig.com/taylorswift</td>
+    </tr>
+    <tr>
+      <td class="border-bottom">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}:</td>
+      <td class="border-bottom font-weight-bold text-right">{{ 'COMMON.NO' | translate }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <h5 class="font-weight-bolder">{{ 'OFFER.WHY_CHOOSE_ME' | translate }}?</h5>
+  <p>
+    I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+  </p>
+  <button class="btn btn-outline-primary btn-lg w-100 mt-3" (click)="onProfile()">Tovább a teljes profilra</button>
+  <div class="button-group d-flex justify-content-between mt-4">
+    <button class="btn btn-success btn-lg" (click)="onSuccess()">Elfogadás</button>
+    <button class="btn btn-outline-danger btn-lg">Törlés</button>
+  </div>
+</div>

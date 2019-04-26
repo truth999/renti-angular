@@ -1,0 +1,51 @@
+<div class="offer-create">
+  <div class="back mb-4 mt-3 mt-sm-0">
+    <button class="btn btn-back d-sm-block d-none"
+            (click)="onBack()">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      Vissza
+    </button>
+    <i class="icon-left-circle d-sm-none"
+       (click)="onBack()"></i>
+  </div>
+  <h4 class="text-center">Árajánlattétel</h4>
+  <div class="form-group">
+    <label for="rent">Bérleti díj:</label>
+    <input type="text" class="form-control" id="rent" placeholder="Ft">
+  </div>
+  <div class="form-group">
+    <label for="rent2">Kaukció</label>
+    <input type="text" class="form-control" id="rent2" placeholder="Ft">
+  </div>
+  <div class="form-group">
+    <label for="renting-time">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}</label>
+    <input type="text" class="form-control" id="renting-time" placeholder="{{ 'COMMON.MONTHS' | translate }}">
+  </div>
+  <div class="form-group">
+    <label for="moving">{{ 'OFFER.MOVING_IN_WITH' | translate }}?</label>
+    <select class="custom-select" id="moving">
+      <option value="">Egyedül vagy másokkal?</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="person-type">Személy típusa</label>
+    <input type="text" class="form-control" id="person-type" placeholder="Kérem adja meg a személy típusát">
+  </div>
+  <div class="form-group">
+    <label for="social">Személy social media elérhetősége</label>
+    <input type="text" class="form-control" id="social" placeholder="Adjon meg legalább egy social media linket">
+  </div>
+  <div class="form-group">
+    <label for="pets">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}</label>
+    <select class="custom-select" id="pets">
+      <option value="">{{ 'COMMON.YES' | translate }}/{{ 'COMMON.NO' | translate }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="choose">{{ 'OFFER.WHY_CHOOSE_ME' | translate }}?</label>
+    <textarea class="form-control" id="choose" rows="6" placeholder="Kérem írja le a főbérlőnek, miért maga lenne az ideális albérlője."></textarea>
+  </div>
+  <div class="form-group text-center">
+    <button class="btn btn-primary btn-lg" (click)="onSubmit()">Ajánlattétel elküldése</button>
+  </div>
+</div>

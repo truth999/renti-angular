@@ -21,7 +21,7 @@ export class ApartmentComponent implements OnInit {
 
     if (this.step > 4) {
       this.step = 4;
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/app/rentals/search']);
     }
   }
 

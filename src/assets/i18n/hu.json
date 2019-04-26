@@ -103,7 +103,25 @@
     "PHONE": "Telefon",
     "AVAILABLE_FOR_RENT_NEAR_YOU": "Available for rent near you",
     "TOP_RATED": "Top Rated",
-    "DATA": "data"
+    "DATA": "data",
+    "CLEAR_ALL_FILTERS": "Clear all filters",
+    "CHECK_YOUR_EMAIL": "Check your email",
+    "TO_COMPLETE_REGISTRATION": "To complete registration, click the confirmation link we have sent to: adam@websitemasters.co",
+    "RESEND": "Re-send",
+    "CHANGE": "Change",
+    "PASSWORD_CHANGE": "Password change",
+    "CURRENT_PASSWORD": "Current password",
+    "NEW_PASSWORD": "New password",
+    "REPEAT_NEW_PASSWORD": "Repeat new password",
+    "CHANGE_EMAIL_ADDRESS": "Change email address",
+    "CURRENT_EMAIL": "Current email",
+    "NEW_EMAIL": "New email",
+    "CONFIRM_NEW_EMAIL": "Confirm new email",
+    "SAVE": "Save",
+    "DELETE_ACCOUNT": "Delete account",
+    "DELETE_ACCOUNT_TEXT": "By clicking the button below, I agree that my complete site history and account will be erased.",
+    "DELETE_MY_ACCOUNT": "Delete my account",
+    "MY_PROPERTIES": "My properties"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
@@ -166,5 +184,17 @@
     "MOVING_IN_WITH": "Moving in with",
     "SOCIAL_MEDIA_AVAILABILITIES": "Social media availabilities",
     "WHY_CHOOSE_ME": "Why choose me"
+  },
+  "SEARCH": {
+    "SEARCH": "Search",
+    "ADVANCED_SEARCH": "Advanced search",
+    "SEARCH_IN": "Search in",
+    "PRICE_PER_MONTH": "Price per month",
+    "SHOW_PRICE_IN": "Show prices in",
+    "MUST_HAVE_FEATURES": "Must-have features",
+    "FURNISHED": "Furnished",
+    "BARRIER_FREE": "Barrier free",
+    "IMMEDIATE_AVAILABILITY": "Immediate availability",
+    "ADD_MORE_FILTERS": "Add more filters"
   }
 }

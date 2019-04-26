@@ -1,0 +1,19 @@
+@import "~src/assets/styles/scss/variables";
+
+.avatar {
+  margin-top: calc(-1.125rem - 40px);
+}
+
+.year {
+  color: $blue;
+}
+
+.button-group {
+  .btn-success {
+    width: 55%;
+  }
+
+  .btn-outline-danger {
+    width: 40%;
+  }
+}

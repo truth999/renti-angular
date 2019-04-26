@@ -1,0 +1,18 @@
+@import "~src/assets/styles/scss/variables";
+
+.offer-create {
+  .icon-left-circle {
+    font-size: 28px;
+    color: $blue;
+  }
+
+  .btn-primary {
+    width: 320px;
+  }
+  
+  #rent, #rent2, #renting-time {
+    &::placeholder {
+      text-align: right;
+    }
+  }
+}

@@ -27,6 +27,7 @@ $grid-breakpoints: (
 
 $border-color: $gray-400;
 
+$border-radius: .25rem;
 $border-radius-lg: .5rem;
 $border-radius-xl: 1rem;
 
@@ -62,7 +63,7 @@ $input-font-family: NeueEinstellung-Medium;
 
 $custom-select-padding-x: $input-padding-x;
 $custom-select-indicator-padding: 1rem;
-$custom-select-indicator: url("/assets/images/caret.png");
+$custom-select-indicator: url("/assets/images/icon/caret.png");
 $custom-select-background: $custom-select-indicator no-repeat right $custom-select-padding-x center;
 
 $nav-link-padding-y: .875rem;

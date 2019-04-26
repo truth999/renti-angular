@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-apartment-item',
@@ -16,7 +17,7 @@ export class ApartmentItemComponent implements OnInit {
   @Input() topRated: boolean;
   @ViewChild('explainParagraph') explainParagraph: ElementRef;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.ellipsizeTextBox();
@@ -30,6 +31,10 @@ export class ApartmentItemComponent implements OnInit {
       wordArray.pop();
       el.textContent = wordArray.join(' ') + '...';
     }
+  }
+
+  onApartmentDetail() {
+    this.router.navigate(['/app/rentals/apartment-detail']);
   }
 
 }

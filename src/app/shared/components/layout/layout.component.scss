@@ -1,82 +1,103 @@
 @import "~src/assets/styles/scss/variables";
 
-.wrapper {
-  .sidebar {
-    top: 0;
-    width: 180px;
-    transition: all 0.3s ease;
-    left: -300px;
-    background-color: $white;
-    z-index: 2;
+.layout {
+  .email-check-bar {
+    background-color: $blue;
 
-    @include media-breakpoint-up(md) {
-      left: 0;
-    }
-
-    .sidebar-close {
-      top: 19px;
-      right: -40px;
+    .check-email {
       color: $white;
+
+      .icon-letter {
+        font-size: 36px;
+      }
     }
 
-    .nav-logo {
+    .link {
+      a {
+        color: $white;
+      }
+    }
+  }
+
+  .wrapper {
+    .sidebar {
       top: 0;
-    }
-
-    .nav-content {
-      height: calc(100% - 155px);
-      margin-top: 102px;
-      overflow-y: auto;
-      flex-wrap: unset;
-    }
-
-    .nav-logout {
       bottom: 0;
+      width: 180px;
+      transition: all 0.3s ease;
+      left: -300px;
+      background-color: $white;
+      z-index: 2;
+
+      @include media-breakpoint-up(md) {
+        left: 0;
+      }
+
+      .sidebar-close {
+        top: 19px;
+        right: -40px;
+        color: $white;
+      }
+
+      .nav-logo {
+        top: 0;
+      }
+
+      .nav-content {
+        height: calc(100% - 155px);
+        margin-top: 102px;
+        overflow-y: auto;
+        flex-wrap: unset;
+      }
+
+      .nav-logout {
+        bottom: 0;
+      }
+
+      i {
+        font-size: 1.6rem;
+        vertical-align: middle;
+      }
     }
 
-    i {
-      font-size: 1.6rem;
-      vertical-align: middle;
-    }
-  }
-
-  .overlay {
-    visibility: hidden;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: $black;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1;
-  }
-
-  .border-bottom {
-    border-width: 1px !important;
-  }
-
-  .page-content {
-    transition: all 0.3s ease;
-
-    @include media-breakpoint-up(md) {
-      margin-left: 180px;
-    }
-
-    .btn-toggler {
+    .overlay {
+      visibility: hidden;
       top: 0;
-      left: 15px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: $black;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1;
+    }
+
+    .border-bottom {
+      border-width: 1px !important;
+    }
+
+    .page-content {
+      transition: all 0.3s ease;
+
+      @include media-breakpoint-up(md) {
+        margin-left: 180px;
+      }
+
+      .btn-toggler {
+        top: 0;
+        left: 15px;
+      }
     }
   }
 
   &.toggled {
     .sidebar {
-      left: 0;
+      left: 0 !important;
     }
 
     .overlay {
-      visibility: visible;
-      opacity: .8;
+      visibility: visible !important;
+      opacity: .8 !important;
     }
   }
 }

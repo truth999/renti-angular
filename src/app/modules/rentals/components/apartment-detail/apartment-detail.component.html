@@ -27,7 +27,8 @@
         </div>
         <div class="button-group d-flex justify-content-between mt-4">
           <button class="btn btn-outline-primary btn-lg">{{ 'COMMON.SAVE_TO_FAVORITES' | translate }}</button>
-          <button class="btn btn-primary btn-lg">{{ 'COMMON.SEND_OFFER' | translate }}</button>
+          <button class="btn btn-primary btn-lg"
+                  (click)="onSendOffer()">{{ 'COMMON.SEND_OFFER' | translate }}</button>
         </div>
       </div>
       <div class="rooms mt-4">
@@ -37,9 +38,9 @@
           <img src="/assets/images/floor_plan.png" alt="">
         </div>
         <ul class="list-unstyled mt-3">
-          <li class="font-weight-bold">1: Living room</li>
-          <li class="font-weight-bold mt-2">2: Bathroom</li>
-          <li class="font-weight-bold mt-2">3: Bedroom</li>
+          <li class="font-weight-bold"><a routerLink="/app/rentals/room-detail">1: Living room</a></li>
+          <li class="font-weight-bold mt-2"><a routerLink="/app/rentals/room-detail">2: Bathroom</a></li>
+          <li class="font-weight-bold mt-2"><a routerLink="/app/rentals/room-detail">3: Bedroom</a></li>
         </ul>
       </div>
       <div class="d-sm-none">
@@ -233,7 +234,8 @@
         </div>
         <div class="button-group d-flex justify-content-between mt-4">
           <button class="btn btn-outline-primary btn-lg">{{ 'COMMON.SAVE_TO_FAVORITES' | translate }}</button>
-          <button class="btn btn-primary btn-lg">{{ 'COMMON.SEND_OFFER' | translate }}</button>
+          <button class="btn btn-primary btn-lg"
+                  (click)="onSendOffer()">{{ 'COMMON.SEND_OFFER' | translate }}</button>
         </div>
         <p class="mt-4">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
