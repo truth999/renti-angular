@@ -10,15 +10,15 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LanguageSelectorComponent implements OnInit {
 
-  availableLanguages: Language[] = config.availableLanguages;
-  currentLanguage: Language = this.availableLanguages[0];
+  supportedLanguages: Language[] = config.supportedLanguages;
+  currentLanguage: Language = this.supportedLanguages[0];
 
   constructor(
     private translateService: TranslateService,
   ) { }
 
   ngOnInit() {
-    this.currentLanguage = this.availableLanguages.find(language => language.code === this.translateService.currentLang);
+    this.currentLanguage = this.supportedLanguages.find(language => language.code === this.translateService.currentLang);
   }
 
   changeLanguage(language: Language) {

@@ -1,4 +1,4 @@
-import { Landlord, Tenant } from '../models/shared.model';
+import { Landlord, Tenant } from '../models';
 
 export const LANDLORD_PROFILES: Landlord = {
   firstName: 'Peter',

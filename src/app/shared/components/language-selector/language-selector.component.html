@@ -9,7 +9,7 @@
   <div ngbDropdownMenu
        aria-labelledby="language">
     <button ngbDropdownItem
-            *ngFor="let language of availableLanguages"
+            *ngFor="let language of supportedLanguages"
             (click)="changeLanguage(language)">
       <span class="flag-icon mr-2 {{ language.flag }}"></span>{{ language.name }}
     </button>

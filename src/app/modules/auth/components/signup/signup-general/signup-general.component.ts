@@ -6,7 +6,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./signup-general.component.scss']
 })
 export class SignupGeneralComponent implements OnInit {
-  @Output() roleSelected = new EventEmitter<string>();
+
+  @Output() typeSelected = new EventEmitter<string>();
 
   isLandlord = false;
   isTenant = false;
@@ -19,13 +20,17 @@ export class SignupGeneralComponent implements OnInit {
   onLandlord(role: string) {
     this.isLandlord = true;
     this.isTenant = false;
-    this.roleSelected.emit(role);
+    this.typeSelected.emit(role);
   }
 
   onTenant(role: string) {
     this.isLandlord = false;
     this.isTenant = true;
-    this.roleSelected.emit(role);
+    this.typeSelected.emit(role);
   }
+  onSelectType(type: string) {
+    this.typeSelected.emit(type);
+  }
+
 
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { config } from '../../../../../config';
+import { CONFIG_CONST } from '../../../../../config/config-const';
+import { Landlord, Tenant } from '../../../../shared/models';
 
 @Component({
   selector: 'app-signup',
@@ -6,32 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  role: string;
-  generalStep = 0;
+
+  account: Landlord | Tenant;
+  accountType: string;
+  currentStep = CONFIG_CONST.signupSteps.TYPE_USERNAME;
+  stepNo = 0;
+
+  STEPS: string[] = [];
+  CONFIG_CONST = CONFIG_CONST;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onRole(role: string) {
-    this.role = role;
+  onSelectAccountType(type: string) {
+    this.accountType = type;
+    this.STEPS = config.signupSteps[type];
   }
 
   nextStep() {
-    this.generalStep = this.generalStep + 1;
-
-    if (this.role === 'landlord') {
-      if (this.generalStep > 2) {
-        this.generalStep = 6;
-      }
-    } else if (this.generalStep > 6) {
-      this.generalStep = 6;
-    }
+    this.stepNo++;
+    this.currentStep = this.STEPS[this.stepNo];
   }
 
   previewStep() {
-    this.generalStep = this.generalStep - 1;
+    this.stepNo--;
+    this.currentStep = this.STEPS[this.stepNo];
   }
 
 }

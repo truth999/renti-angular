@@ -14,10 +14,10 @@
         <div class="role">
           <button class="btn btn-outline-primary btn-lg rounded-pill mr-2"
                   [class.active]="isLandlord"
-                  (click)="onLandlord('landlord')">{{ 'COMMON.LANDLORD' | translate }}</button>
+                  (click)="onSelectType('landlord')">{{ 'COMMON.LANDLORD' | translate }}</button>
           <button class="btn btn-outline-primary btn-lg rounded-pill"
                   [class.active]="isTenant"
-                  (click)="onTenant('tenant')">{{ 'COMMON.TENANT' | translate }}</button>
+                  (click)="onSelectType('tenant')">{{ 'COMMON.TENANT' | translate }}</button>
         </div>
       </div>
       <div class="form-group">

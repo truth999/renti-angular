@@ -1,22 +1,27 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title" *ngIf="generalStep != 6">{{ 'SIGNUP.TITLE' | translate }}</h5>
-    <div class="complete-title text-center" *ngIf="generalStep == 6">
+    <h5 class="card-title" *ngIf="currentStep !== CONFIG_CONST.signupSteps.COMPLETE">{{ 'SIGNUP.TITLE' | translate }}</h5>
+    <div class="complete-title text-center" *ngIf="currentStep === CONFIG_CONST.signupSteps.COMPLETE">
       <h2 class="text-success">{{ 'COMMON.CONGRATULATIONS' | translate }}!</h2>
-      <p class="font-size-lg">{{ 'COMMON.PROFILE_READY' | translate }}.<br>{{ 'COMMON.CAN_ADD_FIRST_UNIT' | translate }}:</p>
+      <p class="font-size-lg">{{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_ADD_FIRST_UNIT' | translate }}:</p>
     </div>
     <form>
-      <app-signup-general *ngIf="generalStep == 0" (roleSelected)="onRole($event)"></app-signup-general>
-      <app-signup-email *ngIf="generalStep == 1"></app-signup-email>
-      <app-signup-info *ngIf="generalStep == 2" [role]="role"></app-signup-info>
-      <app-signup-education *ngIf="generalStep == 3"></app-signup-education>
-      <app-signup-occupation *ngIf="generalStep == 4"></app-signup-occupation>
-      <app-signup-about *ngIf="generalStep == 5"></app-signup-about>
-      <app-signup-complete *ngIf="generalStep == 6"></app-signup-complete>
+      <app-signup-type-username *ngIf="currentStep === CONFIG_CONST.signupSteps.TYPE_USERNAME"></app-signup-type-username>
+      <app-signup-email *ngIf="currentStep === CONFIG_CONST.signupSteps.EMAIL_PRIVACY"></app-signup-email>
+      <app-signup-phone-password *ngIf="currentStep === CONFIG_CONST.signupSteps.PHONE_PASSWORD"></app-signup-phone-password>
+      <app-signup-birth-nationality *ngIf="currentStep === CONFIG_CONST.signupSteps.BIRTH_NATIONALITY"></app-signup-birth-nationality>
+      <app-signup-person-agency *ngIf="currentStep === CONFIG_CONST.signupSteps.PERSON_AGENCY"></app-signup-person-agency>
+      <app-signup-rental-city *ngIf="currentStep === CONFIG_CONST.signupSteps.RENTAL_CITY"></app-signup-rental-city>
+      <app-signup-education *ngIf="currentStep === CONFIG_CONST.signupSteps.EDUCATION"></app-signup-education>
+      <app-signup-occupation *ngIf="currentStep === CONFIG_CONST.signupSteps.OCCUPATION"></app-signup-occupation>
+      <app-signup-other-instruction *ngIf="currentStep === CONFIG_CONST.signupSteps.OTHER_INSTRUCTION"></app-signup-other-instruction>
+
+      <app-signup-complete *ngIf="currentStep === CONFIG_CONST.signupSteps.COMPLETE"></app-signup-complete>
+
       <div class="continue mt-sm-5 bg-white d-flex align-items-center"
-           *ngIf="generalStep != 6">
+           *ngIf="stepNo !== STEPS.length">
         <span class="icon-left-circle mr-4"
-              *ngIf="generalStep != 0"
+              *ngIf="stepNo !== 0"
               (click)="previewStep()"></span>
         <button class="btn btn-primary btn-lg w-100"
                 (click)="nextStep()">{{ 'COMMON.CONTINUE' | translate }}</button>
