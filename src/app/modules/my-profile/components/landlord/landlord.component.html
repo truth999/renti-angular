@@ -46,8 +46,32 @@
           <table class="table">
             <tbody>
             <tr>
-              <td class="border-top-0">{{ 'COMMON.NATIONALITY' | translate }}:</td>
+              <td class="border-top-0">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
               <td class="text-right border-top-0 py-0">
+                <div class="form-inline justify-content-between">
+                  <select name="day" class="custom-select">
+                    <option value="">19</option>
+                  </select>
+                  <select name="month" class="custom-select">
+                    <option value="">3</option>
+                  </select>
+                  <select name="year" class="custom-select">
+                    <option value="">1995</option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
+              <td class="text-right py-0">
+                <select class="custom-select border-0 w-auto">
+                  <option value="">US</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>{{ 'COMMON.NATIONALITY' | translate }}:</td>
+              <td class="text-right py-0">
                 <select class="custom-select border-0 w-auto">
                   <option value="">US</option>
                 </select>
