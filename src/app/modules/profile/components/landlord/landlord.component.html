@@ -18,7 +18,7 @@
         <div class="col-sm-6">
           <div class="row name-info">
             <div class="col-sm-12 col-8 pr-0">
-              <h1 class="name font-weight-bolder">Peter Kovacs</h1>
+              <h1 class="name font-weight-bolder">{{ firstName }} {{ lastName }}</h1>
               <p class="info text-muted font-weight-bold">{{ 'PROFILE.OWNER' | translate }}</p>
             </div>
             <div class="col-sm-12 col-4 text-sm-left text-right pl-0 pl-sm-3">
@@ -45,12 +45,12 @@
             <tbody>
               <tr>
                 <td class="border-top-0">{{ 'COMMON.NATIONALITY' | translate }}:</td>
-                <td class="font-weight-bold text-right border-top-0">US</td>
+                <td class="font-weight-bold text-right border-top-0">{{ nationality }}</td>
               </tr>
               <tr>
                 <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
                 <td class="font-weight-bold text-right">
-                  {{ 'COMMON.ENGLISH' | translate }}, {{ 'COMMON.HUNGARIAN' | translate }}, {{ 'COMMON.TURKISH' | translate }}, {{ 'COMMON.RUSSIAN' | translate }}, {{ 'COMMON.ITALIAN' | translate }}
+                  {{ spokenLanguages }}
                 </td>
               </tr>
             </tbody>

@@ -32,6 +32,10 @@
     button {
       font-family: NeueEinstellung-Medium;
       color: $gray-900;
+
+      &.active, &:hover {
+        color: $white;
+      }
     }
   }
 }

@@ -10,40 +10,82 @@
   </div>
   <h4 class="text-center">Árajánlattétel</h4>
   <div class="form-group">
-    <label for="rent">Bérleti díj:</label>
-    <input type="text" class="form-control" id="rent" placeholder="Ft">
+    <label for="rent">{{ 'APARTMENT.RENTAL_FEE' | translate }}</label>
+    <select id="rent" class="custom-select" required>
+      <option value=""></option>
+      <option value="">1.000</option>
+      <option value="">2000 to 2.000.000</option>
+    </select>
   </div>
   <div class="form-group">
-    <label for="rent2">Kaukció</label>
-    <input type="text" class="form-control" id="rent2" placeholder="Ft">
+    <label for="overhead">{{ 'COMMON.OVERHEAD' | translate }}</label>
+    <select id="overhead" class="custom-select" required>
+      <option value=""></option>
+      <option value="">1.000</option>
+      <option value="">2000 to 2.000.000</option>
+    </select>
   </div>
   <div class="form-group">
-    <label for="renting-time">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}</label>
-    <input type="text" class="form-control" id="renting-time" placeholder="{{ 'COMMON.MONTHS' | translate }}">
+    <label for="renting-time">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }})</label>
+    <select id="renting-time" class="custom-select" required>
+      <option value=""></option>
+      <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</label>
+    <div class="form-row">
+      <div class="form-group col">
+        <select name="day" class="custom-select" required>
+          <option value="">{{ 'COMMON.DAY' | translate }}</option>
+          <option value="{{ i + 1 }}" *ngFor="let day of arrayNumber(daysNumber); let i = index">{{ i + 1 }}</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <select name="month" class="custom-select" required>
+          <option value="">{{ 'COMMON.MONTH' | translate }}</option>
+          <option value="{{ i + 1 }}" *ngFor="let month of arrayNumber(12); let i = index">{{ i + 1 }}</option>
+        </select>
+      </div>
+      <div class="form-group col">
+        <select name="year" class="custom-select" required>
+          <option value="">{{ 'COMMON.YEAR' | translate }}</option>
+          <option value="{{ years - 99 + i }}" *ngFor="let year of arrayNumber(100); let i = index">{{ years - 99 + i }}</option>
+        </select>
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <label for="moving">{{ 'OFFER.MOVING_IN_WITH' | translate }}?</label>
-    <select class="custom-select" id="moving">
-      <option value="">Egyedül vagy másokkal?</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="person-type">Személy típusa</label>
-    <input type="text" class="form-control" id="person-type" placeholder="Kérem adja meg a személy típusát">
-  </div>
-  <div class="form-group">
-    <label for="social">Személy social media elérhetősége</label>
-    <input type="text" class="form-control" id="social" placeholder="Adjon meg legalább egy social media linket">
+    <input type="text" id="moving" class="form-control" required>
   </div>
   <div class="form-group">
     <label for="pets">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}</label>
-    <select class="custom-select" id="pets">
-      <option value="">{{ 'COMMON.YES' | translate }}/{{ 'COMMON.NO' | translate }}</option>
+    <select name="pets"
+            class="custom-select"
+            id="pets"
+            required
+            (change)="onChange($event)">
+      <option value=""></option>
+      <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+      <option value="no">{{ 'COMMON.NO' | translate }}</option>
     </select>
+    <input type="text"
+           class="form-control mt-2"
+           required
+           *ngIf="isPet">
+  </div>
+<!--  <div class="form-group">-->
+<!--    <label for="person-type">Személy típusa</label>-->
+<!--    <input type="text" class="form-control" id="person-type" placeholder="Kérem adja meg a személy típusát">-->
+<!--  </div>-->
+  <div class="form-group">
+    <label for="social">{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}</label>
+    <input type="url" class="form-control" id="social" pattern="https://.*" required>
   </div>
   <div class="form-group">
     <label for="choose">{{ 'OFFER.WHY_CHOOSE_ME' | translate }}?</label>
-    <textarea class="form-control" id="choose" rows="6" placeholder="Kérem írja le a főbérlőnek, miért maga lenne az ideális albérlője."></textarea>
+    <textarea class="form-control" id="choose" rows="6"></textarea>
   </div>
   <div class="form-group text-center">
     <button class="btn btn-primary btn-lg" (click)="onSubmit()">Ajánlattétel elküldése</button>

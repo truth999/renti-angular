@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './apartment-item.component.html',
   styleUrls: ['./apartment-item.component.scss']
 })
-export class ApartmentItemComponent implements OnInit {
+export class ApartmentItemComponent implements OnInit, AfterViewInit {
   @Input() imgUrl: string;
   @Input() name: string;
   @Input() explain: string;
@@ -20,6 +20,10 @@ export class ApartmentItemComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
     this.ellipsizeTextBox();
   }
 

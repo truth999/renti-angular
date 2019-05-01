@@ -6,15 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup-occupation.component.scss']
 })
 export class SignupOccupationComponent implements OnInit {
-  addOccupation = false;
+  // addOccupation = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onAddOccupation() {
-    this.addOccupation = true;
-  }
+  // onAddOccupation() {
+  //   this.addOccupation = true;
+  // }
 
 }

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-apartment',
-  templateUrl: './apartment.component.html',
-  styleUrls: ['./apartment.component.scss']
+  selector: 'app-apartment-create',
+  templateUrl: './apartment-create.component.html',
+  styleUrls: ['./apartment-create.component.scss']
 })
-export class ApartmentComponent implements OnInit {
+export class ApartmentCreateComponent implements OnInit {
   step = 0;
 
   constructor(

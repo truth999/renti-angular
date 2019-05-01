@@ -1,33 +1,50 @@
 <div class="signup-occupation">
-  <div class="form-group" *ngIf="!addOccupation">
-    <label for="occupation">{{ 'COMMON.MOST_RECENT_WORK_OCCUPATION' | translate }}:</label>
-    <input type="text" class="form-control" id="occupation" placeholder="{{ 'COMMON.ADD_WORK' | translate }}:">
-  </div>
-  <div class="form-group" *ngIf="addOccupation">
-    <label for="other-occupation">{{ 'COMMON.OTHER_WORK_OCCUPATION' | translate }}:</label>
-    <input type="text" class="form-control" id="other-occupation" placeholder="{{ 'COMMON.ADD_WORK' | translate }}:">
+  <div class="form-group">
+    <label for="current">{{ 'COMMON.CURRENT_WORKPLACE' | translate }}:</label>
+    <input type="text" class="form-control" id="current" required>
   </div>
   <div class="form-group">
-    <label for="where">{{ 'COMMON.WHERE' | translate }}?</label>
-    <input type="text" class="form-control" id="where" placeholder="{{ 'COMMON.ADD_WORKSPACE_COMPANY' | translate }}:">
+    <label for="former">{{ 'COMMON.FORMER_WORKPLACES' | translate }}:</label>
+    <input type="text" class="form-control" id="former">
   </div>
   <div class="form-group">
-    <label>{{ 'COMMON.WHEN' | translate }}?</label>
-    <div class="form-row">
-      <div class="form-group col">
-        <select name="start-year" class="custom-select">
-          <option value="">{{ 'COMMON.STARTING_YEAR' | translate }}:</option>
-        </select>
-      </div>
-      <div class="form-group col">
-        <select name="finish-year" class="custom-select">
-          <option value="">{{ 'COMMON.FINISHING_YEAR' | translate }}:</option>
-        </select>
-      </div>
-    </div>
+    <label for="monthly-income">{{ 'COMMON.MONTHLY_INCOME' | translate }}:</label>
+    <select id="monthly-income" class="custom-select" required>
+      <option value=""></option>
+      <option value="50000"><50,000</option>
+      <option value="100000">50,000 - 100,000</option>
+      <option value="200000">100,000 - 200,000</option>
+      <option value="400000">200,000 - 400,000</option>
+      <option value="700000">400,000 - 700,000</option>
+      <option value="1000000">700,000 - 1,000,000</option>
+      <option value="1500000">1,000,000+</option>
+    </select>
   </div>
-  <div class="form-group text-center">
-    <button class="btn btn-outline-primary btn-lg"
-            (click)="onAddOccupation()">{{ 'COMMON.ADD_OTHER_OCCUPATION' | translate }}</button>
-  </div>
+<!--  <div class="form-group">-->
+<!--    <label for="occupation">{{ 'COMMON.MOST_RECENT_WORK_OCCUPATION' | translate }}:</label>-->
+<!--    <input type="text" class="form-control" id="occupation" placeholder="{{ 'COMMON.ADD_WORK' | translate }}:">-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label for="where">{{ 'COMMON.WHERE' | translate }}?</label>-->
+<!--    <input type="text" class="form-control" id="where" placeholder="{{ 'COMMON.ADD_WORKSPACE_COMPANY' | translate }}:">-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label>{{ 'COMMON.WHEN' | translate }}?</label>-->
+<!--    <div class="form-row">-->
+<!--      <div class="form-group col">-->
+<!--        <select name="start-year" class="custom-select">-->
+<!--          <option value="">{{ 'COMMON.STARTING_YEAR' | translate }}:</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div class="form-group col">-->
+<!--        <select name="finish-year" class="custom-select">-->
+<!--          <option value="">{{ 'COMMON.FINISHING_YEAR' | translate }}:</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="form-group text-center">-->
+<!--    <button class="btn btn-outline-primary btn-lg"-->
+<!--            (click)="onAddOccupation()">{{ 'COMMON.ADD_OTHER_OCCUPATION' | translate }}</button>-->
+<!--  </div>-->
 </div>

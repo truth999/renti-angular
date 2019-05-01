@@ -4,6 +4,7 @@ import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../../shared/shared.module';
+import { InternationalPhoneNumberModule } from 'ngx-international-phone-number';
 
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -14,13 +15,13 @@ import { SignupEducationComponent } from './components/signup/signup-education/s
 import { SignupOccupationComponent } from './components/signup/signup-occupation/signup-occupation.component';
 import { SignupAboutComponent } from './components/signup/signup-about/signup-about.component';
 import { SignupCompleteComponent } from './components/signup/signup-complete/signup-complete.component';
-import { ApartmentComponent } from './components/apartment/apartment.component';
-import { ApartmentFloorComponent } from './components/apartment/apartment-floor/apartment-floor.component';
-import { ApartmentDrawComponent } from './components/apartment/apartment-draw/apartment-draw.component';
-import { ApartmentRoomComponent } from './components/apartment/apartment-room/apartment-room.component';
-import { ApartmentRoomNameComponent } from './components/apartment/apartment-room/apartment-room-name/apartment-room-name.component';
-import { ApartmentUploadComponent } from './components/apartment/apartment-upload/apartment-upload.component';
-import { ApartmentDataComponent } from './components/apartment/apartment-data/apartment-data.component';
+import { ApartmentCreateComponent } from './components/apartment-create/apartment-create.component';
+import { ApartmentFloorComponent } from './components/apartment-create/apartment-floor/apartment-floor.component';
+import { ApartmentDrawComponent } from './components/apartment-create/apartment-draw/apartment-draw.component';
+import { ApartmentRoomComponent } from './components/apartment-create/apartment-room/apartment-room.component';
+import { ApartmentRoomNameComponent } from './components/apartment-create/apartment-room/apartment-room-name/apartment-room-name.component';
+import { ApartmentUploadComponent } from './components/apartment-create/apartment-upload/apartment-upload.component';
+import { ApartmentDataComponent } from './components/apartment-create/apartment-data/apartment-data.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { ApartmentDataComponent } from './components/apartment/apartment-data/ap
     SignupOccupationComponent,
     SignupAboutComponent,
     SignupCompleteComponent,
-    ApartmentComponent,
+    ApartmentCreateComponent,
     ApartmentFloorComponent,
     ApartmentDrawComponent,
     ApartmentRoomComponent,
@@ -45,7 +46,8 @@ import { ApartmentDataComponent } from './components/apartment/apartment-data/ap
     ReactiveFormsModule,
     AuthRoutingModule,
     SharedModule,
-    PasswordStrengthBarModule
+    PasswordStrengthBarModule,
+    InternationalPhoneNumberModule
   ]
 })
 export class AuthModule { }

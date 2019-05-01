@@ -16,7 +16,7 @@ export class SignupCompleteComponent implements OnInit {
   }
 
   toApartment() {
-    this.router.navigate(['/apartment']);
+    this.router.navigate(['/apartment-create']);
   }
 
 }

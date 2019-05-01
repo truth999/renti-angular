@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  role: string;
   generalStep = 0;
 
   constructor() { }
@@ -13,10 +14,18 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+  onRole(role: string) {
+    this.role = role;
+  }
+
   nextStep() {
     this.generalStep = this.generalStep + 1;
 
-    if (this.generalStep > 6) {
+    if (this.role === 'landlord') {
+      if (this.generalStep > 2) {
+        this.generalStep = 6;
+      }
+    } else if (this.generalStep > 6) {
       this.generalStep = 6;
     }
   }

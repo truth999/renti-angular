@@ -1,0 +1,17 @@
+.ngx-gallery-image-wrapper {
+  border-radius: $border-radius-lg;
+}
+
+.ngx-gallery-thumbnail {
+  border-radius: $border-radius-lg;
+}
+
+.ngx-gallery-preview-img {
+  border-radius: $border-radius-lg;
+}
+
+ngx-gallery-image {
+  .ngx-gallery-arrow-wrapper {
+    display: none !important;
+  }
+}

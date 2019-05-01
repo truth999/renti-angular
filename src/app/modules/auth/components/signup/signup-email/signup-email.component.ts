@@ -9,6 +9,7 @@ export class SignupEmailComponent implements OnInit {
   password = '';
   passwordStrengthBarLabel = '';
   baseColor = '#dbdce8';
+  phone: string;
 
   constructor() { }
 

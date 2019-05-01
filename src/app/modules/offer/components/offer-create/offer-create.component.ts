@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./offer-create.component.scss']
 })
 export class OfferCreateComponent implements OnInit {
+  isPet = false;
+  years = (new Date()).getFullYear();
+  daysNumber = 31;
 
   constructor(
     private location: Location,
@@ -23,6 +26,14 @@ export class OfferCreateComponent implements OnInit {
 
   onSubmit() {
     this.router.navigate(['/app/offers/create-success']);
+  }
+
+  onChange(event) {
+    this.isPet = event.target.value === 'yes';
+  }
+
+  arrayNumber(n: number) {
+    return Array(n);
   }
 
 }

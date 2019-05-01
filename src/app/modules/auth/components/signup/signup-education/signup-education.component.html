@@ -1,45 +1,58 @@
 <div class="signup-education">
-  <div class="form-group" *ngIf="!addEducation">
-    <label for="education">{{ 'COMMON.HIGHEST_EDUCATION_LEVEL' | translate }}:</label>
-    <select name="education" class="custom-select" id="education">
-      <option value="">{{ 'COMMON.SELECT_HIGHEST_EDUCATION_LEVEL' | translate }}</option>
-    </select>
+  <div class="form-group">
+    <label for="city">{{ 'COMMON.CURRENT_CITY' | translate }}:</label>
+    <input type="text" class="form-control" id="city" required>
   </div>
-  <div class="form-group" *ngIf="addEducation">
-    <label for="other-education">{{ 'COMMON.OTHER_EDUCATION_LEVEL' | translate }}:</label>
-    <select name="education" class="custom-select" id="other-education">
-      <option value="">{{ 'COMMON.SELECT_EDUCATION_LEVEL' | translate }}</option>
+  <div class="form-group">
+    <label for="education">{{ 'COMMON.HIGHEST_LEVEL_OF_QUALIFICATION' | translate }}:</label>
+    <select name="education" class="custom-select" id="education" required>
+      <option value=""></option>
+      <option value="elementary">{{ 'COMMON.ELEMENTARY_SCHOOL' | translate }}</option>
+      <option value="secondary">{{ 'COMMON.SECONDARY_SCHOOL' | translate }}</option>
+      <option value="university">{{ 'COMMON.UNIVERSITY' | translate }}</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="attend">{{ 'COMMON.WHERE_DID_YOU_ATTEND' | translate }}:</label>
-    <input type="text" class="form-control" id="attend" placeholder="{{ 'COMMON.STATE_ATTEND' | translate }}">
-  </div>
-  <div class="form-group" *ngIf="!addEducation">
-    <label for="study-area">{{ 'COMMON.AREA_OF_STUDIES' | translate }}:</label>
-    <input type="text" class="form-control" id="study-area" placeholder="{{ 'COMMON.STATE_STUDIES' | translate }}:">
-  </div>
-  <div class="form-group" *ngIf="addEducation">
-    <label for="if-study-area">{{ 'COMMON.AREA_OF_STUDIES' | translate }}:</label>
-    <input type="text" class="form-control" id="if-study-area" placeholder="{{ 'COMMON.STATE_STUDIES' | translate }} ({{ 'COMMON.IF_ANY' | translate }}):">
+    <label for="school">{{ 'COMMON.NAME_OF_SCHOOL' | translate }}:</label>
+    <input type="text" class="form-control" id="school">
   </div>
   <div class="form-group">
-    <label>{{ 'COMMON.WHEN' | translate }}?</label>
-    <div class="form-row">
-      <div class="form-group col">
-        <select name="start-year" class="custom-select">
-          <option value="">{{ 'COMMON.STARTING_YEAR' | translate }}:</option>
-        </select>
-      </div>
-      <div class="form-group col">
-        <select name="finish-year" class="custom-select">
-          <option value="">{{ 'COMMON.FINISHING_YEAR' | translate }}:</option>
-        </select>
-      </div>
-    </div>
+    <label for="year">{{ 'COMMON.YEAR_OF_GRADUATION' | translate }}:</label>
+    <input type="number" class="form-control" id="year" min="1900" max="2099" step="1">
   </div>
-  <div class="form-group text-center">
-    <button class="btn btn-outline-primary btn-lg"
-            (click)="onAddEducation()">{{ 'COMMON.ADD_MORE_EDUCATION' | translate }}</button>
+  <div class="form-group">
+    <label for="job-title">{{ 'COMMON.JOB_TITLE' | translate }}:</label>
+    <input type="text" class="form-control" id="job-title" required>
   </div>
+  <div class="form-group">
+    <label for="speciality">{{ 'COMMON.IF_UNIVERSITY_STUDENT_THEN_WHICH_SPECIALITY' | translate }}</label>
+    <input type="text" class="form-control" id="speciality" required>
+  </div>
+<!--  <div class="form-group">-->
+<!--    <label for="attend">{{ 'COMMON.WHERE_DID_YOU_ATTEND' | translate }}:</label>-->
+<!--    <input type="text" class="form-control" id="attend" placeholder="{{ 'COMMON.STATE_ATTEND' | translate }}">-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label for="study-area">{{ 'COMMON.AREA_OF_STUDIES' | translate }}:</label>-->
+<!--    <input type="text" class="form-control" id="study-area" placeholder="{{ 'COMMON.STATE_STUDIES' | translate }}:">-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label>{{ 'COMMON.WHEN' | translate }}?</label>-->
+<!--    <div class="form-row">-->
+<!--      <div class="form-group col">-->
+<!--        <select name="start-year" class="custom-select">-->
+<!--          <option value="">{{ 'COMMON.STARTING_YEAR' | translate }}:</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div class="form-group col">-->
+<!--        <select name="finish-year" class="custom-select">-->
+<!--          <option value="">{{ 'COMMON.FINISHING_YEAR' | translate }}:</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="form-group text-center">-->
+<!--    <button class="btn btn-outline-primary btn-lg"-->
+<!--            (click)="onAddEducation()">{{ 'COMMON.ADD_MORE_EDUCATION' | translate }}</button>-->
+<!--  </div>-->
 </div>

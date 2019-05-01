@@ -6,9 +6,9 @@
       <p class="font-size-lg">{{ 'COMMON.PROFILE_READY' | translate }}.<br>{{ 'COMMON.CAN_ADD_FIRST_UNIT' | translate }}:</p>
     </div>
     <form>
-      <app-signup-general *ngIf="generalStep == 0"></app-signup-general>
+      <app-signup-general *ngIf="generalStep == 0" (roleSelected)="onRole($event)"></app-signup-general>
       <app-signup-email *ngIf="generalStep == 1"></app-signup-email>
-      <app-signup-info *ngIf="generalStep == 2"></app-signup-info>
+      <app-signup-info *ngIf="generalStep == 2" [role]="role"></app-signup-info>
       <app-signup-education *ngIf="generalStep == 3"></app-signup-education>
       <app-signup-occupation *ngIf="generalStep == 4"></app-signup-occupation>
       <app-signup-about *ngIf="generalStep == 5"></app-signup-about>

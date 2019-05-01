@@ -1,0 +1,18 @@
+international-phone-number {
+  .input-group {
+    border: $input-border-width solid $input-border-color;
+    @include border-radius($input-border-radius, 0);
+
+    .dropdown {
+      height: 100%;
+
+      .dropbtn {
+        height: 100%;
+      }
+    }
+
+    .form-control {
+      border: none;
+    }
+  }
+}

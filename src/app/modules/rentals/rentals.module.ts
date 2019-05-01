@@ -6,19 +6,19 @@ import { ApartmentDetailComponent } from './components/apartment-detail/apartmen
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
 import { SearchComponent } from './components/search/search.component';
 import { NouisliderModule } from 'ng2-nouislider';
-import { MyPropertiesComponent } from './components/my-properties/my-properties.component';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 @NgModule({
   declarations: [
     ApartmentDetailComponent,
     RoomDetailComponent,
-    SearchComponent,
-    MyPropertiesComponent
+    SearchComponent
   ],
   imports: [
     SharedModule,
     RentalsRoutingModule,
-    NouisliderModule
+    NouisliderModule,
+    NgxGalleryModule
   ]
 })
 export class RentalsModule { }
