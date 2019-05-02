@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup-phone-password.component.scss']
 })
 export class SignupPhonePasswordComponent implements OnInit {
+  password = '';
+  passwordStrengthBarLabel = '';
+  baseColor = '#dbdce8';
+  phone: string;
 
   constructor() { }
 

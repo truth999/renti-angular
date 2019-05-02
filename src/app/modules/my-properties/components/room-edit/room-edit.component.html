@@ -1,0 +1,109 @@
+<div class="room-edit">
+  <div class="back mb-4 mt-3 mt-sm-0">
+    <button class="btn btn-back d-sm-block d-none"
+            (click)="onBack()">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+    <i class="icon-left-circle d-sm-none"
+       (click)="onBack()"></i>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="room-name">
+        <h4>Nappali</h4>
+      </div>
+      <div class="room-image mt-2">
+        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+      </div>
+      <table class="table mt-2">
+        <tbody>
+        <tr>
+          <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
+          <td class="border-top-0 py-0 pr-0">
+            <input type="number" class="form-control text-right border-0" required>
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_RENOVATION' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <select class="custom-select border-0 w-auto">
+              <option value=""></option>
+              <option value="{{ i + 1950 }}" *ngFor="let year of arrayNumber(70); let i = index">{{ i + 1950 }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.COVERAGE' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <select class="custom-select border-0 w-auto">
+              <option value=""></option>
+              <option value="tiles">{{ 'COMMON.TILES' | translate }}</option>
+              <option value="wooden">{{ 'COMMON.LAMINATED_WOODEN' | translate }}</option>
+              <option value="carpet">{{ 'COMMON.CARPET' | translate }}</option>
+              <option value="parquetry">{{ 'COMMON.PARQUETRY' | translate }}</option>
+              <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <select class="custom-select border-0 w-auto" required>
+              <option value=""></option>
+              <option value="tiles">{{ 'COMMON.PLASTIC' | translate }}</option>
+              <option value="wooden">{{ 'COMMON.WOODEN' | translate }}</option>
+              <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
+          <td class="text-right py-0 pr-0">
+            <select class="custom-select border-0 w-auto">
+              <option value=""></option>
+              <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+              <option value="no">{{ 'COMMON.NO' | translate }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.FURNITURE_NAME' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <input type="text" class="form-control border-0 text-right">
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle"
+              style="border-top-style: dashed">{{ 'APARTMENT.FURNITURE_TYPE' | translate }}</td>
+          <td class="text-right py-0 pr-0"
+              style="border-top-style: dashed">
+            <input type="text" class="form-control border-0 text-right">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6 text-sm-right">
+      <app-feedback></app-feedback>
+      <div class="text-left">
+        <div class="feedback mt-4">
+          <div class="client">
+            <span class="client-name font-weight-bold">Kelsey Taylor</span>
+          </div>
+          <p class="feedback-content mt-2">
+            Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+          </p>
+        </div>
+        <div class="feedback mt-4">
+          <div class="client">
+            <span class="client-name font-weight-bold">Kate Tomlins</span>
+          </div>
+          <p class="feedback-content mt-2">
+            We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

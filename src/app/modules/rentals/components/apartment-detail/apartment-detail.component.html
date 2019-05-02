@@ -1,7 +1,16 @@
 <div class="apartment-detail">
+  <div class="back mb-sm-4 d-sm-block d-none">
+    <button class="btn btn-back"
+            (click)="onBack()">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+  </div>
   <div class="row">
     <div class="col-sm-6">
       <div class="slider">
+        <i class="icon-left position-absolute h4 mb-0 d-sm-none"
+           (click)="onBack()"></i>
         <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
       </div>
       <div class="d-sm-none">
@@ -51,164 +60,165 @@
           <tbody>
           <tr>
             <td class="border-top-0">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
-            <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="border-top-0 text-right font-weight-bold">{{ 'APARTMENT.BRICK' | translate }}</td>
           </tr>
           <tr>
-            <td>Épület építési éve</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
+            <td class="text-right font-weight-bold">2019</td>
           </tr>
           <tr>
-            <td>Ingatlan állapota</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.NEW' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">AA++</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">3</td>
           </tr>
           <tr>
-            <td>Lakás emelete</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">3</td>
           </tr>
           <tr>
-            <td class="border-bottom">Lakás négyeztméter</td>
-            <td class="border-bottom font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
-          </tr>
-          </tbody>
-        </table>
-        <table class="table mt-5">
-          <tbody>
-          <tr>
-            <td class="border-top-0">Lift van-e?</td>
-            <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">9</td>
           </tr>
           <tr>
-            <td>Tetőtér / csapott falak?</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.EAST' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.GAS_CIRCO' | translate }}</td>
           </tr>
           <tr>
+          <tr>
             <td>{{ 'APARTMENT.HEADROOM' | translate }}</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td class="text-right font-weight-bold">< 2M</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.PARKING' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.AT_THE_STREET' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.UPC' | translate }}</td>
           </tr>
           <tr>
-            <td>{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td>{{ 'APARTMENT.BALCONY' | translate }} / {{ 'APARTMENT.GARDEN' | translate }} / {{ 'APARTMENT.TERRACE' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td>{{ 'APARTMENT.BALCONY' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td>Erkély nagysága</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
+            <td class="text-right font-weight-bold">3</td>
           </tr>
           <tr>
-            <td>Kert nagysága</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.GARDEN' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td>Terasz nagysága</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td>{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
+            <td class="text-right font-weight-bold">9</td>
+          </tr>
+          <tr>
+            <td>{{ 'APARTMENT.TERRACE' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
+            <td class="text-right font-weight-bold">9</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td class="border-bottom">{{ 'APARTMENT.GARAGE' | translate }}</td>
-            <td class="border-bottom font-weight-bold text-right">2011</td>
-          </tr>
-          </tbody>
-        </table>
-        <table class="table mt-5">
-          <tbody>
-          <tr>
-            <td class="border-top-0">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
-            <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td>{{ 'APARTMENT.GARAGE' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td>Rezsidíj</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+            <td class="text-right font-weight-bold">9000</td>
           </tr>
           <tr>
-            <td>Kaució</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'COMMON.OVERHEAD' | translate }}</td>
+            <td class="text-right font-weight-bold">9000</td>
           </tr>
           <tr>
-            <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.DEPOSIT' | translate }}</td>
+            <td class="text-right font-weight-bold">9000</td>
           </tr>
           <tr>
-            <td class="border-bottom">Mikortól költözhető</td>
-            <td class="border-bottom font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
+            <td class="text-right font-weight-bold">120</td>
+          </tr>
+          <tr>
+            <td class="border-bottom">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
+            <td class="border-bottom text-right font-weight-bold">2010-9-2</td>
           </tr>
           </tbody>
         </table>
       </div>
       <app-feedback></app-feedback>
-      <table class="table mt-4">
-        <tbody>
-        <tr>
-          <td class="border-top-0">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
-          <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
-        </tr>
-        <tr>
-          <td>Épület építési éve</td>
-          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
-        </tr>
-        <tr>
-          <td>Ingatlan állapota</td>
-          <td class="font-weight-bold text-right">2011</td>
-        </tr>
-        <tr>
-          <td>{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
-          <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
-        </tr>
-        <tr>
-          <td>{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
-          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
-        </tr>
-        <tr>
-          <td>Lakás emelete</td>
-          <td class="font-weight-bold text-right">2011</td>
-        </tr>
-        <tr>
-          <td class="border-bottom">Lakás négyeztméter</td>
-          <td class="border-bottom font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
-        </tr>
-        </tbody>
-      </table>
+<!--      <table class="table mt-4">-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--          <td class="border-top-0">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>-->
+<!--          <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>Épület építési éve</td>-->
+<!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>Ingatlan állapota</td>-->
+<!--          <td class="font-weight-bold text-right">2011</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>-->
+<!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>-->
+<!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>Lakás emelete</td>-->
+<!--          <td class="font-weight-bold text-right">2011</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="border-bottom">Lakás négyeztméter</td>-->
+<!--          <td class="border-bottom font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
     </div>
     <div class="col-sm-6">
       <div class="d-none d-sm-block">
@@ -244,127 +254,128 @@
           <tbody>
           <tr>
             <td class="border-top-0">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
-            <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="border-top-0 text-right font-weight-bold">{{ 'APARTMENT.BRICK' | translate }}</td>
           </tr>
           <tr>
-            <td>Épület építési éve</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
+            <td class="text-right font-weight-bold">2019</td>
           </tr>
           <tr>
-            <td>Ingatlan állapota</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.NEW' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">AA++</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">3</td>
           </tr>
           <tr>
-            <td>Lakás emelete</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">3</td>
           </tr>
           <tr>
-            <td class="border-bottom">Lakás négyeztméter</td>
-            <td class="border-bottom font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
-          </tr>
-          </tbody>
-        </table>
-        <table class="table mt-5">
-          <tbody>
-          <tr>
-            <td class="border-top-0">Lift van-e?</td>
-            <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">9</td>
           </tr>
           <tr>
-            <td>Tetőtér / csapott falak?</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.EAST' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.GAS_CIRCO' | translate }}</td>
           </tr>
           <tr>
+          <tr>
             <td>{{ 'APARTMENT.HEADROOM' | translate }}</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td class="text-right font-weight-bold">< 2M</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.PARKING' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.AT_THE_STREET' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.UPC' | translate }}</td>
           </tr>
           <tr>
-            <td>{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td>{{ 'APARTMENT.BALCONY' | translate }} / {{ 'APARTMENT.GARDEN' | translate }} / {{ 'APARTMENT.TERRACE' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td>{{ 'APARTMENT.BALCONY' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td>Erkély nagysága</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
+            <td class="text-right font-weight-bold">3</td>
           </tr>
           <tr>
-            <td>Kert nagysága</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.GARDEN' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td>Terasz nagysága</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td>{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
+            <td class="text-right font-weight-bold">9</td>
+          </tr>
+          <tr>
+            <td>{{ 'APARTMENT.TERRACE' | translate }}?</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
+            <td class="text-right font-weight-bold">9</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td class="border-bottom">{{ 'APARTMENT.GARAGE' | translate }}</td>
-            <td class="border-bottom font-weight-bold text-right">2011</td>
-          </tr>
-          </tbody>
-        </table>
-        <table class="table mt-5">
-          <tbody>
-          <tr>
-            <td class="border-top-0">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
-            <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+            <td>{{ 'APARTMENT.GARAGE' | translate }}</td>
+            <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
           </tr>
           <tr>
-            <td>Rezsidíj</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+            <td class="text-right font-weight-bold">9000</td>
           </tr>
           <tr>
-            <td>Kaució</td>
-            <td class="font-weight-bold text-right">2011</td>
+            <td>{{ 'COMMON.OVERHEAD' | translate }}</td>
+            <td class="text-right font-weight-bold">9000</td>
           </tr>
           <tr>
-            <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}</td>
-            <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>
+            <td>{{ 'APARTMENT.DEPOSIT' | translate }}</td>
+            <td class="text-right font-weight-bold">9000</td>
           </tr>
           <tr>
-            <td class="border-bottom">Mikortól költözhető</td>
-            <td class="border-bottom font-weight-bold text-right">2011</td>
+            <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
+            <td class="text-right font-weight-bold">120</td>
+          </tr>
+          <tr>
+            <td class="border-bottom">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
+            <td class="border-bottom text-right font-weight-bold">2010-9-2</td>
           </tr>
           </tbody>
         </table>

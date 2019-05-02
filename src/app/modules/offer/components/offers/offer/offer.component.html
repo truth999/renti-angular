@@ -8,31 +8,27 @@
     <tbody>
     <tr>
       <td class="border-top-0">{{ 'APARTMENT.RENTAL_FEE' | translate }}:</td>
-      <td class="border-top-0 font-weight-bold text-right">410000 Ft</td>
+      <td class="border-top-0 font-weight-bold text-right">2000 Ft</td>
     </tr>
     <tr>
-      <td>Kaukció:</td>
-      <td class="font-weight-bold text-right">3 {{ 'COMMON.MONTHS' | translate }}</td>
+      <td>{{ 'COMMON.OVERHEAD' | translate }}:</td>
+      <td class="font-weight-bold text-right">9000</td>
     </tr>
     <tr>
-      <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}:</td>
+      <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }}):</td>
       <td class="font-weight-bold text-right">12 {{ 'COMMON.MONTHS' | translate }}</td>
     </tr>
     <tr>
-      <td>{{ 'OFFER.MOVING_IN_WITH' | translate }}:</td>
-      <td class="font-weight-bold text-right">Egyedül</td>
+      <td>{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}:</td>
+      <td class="font-weight-bold text-right">2019-2-19</td>
     </tr>
     <tr>
-      <td>Személy típusa:</td>
-      <td class="font-weight-bold text-right">-</td>
-    </tr>
-    <tr>
-      <td>{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}:</td>
-      <td class="font-weight-bold text-right">ig.com/taylorswift</td>
+      <td>{{ 'OFFER.MOVING_IN_WITH' | translate }}?</td>
+      <td class="font-weight-bold text-right">Kate</td>
     </tr>
     <tr>
       <td class="border-bottom">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}:</td>
-      <td class="border-bottom font-weight-bold text-right">{{ 'COMMON.NO' | translate }}</td>
+      <td class="border-bottom font-weight-bold text-right">Pets</td>
     </tr>
     </tbody>
   </table>
@@ -40,9 +36,9 @@
   <p>
     I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
   </p>
-  <button class="btn btn-outline-primary btn-lg w-100 mt-3" (click)="onProfile()">Tovább a teljes profilra</button>
+  <button class="btn btn-outline-primary btn-lg w-100 mt-3" (click)="onProfile()">{{ 'OFFER.GO_TO_FULL_PROFILE' | translate }}</button>
   <div class="button-group d-flex justify-content-between mt-4">
-    <button class="btn btn-success btn-lg" (click)="onSuccess()">Elfogadás</button>
-    <button class="btn btn-outline-danger btn-lg">Törlés</button>
+    <button class="btn btn-success btn-lg" (click)="onSuccess()">{{ 'COMMON.ACCEPT' | translate }}</button>
+    <button class="btn btn-outline-danger btn-lg">{{ 'COMMON.DELETE' | translate }}</button>
   </div>
 </div>

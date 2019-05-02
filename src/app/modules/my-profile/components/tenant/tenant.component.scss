@@ -1,8 +1,10 @@
 @import "~src/assets/styles/scss/variables";
 
 .tenants-profile-edit {
-  @include media-breakpoint-up(sm) {
-    padding-top: 2.7rem;
+  .btn-back {
+    i {
+      vertical-align: middle;
+    }
   }
 
   .avatar {
@@ -17,7 +19,6 @@
 
     @include media-breakpoint-up(sm) {
       position: absolute;
-      top: 0;
       left: $card-spacer-x;
       z-index: 1;
       margin-left: 0;
@@ -39,6 +40,10 @@
   }
 
   .profile-info {
+    @include media-breakpoint-up(sm) {
+      margin-top: 4.2rem;
+    }
+
     .card-body-top {
       @include media-breakpoint-down(xs) {
         border-bottom: 1px solid $border-color;

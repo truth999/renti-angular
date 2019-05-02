@@ -1,6 +1,6 @@
 @import "~src/assets/styles/scss/variables";
 
-.apartment-detail {
+.apartment-edit {
   .slider {
     @include media-breakpoint-down(xs) {
       margin-left: -15px;
@@ -15,15 +15,41 @@
     }
   }
 
+  .address {
+    .custom-select {
+      padding-left: $custom-select-padding-x + $custom-select-indicator-padding;
+    }
+
+    .icon-location {
+      font-size: 18px;
+      bottom: 12px;
+      left: 9px;
+      color: $blue;
+    }
+  }
+
   .rooms {
     h3 {
       @include media-breakpoint-down(xs) {
         font-size: $h4-font-size;
       }
     }
+
     .list-unstyled {
       li {
         color: $blue;
+
+        .number {
+          width: 1.5rem;
+          height: 1.5rem;
+          background-color: $blue;
+          color: $white;
+        }
+
+        .icon-plus {
+          font-size: 1.4rem;
+          color: $blue;
+        }
       }
     }
   }
@@ -45,6 +71,12 @@
   .button-group {
     .btn {
       width: 48%;
+    }
+  }
+
+  table {
+    .custom-select {
+      text-align-last: right;
     }
   }
 }

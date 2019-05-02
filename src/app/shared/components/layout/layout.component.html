@@ -1,5 +1,4 @@
-<div class="layout"
-     [class.toggled]="toggled">
+<div class="layout">
 <!--  <div class="email-check-bar py-2">-->
 <!--    <div class="container">-->
 <!--      <div class="d-flex align-items-center">-->
@@ -20,38 +19,47 @@
   <div class="wrapper">
     <nav class="sidebar position-fixed shadow">
       <div class="sidebar-close position-absolute d-md-none"
-           (click)="toggled = false">
+           appMenuClose>
         <i class="icon-close"></i>
       </div>
       <div class="nav-logo position-absolute text-center border-bottom w-100 py-4">
-        <a routerLink="/app">
+        <a routerLink="/app"
+           appMenuClose>
           <img src="/assets/images/logo.png"
                width="40">
         </a>
       </div>
       <ul class="nav flex-column nav-content py-3">
         <li class="nav-item">
-          <a routerLink="rentals/search" class="nav-link">
+          <a routerLink="rentals/search"
+             class="nav-link"
+             appMenuClose>
             <i class="icon-search mr-2"></i>
-            Keresés
+            {{ 'COMMON.SEARCH' | translate }}
           </a>
         </li>
         <li class="nav-item">
-          <a href="javascript:" class="nav-link">
+          <a href="javascript:"
+             class="nav-link"
+             appMenuClose>
             <i class="icon-alert mr-2"></i>
-            Értesítések
+            {{ 'COMMON.NOTIFICATIONS' | translate }}
           </a>
         </li>
         <li class="nav-item">
-          <a href="javascript:" class="nav-link">
+          <a href="javascript:"
+             class="nav-link"
+             appMenuClose>
             <i class="icon-person mr-2"></i>
-            Profilom
+            {{ 'COMMON.MY_PROFILE' | translate }}
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="settings" class="nav-link">
+          <a routerLink="settings"
+             class="nav-link"
+             appMenuClose>
             <i class="icon-setting mr-2"></i>
-            Beállítások
+            {{ 'COMMON.SETTINGS' | translate }}
           </a>
         </li>
       </ul>
@@ -59,19 +67,19 @@
         <li class="nav-item">
           <a routerLink="/" class="nav-link">
             <i class="icon-exit mr-2"></i>
-            Kijelentkezés
+            {{ 'COMMON.LOGOUT' | translate }}
           </a>
         </li>
       </ul>
     </nav>
     <div class="overlay position-fixed"
-         (click)="toggled = false"></div>
+         appMenuClose></div>
     <main class="page-content position-relative py-3">
       <div class="content-logo d-md-none pb-3 border-bottom">
         <div class="container position-relative text-center">
           <button class="btn btn-toggler position-absolute d-md-none"
                   type="button"
-                  (click)="toggled = true">
+                  (click)="onOpenMenu()">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>

@@ -6,7 +6,8 @@
       <p class="font-size-lg">{{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_ADD_FIRST_UNIT' | translate }}:</p>
     </div>
     <form>
-      <app-signup-type-username *ngIf="currentStep === CONFIG_CONST.signupSteps.TYPE_USERNAME"></app-signup-type-username>
+      <app-signup-type-username (typeSelected)="onSelectAccountType($event)"
+                                *ngIf="currentStep === CONFIG_CONST.signupSteps.TYPE_USERNAME"></app-signup-type-username>
       <app-signup-email *ngIf="currentStep === CONFIG_CONST.signupSteps.EMAIL_PRIVACY"></app-signup-email>
       <app-signup-phone-password *ngIf="currentStep === CONFIG_CONST.signupSteps.PHONE_PASSWORD"></app-signup-phone-password>
       <app-signup-birth-nationality *ngIf="currentStep === CONFIG_CONST.signupSteps.BIRTH_NATIONALITY"></app-signup-birth-nationality>

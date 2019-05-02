@@ -1,3 +1,39 @@
-<p>
-  signup-type-username works!
-</p>
+<div class="signup-type-username">
+  <div class="facebook mb-4">
+    <button class="btn btn-facebook btn-lg w-100">{{ 'SIGNUP.CONTINUE_WITH_FACEBOOK' | translate }}</button>
+    <p class="font-size-sm text-center">{{ 'SIGNUP.WE_NEVER_POST' | translate }}</p>
+  </div>
+  <div class="or text-center mx-auto">
+    <span class="px-3">{{ 'COMMON.OR' | translate }}</span>
+  </div>
+  <div class="main mt-4">
+    <h5 class="text-center mb-4 take-minutes">{{ 'SIGNUP.TAKE_MINUTES' | translate }}:</h5>
+    <div>
+      <div class="form-group">
+        <label>{{ 'COMMON.I' | translate }}:</label>
+        <div class="role">
+          <button class="btn btn-outline-primary btn-lg rounded-pill mr-2"
+                  [class.active]="isLandlord"
+                  (click)="onSelectType(typeLandlord)">{{ 'COMMON.LANDLORD' | translate }}</button>
+          <button class="btn btn-outline-primary btn-lg rounded-pill"
+                  [class.active]="isTenant"
+                  (click)="onSelectType(typeTenant)">{{ 'COMMON.TENANT' | translate }}</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="first-name">{{ 'COMMON.FIRST_NAME' | translate }}:</label>
+        <input type="text"
+               class="form-control"
+               id="first-name"
+               required>
+      </div>
+      <div class="form-group">
+        <label for="last-name">{{ 'COMMON.LAST_NAME' | translate }}:</label>
+        <input type="text"
+               class="form-control"
+               id="last-name"
+               required>
+      </div>
+    </div>
+  </div>
+</div>

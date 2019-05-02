@@ -8,6 +8,15 @@ international-phone-number {
 
       .dropbtn {
         height: 100%;
+
+        span {
+          vertical-align: middle !important;
+
+          &.arrow-down {
+            margin-top: 0;
+            margin-left: 5px;
+          }
+        }
       }
     }
 

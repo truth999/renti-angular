@@ -1,6 +1,11 @@
 <div class="settings">
   <div class="back mb-4 mt-3 mt-sm-0">
-    <i class="icon-left-circle"
+    <button class="btn btn-back d-sm-block d-none"
+            (click)="onBack()">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+    <i class="icon-left-circle d-sm-none"
        (click)="onBack()"></i>
   </div>
   <h2 class="mb-4">{{ 'COMMON.SETTINGS' | translate }}</h2>

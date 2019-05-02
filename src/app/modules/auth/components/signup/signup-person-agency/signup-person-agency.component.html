@@ -1,3 +1,16 @@
-<p>
-  signup-person-agency works!
-</p>
+<div class="signup-person-agency">
+  <div class="form-group">
+    <label for="person-agency">{{ 'COMMON.PRIVATE_PERSON_AGENCY' | translate }}:</label>
+    <select id="person-agency"
+            class="custom-select"
+            required (change)="onChange($event)">
+      <option value=""></option>
+      <option value="person">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
+      <option value="agency">{{ 'COMMON.AGENCY' | translate }}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="isAgency">
+    <label for="agency-name">{{ 'COMMON.NAME_OF_THE_AGENCY' | translate }}:</label>
+    <input type="text" class="form-control" id="agency-name" required>
+  </div>
+</div>

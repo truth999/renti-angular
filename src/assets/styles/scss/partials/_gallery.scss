@@ -1,5 +1,9 @@
 .ngx-gallery-image-wrapper {
   border-radius: $border-radius-lg;
+
+  @include media-breakpoint-down(xs) {
+    border-radius: 0;
+  }
 }
 
 .ngx-gallery-thumbnail {

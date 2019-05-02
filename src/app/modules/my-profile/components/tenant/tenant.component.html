@@ -1,6 +1,14 @@
 <div class="tenants-profile-edit position-relative">
+  <div class="back mb-sm-4 d-sm-block d-none">
+    <button class="btn btn-back"
+            (click)="onBack()">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+  </div>
   <div class="avatar">
-    <i class="icon-left position-absolute h4 mb-0 d-sm-none"></i>
+    <i class="icon-left position-absolute h4 mb-0 d-sm-none"
+       (click)="onBack()"></i>
     <img src="/assets/images/profile/tenant.png"
          alt="Avatar">
   </div>

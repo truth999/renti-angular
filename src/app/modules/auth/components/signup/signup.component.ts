@@ -9,8 +9,6 @@ import { Landlord, Tenant } from '../../../../shared/models';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-
-  account: Landlord | Tenant;
   accountType: string;
   currentStep = CONFIG_CONST.signupSteps.TYPE_USERNAME;
   stepNo = 0;

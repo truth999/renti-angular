@@ -3,13 +3,14 @@
   <div class="d-flex justify-content-between align-items-center mb-4 mt-sm-0 mt-3">
     <h4>{{ 'COMMON.AVAILABLE_FOR_RENT_NEAR_YOU' | translate }}</h4>
     <button class="btn btn-search d-flex justify-content-between align-items-center text-left font-weight-bold"
-            (click)="toggled = true">
-      <span class="d-sm-inline d-none">találatok<br>szűrése</span>
+            (click)="toggled = true"
+            style="max-width: 130px;">
+      <span class="d-sm-inline d-none">{{ 'SEARCH.FILTERED_SEARCH' | translate }}</span>
       <i class="icon-ellipsis"></i>
     </button>
   </div>
   <div class="row">
-    <app-apartment-item class="col-sm-6 py-3"
+    <app-apartment-item class="col-lg-6 py-3"
                         [imgUrl]="'/assets/images/apartment/apartment1.png'"
                         [name]="'Luxury apartment in the heart of Budapest'"
                         [explain]="'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…'"
@@ -18,7 +19,7 @@
                         [rooms]="4"
                         [data]="98"
                         [topRated]="true"></app-apartment-item>
-    <app-apartment-item class="col-sm-6 py-3"
+    <app-apartment-item class="col-lg-6 py-3"
                         [imgUrl]="'/assets/images/apartment/apartment2.png'"
                         [name]="'2 room loft near university for students'"
                         [explain]="'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries.'"
@@ -27,7 +28,7 @@
                         [rooms]="2"
                         [data]="65"
                         [topRated]="false"></app-apartment-item>
-    <app-apartment-item class="col-sm-6 py-3"
+    <app-apartment-item class="col-lg-6 py-3"
                         [imgUrl]="'/assets/images/apartment/apartment2.png'"
                         [name]="'2 room loft near university for students'"
                         [explain]="'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries.'"
@@ -36,7 +37,7 @@
                         [rooms]="2"
                         [data]="65"
                         [topRated]="false"></app-apartment-item>
-    <app-apartment-item class="col-sm-6 py-3"
+    <app-apartment-item class="col-lg-6 py-3"
                         [imgUrl]="'/assets/images/apartment/apartment4.png'"
                         [name]="'Modest 1 bedroom 5min from city center'"
                         [explain]="'The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph…'"
@@ -45,7 +46,7 @@
                         [rooms]="1"
                         [data]="58"
                         [topRated]="false"></app-apartment-item>
-    <app-apartment-item class="col-sm-6 py-3"
+    <app-apartment-item class="col-lg-6 py-3"
                         [imgUrl]="'/assets/images/apartment/apartment4.png'"
                         [name]="'Modest 1 bedroom 5min from city center'"
                         [explain]="'The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph…'"
@@ -54,7 +55,7 @@
                         [rooms]="1"
                         [data]="58"
                         [topRated]="false"></app-apartment-item>
-    <app-apartment-item class="col-sm-6 py-3"
+    <app-apartment-item class="col-lg-6 py-3"
                         [imgUrl]="'/assets/images/apartment/apartment1.png'"
                         [name]="'Luxury apartment in the heart of Budapest'"
                         [explain]="'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…'"
@@ -63,7 +64,7 @@
                         [rooms]="4"
                         [data]="98"
                         [topRated]="false"></app-apartment-item>
-    <app-apartment-item class="col-sm-6 py-3"
+    <app-apartment-item class="col-lg-6 py-3"
                         [imgUrl]="'/assets/images/apartment/apartment1.png'"
                         [name]="'Luxury apartment in the heart of Budapest'"
                         [explain]="'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…'"
@@ -72,7 +73,7 @@
                         [rooms]="4"
                         [data]="98"
                         [topRated]="false"></app-apartment-item>
-    <app-apartment-item class="col-sm-6 py-3"
+    <app-apartment-item class="col-lg-6 py-3"
                         [imgUrl]="'/assets/images/apartment/apartment2.png'"
                         [name]="'2 room loft near university for students'"
                         [explain]="'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries.'"
@@ -89,7 +90,7 @@
       <button class="btn btn-clear btn-lg">{{ 'COMMON.CLEAR_ALL_FILTERS' | translate }}</button>
     </div>
     <div class="search-name border-bottom pt-sm-3 pb-3 px-sm-3">
-      <h4 class="d-sm-block d-none">Találatok szűrése</h4>
+      <h4 class="d-sm-block d-none">{{ 'SEARCH.FILTERED_SEARCH' | translate }}</h4>
       <div class="form-group mt-sm-4">
         <label for="search" class="font-weight-bold">{{ 'SEARCH.SEARCH_IN' | translate }}:</label>
         <input type="text" class="form-control border" id="search">

@@ -3,7 +3,7 @@
     <button class="btn btn-back d-sm-block d-none"
             (click)="onBack()">
       <i class="icon-left h4 align-middle mb-0"></i>
-      Vissza
+      {{ 'COMMON.BACK' | translate }}
     </button>
     <i class="icon-left-circle d-sm-none"
        (click)="onBack()"></i>
@@ -79,10 +79,10 @@
 <!--    <label for="person-type">Személy típusa</label>-->
 <!--    <input type="text" class="form-control" id="person-type" placeholder="Kérem adja meg a személy típusát">-->
 <!--  </div>-->
-  <div class="form-group">
-    <label for="social">{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}</label>
-    <input type="url" class="form-control" id="social" pattern="https://.*" required>
-  </div>
+<!--  <div class="form-group">-->
+<!--    <label for="social">{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}</label>-->
+<!--    <input type="url" class="form-control" id="social" pattern="https://.*" required>-->
+<!--  </div>-->
   <div class="form-group">
     <label for="choose">{{ 'OFFER.WHY_CHOOSE_ME' | translate }}?</label>
     <textarea class="form-control" id="choose" rows="6"></textarea>

@@ -1,0 +1,19 @@
+@import "~src/assets/styles/scss/variables";
+
+.room-edit {
+  .icon-left-circle {
+    font-size: 28px;
+    color: $blue;
+  }
+
+  .icon-fullscreen {
+    font-size: 1rem;
+    color: $blue;
+  }
+
+  table {
+    .custom-select {
+      text-align-last: right;
+    }
+  }
+}

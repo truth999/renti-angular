@@ -6,11 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  toggled = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onOpenMenu() {
+    const mobileMenuContentEl = document.querySelector('.layout');
+
+    mobileMenuContentEl.classList.add('toggled');
   }
 
 }

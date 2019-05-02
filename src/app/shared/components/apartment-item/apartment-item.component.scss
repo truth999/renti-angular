@@ -17,6 +17,7 @@
     left: -$font-size-base;
 
     img {
+      border-radius: $border-radius-lg;
       object-fit: cover;
       object-position: center center;
     }

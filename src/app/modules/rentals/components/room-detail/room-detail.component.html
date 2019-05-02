@@ -1,10 +1,12 @@
 <div class="room-detail">
-  <div class="back mb-4">
-    <button class="btn btn-back"
+  <div class="back mb-4 mt-3 mt-sm-0">
+    <button class="btn btn-back d-sm-block d-none"
             (click)="onBack()">
       <i class="icon-left h4 align-middle mb-0"></i>
-      Vissza
+      {{ 'COMMON.BACK' | translate }}
     </button>
+    <i class="icon-left-circle d-sm-none"
+       (click)="onBack()"></i>
   </div>
   <div class="row">
     <div class="col-sm-6">
@@ -20,18 +22,35 @@
       </div>
       <table class="table mt-2">
         <tbody>
-          <tr>
-            <td class="border-top-0">Felújítás éve:</td>
-            <td class="border-top-0 font-weight-bold text-right">2011</td>
-          </tr>
-          <tr>
-            <td>Burkolat:</td>
-            <td class="font-weight-bold text-right">Laminált</td>
-          </tr>
-          <tr>
-            <td>Ablak típusa:</td>
-            <td class="font-weight-bold text-right">Műanyag hőszigetelt</td>
-          </tr>
+        <tr>
+          <td class="border-top-0">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
+          <td class="border-top-0 text-right font-weight-bold">9</td>
+        </tr>
+        <tr>
+          <td>{{ 'APARTMENT.YEAR_OF_RENOVATION' | translate }}</td>
+          <td class="text-right font-weight-bold">2019</td>
+        </tr>
+        <tr>
+          <td>{{ 'APARTMENT.COVERAGE' | translate }}</td>
+          <td class="text-right font-weight-bold">{{ 'COMMON.TILES' | translate }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
+          <td class="text-right font-weight-bold">{{ 'COMMON.PLASTIC' | translate }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
+          <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'APARTMENT.FURNITURE_NAME' | translate }}</td>
+          <td class="text-right font-weight-bold">Furniture</td>
+        </tr>
+        <tr>
+          <td style="border-top-style: dashed;">{{ 'APARTMENT.FURNITURE_TYPE' | translate }}</td>
+          <td class="text-right font-weight-bold"
+              style="border-top-style: dashed">Room</td>
+        </tr>
         </tbody>
       </table>
     </div>

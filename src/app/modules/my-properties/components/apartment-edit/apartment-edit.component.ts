@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 
 @Component({
-  selector: 'app-apartment-detail',
-  templateUrl: './apartment-detail.component.html',
-  styleUrls: ['./apartment-detail.component.scss']
+  selector: 'app-apartment-edit',
+  templateUrl: './apartment-edit.component.html',
+  styleUrls: ['./apartment-edit.component.scss']
 })
-export class ApartmentDetailComponent implements OnInit {
+export class ApartmentEditComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+
+  roomCount = 1;
 
   constructor(
     private router: Router,
@@ -78,8 +80,12 @@ export class ApartmentDetailComponent implements OnInit {
     ];
   }
 
-  onSendOffer() {
-    this.router.navigate(['/app/offers/create']);
+  onAddRoom() {
+    this.roomCount++;
+  }
+
+  arrayNumber(n: number) {
+    return Array(n);
   }
 
   onBack() {

@@ -3,33 +3,12 @@
     <label for="email">{{ 'COMMON.EMAIL' | translate }}:</label>
     <input type="email" class="form-control" id="email" required>
   </div>
-<!--  <div class="form-group">-->
-<!--    <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>-->
-<!--    <input type="password"-->
-<!--           name="password"-->
-<!--           class="form-control"-->
-<!--           id="password"-->
-<!--           placeholder="{{ 'COMMON.CHOOSE_SECURE_PASSWORD' | translate }}:"-->
-<!--           [(ngModel)]="password">-->
-<!--    <ng2-password-strength-bar [passwordToCheck]="password"-->
-<!--                               [barLabel]="passwordStrengthBarLabel"-->
-<!--                               [baseColor]="baseColor"></ng2-password-strength-bar>-->
-<!--  </div>-->
-  <div class="form-group">
-    <label for="phone">{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}</label>
-    <international-phone-number [(ngModel)]="phone"
-                                #phoneNumber="ngModel"
-                                name="phone"
-                                id="phone"
-                                placeholder=""
-                                [required]="true"></international-phone-number>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="terms">
+    <label for="terms" class="form-check-label">{{ 'SIGNUP.BY_REGISTERING' | translate }} <a href="javascript:">{{ 'COMMON.TERMS_CONDITIONS' | translate }}</a></label>
   </div>
-<!--  <div class="form-group form-check">-->
-<!--    <input type="checkbox" class="form-check-input" id="terms">-->
-<!--    <label for="terms" class="form-check-label">{{ 'SIGNUP.BY_REGISTERING' | translate }} <a href="javascript:">{{ 'COMMON.TERMS_CONDITIONS' | translate }}</a></label>-->
-<!--  </div>-->
-<!--  <div class="form-group form-check">-->
-<!--    <input type="checkbox" class="form-check-input" id="promotion">-->
-<!--    <label for="promotion" class="form-check-label">{{ 'SIGNUP.PROMOTION_EMAIL' | translate }}</label>-->
-<!--  </div>-->
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="promotion">
+    <label for="promotion" class="form-check-label">{{ 'SIGNUP.PROMOTION_EMAIL' | translate }}</label>
+  </div>
 </div>
