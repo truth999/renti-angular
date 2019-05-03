@@ -51,7 +51,7 @@
             <tbody>
             <tr>
               <td class="border-top-0">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
-              <td class="text-right border-top-0 py-0">
+              <td class="text-right border-top-0 py-0 w-50">
                 <div class="form-inline justify-content-between">
                   <select name="day" class="custom-select">
                     <option value="">19</option>
@@ -84,9 +84,9 @@
             <tr>
               <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
               <td class="text-right py-0">
-                <select class="custom-select border-0 w-auto">
-                  <option value="">{{ 'COMMON.ENGLISH' | translate }}</option>
-                </select>
+                <ng-select [items]="spokenLanguages"
+                           [multiple]="true"
+                           [closeOnSelect]="false"></ng-select>
               </td>
             </tr>
             </tbody>

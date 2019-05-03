@@ -83,6 +83,20 @@
         margin-left: 180px;
       }
 
+      .content-logo {
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 9;
+        background-color: $white;
+      }
+
+      .content {
+        @include media-breakpoint-down(xs) {
+          margin-top: 73px;
+        }
+      }
+
       .btn-toggler {
         top: 0;
         left: 15px;

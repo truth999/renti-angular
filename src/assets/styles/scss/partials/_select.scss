@@ -1,7 +1,6 @@
 .ng-select {
   .ng-select-container {
-    height: $custom-select-height !important;
-    min-height: unset !important;
+    min-height: $custom-select-height !important;
     border: $custom-select-border-width solid $custom-select-border-color !important;
     @include border-radius($custom-select-border-radius, 0);
     @include box-shadow($custom-select-box-shadow);
@@ -24,7 +23,8 @@
         background: $custom-select-background;
         border: none !important;
         width: 100% !important;
-        height: 100% !important;
+        height: 19px !important;
+        display: block !important;
       }
     }
   }
@@ -61,7 +61,7 @@
 
     .ng-value {
       font-size: $custom-select-font-size !important;
-      margin-bottom: 0 !important;
+      margin: 2px 5px 2px 0 !important;
     }
 
     .ng-input {

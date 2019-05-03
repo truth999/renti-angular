@@ -12,6 +12,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ApartmentItemComponent } from './components/apartment-item/apartment-item.component';
 import { SuccessComponent } from './components/success/success.component';
 import { MenuCloseDirective } from './directives/menu-close.directive';
+import { ProfileItemComponent } from './components/profile-item/profile-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MenuCloseDirective } from './directives/menu-close.directive';
     FeedbackComponent,
     ApartmentItemComponent,
     SuccessComponent,
-    MenuCloseDirective
+    MenuCloseDirective,
+    ProfileItemComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { MenuCloseDirective } from './directives/menu-close.directive';
     FeedbackComponent,
     ApartmentItemComponent,
     SuccessComponent,
-    MenuCloseDirective
+    MenuCloseDirective,
+    ProfileItemComponent
   ]
 })
 export class SharedModule { }

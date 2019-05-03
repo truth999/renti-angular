@@ -5,7 +5,6 @@ import { MyProfileRoutingModule } from './my-profile-routing.module';
 import { TenantComponent } from './components/tenant/tenant.component';
 import { LandlordComponent } from './components/landlord/landlord.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { ImageCropperModule } from 'ng2-img-cropper';
 
 @NgModule({
   declarations: [
@@ -15,8 +14,7 @@ import { ImageCropperModule } from 'ng2-img-cropper';
   imports: [
     SharedModule,
     MyProfileRoutingModule,
-    NgSelectModule,
-    ImageCropperModule
+    NgSelectModule
   ]
 })
 export class MyProfileModule { }

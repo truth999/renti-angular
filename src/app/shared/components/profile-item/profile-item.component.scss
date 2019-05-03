@@ -1,0 +1,58 @@
+@import "~src/assets/styles/scss/variables";
+
+.card-sm {
+  margin-left: $font-size-base;
+  height: 11rem;
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $blue;
+  }
+
+  .apartment-image {
+    top: -$font-size-base;
+    left: -$font-size-base;
+
+    img {
+      border-radius: $border-radius-lg;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .image-badge {
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  .explain {
+    margin-left: 6.5rem;
+
+    .information {
+      height: $font-size-base * 3 * $line-height-base;
+    }
+
+    .years {
+      color: $blue;
+    }
+  }
+
+  .unit {
+    .mo {
+      color: $blue;
+    }
+
+    i {
+      font-size: 1.125rem;
+      color: $blue;
+    }
+  }
+
+  .card-badge {
+    right: -2px;
+    bottom: -1rem;
+  }
+}

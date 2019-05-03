@@ -47,7 +47,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="javascript:"
+          <a routerLink="/app/profile/search"
              class="nav-link"
              appMenuClose>
             <i class="icon-person mr-2"></i>
@@ -75,7 +75,7 @@
     <div class="overlay position-fixed"
          appMenuClose></div>
     <main class="page-content position-relative py-3">
-      <div class="content-logo d-md-none pb-3 border-bottom">
+      <div class="content-logo d-md-none py-3 border-bottom position-fixed">
         <div class="container position-relative text-center">
           <button class="btn btn-toggler position-absolute d-md-none"
                   type="button"
@@ -89,7 +89,7 @@
           </a>
         </div>
       </div>
-      <div class="container">
+      <div class="container content">
         <router-outlet></router-outlet>
       </div>
     </main>
