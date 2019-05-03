@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccountTypes } from '../../../../../shared/models';
+import { CONFIG_CONST } from '../../../../../../config/config-const';
 
 @Component({
   selector: 'app-signup-complete',
@@ -8,6 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SignupCompleteComponent implements OnInit {
 
+  @Input() accountType: string;
+
+  AccountTypes = CONFIG_CONST.accountType;
+
   constructor(
     private router: Router
   ) { }
@@ -15,7 +21,11 @@ export class SignupCompleteComponent implements OnInit {
   ngOnInit() {
   }
 
-  toApartment() {
+  goToCreateApartment() {
+    this.router.navigate(['/apartment-create']);
+  }
+
+  goToSearchApartment() {
     this.router.navigate(['/apartment-create']);
   }
 
