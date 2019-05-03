@@ -28,6 +28,7 @@ import { SignupBirthNationalityComponent } from './components/signup/signup-birt
 import { SignupPersonAgencyComponent } from './components/signup/signup-person-agency/signup-person-agency.component';
 import { SignupOtherInstructionComponent } from './components/signup/signup-other-instruction/signup-other-instruction.component';
 import { SignupRentalCityComponent } from './components/signup/signup-rental-city/signup-rental-city.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { SignupRentalCityComponent } from './components/signup/signup-rental-cit
     SharedModule,
     PasswordStrengthBarModule,
     InternationalPhoneNumberModule,
-    NgSelectModule
+    NgSelectModule,
+    RouterModule,
   ]
 })
 export class AuthModule { }

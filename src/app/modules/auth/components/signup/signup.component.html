@@ -3,7 +3,12 @@
     <h5 class="card-title" *ngIf="currentStep !== CONFIG_CONST.signupSteps.COMPLETE">{{ 'SIGNUP.TITLE' | translate }}</h5>
     <div class="complete-title text-center" *ngIf="currentStep === CONFIG_CONST.signupSteps.COMPLETE">
       <h2 class="text-success">{{ 'COMMON.CONGRATULATIONS' | translate }}!</h2>
-      <p class="font-size-lg">{{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_ADD_FIRST_UNIT' | translate }}:</p>
+      <p *ngIf="accountType === CONFIG_CONST.accountType.LANDLORD" class="font-size-lg">
+        {{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_ADD_FIRST_UNIT' | translate }}
+      </p>
+      <p *ngIf="accountType === CONFIG_CONST.accountType.TENANT" class="font-size-lg">
+        {{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_SEARCH_FIRST_UNIT' | translate }}
+      </p>
     </div>
     <form>
       <app-signup-type-username (typeSelected)="onSelectAccountType($event)"
@@ -17,12 +22,12 @@
       <app-signup-occupation *ngIf="currentStep === CONFIG_CONST.signupSteps.OCCUPATION"></app-signup-occupation>
       <app-signup-other-instruction *ngIf="currentStep === CONFIG_CONST.signupSteps.OTHER_INSTRUCTION"></app-signup-other-instruction>
 
-      <app-signup-complete *ngIf="currentStep === CONFIG_CONST.signupSteps.COMPLETE"></app-signup-complete>
+      <app-signup-complete *ngIf="currentStep === CONFIG_CONST.signupSteps.COMPLETE" [accountType]="accountType"></app-signup-complete>
 
       <div class="continue mt-sm-5 bg-white d-flex align-items-center"
-           *ngIf="stepNo !== STEPS.length">
+           *ngIf="currentStep !== CONFIG_CONST.signupSteps.COMPLETE">
         <span class="icon-left-circle mr-4"
-              *ngIf="stepNo !== 0"
+              *ngIf="stepNo > 0"
               (click)="previewStep()"></span>
         <button class="btn btn-primary btn-lg w-100"
                 (click)="nextStep()">{{ 'COMMON.CONTINUE' | translate }}</button>
