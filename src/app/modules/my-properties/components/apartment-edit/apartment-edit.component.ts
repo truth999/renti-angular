@@ -14,6 +14,10 @@ export class ApartmentEditComponent implements OnInit {
 
   roomCount = 1;
 
+  mediaService = [
+    'UPC', 'DIGI', 'Telekom', 'Other'
+  ];
+
   constructor(
     private router: Router,
     private location: Location

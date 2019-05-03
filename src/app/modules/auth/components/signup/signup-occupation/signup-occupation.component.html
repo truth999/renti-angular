@@ -4,10 +4,6 @@
     <input type="text" class="form-control" id="current" required>
   </div>
   <div class="form-group">
-    <label for="former">{{ 'COMMON.FORMER_WORKPLACES' | translate }}:</label>
-    <input type="text" class="form-control" id="former">
-  </div>
-  <div class="form-group">
     <label for="monthly-income">{{ 'COMMON.MONTHLY_INCOME' | translate }}:</label>
     <select id="monthly-income" class="custom-select" required>
       <option value=""></option>
@@ -19,6 +15,13 @@
       <option value="1000000">700,000 - 1,000,000</option>
       <option value="1500000">1,000,000+</option>
     </select>
+  </div>
+  <div class="form-group">
+    <label for="former">{{ 'COMMON.FORMER_WORKPLACES' | translate }}:</label>
+    <input type="text"
+           class="form-control mb-1"
+           id="former"
+           *ngFor="let former of arrayNumber(addOccupation)">
   </div>
 <!--  <div class="form-group">-->
 <!--    <label for="occupation">{{ 'COMMON.MOST_RECENT_WORK_OCCUPATION' | translate }}:</label>-->
@@ -43,8 +46,8 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
-<!--  <div class="form-group text-center">-->
-<!--    <button class="btn btn-outline-primary btn-lg"-->
-<!--            (click)="onAddOccupation()">{{ 'COMMON.ADD_OTHER_OCCUPATION' | translate }}</button>-->
-<!--  </div>-->
+  <div class="form-group text-center">
+    <button class="btn btn-outline-primary btn-lg"
+            (click)="onAddOccupation()">{{ 'COMMON.ADD_OTHER_OCCUPATION' | translate }}</button>
+  </div>
 </div>

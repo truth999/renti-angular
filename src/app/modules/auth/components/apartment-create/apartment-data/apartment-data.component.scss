@@ -1,24 +1,15 @@
 @import "~src/assets/styles/scss/variables";
 
 .apartment-data {
-  .form-group {
-    border-bottom: 2px solid $gray-400;
+  .custom-select {
+    border: none;
+    color: $blue;
+    font-family: NeueEinstellung-Bold;
+    text-align-last: right;
+  }
 
-    label {
-      flex: 1;
-      margin-bottom: 0;
-      font-family: Neue Einstellung;
-      font-size: $font-size-base;
-    }
-
-    .select {
-      flex: 1;
-
-      .custom-select {
-        border: none;
-        color: $blue;
-        font-family: NeueEinstellung-Bold;
-      }
-    }
+  .form-control {
+    color: $blue;
+    font-family: NeueEinstellung-Bold;
   }
 }

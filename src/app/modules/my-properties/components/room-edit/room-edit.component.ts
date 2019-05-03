@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -8,37 +7,30 @@ import { Location } from '@angular/common';
   styleUrls: ['./room-edit.component.scss']
 })
 export class RoomEditComponent implements OnInit {
-  galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
+  @ViewChild('picturesChooser') picturesChooser: ElementRef;
+  public previewNewRoomPictures: any[] = [];
 
   constructor(private location: Location) { }
 
   ngOnInit() {
-    this.galleryOptions = [
-      {
-        image: false,
-        arrowPrevIcon: 'icon-left',
-        arrowNextIcon: 'icon-right',
-        closeIcon: 'icon-cancel',
-        width: '100%',
-        height: '100px',
-        thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide
-      }
-    ];
+  }
 
-    this.galleryImages = [
-      {
-        small: '/assets/images/room/room1.png',
-        medium: '/assets/images/room/room1.png',
-        big: '/assets/images/room/room1.png'
-      },
-      {
-        small: '/assets/images/room/room2.png',
-        medium: '/assets/images/room/room2.png',
-        big: '/assets/images/room/room2.png'
+  onFilesChange(event) {
+    if (event.target.files.length > 0) {
+      for (let index = 0; index < event.target.files.length; index++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: ProgressEvent) => {
+          this.previewNewRoomPictures.push((e.target as FileReader).result);
+        };
+
+        reader.readAsDataURL(event.target.files[index]);
       }
-    ];
+    }
+  }
+
+  removeRoomPicture(index) {
+    this.previewNewRoomPictures.splice(index, 1);
   }
 
   onBack() {

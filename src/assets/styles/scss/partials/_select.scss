@@ -1,0 +1,89 @@
+.ng-select {
+  .ng-select-container {
+    height: $custom-select-height !important;
+    min-height: unset !important;
+    border: $custom-select-border-width solid $custom-select-border-color !important;
+    @include border-radius($custom-select-border-radius, 0);
+    @include box-shadow($custom-select-box-shadow);
+
+    .ng-value-container {
+      padding: $custom-select-padding-y 0 $custom-select-padding-y $custom-select-padding-x !important;
+      font-family: $custom-select-font-family;
+      @include font-size($custom-select-font-size);
+      font-weight: $custom-select-font-weight;
+      line-height: $custom-select-line-height;
+      color: $custom-select-color;
+    }
+
+    .ng-arrow-wrapper {
+      width: $custom-select-padding-x + $custom-select-indicator-padding + .5rem !important;
+      padding-right: 0 !important;
+      height: 100% !important;
+
+      .ng-arrow {
+        background: $custom-select-background;
+        border: none !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+
+  &.ng-select-focused {
+    .ng-select-container {
+      border-color: $custom-select-focus-border-color !important;
+      @if $enable-shadows {
+        box-shadow: $custom-select-box-shadow, $custom-select-focus-box-shadow !important;
+      } @else {
+        box-shadow: $custom-select-focus-box-shadow !important;
+      }
+
+      &::-ms-value {
+        color: $input-color !important;
+        background-color: $input-bg !important;
+      }
+    }
+  }
+
+  &.ng-select-single {
+    .ng-input {
+      padding: 0 ($custom-select-padding-x + $custom-select-indicator-padding + 1rem) 0 $custom-select-padding-x !important;
+      top: unset !important;
+    }
+  }
+
+  &.ng-select-multiple {
+    .ng-placeholder {
+      top: unset !important;
+      padding-bottom: 0 !important;
+      padding-left: 0 !important;
+    }
+
+    .ng-value {
+      font-size: $custom-select-font-size !important;
+      margin-bottom: 0 !important;
+    }
+
+    .ng-input {
+      padding: 0 !important;
+    }
+  }
+}
+
+table {
+  .ng-select {
+    display: inline-block !important;
+
+    .ng-select-container {
+      border: none !important;
+    }
+  }
+}
+
+.apartment-data {
+  .ng-placeholder {
+    right: $custom-select-padding-x + $custom-select-indicator-padding + .5rem;
+    color: $blue !important;
+    font-family: NeueEinstellung-Bold;
+  }
+}

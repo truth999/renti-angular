@@ -10,20 +10,12 @@
   </div>
   <h4 class="text-center">Árajánlattétel</h4>
   <div class="form-group">
-    <label for="rent">{{ 'APARTMENT.RENTAL_FEE' | translate }}</label>
-    <select id="rent" class="custom-select" required>
-      <option value=""></option>
-      <option value="">1.000</option>
-      <option value="">2000 to 2.000.000</option>
-    </select>
+    <label for="rent">{{ 'APARTMENT.RENTAL_FEE' | translate }}(unit 1000)</label>
+    <input type="number" class="form-control" id="rent" min="1" max="2000" step="1" required>
   </div>
   <div class="form-group">
-    <label for="overhead">{{ 'COMMON.OVERHEAD' | translate }}</label>
-    <select id="overhead" class="custom-select" required>
-      <option value=""></option>
-      <option value="">1.000</option>
-      <option value="">2000 to 2.000.000</option>
-    </select>
+    <label for="overhead">{{ 'COMMON.OVERHEAD' | translate }}(unit 1000)</label>
+    <input type="number" class="form-control" id="overhead" min="1" max="2000" step="1" required>
   </div>
   <div class="form-group">
     <label for="renting-time">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }})</label>

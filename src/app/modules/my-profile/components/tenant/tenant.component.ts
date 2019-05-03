@@ -8,6 +8,22 @@ import { Location } from '@angular/common';
   styleUrls: ['./tenant.component.scss']
 })
 export class TenantComponent implements OnInit {
+  spokenLanguages = [
+    'Hungarian',
+    'English',
+    'Arabic',
+    'Chinese',
+    'French',
+    'German',
+    'Hindi',
+    'Hindi',
+    'Japanese',
+    'Romanian',
+    'Russian',
+    'Slovakian',
+    'Spanish',
+    'Other'
+  ];
 
   constructor(
     private router: Router,

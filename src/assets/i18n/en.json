@@ -188,7 +188,8 @@
     "SEARCH": "Search",
     "NOTIFICATIONS": "Notifications",
     "MY_PROFILE": "My profile",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "RENTAL_CITY": "Rental city"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",

@@ -14,7 +14,27 @@
         <h4>Nappali</h4>
       </div>
       <div class="room-image mt-2">
-        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+<!--        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>-->
+        <input type="file"
+               #picturesChooser
+               style="display: none;"
+               accept="image/png, image/jpeg, image/jpg"
+               multiple
+               (change)="onFilesChange($event)">
+        <div class="row mb-2">
+          <div class="col-lg-3 col-md-4 col-sm-3 col-4 position-relative"
+               *ngFor="let previewPicture of previewNewRoomPictures; let i = index;">
+            <div class="img-item position-relative">
+              <img [src]="previewPicture"
+                   class="position-absolute rounded w-100 h-100"
+                   alt="">
+            </div>
+            <i class="icon-delete position-absolute text-danger"
+               (click)="removeRoomPicture(i)"></i>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg w-100"
+                (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_FROM_GALLERY' | translate }}</button>
       </div>
       <table class="table mt-2">
         <tbody>

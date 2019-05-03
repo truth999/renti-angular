@@ -6,6 +6,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { MyPropertiesComponent } from './components/my-properties/my-properties.component';
 import { ApartmentEditComponent } from './components/apartment-edit/apartment-edit.component';
 import { RoomEditComponent } from './components/room-edit/room-edit.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RoomEditComponent } from './components/room-edit/room-edit.component';
   imports: [
     SharedModule,
     MyPropertiesRoutingModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    NgSelectModule
   ]
 })
 export class MyPropertiesModule { }

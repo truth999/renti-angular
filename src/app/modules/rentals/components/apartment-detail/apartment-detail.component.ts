@@ -30,7 +30,9 @@ export class ApartmentDetailComponent implements OnInit {
       {
         breakpoint: 576,
         imageBullets: true,
-        thumbnails: false
+        thumbnails: false,
+        imageSwipe: true,
+        previewSwipe: true
       }
     ];
 

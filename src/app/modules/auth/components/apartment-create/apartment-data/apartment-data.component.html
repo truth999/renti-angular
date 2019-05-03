@@ -1,51 +1,307 @@
 <div class="apartment-data">
   <h5>{{ 'COMMON.ADD_ALL_DATA' | translate }}</h5>
-  <div class="form-group d-flex align-items-center">
-    <label for="a">Épület típusa</label>
-    <div class="select">
-      <select name="" id="a" class="custom-select">
-        <option value="">{{ 'COMMON.PLEASE_SELECT' | translate }}</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group d-flex align-items-center">
-    <label for="b">Épület építési éve</label>
-    <div class="select">
-      <select name="" id="b" class="custom-select">
-        <option value="">{{ 'COMMON.PLEASE_SELECT' | translate }}</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group d-flex align-items-center">
-    <label for="c">Ingatlan állapota</label>
-    <div class="select">
-      <select name="" id="c" class="custom-select">
-        <option value="">{{ 'COMMON.PLEASE_SELECT' | translate }}</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group d-flex align-items-center">
-    <label for="d">Energetikai Besorolás</label>
-    <div class="select">
-      <select name="" id="d" class="custom-select">
-        <option value="">{{ 'COMMON.PLEASE_SELECT' | translate }}</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group d-flex align-items-center">
-    <label for="e">Épület szintjei</label>
-    <div class="select">
-      <select name="" id="e" class="custom-select">
-        <option value="">{{ 'COMMON.PLEASE_SELECT' | translate }}</option>
-      </select>
-    </div>
-  </div>
-  <div class="form-group d-flex align-items-center">
-    <label for="f">Lakás emelete</label>
-    <div class="select">
-      <select name="" id="f" class="custom-select">
-        <option value="">{{ 'COMMON.PLEASE_SELECT' | translate }}</option>
-      </select>
-    </div>
-  </div>
+  <table class="table mt-4">
+    <tbody>
+    <tr>
+      <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
+      <td class="border-top-0 text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
+          <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
+          <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
+          <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="2019">2019</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="new">{{ 'COMMON.NEW' | translate }}</option>
+          <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
+          <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
+          <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0">
+          <option value="">Please select</option>
+          <option value="aapp">AA++</option>
+          <option value="aap">AA+</option>
+          <option value="aa">AA</option>
+          <option value="bb">BB</option>
+          <option value="cc">CC</option>
+          <option value="dd">DD</option>
+          <option value="ee">EE</option>
+          <option value="ff">FF</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="east">{{ 'COMMON.EAST' | translate }}</option>
+          <option value="west">{{ 'COMMON.WEST' | translate }}</option>
+          <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
+          <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
+          <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
+          <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
+          <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
+          <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
+          <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
+          <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
+          <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.HEADROOM' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="2m">< 2M</option>
+          <option value="2.5m">2.0 - 2.5M</option>
+          <option value="3m">2.5 - 3.0M</option>
+          <option value="3mp">> 3M</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.PARKING' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
+          <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
+          <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
+          <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0">
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <ng-select [items]="mediaService"
+                   [multiple]="true"
+                   [closeOnSelect]="false"
+                   placeholder="Please select"></ng-select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
+          <option value="no">{{ 'COMMON.NO' | translate }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}</td>
+      <td class="text-right py-0 pr-0">
+        <input type="number" class="form-control border-0 text-right" required>
+      </td>
+    </tr>
+    <tr>
+      <td class="py-0 align-middle">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
+      <td class="text-right py-0 pr-0">
+        <select class="custom-select border-0" required>
+          <option value="">Please select</option>
+          <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
+      <td class="border-bottom text-right pr-0">
+        <div class="form-inline justify-content-between">
+          <select name="day" class="custom-select" required>
+            <option value="">Day</option>
+          </select>
+          <select name="month" class="custom-select" required>
+            <option value="">Month</option>
+          </select>
+          <select name="year" class="custom-select" required>
+            <option value="">Year</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
