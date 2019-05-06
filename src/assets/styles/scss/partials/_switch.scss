@@ -11,13 +11,11 @@
     height: 0;
 
     &:checked + .slider {
-      background-color: $green;
-      border-color: $green;
+      background-color: $blue;
+      border-color: $blue;
     }
 
     &:checked + .slider:before {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
       transform: translateX(26px);
     }
   }
@@ -30,9 +28,8 @@
     right: 0;
     bottom: 0;
     background-color: $gray-400;
-    -webkit-transition: .4s;
     transition: .4s;
-    border: 1px solid $gray-600;
+    border: 1px solid transparent;
 
     &:before {
       position: absolute;
@@ -42,9 +39,7 @@
       left: 0;
       bottom: 0;
       background-color: white;
-      -webkit-transition: .4s;
       transition: .4s;
-      box-shadow: $box-shadow-sm;
     }
 
     &.round {
