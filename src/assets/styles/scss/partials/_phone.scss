@@ -25,3 +25,11 @@ international-phone-number {
     }
   }
 }
+
+.tenants-profile-edit, .landlords-profile-edit {
+  international-phone-number {
+    .input-group {
+      border: none;
+    }
+  }
+}

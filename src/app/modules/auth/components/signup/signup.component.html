@@ -1,36 +1,70 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title" *ngIf="currentStep !== CONFIG_CONST.signupSteps.COMPLETE">{{ 'SIGNUP.TITLE' | translate }}</h5>
-    <div class="complete-title text-center" *ngIf="currentStep === CONFIG_CONST.signupSteps.COMPLETE">
-      <h2 class="text-success">{{ 'COMMON.CONGRATULATIONS' | translate }}!</h2>
-      <p *ngIf="accountType === CONFIG_CONST.accountType.LANDLORD" class="font-size-lg">
-        {{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_ADD_FIRST_UNIT' | translate }}
-      </p>
-      <p *ngIf="accountType === CONFIG_CONST.accountType.TENANT" class="font-size-lg">
-        {{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_SEARCH_FIRST_UNIT' | translate }}
-      </p>
-    </div>
+    <h5 class="card-title">{{ 'SIGNUP.TITLE' | translate }}</h5>
     <form>
-      <app-signup-type-username (typeSelected)="onSelectAccountType($event)"
-                                *ngIf="currentStep === CONFIG_CONST.signupSteps.TYPE_USERNAME"></app-signup-type-username>
-      <app-signup-email *ngIf="currentStep === CONFIG_CONST.signupSteps.EMAIL_PRIVACY"></app-signup-email>
-      <app-signup-phone-password *ngIf="currentStep === CONFIG_CONST.signupSteps.PHONE_PASSWORD"></app-signup-phone-password>
-      <app-signup-birth-nationality *ngIf="currentStep === CONFIG_CONST.signupSteps.BIRTH_NATIONALITY"></app-signup-birth-nationality>
-      <app-signup-person-agency *ngIf="currentStep === CONFIG_CONST.signupSteps.PERSON_AGENCY"></app-signup-person-agency>
-      <app-signup-rental-city *ngIf="currentStep === CONFIG_CONST.signupSteps.RENTAL_CITY"></app-signup-rental-city>
-      <app-signup-education *ngIf="currentStep === CONFIG_CONST.signupSteps.EDUCATION"></app-signup-education>
-      <app-signup-occupation *ngIf="currentStep === CONFIG_CONST.signupSteps.OCCUPATION"></app-signup-occupation>
-      <app-signup-other-instruction *ngIf="currentStep === CONFIG_CONST.signupSteps.OTHER_INSTRUCTION"></app-signup-other-instruction>
-
-      <app-signup-complete *ngIf="currentStep === CONFIG_CONST.signupSteps.COMPLETE" [accountType]="accountType"></app-signup-complete>
-
-      <div class="continue mt-sm-5 bg-white d-flex align-items-center"
-           *ngIf="currentStep !== CONFIG_CONST.signupSteps.COMPLETE">
-        <span class="icon-left-circle mr-4"
-              *ngIf="stepNo > 0"
-              (click)="previewStep()"></span>
-        <button class="btn btn-primary btn-lg w-100"
-                (click)="nextStep()">{{ 'COMMON.CONTINUE' | translate }}</button>
+      <div class="main mt-4">
+        <div>
+          <div class="form-group">
+            <label>{{ 'COMMON.I' | translate }}:</label>
+            <div class="role">
+              <button class="btn btn-outline-primary btn-lg rounded-pill mr-2"
+                      [class.active]="isLandlord"
+                      (click)="onSelectType(typeLandlord)">{{ 'COMMON.LANDLORD' | translate }}</button>
+              <button class="btn btn-outline-primary btn-lg rounded-pill"
+                      [class.active]="isTenant"
+                      (click)="onSelectType(typeTenant)">{{ 'COMMON.TENANT' | translate }}</button>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label for="first-name">{{ 'COMMON.FIRST_NAME' | translate }}:</label>
+              <input type="text"
+                     class="form-control"
+                     id="first-name"
+                     required>
+            </div>
+            <div class="form-group col-6">
+              <label for="last-name">{{ 'COMMON.LAST_NAME' | translate }}:</label>
+              <input type="text"
+                     class="form-control"
+                     id="last-name"
+                     required>
+            </div>
+          </div>
+<!--          <div class="form-group">-->
+<!--            <label for="first-name">{{ 'COMMON.FIRST_NAME' | translate }}:</label>-->
+<!--            <input type="text"-->
+<!--                   class="form-control"-->
+<!--                   id="first-name"-->
+<!--                   required>-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="last-name">{{ 'COMMON.LAST_NAME' | translate }}:</label>-->
+<!--            <input type="text"-->
+<!--                   class="form-control"-->
+<!--                   id="last-name"-->
+<!--                   required>-->
+<!--          </div>-->
+          <div class="form-group">
+            <label for="email">{{ 'COMMON.EMAIL' | translate }}:</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
+            <input type="password"
+                   name="password"
+                   class="form-control"
+                   id="password"
+                   placeholder="{{ 'COMMON.CHOOSE_SECURE_PASSWORD' | translate }}:"
+                   [(ngModel)]="password">
+            <ng2-password-strength-bar [passwordToCheck]="password"
+                                       [barLabel]="passwordStrengthBarLabel"
+                                       [baseColor]="baseColor"></ng2-password-strength-bar>
+          </div>
+        </div>
+      </div>
+      <div class="continue mt-sm-5 bg-white d-flex align-items-center">
+        <button class="btn btn-primary btn-lg w-100">{{ 'COMMON.CONTINUE' | translate }}</button>
       </div>
     </form>
   </div>

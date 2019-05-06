@@ -25,6 +25,13 @@ export class LandlordComponent implements OnInit {
     'Other'
   ];
 
+  password = '';
+  passwordStrengthBarLabel = '';
+  baseColor = '#dbdce8';
+  phone: string;
+
+  isAgency = false;
+
   constructor(
     private location: Location,
     private router: Router
@@ -43,6 +50,10 @@ export class LandlordComponent implements OnInit {
 
   onSettings() {
     this.router.navigate(['/app/settings']);
+  }
+
+  onChange(event) {
+    this.isAgency = event.target.value === 'agency';
   }
 
 }

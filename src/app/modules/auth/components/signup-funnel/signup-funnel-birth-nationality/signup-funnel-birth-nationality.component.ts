@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-signup-birth-nationality',
-  templateUrl: './signup-birth-nationality.component.html',
-  styleUrls: ['./signup-birth-nationality.component.scss']
+  selector: 'app-signup-funnel-birth-nationality',
+  templateUrl: './signup-funnel-birth-nationality.component.html',
+  styleUrls: ['./signup-funnel-birth-nationality.component.scss']
 })
-export class SignupBirthNationalityComponent implements OnInit {
+export class SignupFunnelBirthNationalityComponent implements OnInit {
   monthly = [
     'Afghanistan',
     'Albania',

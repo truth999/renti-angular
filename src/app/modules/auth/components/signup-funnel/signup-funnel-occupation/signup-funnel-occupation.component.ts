@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-signup-occupation',
-  templateUrl: './signup-occupation.component.html',
-  styleUrls: ['./signup-occupation.component.scss']
+  selector: 'app-signup-funnel-occupation',
+  templateUrl: './signup-funnel-occupation.component.html',
+  styleUrls: ['./signup-funnel-occupation.component.scss']
 })
-export class SignupOccupationComponent implements OnInit {
+export class SignupFunnelOccupationComponent implements OnInit {
   addOccupation = 1;
 
   constructor() { }

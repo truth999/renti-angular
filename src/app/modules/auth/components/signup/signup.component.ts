@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { config } from '../../../../../config';
 import { CONFIG_CONST } from '../../../../../config/config-const';
-import { Landlord, Tenant } from '../../../../shared/models';
 
 @Component({
   selector: 'app-signup',
@@ -9,31 +7,30 @@ import { Landlord, Tenant } from '../../../../shared/models';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  accountType: string;
-  currentStep = CONFIG_CONST.signupSteps.TYPE_USERNAME;
-  stepNo = 0;
+  typeLandlord = CONFIG_CONST.accountType.LANDLORD;
+  typeTenant = CONFIG_CONST.accountType.TENANT;
 
-  STEPS: string[] = [];
-  CONFIG_CONST = CONFIG_CONST;
+  isLandlord = false;
+  isTenant = false;
+
+  password = '';
+  passwordStrengthBarLabel = '';
+  baseColor = '#dbdce8';
+  phone: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSelectAccountType(type: string) {
-    this.accountType = type;
-    this.STEPS = config.signupSteps[type];
-  }
-
-  nextStep() {
-    this.stepNo++;
-    this.currentStep = this.STEPS[this.stepNo];
-  }
-
-  previewStep() {
-    this.stepNo--;
-    this.currentStep = this.STEPS[this.stepNo];
+  onSelectType(type: string) {
+    if (type === this.typeLandlord) {
+      this.isLandlord = true;
+      this.isTenant = false;
+    } else if (type === this.typeTenant) {
+      this.isTenant = true;
+      this.isLandlord = false;
+    }
   }
 
 }

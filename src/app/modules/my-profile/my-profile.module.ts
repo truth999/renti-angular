@@ -5,6 +5,7 @@ import { MyProfileRoutingModule } from './my-profile-routing.module';
 import { TenantComponent } from './components/tenant/tenant.component';
 import { LandlordComponent } from './components/landlord/landlord.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { InternationalPhoneNumberModule } from 'ngx-international-phone-number';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
   imports: [
     SharedModule,
     MyProfileRoutingModule,
-    NgSelectModule
+    NgSelectModule,
+    InternationalPhoneNumberModule
   ]
 })
 export class MyProfileModule { }

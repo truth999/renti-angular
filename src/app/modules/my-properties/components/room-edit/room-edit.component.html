@@ -79,26 +79,23 @@
         </tr>
         <tr>
           <td class="py-0 align-middle">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
+          <td class="text-right pr-0">
+            <label class="switch">
+              <input type="checkbox" required>
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+        <tr *ngFor="let furniture of arrayNumber(furnitures)">
+          <td class="py-0 align-middle">{{ 'APARTMENT.FURNITURE' | translate }}</td>
           <td class="text-right py-0 pr-0">
-            <select class="custom-select border-0 w-auto">
-              <option value=""></option>
-              <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-              <option value="no">{{ 'COMMON.NO' | translate }}</option>
-            </select>
+            <input type="text" class="form-control w-50 d-inline" placeholder="{{ 'APARTMENT.NAME' | translate }}">
+            <input type="text" class="form-control w-50 d-inline" placeholder="{{ 'APARTMENT.TYPE' | translate }}">
           </td>
         </tr>
         <tr>
-          <td class="py-0 align-middle">{{ 'APARTMENT.FURNITURE_NAME' | translate }}</td>
-          <td class="text-right py-0 pr-0">
-            <input type="text" class="form-control border-0 text-right">
-          </td>
-        </tr>
-        <tr>
-          <td class="py-0 align-middle"
-              style="border-top-style: dashed">{{ 'APARTMENT.FURNITURE_TYPE' | translate }}</td>
-          <td class="text-right py-0 pr-0"
-              style="border-top-style: dashed">
-            <input type="text" class="form-control border-0 text-right">
+          <td class="border-top-0">
+            <a href="javascript:" (click)="onAddFurniture()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
           </td>
         </tr>
         </tbody>

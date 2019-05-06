@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-signup-education',
-  templateUrl: './signup-education.component.html',
-  styleUrls: ['./signup-education.component.scss']
+  selector: 'app-signup-funnel-education',
+  templateUrl: './signup-funnel-education.component.html',
+  styleUrls: ['./signup-funnel-education.component.scss']
 })
-export class SignupEducationComponent implements OnInit {
+export class SignupFunnelEducationComponent implements OnInit {
   addEducation = 1;
 
   constructor() { }

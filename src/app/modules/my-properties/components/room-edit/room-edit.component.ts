@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 })
 export class RoomEditComponent implements OnInit {
   @ViewChild('picturesChooser') picturesChooser: ElementRef;
+  furnitures = 1;
   public previewNewRoomPictures: any[] = [];
 
   constructor(private location: Location) { }
@@ -35,6 +36,10 @@ export class RoomEditComponent implements OnInit {
 
   onBack() {
     this.location.back();
+  }
+
+  onAddFurniture() {
+    this.furnitures++;
   }
 
   arrayNumber(n: number) {

@@ -4,11 +4,11 @@ import { AccountTypes } from '../../../../../shared/models';
 import { CONFIG_CONST } from '../../../../../../config/config-const';
 
 @Component({
-  selector: 'app-signup-complete',
-  templateUrl: './signup-complete.component.html',
-  styleUrls: ['./signup-complete.component.scss']
+  selector: 'app-signup-funnel-complete',
+  templateUrl: './signup-funnel-complete.component.html',
+  styleUrls: ['./signup-funnel-complete.component.scss']
 })
-export class SignupCompleteComponent implements OnInit {
+export class SignupFunnelCompleteComponent implements OnInit {
 
   @Input() accountType: string;
 

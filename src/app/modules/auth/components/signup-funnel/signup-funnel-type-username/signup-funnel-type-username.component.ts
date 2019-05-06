@@ -3,11 +3,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CONFIG_CONST } from '../../../../../../config/config-const';
 
 @Component({
-  selector: 'app-signup-type-username',
-  templateUrl: './signup-type-username.component.html',
-  styleUrls: ['./signup-type-username.component.scss']
+  selector: 'app-signup-funnel-type-username',
+  templateUrl: './signup-funnel-type-username.component.html',
+  styleUrls: ['./signup-funnel-type-username.component.scss']
 })
-export class SignupTypeUsernameComponent implements OnInit {
+export class SignupFunnelTypeUsernameComponent implements OnInit {
   @Output() typeSelected = new EventEmitter<string>();
 
   typeLandlord = CONFIG_CONST.accountType.LANDLORD;

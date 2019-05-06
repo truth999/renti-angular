@@ -25,6 +25,11 @@ export class TenantComponent implements OnInit {
     'Other'
   ];
 
+  password = '';
+  passwordStrengthBarLabel = '';
+  baseColor = '#dbdce8';
+  phone: string;
+
   constructor(
     private router: Router,
     private location: Location

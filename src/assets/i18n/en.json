@@ -267,6 +267,9 @@
     "COVERAGE": "Coverage",
     "WINDOW_TYPE": "Window type",
     "EQUIPPED": "Equipped",
+    "FURNITURE": "Furniture",
+    "NAME": "Name",
+    "TYPE": "Type",
     "FURNITURE_NAME": "Furniture name",
     "FURNITURE_TYPE": "Furniture type"
   },

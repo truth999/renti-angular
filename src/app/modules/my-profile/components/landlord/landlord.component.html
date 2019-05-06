@@ -50,8 +50,19 @@
           <table class="table">
             <tbody>
             <tr>
-              <td class="border-top-0">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
-              <td class="text-right border-top-0 py-0 w-50">
+              <td class="border-top-0 py-0 align-middle">{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
+              <td class="text-right border-top-0 py-0 pr-0">
+                <international-phone-number [(ngModel)]="phone"
+                                            #phoneNumber="ngModel"
+                                            name="phone"
+                                            id="phone"
+                                            placeholder=""
+                                            [required]="true"></international-phone-number>
+              </td>
+            </tr>
+            <tr>
+              <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
+              <td class="text-right pr-0 w-50">
                 <div class="form-inline justify-content-between">
                   <select name="day" class="custom-select">
                     <option value="">19</option>
@@ -66,27 +77,45 @@
               </td>
             </tr>
             <tr>
-              <td>{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-              <td class="text-right py-0">
+              <td class="align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
+              <td class="text-right pr-0 py-0">
                 <select class="custom-select border-0 w-auto">
                   <option value="">US</option>
                 </select>
               </td>
             </tr>
             <tr>
-              <td>{{ 'COMMON.NATIONALITY' | translate }}:</td>
-              <td class="text-right py-0">
+              <td class="align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
+              <td class="text-right pr-0 py-0">
                 <select class="custom-select border-0 w-auto">
                   <option value="">US</option>
                 </select>
               </td>
             </tr>
             <tr>
-              <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
-              <td class="text-right py-0">
+              <td class="align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
+              <td class="text-right pr-0 py-0">
                 <ng-select [items]="spokenLanguages"
                            [multiple]="true"
                            [closeOnSelect]="false"></ng-select>
+              </td>
+            </tr>
+            <tr>
+              <td class="align-middle">{{ 'COMMON.PRIVATE_PERSON_AGENCY' | translate }}:</td>
+              <td class="text-right pr-0 py-0">
+                <select id="person-agency"
+                        class="custom-select border-0 w-auto"
+                        required (change)="onChange($event)">
+                  <option value=""></option>
+                  <option value="person">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
+                  <option value="agency">{{ 'COMMON.AGENCY' | translate }}</option>
+                </select>
+              </td>
+            </tr>
+            <tr *ngIf="isAgency">
+              <td class="align-middle">{{ 'COMMON.NAME_OF_THE_AGENCY' | translate }}:</td>
+              <td class="text-right pr-0 py-0">
+                <input type="text" class="form-control text-right border-0" id="agency-name" required>
               </td>
             </tr>
             </tbody>

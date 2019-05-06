@@ -112,6 +112,10 @@
                 <option value="dd">DD</option>
                 <option value="ee">EE</option>
                 <option value="ff">FF</option>
+                <option value="gg">GG</option>
+                <option value="hh">HH</option>
+                <option value="ii">II</option>
+                <option value="jj">JJ</option>
               </select>
             </td>
           </tr>
@@ -135,22 +139,20 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -208,64 +210,55 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto">
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
             <td class="text-right py-0 pr-0 w-50">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="upc">{{ 'COMMON.UPC' | translate }}</option>
-                <option value="digi">{{ 'COMMON.DIGI' | translate }}</option>
-                <option value="telekom">{{ 'COMMON.TELEKOM' | translate }}</option>
-                <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
-              </select>
+              <ng-select [items]="mediaService"
+                         [multiple]="true"
+                         [closeOnSelect]="false"></ng-select>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -276,12 +269,11 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -292,12 +284,11 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -308,40 +299,38 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+            <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}(unit 1000)</td>
             <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" required>
+              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
             </td>
           </tr>
           <tr>
-            <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}</td>
+            <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}(unit 1000)</td>
             <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" required>
+              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
             </td>
           </tr>
           <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}</td>
+            <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}(unit 1000)</td>
             <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" required>
+              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
             </td>
           </tr>
           <tr>
@@ -489,6 +478,10 @@
                 <option value="dd">DD</option>
                 <option value="ee">EE</option>
                 <option value="ff">FF</option>
+                <option value="gg">GG</option>
+                <option value="hh">HH</option>
+                <option value="ii">II</option>
+                <option value="jj">JJ</option>
               </select>
             </td>
           </tr>
@@ -512,22 +505,20 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -585,32 +576,29 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto">
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -623,22 +611,20 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -649,12 +635,11 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -665,12 +650,11 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
@@ -681,22 +665,20 @@
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-                <option value="no">{{ 'COMMON.NO' | translate }}</option>
-              </select>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox" required>
+                <span class="slider round"></span>
+              </label>
             </td>
           </tr>
           <tr>
