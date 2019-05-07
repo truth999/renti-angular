@@ -15,7 +15,7 @@
   </div>
   <div class="form-group">
     <label for="overhead">{{ 'COMMON.OVERHEAD' | translate }}(unit 1000)</label>
-    <input type="number" class="form-control" id="overhead" min="1" max="2000" step="1" required>
+    <input type="number" class="form-control" id="overhead" min="1" max="2000" step="1" inputmode="numeric" pattern="[0-9]*" required>
   </div>
   <div class="form-group">
     <label for="renting-time">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }})</label>

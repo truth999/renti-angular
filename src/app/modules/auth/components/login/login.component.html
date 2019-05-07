@@ -1,17 +1,19 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">{{ 'LOGIN.LOGIN' | translate }}</h5>
-    <form>
+    <form [formGroup]="signinForm" (ngSubmit)="signin()">
       <div class="form-group">
         <label for="email">{{ 'COMMON.EMAIL' | translate }}:</label>
         <input type="email"
                class="form-control"
+               formControlName="email"
                id="email">
       </div>
       <div class="form-group">
         <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
         <input type="password"
                class="form-control"
+               formControlName="password"
                id="password">
       </div>
       <div class="link text-center">
@@ -23,8 +25,7 @@
         </div>
       </div>
       <div class="continue mt-sm-5 bg-white">
-        <button class="btn btn-primary btn-lg w-100"
-                (click)="onLogin()">{{ 'COMMON.CONTINUE' | translate }}</button>
+        <button class="btn btn-primary btn-lg w-100" [disabled]="!signinForm.valid">{{ 'LOGIN.LOGIN' | translate }}</button>
       </div>
     </form>
   </div>

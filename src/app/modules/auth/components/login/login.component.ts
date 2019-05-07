@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,22 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  signinForm: FormGroup;
+
+  constructor(
+      private authService: AuthService,
+  ) { }
 
   ngOnInit() {
+    this.signinForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(5)])
+    });
   }
 
-  onLogin() {
-    this.router.navigate(['/app/rentals/search']);
+  signin(): void {
+    const siginData = this.signinForm.value;
+    this.authService.login(siginData);
   }
 
 }
