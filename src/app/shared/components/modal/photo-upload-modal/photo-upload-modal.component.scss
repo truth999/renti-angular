@@ -1,0 +1,9 @@
+@import "~src/assets/styles/scss/variables";
+
+.drop-container {
+  border: 2px dashed $gray-600;
+
+  &.drag-over {
+    background: $gray-400;
+  }
+}

@@ -1,12 +1,13 @@
 export class Landlord {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  birthPlace: string;
-  birthDate: string;
+  // firstName: string;
+  // lastName: string;
+  // email: string;
+  mobile: string;
+  profilePicture: string;
+  placeOfBirth: string;
+  dateOfBirth: string;
   nationality: string;
   spokenLanguages: string[];
-  personInfo: string;
-  agencyName: string;
+  isPerson: boolean;
+  nameOfAgency: string;
 }

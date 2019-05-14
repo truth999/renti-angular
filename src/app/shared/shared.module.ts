@@ -13,6 +13,13 @@ import { ApartmentItemComponent } from './components/apartment-item/apartment-it
 import { SuccessComponent } from './components/success/success.component';
 import { MenuCloseDirective } from './directives/menu-close.directive';
 import { ProfileItemComponent } from './components/profile-item/profile-item.component';
+import { PhotoUploadModalService } from './services/modal/photo-upload-modal.service';
+import { PhotoEditModalService } from './services/modal/photo-edit-modal.service';
+import { PhotoUploadModalComponent } from './components/modal/photo-upload-modal/photo-upload-modal.component';
+import { PhotoEditModalComponent } from './components/modal/photo-edit-modal/photo-edit-modal.component';
+import { CropEditorComponent } from './components/modal/photo-edit-modal/crop-editor/crop-editor.component';
+import { NouisliderModule } from 'ng2-nouislider';
+import { ResponsiveService } from './services/responsive.service';
 
 @NgModule({
   declarations: [
@@ -23,13 +30,21 @@ import { ProfileItemComponent } from './components/profile-item/profile-item.com
     ApartmentItemComponent,
     SuccessComponent,
     MenuCloseDirective,
-    ProfileItemComponent
+    ProfileItemComponent,
+    PhotoUploadModalComponent,
+    PhotoEditModalComponent,
+    CropEditorComponent
+  ],
+  entryComponents: [
+    PhotoUploadModalComponent,
+    PhotoEditModalComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     TranslateModule,
-    NgbModule
+    NgbModule,
+    NouisliderModule
   ],
   exports: [
     CommonModule,
@@ -43,7 +58,15 @@ import { ProfileItemComponent } from './components/profile-item/profile-item.com
     ApartmentItemComponent,
     SuccessComponent,
     MenuCloseDirective,
-    ProfileItemComponent
+    ProfileItemComponent,
+    PhotoUploadModalComponent,
+    PhotoEditModalComponent,
+    CropEditorComponent
+  ],
+  providers: [
+    PhotoUploadModalService,
+    PhotoEditModalService,
+    ResponsiveService
   ]
 })
 export class SharedModule { }

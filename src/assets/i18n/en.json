@@ -17,6 +17,7 @@
     "ALL_RIGHT": "All rights reserved. ©2019 Renti",
     "EMAIL": "Email",
     "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
     "CONTINUE": "Continue",
     "OR": "or",
     "ABOUT_US": "About us",
@@ -191,7 +192,18 @@
     "MY_PROFILE": "My profile",
     "LOGOUT": "Logout",
     "RENTAL_CITY": "Rental city",
-    "AVAILABLE_FOR_TENANTS": "Available for tenants"
+    "AVAILABLE_FOR_TENANTS": "Available for tenants",
+    "UPDATE_PHOTO": "Update Photo",
+    "EDIT_PHOTO": "Edit Photo",
+    "CLOSE": "Close",
+    "DROP_PICTURE_HEAR": "Drop your picture here, or",
+    "UPLOAD_FROM_COMPUTER": "Upload from computer",
+    "ZOOM": "Zoom",
+    "CANCEL": "Cancel",
+    "DONE": "Done",
+    "CROP": "Crop",
+    "SAVE_PHOTO": "Save Photo",
+    "CREATE_APARTMENT": "Create an apartment"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
@@ -206,6 +218,7 @@
     "NEW_USER": "New user? Sign up here."
   },
   "SIGNUP": {
+    "SIGNUP": "Signup",
     "FREE_REGISTRATION": "Free registration",
     "TITLE": "Create a free profile quickly to see the average rent prices in your area",
     "CONTINUE_WITH_FACEBOOK": "Continue with Facebook",
@@ -293,5 +306,15 @@
     "IMMEDIATE_AVAILABILITY": "Immediate availability",
     "ADD_MORE_FILTERS": "Add more filters",
     "FILTERED_SEARCH": "Filtered search"
+  },
+  "ERROR": {
+    "EMAIL_REQUIRED": "Email is required.",
+    "PASSWORD_REQUIRED": "Password is required.",
+    "CONFIRM_PASSWORD_REQUIRED": "Confirm password is required.",
+    "FISRTNAME_REQUIRED": "First name is required.",
+    "LASTNAME_REQUIRED": "Last name is required.",
+    "PASSWORD_NOT_MATCH": "Passwords do not match.",
+    "INVALID_EMAIL": "Invalid email address.",
+    "MIN_PASSWORD": "Name must be at least 5 characters long."
   }
 }

@@ -1,13 +1,15 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">{{ 'LOGIN.LOGIN' | translate }}</h5>
-    <form [formGroup]="signinForm" (ngSubmit)="signin()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="form-group">
         <label for="email">{{ 'COMMON.EMAIL' | translate }}:</label>
         <input type="email"
                class="form-control"
                formControlName="email"
                id="email">
+        <div class="invalid-feedback d-block" *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched">{{ 'ERROR.EMAIL_REQUIRED' | translate }}</div>
+        <div class="invalid-feedback d-block" *ngIf="loginForm.controls['email'].hasError('email') && loginForm.controls['email'].touched">{{ 'ERROR.INVALID_EMAIL' | translate }}</div>
       </div>
       <div class="form-group">
         <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
@@ -15,6 +17,8 @@
                class="form-control"
                formControlName="password"
                id="password">
+        <div class="invalid-feedback d-block" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">{{ 'ERROR.PASSWORD_REQUIRED' | translate }}</div>
+        <div class="invalid-feedback d-block" *ngIf="loginForm.controls['password'].hasError('minlength') && loginForm.controls['password'].touched">{{ 'ERROR.MIN_PASSWORD' | translate }}</div>
       </div>
       <div class="link text-center">
         <div class="forgot-password my-4">
@@ -25,7 +29,7 @@
         </div>
       </div>
       <div class="continue mt-sm-5 bg-white">
-        <button class="btn btn-primary btn-lg w-100" [disabled]="!signinForm.valid">{{ 'LOGIN.LOGIN' | translate }}</button>
+        <button class="btn btn-primary btn-lg w-100" [disabled]="!loginForm.valid">{{ 'LOGIN.LOGIN' | translate }}</button>
       </div>
     </form>
   </div>

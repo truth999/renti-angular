@@ -17,6 +17,7 @@
     "ALL_RIGHT": "Minden jog fenntartva. ©2019 Renti",
     "EMAIL": "Email",
     "PASSWORD": "Jelszó",
+    "CONFIRM_PASSWORD": "Confirm Password",
     "CONTINUE": "Folytatás",
     "OR": "vagy",
     "ABOUT_US": "Rólunk",
@@ -191,7 +192,18 @@
     "MY_PROFILE": "Profilom",
     "LOGOUT": "Kijelentkezés",
     "RENTAL_CITY": "Rental city",
-    "AVAILABLE_FOR_TENANTS": "Available for tenants"
+    "AVAILABLE_FOR_TENANTS": "Available for tenants",
+    "UPDATE_PHOTO": "Update Photo",
+    "EDIT_PHOTO": "Edit Photo",
+    "CLOSE": "Close",
+    "DROP_PICTURE_HEAR": "Drop your picture here, or",
+    "UPLOAD_FROM_COMPUTER": "Upload from computer",
+    "ZOOM": "Zoom",
+    "CANCEL": "Cancel",
+    "DONE": "Done",
+    "CROP": "Crop",
+    "SAVE_PHOTO": "Save Photo",
+    "CREATE_APARTMENT": "Create an apartment"
   },
   "HOME": {
     "TITLE": "Renti - az albérletek Kánaánja",
@@ -206,6 +218,7 @@
     "NEW_USER": "Új felhasználó? Regisztráljon itt."
   },
   "SIGNUP": {
+    "SIGNUP": "Signup",
     "FREE_REGISTRATION": "Regisztráljon ingyenesen",
     "TITLE": "Regisztráljon ingyenesen hogy láthassa az albérleti lehetőségeket az Ön környékén",
     "CONTINUE_WITH_FACEBOOK": "Folytatás Facebook fiókkal",
@@ -293,5 +306,15 @@
     "IMMEDIATE_AVAILABILITY": "Azonnal kiadó",
     "ADD_MORE_FILTERS": "Még több szűrő hozzáadása",
     "FILTERED_SEARCH": "Találatok szűrése"
+  },
+  "ERROR": {
+    "EMAIL_REQUIRED": "Email is required.",
+    "PASSWORD_REQUIRED": "Password is required.",
+    "CONFIRM_PASSWORD_REQUIRED": "Confirm password is required.",
+    "FISRTNAME_REQUIRED": "First name is required.",
+    "LASTNAME_REQUIRED": "Last name is required.",
+    "PASSWORD_NOT_MATCH": "Passwords do not match.",
+    "INVALID_EMAIL": "Invalid email address.",
+    "MIN_PASSWORD": "Name must be at least 5 characters long."
   }
 }

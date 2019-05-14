@@ -9,22 +9,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  signinForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(
       private authService: AuthService,
   ) { }
 
   ngOnInit() {
-    this.signinForm = new FormGroup({
+    this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
   }
 
-  signin(): void {
-    const siginData = this.signinForm.value;
-    this.authService.login(siginData);
+  login(): void {
+    const loginData = this.loginForm.value;
+    this.authService.login(loginData);
   }
 
 }

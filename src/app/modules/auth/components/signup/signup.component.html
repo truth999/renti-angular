@@ -1,18 +1,20 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">{{ 'SIGNUP.TITLE' | translate }}</h5>
-    <form>
+    <form [formGroup]="signupForm" (ngSubmit)="signup()" autocomplete="off">
       <div class="main mt-4">
         <div>
           <div class="form-group">
             <label>{{ 'COMMON.I' | translate }}:</label>
             <div class="role">
-              <button class="btn btn-outline-primary btn-lg rounded-pill mr-2"
-                      [class.active]="isLandlord"
-                      (click)="onSelectType(typeLandlord)">{{ 'COMMON.LANDLORD' | translate }}</button>
-              <button class="btn btn-outline-primary btn-lg rounded-pill"
-                      [class.active]="isTenant"
-                      (click)="onSelectType(typeTenant)">{{ 'COMMON.TENANT' | translate }}</button>
+              <button type="button"
+                      class="btn btn-outline-primary btn-lg rounded-pill mr-2"
+                      [class.active]="accountType === CONST_ACCOUNT_TYPE.LANDLORD"
+                      (click)="onSelectType(CONST_ACCOUNT_TYPE.LANDLORD)">{{ 'COMMON.LANDLORD' | translate }}</button>
+              <button type="button"
+                      class="btn btn-outline-primary btn-lg rounded-pill"
+                      [class.active]="accountType === CONST_ACCOUNT_TYPE.TENANT"
+                      (click)="onSelectType(CONST_ACCOUNT_TYPE.TENANT)">{{ 'COMMON.TENANT' | translate }}</button>
             </div>
           </div>
           <div class="form-row">
@@ -21,50 +23,56 @@
               <input type="text"
                      class="form-control"
                      id="first-name"
+                     formControlName="firstName"
                      required>
+              <div class="invalid-feedback d-block" *ngIf="signupForm.controls['firstName'].hasError('required') && signupForm.controls['firstName'].touched">{{ 'ERROR.FISRTNAME_REQUIRED' | translate }}</div>
             </div>
             <div class="form-group col-6">
               <label for="last-name">{{ 'COMMON.LAST_NAME' | translate }}:</label>
               <input type="text"
                      class="form-control"
                      id="last-name"
+                     formControlName="lastName"
                      required>
+              <div class="invalid-feedback d-block" *ngIf="signupForm.controls['lastName'].hasError('required') && signupForm.controls['lastName'].touched">{{ 'ERROR.LASTNAME_REQUIRED' | translate }}</div>
             </div>
           </div>
-<!--          <div class="form-group">-->
-<!--            <label for="first-name">{{ 'COMMON.FIRST_NAME' | translate }}:</label>-->
-<!--            <input type="text"-->
-<!--                   class="form-control"-->
-<!--                   id="first-name"-->
-<!--                   required>-->
-<!--          </div>-->
-<!--          <div class="form-group">-->
-<!--            <label for="last-name">{{ 'COMMON.LAST_NAME' | translate }}:</label>-->
-<!--            <input type="text"-->
-<!--                   class="form-control"-->
-<!--                   id="last-name"-->
-<!--                   required>-->
-<!--          </div>-->
           <div class="form-group">
             <label for="email">{{ 'COMMON.EMAIL' | translate }}:</label>
-            <input type="email" class="form-control" id="email" required>
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   formControlName="email"
+                   required>
+            <div class="invalid-feedback d-block" *ngIf="signupForm.controls['email'].hasError('required') && signupForm.controls['email'].touched">{{ 'ERROR.EMAIL_REQUIRED' | translate }}</div>
+            <div class="invalid-feedback d-block" *ngIf="signupForm.controls['email'].hasError('email') && signupForm.controls['email'].touched">{{ 'ERROR.INVALID_EMAIL' | translate }}</div>
           </div>
           <div class="form-group">
             <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
             <input type="password"
-                   name="password"
                    class="form-control"
                    id="password"
-                   placeholder="{{ 'COMMON.CHOOSE_SECURE_PASSWORD' | translate }}:"
-                   [(ngModel)]="password">
-            <ng2-password-strength-bar [passwordToCheck]="password"
+                   formControlName="password"
+                   [(ngModel)]="passwordCheck">
+            <ng2-password-strength-bar [passwordToCheck]="passwordCheck"
                                        [barLabel]="passwordStrengthBarLabel"
                                        [baseColor]="baseColor"></ng2-password-strength-bar>
+            <div class="invalid-feedback d-block" *ngIf="signupForm.controls['password'].hasError('required') && signupForm.controls['password'].touched">{{ 'ERROR.PASSWORD_REQUIRED' | translate }}</div>
+            <div class="invalid-feedback d-block" *ngIf="signupForm.controls['password'].hasError('minlength') && signupForm.controls['password'].touched">{{ 'ERROR.MIN_PASSWORD' | translate }}</div>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">{{ 'COMMON.CONFIRM_PASSWORD' | translate }}:</label>
+            <input type="password"
+                   class="form-control"
+                   id="confirm-password"
+                   formControlName="confirmPassword">
+            <div class="invalid-feedback d-block" *ngIf="signupForm.controls['confirmPassword'].hasError('equalTo')">{{ 'ERROR.PASSWORD_NOT_MATCH' | translate }}</div>
           </div>
         </div>
       </div>
       <div class="continue mt-sm-5 bg-white d-flex align-items-center">
-        <button class="btn btn-primary btn-lg w-100">{{ 'COMMON.CONTINUE' | translate }}</button>
+        <button class="btn btn-primary btn-lg w-100"
+                [disabled]="!signupForm.valid">{{ 'SIGNUP.SIGNUP' | translate }}</button>
       </div>
     </form>
   </div>

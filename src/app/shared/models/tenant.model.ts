@@ -1,18 +1,23 @@
 export class Tenant {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  birthPlace: string;
-  birthDate: string;
+  // firstName: string;
+  // lastName: string;
+  // email: string;
+  mobile: string;
+  profilePicture: string;
+  placeOfBirth: string;
+  dateOfBirth: string;
   nationality: string;
   spokenLanguages: string[];
   currentCity: string;
-  highestLevel: string;
-  schoolName: string[];
-  graduationYear: string[];
+  highestLevelOfQualification: string;
+  education: [
+    {
+      nameOfSchool: string,
+      yearOfGraduation: number
+    }
+  ];
   jobTitle: string[];
-  speciality: string;
+  universitySpeciality: string;
   currentWorkplace: string;
   formerWorkplaces: string[];
   monthlyIncome: string;

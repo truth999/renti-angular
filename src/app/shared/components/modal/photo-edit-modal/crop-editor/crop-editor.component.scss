@@ -1,0 +1,45 @@
+@import "~src/assets/styles/scss/variables";
+
+.crop-frame-wrapper {
+  width: 420px;
+  height: 420px;
+  border: 1px solid black;
+  margin: 20px auto;
+  overflow: hidden;
+  position: relative;
+
+  .crop-frame-background, .crop-frame {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    margin-top: -175px;
+    left: 50%;
+    margin-left: -175px;
+
+    img {
+      position: absolute;
+    }
+  }
+
+  .crop-frame {
+    overflow: hidden;
+    cursor: grab;
+  }
+
+  .crop-frame-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .5);
+  }
+}
+
+@media (max-width: 420px) {
+  .crop-frame-wrapper {
+    width: auto;
+    margin: 20px 10px;
+  }
+}

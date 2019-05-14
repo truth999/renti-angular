@@ -66,6 +66,9 @@ $custom-select-indicator-padding: 1rem;
 $custom-select-indicator: url("/assets/images/icon/caret.png");
 $custom-select-background: $custom-select-indicator no-repeat right $custom-select-padding-x center;
 
+$zindex-modal-backdrop: 4100;
+$zindex-modal: 4200;
+
 $nav-link-padding-y: .875rem;
 
 $card-spacer-y: 2rem;

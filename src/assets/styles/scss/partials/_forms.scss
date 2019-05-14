@@ -35,3 +35,21 @@
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+.invalid-feedback {
+  font-size: 100%;
+}
+
+.form-inline {
+  @include media-breakpoint-up(xl) {
+    .custom-select {
+      width: auto;
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    .custom-select {
+      width: 100%;
+    }
+  }
+}

@@ -1,184 +1,222 @@
 <div class="landlords-profile-edit position-relative">
-  <div class="back mb-sm-4 d-sm-block d-none">
-    <button class="btn btn-back"
-            (click)="onBack()">
-      <i class="icon-left h4 align-middle mb-0"></i>
-      {{ 'COMMON.BACK' | translate }}
-    </button>
-  </div>
-  <div class="avatar">
-    <i class="icon-left position-absolute h4 mb-0 d-sm-none"
-       (click)="onBack()"></i>
-    <img src="/assets/images/profile/landlord.png"
-         alt="Avatar">
-<!--    <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>-->
-<!--    <img [src]="data.image"-->
-<!--         [width]="cropperSettings.croppedWidth"-->
-<!--         [height]="cropperSettings.croppedHeight">-->
-  </div>
-  <div class="card profile-info">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="row name-info">
-            <div class="col-sm-12 col-8 pr-0">
-              <h1 class="name font-weight-bolder">Peter Kovacs</h1>
-              <p class="info text-muted font-weight-bold">{{ 'PROFILE.OWNER' | translate }}</p>
-            </div>
-            <div class="col-sm-12 col-4 text-sm-left text-right pl-0 pl-sm-3">
-              <p class="role text-muted font-weight-bold">{{ 'PROFILE.SINGLE_TENANT' | translate }}</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-8">
-              <div class="profile-complete w-100">
-                <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
-                  <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
-                  <span>11/12</span>
-                </div>
-                <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>
-              </div>
-            </div>
-          </div>
+  <form [formGroup]="landlordForm" (ngSubmit)="update()">
+    <div class="back mb-sm-4 d-sm-block d-none">
+      <button class="btn btn-back"
+              (click)="onBack()">
+        <i class="icon-left h4 align-middle mb-0"></i>
+        {{ 'COMMON.BACK' | translate }}
+      </button>
+    </div>
+    <div class="avatar"
+         [ngClass]="{'avatar-blank': photoDeleted}"
+         [ngStyle]="{'background-image': getPhotoUrl()}">
+      <i class="icon-left position-absolute h4 mb-0 d-sm-none"
+         (click)="onBack()"></i>
+      <div class="avatar-options align-items-center justify-content-around position-absolute font-size-lg">
+        <div class="avatar-options-update"
+             *ngIf="!photoDeleted">
+          <span (click)="onOpenPhotoUploadModal()">Update</span>
         </div>
-        <div class="col-sm-6 py-2">
-          <div class="button-group text-sm-right py-2">
-            <button class="btn btn-outline-primary btn-lg mb-sm-3"
-                    (click)="onSettings()">{{ 'COMMON.SETTINGS' | translate }}</button>
-            <button class="btn btn-outline-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}...</button>
-          </div>
-          <table class="table">
-            <tbody>
-            <tr>
-              <td class="border-top-0 py-0 align-middle">{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
-              <td class="text-right border-top-0 py-0 pr-0">
-                <international-phone-number [(ngModel)]="phone"
-                                            #phoneNumber="ngModel"
-                                            name="phone"
-                                            id="phone"
-                                            placeholder=""
-                                            [required]="true"></international-phone-number>
-              </td>
-            </tr>
-            <tr>
-              <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
-              <td class="text-right pr-0 w-50">
-                <div class="form-inline justify-content-between">
-                  <select name="day" class="custom-select">
-                    <option value="">19</option>
-                  </select>
-                  <select name="month" class="custom-select">
-                    <option value="">3</option>
-                  </select>
-                  <select name="year" class="custom-select">
-                    <option value="">1995</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-              <td class="text-right pr-0 py-0">
-                <select class="custom-select border-0 w-auto">
-                  <option value="">US</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td class="align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
-              <td class="text-right pr-0 py-0">
-                <select class="custom-select border-0 w-auto">
-                  <option value="">US</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td class="align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
-              <td class="text-right pr-0 py-0">
-                <ng-select [items]="spokenLanguages"
-                           [multiple]="true"
-                           [closeOnSelect]="false"></ng-select>
-              </td>
-            </tr>
-            <tr>
-              <td class="align-middle">{{ 'COMMON.PRIVATE_PERSON_AGENCY' | translate }}:</td>
-              <td class="text-right pr-0 py-0">
-                <select id="person-agency"
-                        class="custom-select border-0 w-auto"
-                        required (change)="onChange($event)">
-                  <option value=""></option>
-                  <option value="person">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
-                  <option value="agency">{{ 'COMMON.AGENCY' | translate }}</option>
-                </select>
-              </td>
-            </tr>
-            <tr *ngIf="isAgency">
-              <td class="align-middle">{{ 'COMMON.NAME_OF_THE_AGENCY' | translate }}:</td>
-              <td class="text-right pr-0 py-0">
-                <input type="text" class="form-control text-right border-0" id="agency-name" required>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+        <div class="avatar-options-button"
+             *ngIf="!photoDeleted">
+          <i class="icon-close"
+             (click)="onOpenPhotoEditModal()"></i>
+        </div>
+        <div class="avatar-options-button"
+             *ngIf="!photoDeleted">
+          <i class="icon-close"
+             (click)="onDeletePhoto()"></i>
+        </div>
+        <div class="avatar-options-upload"
+             *ngIf="photoDeleted">
+          <span (click)="onOpenPhotoUploadModal()">Upload photo</span>
         </div>
       </div>
     </div>
-  </div>
-  <div class="card mt-sm-4">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-6">
-          <app-feedback></app-feedback>
-          <div class="feedback">
-            <div class="client d-flex justify-content-between">
-              <span class="client-name font-weight-bold">Kelsey Taylor</span>
-              <div class="rating-date d-flex">
-                <ngb-rating [rate]="5"
-                            [readonly]="true"
-                            max="5"
-                            class="item-rating mr-1">
-                  <ng-template let-fill="fill">
-                    <i class="icon-star-fill"
-                       *ngIf="fill === 100"></i>
-                    <i class="icon-star"
-                       *ngIf="fill !== 100"></i>
-                  </ng-template>
-                </ngb-rating>
-                <span class="date">2019.07.12</span>
+    <div class="card profile-info">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row name-info">
+              <div class="col-sm-12 col-8 pr-0">
+                <h1 class="name font-weight-bolder">Peter Kovacs</h1>
+                <p class="info text-muted font-weight-bold">{{ 'PROFILE.OWNER' | translate }}</p>
+              </div>
+              <div class="col-sm-12 col-4 text-sm-left text-right pl-0 pl-sm-3">
+                <p class="role text-muted font-weight-bold">{{ 'PROFILE.SINGLE_TENANT' | translate }}</p>
               </div>
             </div>
-            <p class="feedback-content mt-2">
-              Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-          </div>
-          <div class="feedback mt-4">
-            <div class="client d-flex justify-content-between">
-              <span class="client-name font-weight-bold">Kate Tomlins</span>
-              <div class="rating-date d-flex">
-                <ngb-rating [rate]="5"
-                            [readonly]="true"
-                            max="5"
-                            class="item-rating mr-1">
-                  <ng-template let-fill="fill">
-                    <i class="icon-star-fill"
-                       *ngIf="fill === 100"></i>
-                    <i class="icon-star"
-                       *ngIf="fill !== 100"></i>
-                  </ng-template>
-                </ngb-rating>
-                <span class="date">2019.08.24</span>
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="profile-complete w-100">
+                  <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
+                    <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
+                    <span>11/12</span>
+                  </div>
+                  <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>
+                </div>
               </div>
             </div>
-            <p class="feedback-content mt-2">
-              We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
           </div>
-        </div>
-        <div class="col-sm-6 text-sm-right text-center">
-          <button class="btn btn-primary btn-lg"
-                  (click)="onMyProperties()">{{ 'COMMON.MANAGE_MY_PROPERTIES' | translate }}</button>
+          <div class="col-sm-6 py-2">
+            <div class="button-group text-sm-right py-2">
+              <button type="button"
+                      class="btn btn-outline-primary btn-lg mb-sm-3"
+                      (click)="onSettings()">{{ 'COMMON.SETTINGS' | translate }}</button>
+              <button type="submit"
+                      class="btn btn-outline-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}...</button>
+            </div>
+            <table class="table">
+              <tbody>
+              <tr>
+                <td class="border-top-0 py-0 align-middle">{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
+                <td class="text-right border-top-0 py-0 pr-0">
+                  <international-phone-number formControlName="mobile"
+                                              id="mobile"
+                                              placeholder=""
+                                              [required]="true"></international-phone-number>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
+                <td class="text-right pr-0 w-50">
+                  <div class="form-inline justify-content-between"
+                       formGroupName="dateOfBirth">
+                    <select formControlName="day"
+                            class="custom-select">
+                      <option value="19">19</option>
+                    </select>
+                    <select formControlName="month"
+                            class="custom-select">
+                      <option value="03">3</option>
+                    </select>
+                    <select formControlName="year"
+                            class="custom-select">
+                      <option value="1995">1995</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
+                <td class="text-right pr-0">
+                  <div class="form-inline justify-content-between"
+                       formGroupName="placeOfBirth">
+                    <select formControlName="country"
+                            class="custom-select border-0">
+                      <option value="US">US</option>
+                    </select>
+                    <select formControlName="city"
+                            class="custom-select border-0">
+                      <option value="Washington">Washington</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
+                <td class="text-right pr-0 py-0">
+                  <select formControlName="nationality"
+                          class="custom-select border-0 w-auto">
+                    <option value="US">US</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
+                <td class="text-right pr-0 py-0">
+                  <ng-select [items]="spokenLanguages"
+                             [multiple]="true"
+                             [closeOnSelect]="false"
+                             formControlName="spokenLanguages"></ng-select>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">{{ 'COMMON.PRIVATE_PERSON_AGENCY' | translate }}:</td>
+                <td class="text-right pr-0 py-0">
+                  <select id="person-agency"
+                          formControlName="isPerson"
+                          class="custom-select border-0 w-auto"
+                          (change)="onChange($event)"
+                          required>
+                    <option value=""></option>
+                    <option [ngValue]="true">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
+                    <option [ngValue]="false">{{ 'COMMON.AGENCY' | translate }}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr *ngIf="isAgency">
+                <td class="align-middle">{{ 'COMMON.NAME_OF_THE_AGENCY' | translate }}:</td>
+                <td class="text-right pr-0 py-0">
+                  <input type="text"
+                         class="form-control text-right border-0"
+                         id="agency-name"
+                         formControlName="nameOfAgency"
+                         required>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="card mt-sm-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <app-feedback></app-feedback>
+            <div class="feedback">
+              <div class="client d-flex justify-content-between">
+                <span class="client-name font-weight-bold">Kelsey Taylor</span>
+                <div class="rating-date d-flex">
+                  <ngb-rating [rate]="5"
+                              [readonly]="true"
+                              max="5"
+                              class="item-rating mr-1">
+                    <ng-template let-fill="fill">
+                      <i class="icon-star-fill"
+                         *ngIf="fill === 100"></i>
+                      <i class="icon-star"
+                         *ngIf="fill !== 100"></i>
+                    </ng-template>
+                  </ngb-rating>
+                  <span class="date">2019.07.12</span>
+                </div>
+              </div>
+              <p class="feedback-content mt-2">
+                Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+              </p>
+            </div>
+            <div class="feedback mt-4">
+              <div class="client d-flex justify-content-between">
+                <span class="client-name font-weight-bold">Kate Tomlins</span>
+                <div class="rating-date d-flex">
+                  <ngb-rating [rate]="5"
+                              [readonly]="true"
+                              max="5"
+                              class="item-rating mr-1">
+                    <ng-template let-fill="fill">
+                      <i class="icon-star-fill"
+                         *ngIf="fill === 100"></i>
+                      <i class="icon-star"
+                         *ngIf="fill !== 100"></i>
+                    </ng-template>
+                  </ngb-rating>
+                  <span class="date">2019.08.24</span>
+                </div>
+              </div>
+              <p class="feedback-content mt-2">
+                We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-6 text-sm-right text-center">
+            <button class="btn btn-primary btn-lg"
+                    (click)="onMyProperties()">{{ 'COMMON.MANAGE_MY_PROPERTIES' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>

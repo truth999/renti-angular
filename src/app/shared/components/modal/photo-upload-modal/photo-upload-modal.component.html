@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'COMMON.UPDATE_PHOTO' | translate }}</h4>
+  <button type="button"
+          class="close"
+          aria-label="true"
+          (click)="modal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="drop-container text-center w-75 mx-auto py-5 rounded"
+       (drop)="onDrop($event)"
+       (dragover)="onDragOver($event)"
+       (dragleave)="onDragLeave()"
+       #dropContainer>
+    <p class="font-weight-bold">{{ 'COMMON.DROP_PICTURE_HEAR' | translate }}</p>
+    <button class="btn btn-primary btn-lg"
+            (click)="fileInput.click()">{{ 'COMMON.UPLOAD_FROM_COMPUTER' | translate }}</button>
+    <input type="file"
+           accept="image/*"
+           #fileInput
+           (change)="onFileChanged($event)"
+           class="d-none">
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-light"
+          (click)="modal.dismiss()">{{ 'COMMON.CLOSE' | translate }}</button>
+</div>

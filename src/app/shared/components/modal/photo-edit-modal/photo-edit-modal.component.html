@@ -1,0 +1,48 @@
+<div class="photo-edit">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ 'COMMON.EDIT_PHOTO' | translate }}</h4>
+    <button type="button"
+            class="close"
+            aria-label="true"
+            (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="canvas-container">
+      <canvas id="photo-edit-canvas"
+              [hidden]="currentEditor == 'crop'"
+              (pinchStart)="onPinchStart($event)"
+              (pinchEnd)="onPinchEnd($event)"
+              (pinch)="onPinch($event)"></canvas>
+      <div class="crop-frame-border crop-frame-border-width crop-frame-border-left"></div>
+      <div class="crop-frame-border crop-frame-border-width crop-frame-border-right"></div>
+      <div class="crop-frame-border crop-frame-border-height crop-frame-border-top"></div>
+      <div class="crop-frame-border crop-frame-border-height crop-frame-border-bottom"></div>
+    </div>
+    <app-crop-editor *ngIf="!isMobile.getValue() && currentEditor == 'crop'"
+                     [mainController]="this"></app-crop-editor>
+    <div class="photo-edit-panel-wrapper mt-4"
+         *ngIf="!currentEditor">
+      <div class="button-container button-container-crop d-flex align-items-center justify-content-center flex-column"
+           *ngIf="!isMobile.getValue()">
+        <button class="d-flex align-items-center justify-content-center border rounded-pill"
+                (click)="setCurrentEditor('crop')">
+          <i class="icon-close"></i>
+        </button>
+        <span>{{ 'COMMON.CROP' | translate }}</span>
+      </div>
+      <div class="save-button-container text-center mt-3">
+        <button class="btn btn-primary text-uppercase"
+                [class.disabled]="inProcess"
+                [disabled]="inProcess"
+                (click)="savePhoto()">{{ 'COMMON.SAVE_PHOTO' | translate }}</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+            class="btn btn-light"
+            (click)="modal.dismiss()">{{ 'COMMON.CLOSE' | translate }}</button>
+  </div>
+</div>

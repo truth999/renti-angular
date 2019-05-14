@@ -23,7 +23,7 @@ export class ImageUploaderService {
 
     formData.append(`images`, images);
 
-    return this.post('images', formData);
+    return this.post('upload/images', formData);
   }
 
   private post(url, formData): Promise<string | string[]> {
@@ -35,7 +35,7 @@ export class ImageUploaderService {
   }
 
   private makeFullUrl(url: string): string {
-    return environment.uploadApiBase + url;
+    return environment.apiBase + url;
   }
 
   makeHeaders() {

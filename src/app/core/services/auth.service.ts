@@ -70,6 +70,8 @@ export class AuthService {
 
   private successAuth(response) {
     const token = response.token;
+    const landlordId = response.landlordId ? response.landlordId : '';
+    const tenantId = response.tenantId ? response.tenantId : '';
     this.token = token;
     if (token) {
       this.isAuthenticated = true;
@@ -78,21 +80,25 @@ export class AuthService {
       const expirationDate = new Date(
           now.getTime() + response.expiresIn * 1000
       );
-      this.saveAuthData(token, expirationDate, this.userId);
-      this.router.navigate(['/']);
+      this.saveAuthData(token, expirationDate, this.userId, landlordId, tenantId);
+      this.router.navigate(['/auth/complete', { accountType: response.accountType }]);
     }
   }
 
-  private saveAuthData(token: string, expirationDate: Date, userId: string) {
+  private saveAuthData(token: string, expirationDate: Date, userId: string, landlordId: string, tenantId: string) {
     this.storageService.save('token', token);
     this.storageService.save('expiration', expirationDate.toISOString());
     this.storageService.save('userId', userId);
+    this.storageService.save('landlordId', landlordId);
+    this.storageService.save('tenantId', tenantId);
   }
 
   private clearAuthData() {
     this.storageService.remove('token');
     this.storageService.remove('expiration');
     this.storageService.remove('userId');
+    this.storageService.remove('landlordId');
+    this.storageService.remove('tenantId');
   }
 
   private getAuthData() {
@@ -103,9 +109,9 @@ export class AuthService {
       return;
     }
     return {
-      token: token,
+      token,
       expirationDate: new Date(expirationDate),
-      userId: userId
+      userId
     };
   }
 }

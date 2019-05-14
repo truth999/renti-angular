@@ -40,6 +40,7 @@ import {
 import { SignupFunnelRentalCityComponent } from './components/signup-funnel/signup-funnel-rental-city/signup-funnel-rental-city.component';
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
+import { AuthCompleteComponent } from './components/auth-complete/auth-complete.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SignupComponent } from './components/signup/signup.component';
     SignupFunnelPersonAgencyComponent,
     SignupFunnelOtherInstructionComponent,
     SignupFunnelRentalCityComponent,
-    SignupComponent
+    SignupComponent,
+    AuthCompleteComponent
   ],
   imports: [
     ReactiveFormsModule,

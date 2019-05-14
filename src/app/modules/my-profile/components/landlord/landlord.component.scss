@@ -10,6 +10,23 @@
   .avatar {
     margin-left: -15px;
     margin-right: -15px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50rem;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    @include media-breakpoint-down(xs) {
+      width: 100vw;
+      height: 100vw;
+      border-radius: 0;
+
+      .avatar-options {
+        display: flex !important;
+      }
+    }
 
     i {
       top: 20px;
@@ -25,18 +42,50 @@
       margin-right: 0;
     }
 
-    img {
+    .avatar-options {
+      display: none;
+      top: 0;
+      bottom: 0;
       width: 100%;
-      height: 100vw;
-      object-fit: cover;
-      object-position: center center;
+      background-color: rgba(0, 0, 0, .7);
+      border-radius: 50rem;
+      color: $white;
 
-      @include media-breakpoint-up(sm) {
-        width: 140px;
-        height: 140px;
-        border-radius: 50rem;
+      @include media-breakpoint-down(xs) {
+        width: 100vw;
+        height: 50px;
+        top: unset;
+        border-radius: 0;
+      }
+
+      .avatar-options-update {
+        span {
+          cursor: pointer;
+        }
+      }
+
+      .avatar-options-button {
+        i {
+          cursor: pointer;
+        }
+      }
+
+      .avatar-options-upload {
+        span {
+          cursor: pointer;
+        }
       }
     }
+
+    &:hover {
+      .avatar-options {
+        display: flex;
+      }
+    }
+  }
+
+  .avatar-blank {
+    background-image: url('/assets/images/profile/blank.png') !important;
   }
 
   .profile-info {

@@ -1,0 +1,99 @@
+@import "~src/assets/styles/scss/variables";
+
+.canvas-container {
+  width: 400px;
+  margin: 20px auto;
+  position: relative;
+
+  .crop-frame-border-width {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .6);
+
+    &.crop-frame-border-left {
+      left: 0;
+    }
+
+    &.crop-frame-border-right {
+      right: 0;
+    }
+  }
+
+  .crop-frame-border-height {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .6);
+
+    &.crop-frame-border-top {
+      top: 0;
+    }
+
+    &.crop-frame-border-bottom {
+      bottom: 0;
+    }
+  }
+
+  canvas {
+    width: 100%;
+  }
+}
+
+.crop-frame-border {
+  display: none;
+}
+
+.button-container {
+  button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    outline: none;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .photo-edit {
+    position: relative;
+    height: calc(100vh - 1rem);
+  }
+
+  .modal-body {
+    height: calc(100% - 136px);
+  }
+
+  .crop-frame-border {
+    display: block;
+  }
+
+  .canvas-container {
+    position: absolute;
+    top: 5px;
+    bottom: 90px;
+    left: 0;
+    right: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    width: 100%;
+
+    canvas {
+      position: absolute;
+    }
+  }
+
+  .photo-edit-panel-wrapper {
+    bottom: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    .save-button-container {
+      button {
+        width: 90%;
+      }
+    }
+  }
+}
