@@ -1,4 +1,5 @@
-<div class="settings">
+<div class="settings"
+     *ngIf="user">
   <div class="back mb-4 mt-3 mt-sm-0">
     <button class="btn btn-back d-sm-block d-none"
             (click)="onBack()">
@@ -9,38 +10,100 @@
        (click)="onBack()"></i>
   </div>
   <h2 class="mb-4">{{ 'COMMON.SETTINGS' | translate }}</h2>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="form-group">
-        <label>{{ 'COMMON.PASSWORD_CHANGE' | translate }}:</label>
-        <input type="text" class="form-control" placeholder="{{ 'COMMON.CURRENT_PASSWORD' | translate }}:">
+  <div class="settings-wrapper">
+    <div class="settings-section border-bottom py-3">
+      <div class="section-header row align-items-center">
+        <div class="section-title col-3 font-size-lg font-weight-bolder">{{ 'COMMON.FIRST_NAME' | translate }}</div>
+        <div class="section-placeholder col-6 font-size-lg text-muted">{{ user.firstName }}</div>
+        <div class="section-toggle col-3 text-right">
+          <button type="button"
+                  class="btn btn-link"
+                  (click)="firstNameCollapsed = !firstNameCollapsed">{{ 'COMMON.EDIT' | translate }}</button>
+        </div>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="{{ 'COMMON.NEW_PASSWORD' | translate }}:">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="{{ 'COMMON.REPEAT_NEW_PASSWORD' | translate }}:">
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>
+      <div class="section-content mt-3"
+           [ngbCollapse]="!firstNameCollapsed">
+        <app-first-name-setting></app-first-name-setting>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="form-group">
-        <label>{{ 'COMMON.CHANGE_EMAIL_ADDRESS' | translate }}:</label>
-        <input type="text" class="form-control" placeholder="{{ 'COMMON.CURRENT_EMAIL' | translate }}:">
+    <div class="settings-section border-bottom py-3">
+      <div class="section-header row align-items-center">
+        <div class="section-title col-3 font-size-lg font-weight-bolder">{{ 'COMMON.LAST_NAME' | translate }}</div>
+        <div class="section-placeholder col-6 font-size-lg text-muted">{{ user.lastName }}</div>
+        <div class="section-toggle col-3 text-right">
+          <button type="button"
+                  class="btn btn-link"
+                  (click)="lastNameCollapsed = !lastNameCollapsed">{{ 'COMMON.EDIT' | translate }}</button>
+        </div>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="{{ 'COMMON.NEW_EMAIL' | translate }}:">
+      <div class="section-content mt-3"
+           [ngbCollapse]="!lastNameCollapsed">
+        <app-last-name-setting></app-last-name-setting>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="{{ 'COMMON.CONFIRM_NEW_EMAIL' | translate }}:">
+    </div>
+    <div class="settings-section border-bottom py-3">
+      <div class="section-header row align-items-center">
+        <div class="section-title col-3 font-size-lg font-weight-bolder">{{ 'COMMON.EMAIL' | translate }}</div>
+        <div class="section-placeholder col-6 font-size-lg text-muted">{{ user.email }}</div>
+        <div class="section-toggle col-3 text-right">
+          <button type="button"
+                  class="btn btn-link"
+                  (click)="emailCollapsed = !emailCollapsed">{{ 'COMMON.EDIT' | translate }}</button>
+        </div>
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>
+      <div class="section-content mt-3"
+           [ngbCollapse]="!emailCollapsed">
+        <app-email-setting></app-email-setting>
+      </div>
+    </div>
+    <div class="settings-section border-bottom py-3">
+      <div class="section-header row align-items-center">
+        <div class="section-title col-3 font-size-lg font-weight-bolder">{{ 'COMMON.PASSWORD' | translate }}</div>
+        <div class="section-placeholder col-6 font-size-lg text-muted">*********</div>
+        <div class="section-toggle col-3 text-right">
+          <button type="button"
+                  class="btn btn-link"
+                  (click)="passwordCollapsed = !passwordCollapsed">{{ 'COMMON.EDIT' | translate }}</button>
+        </div>
+      </div>
+      <div class="section-content mt-3"
+           [ngbCollapse]="!passwordCollapsed">
+        <app-password-setting></app-password-setting>
       </div>
     </div>
   </div>
+<!--  <div class="row">-->
+<!--    <div class="col-sm-6">-->
+<!--      <div class="form-group">-->
+<!--        <label>{{ 'COMMON.PASSWORD_CHANGE' | translate }}:</label>-->
+<!--        <input type="text" class="form-control" placeholder="{{ 'COMMON.CURRENT_PASSWORD' | translate }}:">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <input type="text" class="form-control" placeholder="{{ 'COMMON.NEW_PASSWORD' | translate }}:">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <input type="text" class="form-control" placeholder="{{ 'COMMON.REPEAT_NEW_PASSWORD' | translate }}:">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <button class="btn btn-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-sm-6">-->
+<!--      <div class="form-group">-->
+<!--        <label>{{ 'COMMON.CHANGE_EMAIL_ADDRESS' | translate }}:</label>-->
+<!--        <input type="text" class="form-control" placeholder="{{ 'COMMON.CURRENT_EMAIL' | translate }}:">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <input type="text" class="form-control" placeholder="{{ 'COMMON.NEW_EMAIL' | translate }}:">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <input type="text" class="form-control" placeholder="{{ 'COMMON.CONFIRM_NEW_EMAIL' | translate }}:">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <button class="btn btn-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
   <div class="row mt-5">
     <div class="col-sm-6">
       <h6 class="font-size-lg text-muted font-weight-bolder">{{ 'COMMON.DELETE_ACCOUNT' | translate }}</h6>

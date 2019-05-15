@@ -23,8 +23,7 @@
               <input type="text"
                      class="form-control"
                      id="first-name"
-                     formControlName="firstName"
-                     required>
+                     formControlName="firstName">
               <div class="invalid-feedback d-block" *ngIf="signupForm.controls['firstName'].hasError('required') && signupForm.controls['firstName'].touched">{{ 'ERROR.FISRTNAME_REQUIRED' | translate }}</div>
             </div>
             <div class="form-group col-6">
@@ -32,8 +31,7 @@
               <input type="text"
                      class="form-control"
                      id="last-name"
-                     formControlName="lastName"
-                     required>
+                     formControlName="lastName">
               <div class="invalid-feedback d-block" *ngIf="signupForm.controls['lastName'].hasError('required') && signupForm.controls['lastName'].touched">{{ 'ERROR.LASTNAME_REQUIRED' | translate }}</div>
             </div>
           </div>
@@ -42,8 +40,7 @@
             <input type="email"
                    class="form-control"
                    id="email"
-                   formControlName="email"
-                   required>
+                   formControlName="email">
             <div class="invalid-feedback d-block" *ngIf="signupForm.controls['email'].hasError('required') && signupForm.controls['email'].touched">{{ 'ERROR.EMAIL_REQUIRED' | translate }}</div>
             <div class="invalid-feedback d-block" *ngIf="signupForm.controls['email'].hasError('email') && signupForm.controls['email'].touched">{{ 'ERROR.INVALID_EMAIL' | translate }}</div>
           </div>

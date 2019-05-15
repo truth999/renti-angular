@@ -18,7 +18,6 @@ import { ApartmentCreateComponent } from './components/apartment-create/apartmen
 import { ApartmentFloorComponent } from './components/apartment-create/apartment-floor/apartment-floor.component';
 import { ApartmentDrawComponent } from './components/apartment-create/apartment-draw/apartment-draw.component';
 import { ApartmentRoomComponent } from './components/apartment-create/apartment-room/apartment-room.component';
-import { ApartmentRoomNameComponent } from './components/apartment-create/apartment-room/apartment-room-name/apartment-room-name.component';
 import { ApartmentUploadComponent } from './components/apartment-create/apartment-upload/apartment-upload.component';
 
 import { ApartmentDataComponent } from './components/apartment-create/apartment-data/apartment-data.component';
@@ -41,6 +40,7 @@ import { SignupFunnelRentalCityComponent } from './components/signup-funnel/sign
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthCompleteComponent } from './components/auth-complete/auth-complete.component';
+import { ApartmentCreateService } from './services/apartment-create.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,6 @@ import { AuthCompleteComponent } from './components/auth-complete/auth-complete.
     ApartmentFloorComponent,
     ApartmentDrawComponent,
     ApartmentRoomComponent,
-    ApartmentRoomNameComponent,
     ApartmentUploadComponent,
     ApartmentDataComponent,
     SignupFunnelTypeUsernameComponent,
@@ -65,6 +64,9 @@ import { AuthCompleteComponent } from './components/auth-complete/auth-complete.
     SignupFunnelRentalCityComponent,
     SignupComponent,
     AuthCompleteComponent
+  ],
+  providers: [
+    ApartmentCreateService
   ],
   imports: [
     ReactiveFormsModule,

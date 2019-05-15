@@ -1,0 +1,373 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "renti-add";
+  src:url("fonts/renti-add.eot");
+  src:url("fonts/renti-add.eot?#iefix") format("embedded-opentype"),
+    url("fonts/renti-add.woff") format("woff"),
+    url("fonts/renti-add.ttf") format("truetype"),
+    url("fonts/renti-add.svg#victoriamilan") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "renti-add" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="app-icon-"]:before,
+[class*=" app-icon-"]:before {
+  font-family: "renti-add" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-icon-chat:before {
+  content: "\62";
+}
+.app-icon-wink:before {
+  content: "\63";
+}
+.app-icon-user:before {
+  content: "\65";
+}
+.app-icon-power:before {
+  content: "\67";
+}
+.app-icon-star:before {
+  content: "\68";
+}
+.app-icon-gift:before {
+  content: "\69";
+}
+.app-icon-search:before {
+  content: "\61";
+}
+.app-icon-camera:before {
+  content: "\6c";
+}
+.app-icon-close:before {
+  content: "\6d";
+}
+.app-icon-facebook:before {
+  content: "\6b";
+}
+.app-icon-instagram:before {
+  content: "\6e";
+}
+.app-icon-twitter:before {
+  content: "\6f";
+}
+.app-icon-location:before {
+  content: "\71";
+}
+.app-icon-location-full:before {
+  content: "\72";
+}
+.app-icon-more:before {
+  content: "\73";
+}
+.app-icon-eye:before {
+  content: "\74";
+}
+.app-icon-lock:before {
+  content: "\64";
+}
+.app-icon-logout:before {
+  content: "\77";
+}
+.app-icon-navigation:before {
+  content: "\66";
+}
+.app-icon-arrow-right:before {
+  content: "\78";
+}
+.app-icon-check-mark:before {
+  content: "\7a";
+}
+.app-icon-blur:before {
+  content: "\43";
+}
+.app-icon-blur-partial:before {
+  content: "\44";
+}
+.app-icon-mask:before {
+  content: "\45";
+}
+.app-icon-mask-1:before {
+  content: "\46";
+}
+.app-icon-mask-2:before {
+  content: "\47";
+}
+.app-icon-mask-3:before {
+  content: "\48";
+}
+.app-icon-mask-4:before {
+  content: "\49";
+}
+.app-icon-rotate:before {
+  content: "\4a";
+}
+.app-icon-crop:before {
+  content: "\4b";
+}
+.app-icon-undo-arrow:before {
+  content: "\4c";
+}
+.app-icon-dot:before {
+  content: "\4d";
+}
+.app-icon-envelop:before {
+  content: "\4e";
+}
+.app-icon-light:before {
+  content: "\4f";
+}
+.app-icon-wink-full:before {
+  content: "\52";
+}
+.app-icon-cross-selling-nextlove:before {
+  content: "\55";
+}
+.app-icon-cross-selling-babesoncamera:before {
+  content: "\53";
+}
+.app-icon-cross-selling-finnsex:before {
+  content: "\54";
+}
+.app-icon-cross-selling-victoriamilancasino:before {
+  content: "\56";
+}
+.app-icon-lock-closed:before {
+  content: "\58";
+}
+.app-icon-arrow-left:before {
+  content: "\70";
+}
+.app-icon-heart:before {
+  content: "\41";
+}
+.app-icon-heart-full:before {
+  content: "\42";
+}
+.app-icon-settings:before {
+  content: "\76";
+}
+.app-icon-report:before {
+  content: "\75";
+}
+.app-icon-security-checked:before {
+  content: "\50";
+}
+.app-icon-shake-phone:before {
+  content: "\51";
+}
+.app-icon-windows-live:before {
+  content: "\57";
+}
+.app-icon-google-plus:before {
+  content: "\59";
+}
+.app-icon-info-circle:before {
+  content: "\5a";
+}
+.app-icon-yahoo:before {
+  content: "\30";
+}
+.app-icon-bullhorn:before {
+  content: "\31";
+}
+.app-icon-pencil:before {
+  content: "\32";
+}
+.app-icon-trash:before {
+  content: "\33";
+}
+.app-icon-pencil-full:before {
+  content: "\34";
+}
+.app-icon-pencil-blue:before {
+  content: "\35";
+}
+.app-icon-close-red:before {
+  content: "\36";
+}
+.app-icon-menu:before {
+  content: "\37";
+}
+.app-icon-new:before {
+  content: "\38";
+}
+.app-icon-sex-any:before {
+  content: "\39";
+}
+.app-icon-online:before {
+  content: "\21";
+}
+.app-icon-sex-male:before {
+  content: "\22";
+}
+.app-icon-sex-female:before {
+  content: "\23";
+}
+.app-icon-smile:before {
+  content: "\24";
+}
+.app-icon-fire:before {
+  content: "\25";
+}
+.app-icon-long-arrow-right-filled:before {
+  content: "\26";
+}
+.app-icon-security:before {
+  content: "\27";
+}
+.app-icon-long-arrow-left-filled:before {
+  content: "\28";
+}
+.app-icon-upload:before {
+  content: "\29";
+}
+.app-icon-photo-add:before {
+  content: "\2a";
+}
+.app-icon-cross-selling-richmeetbeautiful:before {
+  content: "\2b";
+}
+.app-icon-checkmark-filled:before {
+  content: "\2c";
+}
+.app-icon-add-filled:before {
+  content: "\2d";
+}
+.app-icon-chat-1:before {
+  content: "\2e";
+}
+.app-icon-users:before {
+  content: "\3a";
+}
+.app-icon-puzzle:before {
+  content: "\2f";
+}
+.app-icon-drag-handle:before {
+  content: "\3b";
+}
+.app-icon-filter-appearance:before {
+  content: "\3c";
+}
+.app-icon-filter-background:before {
+  content: "\3d";
+}
+.app-icon-filter-sex-drive:before {
+  content: "\3e";
+}
+.app-icon-filter-lifestyle:before {
+  content: "\3f";
+}
+.app-icon-filter-menu:before {
+  content: "\40";
+}
+.app-icon-filter-other:before {
+  content: "\5b";
+}
+.app-icon-filter-seeking:before {
+  content: "\5d";
+}
+.app-icon-security-checked-filled:before {
+  content: "\5e";
+}
+.app-icon-phone:before {
+  content: "\5f";
+}
+.app-icon-arrow-down:before {
+  content: "\79";
+}
+.app-icon-arrow-up:before {
+  content: "\60";
+}
+.app-icon-fetti:before {
+  content: "\7b";
+}
+.app-icon-info-square:before {
+  content: "\7c";
+}
+.app-icon-profile:before {
+  content: "\7d";
+}
+.app-icon-caret-down:before {
+  content: "\7e";
+}
+.app-icon-caret-left:before {
+  content: "\5c";
+}
+.app-icon-caret-right:before {
+  content: "\e000";
+}
+.app-icon-caret-up:before {
+  content: "\e001";
+}
+.app-icon-info:before {
+  content: "\e002";
+}
+.app-icon-show-password:before {
+  content: "\e003";
+}
+.app-icon-atom:before {
+  content: "\e004";
+}
+.app-icon-communication:before {
+  content: "\e005";
+}
+.app-icon-credit-cards:before {
+  content: "\e006";
+}
+.app-icon-key:before {
+  content: "\e007";
+}
+.app-icon-circle-block:before {
+  content: "\e008";
+}
+.app-icon-chart:before {
+  content: "\e009";
+}
+.app-icon-deactivated-user:before {
+  content: "\6a";
+}
+.app-icon-menu-circle:before {
+  content: "\e00a";
+}
+.app-icon-double-tick:before {
+  content: "\e00b";
+}
+.app-icon-rocket:before {
+  content: "\e00c";
+}
+.app-icon-binoculars:before {
+  content: "\e00d";
+}
+.app-icon-chat-dots:before {
+  content: "\e00e";
+}
+.app-icon-security-keyhole:before {
+  content: "\e00f";
+}
+.app-icon-send:before {
+  content: "\e010";
+}

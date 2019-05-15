@@ -7,15 +7,17 @@ import { InternationalPhoneNumberModule } from 'ngx-international-phone-number';
 import { SharedModule } from '../../shared/shared.module';
 
 import { MyProfileRoutingModule } from './my-profile-routing.module';
-import { TenantComponent } from './components/tenant/tenant.component';
-import { LandlordComponent } from './components/landlord/landlord.component';
+import { TenantComponent } from './components/my-profile/tenant/tenant.component';
+import { LandlordComponent } from './components/my-profile/landlord/landlord.component';
 import { LandlordService } from './services/landlord.service';
 import { TenantService } from './services/tenant.service';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
     TenantComponent,
-    LandlordComponent
+    LandlordComponent,
+    MyProfileComponent
   ],
   providers: [
     LandlordService,

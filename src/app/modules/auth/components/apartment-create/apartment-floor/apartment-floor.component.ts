@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApartmentCreateService } from '../../../services/apartment-create.service';
 
 @Component({
   selector: 'app-apartment-floor',
@@ -6,23 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./apartment-floor.component.scss']
 })
 export class ApartmentFloorComponent implements OnInit {
-  counter = 0;
+  counter: number;
 
-  constructor() { }
+  constructor(
+    private apartmentCreateService: ApartmentCreateService
+  ) { }
 
   ngOnInit() {
+    this.counter = this.apartmentCreateService.roomCount;
+    this.apartmentCreateService.roomCountChanged.subscribe(counter => {
+      this.counter = counter;
+    });
   }
 
   onPlus() {
-    this.counter = this.counter + 1;
+    this.apartmentCreateService.increaseRoomCount();
   }
 
   onMinus() {
-    this.counter = this.counter - 1;
-
-    if (this.counter < 0) {
-      this.counter = 0;
-    }
+    this.apartmentCreateService.decreaseRoomCount();
   }
 
 }

@@ -1,8 +1,20 @@
 <div class="apartment-room">
-  <!--  -->
+  <!-- Draw -->
   <h5>{{ 'COMMON.DRAG_ROOM_NUMBER' | translate }}:</h5>
-  <app-apartment-room-name *ngFor="let number of arrayNumber(roomCount); let i = index" [number]="i + 1"></app-apartment-room-name>
-  <div class="form-group">
-    <i class="icon-plus" (click)="onAddRoom()"></i>
-  </div>
+  <form [formGroup]="roomForm"
+        (ngSubmit)="submit()">
+    <div formArrayName="room">
+      <div class="form-group d-flex justify-content-between"
+           *ngFor="let roomEl of room.controls; let i = index"
+           [formGroupName]="i">
+        <div class="number h3 rounded-circle d-flex justify-content-center align-items-center mb-0">
+          {{ i + 1 }}
+        </div>
+        <input type="text"
+               class="form-control"
+               placeholder="{{ 'COMMON.ROOM_NAME' | translate }}:"
+               formControlName="name">
+      </div>
+    </div>
+  </form>
 </div>

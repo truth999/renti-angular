@@ -1,16 +1,14 @@
 <div class="card">
   <div class="card-body">
     <p><ngb-progressbar [value]="50" height="10px"></ngb-progressbar></p>
-    <form>
-      <app-apartment-floor *ngIf="step == 0"></app-apartment-floor>
-      <app-apartment-draw *ngIf="step == 1" (nextStep)="onNextStep()"></app-apartment-draw>
-      <app-apartment-room *ngIf="step == 2"></app-apartment-room>
-      <app-apartment-upload *ngIf="step == 3"></app-apartment-upload>
-      <app-apartment-data *ngIf="step == 4"></app-apartment-data>
-      <div class="continue mt-sm-5 bg-white d-flex align-items-center">
-        <span class="icon-left-circle mr-4" (click)="onPreviewStep()" *ngIf="step != 1"></span>
-        <button class="btn btn-primary btn-lg w-100" (click)="onNextStep()" *ngIf="step != 1">{{ 'COMMON.CONTINUE' | translate }}</button>
-      </div>
-    </form>
+    <app-apartment-floor *ngIf="step == 0"></app-apartment-floor>
+    <app-apartment-draw *ngIf="step == 1" (nextStep)="onNextStep()"></app-apartment-draw>
+    <app-apartment-room *ngIf="step == 2"></app-apartment-room>
+    <app-apartment-upload *ngIf="step == 3"></app-apartment-upload>
+    <app-apartment-data *ngIf="step == 4"></app-apartment-data>
+    <div class="continue mt-sm-5 bg-white d-flex align-items-center">
+      <span class="icon-left-circle mr-4" (click)="onPreviewStep()" *ngIf="step != 1"></span>
+      <button class="btn btn-primary btn-lg w-100" (click)="onNextStep()" *ngIf="step != 1">{{ 'COMMON.CONTINUE' | translate }}</button>
+    </div>
   </div>
 </div>

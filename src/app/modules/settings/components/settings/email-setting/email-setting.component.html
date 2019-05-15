@@ -1,0 +1,27 @@
+<form [formGroup]="emailForm"
+      (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="email"
+               class="font-weight-normal font-size-base">{{ 'COMMON.NEW_EMAIL_ADDRESS' | translate }}</label>
+        <input type="email"
+               id="email"
+               class="form-control"
+               formControlName="email">
+      </div>
+      <div class="form-group">
+        <label for="password"
+               class="font-weight-normal font-size-base">{{ 'COMMON.CURRENT_PASSWORD' | translate }}</label>
+        <input type="password"
+               id="password"
+               class="form-control"
+               formControlName="password">
+      </div>
+    </div>
+    <div class="col-3 position-relative">
+      <button type="submit" class="btn btn-primary position-absolute">{{ 'COMMON.SAVE' | translate }}</button>
+    </div>
+  </div>
+</form>

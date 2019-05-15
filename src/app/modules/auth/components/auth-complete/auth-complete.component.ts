@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CONFIG_CONST } from '../../../../../config/config-const';
-import { ActivatedRoute, Params } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-auth-complete',
@@ -10,17 +11,23 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class AuthCompleteComponent implements OnInit {
   AccountTypes = CONFIG_CONST.accountType;
-
   accountType: string;
 
   constructor(
-    private route: ActivatedRoute
+    private router: Router,
+    private authService: AuthService
   ) { }
 
-  ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.accountType = params.accountType;
-    });
+  async ngOnInit() {
+    try {
+      const response = await this.authService.getUser();
+      this.accountType = response.user.accountType;
+    } finally {
+    }
+  }
+
+  onToProfile() {
+    this.router.navigate(['/app/my-profile']);
   }
 
 }

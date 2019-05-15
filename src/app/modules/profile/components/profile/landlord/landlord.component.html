@@ -1,0 +1,142 @@
+<div class="landlords-profile position-relative"
+     *ngIf="landlord">
+  <div class="back mb-sm-4 d-sm-block d-none">
+    <button class="btn btn-back"
+            (click)="onBack()">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+  </div>
+  <div class="avatar">
+    <i class="icon-left position-absolute h4 mb-0 d-sm-none"
+       (click)="onBack()"></i>
+    <img src="/assets/images/profile/landlord.png"
+         alt="Avatar">
+  </div>
+  <div class="card profile-info">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="row name-info">
+            <div class="col-sm-12 col-8 pr-0">
+              <h1 class="name font-weight-bolder">{{ user.firstName }} {{ user.lastName }}</h1>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-sm-8">
+              <div class="profile-complete w-100">
+                <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
+                  <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
+                  <span>11/12</span>
+                </div>
+                <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 py-2">
+          <div class="text-right mb-sm-5 mb-3">
+            <button class="btn btn-outline-primary btn-lg">{{ 'COMMON.SAVE_TO_FAVORITES' | translate }}</button>
+          </div>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="border-top-0">{{ 'COMMON.EMAIL' | translate }}:</td>
+                <td class="border-top-0 font-weight-bold text-right">{{ user.email }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
+                <td class="font-weight-bold text-right">{{ landlord.mobile }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
+                <td class="font-weight-bold text-right">{{ landlord.placeOfBirth.city }}, {{ landlord.placeOfBirth.country }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'COMMON.DATE_OF_BIRTH' | translate }}:</td>
+                <td class="font-weight-bold text-right">
+                  {{ landlord.dateOfBirth }}
+                </td>
+              </tr>
+              <tr>
+                <td>{{ 'COMMON.NATIONALITY' | translate }}:</td>
+                <td class="font-weight-bold text-right">{{ landlord.nationality }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
+                <td class="font-weight-bold text-right">
+                  {{ landlord.spokenLanguages }}
+                </td>
+              </tr>
+              <tr>
+                <td>{{ 'COMMON.PRIVATE_PERSON_AGENCY' | translate }}:</td>
+                <td class="font-weight-bold text-right">
+                  {{ landlord.isPerson ? 'Private person' : 'Agency' }}
+                </td>
+              </tr>
+              <tr>
+                <td>{{ 'COMMON.NAME_OF_THE_AGENCY' | translate }}:</td>
+                <td class="font-weight-bold text-right">
+                  {{ landlord.nameOfAgency }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-sm-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <app-feedback></app-feedback>
+          <div class="feedback">
+            <div class="client d-flex justify-content-between">
+              <span class="client-name font-weight-bold">Kelsey Taylor</span>
+              <div class="rating-date d-flex">
+                <ngb-rating [rate]="5"
+                            [readonly]="true"
+                            max="5"
+                            class="item-rating mr-1">
+                  <ng-template let-fill="fill">
+                    <i class="icon-star-fill"
+                       *ngIf="fill === 100"></i>
+                    <i class="icon-star"
+                       *ngIf="fill !== 100"></i>
+                  </ng-template>
+                </ngb-rating>
+                <span class="date">2019.07.12</span>
+              </div>
+            </div>
+            <p class="feedback-content mt-2">
+              Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+          </div>
+          <div class="feedback mt-4">
+            <div class="client d-flex justify-content-between">
+              <span class="client-name font-weight-bold">Kate Tomlins</span>
+              <div class="rating-date d-flex">
+                <ngb-rating [rate]="5"
+                            [readonly]="true"
+                            max="5"
+                            class="item-rating mr-1">
+                  <ng-template let-fill="fill">
+                    <i class="icon-star-fill"
+                       *ngIf="fill === 100"></i>
+                    <i class="icon-star"
+                       *ngIf="fill !== 100"></i>
+                  </ng-template>
+                </ngb-rating>
+                <span class="date">2019.08.24</span>
+              </div>
+            </div>
+            <p class="feedback-content mt-2">
+              We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

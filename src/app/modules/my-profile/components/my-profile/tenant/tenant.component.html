@@ -1,0 +1,401 @@
+<div class="tenants-profile-edit position-relative">
+  <form *ngIf="tenantForm"
+        [formGroup]="tenantForm"
+        (ngSubmit)="update()">
+    <div class="back mb-sm-4 d-sm-block d-none">
+      <button class="btn btn-back"
+              (click)="onBack()">
+        <i class="icon-left h4 align-middle mb-0"></i>
+        {{ 'COMMON.BACK' | translate }}
+      </button>
+    </div>
+    <div class="avatar"
+         [ngClass]="{'avatar-blank': photoDeleted}"
+         [ngStyle]="{'background-image': getPhotoUrl()}">
+      <i class="icon-left position-absolute h4 mb-0 d-sm-none"
+         (click)="onBack()"></i>
+      <div class="avatar-options align-items-center justify-content-around position-absolute font-size-lg">
+        <div class="avatar-options-update"
+             *ngIf="!photoDeleted">
+          <span (click)="onOpenPhotoUploadModal()">{{ 'COMMON.CHANGE' | translate }}</span>
+        </div>
+        <div class="avatar-options-button"
+             *ngIf="!photoDeleted">
+          <i class="app-icon-pencil"
+             (click)="onOpenPhotoEditModal()"></i>
+        </div>
+        <div class="avatar-options-button"
+             *ngIf="!photoDeleted">
+          <i class="icon-close"
+             (click)="onDeletePhoto()"></i>
+        </div>
+        <div class="avatar-options-upload"
+             *ngIf="photoDeleted">
+          <span (click)="onOpenPhotoUploadModal()">{{ 'COMMON.UPDATE_PHOTO' | translate }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="card profile-info">
+      <div class="card-body">
+        <div class="row card-body-top pb-4 pb-sm-0">
+          <div class="col-sm-7">
+            <div class="row name-info">
+              <div class="col-sm-12 col-8 pr-0">
+                <h1 class="name font-weight-bolder">{{ user.firstName }} {{ user.lastName }}</h1>
+<!--                <p class="info text-muted font-weight-bold"><span class="font-size-lg font-weight-bolder">23</span>, Student @ University of Debrecen</p>-->
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-sm-8">
+                <div class="profile-complete w-100">
+                  <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
+                    <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
+                    <span>9/12</span>
+                  </div>
+                  <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>
+                </div>
+<!--                <div class="form-group pt-2 position-relative rent">-->
+<!--                  <label for="rent" class="h5 font-weight-bolder">{{ 'COMMON.LOOKING_TO_RENT_IN' | translate }}:</label>-->
+<!--                  <select id="rent" -->
+<!--                          class="custom-select">-->
+<!--                    <option value="">Debrecen, Hungary</option>-->
+<!--                  </select>-->
+<!--                  <i class="icon-location position-absolute"></i>-->
+<!--                </div>-->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5 button-group text-sm-right py-2">
+            <button type="button"
+                    class="btn btn-outline-primary btn-lg mb-sm-3"
+                    (click)="onSettings()">{{ 'COMMON.SETTINGS' | translate }}</button>
+            <button type="submit"
+                    class="btn btn-outline-primary btn-lg"
+                    [disabled]="!tenantForm.valid">{{ 'COMMON.VIEW_AS' | translate }}...</button>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label for="other-text"
+                 class="h5 font-weight-bolder">{{ 'COMMON.OTHER_INFORMATION' | translate }}:</label>
+          <textarea id="other-text"
+                    class="form-control"
+                    rows="5"
+                    maxlength="50"
+                    formControlName="otherText"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="free-text-introduction"
+                 class="h5 font-weight-bolder">{{ 'COMMON.FREE_TEXT_INTRODUCTION' | translate }}:</label>
+          <textarea id="free-text-introduction"
+                    rows="5"
+                    class="form-control"
+                    formControlName="freeTextIntroduction"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-sm-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6 py-2">
+            <table class="table">
+              <tbody>
+              <tr>
+                <td class="border-top-0 py-0 align-middle">{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
+                <td class="text-right border-top-0 py-0 pr-0">
+                  <international-phone-number id="phone"
+                                              placeholder=""
+                                              formControlName="mobile"></international-phone-number>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('mobile').invalid && (tenantForm.get('mobile').dirty || tenantForm.get('mobile').touched)">
+                    <span *ngIf="tenantForm.get('mobile').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
+                <td class="text-right pr-0">
+                  <div class="form-inline justify-content-between"
+                       formGroupName="placeOfBirth">
+                    <select class="custom-select"
+                            formControlName="country">
+                      <option value="US">US</option>
+                    </select>
+                    <select class="custom-select"
+                            formControlName="city">
+                      <option value="Washington">Washington</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
+                <td class="text-right pr-0 w-50">
+                  <div class="form-inline justify-content-between"
+                       formGroupName="dateOfBirth">
+                    <select class="custom-select"
+                            formControlName="day">
+                      <option value="19">19</option>
+                    </select>
+                    <select class="custom-select"
+                            formControlName="month">
+                      <option value="03">3</option>
+                    </select>
+                    <select class="custom-select"
+                            formControlName="year">
+                      <option value="1995">1995</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <!--            <tr>-->
+              <!--              <td class="py-0 align-middle">{{ 'COMMON.GENDER' | translate }}:</td>-->
+              <!--              <td class="py-0 text-right">-->
+              <!--                <select name="gender" class="custom-select border-0 w-auto">-->
+              <!--                  <option value="">{{ 'COMMON.FEMALE' | translate }}</option>-->
+              <!--                </select>-->
+              <!--              </td>-->
+              <!--            </tr>-->
+              <tr>
+                <td class="py-0 align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
+                <td class="py-0 pr-0 text-right">
+                  <select name="nationality"
+                          class="custom-select border-0 w-auto"
+                          formControlName="nationality">
+                    <option value="US">US</option>
+                  </select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('nationality').invalid && (tenantForm.get('nationality').dirty || tenantForm.get('nationality').touched)">
+                    <span *ngIf="tenantForm.get('nationality').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
+                <td class="py-0 pr-0 text-right">
+                  <ng-select [items]="spokenLanguages"
+                             [multiple]="true"
+                             [closeOnSelect]="false"
+                             formControlName="spokenLanguages"></ng-select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('spokenLanguages').invalid && (tenantForm.get('spokenLanguages').dirty || tenantForm.get('spokenLanguages').touched)">
+                    <span *ngIf="tenantForm.get('spokenLanguages').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">{{ 'COMMON.CURRENT_CITY' | translate }}:</td>
+                <td class="pr-0 text-right">
+                  <div class="form-inline justify-content-between"
+                       formGroupName="currentCity">
+                    <select class="custom-select"
+                            formControlName="country">
+                      <option value="US">US</option>
+                    </select>
+                    <select class="custom-select"
+                            formControlName="city">
+                      <option value="Washington">Washington</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'COMMON.HIGHEST_LEVEL_OF_QUALIFICATION' | translate }}:</td>
+                <td class="py-0 pr-0 text-right">
+                  <select class="custom-select border-0 w-auto"
+                          formControlName="highestLevelOfQualification">
+                    <option value="elementary">{{ 'COMMON.ELEMENTARY_SCHOOL' | translate }}</option>
+                    <option value="secondary">{{ 'COMMON.SECONDARY_SCHOOL' | translate }}</option>
+                    <option value="university">{{ 'COMMON.UNIVERSITY' | translate }}</option>
+                  </select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('highestLevelOfQualification').invalid && (tenantForm.get('highestLevelOfQualification').dirty || tenantForm.get('highestLevelOfQualification').touched)">
+                    <span *ngIf="tenantForm.get('highestLevelOfQualification').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">
+                  {{ 'COMMON.JOB_TITLE' | translate }}:<br>
+                  <a href="javascript:"
+                     (click)="addJobTitle()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
+                </td>
+                <td class="pr-0 text-right"
+                    formArrayName="jobTitle">
+                  <input type="text"
+                         class="form-control text-right"
+                         *ngFor="let jobTitleEl of jobTitle.controls; let i = index"
+                         [formControlName]="i">
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'COMMON.IF_UNIVERSITY_STUDENT_THEN_WHICH_SPECIALITY' | translate }}</td>
+                <td class="py-0 pr-0 text-right">
+                  <input type="text"
+                         class="form-control border-0 text-right"
+                         formControlName="universitySpeciality">
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('universitySpeciality').invalid && (tenantForm.get('universitySpeciality').dirty || tenantForm.get('universitySpeciality').touched)">
+                    <span *ngIf="tenantForm.get('universitySpeciality').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'COMMON.CURRENT_WORKPLACE' | translate }}:</td>
+                <td class="py-0 pr-0 text-right">
+                  <input type="text"
+                         class="form-control border-0 text-right"
+                         formControlName="currentWorkplace">
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('currentWorkplace').invalid && (tenantForm.get('currentWorkplace').dirty || tenantForm.get('currentWorkplace').touched)">
+                    <span *ngIf="tenantForm.get('currentWorkplace').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">
+                  {{ 'COMMON.FORMER_WORKPLACES' | translate }}:<br>
+                  <a href="javascript:"
+                     (click)="addFormerWorkplaces()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
+                </td>
+                <td class="pr-0 text-right"
+                    formArrayName="formerWorkplaces">
+                  <input type="text"
+                         class="form-control text-right"
+                         *ngFor="let formerWorkplacesEl of formerWorkplaces.controls; let i = index"
+                         [formControlName]="i">
+                </td>
+              </tr>
+              <!--            <tr>-->
+              <!--              <td class="py-0 align-middle">{{ 'COMMON.OCCUPATION' | translate }}:</td>-->
+              <!--              <td class="py-0 text-right">-->
+              <!--                <select name="occupation" class="custom-select border-0 w-auto">-->
+              <!--                  <option value="">{{ 'COMMON.STUDENT' | translate }}</option>-->
+              <!--                </select>-->
+              <!--              </td>-->
+              <!--            </tr>-->
+              <tr>
+                <td class="py-0 align-middle">{{ 'COMMON.MONTHLY_INCOME' | translate }}:</td>
+                <td class="py-0 pr-0 text-right">
+                  <select class="custom-select border-0 w-auto"
+                          formControlName="monthlyIncome">
+                    <option value="50000"><50,000</option>
+                    <option value="100000">50,000 - 100,000</option>
+                    <option value="200000">100,000 - 200,000</option>
+                    <option value="400000">200,000 - 400,000</option>
+                    <option value="700000">400,000 - 700,000</option>
+                    <option value="1000000">700,000 - 1,000,000</option>
+                    <option value="1500000">1,000,000+</option>
+                  </select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('monthlyIncome').invalid && (tenantForm.get('monthlyIncome').dirty || tenantForm.get('monthlyIncome').touched)">
+                    <span *ngIf="tenantForm.get('monthlyIncome').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <!--            <tr>-->
+              <!--              <td class="py-0 align-middle">{{ 'PROFILE.MARITAL_STATUS' | translate }}:</td>-->
+              <!--              <td class="py-0 text-right">-->
+              <!--                <select name="maritalStatus" class="custom-select border-0 w-auto">-->
+              <!--                  <option value="">{{ 'COMMON.SINGLE' | translate }}</option>-->
+              <!--                </select>-->
+              <!--              </td>-->
+              <!--            </tr>-->
+              <!--            <tr>-->
+              <!--              <td class="py-0 align-middle">{{ 'PROFILE.LOOKING_FOR_COTENANCY' | translate }}:</td>-->
+              <!--              <td class="py-0 text-right">-->
+              <!--                <select name="cotenancy" class="custom-select border-0 w-auto">-->
+              <!--                  <option value="">{{ 'COMMON.NO' | translate }}</option>-->
+              <!--                </select>-->
+              <!--              </td>-->
+              <!--            </tr>-->
+              <!--            <tr>-->
+              <!--              <td class="py-0 align-middle">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}:</td>-->
+              <!--              <td class="py-0 text-right">-->
+              <!--                <select name="pet" class="custom-select border-0 w-auto">-->
+              <!--                  <option value="yes">{{ 'COMMON.YES' | translate }}</option>-->
+              <!--                  <option value="no">{{ 'COMMON.NO' | translate }}</option>-->
+              <!--                </select>-->
+              <!--              </td>-->
+              <!--            </tr>-->
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-6 py-2">
+            <div class="education border-bottom pb-4">
+              <h5 class="font-weight-bolder">{{ 'COMMON.EDUCATION' | translate }}:</h5>
+              <table class="table table-borderless"
+                     formArrayName="education">
+                <tbody>
+                <tr *ngFor="let educationEl of education.controls; let i = index"
+                    [formGroupName]="i">
+                  <td class="pl-0 pt-0">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="{{ 'COMMON.NAME_OF_SCHOOL' | translate }}"
+                           formControlName="nameOfSchool">
+                  </td>
+                  <td class="text-right pt-0 pr-0">
+                    <select class="custom-select w-auto"
+                            formControlName="yearOfGraduation">
+                      <option value="2019">2019</option>
+                    </select>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <a href="javascript:"
+                 (click)="addEducation()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
+            </div>
+            <div class="social mt-4">
+              <h5 class="font-weight-bolder">{{ 'PROFILE.MY_SOCIAL_PROFILES' | translate }}:</h5>
+              <table class="table table-borderless">
+                <tbody>
+                <tr>
+                  <td class="pl-0 pt-0">
+                    <img src="/assets/images/social/facebook.png" alt="">
+                  </td>
+                  <td class="px-0 pt-0 w-100">
+                    <input type="text" class="form-control" placeholder="Facebook username:">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pl-0 pt-0">
+                    <img src="/assets/images/social/twitter.png" alt="">
+                  </td>
+                  <td class="px-0 pt-0 w-100">
+                    <input type="text" class="form-control" placeholder="Twitter username:">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pl-0 pt-0">
+                    <img src="/assets/images/social/twitch.png" alt="">
+                  </td>
+                  <td class="px-0 pt-0 w-100">
+                    <input type="text" class="form-control" placeholder="Twitch username:">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pl-0 pt-0">
+                    <img src="/assets/images/social/youtube.png" alt="">
+                  </td>
+                  <td class="px-0 pt-0 w-100">
+                    <input type="text" class="form-control" placeholder="Youtube username:">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pl-0 pt-0">
+                    <img src="/assets/images/social/instagram.png" alt="">
+                  </td>
+                  <td class="px-0 pt-0 w-100">
+                    <input type="text" class="form-control" placeholder="Instagram username:">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

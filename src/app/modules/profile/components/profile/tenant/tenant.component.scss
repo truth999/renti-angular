@@ -1,0 +1,83 @@
+@import "../../../../../../assets/styles/scss/variables";
+
+.tenants-profile {
+  .btn-back {
+    i {
+      vertical-align: middle;
+    }
+  }
+
+  .avatar {
+    margin-left: -15px;
+    margin-right: -15px;
+
+    i {
+      top: 20px;
+      left: 5px;
+      color: $white;
+    }
+
+    @include media-breakpoint-up(sm) {
+      position: absolute;
+      left: $card-spacer-x;
+      z-index: 1;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100vw;
+      object-fit: cover;
+      object-position: center center;
+
+      @include media-breakpoint-up(sm) {
+        width: 140px;
+        height: 140px;
+        border-radius: 50rem;
+      }
+    }
+  }
+
+  .profile-info {
+    @include media-breakpoint-up(sm) {
+      margin-top: 4.2rem;
+    }
+
+    .name-info {
+      @include media-breakpoint-up(lg) {
+        margin-left: 155px;
+      }
+
+      @include media-breakpoint-down(md) {
+        margin-top: 70px;
+      }
+
+      @include media-breakpoint-down(xs) {
+        margin-top: 0;
+      }
+
+      .name {
+        @include media-breakpoint-down(xs) {
+          font-size: 20px;
+        }
+      }
+
+      .info {
+        span {
+          color: $blue;
+        }
+      }
+    }
+
+    .btn {
+      @include media-breakpoint-down(xs) {
+        width: 100%;
+      }
+    }
+  }
+
+  .education {
+    border-width: 1px !important;
+  }
+}

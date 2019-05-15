@@ -203,7 +203,11 @@
     "DONE": "Done",
     "CROP": "Crop",
     "SAVE_PHOTO": "Save Photo",
-    "CREATE_APARTMENT": "Create an apartment"
+    "CREATE_APARTMENT": "Create an apartment",
+    "EDIT": "Edit",
+    "NEW_FIRST_NAME": "New first name",
+    "NEW_LAST_NAME": "New last name",
+    "NEW_EMAIL_ADDRESS": "New email address"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
