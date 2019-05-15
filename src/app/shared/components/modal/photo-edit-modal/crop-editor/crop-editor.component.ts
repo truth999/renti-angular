@@ -50,7 +50,8 @@ export class CropEditorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.preview = this.mainController.canvas.toDataURL();
+    // this.preview = this.mainController.canvas.toDataURL();
+    this.preview = this.mainController.result;
 
     this.frame.nativeElement.addEventListener('mousedown', this.startMove);
     this.frame.nativeElement.addEventListener('mousemove', this.moveImage);

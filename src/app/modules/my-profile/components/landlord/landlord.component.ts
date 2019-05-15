@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { PhotoEditModalService } from '../../../../shared/services/modal/photo-edit-modal.service';
 import { PhotoUploadModalService } from '../../../../shared/services/modal/photo-upload-modal.service';
 import { LandlordService } from '../../services/landlord.service';
 import { StorageService } from '../../../../core/services/storage.service';
 import { ImageUploaderService } from '../../../../core/services/image-uploader.service';
+
+import { Landlord } from '../../../../shared/models';
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -14,10 +17,12 @@ import { ImageUploaderService } from '../../../../core/services/image-uploader.s
   styleUrls: ['./landlord.component.scss']
 })
 export class LandlordComponent implements OnInit {
+  landlordId: string;
+  landlord: Landlord;
   photo = '/assets/images/profile/landlord.png';
   photoDeleted = false;
 
-  spokenLanguages = [
+  spokenLanguagesVal = [
     'Hungarian',
     'English',
     'Arabic',
@@ -53,52 +58,60 @@ export class LandlordComponent implements OnInit {
     private imageUploaderService: ImageUploaderService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.landlordId = this.storageService.get('landlordId');
+
+    try {
+      if (!!this.landlordId) {
+        const response = await this.landlordService.getLandlord(this.landlordId);
+        this.landlord = response.landlord;
+      }
+      this.buildLandlordForm();
+      this.isAgency = this.landlord.isPerson !== true;
+    } finally {
+    }
+
     this.photoEditModalService.photoChanged.subscribe(photo => {
       this.photo = photo;
       this.photoDeleted = false;
     });
+  }
 
-    if (this.storageService.get('landLordId') !== '') {
-      this.landlordService.get(this.storageService.get('landlordId'));
-      this.landlordService.landlordChanged.subscribe(landlords => {
-        const dateOfBirthArray = landlords.dateOfBirth.split('-');
-        this.landlordForm.patchValue({
-          placeOfBirth: {
-            country: landlords.placeOfBirth.country,
-            city: landlords.placeOfBirth.city
-          },
-          dateOfBirth: {
-            day: dateOfBirthArray[0],
-            month: dateOfBirthArray[1],
-            year: dateOfBirthArray[2]
-          },
-          mobile: landlords.mobile,
-          nationality: landlords.nationality,
-          spokenLanguages: landlords.spokenLanguages,
-          isPerson: landlords.isPerson,
-          nameOfAgency: landlords.nameOfAgency
-        });
-        this.isAgency = landlords.isPerson !== true;
-      });
-    }
+  buildLandlordForm() {
+    const dateOfBirthArray = !!this.landlord ? this.landlord.dateOfBirth.split('-') : '';
 
     this.landlordForm = new FormGroup({
-      mobile: new FormControl(null),
+      mobile: new FormControl(!!this.landlord ? this.landlord.mobile : '', Validators.required),
       placeOfBirth: new FormGroup({
-        country: new FormControl(null),
-        city: new FormControl(null)
+        country: new FormControl(!!this.landlord ? this.landlord.placeOfBirth.country : ''),
+        city: new FormControl(!!this.landlord ? this.landlord.placeOfBirth.city : '')
       }),
       dateOfBirth: new FormGroup({
-        day: new FormControl(null),
-        month: new FormControl(null),
-        year: new FormControl(null)
+        day: new FormControl(!!this.landlord ? dateOfBirthArray[0] : ''),
+        month: new FormControl(!!this.landlord ? dateOfBirthArray[1] : ''),
+        year: new FormControl(!!this.landlord ? dateOfBirthArray[2] : '')
       }),
-      nationality: new FormControl(null),
-      spokenLanguages: new FormControl(null),
-      isPerson: new FormControl(null),
-      nameOfAgency: new FormControl(null)
+      nationality: new FormControl(!!this.landlord ? this.landlord.nationality : ''),
+      spokenLanguages: new FormControl(!!this.landlord ? this.landlord.spokenLanguages : '', Validators.required),
+      isPerson: new FormControl(!!this.landlord ? this.landlord.isPerson : '', Validators.required),
+      nameOfAgency: new FormControl(!!this.landlord ? this.landlord.nameOfAgency : '', Validators.required)
     });
+  }
+
+  get mobile() {
+    return this.landlordForm.get('mobile');
+  }
+
+  get spokenLanguages() {
+    return this.landlordForm.get('spokenLanguages');
+  }
+
+  get isPerson() {
+    return this.landlordForm.get('isPerson');
+  }
+
+  get nameOfAgency() {
+    return this.landlordForm.get('nameOfAgency');
   }
 
   onBack() {
@@ -114,7 +127,7 @@ export class LandlordComponent implements OnInit {
   }
 
   onChange(event) {
-    this.isAgency = event.target.value === '2: false';
+    this.isAgency = event.target.value === '1: false';
   }
 
   onOpenPhotoUploadModal() {
@@ -137,7 +150,7 @@ export class LandlordComponent implements OnInit {
     this.photoDeleted = true;
   }
 
-  update() {
+  async update() {
     const landlordData = {
       userId: this.storageService.get('userId'),
       ...this.landlordForm.value,
@@ -150,10 +163,18 @@ export class LandlordComponent implements OnInit {
       landlordData.nameOfAgency = '';
     }
 
-    if (this.storageService.get('landlordId') === '') {
-      this.landlordService.create(landlordData);
-    } else {
-      this.landlordService.update(this.storageService.get('landlordId'), landlordData);
+    this.landlord = {...this.landlord, ...landlordData};
+
+    try {
+      if (!this.landlordId) {
+        const response = await this.landlordService.createLandlord(this.landlord);
+        this.landlord = response.landlord;
+        this.storageService.save('landlordId', this.landlord._id);
+      } else {
+        await this.landlordService.updateLandlord(this.landlord);
+      }
+      this.router.navigate(['/app/profile/landlord']);
+    } finally {
     }
   }
 

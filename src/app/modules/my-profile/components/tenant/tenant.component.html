@@ -1,5 +1,6 @@
 <div class="tenants-profile-edit position-relative">
-  <form [formGroup]="tenantForm"
+  <form *ngIf="tenantForm"
+        [formGroup]="tenantForm"
         (ngSubmit)="update()">
     <div class="back mb-sm-4 d-sm-block d-none">
       <button class="btn btn-back"
@@ -72,7 +73,8 @@
                     class="btn btn-outline-primary btn-lg mb-sm-3"
                     (click)="onSettings()">{{ 'COMMON.SETTINGS' | translate }}</button>
             <button type="submit"
-                    class="btn btn-outline-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}...</button>
+                    class="btn btn-outline-primary btn-lg"
+                    [disabled]="!tenantForm.valid">{{ 'COMMON.VIEW_AS' | translate }}...</button>
           </div>
         </div>
         <div class="form-group mt-3">
@@ -105,8 +107,11 @@
                 <td class="text-right border-top-0 py-0 pr-0">
                   <international-phone-number id="phone"
                                               placeholder=""
-                                              [required]="true"
                                               formControlName="mobile"></international-phone-number>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('mobile').invalid && (tenantForm.get('mobile').dirty || tenantForm.get('mobile').touched)">
+                    <span *ngIf="tenantForm.get('mobile').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -161,6 +166,10 @@
                           formControlName="nationality">
                     <option value="US">US</option>
                   </select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('nationality').invalid && (tenantForm.get('nationality').dirty || tenantForm.get('nationality').touched)">
+                    <span *ngIf="tenantForm.get('nationality').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -170,6 +179,10 @@
                              [multiple]="true"
                              [closeOnSelect]="false"
                              formControlName="spokenLanguages"></ng-select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('spokenLanguages').invalid && (tenantForm.get('spokenLanguages').dirty || tenantForm.get('spokenLanguages').touched)">
+                    <span *ngIf="tenantForm.get('spokenLanguages').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -197,6 +210,10 @@
                     <option value="secondary">{{ 'COMMON.SECONDARY_SCHOOL' | translate }}</option>
                     <option value="university">{{ 'COMMON.UNIVERSITY' | translate }}</option>
                   </select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('highestLevelOfQualification').invalid && (tenantForm.get('highestLevelOfQualification').dirty || tenantForm.get('highestLevelOfQualification').touched)">
+                    <span *ngIf="tenantForm.get('highestLevelOfQualification').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -205,11 +222,10 @@
                   <a href="javascript:"
                      (click)="addJobTitle()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
                 </td>
-                <td class="pr-0 text-right"
-                    formArrayName="jobTitle">
+                <td class="pr-0 text-right" formArrayName="jobTitle">
                   <input type="text"
                          class="form-control text-right"
-                         *ngFor="let jobTitleEl of jobTitleCount; let i = index"
+                         *ngFor="let jobTitleEl of jobTitle.controls; let i = index"
                          [formControlName]="i">
                 </td>
               </tr>
@@ -219,6 +235,10 @@
                   <input type="text"
                          class="form-control border-0 text-right"
                          formControlName="universitySpeciality">
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('universitySpeciality').invalid && (tenantForm.get('universitySpeciality').dirty || tenantForm.get('universitySpeciality').touched)">
+                    <span *ngIf="tenantForm.get('universitySpeciality').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -227,19 +247,24 @@
                   <input type="text"
                          class="form-control border-0 text-right"
                          formControlName="currentWorkplace">
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('currentWorkplace').invalid && (tenantForm.get('currentWorkplace').dirty || tenantForm.get('currentWorkplace').touched)">
+                    <span *ngIf="tenantForm.get('currentWorkplace').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td class="align-middle">
                   {{ 'COMMON.FORMER_WORKPLACES' | translate }}:<br>
                   <a href="javascript:"
-                     (click)="formerWorkplacesCount.push(formerWorkplacesCount.length + 1)">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
+                     (click)="addFormerWorkplaces()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
                 </td>
-                <td class="pr-0 text-right">
+                <td class="pr-0 text-right"
+                    formArrayName="formerWorkplaces">
                   <input type="text"
                          class="form-control text-right"
-                         formControlName="formerWorkplaces"
-                         *ngFor="let formerWorkplacesEl of formerWorkplacesCount">
+                         *ngFor="let formerWorkplacesEl of formerWorkplaces.controls; let i = index"
+                         [formControlName]="i">
                 </td>
               </tr>
               <!--            <tr>-->
@@ -263,6 +288,10 @@
                     <option value="1000000">700,000 - 1,000,000</option>
                     <option value="1500000">1,000,000+</option>
                   </select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('monthlyIncome').invalid && (tenantForm.get('monthlyIncome').dirty || tenantForm.get('monthlyIncome').touched)">
+                    <span *ngIf="tenantForm.get('monthlyIncome').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <!--            <tr>-->
@@ -297,9 +326,10 @@
             <div class="education border-bottom pb-4">
               <h5 class="font-weight-bolder">{{ 'COMMON.EDUCATION' | translate }}:</h5>
               <table class="table table-borderless"
-                     formGroupName="education">
+                     formArrayName="education">
                 <tbody>
-                <tr *ngFor="let educationEl of educationCount">
+                <tr *ngFor="let educationEl of education.controls; let i = index"
+                    [formGroupName]="i">
                   <td class="pl-0 pt-0">
                     <input type="text"
                            class="form-control"
@@ -315,7 +345,8 @@
                 </tr>
                 </tbody>
               </table>
-              <a href="javascript:" (click)="educationCount.push(educationCount.length + 1)">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
+              <a href="javascript:"
+                 (click)="addEducation()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
             </div>
             <div class="social mt-4">
               <h5 class="font-weight-bolder">{{ 'PROFILE.MY_SOCIAL_PROFILES' | translate }}:</h5>

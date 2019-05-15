@@ -58,6 +58,8 @@ export class PhotoEditModalComponent implements OnInit, OnDestroy {
     this.initPointers();
 
     window.addEventListener('orientationchange', this.onOrientationChange.bind(this));
+
+    this.setCurrentEditor('crop');
   }
 
   ngOnDestroy() {
@@ -132,16 +134,18 @@ export class PhotoEditModalComponent implements OnInit, OnDestroy {
   }
 
   setCurrentEditor(editor) {
-    this.currentEditor = editor;
+    if (!this.isMobile.getValue()) {
+      this.currentEditor = editor;
 
-    if (editor) {
-      this.doCropService('unBindEvents');
-    } else {
-      this.doCropService('bindEvents');
+      if (editor) {
+        this.doCropService('unBindEvents');
+      } else {
+        this.doCropService('bindEvents');
+      }
+
+      this.executeCommands(this.savedCommands);
+      this.updateEditorCenter();
     }
-
-    this.executeCommands(this.savedCommands);
-    this.updateEditorCenter();
   }
 
   onOrientationChange() {

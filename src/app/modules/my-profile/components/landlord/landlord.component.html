@@ -1,5 +1,7 @@
 <div class="landlords-profile-edit position-relative">
-  <form [formGroup]="landlordForm" (ngSubmit)="update()">
+  <form *ngIf="landlordForm"
+        [formGroup]="landlordForm"
+        (ngSubmit)="update()">
     <div class="back mb-sm-4 d-sm-block d-none">
       <button class="btn btn-back"
               (click)="onBack()">
@@ -64,7 +66,8 @@
                       class="btn btn-outline-primary btn-lg mb-sm-3"
                       (click)="onSettings()">{{ 'COMMON.SETTINGS' | translate }}</button>
               <button type="submit"
-                      class="btn btn-outline-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}...</button>
+                      class="btn btn-outline-primary btn-lg"
+                      [disabled]="!landlordForm.valid">{{ 'COMMON.VIEW_AS' | translate }}...</button>
             </div>
             <table class="table">
               <tbody>
@@ -73,8 +76,10 @@
                 <td class="text-right border-top-0 py-0 pr-0">
                   <international-phone-number formControlName="mobile"
                                               id="mobile"
-                                              placeholder=""
-                                              [required]="true"></international-phone-number>
+                                              placeholder=""></international-phone-number>
+                  <div class="invalid-feedback d-block" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+                    <span *ngIf="mobile.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -125,10 +130,13 @@
               <tr>
                 <td class="align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
                 <td class="text-right pr-0 py-0">
-                  <ng-select [items]="spokenLanguages"
+                  <ng-select [items]="spokenLanguagesVal"
                              [multiple]="true"
                              [closeOnSelect]="false"
                              formControlName="spokenLanguages"></ng-select>
+                  <div class="invalid-feedback d-block" *ngIf="spokenLanguages.invalid && (spokenLanguages.dirty || spokenLanguages.touched)">
+                    <span *ngIf="spokenLanguages.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -137,12 +145,13 @@
                   <select id="person-agency"
                           formControlName="isPerson"
                           class="custom-select border-0 w-auto"
-                          (change)="onChange($event)"
-                          required>
-                    <option value=""></option>
+                          (change)="onChange($event)">
                     <option [ngValue]="true">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
                     <option [ngValue]="false">{{ 'COMMON.AGENCY' | translate }}</option>
                   </select>
+                  <div class="invalid-feedback d-block" *ngIf="isPerson.invalid && (isPerson.dirty || isPerson.touched)">
+                    <span *ngIf="isPerson.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr *ngIf="isAgency">
@@ -151,8 +160,10 @@
                   <input type="text"
                          class="form-control text-right border-0"
                          id="agency-name"
-                         formControlName="nameOfAgency"
-                         required>
+                         formControlName="nameOfAgency">
+                  <div class="invalid-feedback d-block" *ngIf="nameOfAgency.invalid && (nameOfAgency.dirty || nameOfAgency.touched)">
+                    <span *ngIf="nameOfAgency.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               </tbody>
@@ -212,7 +223,8 @@
             </div>
           </div>
           <div class="col-sm-6 text-sm-right text-center">
-            <button class="btn btn-primary btn-lg"
+            <button type="button"
+                    class="btn btn-primary btn-lg"
                     (click)="onMyProperties()">{{ 'COMMON.MANAGE_MY_PROPERTIES' | translate }}</button>
           </div>
         </div>

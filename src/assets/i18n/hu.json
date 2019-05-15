@@ -315,6 +315,7 @@
     "LASTNAME_REQUIRED": "Last name is required.",
     "PASSWORD_NOT_MATCH": "Passwords do not match.",
     "INVALID_EMAIL": "Invalid email address.",
-    "MIN_PASSWORD": "Name must be at least 5 characters long."
+    "MIN_PASSWORD": "Name must be at least 5 characters long.",
+    "FIELD_REQUIRED": "This field is required."
   }
 }

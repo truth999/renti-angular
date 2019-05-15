@@ -30,7 +30,7 @@
   <div class="row mt-3">
     <div class="col-6 offset-3 d-flex justify-content-around">
       <button class="btn btn-outline-primary text-uppercase"
-              (click)="mainController.setCurrentEditor(null)">
+              (click)="mainController.modal.dismiss()">
         {{ 'COMMON.CANCEL' | translate }}
       </button>
       <button class="btn btn-primary text-uppercase"

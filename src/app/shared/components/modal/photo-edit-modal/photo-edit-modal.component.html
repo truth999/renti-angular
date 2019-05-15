@@ -24,14 +24,14 @@
                      [mainController]="this"></app-crop-editor>
     <div class="photo-edit-panel-wrapper mt-4"
          *ngIf="!currentEditor">
-      <div class="button-container button-container-crop d-flex align-items-center justify-content-center flex-column"
-           *ngIf="!isMobile.getValue()">
-        <button class="d-flex align-items-center justify-content-center border rounded-pill"
-                (click)="setCurrentEditor('crop')">
-          <i class="icon-close"></i>
-        </button>
-        <span>{{ 'COMMON.CROP' | translate }}</span>
-      </div>
+<!--      <div class="button-container button-container-crop d-flex align-items-center justify-content-center flex-column"-->
+<!--           *ngIf="!isMobile.getValue()">-->
+<!--        <button class="d-flex align-items-center justify-content-center border rounded-pill"-->
+<!--                (click)="setCurrentEditor('crop')">-->
+<!--          <i class="icon-close"></i>-->
+<!--        </button>-->
+<!--        <span>{{ 'COMMON.CROP' | translate }}</span>-->
+<!--      </div>-->
       <div class="save-button-container text-center mt-3">
         <button class="btn btn-primary text-uppercase"
                 [class.disabled]="inProcess"
@@ -40,9 +40,5 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="button"
-            class="btn btn-light"
-            (click)="modal.dismiss()">{{ 'COMMON.CLOSE' | translate }}</button>
-  </div>
+  <div class="modal-footer"></div>
 </div>
