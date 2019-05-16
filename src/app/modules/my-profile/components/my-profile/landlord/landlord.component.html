@@ -72,6 +72,7 @@
                 <td class="text-right border-top-0 py-0 pr-0">
                   <international-phone-number formControlName="mobile"
                                               id="mobile"
+                                              [defaultCountry]="'hu'"
                                               placeholder=""></international-phone-number>
                   <div class="invalid-feedback d-block" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
                     <span *ngIf="mobile.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
@@ -80,22 +81,26 @@
               </tr>
               <tr>
                 <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
-                <td class="text-right pr-0 w-50">
-                  <div class="form-inline justify-content-between"
-                       formGroupName="dateOfBirth">
-                    <select formControlName="day"
-                            class="custom-select">
-                      <option value="19">19</option>
-                    </select>
-                    <select formControlName="month"
-                            class="custom-select">
-                      <option value="03">3</option>
-                    </select>
-                    <select formControlName="year"
-                            class="custom-select">
-                      <option value="1995">1995</option>
-                    </select>
-                  </div>
+                <td class="text-right pr-0 w-50"
+                    formGroupName="dateOfBirth">
+                  <select formControlName="day"
+                          class="custom-select w-75"
+                          (change)="setBirthDate()">
+                    <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
+                    <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+                  </select>
+                  <select formControlName="month"
+                          class="custom-select w-75"
+                          (change)="setBirthDate()">
+                    <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
+                    <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                  </select>
+                  <select formControlName="year"
+                          class="custom-select w-75"
+                          (change)="setBirthDate()">
+                    <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
+                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                  </select>
                 </td>
               </tr>
               <tr>
@@ -118,8 +123,8 @@
                 <td class="align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
                 <td class="text-right pr-0 py-0">
                   <select formControlName="nationality"
-                          class="custom-select border-0 w-auto">
-                    <option value="US">US</option>
+                          class="custom-select border-0">
+                    <option *ngFor="let country of countries" [value]="country.ccode">{{ country.cname }}</option>
                   </select>
                 </td>
               </tr>

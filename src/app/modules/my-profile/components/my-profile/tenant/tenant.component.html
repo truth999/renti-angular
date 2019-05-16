@@ -54,14 +54,14 @@
                   </div>
                   <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>
                 </div>
-<!--                <div class="form-group pt-2 position-relative rent">-->
-<!--                  <label for="rent" class="h5 font-weight-bolder">{{ 'COMMON.LOOKING_TO_RENT_IN' | translate }}:</label>-->
-<!--                  <select id="rent" -->
-<!--                          class="custom-select">-->
-<!--                    <option value="">Debrecen, Hungary</option>-->
-<!--                  </select>-->
-<!--                  <i class="icon-location position-absolute"></i>-->
-<!--                </div>-->
+                <div class="form-group pt-2 position-relative rent">
+                  <label for="rent" class="h5 font-weight-bolder">{{ 'COMMON.LOOKING_TO_RENT_IN' | translate }}:</label>
+                  <select id="rent"
+                          class="custom-select">
+                    <option value="">Debrecen, Hungary</option>
+                  </select>
+                  <i class="icon-location position-absolute"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -129,22 +129,26 @@
               </tr>
               <tr>
                 <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
-                <td class="text-right pr-0 w-50">
-                  <div class="form-inline justify-content-between"
-                       formGroupName="dateOfBirth">
-                    <select class="custom-select"
-                            formControlName="day">
-                      <option value="19">19</option>
-                    </select>
-                    <select class="custom-select"
-                            formControlName="month">
-                      <option value="03">3</option>
-                    </select>
-                    <select class="custom-select"
-                            formControlName="year">
-                      <option value="1995">1995</option>
-                    </select>
-                  </div>
+                <td class="text-right pr-0 w-50"
+                    formArrayName="dateOfBirth">
+                  <select formControlName="day"
+                          class="custom-select w-75"
+                          (change)="setBirthDate()">
+                    <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
+                    <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+                  </select>
+                  <select formControlName="month"
+                          class="custom-select w-75"
+                          (change)="setBirthDate()">
+                    <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
+                    <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                  </select>
+                  <select formControlName="year"
+                          class="custom-select w-75"
+                          (change)="setBirthDate()">
+                    <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
+                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                  </select>
                 </td>
               </tr>
               <!--            <tr>-->
@@ -159,9 +163,9 @@
                 <td class="py-0 align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
                 <td class="py-0 pr-0 text-right">
                   <select name="nationality"
-                          class="custom-select border-0 w-auto"
+                          class="custom-select border-0"
                           formControlName="nationality">
-                    <option value="US">US</option>
+                    <option *ngFor="let country of countries" [value]="country.ccode">{{ country.cname }}</option>
                   </select>
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('nationality').invalid && (tenantForm.get('nationality').dirty || tenantForm.get('nationality').touched)">
@@ -337,7 +341,8 @@
                   <td class="text-right pt-0 pr-0">
                     <select class="custom-select w-auto"
                             formControlName="yearOfGraduation">
-                      <option value="2019">2019</option>
+                      <option value="">{{ 'COMMON.YEAR' | translate }}</option>
+                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                     </select>
                   </td>
                 </tr>

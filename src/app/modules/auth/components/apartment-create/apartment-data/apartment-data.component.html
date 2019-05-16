@@ -1,307 +1,369 @@
 <div class="apartment-data">
   <h5>{{ 'COMMON.ADD_ALL_DATA' | translate }}</h5>
-  <table class="table mt-4">
-    <tbody>
-    <tr>
-      <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
-      <td class="border-top-0 text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
-          <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
-          <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
-          <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="2019">2019</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="new">{{ 'COMMON.NEW' | translate }}</option>
-          <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
-          <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
-          <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0">
-          <option value="">Please select</option>
-          <option value="aapp">AA++</option>
-          <option value="aap">AA+</option>
-          <option value="aa">AA</option>
-          <option value="bb">BB</option>
-          <option value="cc">CC</option>
-          <option value="dd">DD</option>
-          <option value="ee">EE</option>
-          <option value="ff">FF</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="east">{{ 'COMMON.EAST' | translate }}</option>
-          <option value="west">{{ 'COMMON.WEST' | translate }}</option>
-          <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
-          <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
-          <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
-          <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
-          <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
-          <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
-          <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
-          <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
-          <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.HEADROOM' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="2m">< 2M</option>
-          <option value="2.5m">2.0 - 2.5M</option>
-          <option value="3m">2.5 - 3.0M</option>
-          <option value="3mp">> 3M</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.PARKING' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
-          <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
-          <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
-          <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0">
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
-      <td class="text-right py-0 pr-0 w-50">
-        <ng-select [items]="mediaService"
-                   [multiple]="true"
-                   [closeOnSelect]="false"
-                   placeholder="Please select"></ng-select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-          <option value="no">{{ 'COMMON.NO' | translate }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}</td>
-      <td class="text-right py-0 pr-0">
-        <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-      </td>
-    </tr>
-    <tr>
-      <td class="py-0 align-middle">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
-      <td class="text-right py-0 pr-0">
-        <select class="custom-select border-0" required>
-          <option value="">Please select</option>
-          <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
-      <td class="border-bottom text-right pr-0">
-        <div class="form-inline justify-content-between">
-          <select name="day" class="custom-select" required>
-            <option value="">Day</option>
+  <form [formGroup]="apartmentForm"
+        (ngSubmit)="submit()">
+    <table class="table mt-4">
+      <tbody>
+      <tr>
+        <td class="border-top-0 py-0 align-middle">{{ 'COMMON.ADDRESS' | translate }}</td>
+        <td class="border-top-0 text-right py-0 pr-0">
+          <input type="text"
+                 class="form-control text-right border-0"
+                 formControlName="address">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="typeOfBuilding">
+            <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
+            <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
+            <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
+            <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
           </select>
-          <select name="month" class="custom-select" required>
-            <option value="">Month</option>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="yearOfConstruction">
+            <option value="2019">2019</option>
           </select>
-          <select name="year" class="custom-select" required>
-            <option value="">Year</option>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="stateOfApartment">
+            <option value="new">{{ 'COMMON.NEW' | translate }}</option>
+            <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
+            <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
+            <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
           </select>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="energyPerformanceCertificate">
+            <option value="aapp">AA++</option>
+            <option value="aap">AA+</option>
+            <option value="aa">AA</option>
+            <option value="bb">BB</option>
+            <option value="cc">CC</option>
+            <option value="dd">DD</option>
+            <option value="ee">EE</option>
+            <option value="ff">FF</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="floorsOfBuilding">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="floorsOfApartment">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="size">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="elevator">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="rooftop">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="buildingSiting">
+            <option value="east">{{ 'COMMON.EAST' | translate }}</option>
+            <option value="west">{{ 'COMMON.WEST' | translate }}</option>
+            <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
+            <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="typeOfHeating">
+            <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
+            <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
+            <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
+            <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
+            <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
+            <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
+            <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
+            <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.HEADROOM' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="headroom">
+            <option value="2m">< 2M</option>
+            <option value="2.5m">2.0 - 2.5M</option>
+            <option value="3m">2.5 - 3.0M</option>
+            <option value="3mp">> 3M</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.PARKING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="parking">
+            <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
+            <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
+            <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
+            <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="childFriendly">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="petFriendly">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="externalIsolation">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
+        <td class="text-right py-0 pr-0 w-50">
+          <ng-select [items]="mediaService"
+                     [multiple]="true"
+                     [closeOnSelect]="false"
+                     formControlName="mediaServiceProviders"></ng-select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="handicapAccessible">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <ng-container formGroupName="externals">
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
+          <td class="text-right pr-0">
+            <label class="switch">
+              <input type="checkbox"
+                     formControlName="balcony">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
+          <td class="text-right pr-0">
+            <label class="switch">
+              <input type="checkbox"
+                     formControlName="garden">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
+          <td class="text-right pr-0">
+            <label class="switch">
+              <input type="checkbox"
+                     formControlName="terrace">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container formGroupName="sizeOfExternals">
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <input type="number"
+                   class="form-control border-0 text-right"
+                   min="0"
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   formControlName="balcony">
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <input type="number"
+                   class="form-control border-0 text-right"
+                   min="0"
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   formControlName="garden">
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <input type="number"
+                   class="form-control border-0 text-right"
+                   min="0"
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   formControlName="terrace">
+          </td>
+        </tr>
+      </ng-container>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="airConditioner">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="garage">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="rentalFee">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="overhead">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="deposit">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="minimumRentingTime">
+            <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
+        <td class="border-bottom text-right py-0 pr-0"
+            formGroupName="dateOfMovingIn">
+          <select class="custom-select"
+                  formControlName="day">
+            <option value="09">9</option>
+          </select>
+          <select class="custom-select"
+                  formControlName="month">
+            <option value="12">12</option>
+          </select>
+          <select class="custom-select"
+                  formControlName="year">
+            <option value="2019">2019</option>
+          </select>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
 </div>

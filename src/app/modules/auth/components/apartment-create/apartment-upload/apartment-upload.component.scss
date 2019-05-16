@@ -1,17 +1,6 @@
 @import "~src/assets/styles/scss/variables";
 
 .apartment-upload {
-  .list-inline-item {
-    font-family: NeueEinstellung-Bold;
-    color: $blue;
-    cursor: pointer;
-
-    &.disabled {
-      color: $gray-600;
-      font-family: inherit;
-    }
-  }
-
   .img-item {
     &::after {
       content: '';

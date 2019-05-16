@@ -288,7 +288,9 @@
     "NAME": "Name",
     "TYPE": "Type",
     "FURNITURE_NAME": "Furniture name",
-    "FURNITURE_TYPE": "Furniture type"
+    "FURNITURE_TYPE": "Furniture type",
+    "SIZE": "Size",
+    "SELECT_WINDOW_TYPE": "Select window type"
   },
   "OFFER": {
     "MOVING_IN_WITH": "Moving in with",

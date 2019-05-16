@@ -8,8 +8,10 @@ import { PhotoEditModalService } from '../../../../../shared/services/modal/phot
 import { StorageService } from '../../../../../core/services/storage.service';
 import { TenantService } from '../../../services/tenant.service';
 import { AuthService } from '../../../../../core/services/auth.service';
+import { DateSelectService } from '../../../../../shared/services/date-select.service';
 
 import { Tenant } from '../../../../../shared/models';
+import { config } from '../../../../../../config';
 
 @Component({
   selector: 'app-my-profile-tenant',
@@ -22,6 +24,10 @@ export class TenantComponent implements OnInit {
   tenant: Tenant;
   photo: string;
   photoDeleted = true;
+  countries = config.countries;
+  days: string[];
+  months: string[];
+  years: string[];
 
   spokenLanguages = [
     'Hungarian',
@@ -54,7 +60,8 @@ export class TenantComponent implements OnInit {
     private photoEditModalService: PhotoEditModalService,
     private storageService: StorageService,
     private tenantService: TenantService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dateSelectService: DateSelectService
   ) { }
 
   async ngOnInit() {
@@ -78,6 +85,10 @@ export class TenantComponent implements OnInit {
       this.photo = photo;
       this.photoDeleted = false;
     });
+
+    this.days = this.dateSelectService.getDays();
+    this.months = this.dateSelectService.getMonths();
+    this.years = this.dateSelectService.getYears();
   }
 
   buildTenantForm() {
@@ -149,6 +160,25 @@ export class TenantComponent implements OnInit {
       nameOfSchool: new FormControl(''),
       yearOfGraduation: new FormControl('')
     }));
+  }
+
+  setBirthDate() {
+    let daysInMonth = null;
+    const date = new Date();
+
+    if (this.tenantForm.get('dateOfBirth').get('year').value) {
+      date.setFullYear(+this.tenantForm.get('dateOfBirth').get('year').value);
+    }
+
+    if (this.tenantForm.get('dateOfBirth').get('month').value) {
+      date.setMonth(+this.tenantForm.get('dateOfBirth').get('month').value, 0);
+      daysInMonth = date.getDate();
+      this.days = this.dateSelectService.getDays(daysInMonth);
+
+      if (typeof daysInMonth === 'number' && daysInMonth < +this.tenantForm.get('dateOfBirth').get('day').value) {
+        this.tenantForm.get('dateOfBirth').get('day').setErrors(Validators.required);
+      }
+    }
   }
 
   onSettings() {

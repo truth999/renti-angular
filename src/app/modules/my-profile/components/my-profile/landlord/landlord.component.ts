@@ -9,8 +9,10 @@ import { LandlordService } from '../../../services/landlord.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
 import { AuthService } from '../../../../../core/services/auth.service';
+import { DateSelectService } from '../../../../../shared/services/date-select.service';
 
 import { Landlord } from '../../../../../shared/models';
+import { config } from '../../../../../../config';
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -23,6 +25,10 @@ export class LandlordComponent implements OnInit {
   landlord: Landlord;
   photo: string;
   photoDeleted = true;
+  countries = config.countries;
+  days: string[];
+  months: string[];
+  years: string[];
 
   spokenLanguagesVal = [
     'Hungarian',
@@ -58,7 +64,8 @@ export class LandlordComponent implements OnInit {
     private landlordService: LandlordService,
     private storageService: StorageService,
     private imageUploaderService: ImageUploaderService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dateSelectService: DateSelectService
   ) { }
 
   async ngOnInit() {
@@ -83,6 +90,10 @@ export class LandlordComponent implements OnInit {
       this.photo = photo;
       this.photoDeleted = false;
     });
+
+    this.days = this.dateSelectService.getDays();
+    this.months = this.dateSelectService.getMonths();
+    this.years = this.dateSelectService.getYears();
   }
 
   buildLandlordForm() {
@@ -95,9 +106,9 @@ export class LandlordComponent implements OnInit {
         city: new FormControl(!!this.landlord ? this.landlord.placeOfBirth.city : '')
       }),
       dateOfBirth: new FormGroup({
-        day: new FormControl(!!this.landlord ? dateOfBirthArray[0] : ''),
-        month: new FormControl(!!this.landlord ? dateOfBirthArray[1] : ''),
-        year: new FormControl(!!this.landlord ? dateOfBirthArray[2] : '')
+        day: new FormControl(!!this.landlord ? dateOfBirthArray[0] : '', Validators.required),
+        month: new FormControl(!!this.landlord ? dateOfBirthArray[1] : '', Validators.required),
+        year: new FormControl(!!this.landlord ? dateOfBirthArray[2] : '', Validators.required)
       }),
       nationality: new FormControl(!!this.landlord ? this.landlord.nationality : ''),
       spokenLanguages: new FormControl(!!this.landlord ? this.landlord.spokenLanguages : '', Validators.required),
@@ -120,6 +131,25 @@ export class LandlordComponent implements OnInit {
 
   get nameOfAgency() {
     return this.landlordForm.get('nameOfAgency');
+  }
+
+  setBirthDate() {
+    let daysInMonth = null;
+    const date = new Date();
+
+    if (this.landlordForm.get('dateOfBirth').get('year').value) {
+      date.setFullYear(+this.landlordForm.get('dateOfBirth').get('year').value);
+    }
+
+    if (this.landlordForm.get('dateOfBirth').get('month').value) {
+      date.setMonth(+this.landlordForm.get('dateOfBirth').get('month').value, 0);
+      daysInMonth = date.getDate();
+      this.days = this.dateSelectService.getDays(daysInMonth);
+
+      if (typeof daysInMonth === 'number' && daysInMonth < +this.landlordForm.get('dateOfBirth').get('day').value) {
+        this.landlordForm.get('dateOfBirth').get('day').setErrors(Validators.required);
+      }
+    }
   }
 
   onBack() {

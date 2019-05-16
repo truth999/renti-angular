@@ -1,7 +1,11 @@
 import { EventEmitter, Injectable } from '@angular/core';
 
+import { Apartment, Room } from '../../../shared/models';
+
 @Injectable()
 export class ApartmentCreateService {
+  apartmant: Apartment;
+  rooms: Room[];
   roomCount = 0;
   roomCountChanged = new EventEmitter<number>();
 
@@ -18,6 +22,10 @@ export class ApartmentCreateService {
       this.roomCount = 0;
     }
     this.roomCountChanged.emit(this.roomCount);
+  }
+
+  createRooms(rooms) {
+    this.rooms = rooms;
   }
 
 }

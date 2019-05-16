@@ -83,7 +83,6 @@ table {
 .apartment-data {
   .ng-placeholder {
     right: $custom-select-padding-x + $custom-select-indicator-padding + .5rem;
-    color: $blue !important;
-    font-family: NeueEinstellung-Bold;
+    color: $input-color !important;
   }
 }

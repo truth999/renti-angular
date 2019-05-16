@@ -1,5 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+import { ApartmentCreateService } from '../../../services/apartment-create.service';
+
+import { Room } from '../../../../../shared/models';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-apartment-upload',
   templateUrl: './apartment-upload.component.html',
@@ -7,11 +12,15 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class ApartmentUploadComponent implements OnInit {
   @ViewChild('picturesChooser') picturesChooser: ElementRef;
-  public previewNewRoomPictures: any[] = [];
+  previewNewRoomPictures: any[] = [];
+  rooms: Room[];
 
-  constructor() { }
+  constructor(
+    private apartmentCreateService: ApartmentCreateService
+  ) { }
 
   ngOnInit() {
+    this.rooms = this.apartmentCreateService.rooms;
   }
 
   onFilesChange(event) {

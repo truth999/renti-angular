@@ -3,17 +3,22 @@
   <h5>{{ 'COMMON.DRAG_ROOM_NUMBER' | translate }}:</h5>
   <form [formGroup]="roomForm"
         (ngSubmit)="submit()">
-    <div formArrayName="room">
+    <div formArrayName="rooms">
       <div class="form-group d-flex justify-content-between"
-           *ngFor="let roomEl of room.controls; let i = index"
+           *ngFor="let roomEl of rooms.controls; let i = index"
            [formGroupName]="i">
-        <div class="number h3 rounded-circle d-flex justify-content-center align-items-center mb-0">
+        <div class="number h3 rounded-circle d-flex justify-content-center align-items-center mb-0 mr-2">
           {{ i + 1 }}
         </div>
         <input type="text"
-               class="form-control"
-               placeholder="{{ 'COMMON.ROOM_NAME' | translate }}:"
+               class="form-control mr-1"
+               placeholder="{{ 'APARTMENT.NAME' | translate }}:"
                formControlName="name">
+        <input type="number"
+               class="form-control mr-1"
+               placeholder="{{ 'APARTMENT.SIZE' | translate }}:"
+               formControlName="size">
+        <span class="d-flex align-items-center">(m<sup>2</sup>)</span>
       </div>
     </div>
   </form>

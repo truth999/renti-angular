@@ -1,3 +1,7 @@
 .nav-link {
-  color: $body-color;
+  color: $nav-link-disabled-color;
+
+  &.active {
+    color: $blue;
+  }
 }

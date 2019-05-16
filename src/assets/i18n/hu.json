@@ -288,7 +288,9 @@
     "NAME": "neve",
     "TYPE": "típusa",
     "FURNITURE_NAME": "Bútor neve",
-    "FURNITURE_TYPE": "Bútor típusa"
+    "FURNITURE_TYPE": "Bútor típusa",
+    "SIZE": "Size",
+    "SELECT_WINDOW_TYPE": "Select window type"
   },
   "OFFER": {
     "MOVING_IN_WITH": "Kivel költözne",

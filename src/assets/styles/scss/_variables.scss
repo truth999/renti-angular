@@ -3,6 +3,7 @@
 $white: #fff;
 $gray-400: #dbdce8;
 $gray-600: #7b7b7b;
+$gray-700: #495057;
 $gray-900: #1b1b1b;
 $black: #000;
 
@@ -61,6 +62,8 @@ $input-btn-border-width: 2px;
 $input-padding-x: $input-btn-padding-x;
 $input-font-family: NeueEinstellung-Medium;
 
+$input-color: $gray-700;
+
 $custom-select-padding-x: $input-padding-x;
 $custom-select-indicator-padding: 1rem;
 $custom-select-indicator: url("/assets/images/icon/caret.png");
@@ -70,6 +73,7 @@ $zindex-modal-backdrop: 4100;
 $zindex-modal: 4200;
 
 $nav-link-padding-y: .875rem;
+$nav-link-disabled-color: $gray-600;
 
 $card-spacer-y: 2rem;
 $card-spacer-x: 3rem;

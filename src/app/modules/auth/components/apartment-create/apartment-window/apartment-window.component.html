@@ -1,0 +1,22 @@
+<div class="apartment-window">
+  <h5>{{ 'APARTMENT.SELECT_WINDOW_TYPE' | translate }}:</h5>
+  <form [formGroup]="windowTypeForm"
+        (ngSubmit)="submit()">
+    <div formArrayName="windowType">
+      <div class="form-group row"
+           *ngFor="let room of rooms; let i = index">
+        <label [for]="room.name"
+               class="col-4 col-form-label">{{ room.name }}</label>
+        <div class="col-8">
+          <select [id]="room.name"
+                  class="custom-select"
+                  [formControlName]="i">
+            <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>
+            <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
+            <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

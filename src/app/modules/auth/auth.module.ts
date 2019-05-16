@@ -41,6 +41,7 @@ import { RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthCompleteComponent } from './components/auth-complete/auth-complete.component';
 import { ApartmentCreateService } from './services/apartment-create.service';
+import { ApartmentWindowComponent } from './components/apartment-create/apartment-window/apartment-window.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ApartmentCreateService } from './services/apartment-create.service';
     SignupFunnelOtherInstructionComponent,
     SignupFunnelRentalCityComponent,
     SignupComponent,
-    AuthCompleteComponent
+    AuthCompleteComponent,
+    ApartmentWindowComponent
   ],
   providers: [
     ApartmentCreateService

@@ -20,6 +20,7 @@ import { PhotoEditModalComponent } from './components/modal/photo-edit-modal/pho
 import { CropEditorComponent } from './components/modal/photo-edit-modal/crop-editor/crop-editor.component';
 import { NouisliderModule } from 'ng2-nouislider';
 import { ResponsiveService } from './services/responsive.service';
+import { DateSelectService } from './services/date-select.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ResponsiveService } from './services/responsive.service';
   providers: [
     PhotoUploadModalService,
     PhotoEditModalService,
-    ResponsiveService
+    ResponsiveService,
+    DateSelectService
   ]
 })
 export class SharedModule { }
