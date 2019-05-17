@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ApartmentCreateService } from '../../../services/apartment-create.service';
 
@@ -10,9 +10,10 @@ import { Room } from '../../../../../shared/models';
   templateUrl: './apartment-window.component.html',
   styleUrls: ['./apartment-window.component.scss']
 })
-export class ApartmentWindowComponent implements OnInit {
+export class ApartmentWindowComponent implements OnInit, DoCheck {
   rooms: Room[];
   windowTypeForm: FormGroup;
+  @Output() windowTypeFormValid = new EventEmitter<boolean>();
 
   constructor(
     private apartmentCreateService: ApartmentCreateService
@@ -20,11 +21,16 @@ export class ApartmentWindowComponent implements OnInit {
 
   ngOnInit() {
     this.rooms = this.apartmentCreateService.rooms;
+
     this.windowTypeForm = new FormGroup({
       windowType: new FormArray(this.rooms.map(room => {
-        return new FormControl(room.windowType);
+        return new FormControl(room.windowType, Validators.required);
       }))
     });
+  }
+
+  ngDoCheck() {
+    this.windowTypeFormValid.emit(this.windowTypeForm.valid);
   }
 
   submit() {
@@ -32,7 +38,7 @@ export class ApartmentWindowComponent implements OnInit {
     this.rooms.map((room, index) => {
       room.windowType = windowTypes.windowType[index];
     });
-    this.apartmentCreateService.createRooms(this.rooms);
+    this.apartmentCreateService.createRoomsData(this.rooms);
   }
 
 }

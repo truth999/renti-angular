@@ -1,0 +1,117 @@
+<form [formGroup]="apartmentDataFirstForm"
+      (ngSubmit)="submit()">
+  <table class="table mt-4">
+    <tbody>
+      <tr>
+        <td class="border-top-0 py-0 align-middle">{{ 'COMMON.ADDRESS' | translate }}</td>
+        <td class="border-top-0 text-right py-0 pr-0">
+          <input type="text"
+                 class="form-control text-right border-0"
+                 formControlName="address">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="typeOfBuilding">
+            <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
+            <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
+            <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
+            <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="yearOfConstruction">
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="stateOfApartment">
+            <option value="new">{{ 'COMMON.NEW' | translate }}</option>
+            <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
+            <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
+            <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="energyPerformanceCertificate">
+            <option value="aapp">AA++</option>
+            <option value="aap">AA+</option>
+            <option value="aa">AA</option>
+            <option value="bb">BB</option>
+            <option value="cc">CC</option>
+            <option value="dd">DD</option>
+            <option value="ee">EE</option>
+            <option value="ff">FF</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="floorsOfBuilding">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="floorsOfApartment">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="size">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="elevator">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="rooftop">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>

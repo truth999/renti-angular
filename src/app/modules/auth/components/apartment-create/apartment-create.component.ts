@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { ApartmentRoomComponent } from './apartment-room/apartment-room.component';
+import { ApartmentWindowComponent } from './apartment-window/apartment-window.component';
+import { ApartmentDataComponent } from './apartment-data/apartment-data.component';
 
 @Component({
   selector: 'app-apartment-create',
@@ -8,13 +11,12 @@ import { Router } from '@angular/router';
 })
 export class ApartmentCreateComponent implements OnInit {
   step = 0;
-  @ViewChild('room') roomChild;
-  @ViewChild('window') windowChild;
-  @ViewChild('apartment') apartmentChild;
+  disabled: boolean;
+  @ViewChild(ApartmentRoomComponent) roomChild: ApartmentRoomComponent;
+  @ViewChild(ApartmentWindowComponent) windowChild: ApartmentWindowComponent;
+  @ViewChild(ApartmentDataComponent) apartmentChild: ApartmentDataComponent;
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -24,7 +26,6 @@ export class ApartmentCreateComponent implements OnInit {
 
     if (this.step > 5) {
       this.step = 5;
-      // this.router.navigate(['/app/rentals/search']);
     }
 
     if (this.roomChild) {
@@ -36,15 +37,21 @@ export class ApartmentCreateComponent implements OnInit {
     }
 
     if (this.apartmentChild) {
-      this.apartmentChild.submit();
+      this.apartmentChild.onNextStep();
     }
   }
 
   onPreviewStep() {
-    this.step = this.step - 1;
+    if (this.step === 5 && this.apartmentChild.step !== 0) {
+      if (this.apartmentChild) {
+        this.apartmentChild.onPreviewStep();
+      }
+    } else {
+      this.step = this.step - 1;
 
-    if (this.step < 0) {
-      this.step = 0;
+      if (this.step < 0) {
+        this.step = 0;
+      }
     }
   }
 

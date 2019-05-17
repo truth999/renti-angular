@@ -16,9 +16,10 @@
                formControlName="name">
         <input type="number"
                class="form-control mr-1"
-               placeholder="{{ 'APARTMENT.SIZE' | translate }}:"
+               min="1"
+               inputmode="numeric"
+               placeholder="{{ 'APARTMENT.SIZE' | translate }} (m2):"
                formControlName="size">
-        <span class="d-flex align-items-center">(m<sup>2</sup>)</span>
       </div>
     </div>
   </form>

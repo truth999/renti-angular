@@ -3,10 +3,11 @@ import { Room } from './room.model';
 export class Apartment {
   address: string;
   typeOfBuilding: string;
-  yearOfContruction: number;
+  yearOfConstruction: number;
   stateOfApartment: string;
-  floorOfBuilding: number;
-  floorOfApartment: number;
+  energyPerformanceCertificate: string;
+  floorsOfBuilding: number;
+  floorsOfApartment: number;
   size: number;
   elevator: boolean;
   rooftop: boolean;
@@ -19,16 +20,12 @@ export class Apartment {
   externalIsolation: boolean;
   mediaServiceProviders: string[];
   handicapAccessible: boolean;
-  externals: {
-    balcony: boolean;
-    garden: boolean;
-    terrace: boolean;
-  };
-  sizeOfExternals: {
-    balcony: number;
-    garden: number;
-    terrace: number;
-  };
+  balcony: boolean;
+  sizeOfBalcony: number;
+  garden: boolean;
+  sizeOfGarden: number;
+  terrace: boolean;
+  sizeOfTerrace: number;
   airConditioner: boolean;
   garage: boolean;
   rentalFee: number;
@@ -36,5 +33,5 @@ export class Apartment {
   deposit: number;
   minimumRentingTime: number;
   dateOfMovingIn: string;
-  rooms: Room[];
+  rooms: string[];
 }

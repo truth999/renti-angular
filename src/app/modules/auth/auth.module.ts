@@ -42,6 +42,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AuthCompleteComponent } from './components/auth-complete/auth-complete.component';
 import { ApartmentCreateService } from './services/apartment-create.service';
 import { ApartmentWindowComponent } from './components/apartment-create/apartment-window/apartment-window.component';
+import { ApartmentDataFirstComponent } from './components/apartment-create/apartment-data/apartment-data-first/apartment-data-first.component';
+import { ApartmentDataSecondComponent } from './components/apartment-create/apartment-data/apartment-data-second/apartment-data-second.component';
+import { ApartmentDataThirdComponent } from './components/apartment-create/apartment-data/apartment-data-third/apartment-data-third.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { ApartmentWindowComponent } from './components/apartment-create/apartmen
     SignupFunnelRentalCityComponent,
     SignupComponent,
     AuthCompleteComponent,
-    ApartmentWindowComponent
+    ApartmentWindowComponent,
+    ApartmentDataFirstComponent,
+    ApartmentDataSecondComponent,
+    ApartmentDataThirdComponent
   ],
   providers: [
     ApartmentCreateService

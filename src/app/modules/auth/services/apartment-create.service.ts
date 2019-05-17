@@ -2,14 +2,18 @@ import { EventEmitter, Injectable } from '@angular/core';
 
 import { Apartment, Room } from '../../../shared/models';
 
+import { ApiService } from '../../../core/services/api.service';
+
 @Injectable()
 export class ApartmentCreateService {
-  apartmant: Apartment;
+  apartment: Apartment;
   rooms: Room[];
-  roomCount = 0;
+  roomCount = 1;
   roomCountChanged = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(
+    private apiService: ApiService
+  ) { }
 
   increaseRoomCount() {
     this.roomCount++;
@@ -18,14 +22,33 @@ export class ApartmentCreateService {
 
   decreaseRoomCount() {
     this.roomCount--;
-    if (this.roomCount < 0) {
-      this.roomCount = 0;
+    if (this.roomCount < 1) {
+      this.roomCount = 1;
     }
     this.roomCountChanged.emit(this.roomCount);
   }
 
-  createRooms(rooms) {
+  createRoomsData(rooms: Room[]) {
     this.rooms = rooms;
+  }
+
+  createApartmentData(apartment: Apartment) {
+    this.apartment = {
+      ...this.apartment,
+      ...apartment
+    };
+  }
+
+  createRooms(): Promise<any> {
+    return this.apiService.post('rooms', this.rooms);
+  }
+
+  updateApartmentDataWithRoomIds(roomIds: string[]) {
+    this.apartment.rooms = roomIds;
+  }
+
+  createApartment(): Promise<any> {
+    return this.apiService.post('apartments', this.apartment);
   }
 
 }

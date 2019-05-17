@@ -1,0 +1,119 @@
+<form [formGroup]="apartmentDataSecondForm"
+      (ngSubmit)="submit()">
+  <table class="table mt-4">
+    <tbody>
+      <tr>
+        <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
+        <td class="border-top-0 text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="buildingSiting">
+            <option value="east">{{ 'COMMON.EAST' | translate }}</option>
+            <option value="west">{{ 'COMMON.WEST' | translate }}</option>
+            <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
+            <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="typeOfHeating">
+            <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
+            <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
+            <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
+            <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
+            <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
+            <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
+            <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
+            <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.HEADROOM' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="headroom">
+            <option value="2m">< 2M</option>
+            <option value="2.5m">2.0 - 2.5M</option>
+            <option value="3m">2.5 - 3.0M</option>
+            <option value="3mp">> 3M</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.PARKING' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="parking">
+            <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
+            <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
+            <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
+            <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="childFriendly">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="petFriendly">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
+        <td class="text-right py-0 pr-0 w-50">
+          <ng-select [items]="mediaService"
+                     [multiple]="true"
+                     [closeOnSelect]="false"
+                     formControlName="mediaServiceProviders"></ng-select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="handicapAccessible">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="airConditioner">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
+        <td class="text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="garage">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>

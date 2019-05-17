@@ -1,0 +1,148 @@
+<form [formGroup]="apartmentDataThirdForm"
+      (ngSubmit)="submit()">
+  <table class="table mt-4">
+    <tbody>
+      <tr>
+        <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
+        <td class="border-top-0 text-right pr-0">
+          <label class="switch">
+            <input type="checkbox"
+                   formControlName="externalIsolation">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+      <ng-container *ngIf="apartmentDataThirdForm.get('externalIsolation').value === true">
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
+          <td class="text-right pr-0">
+            <label class="switch">
+              <input type="checkbox"
+                     formControlName="balcony">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+        <tr *ngIf="apartmentDataThirdForm.get('balcony').value === true">
+          <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <input type="number"
+                   class="form-control border-0 text-right"
+                   min="0"
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   formControlName="sizeOfBalcony">
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
+          <td class="text-right pr-0">
+            <label class="switch">
+              <input type="checkbox"
+                     formControlName="garden">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+        <tr *ngIf="apartmentDataThirdForm.get('garden').value === true">
+          <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <input type="number"
+                   class="form-control border-0 text-right"
+                   min="0"
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   formControlName="sizeOfGarden">
+          </td>
+        </tr>
+        <tr>
+          <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
+          <td class="text-right pr-0">
+            <label class="switch">
+              <input type="checkbox"
+                     formControlName="terrace">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+        <tr *ngIf="apartmentDataThirdForm.get('terrace').value === true">
+          <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
+          <td class="text-right py-0 pr-0">
+            <input type="number"
+                   class="form-control border-0 text-right"
+                   min="0"
+                   inputmode="numeric"
+                   pattern="[0-9]*"
+                   formControlName="sizeOfTerrace">
+          </td>
+        </tr>
+      </ng-container>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="rentalFee">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="overhead">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <input type="number"
+                 class="form-control border-0 text-right"
+                 min="0"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="deposit">
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="minimumRentingTime">
+            <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
+        <td class="border-bottom text-right pr-0"
+            formGroupName="dateOfMovingIn">
+          <select class="custom-select w-75"
+                  formControlName="day"
+                  (change)="setDate()">
+            <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
+            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+          </select>
+          <select class="custom-select w-75"
+                  formControlName="month"
+                  (change)="setDate()">
+            <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
+            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+          </select>
+          <select class="custom-select w-75"
+                  formControlName="year"
+                  (change)="setDate()">
+            <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
