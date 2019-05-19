@@ -27,10 +27,7 @@ export class TenantComponent implements OnInit {
       const responseUser = await this.authService.getUser();
       this.user = responseUser.user;
       this.tenantId = responseUser.user.tenantId;
-    } finally {
-    }
 
-    try {
       if (!!this.tenantId) {
         const response = await this.tenantService.getTenant(this.tenantId);
         this.tenant = response.tenant;

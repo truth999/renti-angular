@@ -70,6 +70,12 @@
       }
     }
 
+    .nationality {
+      @include media-breakpoint-down(xs) {
+        border-top: $border-width solid $border-color !important;
+      }
+    }
+
     .btn {
       @include media-breakpoint-down(xs) {
         width: 100%;

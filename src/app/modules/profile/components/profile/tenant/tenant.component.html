@@ -25,13 +25,13 @@
           </div>
           <div class="row mt-5">
             <div class="col-sm-8">
-              <div class="profile-complete w-100">
-                <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
-                  <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
-                  <span>9/12</span>
-                </div>
-                <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>
-              </div>
+<!--              <div class="profile-complete w-100">-->
+<!--                <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">-->
+<!--                  <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>-->
+<!--                  <span>9/12</span>-->
+<!--                </div>-->
+<!--                <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>-->
+<!--              </div>-->
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@
               </tr>
               <tr>
                 <td>{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.placeOfBirth.city }}, {{ tenant.placeOfBirth.country }}</td>
+                <td class="font-weight-bold text-right">{{ tenant.placeOfBirth }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.DATE_OF_BIRTH' | translate }}:</td>
@@ -103,7 +103,7 @@
               <!--              </tr>-->
               <tr>
                 <td>{{ 'COMMON.CURRENT_CITY' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.currentCity.city }}, {{ tenant.currentCity.country }}</td>
+                <td class="font-weight-bold text-right">{{ tenant.currentCity }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.HIGHEST_LEVEL_OF_QUALIFICATION' | translate }}:</td>

@@ -24,13 +24,13 @@
           </div>
           <div class="row mt-5">
             <div class="col-sm-8">
-              <div class="profile-complete w-100">
-                <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
-                  <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
-                  <span>11/12</span>
-                </div>
-                <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>
-              </div>
+<!--              <div class="profile-complete w-100">-->
+<!--                <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">-->
+<!--                  <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>-->
+<!--                  <span>11/12</span>-->
+<!--                </div>-->
+<!--                <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>-->
+<!--              </div>-->
             </div>
           </div>
         </div>
@@ -38,7 +38,11 @@
           <div class="text-right mb-sm-5 mb-3">
             <button class="btn btn-outline-primary btn-lg">{{ 'COMMON.SAVE_TO_FAVORITES' | translate }}</button>
           </div>
-          <table class="table">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <table class="table mb-0">
             <tbody>
               <tr>
                 <td class="border-top-0">{{ 'COMMON.EMAIL' | translate }}:</td>
@@ -50,7 +54,7 @@
               </tr>
               <tr>
                 <td>{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ landlord.placeOfBirth.city }}, {{ landlord.placeOfBirth.country }}</td>
+                <td class="font-weight-bold text-right">{{ landlord.placeOfBirth }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.DATE_OF_BIRTH' | translate }}:</td>
@@ -58,9 +62,15 @@
                   {{ landlord.dateOfBirth }}
                 </td>
               </tr>
-              <tr>
-                <td>{{ 'COMMON.NATIONALITY' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ landlord.nationality }}</td>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <table class="table">
+            <tbody>
+              <tr class="nationality">
+                <td class="border-top-0">{{ 'COMMON.NATIONALITY' | translate }}:</td>
+                <td class="font-weight-bold text-right border-top-0">{{ landlord.nationality }}</td>
               </tr>
               <tr>
                 <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
