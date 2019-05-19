@@ -2,6 +2,7 @@
   <div class="card-body">
     <h5 class="card-title">{{ 'LOGIN.LOGIN' | translate }}</h5>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <h5 *ngIf="loginFailed" class="text-danger text-center">{{'ERROR.LOGIN_FAILED' | translate}}</h5>
       <div class="form-group">
         <label for="email">{{ 'COMMON.EMAIL' | translate }}:</label>
         <input type="email"

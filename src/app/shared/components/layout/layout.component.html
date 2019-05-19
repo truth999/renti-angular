@@ -65,7 +65,7 @@
       </ul>
       <ul class="nav flex-column nav-logout position-absolute w-100">
         <li class="nav-item">
-          <a routerLink="/" class="nav-link">
+          <a href="javascript:void(0)" class="nav-link" (click)="logOut()">
             <i class="icon-exit mr-2"></i>
             {{ 'COMMON.LOGOUT' | translate }}
           </a>

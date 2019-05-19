@@ -49,9 +49,8 @@
             <input type="password"
                    class="form-control"
                    id="password"
-                   formControlName="password"
-                   [(ngModel)]="passwordCheck">
-            <ng2-password-strength-bar [passwordToCheck]="passwordCheck"
+                   formControlName="password">
+            <ng2-password-strength-bar [passwordToCheck]="signupForm.controls['password'].value"
                                        [barLabel]="passwordStrengthBarLabel"
                                        [baseColor]="baseColor"></ng2-password-strength-bar>
             <div class="invalid-feedback d-block" *ngIf="signupForm.controls['password'].hasError('required') && signupForm.controls['password'].touched">{{ 'ERROR.PASSWORD_REQUIRED' | translate }}</div>

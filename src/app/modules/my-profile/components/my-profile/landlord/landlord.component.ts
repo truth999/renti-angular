@@ -72,11 +72,8 @@ export class LandlordComponent implements OnInit {
     try {
       const userResponse = await this.authService.getUser();
       this.user = userResponse.user;
-      this.landlordId = userResponse.user.landlordId;
-    } finally {
-    }
 
-    try {
+      this.landlordId = userResponse.user.landlordId;
       if (!!this.landlordId) {
         const response = await this.landlordService.getLandlord(this.landlordId);
         this.landlord = response.landlord;

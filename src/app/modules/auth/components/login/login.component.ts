@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  loginFailed = false;
 
   constructor(
       private authService: AuthService,
+      private cursorWaitService: CursorWaitService,
   ) { }
 
   ngOnInit() {
@@ -22,9 +25,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(): void {
-    const loginData = this.loginForm.value;
-    this.authService.login(loginData);
+  async login() {
+    try {
+      this.cursorWaitService.enable();
+      this.loginFailed = false;
+      const loginData = this.loginForm.value;
+      await this.authService.login(loginData);
+    } catch (e) {
+      this.loginFailed = true;
+    } finally {
+      this.cursorWaitService.disable();
+    }
   }
 
 }
