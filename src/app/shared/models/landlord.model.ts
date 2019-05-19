@@ -5,12 +5,9 @@ export class Landlord {
   // email: string;
   mobile: string;
   profilePicture: string;
-  placeOfBirth: {
-    country: string,
-    city: string
-  };
+  placeOfBirth: string;
   dateOfBirth: string;
-  nationality: string;
+  nationality: string[];
   spokenLanguages: string[];
   isPerson: boolean;
   nameOfAgency: string;

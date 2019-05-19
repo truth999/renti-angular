@@ -7,12 +7,9 @@ export const LANDLORD_PROFILES: Landlord = {
   // email: '',
   mobile: '',
   profilePicture: '',
-  placeOfBirth: {
-    country: '',
-    city: ''
-  },
+  placeOfBirth: '',
   dateOfBirth: '',
-  nationality: 'US',
+  nationality: ['US'],
   spokenLanguages: ['English', 'Hungarian', 'Turkish', 'Russian', 'Italian'],
   isPerson: false,
   nameOfAgency: ''

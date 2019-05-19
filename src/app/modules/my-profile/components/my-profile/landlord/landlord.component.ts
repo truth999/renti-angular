@@ -1,18 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
 import { LandlordService } from '../../../services/landlord.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
+
 import { AuthService } from '../../../../../core/services/auth.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
-
 import { Landlord } from '../../../../../shared/models';
 import { config } from '../../../../../../config';
+
+export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const day = control.get('day');
+  const month = control.get('month');
+  const year = control.get('year');
+
+  return day && month && year && day.valid === true && month.valid === true && year.valid === true ? null : { required: true } ;
+};
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -20,12 +30,12 @@ import { config } from '../../../../../../config';
   styleUrls: ['./landlord.component.scss']
 })
 export class LandlordComponent implements OnInit {
+  @ViewChild('placesRef') placesRef: GooglePlaceDirective;
   user: any;
   landlordId: string;
   landlord: Landlord;
   photo: string;
   photoDeleted = true;
-  countries = config.countries;
   days: string[];
   months: string[];
   years: string[];
@@ -46,6 +56,7 @@ export class LandlordComponent implements OnInit {
     'Spanish',
     'Other'
   ];
+  countries = config.countries;
 
   password = '';
   passwordStrengthBarLabel = '';
@@ -82,7 +93,7 @@ export class LandlordComponent implements OnInit {
         this.landlord = response.landlord;
       }
       this.buildLandlordForm();
-      this.isAgency = this.landlord.isPerson !== true;
+      this.isAgency = !!this.landlord ? this.landlord.isPerson !== true : false;
     } finally {
     }
 
@@ -101,15 +112,12 @@ export class LandlordComponent implements OnInit {
 
     this.landlordForm = new FormGroup({
       mobile: new FormControl(!!this.landlord ? this.landlord.mobile : '', Validators.required),
-      placeOfBirth: new FormGroup({
-        country: new FormControl(!!this.landlord ? this.landlord.placeOfBirth.country : ''),
-        city: new FormControl(!!this.landlord ? this.landlord.placeOfBirth.city : '')
-      }),
+      placeOfBirth: new FormControl(!!this.landlord ? this.landlord.placeOfBirth : ''),
       dateOfBirth: new FormGroup({
         day: new FormControl(!!this.landlord ? dateOfBirthArray[0] : '', Validators.required),
         month: new FormControl(!!this.landlord ? dateOfBirthArray[1] : '', Validators.required),
         year: new FormControl(!!this.landlord ? dateOfBirthArray[2] : '', Validators.required)
-      }),
+      }, { validators: dateOfBirthValidator }),
       nationality: new FormControl(!!this.landlord ? this.landlord.nationality : ''),
       spokenLanguages: new FormControl(!!this.landlord ? this.landlord.spokenLanguages : '', Validators.required),
       isPerson: new FormControl(!!this.landlord ? this.landlord.isPerson : '', Validators.required),
@@ -119,6 +127,10 @@ export class LandlordComponent implements OnInit {
 
   get mobile() {
     return this.landlordForm.get('mobile');
+  }
+
+  get dateOfBirth() {
+    return this.landlordForm.get('dateOfBirth');
   }
 
   get spokenLanguages() {
@@ -131,6 +143,10 @@ export class LandlordComponent implements OnInit {
 
   get nameOfAgency() {
     return this.landlordForm.get('nameOfAgency');
+  }
+
+  handleAddressChange(address: Address) {
+    this.landlordForm.get('placeOfBirth').setValue(address.formatted_address);
   }
 
   setBirthDate() {
@@ -160,12 +176,13 @@ export class LandlordComponent implements OnInit {
     this.router.navigate(['/app/rentals/my-properties']);
   }
 
-  onSettings() {
-    this.router.navigate(['/app/settings']);
+  onViewAs() {
+    this.router.navigate(['/app/profile']);
   }
 
-  onChange(event) {
-    this.isAgency = event.target.value === '1: false';
+  onIsPersonChange() {
+    this.isAgency = !this.isPerson.value;
+    this.isPerson.value ? this.nameOfAgency.setErrors(null) : this.nameOfAgency.setValidators(Validators.required);
   }
 
   onOpenPhotoUploadModal() {
@@ -209,7 +226,7 @@ export class LandlordComponent implements OnInit {
       } else {
         await this.landlordService.updateLandlord(this.landlord);
       }
-      this.router.navigate(['/app/profile']);
+      // this.router.navigate(['/app/profile']);
     } finally {
     }
   }

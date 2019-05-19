@@ -58,12 +58,12 @@
           </div>
           <div class="col-sm-6 py-2">
             <div class="button-group text-sm-right py-2">
-              <button type="button"
-                      class="btn btn-outline-primary btn-lg mb-sm-3"
-                      (click)="onSettings()">{{ 'COMMON.SETTINGS' | translate }}</button>
               <button type="submit"
+                      class="btn btn-outline-primary btn-lg mb-sm-3"
+                      [disabled]="!landlordForm.valid">{{ 'COMMON.SAVE' | translate }}</button>
+              <button type="button"
                       class="btn btn-outline-primary btn-lg"
-                      [disabled]="!landlordForm.valid">{{ 'COMMON.VIEW_AS' | translate }}...</button>
+                      (click)="onViewAs()">{{ 'COMMON.VIEW_AS' | translate }}...</button>
             </div>
             <table class="table">
               <tbody>
@@ -101,31 +101,31 @@
                     <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                   </select>
+                  <div class="invalid-feedback d-block" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">
+                    <span *ngIf="dateOfBirth.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td class="align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
                 <td class="text-right pr-0">
-                  <div class="form-inline justify-content-between"
-                       formGroupName="placeOfBirth">
-                    <select formControlName="country"
-                            class="custom-select border-0">
-                      <option value="US">US</option>
-                    </select>
-                    <select formControlName="city"
-                            class="custom-select border-0">
-                      <option value="Washington">Washington</option>
-                    </select>
-                  </div>
+                  <input ngx-google-places-autocomplete
+                         class="form-control border-0 text-right"
+                         [options]="{ types: ['(cities)'] }"
+                         #placesRef="ngx-places"
+                         (onAddressChange)="handleAddressChange($event)"
+                         formControlName="placeOfBirth">
                 </td>
               </tr>
               <tr>
                 <td class="align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
                 <td class="text-right pr-0 py-0">
-                  <select formControlName="nationality"
-                          class="custom-select border-0">
-                    <option *ngFor="let country of countries" [value]="country.ccode">{{ country.cname }}</option>
-                  </select>
+                  <ng-select [items]="countries"
+                             [multiple]="true"
+                             [closeOnSelect]="false"
+                             bindLabel="cname"
+                             bindValue="ccode"
+                             formControlName="nationality"></ng-select>
                 </td>
               </tr>
               <tr>
@@ -146,7 +146,7 @@
                   <select id="person-agency"
                           formControlName="isPerson"
                           class="custom-select border-0 w-auto"
-                          (change)="onChange($event)">
+                          (change)="onIsPersonChange()">
                     <option [ngValue]="true">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
                     <option [ngValue]="false">{{ 'COMMON.AGENCY' | translate }}</option>
                   </select>
