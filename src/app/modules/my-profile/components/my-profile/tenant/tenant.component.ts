@@ -1,17 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { TenantService } from '../../../services/tenant.service';
 import { AuthService } from '../../../../../core/services/auth.service';
-import { DateSelectService } from '../../../../../shared/services/date-select.service';
 
+import { DateSelectService } from '../../../../../shared/services/date-select.service';
 import { Tenant } from '../../../../../shared/models';
 import { config } from '../../../../../../config';
+
+export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const day = control.get('day');
+  const month = control.get('month');
+  const year = control.get('year');
+
+  return day && month && year && day.valid === true && month.valid === true && year.valid === true ? null : { required: true } ;
+};
 
 @Component({
   selector: 'app-my-profile-tenant',
@@ -95,22 +104,17 @@ export class TenantComponent implements OnInit {
     const dateOfBirthArray = !!this.tenant ? this.tenant.dateOfBirth.split('-') : '';
 
     this.tenantForm = new FormGroup({
+      lookingRent: new FormControl(!!this.tenant ? this.tenant.lookingRent : '', Validators.required),
       mobile: new FormControl(!!this.tenant ? this.tenant.mobile : '', Validators.required),
-      placeOfBirth: new FormGroup({
-        country: new FormControl(!!this.tenant ? this.tenant.placeOfBirth.country : '', Validators.required),
-        city: new FormControl(!!this.tenant ? this.tenant.placeOfBirth.city : '', Validators.required)
-      }),
+      placeOfBirth: new FormControl(!!this.tenant ? this.tenant.placeOfBirth : '', Validators.required),
       dateOfBirth: new FormGroup({
         day: new FormControl(!!this.tenant ? dateOfBirthArray[0] : '', Validators.required),
         month: new FormControl(!!this.tenant ? dateOfBirthArray[1] : '', Validators.required),
         year: new FormControl(!!this.tenant ? dateOfBirthArray[2] : '', Validators.required)
-      }),
+      }, { validators: dateOfBirthValidator }),
       nationality: new FormControl(!!this.tenant ? this.tenant.nationality : '', Validators.required),
       spokenLanguages: new FormControl(!!this.tenant ? this.tenant.spokenLanguages : '', Validators.required),
-      currentCity: new FormGroup({
-        country: new FormControl(!!this.tenant ? this.tenant.currentCity.country : '', Validators.required),
-        city: new FormControl(!!this.tenant ? this.tenant.currentCity.city : '', Validators.required)
-      }),
+      currentCity: new FormControl(!!this.tenant ? this.tenant.currentCity : '', Validators.required),
       highestLevelOfQualification: new FormControl(!!this.tenant ? this.tenant.highestLevelOfQualification : '', Validators.required),
       education: new FormArray(!!this.tenant ? this.tenant.education.map(education => {
         return new FormGroup({
@@ -140,7 +144,7 @@ export class TenantComponent implements OnInit {
   }
 
   addJobTitle() {
-    this.jobTitle.push(new FormControl(''));
+    this.jobTitle.push(new FormControl('', Validators.required));
   }
 
   get formerWorkplaces() {
@@ -162,6 +166,18 @@ export class TenantComponent implements OnInit {
     }));
   }
 
+  handleRentChange(address: Address) {
+    this.tenantForm.get('lookingRent').setValue(address.formatted_address);
+  }
+
+  handlePlaceChange(address: Address) {
+    this.tenantForm.get('placeOfBirth').setValue(address.formatted_address);
+  }
+
+  handleCurrentCityChange(address: Address) {
+    this.tenantForm.get('currentCity').setValue(address.formatted_address);
+  }
+
   setBirthDate() {
     let daysInMonth = null;
     const date = new Date();
@@ -181,8 +197,8 @@ export class TenantComponent implements OnInit {
     }
   }
 
-  onSettings() {
-    this.router.navigate(['/app/settings']);
+  onViewAs() {
+    this.router.navigate(['/app/profile']);
   }
 
   onBack() {
@@ -226,7 +242,7 @@ export class TenantComponent implements OnInit {
       } else {
         await this.tenantService.updateTenant(this.tenant);
       }
-      this.router.navigate(['/app/profile']);
+      // this.router.navigate(['/app/profile']);
     } finally {
     }
   }

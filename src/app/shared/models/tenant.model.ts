@@ -1,21 +1,13 @@
 export class Tenant {
   _id: string;
-  // firstName: string;
-  // lastName: string;
-  // email: string;
+  lookingRent: string;
   mobile: string;
   profilePicture: string;
-  placeOfBirth: {
-    country: string,
-    city: string
-  };
+  placeOfBirth: string;
   dateOfBirth: string;
   nationality: string;
   spokenLanguages: string[];
-  currentCity: {
-    country: string,
-    city: string
-  };
+  currentCity: string;
   highestLevelOfQualification: string;
   education: [{
     nameOfSchool: string,

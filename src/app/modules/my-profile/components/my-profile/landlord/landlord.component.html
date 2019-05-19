@@ -46,13 +46,13 @@
             </div>
             <div class="row mt-5">
               <div class="col-sm-8">
-                <div class="profile-complete w-100">
-                  <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
-                    <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
-                    <span>11/12</span>
-                  </div>
-                  <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>
-                </div>
+<!--                <div class="profile-complete w-100">-->
+<!--                  <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">-->
+<!--                    <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>-->
+<!--                    <span>11/12</span>-->
+<!--                  </div>-->
+<!--                  <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>-->
+<!--                </div>-->
               </div>
             </div>
           </div>
@@ -65,108 +65,118 @@
                       class="btn btn-outline-primary btn-lg"
                       (click)="onViewAs()">{{ 'COMMON.VIEW_AS' | translate }}...</button>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
             <table class="table">
               <tbody>
-              <tr>
-                <td class="border-top-0 py-0 align-middle">{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
-                <td class="text-right border-top-0 py-0 pr-0">
-                  <international-phone-number formControlName="mobile"
-                                              id="mobile"
-                                              [defaultCountry]="'hu'"
-                                              placeholder=""></international-phone-number>
-                  <div class="invalid-feedback d-block" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
-                    <span *ngIf="mobile.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
-                <td class="text-right pr-0 w-50"
-                    formGroupName="dateOfBirth">
-                  <select formControlName="day"
-                          class="custom-select w-75"
-                          (change)="setBirthDate()">
-                    <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
-                    <option *ngFor="let day of days" [value]="day">{{ day }}</option>
-                  </select>
-                  <select formControlName="month"
-                          class="custom-select w-75"
-                          (change)="setBirthDate()">
-                    <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
-                    <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-                  </select>
-                  <select formControlName="year"
-                          class="custom-select w-75"
-                          (change)="setBirthDate()">
-                    <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
-                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-                  </select>
-                  <div class="invalid-feedback d-block" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">
-                    <span *ngIf="dateOfBirth.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-                <td class="text-right pr-0">
-                  <input ngx-google-places-autocomplete
-                         class="form-control border-0 text-right"
-                         [options]="{ types: ['(cities)'] }"
-                         #placesRef="ngx-places"
-                         (onAddressChange)="handleAddressChange($event)"
-                         formControlName="placeOfBirth">
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
-                <td class="text-right pr-0 py-0">
-                  <ng-select [items]="countries"
-                             [multiple]="true"
-                             [closeOnSelect]="false"
-                             bindLabel="cname"
-                             bindValue="ccode"
-                             formControlName="nationality"></ng-select>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
-                <td class="text-right pr-0 py-0">
-                  <ng-select [items]="spokenLanguagesVal"
-                             [multiple]="true"
-                             [closeOnSelect]="false"
-                             formControlName="spokenLanguages"></ng-select>
-                  <div class="invalid-feedback d-block" *ngIf="spokenLanguages.invalid && (spokenLanguages.dirty || spokenLanguages.touched)">
-                    <span *ngIf="spokenLanguages.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="align-middle">{{ 'COMMON.PRIVATE_PERSON_AGENCY' | translate }}:</td>
-                <td class="text-right pr-0 py-0">
-                  <select id="person-agency"
-                          formControlName="isPerson"
-                          class="custom-select border-0 w-auto"
-                          (change)="onIsPersonChange()">
-                    <option [ngValue]="true">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
-                    <option [ngValue]="false">{{ 'COMMON.AGENCY' | translate }}</option>
-                  </select>
-                  <div class="invalid-feedback d-block" *ngIf="isPerson.invalid && (isPerson.dirty || isPerson.touched)">
-                    <span *ngIf="isPerson.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
-                </td>
-              </tr>
-              <tr *ngIf="isAgency">
-                <td class="align-middle">{{ 'COMMON.NAME_OF_THE_AGENCY' | translate }}:</td>
-                <td class="text-right pr-0 py-0">
-                  <input type="text"
-                         class="form-control text-right border-0"
-                         id="agency-name"
-                         formControlName="nameOfAgency">
-                  <div class="invalid-feedback d-block" *ngIf="nameOfAgency.invalid && (nameOfAgency.dirty || nameOfAgency.touched)">
-                    <span *ngIf="nameOfAgency.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
-                </td>
-              </tr>
+                <tr>
+                  <td class="border-top-0 py-0 align-middle">{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
+                  <td class="text-right border-top-0 py-0 pr-0">
+                    <international-phone-number formControlName="mobile"
+                                                id="mobile"
+                                                [defaultCountry]="'hu'"
+                                                placeholder=""></international-phone-number>
+                    <div class="invalid-feedback d-block" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+                      <span *ngIf="mobile.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
+                  <td class="text-right pr-0 w-50"
+                      formGroupName="dateOfBirth">
+                    <select formControlName="day"
+                            class="custom-select w-75"
+                            (change)="setBirthDate()">
+                      <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
+                      <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+                    </select>
+                    <select formControlName="month"
+                            class="custom-select w-75"
+                            (change)="setBirthDate()">
+                      <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
+                      <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                    </select>
+                    <select formControlName="year"
+                            class="custom-select w-75"
+                            (change)="setBirthDate()">
+                      <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
+                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                    </select>
+                    <div class="invalid-feedback d-block" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">
+                      <span *ngIf="dateOfBirth.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
+                  <td class="text-right pr-0">
+                    <input ngx-google-places-autocomplete
+                           class="form-control border-0 text-right"
+                           [options]="{ types: ['(cities)'] }"
+                           #placesRef="ngx-places"
+                           (onAddressChange)="handleAddressChange($event)"
+                           formControlName="placeOfBirth">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-6">
+            <table class="table">
+              <tbody>
+                <tr class="nationality">
+                  <td class="align-middle border-top-0">{{ 'COMMON.NATIONALITY' | translate }}:</td>
+                  <td class="text-right border-top-0 pr-0 py-0 w-50">
+                    <ng-select [items]="countries"
+                               [multiple]="true"
+                               [closeOnSelect]="false"
+                               bindLabel="cname"
+                               bindValue="ccode"
+                               formControlName="nationality"></ng-select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
+                  <td class="text-right pr-0 py-0">
+                    <ng-select [items]="spokenLanguagesVal"
+                               [multiple]="true"
+                               [closeOnSelect]="false"
+                               formControlName="spokenLanguages"></ng-select>
+                    <div class="invalid-feedback d-block" *ngIf="spokenLanguages.invalid && (spokenLanguages.dirty || spokenLanguages.touched)">
+                      <span *ngIf="spokenLanguages.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="align-middle">{{ 'COMMON.PRIVATE_PERSON_AGENCY' | translate }}:</td>
+                  <td class="text-right pr-0 py-0">
+                    <select id="person-agency"
+                            formControlName="isPerson"
+                            class="custom-select border-0 w-auto"
+                            (change)="onIsPersonChange()">
+                      <option [ngValue]="true">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
+                      <option [ngValue]="false">{{ 'COMMON.AGENCY' | translate }}</option>
+                    </select>
+                    <div class="invalid-feedback d-block" *ngIf="isPerson.invalid && (isPerson.dirty || isPerson.touched)">
+                      <span *ngIf="isPerson.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="isAgency">
+                  <td class="align-middle">{{ 'COMMON.NAME_OF_THE_AGENCY' | translate }}:</td>
+                  <td class="text-right pr-0 py-0">
+                    <input type="text"
+                           class="form-control text-right border-0"
+                           id="agency-name"
+                           formControlName="nameOfAgency">
+                    <div class="invalid-feedback d-block" *ngIf="nameOfAgency.invalid && (nameOfAgency.dirty || nameOfAgency.touched)">
+                      <span *ngIf="nameOfAgency.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>

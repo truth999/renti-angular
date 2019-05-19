@@ -47,31 +47,37 @@
             </div>
             <div class="row mt-5">
               <div class="col-sm-8">
-                <div class="profile-complete w-100">
-                  <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">
-                    <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>
-                    <span>9/12</span>
-                  </div>
-                  <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>
-                </div>
+<!--                <div class="profile-complete w-100">-->
+<!--                  <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">-->
+<!--                    <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>-->
+<!--                    <span>9/12</span>-->
+<!--                  </div>-->
+<!--                  <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>-->
+<!--                </div>-->
                 <div class="form-group pt-2 position-relative rent">
                   <label for="rent" class="h5 font-weight-bolder">{{ 'COMMON.LOOKING_TO_RENT_IN' | translate }}:</label>
-                  <select id="rent"
-                          class="custom-select">
-                    <option value="">Debrecen, Hungary</option>
-                  </select>
-                  <i class="icon-location position-absolute"></i>
+                  <input ngx-google-places-autocomplete
+                         id="rent"
+                         class="form-control custom-select"
+                         [options]="{ types: ['(cities)'] }"
+                         (onAddressChange)="handleRentChange($event)"
+                         formControlName="lookingRent">
+<!--                  <i class="icon-location position-absolute"></i>-->
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('lookingRent').invalid && (tenantForm.get('lookingRent').dirty || tenantForm.get('lookingRent').touched)">
+                    <span *ngIf="tenantForm.get('lookingRent').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-sm-5 button-group text-sm-right py-2">
-            <button type="button"
-                    class="btn btn-outline-primary btn-lg mb-sm-3"
-                    (click)="onSettings()">{{ 'COMMON.SETTINGS' | translate }}</button>
             <button type="submit"
+                    class="btn btn-outline-primary btn-lg mb-sm-3"
+                    [disabled]="!tenantForm.valid">{{ 'COMMON.SAVE' | translate }}</button>
+            <button type="button"
                     class="btn btn-outline-primary btn-lg"
-                    [disabled]="!tenantForm.valid">{{ 'COMMON.VIEW_AS' | translate }}...</button>
+                    (click)="onViewAs()">{{ 'COMMON.VIEW_AS' | translate }}...</button>
           </div>
         </div>
         <div class="form-group mt-3">
@@ -103,6 +109,7 @@
                 <td class="border-top-0 py-0 align-middle">{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
                 <td class="text-right border-top-0 py-0 pr-0">
                   <international-phone-number id="phone"
+                                              [defaultCountry]="'hu'"
                                               placeholder=""
                                               formControlName="mobile"></international-phone-number>
                   <div class="invalid-feedback d-block"
@@ -114,16 +121,14 @@
               <tr>
                 <td class="py-0 align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
                 <td class="text-right pr-0">
-                  <div class="form-inline justify-content-between"
-                       formGroupName="placeOfBirth">
-                    <select class="custom-select"
-                            formControlName="country">
-                      <option value="US">US</option>
-                    </select>
-                    <select class="custom-select"
-                            formControlName="city">
-                      <option value="Washington">Washington</option>
-                    </select>
+                  <input ngx-google-places-autocomplete
+                         class="form-control border-0 text-right"
+                         [options]="{ types: ['(cities)'] }"
+                         (onAddressChange)="handlePlaceChange($event)"
+                         formControlName="placeOfBirth">
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('placeOfBirth').invalid && (tenantForm.get('placeOfBirth').dirty || tenantForm.get('placeOfBirth').touched)">
+                    <span *ngIf="tenantForm.get('placeOfBirth').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   </div>
                 </td>
               </tr>
@@ -149,6 +154,10 @@
                     <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                   </select>
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('dateOfBirth').invalid && (tenantForm.get('dateOfBirth').dirty || tenantForm.get('dateOfBirth').touched)">
+                    <span *ngIf="tenantForm.get('dateOfBirth').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
                 </td>
               </tr>
               <!--            <tr>-->
@@ -189,16 +198,14 @@
               <tr>
                 <td class="align-middle">{{ 'COMMON.CURRENT_CITY' | translate }}:</td>
                 <td class="pr-0 text-right">
-                  <div class="form-inline justify-content-between"
-                       formGroupName="currentCity">
-                    <select class="custom-select"
-                            formControlName="country">
-                      <option value="US">US</option>
-                    </select>
-                    <select class="custom-select"
-                            formControlName="city">
-                      <option value="Washington">Washington</option>
-                    </select>
+                  <input ngx-google-places-autocomplete
+                         class="form-control border-0 text-right"
+                         [options]="{ types: ['(cities)'] }"
+                         (onAddressChange)="handleCurrentCityChange($event)"
+                         formControlName="currentCity">
+                  <div class="invalid-feedback d-block"
+                       *ngIf="tenantForm.get('currentCity').invalid && (tenantForm.get('currentCity').dirty || tenantForm.get('currentCity').touched)">
+                    <span *ngIf="tenantForm.get('currentCity').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   </div>
                 </td>
               </tr>
@@ -225,10 +232,15 @@
                 </td>
                 <td class="pr-0 text-right"
                     formArrayName="jobTitle">
-                  <input type="text"
-                         class="form-control text-right"
-                         *ngFor="let jobTitleEl of jobTitle.controls; let i = index"
-                         [formControlName]="i">
+                  <ng-container *ngFor="let jobTitleEl of jobTitle.controls; let i = index">
+                    <input type="text"
+                           class="form-control text-right"
+                           [formControlName]="i">
+                    <div class="invalid-feedback d-block"
+                         *ngIf="jobTitleEl.invalid && (jobTitleEl.dirty || jobTitleEl.touched)">
+                      <span *ngIf="jobTitleEl.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                    </div>
+                  </ng-container>
                 </td>
               </tr>
               <tr>

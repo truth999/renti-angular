@@ -39,7 +39,7 @@
     "YOUR_GENDER": "Neme",
     "MALE": "Férfi",
     "FEMALE": "Nő",
-    "MONTHLY_INCOME": "Havi bevétel",
+    "MONTHLY_INCOME": "Havi bevétel (nettó) (Ft)",
     "CHOOSE_MONTHLY_INCOME": "Válassza ki a havi átlagos bevételét",
     "DATE_OF_BIRTH": "Születési idő",
     "DAY": "Nap",

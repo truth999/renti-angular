@@ -2,9 +2,6 @@ import { Landlord, Tenant } from '../models';
 
 export const LANDLORD_PROFILES: Landlord = {
   _id: '',
-  // firstName: 'Peter',
-  // lastName: 'Kovacs',
-  // email: '',
   mobile: '',
   profilePicture: '',
   placeOfBirth: '',
@@ -17,22 +14,14 @@ export const LANDLORD_PROFILES: Landlord = {
 
 export const TENANT_PROFILES: Tenant = {
   _id: '',
-  // firstName: 'Kate',
-  // lastName: 'Tomlins',
-  // email: '',
+  lookingRent: '',
   mobile: '',
   profilePicture: '',
-  placeOfBirth: {
-    country: '',
-    city: ''
-  },
+  placeOfBirth: '',
   dateOfBirth: '',
   nationality: 'US',
   spokenLanguages: ['English', 'Spanish'],
-  currentCity: {
-    country: '',
-    city: ''
-  },
+  currentCity: '',
   highestLevelOfQualification: '',
   education: [{
     nameOfSchool: '',

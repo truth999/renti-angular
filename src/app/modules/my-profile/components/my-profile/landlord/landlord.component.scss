@@ -138,6 +138,14 @@
         }
       }
     }
+
+    .nationality {
+      td {
+        @include media-breakpoint-down(xs) {
+          border-top: $table-border-width solid $table-border-color !important;
+        }
+      }
+    }
   }
 
   ngb-rating {

@@ -126,7 +126,8 @@
 
       .rent {
         .custom-select {
-          padding-left: $custom-select-padding-x + $custom-select-indicator-padding;
+          //padding-left: $custom-select-padding-x + $custom-select-indicator-padding;
+          background-image: none;
         }
 
         .icon-location {
