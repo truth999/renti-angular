@@ -38,6 +38,7 @@
     "ngx-gallery": "^5.9.1",
     "ngx-google-places-autocomplete": "^2.0.3",
     "ngx-international-phone-number": "^1.0.4",
+    "ngx-toastr": "^10.0.4",
     "nouislider": "^13.1.5",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-
+import { Observable, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
@@ -14,7 +13,7 @@ export class ApiService {
     const fullUrl = this.makeFullUrl(url);
 
     return this.http.get(fullUrl)
-      .pipe(catchError(this.processHttpError()))
+      .pipe(catchError(this.formatErrors))
       .toPromise();
   }
 
@@ -23,7 +22,7 @@ export class ApiService {
     const headers = this.makeHeaders();
 
     return this.http.post(fullUrl, body, headers)
-      .pipe(catchError(this.processHttpError()))
+      .pipe(catchError(this.formatErrors))
       .toPromise();
   }
 
@@ -32,7 +31,7 @@ export class ApiService {
     const headers = this.makeHeaders();
 
     return this.http.put(fullUrl, body, headers)
-      .pipe(catchError(this.processHttpError()))
+      .pipe(catchError(this.formatErrors))
       .toPromise();
   }
 
@@ -40,7 +39,7 @@ export class ApiService {
     const fullUrl = this.makeFullUrl(url);
 
     return this.http.delete(fullUrl)
-      .pipe(catchError(this.processHttpError()))
+      .pipe(catchError(this.formatErrors))
       .toPromise();
   }
 
@@ -54,6 +53,10 @@ export class ApiService {
     return { headers: new HttpHeaders(headers) };
   }
 
+  private formatErrors(error: any) {
+    return  throwError(error.error);
+  }
+
   private processHttpError<T>(result?: T) {
     return (errorResponse: HttpErrorResponse): Observable<T> => {
       console.log('ApiService->processHttpError->HttpErrorResponse', errorResponse);
@@ -61,7 +64,6 @@ export class ApiService {
       switch (errorResponse.status) {
         case 401:
           break;
-
         default:
           break;
       }

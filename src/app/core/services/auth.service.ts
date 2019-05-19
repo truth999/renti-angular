@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   login(authRequest: AuthRequest) {
-    this.apiService.post('auth/login', authRequest)
+    return this.apiService.post('auth/login', authRequest)
         .then(response => {
               this.successAuth(response);
             }

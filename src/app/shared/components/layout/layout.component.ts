@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
   }
@@ -16,6 +19,10 @@ export class LayoutComponent implements OnInit {
     const mobileMenuContentEl = document.querySelector('.layout');
 
     mobileMenuContentEl.classList.add('toggled');
+  }
+
+  logOut() {
+    this.authService.logout();
   }
 
 }
