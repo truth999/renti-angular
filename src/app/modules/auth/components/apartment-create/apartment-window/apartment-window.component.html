@@ -15,6 +15,9 @@
             <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
             <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
           </select>
+          <div class="invalid-feedback d-block" *ngIf="windowTypeForm.get('windowType').controls[i].invalid && (windowTypeForm.get('windowType').controls[i].dirty || windowTypeForm.get('windowType').controls[i].touched)">
+            <span *ngIf="windowTypeForm.get('windowType').controls[i].errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
         </div>
       </div>
     </div>

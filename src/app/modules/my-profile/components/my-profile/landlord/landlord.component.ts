@@ -3,18 +3,20 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { ToastrService } from 'ngx-toastr';
 
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
 import { LandlordService } from '../../../services/landlord.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
-
 import { AuthService } from '../../../../../core/services/auth.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
+
 import { Landlord } from '../../../../../shared/models';
+
 import { config } from '../../../../../../config';
-import { ToastrService } from 'ngx-toastr';
+
 import { environment } from '../../../../../../environments/environment';
 
 export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
@@ -106,6 +108,7 @@ export class LandlordComponent implements OnInit {
 
     this.landlordForm = new FormGroup({
       mobile: new FormControl(!!this.landlord ? this.landlord.mobile : '', Validators.required),
+      profilePicture: new FormControl(!!this.landlord ? this.landlord.profilePicture : ''),
       placeOfBirth: new FormControl(!!this.landlord ? this.landlord.placeOfBirth : ''),
       dateOfBirth: new FormGroup({
         day: new FormControl(!!this.landlord ? dateOfBirthArray[0] : '', Validators.required),
@@ -115,8 +118,7 @@ export class LandlordComponent implements OnInit {
       nationality: new FormControl(!!this.landlord ? this.landlord.nationality : ''),
       spokenLanguages: new FormControl(!!this.landlord ? this.landlord.spokenLanguages : '', Validators.required),
       isPerson: new FormControl(!!this.landlord ? this.landlord.isPerson : '', Validators.required),
-      nameOfAgency: new FormControl(!!this.landlord ? this.landlord.nameOfAgency : '', Validators.required),
-      profilePicture: new FormControl(!!this.landlord ? this.landlord.profilePicture : '')
+      nameOfAgency: new FormControl(!!this.landlord ? this.landlord.nameOfAgency : '', Validators.required)
     });
   }
 

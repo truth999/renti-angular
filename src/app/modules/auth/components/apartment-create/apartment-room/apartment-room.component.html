@@ -10,16 +10,29 @@
         <div class="number h3 rounded-circle d-flex justify-content-center align-items-center mb-0 mr-2">
           {{ i + 1 }}
         </div>
-        <input type="text"
-               class="form-control mr-1"
-               placeholder="{{ 'APARTMENT.NAME' | translate }}:"
-               formControlName="name">
-        <input type="number"
-               class="form-control mr-1"
-               min="1"
-               inputmode="numeric"
-               placeholder="{{ 'APARTMENT.SIZE' | translate }} (m2):"
-               formControlName="size">
+        <div class="mr-1">
+          <input type="text"
+                 class="form-control"
+                 placeholder="{{ 'APARTMENT.NAME' | translate }}:"
+                 formControlName="name">
+          <div class="invalid-feedback d-block" *ngIf="roomEl.get('name').invalid && (roomEl.get('name').dirty || roomEl.get('name').touched)">
+            <span *ngIf="roomEl.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
+        </div>
+        <div>
+          <input type="number"
+                 class="form-control"
+                 min="1"
+                 inputmode="numeric"
+                 placeholder="{{ 'APARTMENT.SIZE' | translate }} (m2):"
+                 formControlName="size">
+          <div class="invalid-feedback d-block" *ngIf="roomEl.get('size').invalid && (roomEl.get('size').dirty || roomEl.get('size').touched)">
+            <span *ngIf="roomEl.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="add-button">
+        <i class="icon-plus" (click)="onAddRoom()"></i>
       </div>
     </div>
   </form>

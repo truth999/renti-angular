@@ -10,17 +10,17 @@
                  style="display: none;"
                  accept="image/png, image/jpeg, image/jpg"
                  multiple
-                 (change)="onFilesChange($event)">
+                 (change)="onFilesChange($event, i)">
           <div class="row mb-5">
             <div class="col-sm-4 col-xs-4 col-6 position-relative my-3"
-                 *ngFor="let previewPicture of previewNewRoomPictures; let i = index;">
+                 *ngFor="let previewPicture of previewNewRoomPictures[i]; let j = index;">
               <div class="img-item position-relative">
                 <img [src]="previewPicture"
                      class="position-absolute rounded w-100 h-100"
                      alt="">
               </div>
               <i class="icon-delete position-absolute text-danger"
-                 (click)="removeRoomPicture(i)"></i>
+                 (click)="removeRoomPicture(i, j)"></i>
             </div>
           </div>
           <button class="btn btn-primary btn-lg w-75"
