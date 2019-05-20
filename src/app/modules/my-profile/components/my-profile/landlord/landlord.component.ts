@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
@@ -15,6 +14,8 @@ import { AuthService } from '../../../../../core/services/auth.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
 import { Landlord } from '../../../../../shared/models';
 import { config } from '../../../../../../config';
+import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../../../environments/environment';
 
 export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const day = control.get('day');
@@ -30,12 +31,13 @@ export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): Validatio
   styleUrls: ['./landlord.component.scss']
 })
 export class LandlordComponent implements OnInit {
-  @ViewChild('placesRef') placesRef: GooglePlaceDirective;
   user: any;
   landlordId: string;
   landlord: Landlord;
   photo: string;
   photoDeleted = true;
+  isAgency = false;
+
   days: string[];
   months: string[];
   years: string[];
@@ -58,13 +60,6 @@ export class LandlordComponent implements OnInit {
   ];
   countries = config.countries;
 
-  password = '';
-  passwordStrengthBarLabel = '';
-  baseColor = '#dbdce8';
-  phone: string;
-
-  isAgency = false;
-
   landlordForm: FormGroup;
 
   constructor(
@@ -76,7 +71,8 @@ export class LandlordComponent implements OnInit {
     private storageService: StorageService,
     private imageUploaderService: ImageUploaderService,
     private authService: AuthService,
-    private dateSelectService: DateSelectService
+    private dateSelectService: DateSelectService,
+    private toastrService: ToastrService,
   ) { }
 
   async ngOnInit() {
@@ -94,8 +90,9 @@ export class LandlordComponent implements OnInit {
     } finally {
     }
 
-    this.photoEditModalService.photoChanged.subscribe(photo => {
-      this.photo = photo;
+    this.photoEditModalService.photoChanged.subscribe(photoURIData => {
+      this.photo = photoURIData;
+      this.uploadProfilePicture(photoURIData);
       this.photoDeleted = false;
     });
 
@@ -118,7 +115,8 @@ export class LandlordComponent implements OnInit {
       nationality: new FormControl(!!this.landlord ? this.landlord.nationality : ''),
       spokenLanguages: new FormControl(!!this.landlord ? this.landlord.spokenLanguages : '', Validators.required),
       isPerson: new FormControl(!!this.landlord ? this.landlord.isPerson : '', Validators.required),
-      nameOfAgency: new FormControl(!!this.landlord ? this.landlord.nameOfAgency : '', Validators.required)
+      nameOfAgency: new FormControl(!!this.landlord ? this.landlord.nameOfAgency : '', Validators.required),
+      profilePicture: new FormControl(!!this.landlord ? this.landlord.profilePicture : '')
     });
   }
 
@@ -191,39 +189,67 @@ export class LandlordComponent implements OnInit {
   }
 
   getPhotoUrl() {
-    if (this.photoDeleted) {
-      return;
-    } else {
+    if (this.photo) {
       return 'url(' + this.photo + ')';
+    } else if (this.landlordForm.get('profilePicture').value) {
+      return `url(${environment.uploadBase}${this.landlordForm.get('profilePicture').value})`;
+    } else {
+      return '';
     }
   }
 
-  onDeletePhoto() {
-    this.photoDeleted = true;
+  async onDeletePhoto() {
+    try {
+      this.landlordForm.patchValue({profilePicture: ''});
+      this.photo = '';
+      if (this.landlordId) {
+        const landlord = new Landlord();
+        landlord._id = this.landlord._id;
+        landlord.profilePicture = '';
+        await this.landlordService.updateLandlord(landlord);
+        this.toastrService.success('The profile picture is deleted successfully.', 'Success!');
+      }
+    } catch (e) {
+      console.log('LandlordComponent->onDeletePhoto->error', e);
+      this.toastrService.error('Something went wrong', 'Error');
+    }
+  }
+
+  async uploadProfilePicture(photoURIData) {
+    try {
+      const blobData = this.imageUploaderService.b64toBlob(photoURIData);
+      const filenames = await this.imageUploaderService.upload(blobData);
+      this.landlordForm.patchValue({profilePicture: filenames[0]});
+    } catch (e) {
+      console.log('LandlordComponent->uploadProfilePicture->error', e);
+      this.toastrService.error('Something went wrong', 'Error');
+    }
   }
 
   async update() {
-    const landlordData = {
-      userId: this.storageService.get('userId'),
-      ...this.landlordForm.value,
-      profilePicture: 'aaa'
-    };
-
-    landlordData.dateOfBirth = landlordData.dateOfBirth.day + '-' + landlordData.dateOfBirth.month + '-' + landlordData.dateOfBirth.year;
-
-    if (!this.isAgency) {
-      landlordData.nameOfAgency = '';
-    }
-
-    this.landlord = {...this.landlord, ...landlordData};
-
     try {
+      const landlordData = {
+        userId: this.storageService.get('userId'),
+        ...this.landlordForm.value,
+      };
+
+      landlordData.dateOfBirth = landlordData.dateOfBirth.day + '-' + landlordData.dateOfBirth.month + '-' + landlordData.dateOfBirth.year;
+
+      if (!this.isAgency) {
+        landlordData.nameOfAgency = '';
+      }
+
+      this.landlord = {...this.landlord, ...landlordData};
       if (!this.landlordId) {
         await this.landlordService.createLandlord(this.landlord);
       } else {
         await this.landlordService.updateLandlord(this.landlord);
       }
+      this.toastrService.success('The landlord is updated successfully.', 'Success!');
       // this.router.navigate(['/app/profile']);
+    } catch (e) {
+      console.log('LandlordComponent->update->error', e);
+      this.toastrService.error('Something went wrong', 'Error');
     } finally {
     }
   }

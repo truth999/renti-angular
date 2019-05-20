@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
@@ -13,6 +13,9 @@ import { AuthService } from '../../../../../core/services/auth.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
 import { Tenant } from '../../../../../shared/models';
 import { config } from '../../../../../../config';
+import { environment } from '../../../../../../environments/environment';
+import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
+import { ToastrService } from 'ngx-toastr';
 
 export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const day = control.get('day');
@@ -55,11 +58,6 @@ export class TenantComponent implements OnInit {
     'Other'
   ];
 
-  password = '';
-  passwordStrengthBarLabel = '';
-  baseColor = '#dbdce8';
-  phone: string;
-
   tenantForm: FormGroup;
 
   constructor(
@@ -70,7 +68,9 @@ export class TenantComponent implements OnInit {
     private storageService: StorageService,
     private tenantService: TenantService,
     private authService: AuthService,
-    private dateSelectService: DateSelectService
+    private dateSelectService: DateSelectService,
+    private imageUploaderService: ImageUploaderService,
+    private toastrService: ToastrService
   ) { }
 
   async ngOnInit() {
@@ -90,8 +90,9 @@ export class TenantComponent implements OnInit {
     } finally {
     }
 
-    this.photoEditModalService.photoChanged.subscribe(photo => {
-      this.photo = photo;
+    this.photoEditModalService.photoChanged.subscribe(photoURIData => {
+      this.photo = photoURIData;
+      this.uploadProfilePicture(photoURIData);
       this.photoDeleted = false;
     });
 
@@ -136,6 +137,7 @@ export class TenantComponent implements OnInit {
       monthlyIncome: new FormControl(!!this.tenant ? this.tenant.monthlyIncome : '', Validators.required),
       otherText: new FormControl(!!this.tenant ? this.tenant.otherText : ''),
       freeTextIntroduction: new FormControl(!!this.tenant ? this.tenant.freeTextIntroduction : ''),
+      profilePicture: new FormControl(!!this.tenant ? this.tenant.profilePicture : '', Validators.required)
     });
   }
 
@@ -214,22 +216,35 @@ export class TenantComponent implements OnInit {
   }
 
   getPhotoUrl() {
-    if (this.photoDeleted) {
-      return;
-    } else {
+    if (this.photo) {
       return 'url(' + this.photo + ')';
+    } else if (this.tenantForm.get('profilePicture').value) {
+      return `url(${environment.uploadBase}${this.tenantForm.get('profilePicture').value})`;
+    } else {
+      return '';
     }
   }
 
   onDeletePhoto() {
-    this.photoDeleted = true;
+    this.tenantForm.patchValue({profilePicture: ''});
+    this.photo = '';
+  }
+
+  async uploadProfilePicture(photoURIData) {
+    try {
+      const blobData = this.imageUploaderService.b64toBlob(photoURIData);
+      const filenames = await this.imageUploaderService.upload(blobData);
+      this.tenantForm.patchValue({profilePicture: filenames[0]});
+    } catch (e) {
+      console.log('TenantComponent->uploadProfilePicture->error', e);
+      this.toastrService.error('Something went wrong', 'Error');
+    }
   }
 
   async update() {
     const tenantData = {
       userId: this.storageService.get('userId'),
       ...this.tenantForm.value,
-      profilePicture: 'aaa'
     };
 
     tenantData.dateOfBirth = tenantData.dateOfBirth.day + '-' + tenantData.dateOfBirth.month + '-' + tenantData.dateOfBirth.year;
@@ -242,7 +257,11 @@ export class TenantComponent implements OnInit {
       } else {
         await this.tenantService.updateTenant(this.tenant);
       }
+      this.toastrService.success('The tenant is updated successfully.', 'Success!');
       // this.router.navigate(['/app/profile']);
+    } catch (e) {
+      console.log('TenantComponent->update->error', e);
+      this.toastrService.error('Something went wrong', 'Error');
     } finally {
     }
   }

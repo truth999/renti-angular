@@ -82,6 +82,15 @@
         display: flex;
       }
     }
+
+    .invalid-feedback {
+      bottom: -25px;
+      text-align: center;
+
+      @include media-breakpoint-down(xs) {
+        position: unset !important;
+      }
+    }
   }
 
   .avatar-blank {

@@ -10,27 +10,27 @@
       </button>
     </div>
     <div class="avatar"
-         [ngClass]="{'avatar-blank': photoDeleted}"
+         [ngClass]="{'avatar-blank': !getPhotoUrl()}"
          [ngStyle]="{'background-image': getPhotoUrl()}">
       <i class="icon-left position-absolute h4 mb-0 d-sm-none"
          (click)="onBack()"></i>
       <div class="avatar-options align-items-center justify-content-around position-absolute font-size-lg">
         <div class="avatar-options-update"
-             *ngIf="!photoDeleted">
+             *ngIf="landlordForm.get('profilePicture').value">
           <span (click)="onOpenPhotoUploadModal()">{{ 'COMMON.CHANGE' | translate }}</span>
         </div>
         <div class="avatar-options-button"
-             *ngIf="!photoDeleted">
+             *ngIf="landlordForm.get('profilePicture').value && photo">
           <i class="app-icon-pencil"
              (click)="onOpenPhotoEditModal()"></i>
         </div>
         <div class="avatar-options-button"
-             *ngIf="!photoDeleted">
+             *ngIf="landlordForm.get('profilePicture').value">
           <i class="icon-close"
              (click)="onDeletePhoto()"></i>
         </div>
         <div class="avatar-options-upload"
-             *ngIf="photoDeleted">
+             *ngIf="!landlordForm.get('profilePicture').value">
           <span (click)="onOpenPhotoUploadModal()">{{ 'COMMON.UPDATE_PHOTO' | translate }}</span>
         </div>
       </div>

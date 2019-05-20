@@ -5,6 +5,7 @@ import { AuthService } from '../../../../../core/services/auth.service';
 import { TenantService } from '../../../../my-profile/services/tenant.service';
 
 import { Tenant } from '../../../../../shared/models';
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-profile-tenant',
@@ -15,6 +16,7 @@ export class TenantComponent implements OnInit {
   user: any;
   tenant: Tenant;
   tenantId: string;
+  uploadBase = environment.uploadBase;
 
   constructor(
     private location: Location,

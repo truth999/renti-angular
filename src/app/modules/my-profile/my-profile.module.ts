@@ -13,6 +13,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 
 import { LandlordService } from './services/landlord.service';
 import { TenantService } from './services/tenant.service';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TenantService } from './services/tenant.service';
     MyProfileRoutingModule,
     NgSelectModule,
     InternationalPhoneNumberModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+    ToastrModule,
   ]
 })
 export class MyProfileModule { }

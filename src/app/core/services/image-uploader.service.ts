@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
@@ -14,7 +14,10 @@ export class ImageUploaderService {
     private http: HttpClient
   ) { }
 
-  b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+  b64toBlob(photo, sliceSize = 512) {
+    const block = photo.split(';');
+    const contentType = block[0].split(':')[1];
+    const b64Data = block[1].split(',')[1];
     const byteCharacters = atob(b64Data);
     const byteArrays = [];
 
@@ -38,24 +41,24 @@ export class ImageUploaderService {
     const formData = new FormData();
 
     for (let index = 0; index < images.length; index++) {
-      formData.append(`images`, images[index]);
+      formData.append('images', images[index]);
     }
 
-    formData.append(`images`, images);
+    formData.append('images', images);
 
-    return this.post('upload/images', formData);
+    return this.post('images', formData);
   }
 
   private post(url, formData): Promise<string | string[]> {
     const fullUrl = this.makeFullUrl(url);
 
     return this.http.post<any>(fullUrl, formData)
-      .pipe(catchError(this.processHttpError()))
+      .pipe(catchError(this.formatErrors))
       .toPromise();
   }
 
   private makeFullUrl(url: string): string {
-    return environment.apiBase + url;
+    return environment.uploadApiBase + url;
   }
 
   makeHeaders() {
@@ -64,9 +67,13 @@ export class ImageUploaderService {
     return { headers: new HttpHeaders(headers) };
   }
 
+  private formatErrors(error: any) {
+    return  throwError(error.error);
+  }
+
   private processHttpError<T>(result?: T) {
     return (errorResponse: HttpErrorResponse): Observable<T> => {
-      console.log('ApiService->ProcessHttpError->HttpErrorResponse', errorResponse);
+      console.log('ImageUploaderService->ProcessHttpError->HttpErrorResponse', errorResponse);
 
       switch (errorResponse.status) {
         case 401:
