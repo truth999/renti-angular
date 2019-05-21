@@ -5,9 +5,14 @@
       <tr>
         <td class="border-top-0 py-0 align-middle">{{ 'COMMON.ADDRESS' | translate }}</td>
         <td class="border-top-0 text-right py-0 pr-0">
-          <input type="text"
+          <input ngx-google-places-autocomplete
                  class="form-control text-right border-0"
+                 [options]="{ types: ['(cities)'] }"
+                 (onAddressChange)="handleAddressChange($event)"
                  formControlName="address">
+          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('address').invalid && (apartmentDataFirstForm.get('address').dirty || apartmentDataFirstForm.get('address').touched)">
+            <span *ngIf="apartmentDataFirstForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -20,6 +25,9 @@
             <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
             <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
           </select>
+          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('typeOfBuilding').invalid && (apartmentDataFirstForm.get('typeOfBuilding').dirty || apartmentDataFirstForm.get('typeOfBuilding').touched)">
+            <span *ngIf="apartmentDataFirstForm.get('typeOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -29,6 +37,9 @@
                   formControlName="yearOfConstruction">
             <option *ngFor="let year of years" [value]="year">{{ year }}</option>
           </select>
+          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('yearOfConstruction').invalid && (apartmentDataFirstForm.get('yearOfConstruction').dirty || apartmentDataFirstForm.get('yearOfConstruction').touched)">
+            <span *ngIf="apartmentDataFirstForm.get('yearOfConstruction').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -41,6 +52,9 @@
             <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
             <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
           </select>
+          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('stateOfApartment').invalid && (apartmentDataFirstForm.get('stateOfApartment').dirty || apartmentDataFirstForm.get('stateOfApartment').touched)">
+            <span *ngIf="apartmentDataFirstForm.get('stateOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -56,6 +70,10 @@
             <option value="dd">DD</option>
             <option value="ee">EE</option>
             <option value="ff">FF</option>
+            <option value="gg">GG</option>
+            <option value="hh">HH</option>
+            <option value="ii">II</option>
+            <option value="jj">JJ</option>
           </select>
         </td>
       </tr>
@@ -64,10 +82,13 @@
         <td class="text-right py-0 pr-0">
           <input type="number"
                  class="form-control border-0 text-right"
-                 min="0"
+                 min="1"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="floorsOfBuilding">
+          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').invalid && (apartmentDataFirstForm.get('floorsOfBuilding').dirty || apartmentDataFirstForm.get('floorsOfBuilding').touched)">
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -75,23 +96,27 @@
         <td class="text-right py-0 pr-0">
           <input type="number"
                  class="form-control border-0 text-right"
-                 min="0"
+                 min="1"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="floorsOfApartment">
+          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('floorsOfApartment').invalid && (apartmentDataFirstForm.get('floorsOfApartment').dirty || apartmentDataFirstForm.get('floorsOfApartment').touched)">
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
+          </div>
         </td>
       </tr>
-      <tr>
-        <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
-        <td class="text-right py-0 pr-0">
-          <input type="number"
-                 class="form-control border-0 text-right"
-                 min="0"
-                 inputmode="numeric"
-                 pattern="[0-9]*"
-                 formControlName="size">
-        </td>
-      </tr>
+<!--      <tr>-->
+<!--        <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>-->
+<!--        <td class="text-right py-0 pr-0">-->
+<!--          <input type="number"-->
+<!--                 class="form-control border-0 text-right"-->
+<!--                 min="0"-->
+<!--                 inputmode="numeric"-->
+<!--                 pattern="[0-9]*"-->
+<!--                 formControlName="size">-->
+<!--        </td>-->
+<!--      </tr>-->
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
         <td class="text-right pr-0">

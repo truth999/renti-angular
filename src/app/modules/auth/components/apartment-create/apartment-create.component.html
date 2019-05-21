@@ -2,7 +2,6 @@
   <div class="card-body">
     <p><ngb-progressbar [value]="50"
                         height="10px"></ngb-progressbar></p>
-<!--    <app-apartment-floor *ngIf="step == 0"></app-apartment-floor>-->
     <app-apartment-draw *ngIf="step == 0"
                         (nextStep)="onNextStep()"></app-apartment-draw>
     <app-apartment-room *ngIf="step == 1"

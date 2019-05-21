@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { DateSelectService } from '../../../../../../shared/services/date-select.service';
 import { ApartmentCreateService } from '../../../../services/apartment-create.service';
+
+export const dateOfMovingInValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const day = control.get('day');
+  const month = control.get('month');
+  const year = control.get('year');
+
+  return day && month && year && day.valid === true && month.valid === true && year.valid === true ? null : { required: true } ;
+};
 
 @Component({
   selector: 'app-apartment-data-third',
@@ -31,11 +39,11 @@ export class ApartmentDataThirdComponent implements OnInit {
     this.apartmentDataThirdForm = new FormGroup({
       externalIsolation: new FormControl(false),
       balcony: new FormControl(false, Validators.required),
-      sizeOfBalcony: new FormControl('', Validators.required),
+      sizeOfBalcony: new FormControl(''),
       garden: new FormControl(false, Validators.required),
-      sizeOfGarden: new FormControl('', Validators.required),
+      sizeOfGarden: new FormControl(''),
       terrace: new FormControl(false, Validators.required),
-      sizeOfTerrace: new FormControl('', Validators.required),
+      sizeOfTerrace: new FormControl(''),
       rentalFee: new FormControl('', Validators.required),
       overhead: new FormControl('', Validators.required),
       deposit: new FormControl('', Validators.required),
@@ -44,8 +52,44 @@ export class ApartmentDataThirdComponent implements OnInit {
         day: new FormControl('', Validators.required),
         month: new FormControl('', Validators.required),
         year: new FormControl('', Validators.required)
-      })
+      }, { validators: dateOfMovingInValidator })
     });
+  }
+
+  get balcony() {
+    return this.apartmentDataThirdForm.get('balcony');
+  }
+
+  get sizeOfBalcony() {
+    return this.apartmentDataThirdForm.get('sizeOfBalcony')
+  }
+
+  get garden() {
+    return this.apartmentDataThirdForm.get('garden');
+  }
+
+  get sizeOfGarden() {
+    return this.apartmentDataThirdForm.get('sizeOfGarden');
+  }
+
+  get terrace() {
+    return this.apartmentDataThirdForm.get('terrace');
+  }
+
+  get sizeOfTerrace() {
+    return this.apartmentDataThirdForm.get('sizeOfTerrace');
+  }
+
+  changeBalcony() {
+    this.balcony.value ? this.sizeOfBalcony.setValidators(Validators.required) : this.sizeOfBalcony.setErrors(null);
+  }
+
+  changeGarden() {
+    this.garden.value ? this.sizeOfGarden.setValidators(Validators.required) : this.sizeOfGarden.setErrors(null);
+  }
+
+  changeTerrace() {
+    this.terrace.value ? this.sizeOfTerrace.setValidators(Validators.required) : this.sizeOfTerrace.setErrors(null);
   }
 
   async submit() {
@@ -57,14 +101,17 @@ export class ApartmentDataThirdComponent implements OnInit {
 
     try {
       const responses = await this.apartmentCreateService.createRooms();
+      console.log(responses);
       const roomIds = responses.rooms.map(room => {
         return room._id;
       });
 
       this.apartmentCreateService.updateApartmentDataWithRoomIds(roomIds);
-      await this.apartmentCreateService.createApartment();
+      const res = await this.apartmentCreateService.createApartment();
+      console.log(res);
       this.router.navigate(['/app/my-properties']);
-    } finally {
+    } catch (e) {
+      console.log('ApartmentDataThirdComponent->submit->error', e);
     }
   }
 

@@ -15,7 +15,6 @@ import { SignupFunnelOccupationComponent } from './components/signup-funnel/sign
 
 import { SignupFunnelCompleteComponent } from './components/signup-funnel/signup-funnel-complete/signup-funnel-complete.component';
 import { ApartmentCreateComponent } from './components/apartment-create/apartment-create.component';
-import { ApartmentFloorComponent } from './components/apartment-create/apartment-floor/apartment-floor.component';
 import { ApartmentDrawComponent } from './components/apartment-create/apartment-draw/apartment-draw.component';
 import { ApartmentRoomComponent } from './components/apartment-create/apartment-room/apartment-room.component';
 import { ApartmentUploadComponent } from './components/apartment-create/apartment-upload/apartment-upload.component';
@@ -42,9 +41,16 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AuthCompleteComponent } from './components/auth-complete/auth-complete.component';
 import { ApartmentCreateService } from './services/apartment-create.service';
 import { ApartmentWindowComponent } from './components/apartment-create/apartment-window/apartment-window.component';
-import { ApartmentDataFirstComponent } from './components/apartment-create/apartment-data/apartment-data-first/apartment-data-first.component';
-import { ApartmentDataSecondComponent } from './components/apartment-create/apartment-data/apartment-data-second/apartment-data-second.component';
-import { ApartmentDataThirdComponent } from './components/apartment-create/apartment-data/apartment-data-third/apartment-data-third.component';
+import {
+  ApartmentDataFirstComponent
+} from './components/apartment-create/apartment-data/apartment-data-first/apartment-data-first.component';
+import {
+  ApartmentDataSecondComponent
+} from './components/apartment-create/apartment-data/apartment-data-second/apartment-data-second.component';
+import {
+  ApartmentDataThirdComponent
+} from './components/apartment-create/apartment-data/apartment-data-third/apartment-data-third.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -55,7 +61,6 @@ import { ApartmentDataThirdComponent } from './components/apartment-create/apart
     SignupFunnelOccupationComponent,
     SignupFunnelCompleteComponent,
     ApartmentCreateComponent,
-    ApartmentFloorComponent,
     ApartmentDrawComponent,
     ApartmentRoomComponent,
     ApartmentUploadComponent,
@@ -84,6 +89,7 @@ import { ApartmentDataThirdComponent } from './components/apartment-create/apart
     InternationalPhoneNumberModule,
     NgSelectModule,
     RouterModule,
+    GooglePlaceModule
   ]
 })
 export class AuthModule { }
