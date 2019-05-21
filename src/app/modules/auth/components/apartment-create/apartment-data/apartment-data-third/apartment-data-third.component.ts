@@ -61,7 +61,7 @@ export class ApartmentDataThirdComponent implements OnInit {
   }
 
   get sizeOfBalcony() {
-    return this.apartmentDataThirdForm.get('sizeOfBalcony')
+    return this.apartmentDataThirdForm.get('sizeOfBalcony');
   }
 
   get garden() {
@@ -101,14 +101,12 @@ export class ApartmentDataThirdComponent implements OnInit {
 
     try {
       const responses = await this.apartmentCreateService.createRooms();
-      console.log(responses);
       const roomIds = responses.rooms.map(room => {
         return room._id;
       });
 
       this.apartmentCreateService.updateApartmentDataWithRoomIds(roomIds);
-      const res = await this.apartmentCreateService.createApartment();
-      console.log(res);
+      await this.apartmentCreateService.createApartment();
       this.router.navigate(['/app/my-properties']);
     } catch (e) {
       console.log('ApartmentDataThirdComponent->submit->error', e);
