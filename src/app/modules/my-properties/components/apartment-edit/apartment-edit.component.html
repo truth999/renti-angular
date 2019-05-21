@@ -1,732 +1,1003 @@
 <div class="apartment-edit">
-  <div class="back mb-sm-4 d-sm-block d-none">
-    <button class="btn btn-back"
-            (click)="onBack()">
-      <i class="icon-left h4 align-middle mb-0"></i>
-      {{ 'COMMON.BACK' | translate }}
-    </button>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="slider">
-        <i class="icon-left position-absolute h4 mb-0 d-sm-none"
-           (click)="onBack()"></i>
-        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-      </div>
-      <div class="d-sm-none">
-        <h3 class="mt-4">Luxury apartment in the heart of Budapest</h3>
-        <div class="unit d-flex justify-content-between">
-          <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
-          <span class="square font-weight-bold">
-          <i class="icon-fullscreen"></i>
-          140m<sup>2</sup>
-        </span>
-          <span class="unit-rooms font-weight-bold">
-          <i class="icon-bed"></i>
-          4 {{ 'COMMON.ROOMS' | translate }}
-        </span>
-        </div>
-        <div class="form-group pt-4 position-relative address">
-          <label for="address" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
-          <select name="address" id="address" class="custom-select">
-            <option value="">Debrecen, Hungary</option>
-          </select>
-          <i class="icon-location position-absolute"></i>
-        </div>
-<!--        <div class="data-complete w-100">-->
-<!--          <div class="data-status d-flex justify-content-between font-weight-bold mb-2">-->
-<!--            <span>{{ 'APARTMENT.DATA_COMPLETION' | translate }}:</span>-->
-<!--            <span>97/132</span>-->
-<!--          </div>-->
-<!--          <p><ngb-progressbar [value]="73" height="10px"></ngb-progressbar></p>-->
-<!--        </div>-->
-        <div class="button-group d-flex justify-content-between mt-4">
-          <button class="btn btn-outline-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>
-<!--          <button class="btn btn-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}</button>-->
-        </div>
-      </div>
-      <div class="rooms mt-4">
-        <h3>{{ 'COMMON.ROOMS' | translate }}</h3>
-        <p>A megtekintéshez kattintson a szoba nevére  vagy az alaprajzban elfoglalt helyére!</p>
-        <div class="draw-room">
-          <img src="/assets/images/floor_plan.png" alt="">
-        </div>
-        <ul class="list-unstyled mt-3">
-          <li class="d-flex justify-content-between align-items-center mb-1"
-              *ngFor="let room of arrayNumber(roomCount); let i = index">
-            <div class="number rounded-circle d-flex justify-content-center align-items-center mr-2 font-weight-bold">{{ i + 1 }}</div>
-            <input type="text" class="form-control" placeholder="{{ 'COMMON.ROOM_NAME' | translate }}:" required>
-          </li>
-          <li (click)="onAddRoom()"><i class="icon-plus"></i></li>
-        </ul>
-      </div>
-      <div class="d-sm-none">
-<!--        <p class="mt-4">-->
-<!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
-<!--        </p>-->
-        <table class="table mt-4">
-          <tbody>
-          <tr>
-            <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
-            <td class="border-top-0 text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
-                <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
-                <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
-                <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="2019">2019</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="new">{{ 'COMMON.NEW' | translate }}</option>
-                <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
-                <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
-                <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto">
-                <option value=""></option>
-                <option value="aapp">AA++</option>
-                <option value="aap">AA+</option>
-                <option value="aa">AA</option>
-                <option value="bb">BB</option>
-                <option value="cc">CC</option>
-                <option value="dd">DD</option>
-                <option value="ee">EE</option>
-                <option value="ff">FF</option>
-                <option value="gg">GG</option>
-                <option value="hh">HH</option>
-                <option value="ii">II</option>
-                <option value="jj">JJ</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="east">{{ 'COMMON.EAST' | translate }}</option>
-                <option value="west">{{ 'COMMON.WEST' | translate }}</option>
-                <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
-                <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
-                <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
-                <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
-                <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
-                <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
-                <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
-                <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
-                <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.HEADROOM' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="2m">< 2M</option>
-                <option value="2.5m">2.0 - 2.5M</option>
-                <option value="3m">2.5 - 3.0M</option>
-                <option value="3mp">> 3M</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.PARKING' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
-                <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
-                <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
-                <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
-            <td class="text-right py-0 pr-0 w-50">
-              <ng-select [items]="mediaService"
-                         [multiple]="true"
-                         [closeOnSelect]="false"></ng-select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}(unit 1000)</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}(unit 1000)</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}(unit 1000)</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
-            <td class="border-bottom text-right pr-0">
-              <div class="form-inline justify-content-between">
-                <select name="day" class="custom-select" required>
-                  <option value="">Day</option>
-                </select>
-                <select name="month" class="custom-select" required>
-                  <option value="">Month</option>
-                </select>
-                <select name="year" class="custom-select" required>
-                  <option value="">Year</option>
-                </select>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <app-feedback></app-feedback>
-<!--      <table class="table mt-4">-->
-<!--        <tbody>-->
-<!--        <tr>-->
-<!--          <td class="border-top-0">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>-->
-<!--          <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <td>Épület építési éve</td>-->
-<!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <td>Ingatlan állapota</td>-->
-<!--          <td class="font-weight-bold text-right">2011</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <td>{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>-->
-<!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <td>{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>-->
-<!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <td>Lakás emelete</td>-->
-<!--          <td class="font-weight-bold text-right">2011</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <td class="border-bottom">Lakás négyeztméter</td>-->
-<!--          <td class="border-bottom font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--      </table>-->
+  <form *ngIf="apartmentForm"
+        [formGroup]="apartmentForm"
+        (ngSubmit)="submit()">
+    <div class="back mb-sm-4"
+         *ngIf="!isMobile.getValue()">
+      <button class="btn btn-back"
+              (click)="onBack()">
+        <i class="icon-left h4 align-middle mb-0"></i>
+        {{ 'COMMON.BACK' | translate }}
+      </button>
     </div>
-    <div class="col-sm-6">
-      <div class="d-none d-sm-block">
-        <h2>Luxury apartment in the heart of Budapest</h2>
-        <div class="unit d-flex justify-content-between">
-          <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
-          <span class="square font-weight-bold">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="slider">
+          <i class="icon-left position-absolute h4 mb-0" *ngIf="isMobile.getValue()"
+             (click)="onBack()"></i>
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        </div>
+        <div *ngIf="isMobile.getValue()">
+          <h3 class="mt-4">Luxury apartment in the heart of Budapest</h3>
+          <div class="unit d-flex justify-content-between">
+            <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
+            <span class="square font-weight-bold">
           <i class="icon-fullscreen"></i>
-          140m<sup>2</sup>
+          {{ apartment.size }}m<sup>2</sup>
         </span>
-          <span class="unit-rooms font-weight-bold">
+            <span class="unit-rooms font-weight-bold">
           <i class="icon-bed"></i>
-          4 {{ 'COMMON.ROOMS' | translate }}
+          {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
         </span>
+          </div>
+          <div class="form-group pt-4 position-relative address">
+            <label for="address" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
+            <input ngx-google-places-autocomplete
+                   id="address"
+                   class="form-control"
+                   [options]="{ types: ['(cities)'] }"
+                   (onAddressChange)="handleAddressChange($event)"
+                   formControlName="address">
+            <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('address').invalid && (apartmentForm.get('address').dirty || apartmentForm.get('address').touched)">
+              <span *ngIf="apartmentForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            </div>
+          </div>
+          <!--        <div class="data-complete w-100">-->
+          <!--          <div class="data-status d-flex justify-content-between font-weight-bold mb-2">-->
+          <!--            <span>{{ 'APARTMENT.DATA_COMPLETION' | translate }}:</span>-->
+          <!--            <span>97/132</span>-->
+          <!--          </div>-->
+          <!--          <p><ngb-progressbar [value]="73" height="10px"></ngb-progressbar></p>-->
+          <!--        </div>-->
+          <div class="button-group d-flex justify-content-between mt-4">
+            <button type="submit"
+                    class="btn btn-outline-primary btn-lg w-100"
+                    [disabled]="!apartmentForm.valid">{{ 'COMMON.SAVE' | translate }}</button>
+            <!--          <button class="btn btn-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}</button>-->
+          </div>
         </div>
-        <div class="form-group pt-4 position-relative address">
-          <label for="address" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
-          <select name="address" id="address" class="custom-select">
-            <option value="">Debrecen, Hungary</option>
-          </select>
-          <i class="icon-location position-absolute"></i>
+        <div class="rooms mt-4">
+          <h3>{{ 'COMMON.ROOMS' | translate }}</h3>
+<!--          <p>A megtekintéshez kattintson a szoba nevére  vagy az alaprajzban elfoglalt helyére!</p>-->
+          <div class="draw-room">
+            <img src="/assets/images/floor_plan.png" alt="">
+          </div>
+          <ul class="list-unstyled mt-3">
+            <li class="d-flex justify-content-between align-items-center mb-1"
+                *ngFor="let room of arrayNumber(roomCount); let i = index">
+              <div class="number rounded-circle d-flex justify-content-center align-items-center mr-2 font-weight-bold">{{ i + 1 }}</div>
+              <input type="text" class="form-control" placeholder="{{ 'COMMON.ROOM_NAME' | translate }}:" required>
+            </li>
+            <li (click)="onAddRoom()"><i class="icon-plus"></i></li>
+          </ul>
         </div>
-<!--        <div class="data-complete w-100">-->
-<!--          <div class="data-status d-flex justify-content-between font-weight-bold mb-2">-->
-<!--            <span>{{ 'APARTMENT.DATA_COMPLETION' | translate }}:</span>-->
-<!--            <span>97/132</span>-->
-<!--          </div>-->
-<!--          <p><ngb-progressbar [value]="73" height="10px"></ngb-progressbar></p>-->
-<!--        </div>-->
-        <div class="button-group d-flex justify-content-between mt-4">
-          <button class="btn btn-outline-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>
-<!--          <button class="btn btn-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}</button>-->
+        <div *ngIf="isMobile.getValue()">
+          <!--        <p class="mt-4">-->
+          <!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
+          <!--        </p>-->
+          <table class="table mt-4">
+            <tbody>
+            <tr>
+              <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
+              <td class="border-top-0 text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="typeOfBuilding">
+                  <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
+                  <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
+                  <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
+                  <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('typeOfBuilding').invalid && (apartmentForm.get('typeOfBuilding').dirty || apartmentForm.get('typeOfBuilding').touched)">
+                  <span *ngIf="apartmentForm.get('typeOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="yearOfConstruction">
+                  <option *ngFor="let year of years"
+                          [value]="year">{{ year }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('yearOfConstruction').invalid && (apartmentForm.get('yearOfConstruction').dirty || apartmentForm.get('yearOfConstruction').touched)">
+                  <span *ngIf="apartmentForm.get('yearOfConstruction').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="stateOfApartment">
+                  <option value="new">{{ 'COMMON.NEW' | translate }}</option>
+                  <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
+                  <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
+                  <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('stateOfApartment').invalid && (apartmentForm.get('stateOfApartment').dirty || apartmentForm.get('stateOfApartment').touched)">
+                  <span *ngIf="apartmentForm.get('stateOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="energyPerformanceCertificate">
+                  <option value="aapp">AA++</option>
+                  <option value="aap">AA+</option>
+                  <option value="aa">AA</option>
+                  <option value="bb">BB</option>
+                  <option value="cc">CC</option>
+                  <option value="dd">DD</option>
+                  <option value="ee">EE</option>
+                  <option value="ff">FF</option>
+                  <option value="gg">GG</option>
+                  <option value="hh">HH</option>
+                  <option value="ii">II</option>
+                  <option value="jj">JJ</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="floorsOfBuilding">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfBuilding').invalid && (apartmentForm.get('floorsOfBuilding').dirty || apartmentForm.get('floorsOfBuilding').touched)">
+                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="floorsOfApartment">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfApartment').invalid && (apartmentForm.get('floorsOfApartment').dirty || apartmentForm.get('floorsOfApartment').touched)">
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <!--            <tr>-->
+            <!--              <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>-->
+            <!--              <td class="text-right py-0 pr-0">-->
+            <!--                <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*"required>-->
+            <!--              </td>-->
+            <!--            </tr>-->
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="elevator">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="rooftop">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="buildingSiting">
+                  <option value="east">{{ 'COMMON.EAST' | translate }}</option>
+                  <option value="west">{{ 'COMMON.WEST' | translate }}</option>
+                  <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
+                  <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('buildingSiting').invalid && (apartmentForm.get('buildingSiting').dirty || apartmentForm.get('buildingSiting').touched)">
+                  <span *ngIf="apartmentForm.get('buildingSiting').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="typeOfHeating">
+                  <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
+                  <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
+                  <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
+                  <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
+                  <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
+                  <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
+                  <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
+                  <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('typeOfHeating').invalid && (apartmentForm.get('typeOfHeating').dirty || apartmentForm.get('typeOfHeating').touched)">
+                  <span *ngIf="apartmentForm.get('typeOfHeating').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.HEADROOM' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="headroom">
+                  <option value="2m">< 2M</option>
+                  <option value="2.5m">2.0 - 2.5M</option>
+                  <option value="3m">2.5 - 3.0M</option>
+                  <option value="3mp">> 3M</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('headroom').invalid && (apartmentForm.get('headroom').dirty || apartmentForm.get('headroom').touched)">
+                  <span *ngIf="apartmentForm.get('headroom').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.PARKING' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="parking">
+                  <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
+                  <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
+                  <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
+                  <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('parking').invalid && (apartmentForm.get('parking').dirty || apartmentForm.get('parking').touched)">
+                  <span *ngIf="apartmentForm.get('parking').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="childFriendly">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="petFriendly">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
+              <td class="text-right py-0 pr-0 w-50">
+                <ng-select [items]="mediaService"
+                           [multiple]="true"
+                           [closeOnSelect]="false"
+                           formControlName="mediaServiceProviders"></ng-select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('mediaServiceProviders').invalid && (apartmentForm.get('mediaServiceProviders').dirty || apartmentForm.get('mediaServiceProviders').touched)">
+                  <span *ngIf="apartmentForm.get('mediaServiceProviders').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="handicapAccessible">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="externalIsolation">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <ng-container *ngIf="apartmentForm.get('externalIsolation').value">
+              <tr>
+                <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
+                <td class="text-right pr-0">
+                  <label class="switch">
+                    <input type="checkbox"
+                           formControlName="balcony"
+                           (change)="changeBalcony()">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr *ngIf="balcony.value">
+                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
+                <td class="text-right py-0 pr-0">
+                  <input type="number"
+                         class="form-control border-0 text-right"
+                         min="0"
+                         inputmode="numeric"
+                         pattern="[0-9]*"
+                         formControlName="sizeOfBalcony">
+                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfBalcony').invalid && (apartmentForm.get('sizeOfBalcony').dirty || apartmentForm.get('sizeOfBalcony').touched)">
+                    <span *ngIf="apartmentForm.get('sizeOfBalcony').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
+                <td class="text-right pr-0">
+                  <label class="switch">
+                    <input type="checkbox"
+                           formControlName="garden"
+                           (change)="changeGarden()">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr *ngIf="garden.value">
+                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
+                <td class="text-right py-0 pr-0">
+                  <input type="number"
+                         class="form-control border-0 text-right"
+                         min="0"
+                         inputmode="numeric"
+                         pattern="[0-9]*"
+                         formControlName="sizeOfGarden">
+                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfGarden').invalid && (apartmentForm.get('sizeOfGarden').dirty || apartmentForm.get('sizeOfGarden').touched)">
+                    <span *ngIf="apartmentForm.get('sizeOfGarden').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
+                <td class="text-right pr-0">
+                  <label class="switch">
+                    <input type="checkbox"
+                           formControlName="terrace"
+                           (change)="changeTerrace()">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr *ngIf="terrace.value">
+                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
+                <td class="text-right py-0 pr-0">
+                  <input type="number"
+                         class="form-control border-0 text-right"
+                         min="0"
+                         inputmode="numeric"
+                         pattern="[0-9]*"
+                         formControlName="sizeOfTerrace">
+                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfTerrace').invalid && (apartmentForm.get('sizeOfTerrace').dirty || apartmentForm.get('sizeOfTerrace').touched)">
+                    <span *ngIf="apartmentForm.get('sizeOfTerrace').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="airConditioner">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="garage">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       max="2000"
+                       step="1"
+                       formControlName="rentalFee">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('rentalFee').invalid && (apartmentForm.get('rentalFee').dirty || apartmentForm.get('rentalFee').touched)">
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       max="2000"
+                       step="1"
+                       formControlName="overhead">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('overhead').invalid && (apartmentForm.get('overhead').dirty || apartmentForm.get('overhead').touched)">
+                  <span *ngIf="apartmentForm.get('overhead').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       max="2000"
+                       step="1"
+                       formControlName="deposit">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('deposit').invalid && (apartmentForm.get('deposit').dirty || apartmentForm.get('deposit').touched)">
+                  <span *ngIf="apartmentForm.get('deposit').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="minimumRentingTime">
+                  <option *ngFor="let month of arrayNumber(121); let i = index"
+                          [value]="i">{{ i }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('minimumRentingTime').invalid && (apartmentForm.get('minimumRentingTime').dirty || apartmentForm.get('minimumRentingTime').touched)">
+                  <span *ngIf="apartmentForm.get('minimumRentingTime').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
+              <td class="border-bottom text-right pr-0" formGroupName="dateOfMovingIn">
+                <div class="form-inline justify-content-between">
+                  <select name="day" class="custom-select"
+                          formControlName="day"
+                          (change)="setDate()">
+                    <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
+                    <option *ngFor="let day of days"
+                            [value]="day">{{ day }}</option>
+                  </select>
+                  <select name="month" class="custom-select"
+                          formControlName="month"
+                          (change)="setDate()">
+                    <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
+                    <option *ngFor="let month of months"
+                            [value]="month">{{ month }}</option>
+                  </select>
+                  <select name="year" class="custom-select"
+                          formControlName="year"
+                          (change)="setDate()">
+                    <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
+                    <option *ngFor="let year of years"
+                            [value]="year">{{ year }}</option>
+                  </select>
+                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('dateOfMovingIn').invalid && (apartmentForm.get('dateOfMovingIn').dirty || apartmentForm.get('dateOfMovingIn').touched)">
+                    <span *ngIf="apartmentForm.get('dateOfMovingIn').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
-<!--        <p class="mt-4">-->
-<!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
-<!--        </p>-->
-        <table class="table mt-4">
-          <tbody>
-          <tr>
-            <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
-            <td class="border-top-0 text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
-                <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
-                <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
-                <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="2019">2019</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="new">{{ 'COMMON.NEW' | translate }}</option>
-                <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
-                <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
-                <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto">
-                <option value=""></option>
-                <option value="aapp">AA++</option>
-                <option value="aap">AA+</option>
-                <option value="aa">AA</option>
-                <option value="bb">BB</option>
-                <option value="cc">CC</option>
-                <option value="dd">DD</option>
-                <option value="ee">EE</option>
-                <option value="ff">FF</option>
-                <option value="gg">GG</option>
-                <option value="hh">HH</option>
-                <option value="ii">II</option>
-                <option value="jj">JJ</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*"required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="east">{{ 'COMMON.EAST' | translate }}</option>
-                <option value="west">{{ 'COMMON.WEST' | translate }}</option>
-                <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
-                <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
-                <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
-                <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
-                <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
-                <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
-                <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
-                <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
-                <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.HEADROOM' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="2m">< 2M</option>
-                <option value="2.5m">2.0 - 2.5M</option>
-                <option value="3m">2.5 - 3.0M</option>
-                <option value="3mp">> 3M</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.PARKING' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
-                <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
-                <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
-                <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
-            <td class="text-right py-0 pr-0 w-50">
-              <ng-select [items]="mediaService"
-                         [multiple]="true"
-                         [closeOnSelect]="false"></ng-select>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
-            <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox" required>
-                <span class="slider round"></span>
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}(unit 1000)</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}(unit 1000)</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}(unit 1000)</td>
-            <td class="text-right py-0 pr-0">
-              <input type="number" class="form-control border-0 text-right" min="1" max="2000" step="1" required>
-            </td>
-          </tr>
-          <tr>
-            <td class="py-0 align-middle">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
-            <td class="text-right py-0 pr-0">
-              <select class="custom-select border-0 w-auto" required>
-                <option value=""></option>
-                <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
-            <td class="border-bottom text-right pr-0">
-              <div class="form-inline justify-content-between">
-                <select name="day" class="custom-select" required>
-                  <option value="">Day</option>
+        <app-feedback></app-feedback>
+        <!--      <table class="table mt-4">-->
+        <!--        <tbody>-->
+        <!--        <tr>-->
+        <!--          <td class="border-top-0">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>-->
+        <!--          <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td>Épület építési éve</td>-->
+        <!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td>Ingatlan állapota</td>-->
+        <!--          <td class="font-weight-bold text-right">2011</td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td>{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>-->
+        <!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td>{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>-->
+        <!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td>Lakás emelete</td>-->
+        <!--          <td class="font-weight-bold text-right">2011</td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td class="border-bottom">Lakás négyeztméter</td>-->
+        <!--          <td class="border-bottom font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
+        <!--        </tr>-->
+        <!--        </tbody>-->
+        <!--      </table>-->
+      </div>
+      <div class="col-sm-6">
+        <div *ngIf="!isMobile.getValue()">
+          <h2>Luxury apartment in the heart of Budapest</h2>
+          <div class="unit d-flex justify-content-between">
+            <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
+            <span class="square font-weight-bold">
+          <i class="icon-fullscreen"></i>
+          {{ apartment.size }}m<sup>2</sup>
+        </span>
+            <span class="unit-rooms font-weight-bold">
+          <i class="icon-bed"></i>
+          {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
+        </span>
+          </div>
+          <div class="form-group pt-4 position-relative address">
+            <label for="address" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
+            <input ngx-google-places-autocomplete
+                   id="address"
+                   class="form-control"
+                   [options]="{ types: ['(cities)'] }"
+                   (onAddressChange)="handleAddressChange($event)"
+                   formControlName="address">
+            <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('address').invalid && (apartmentForm.get('address').dirty || apartmentForm.get('address').touched)">
+              <span *ngIf="apartmentForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            </div>
+          </div>
+          <!--        <div class="data-complete w-100">-->
+          <!--          <div class="data-status d-flex justify-content-between font-weight-bold mb-2">-->
+          <!--            <span>{{ 'APARTMENT.DATA_COMPLETION' | translate }}:</span>-->
+          <!--            <span>97/132</span>-->
+          <!--          </div>-->
+          <!--          <p><ngb-progressbar [value]="73" height="10px"></ngb-progressbar></p>-->
+          <!--        </div>-->
+          <div class="button-group d-flex justify-content-between mt-4">
+            <button type="submit"
+                    class="btn btn-outline-primary btn-lg w-100"
+                    [disabled]="!apartmentForm.valid">{{ 'COMMON.SAVE' | translate }}</button>
+            <!--          <button class="btn btn-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}</button>-->
+          </div>
+          <!--        <p class="mt-4">-->
+          <!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
+          <!--        </p>-->
+          <table class="table mt-4">
+            <tbody>
+            <tr>
+              <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
+              <td class="border-top-0 text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="typeOfBuilding">
+                  <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
+                  <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
+                  <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
+                  <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
                 </select>
-                <select name="month" class="custom-select" required>
-                  <option value="">Month</option>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('typeOfBuilding').invalid && (apartmentForm.get('typeOfBuilding').dirty || apartmentForm.get('typeOfBuilding').touched)">
+                  <span *ngIf="apartmentForm.get('typeOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_CONSTRUCTION' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="yearOfConstruction">
+                  <option *ngFor="let year of years"
+                          [value]="year">{{ year }}</option>
                 </select>
-                <select name="year" class="custom-select" required>
-                  <option value="">Year</option>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('yearOfConstruction').invalid && (apartmentForm.get('yearOfConstruction').dirty || apartmentForm.get('yearOfConstruction').touched)">
+                  <span *ngIf="apartmentForm.get('yearOfConstruction').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.STATE_OF_APARTMENT' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="stateOfApartment">
+                  <option value="new">{{ 'COMMON.NEW' | translate }}</option>
+                  <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
+                  <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
+                  <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
                 </select>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('stateOfApartment').invalid && (apartmentForm.get('stateOfApartment').dirty || apartmentForm.get('stateOfApartment').touched)">
+                  <span *ngIf="apartmentForm.get('stateOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="energyPerformanceCertificate">
+                  <option value="aapp">AA++</option>
+                  <option value="aap">AA+</option>
+                  <option value="aa">AA</option>
+                  <option value="bb">BB</option>
+                  <option value="cc">CC</option>
+                  <option value="dd">DD</option>
+                  <option value="ee">EE</option>
+                  <option value="ff">FF</option>
+                  <option value="gg">GG</option>
+                  <option value="hh">HH</option>
+                  <option value="ii">II</option>
+                  <option value="jj">JJ</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="floorsOfBuilding">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfBuilding').invalid && (apartmentForm.get('floorsOfBuilding').dirty || apartmentForm.get('floorsOfBuilding').touched)">
+                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.FLOOR_OF_THE_APARTMENT' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="floorsOfApartment">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfApartment').invalid && (apartmentForm.get('floorsOfApartment').dirty || apartmentForm.get('floorsOfApartment').touched)">
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+<!--            <tr>-->
+<!--              <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>-->
+<!--              <td class="text-right py-0 pr-0">-->
+<!--                <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*"required>-->
+<!--              </td>-->
+<!--            </tr>-->
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="elevator">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="rooftop">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="buildingSiting">
+                  <option value="east">{{ 'COMMON.EAST' | translate }}</option>
+                  <option value="west">{{ 'COMMON.WEST' | translate }}</option>
+                  <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
+                  <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('buildingSiting').invalid && (apartmentForm.get('buildingSiting').dirty || apartmentForm.get('buildingSiting').touched)">
+                  <span *ngIf="apartmentForm.get('buildingSiting').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.TYPE_OF_HEATING' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="typeOfHeating">
+                  <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
+                  <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
+                  <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
+                  <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
+                  <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
+                  <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
+                  <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
+                  <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('typeOfHeating').invalid && (apartmentForm.get('typeOfHeating').dirty || apartmentForm.get('typeOfHeating').touched)">
+                  <span *ngIf="apartmentForm.get('typeOfHeating').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.HEADROOM' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="headroom">
+                  <option value="2m">< 2M</option>
+                  <option value="2.5m">2.0 - 2.5M</option>
+                  <option value="3m">2.5 - 3.0M</option>
+                  <option value="3mp">> 3M</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('headroom').invalid && (apartmentForm.get('headroom').dirty || apartmentForm.get('headroom').touched)">
+                  <span *ngIf="apartmentForm.get('headroom').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.PARKING' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="parking">
+                  <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
+                  <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
+                  <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
+                  <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('parking').invalid && (apartmentForm.get('parking').dirty || apartmentForm.get('parking').touched)">
+                  <span *ngIf="apartmentForm.get('parking').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="childFriendly">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="petFriendly">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
+              <td class="text-right py-0 pr-0 w-50">
+                <ng-select [items]="mediaService"
+                           [multiple]="true"
+                           [closeOnSelect]="false"
+                           formControlName="mediaServiceProviders"></ng-select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('mediaServiceProviders').invalid && (apartmentForm.get('mediaServiceProviders').dirty || apartmentForm.get('mediaServiceProviders').touched)">
+                  <span *ngIf="apartmentForm.get('mediaServiceProviders').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="handicapAccessible">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="externalIsolation">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <ng-container *ngIf="apartmentForm.get('externalIsolation').value">
+              <tr>
+                <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
+                <td class="text-right pr-0">
+                  <label class="switch">
+                    <input type="checkbox"
+                           formControlName="balcony"
+                           (change)="changeBalcony()">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr *ngIf="balcony.value">
+                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
+                <td class="text-right py-0 pr-0">
+                  <input type="number"
+                         class="form-control border-0 text-right"
+                         min="0"
+                         inputmode="numeric"
+                         pattern="[0-9]*"
+                         formControlName="sizeOfBalcony">
+                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfBalcony').invalid && (apartmentForm.get('sizeOfBalcony').dirty || apartmentForm.get('sizeOfBalcony').touched)">
+                    <span *ngIf="apartmentForm.get('sizeOfBalcony').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
+                <td class="text-right pr-0">
+                  <label class="switch">
+                    <input type="checkbox"
+                           formControlName="garden"
+                           (change)="changeGarden()">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr *ngIf="garden.value">
+                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
+                <td class="text-right py-0 pr-0">
+                  <input type="number"
+                         class="form-control border-0 text-right"
+                         min="0"
+                         inputmode="numeric"
+                         pattern="[0-9]*"
+                         formControlName="sizeOfGarden">
+                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfGarden').invalid && (apartmentForm.get('sizeOfGarden').dirty || apartmentForm.get('sizeOfGarden').touched)">
+                    <span *ngIf="apartmentForm.get('sizeOfGarden').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
+                <td class="text-right pr-0">
+                  <label class="switch">
+                    <input type="checkbox"
+                           formControlName="terrace"
+                           (change)="changeTerrace()">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+              </tr>
+              <tr *ngIf="terrace.value">
+                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
+                <td class="text-right py-0 pr-0">
+                  <input type="number"
+                         class="form-control border-0 text-right"
+                         min="0"
+                         inputmode="numeric"
+                         pattern="[0-9]*"
+                         formControlName="sizeOfTerrace">
+                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfTerrace').invalid && (apartmentForm.get('sizeOfTerrace').dirty || apartmentForm.get('sizeOfTerrace').touched)">
+                    <span *ngIf="apartmentForm.get('sizeOfTerrace').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="airConditioner">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="garage">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       max="2000"
+                       step="1"
+                       formControlName="rentalFee">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('rentalFee').invalid && (apartmentForm.get('rentalFee').dirty || apartmentForm.get('rentalFee').touched)">
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'COMMON.OVERHEAD' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       max="2000"
+                       step="1"
+                       formControlName="overhead">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('overhead').invalid && (apartmentForm.get('overhead').dirty || apartmentForm.get('overhead').touched)">
+                  <span *ngIf="apartmentForm.get('overhead').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.DEPOSIT' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       max="2000"
+                       step="1"
+                       formControlName="deposit">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('deposit').invalid && (apartmentForm.get('deposit').dirty || apartmentForm.get('deposit').touched)">
+                  <span *ngIf="apartmentForm.get('deposit').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }} ({{ 'COMMON.MONTHS' | translate }})</td>
+              <td class="text-right py-0 pr-0">
+                <select class="custom-select border-0 w-auto"
+                        formControlName="minimumRentingTime">
+                  <option *ngFor="let month of arrayNumber(121); let i = index"
+                          [value]="i">{{ i }}</option>
+                </select>
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('minimumRentingTime').invalid && (apartmentForm.get('minimumRentingTime').dirty || apartmentForm.get('minimumRentingTime').touched)">
+                  <span *ngIf="apartmentForm.get('minimumRentingTime').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
+              <td class="border-bottom text-right pr-0" formGroupName="dateOfMovingIn">
+                <div class="form-inline justify-content-between">
+                  <select name="day" class="custom-select"
+                          formControlName="day"
+                          (change)="setDate()">
+                    <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
+                    <option *ngFor="let day of days"
+                            [value]="day">{{ day }}</option>
+                  </select>
+                  <select name="month" class="custom-select"
+                          formControlName="month"
+                          (change)="setDate()">
+                    <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
+                    <option *ngFor="let month of months"
+                            [value]="month">{{ month }}</option>
+                  </select>
+                  <select name="year" class="custom-select"
+                          formControlName="year"
+                          (change)="setDate()">
+                    <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
+                    <option *ngFor="let year of years"
+                            [value]="year">{{ year }}</option>
+                  </select>
+                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('dateOfMovingIn').invalid && (apartmentForm.get('dateOfMovingIn').dirty || apartmentForm.get('dateOfMovingIn').touched)">
+                    <span *ngIf="apartmentForm.get('dateOfMovingIn').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>

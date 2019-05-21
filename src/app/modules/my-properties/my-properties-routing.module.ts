@@ -7,8 +7,8 @@ import { RoomEditComponent } from './components/room-edit/room-edit.component';
 
 const routes: Routes = [
   { path: '', component: MyPropertiesComponent },
-  { path: 'apartment/edit', component: ApartmentEditComponent },
-  { path: 'apartment/room/edit', component: RoomEditComponent }
+  { path: 'apartment/:id/edit', component: ApartmentEditComponent },
+  { path: 'room/:id/edit', component: RoomEditComponent }
 ];
 
 @NgModule({

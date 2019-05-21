@@ -1,6 +1,7 @@
 import { Room } from './room.model';
 
 export class Apartment {
+  _id: string;
   address: string;
   typeOfBuilding: string;
   yearOfConstruction: number;
@@ -34,4 +35,5 @@ export class Apartment {
   minimumRentingTime: number;
   dateOfMovingIn: string;
   rooms: string[];
+  roomsData: Room[];
 }

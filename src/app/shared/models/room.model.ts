@@ -1,4 +1,5 @@
 export class Room {
+  _id: string;
   name: string;
   size: number;
   yearOfRenovation: number;

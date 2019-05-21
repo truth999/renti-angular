@@ -37,8 +37,4 @@ export class ApartmentItemComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onApartmentDetail() {
-    this.router.navigate(['/app/rentals/apartment-detail']);
-  }
-
 }
