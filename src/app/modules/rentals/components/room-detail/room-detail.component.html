@@ -1,4 +1,5 @@
-<div class="room-detail">
+<div class="room-detail"
+     *ngIf="room">
   <div class="back mb-4 mt-3 mt-sm-0">
     <button class="btn btn-back d-sm-block d-none"
             (click)="onBack()">
@@ -11,10 +12,10 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="room-name d-flex justify-content-between">
-        <h4>Nappali</h4>
+        <h4>{{ room.name }}</h4>
         <div class="square font-weight-bold">
           <i class="icon-fullscreen align-middle"></i>
-          30 m<sup>2</sup>
+          {{ room.size }}m<sup>2</sup>
         </div>
       </div>
       <div class="room-image mt-2">
@@ -24,32 +25,36 @@
         <tbody>
         <tr>
           <td class="border-top-0">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
-          <td class="border-top-0 text-right font-weight-bold">9</td>
+          <td class="border-top-0 text-right font-weight-bold">{{ room.size }}</td>
         </tr>
         <tr>
           <td>{{ 'APARTMENT.YEAR_OF_RENOVATION' | translate }}</td>
-          <td class="text-right font-weight-bold">2019</td>
+          <td class="text-right font-weight-bold">{{ room.yearOfRenovation }}</td>
         </tr>
         <tr>
           <td>{{ 'APARTMENT.COVERAGE' | translate }}</td>
-          <td class="text-right font-weight-bold">{{ 'COMMON.TILES' | translate }}</td>
+          <td class="text-right font-weight-bold">{{ room.coverage }}</td>
         </tr>
         <tr>
           <td>{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
-          <td class="text-right font-weight-bold">{{ 'COMMON.PLASTIC' | translate }}</td>
+          <td class="text-right font-weight-bold">{{ room.windowType }}</td>
         </tr>
         <tr>
           <td>{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
-          <td class="text-right font-weight-bold">{{ 'COMMON.YES' | translate }}</td>
+          <td class="text-right font-weight-bold">{{ room.equipment }}</td>
         </tr>
         <tr>
-          <td>{{ 'APARTMENT.FURNITURE_NAME' | translate }}</td>
-          <td class="text-right font-weight-bold">Furniture</td>
-        </tr>
-        <tr>
-          <td style="border-top-style: dashed;">{{ 'APARTMENT.FURNITURE_TYPE' | translate }}</td>
-          <td class="text-right font-weight-bold"
-              style="border-top-style: dashed">Room</td>
+          <td>{{ 'APARTMENT.FURNITURE' | translate }}</td>
+          <td>
+            <table class="table mb-0">
+              <tr *ngFor="let furniture of room.furniture">
+                <td class="border-top-0 py-0 text-right">{{ 'APARTMENT.NAME' | translate }}:</td>
+                <td class="border-top-0 py-0 text-right font-weight-bold">{{ furniture.furnitureName }}</td>
+                <td class="border-top-0 py-0 text-right">{{ 'APARTMENT.TYPE' | translate }}:</td>
+                <td class="border-top-0 py-0 pr-0 text-right font-weight-bold">{{ furniture.furnitureType }}</td>
+              </tr>
+            </table>
+          </td>
         </tr>
         </tbody>
       </table>

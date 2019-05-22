@@ -4,7 +4,8 @@
         (ngSubmit)="submit()">
     <div class="back mb-sm-4"
          *ngIf="!isMobile.getValue()">
-      <button class="btn btn-back"
+      <button type="button"
+              class="btn btn-back"
               (click)="onBack()">
         <i class="icon-left h4 align-middle mb-0"></i>
         {{ 'COMMON.BACK' | translate }}
@@ -13,7 +14,8 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="slider">
-          <i class="icon-left position-absolute h4 mb-0" *ngIf="isMobile.getValue()"
+          <i class="icon-left position-absolute h4 mb-0"
+             *ngIf="isMobile.getValue()"
              (click)="onBack()"></i>
           <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
         </div>
@@ -22,13 +24,13 @@
           <div class="unit d-flex justify-content-between">
             <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
             <span class="square font-weight-bold">
-          <i class="icon-fullscreen"></i>
-          {{ apartment.size }}m<sup>2</sup>
-        </span>
+              <i class="icon-fullscreen"></i>
+              {{ apartmentForm.get('size').value }}m<sup>2</sup>
+            </span>
             <span class="unit-rooms font-weight-bold">
-          <i class="icon-bed"></i>
-          {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
-        </span>
+              <i class="icon-bed"></i>
+              {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
+            </span>
           </div>
           <div class="form-group pt-4 position-relative address">
             <label for="address" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
@@ -63,13 +65,57 @@
             <img src="/assets/images/floor_plan.png" alt="">
           </div>
           <ul class="list-unstyled mt-3">
-            <li class="d-flex justify-content-between align-items-center mb-1"
-                *ngFor="let room of arrayNumber(roomCount); let i = index">
-              <div class="number rounded-circle d-flex justify-content-center align-items-center mr-2 font-weight-bold">{{ i + 1 }}</div>
-              <input type="text" class="form-control" placeholder="{{ 'COMMON.ROOM_NAME' | translate }}:" required>
+            <li class="font-weight-bold my-1"
+                *ngFor="let room of apartment.roomsData; let i = index">
+              <a [routerLink]="['/app/my-properties/room', room._id, 'edit']">
+                {{ i + 1 }}: {{ room.name }}
+              </a>
             </li>
-            <li (click)="onAddRoom()"><i class="icon-plus"></i></li>
           </ul>
+<!--          <ul class="list-unstyled mt-3" formArrayName="roomsData">-->
+<!--            <li class="d-flex justify-content-between mb-1"-->
+<!--                *ngFor="let roomEl of roomsData.controls; let i = index"-->
+<!--                [formGroupName]="i">-->
+<!--              <div class="number rounded-circle d-flex justify-content-center align-items-center mt-2 mr-2 font-weight-bold">{{ i + 1 }}</div>-->
+<!--              <div class="mr-1">-->
+<!--                <input type="text"-->
+<!--                       class="form-control"-->
+<!--                       placeholder="{{ 'COMMON.ROOM_NAME' | translate }}"-->
+<!--                       formControlName="name">-->
+<!--                <div class="invalid-feedback d-block" *ngIf="roomEl.get('name').invalid && (roomEl.get('name').dirty || roomEl.get('name').touched)">-->
+<!--                  <span *ngIf="roomEl.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="mr-1">-->
+<!--                <input type="number"-->
+<!--                       class="form-control"-->
+<!--                       min="0"-->
+<!--                       inputmode="numeric"-->
+<!--                       pattern="[0-9]*"-->
+<!--                       placeholder="{{ 'APARTMENT.SIZE' | translate }}"-->
+<!--                       formControlName="size">-->
+<!--                <div class="invalid-feedback d-block" *ngIf="roomEl.get('size').invalid && (roomEl.get('size').dirty || roomEl.get('size').touched)">-->
+<!--                  <span *ngIf="roomEl.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <select class="custom-select"-->
+<!--                        formControlName="windowType">-->
+<!--                  <option value="" disabled>{{ 'APARTMENT.WINDOW_TYPE' | translate }}</option>-->
+<!--                  <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>-->
+<!--                  <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>-->
+<!--                  <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>-->
+<!--                </select>-->
+<!--                <div class="invalid-feedback d-block" *ngIf="roomEl.get('windowType').invalid && (roomEl.get('windowType').dirty || roomEl.get('windowType').touched)">-->
+<!--                  <span *ngIf="roomEl.get('windowType').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <i class="icon-plus"-->
+<!--                   (click)="onAddRoom()"></i>-->
+<!--            </li>-->
+<!--          </ul>-->
         </div>
         <div *ngIf="isMobile.getValue()">
           <!--        <p class="mt-4">-->
@@ -538,13 +584,13 @@
           <div class="unit d-flex justify-content-between">
             <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
             <span class="square font-weight-bold">
-          <i class="icon-fullscreen"></i>
-          {{ apartment.size }}m<sup>2</sup>
-        </span>
+              <i class="icon-fullscreen"></i>
+              {{ apartmentForm.get('size').value }}m<sup>2</sup>
+            </span>
             <span class="unit-rooms font-weight-bold">
-          <i class="icon-bed"></i>
-          {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
-        </span>
+              <i class="icon-bed"></i>
+              {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
+            </span>
           </div>
           <div class="form-group pt-4 position-relative address">
             <label for="address" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>

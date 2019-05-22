@@ -1,126 +1,171 @@
 <div class="room-edit">
-  <div class="back mb-4 mt-3 mt-sm-0">
-    <button class="btn btn-back d-sm-block d-none"
-            (click)="onBack()">
-      <i class="icon-left h4 align-middle mb-0"></i>
-      {{ 'COMMON.BACK' | translate }}
-    </button>
-    <i class="icon-left-circle d-sm-none"
-       (click)="onBack()"></i>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="room-name">
-        <h4>Nappali</h4>
-      </div>
-      <div class="room-image mt-2">
-<!--        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>-->
-        <input type="file"
-               #picturesChooser
-               style="display: none;"
-               accept="image/png, image/jpeg, image/jpg"
-               multiple
-               (change)="onFilesChange($event)">
-        <div class="row mb-2">
-          <div class="col-lg-3 col-md-4 col-sm-3 col-4 position-relative"
-               *ngFor="let previewPicture of previewNewRoomPictures; let i = index;">
-            <div class="img-item position-relative">
-              <img [src]="previewPicture"
-                   class="position-absolute rounded w-100 h-100"
-                   alt="">
+  <form *ngIf="roomForm"
+        [formGroup]="roomForm"
+        (ngSubmit)="submit()">
+    <div class="back mb-4 mt-3 mt-sm-0">
+      <button type="button"
+              class="btn btn-back d-sm-block d-none"
+              (click)="onBack()">
+        <i class="icon-left h4 align-middle mb-0"></i>
+        {{ 'COMMON.BACK' | translate }}
+      </button>
+      <i class="icon-left-circle d-sm-none"
+         (click)="onBack()"></i>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="room-name">
+          <h4>{{ room.name }}</h4>
+        </div>
+        <div class="room-image mt-2">
+          <!--        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>-->
+          <input type="file"
+                 #picturesChooser
+                 style="display: none;"
+                 accept="image/png, image/jpeg, image/jpg"
+                 multiple
+                 (change)="onFilesChange($event)">
+          <div class="row mb-2">
+<!--            <div class="col-lg-3 col-md-4 col-sm-3 col-4 position-relative py-2"-->
+<!--                 *ngFor="let previewPicture of previewNewRoomPictures; let i = index;">-->
+<!--              <div class="img-item position-relative">-->
+<!--                <img [src]="previewPicture"-->
+<!--                     class="position-absolute rounded w-100 h-100"-->
+<!--                     alt="">-->
+<!--              </div>-->
+<!--              <i class="icon-delete position-absolute text-danger"-->
+<!--                 (click)="removeRoomPicture(i)"></i>-->
+<!--            </div>-->
+            <div class="col-lg-3 col-md-4 col-sm-3 col-4 position-relative pb-4"
+                 *ngFor="let picture of pictures.controls; let i = index">
+              <div class="img-item position-relative">
+                <img [src]="uploadBase + picture.value"
+                     class="position-absolute rounded w-100 h-100">
+              </div>
+              <i class="icon-delete position-absolute text-danger"
+                 (click)="removeRoomPicture(i)"></i>
             </div>
-            <i class="icon-delete position-absolute text-danger"
-               (click)="removeRoomPicture(i)"></i>
           </div>
-        </div>
-        <button class="btn btn-primary btn-lg w-100"
-                (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_FROM_GALLERY' | translate }}</button>
-      </div>
-      <table class="table mt-2">
-        <tbody>
-        <tr>
-          <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
-          <td class="border-top-0 py-0 pr-0">
-            <input type="number" class="form-control text-right border-0" min="0" inputmode="numeric" pattern="[0-9]*" required>
-          </td>
-        </tr>
-        <tr>
-          <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_RENOVATION' | translate }}</td>
-          <td class="text-right py-0 pr-0">
-            <select class="custom-select border-0 w-auto">
-              <option value=""></option>
-              <option value="{{ i + 1950 }}" *ngFor="let year of arrayNumber(70); let i = index">{{ i + 1950 }}</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td class="py-0 align-middle">{{ 'APARTMENT.COVERAGE' | translate }}</td>
-          <td class="text-right py-0 pr-0">
-            <select class="custom-select border-0 w-auto">
-              <option value=""></option>
-              <option value="tiles">{{ 'COMMON.TILES' | translate }}</option>
-              <option value="wooden">{{ 'COMMON.LAMINATED_WOODEN' | translate }}</option>
-              <option value="carpet">{{ 'COMMON.CARPET' | translate }}</option>
-              <option value="parquetry">{{ 'COMMON.PARQUETRY' | translate }}</option>
-              <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td class="py-0 align-middle">{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
-          <td class="text-right py-0 pr-0">
-            <select class="custom-select border-0 w-auto" required>
-              <option value=""></option>
-              <option value="tiles">{{ 'COMMON.PLASTIC' | translate }}</option>
-              <option value="wooden">{{ 'COMMON.WOODEN' | translate }}</option>
-              <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td class="py-0 align-middle">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
-          <td class="text-right pr-0">
-            <label class="switch">
-              <input type="checkbox" required>
-              <span class="slider round"></span>
-            </label>
-          </td>
-        </tr>
-        <tr *ngFor="let furniture of arrayNumber(furnitures)">
-          <td class="py-0 align-middle">{{ 'APARTMENT.FURNITURE' | translate }}</td>
-          <td class="text-right py-0 pr-0">
-            <input type="text" class="form-control w-50 d-inline" placeholder="{{ 'APARTMENT.NAME' | translate }}">
-            <input type="text" class="form-control w-50 d-inline" placeholder="{{ 'APARTMENT.TYPE' | translate }}">
-          </td>
-        </tr>
-        <tr>
-          <td class="border-top-0">
-            <a href="javascript:" (click)="onAddFurniture()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-sm-6 text-sm-right">
-      <app-feedback></app-feedback>
-      <div class="text-left">
-        <div class="feedback mt-4">
-          <div class="client">
-            <span class="client-name font-weight-bold">Kelsey Taylor</span>
-          </div>
-          <p class="feedback-content mt-2">
-            Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-          </p>
-        </div>
-        <div class="feedback mt-4">
-          <div class="client">
-            <span class="client-name font-weight-bold">Kate Tomlins</span>
-          </div>
-          <p class="feedback-content mt-2">
-            We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-          </p>
+          <button type="button" class="btn btn-primary btn-lg w-100"
+                  (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_FROM_GALLERY' | translate }}</button>
         </div>
       </div>
+      <div class="col-sm-6 mt-3 d-flex align-items-end">
+        <button type="submit"
+                class="btn btn-outline-primary btn-lg w-100"
+                [disabled]="!roomForm.valid">{{ 'COMMON.SAVE' | translate }}</button>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <table class="table mt-2">
+          <tbody>
+          <tr>
+            <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
+            <td class="border-top-0 py-0 pr-0">
+              <input type="number"
+                     class="form-control text-right border-0"
+                     min="0"
+                     inputmode="numeric"
+                     pattern="[0-9]*"
+                     formControlName="size">
+              <div class="invalid-feedback d-block text-right"
+                   *ngIf="roomForm.get('size').invalid && (roomForm.get('size').dirty || roomForm.get('size').touched)">
+                <span *ngIf="roomForm.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_RENOVATION' | translate }}</td>
+            <td class="text-right py-0 pr-0">
+              <select class="custom-select border-0 w-auto"
+                      formControlName="yearOfRenovation">
+                <option *ngFor="let year of years"
+                        [value]="year">{{ year }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-0 align-middle">{{ 'APARTMENT.COVERAGE' | translate }}</td>
+            <td class="text-right py-0 pr-0">
+              <select class="custom-select border-0 w-auto" formControlName="coverage">
+                <option value="tiles">{{ 'COMMON.TILES' | translate }}</option>
+                <option value="wooden">{{ 'COMMON.LAMINATED_WOODEN' | translate }}</option>
+                <option value="carpet">{{ 'COMMON.CARPET' | translate }}</option>
+                <option value="parquetry">{{ 'COMMON.PARQUETRY' | translate }}</option>
+                <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-0 align-middle">{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
+            <td class="text-right py-0 pr-0">
+              <select class="custom-select border-0 w-auto"
+                      formControlName="windowType">
+                <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>
+                <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
+                <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
+              </select>
+              <div class="invalid-feedback d-block text-right"
+                   *ngIf="roomForm.get('windowType').invalid && (roomForm.get('windowType').dirty || roomForm.get('windowType').touched)">
+                <span *ngIf="roomForm.get('windowType').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-0 align-middle">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
+            <td class="text-right pr-0">
+              <label class="switch">
+                <input type="checkbox"
+                       formControlName="equipment">
+                <span class="slider round"></span>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-0 align-middle">{{ 'APARTMENT.FURNITURE' | translate }}</td>
+            <td class="text-right py-0 pr-0"
+                formArrayName="furniture">
+              <div *ngFor="let furnitureEl of furniture.controls; let i = index"
+                   [formGroupName]="i">
+                <input type="text"
+                       class="form-control w-50 d-inline"
+                       placeholder="{{ 'APARTMENT.NAME' | translate }}"
+                       formControlName="furnitureName">
+                <input type="text"
+                       class="form-control w-50 d-inline"
+                       placeholder="{{ 'APARTMENT.TYPE' | translate }}"
+                       formControlName="furnitureType">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="border-top-0">
+              <a href="javascript:" (click)="onAddFurniture()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-6 text-sm-right mt-3">
+        <app-feedback></app-feedback>
+        <div class="text-left">
+          <div class="feedback mt-4">
+            <div class="client">
+              <span class="client-name font-weight-bold">Kelsey Taylor</span>
+            </div>
+            <p class="feedback-content mt-2">
+              Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+          </div>
+          <div class="feedback mt-4">
+            <div class="client">
+              <span class="client-name font-weight-bold">Kate Tomlins</span>
+            </div>
+            <p class="feedback-content mt-2">
+              We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </form>
 </div>

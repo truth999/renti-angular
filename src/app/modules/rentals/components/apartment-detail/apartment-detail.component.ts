@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+
+import { Apartment, Room } from '../../../../shared/models';
+
+import { environment } from '../../../../../environments/environment';
+
+import { RentalsService } from '../../services/rentals.service';
 
 @Component({
   selector: 'app-apartment-detail',
@@ -9,15 +15,42 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
   styleUrls: ['./apartment-detail.component.scss']
 })
 export class ApartmentDetailComponent implements OnInit {
+  apartment: Apartment;
+  rooms: Room[];
+
+  uploadBase = environment.uploadBase;
+
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
   constructor(
     private router: Router,
-    private location: Location
+    private route: ActivatedRoute,
+    private location: Location,
+    private rentalsService: RentalsService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    try {
+      const response = await this.rentalsService.getApartment(id);
+      this.apartment = response.apartment;
+      this.apartment.roomsData = [];
+
+      const roomsResponse = await this.rentalsService.getRooms();
+      this.rooms = roomsResponse.rooms;
+
+      this.apartment.rooms.map(roomId => {
+        this.rooms.map(room => {
+          if (roomId === room._id) {
+            this.apartment.roomsData.push(room);
+          }
+        });
+      });
+    } catch (e) {
+      console.log('ApartmentDetailComponent->ngOnInit', e);
+    }
     this.galleryOptions = [
       {
         arrowPrevIcon: 'icon-left',
@@ -36,48 +69,20 @@ export class ApartmentDetailComponent implements OnInit {
       }
     ];
 
-    this.galleryImages = [
-      {
-        small: '/assets/images/apartment/apartment1.png',
-        medium: '/assets/images/apartment/apartment1.png',
-        big: '/assets/images/apartment/apartment1.png'
-      },
-      {
-        small: '/assets/images/apartment/apartment2.png',
-        medium: '/assets/images/apartment/apartment2.png',
-        big: '/assets/images/apartment/apartment2.png'
-      },
-      {
-        small: '/assets/images/apartment/apartment3.png',
-        medium: '/assets/images/apartment/apartment3.png',
-        big: '/assets/images/apartment/apartment3.png'
-      },
-      {
-        small: '/assets/images/apartment/apartment1.png',
-        medium: '/assets/images/apartment/apartment1.png',
-        big: '/assets/images/apartment/apartment1.png'
-      },
-      {
-        small: '/assets/images/apartment/apartment1.png',
-        medium: '/assets/images/apartment/apartment1.png',
-        big: '/assets/images/apartment/apartment1.png'
-      },
-      {
-        small: '/assets/images/apartment/apartment2.png',
-        medium: '/assets/images/apartment/apartment2.png',
-        big: '/assets/images/apartment/apartment2.png'
-      },
-      {
-        small: '/assets/images/apartment/apartment3.png',
-        medium: '/assets/images/apartment/apartment3.png',
-        big: '/assets/images/apartment/apartment3.png'
-      },
-      {
-        small: '/assets/images/apartment/apartment1.png',
-        medium: '/assets/images/apartment/apartment1.png',
-        big: '/assets/images/apartment/apartment1.png'
+    const pictures = [];
+    this.apartment.roomsData.map(room => {
+      for (let i = 0; i < room.pictures.length; i++) {
+        pictures.push(room.pictures[i]);
       }
-    ];
+    });
+
+    this.galleryImages = pictures.map(image => {
+      return {
+        small: this.uploadBase + image,
+        medium: this.uploadBase + image,
+        big: this.uploadBase + image
+      };
+    });
   }
 
   onSendOffer() {

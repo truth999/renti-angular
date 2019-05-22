@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+
+import { Room } from '../../../../shared/models';
+
+import { environment } from '../../../../../environments/environment';
+
+import { RentalsService } from '../../services/rentals.service';
 
 @Component({
   selector: 'app-room-detail',
@@ -8,12 +15,28 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
   styleUrls: ['./room-detail.component.scss']
 })
 export class RoomDetailComponent implements OnInit {
+  room: Room;
+  uploadBase = environment.uploadBase;
+
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
-  constructor(private location: Location) { }
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private rentalsService: RentalsService
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    try {
+      const response = await this.rentalsService.getRoom(id);
+      this.room = response.room;
+    } catch (e) {
+      console.log('RoomDetailComponent->ngOnInit', e);
+    }
+
     this.galleryOptions = [
       {
         image: false,
@@ -27,18 +50,13 @@ export class RoomDetailComponent implements OnInit {
       }
     ];
 
-    this.galleryImages = [
-      {
-        small: '/assets/images/room/room1.png',
-        medium: '/assets/images/room/room1.png',
-        big: '/assets/images/room/room1.png'
-      },
-      {
-        small: '/assets/images/room/room2.png',
-        medium: '/assets/images/room/room2.png',
-        big: '/assets/images/room/room2.png'
-      }
-    ];
+    this.galleryImages = this.room.pictures.map(image => {
+      return {
+        small: this.uploadBase + image,
+        medium: this.uploadBase + image,
+        big: this.uploadBase + image
+      };
+    });
   }
 
   onBack() {

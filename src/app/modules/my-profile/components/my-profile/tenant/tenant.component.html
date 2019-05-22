@@ -3,7 +3,8 @@
         [formGroup]="tenantForm"
         (ngSubmit)="update()">
     <div class="back mb-sm-4 d-sm-block d-none">
-      <button class="btn btn-back"
+      <button type="button"
+              class="btn btn-back"
               (click)="onBack()">
         <i class="icon-left h4 align-middle mb-0"></i>
         {{ 'COMMON.BACK' | translate }}
@@ -21,7 +22,7 @@
         </div>
         <div class="avatar-options-button"
              *ngIf="tenantForm.get('profilePicture').value && photo">
-          <i class="app-icon-pencil"
+          <i class="icon-pencil"
              (click)="onOpenPhotoEditModal()"></i>
         </div>
         <div class="avatar-options-button"

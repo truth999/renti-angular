@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Page } from '../../../../shared/models';
+import { Apartment, Page, Room } from '../../../../shared/models';
 
 import { MyPropertiesService } from '../../services/my-properties.service';
 import { environment } from '../../../../../environments/environment';
@@ -12,7 +12,8 @@ import { environment } from '../../../../../environments/environment';
   styleUrls: ['./my-properties.component.scss']
 })
 export class MyPropertiesComponent implements OnInit {
-  apartments = [];
+  apartments: Apartment[];
+  rooms: Room[];
   page = new Page();
   uploadBase = environment.uploadBase;
 
@@ -32,15 +33,18 @@ export class MyPropertiesComponent implements OnInit {
     try {
       const response = await this.myPropertiesService.getApartments(this.page);
       this.apartments = !response ? [] : response.apartments;
+
+      const roomsResponse = await this.myPropertiesService.getRooms();
+      this.rooms = roomsResponse.rooms;
+
       this.apartments.map(apartment => {
         apartment.roomsData = [];
         apartment.rooms.map(async roomId => {
-          try {
-            const roomResponse = await this.myPropertiesService.getRoom(roomId);
-            !roomResponse ? apartment.roomsData.push(null) : apartment.roomsData.push(roomResponse.room);
-          } catch (e) {
-            console.log('MyPropertiesComponent->getApartments->roomResponse', e);
-          }
+          this.rooms.map(room => {
+            if (roomId === room._id) {
+              apartment.roomsData.push(room);
+            }
+          });
         });
       });
       this.page.totalPages = !response ? 0 : response.totalPages;

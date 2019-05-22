@@ -13,8 +13,6 @@ import { ApartmentEditComponent } from './components/apartment-edit/apartment-ed
 
 import { RoomEditComponent } from './components/room-edit/room-edit.component';
 import { MyPropertiesService } from './services/my-properties.service';
-import { ApartmentEditService } from './services/apartment-edit.service';
-import { RoomEditService } from './services/room-edit.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +21,7 @@ import { RoomEditService } from './services/room-edit.service';
     RoomEditComponent
   ],
   providers: [
-    MyPropertiesService,
-    ApartmentEditService,
-    RoomEditService
+    MyPropertiesService
   ],
   imports: [
     ReactiveFormsModule,

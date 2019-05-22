@@ -41,6 +41,9 @@
 .icon-alert:before {
   content: "\61";
 }
+.icon-wall:before {
+  content: "\62";
+}
 .icon-bath:before {
   content: "\63";
 }
@@ -53,13 +56,13 @@
 .icon-cancel:before {
   content: "\66";
 }
-.icon-check-circle:before {
+.icon-caret:before {
   content: "\67";
 }
-.icon-caret:before {
+.icon-check:before {
   content: "\68";
 }
-.icon-check:before {
+.icon-check-circle:before {
   content: "\69";
 }
 .icon-close:before {
@@ -77,10 +80,10 @@
 .icon-ellipsis:before {
   content: "\6e";
 }
-.icon-right-white:before {
+.icon-room:before {
   content: "\6f";
 }
-.icon-right:before {
+.icon-right-fill:before {
   content: "\70";
 }
 .icon-plus:before {
@@ -101,39 +104,42 @@
 .icon-letter:before {
   content: "\76";
 }
-.icon-left-circle:before {
+.icon-left-fill:before {
   content: "\77";
 }
-.icon-left-white:before {
+.icon-left:before {
   content: "\78";
 }
-.icon-left:before {
+.icon-exit:before {
   content: "\79";
 }
-.icon-fullscreen:before {
+.icon-left-circle:before {
   content: "\7a";
 }
-.icon-exit:before {
+.icon-star:before {
   content: "\41";
 }
-.icon-room:before {
+.icon-star-fill:before {
   content: "\42";
 }
-.icon-search:before {
-  content: "\43";
-}
 .icon-sofa:before {
-  content: "\45";
-}
-.icon-star:before {
-  content: "\46";
-}
-.icon-star-fill:before {
-  content: "\47";
-}
-.icon-wall:before {
-  content: "\62";
+  content: "\43";
 }
 .icon-setting:before {
   content: "\44";
+}
+.icon-search:before {
+  content: "\45";
+}
+.icon-fullscreen:before {
+  content: "\46";
+}
+.icon-pencil:before {
+  content: "\47";
+}
+.icon-property:before {
+  content: "\48";
+}
+.icon-right:before {
+  content: "\49";
 }

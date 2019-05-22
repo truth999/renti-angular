@@ -5,10 +5,9 @@
             (click)="onAdd()">{{ 'COMMON.ADD_NEW' | translate  }}</button>
   </div>
   <div class="row"
-       *ngIf="apartments">
+       *ngIf="apartments && rooms">
     <ng-container *ngFor="let apartment of apartments">
       <app-apartment-item class="col-lg-6 py-3"
-                          *ngIf="apartment.roomsData.length !== 0"
                           [imgUrl]="apartment.roomsData[0].pictures[0] ? uploadBase + apartment.roomsData[0].pictures[0] : '/assets/images/room/room.svg'"
                           [name]="'Luxury apartment-create in the heart of Budapest'"
                           [explain]="'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…'"

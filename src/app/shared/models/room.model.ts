@@ -6,9 +6,9 @@ export class Room {
   coverage: string;
   windowType: string;
   equipment: boolean;
-  furniture: {
-    name: string;
-    type: string;
-  };
-  pictures: string;
+  furniture: [{
+    furnitureName: string;
+    furnitureType: string;
+  }];
+  pictures: string[];
 }
