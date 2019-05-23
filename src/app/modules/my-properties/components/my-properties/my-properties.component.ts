@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Apartment, Page, Room } from '../../../../shared/models';
 
 import { MyPropertiesService } from '../../services/my-properties.service';
+import { StorageService } from '../../../../core/services/storage.service';
+
 import { environment } from '../../../../../environments/environment';
 
 @Component({
@@ -12,14 +14,15 @@ import { environment } from '../../../../../environments/environment';
   styleUrls: ['./my-properties.component.scss']
 })
 export class MyPropertiesComponent implements OnInit {
-  apartments: Apartment[];
+  apartments: Apartment[] = [];
   rooms: Room[];
   page = new Page();
   uploadBase = environment.uploadBase;
 
   constructor(
     private router: Router,
-    private myPropertiesService: MyPropertiesService
+    private myPropertiesService: MyPropertiesService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -31,11 +34,18 @@ export class MyPropertiesComponent implements OnInit {
 
   async getApartments() {
     try {
+      const userId = this.storageService.get('userId');
       const response = await this.myPropertiesService.getApartments(this.page);
-      this.apartments = !response ? [] : response.apartments;
+      const apartments = !response ? [] : response.apartments;
 
       const roomsResponse = await this.myPropertiesService.getRooms();
       this.rooms = roomsResponse.rooms;
+
+      apartments.map(apartment => {
+        if (apartment.user === userId) {
+          this.apartments.push(apartment);
+        }
+      });
 
       this.apartments.map(apartment => {
         apartment.roomsData = [];

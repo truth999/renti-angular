@@ -36,4 +36,5 @@ export class Apartment {
   dateOfMovingIn: string;
   rooms: string[];
   roomsData: Room[];
+  userId: string;
 }

@@ -7,7 +7,6 @@
         <td class="border-top-0 text-right py-0 pr-0">
           <input ngx-google-places-autocomplete
                  class="form-control text-right border-0"
-                 [options]="{ types: ['(cities)'] }"
                  (onAddressChange)="handleAddressChange($event)"
                  formControlName="address">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('address').invalid && (apartmentDataFirstForm.get('address').dirty || apartmentDataFirstForm.get('address').touched)">

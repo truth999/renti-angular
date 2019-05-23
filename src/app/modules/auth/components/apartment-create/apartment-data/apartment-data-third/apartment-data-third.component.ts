@@ -111,6 +111,9 @@ export class ApartmentDataThirdComponent implements OnInit {
     } catch (e) {
       console.log('ApartmentDataThirdComponent->submit->error', e);
     }
+
+    this.apartmentCreateService.apartment = null;
+    this.apartmentCreateService.rooms = null;
   }
 
   private arrayNumber(n: number) {

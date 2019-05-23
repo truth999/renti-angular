@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Apartment, Room } from '../../../shared/models';
 
 import { ApiService } from '../../../core/services/api.service';
+import { StorageService } from '../../../core/services/storage.service';
 
 @Injectable()
 export class ApartmentCreateService {
@@ -12,7 +13,8 @@ export class ApartmentCreateService {
   newRoomPictures: any[];
 
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private storageService: StorageService
   ) { }
 
   createPreviewRoomPictures(previewRoomPictures) {
@@ -43,6 +45,7 @@ export class ApartmentCreateService {
   }
 
   createApartment(): Promise<any> {
+    this.apartment.userId = this.storageService.get('userId');
     return this.apiService.post('apartments', this.apartment);
   }
 

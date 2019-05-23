@@ -37,7 +37,6 @@
             <input ngx-google-places-autocomplete
                    id="address"
                    class="form-control"
-                   [options]="{ types: ['(cities)'] }"
                    (onAddressChange)="handleAddressChange($event)"
                    formControlName="address">
             <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('address').invalid && (apartmentForm.get('address').dirty || apartmentForm.get('address').touched)">
@@ -597,7 +596,6 @@
             <input ngx-google-places-autocomplete
                    id="address"
                    class="form-control"
-                   [options]="{ types: ['(cities)'] }"
                    (onAddressChange)="handleAddressChange($event)"
                    formControlName="address">
             <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('address').invalid && (apartmentForm.get('address').dirty || apartmentForm.get('address').touched)">
