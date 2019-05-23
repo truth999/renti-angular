@@ -10,7 +10,7 @@
   <div class="avatar">
     <i class="icon-left position-absolute h4 mb-0 d-sm-none"
        (click)="onBack()"></i>
-    <img [src]="uploadBase + landlord.profilePicture"
+    <img [src]="landlord.profilePicture ? uploadBase + landlord.profilePicture : '/assets/images/profile/blank.png'"
          alt="Avatar">
   </div>
   <div class="card profile-info">
