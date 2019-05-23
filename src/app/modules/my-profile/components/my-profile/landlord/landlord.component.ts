@@ -101,6 +101,8 @@ export class LandlordComponent implements OnInit {
     this.days = this.dateSelectService.getDays();
     this.months = this.dateSelectService.getMonths();
     this.years = this.dateSelectService.getYears();
+
+    this.isPerson.value ? this.nameOfAgency.setErrors(null) : this.nameOfAgency.setValidators(Validators.required);
   }
 
   buildLandlordForm() {
@@ -118,7 +120,7 @@ export class LandlordComponent implements OnInit {
       nationality: new FormControl(!!this.landlord ? this.landlord.nationality : ''),
       spokenLanguages: new FormControl(!!this.landlord ? this.landlord.spokenLanguages : '', Validators.required),
       isPerson: new FormControl(!!this.landlord ? this.landlord.isPerson : '', Validators.required),
-      nameOfAgency: new FormControl(!!this.landlord ? this.landlord.nameOfAgency : '', Validators.required)
+      nameOfAgency: new FormControl(!!this.landlord ? this.landlord.nameOfAgency : '')
     });
   }
 
