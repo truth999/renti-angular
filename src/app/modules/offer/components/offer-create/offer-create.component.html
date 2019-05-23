@@ -1,85 +1,139 @@
 <div class="offer-create">
-  <div class="back mb-4 mt-3 mt-sm-0">
-    <button class="btn btn-back d-sm-block d-none"
-            (click)="onBack()">
-      <i class="icon-left h4 align-middle mb-0"></i>
-      {{ 'COMMON.BACK' | translate }}
-    </button>
-    <i class="icon-left-circle d-sm-none"
-       (click)="onBack()"></i>
-  </div>
-  <h4 class="text-center">Árajánlattétel</h4>
-  <div class="form-group">
-    <label for="rent">{{ 'APARTMENT.RENTAL_FEE' | translate }}(unit 1000)</label>
-    <input type="number" class="form-control" id="rent" min="1" max="2000" step="1" required>
-  </div>
-  <div class="form-group">
-    <label for="overhead">{{ 'COMMON.OVERHEAD' | translate }}(unit 1000)</label>
-    <input type="number" class="form-control" id="overhead" min="1" max="2000" step="1" inputmode="numeric" pattern="[0-9]*" required>
-  </div>
-  <div class="form-group">
-    <label for="renting-time">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }})</label>
-    <select id="renting-time" class="custom-select" required>
-      <option value=""></option>
-      <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</label>
-    <div class="form-row">
-      <div class="form-group col">
-        <select name="day" class="custom-select" required>
-          <option value="">{{ 'COMMON.DAY' | translate }}</option>
-          <option value="{{ i + 1 }}" *ngFor="let day of arrayNumber(daysNumber); let i = index">{{ i + 1 }}</option>
-        </select>
-      </div>
-      <div class="form-group col">
-        <select name="month" class="custom-select" required>
-          <option value="">{{ 'COMMON.MONTH' | translate }}</option>
-          <option value="{{ i + 1 }}" *ngFor="let month of arrayNumber(12); let i = index">{{ i + 1 }}</option>
-        </select>
-      </div>
-      <div class="form-group col">
-        <select name="year" class="custom-select" required>
-          <option value="">{{ 'COMMON.YEAR' | translate }}</option>
-          <option value="{{ years - 99 + i }}" *ngFor="let year of arrayNumber(100); let i = index">{{ years - 99 + i }}</option>
-        </select>
+  <form *ngIf="offerForm"
+        [formGroup]="offerForm"
+        (ngSubmit)="submit()">
+    <div class="back mb-4 mt-3 mt-sm-0">
+      <button type="button"
+              class="btn btn-back d-sm-block d-none"
+              (click)="onBack()">
+        <i class="icon-left h4 align-middle mb-0"></i>
+        {{ 'COMMON.BACK' | translate }}
+      </button>
+      <i class="icon-left-circle d-sm-none"
+         (click)="onBack()"></i>
+    </div>
+    <h4 class="text-center">Price bidding</h4>
+    <div class="form-group">
+      <label for="rent">{{ 'APARTMENT.RENTAL_FEE' | translate }}</label>
+      <input type="number"
+             class="form-control"
+             id="rent"
+             min="1"
+             max="2000"
+             step="1"
+             inputmode="numeric"
+             pattern="[0-9]*"
+             formControlName="rentalFee">
+      <div class="invalid-feedback d-block" *ngIf="offerForm.get('rentalFee').invalid && (offerForm.get('rentalFee').dirty || offerForm.get('rentalFee').touched)">
+        <span *ngIf="offerForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="moving">{{ 'OFFER.MOVING_IN_WITH' | translate }}?</label>
-    <input type="text" id="moving" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label for="pets">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}</label>
-    <select name="pets"
-            class="custom-select"
-            id="pets"
-            required
-            (change)="onChange($event)">
-      <option value=""></option>
-      <option value="yes">{{ 'COMMON.YES' | translate }}</option>
-      <option value="no">{{ 'COMMON.NO' | translate }}</option>
-    </select>
-    <input type="text"
-           class="form-control mt-2"
-           required
-           *ngIf="isPet">
-  </div>
-<!--  <div class="form-group">-->
-<!--    <label for="person-type">Személy típusa</label>-->
-<!--    <input type="text" class="form-control" id="person-type" placeholder="Kérem adja meg a személy típusát">-->
-<!--  </div>-->
-<!--  <div class="form-group">-->
-<!--    <label for="social">{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}</label>-->
-<!--    <input type="url" class="form-control" id="social" pattern="https://.*" required>-->
-<!--  </div>-->
-  <div class="form-group">
-    <label for="choose">{{ 'OFFER.WHY_CHOOSE_ME' | translate }}?</label>
-    <textarea class="form-control" id="choose" rows="6"></textarea>
-  </div>
-  <div class="form-group text-center">
-    <button class="btn btn-primary btn-lg" (click)="onSubmit()">Ajánlattétel elküldése</button>
-  </div>
+    <div class="form-group">
+      <label for="overhead">{{ 'COMMON.OVERHEAD' | translate }}</label>
+      <input type="number"
+             class="form-control"
+             id="overhead"
+             min="1"
+             max="2000"
+             step="1"
+             inputmode="numeric"
+             pattern="[0-9]*"
+             formControlName="overhead">
+      <div class="invalid-feedback d-block" *ngIf="offerForm.get('overhead').invalid && (offerForm.get('overhead').dirty || offerForm.get('overhead').touched)">
+        <span *ngIf="offerForm.get('overhead').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="renting-time">{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }})</label>
+      <select id="renting-time"
+              class="custom-select"
+              formControlName="minRentingTime">
+        <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
+      </select>
+      <div class="invalid-feedback d-block" *ngIf="offerForm.get('minRentingTime').invalid && (offerForm.get('minRentingTime').dirty || offerForm.get('minRentingTime').touched)">
+        <span *ngIf="offerForm.get('minRentingTime').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</label>
+      <div class="form-row"
+           formGroupName="dateOfMovingIn">
+        <div class="form-group col">
+          <select class="custom-select"
+                  formControlName="day"
+                  (change)="setDate()">
+            <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
+            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <select class="custom-select"
+                  formControlName="month"
+                  (change)="setDate()">
+            <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
+            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <select class="custom-select"
+                  formControlName="year"
+                  (change)="setDate()">
+            <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="invalid-feedback d-block" *ngIf="offerForm.get('dateOfMovingIn').invalid && (offerForm.get('dateOfMovingIn').dirty || offerForm.get('dateOfMovingIn').touched)">
+        <span *ngIf="offerForm.get('dateOfMovingIn').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="moving">{{ 'OFFER.MOVING_IN_WITH' | translate }}?</label>
+      <input type="text"
+             id="moving"
+             class="form-control"
+             formControlName="movingWith">
+      <div class="invalid-feedback d-block" *ngIf="offerForm.get('movingWith').invalid && (offerForm.get('movingWith').dirty || offerForm.get('movingWith').touched)">
+        <span *ngIf="offerForm.get('movingWith').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="pets">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}</label><br>
+      <label class="switch">
+        <input type="checkbox"
+               formControlName="movingWithPets"
+               (change)="changePets()">
+        <span class="slider round"></span>
+      </label>
+      <div *ngIf="movingWithPets.value">
+        <input type="text"
+               id="pets"
+               class="form-control mt-2"
+               formControlName="pets">
+        <div class="invalid-feedback d-block" *ngIf="pets.invalid && (pets.dirty || pets.touched)">
+          <span *ngIf="pets.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+        </div>
+      </div>
+    </div>
+    <!--  <div class="form-group">-->
+    <!--    <label for="person-type">Személy típusa</label>-->
+    <!--    <input type="text" class="form-control" id="person-type" placeholder="Kérem adja meg a személy típusát">-->
+    <!--  </div>-->
+    <!--  <div class="form-group">-->
+    <!--    <label for="social">{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}</label>-->
+    <!--    <input type="url" class="form-control" id="social" pattern="https://.*" required>-->
+    <!--  </div>-->
+    <div class="form-group">
+      <label for="choose">{{ 'OFFER.WHY_CHOOSE_ME' | translate }}?</label>
+      <textarea class="form-control"
+                id="choose"
+                rows="6"
+                formControlName="whyChooseMe"></textarea>
+    </div>
+    <div class="form-group text-center">
+      <button type="submit"
+              class="btn btn-primary btn-lg"
+              [disabled]="!offerForm.valid">Submit</button>
+    </div>
+  </form>
 </div>

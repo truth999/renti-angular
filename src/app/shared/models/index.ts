@@ -5,6 +5,7 @@ import { Tenant } from './tenant.model';
 import { Apartment } from './apartment.model';
 import { Room } from './room.model';
 import { Page } from './page.model';
+import { Offer } from './offer.model';
 
 export {
   AccountTypes,
@@ -15,6 +16,8 @@ export {
   Tenant,
   Apartment,
   Room,
+
+  Offer,
 
   Page
 };

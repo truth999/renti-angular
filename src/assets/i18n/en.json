@@ -207,7 +207,8 @@
     "EDIT": "Edit",
     "NEW_FIRST_NAME": "New first name",
     "NEW_LAST_NAME": "New last name",
-    "NEW_EMAIL_ADDRESS": "New email address"
+    "NEW_EMAIL_ADDRESS": "New email address",
+    "EDIT_YOUR_PROFILE": "Edit your profile"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
@@ -298,7 +299,9 @@
     "WHY_CHOOSE_ME": "Why choose me",
     "OFFERS": "Offers",
     "PRICE_INCREASES": "Price increases",
-    "GO_TO_FULL_PROFILE": "Go to full profile"
+    "GO_TO_FULL_PROFILE": "Go to full profile",
+    "OFFER_CREATE_SUCCESS": "Your bid was successfully sent.",
+    "OFFER_SUCCESS": "Below you can see the contact details of your sublease:"
   },
   "SEARCH": {
     "SEARCH": "Search",

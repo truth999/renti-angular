@@ -174,7 +174,7 @@ export class LandlordComponent implements OnInit {
   }
 
   onViewAs() {
-    this.router.navigate(['/app/profile']);
+    this.router.navigate(['/app/profile', this.user.id]);
   }
 
   onIsPersonChange() {

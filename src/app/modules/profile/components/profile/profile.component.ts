@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { CONFIG_CONST } from '../../../../../config/config-const';
 
 import { AuthService } from '../../../../core/services/auth.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,16 +14,31 @@ import { AuthService } from '../../../../core/services/auth.service';
 export class ProfileComponent implements OnInit {
   AccountTypes = CONFIG_CONST.accountType;
   accountType: string;
+  user: any;
+
+  landlordId: string;
+  tenantId: string;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private profileService: ProfileService
   ) { }
 
   async ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
     try {
-      const response = await this.authService.getUser();
+      const response = await this.profileService.getUser(id);
+      this.user = response.user;
       this.accountType = response.user.accountType;
-    } finally {
+      if (this.accountType === this.AccountTypes.LANDLORD) {
+        this.landlordId = response.user.landlordId;
+      } else {
+        this.tenantId = response.user.tenantId;
+      }
+    } catch (e) {
+      console.log('ProfileComponent->ngOnInit', e);
     }
   }
 

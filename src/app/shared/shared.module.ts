@@ -10,7 +10,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ApartmentItemComponent } from './components/apartment-item/apartment-item.component';
-import { SuccessComponent } from './components/success/success.component';
 import { MenuCloseDirective } from './directives/menu-close.directive';
 import { ProfileItemComponent } from './components/profile-item/profile-item.component';
 import { PhotoUploadModalService } from './services/modal/photo-upload-modal.service';
@@ -29,7 +28,6 @@ import { DateSelectService } from './services/date-select.service';
     AuthLayoutComponent,
     FeedbackComponent,
     ApartmentItemComponent,
-    SuccessComponent,
     MenuCloseDirective,
     ProfileItemComponent,
     PhotoUploadModalComponent,
@@ -57,7 +55,6 @@ import { DateSelectService } from './services/date-select.service';
     AuthLayoutComponent,
     FeedbackComponent,
     ApartmentItemComponent,
-    SuccessComponent,
     MenuCloseDirective,
     ProfileItemComponent,
     PhotoUploadModalComponent,

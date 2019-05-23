@@ -1,0 +1,130 @@
+@import "~src/assets/styles/scss/variables";
+
+.search-apartment {
+  app-apartment-item {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .btn-search {
+    color: $blue;
+    box-shadow: $box-shadow-sm;
+    border-radius: $border-radius-lg;
+
+    .icon-ellipsis {
+      font-size: 1.25rem;
+    }
+  }
+
+  .search-bar {
+    background-color: $white;
+    z-index: 3;
+    overflow: auto;
+    transition: all 0.3s ease;
+
+    @include media-breakpoint-up(sm) {
+      width: 375px;
+      top: 0;
+      right: -100%;
+      height: 100%;
+    }
+
+    @include media-breakpoint-down(xs) {
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .icon-close {
+      font-size: 1.125rem;
+      cursor: pointer;
+    }
+
+    .btn-clear {
+      color: $blue;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    .search-features {
+      label {
+        font-family: NeueEinstellung-Medium;
+      }
+
+      .search-checkbox {
+        width: 22px;
+        height: 22px;
+        -webkit-appearance: none;
+        border: 2px solid $gray-400;
+        border-radius: $border-radius;
+        outline: none;
+
+        &:checked {
+          background: url("/assets/images/icon/check.png") no-repeat;
+          background-size: 100% 100%;
+          border: none;
+        }
+      }
+
+      .icon-caret {
+        font-size: 1.125rem;
+      }
+    }
+
+    .search-name {
+      .form-control {
+        border-radius: $border-radius-lg;
+      }
+    }
+
+    .search-price {
+      .custom-select {
+        border: 1px solid $blue;
+        border-radius: $border-radius-lg;
+        color: $black;
+      }
+    }
+
+    .advanced-search {
+      background: none;
+      box-shadow: none !important;
+      color: $blue;
+    }
+  }
+
+  .overlay {
+    visibility: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $black;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+  }
+
+  &.toggled {
+    .search-bar {
+      @include media-breakpoint-up(sm) {
+        right: 0;
+      }
+
+      @include media-breakpoint-down(xs) {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+    }
+
+    .overlay {
+      visibility: visible;
+      opacity: .8;
+    }
+  }
+}

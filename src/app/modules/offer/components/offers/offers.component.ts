@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+
+import { AuthService } from '../../../../core/services/auth.service';
+
+import { CONFIG_CONST } from '../../../../../config/config-const';
 
 @Component({
   selector: 'app-offers',
@@ -7,14 +10,20 @@ import { Location } from '@angular/common';
   styleUrls: ['./offers.component.scss']
 })
 export class OffersComponent implements OnInit {
+  ACCOUNT_TYPE = CONFIG_CONST.accountType;
+  accountType: string;
 
-  constructor(private location: Location) { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
-  ngOnInit() {
-  }
-
-  onBack() {
-    this.location.back();
+  async ngOnInit() {
+    try {
+      const response = await this.authService.getUser();
+      this.accountType = response.user.accountType;
+    } catch (e) {
+      console.log('OffersComponent->ngOnInit', e);
+    }
   }
 
 }

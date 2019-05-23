@@ -1,4 +1,5 @@
-<div class="offer-success">
+<div class="offer-success"
+     *ngIf="tenant">
   <div class="logo d-sm-block d-none text-center">
     <a routerLink="/">
       <img src="/assets/images/logo.png" alt="" width="75">
@@ -8,28 +9,32 @@
     <div class="col-sm-6 offset-sm-3">
       <div class="text text-center">
         <i class="icon-check-circle mb-3"></i>
-        <h4>{{ 'COMMON.CONGRATULATIONS' | translate }}!<br>Alább láthatja albérlője elérhetőségeit:</h4>
+        <h4>{{ 'COMMON.CONGRATULATIONS' | translate }}!<br>{{ 'OFFER.OFFER_SUCCESS' | translate }}</h4>
       </div>
       <div class="card-sm">
         <div class="avatar text-center">
-          <img src="/assets/images/profile/tenant.png" alt="" class="rounded-pill" width="80" height="80">
+          <img [src]="uploadBase + tenant.profilePicture"
+               alt=""
+               class="rounded-pill"
+               width="80"
+               height="80">
         </div>
-        <h4 class="text-center">Kate Tomlins </h4>
-        <p class="text-center text-muted font-weight-bold"><span class="year font-size-lg">23</span>, Student</p>
+        <h4 class="text-center">{{ user.firstName }} {{ user.lastName }}</h4>
+<!--        <p class="text-center text-muted font-weight-bold"><span class="year font-size-lg">23</span>, Student</p>-->
         <table class="table">
           <tbody>
-            <tr>
-              <td class="border-top-0">{{ 'COMMON.PHONE' | translate }}:</td>
-              <td class="border-top-0 font-weight-bold text-right">+36306832690</td>
-            </tr>
-            <tr>
-              <td>{{ 'COMMON.EMAIL' | translate }}:</td>
-              <td class="font-weight-bold text-right">kate@adult.design</td>
-            </tr>
-<!--            <tr>-->
-<!--              <td>{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}:</td>-->
-<!--              <td class="font-weight-bold text-right">ig.com/taylorswift</td>-->
-<!--            </tr>-->
+          <tr>
+            <td class="border-top-0">{{ 'COMMON.PHONE' | translate }}:</td>
+            <td class="border-top-0 font-weight-bold text-right">{{ tenant.mobile }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'COMMON.EMAIL' | translate }}:</td>
+            <td class="font-weight-bold text-right">{{ user.email }}</td>
+          </tr>
+          <!--            <tr>-->
+          <!--              <td>{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}:</td>-->
+          <!--              <td class="font-weight-bold text-right">ig.com/taylorswift</td>-->
+          <!--            </tr>-->
           </tbody>
         </table>
       </div>

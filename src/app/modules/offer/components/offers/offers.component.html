@@ -1,26 +1,4 @@
-<div class="offers">
-  <div class="back mb-4 mt-3 mt-sm-0">
-    <button class="btn btn-back d-sm-block d-none"
-            (click)="onBack()">
-      <i class="icon-left h4 align-middle mb-0"></i>
-      {{ 'COMMON.BACK' | translate }}
-    </button>
-    <i class="icon-left-circle d-sm-none"
-       (click)="onBack()"></i>
-  </div>
-  <div class="d-flex align-items-center justify-content-between">
-    <h2 class="mb-0">{{ 'OFFER.OFFERS' | translate }}:</h2>
-    <select class="custom-select w-auto border-0 font-size-lg font-weight-bold">
-      <option value="">{{ 'OFFER.PRICE_INCREASES' | translate }}</option>
-    </select>
-  </div>
-  <p class="font-weight-bold mt-2">Budapest, Andrássy út 72, 3/32. :</p>
-  <div class="row">
-    <div class="col-sm-6 py-3">
-      <app-offer></app-offer>
-    </div>
-    <div class="col-sm-6 py-3">
-      <app-offer></app-offer>
-    </div>
-  </div>
-</div>
+<ng-container *ngIf="accountType">
+  <app-offer-list *ngIf="accountType === ACCOUNT_TYPE.LANDLORD"></app-offer-list>
+<!--  <app-offer-success *ngIf="accountType === ACCOUNT_TYPE.TENANT"></app-offer-success>-->
+</ng-container>

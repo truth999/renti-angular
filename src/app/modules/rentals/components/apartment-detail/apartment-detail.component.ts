@@ -86,7 +86,7 @@ export class ApartmentDetailComponent implements OnInit {
   }
 
   onSendOffer() {
-    this.router.navigate(['/app/offers/create']);
+    this.router.navigate(['/app/offers/create', this.apartment._id]);
   }
 
   onBack() {

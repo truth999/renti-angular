@@ -8,6 +8,8 @@ import { RentalsRoutingModule } from './rentals-routing.module';
 import { ApartmentDetailComponent } from './components/apartment-detail/apartment-detail.component';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
 import { SearchComponent } from './components/search/search.component';
+import { SearchTenantComponent } from './components/search/search-tenant/search-tenant.component';
+import { SearchApartmentComponent } from './components/search/search-apartment/search-apartment.component';
 
 import { RentalsService } from './services/rentals.service';
 
@@ -15,7 +17,9 @@ import { RentalsService } from './services/rentals.service';
   declarations: [
     ApartmentDetailComponent,
     RoomDetailComponent,
-    SearchComponent
+    SearchComponent,
+    SearchTenantComponent,
+    SearchApartmentComponent
   ],
   providers: [
     RentalsService

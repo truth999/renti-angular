@@ -200,7 +200,7 @@ export class TenantComponent implements OnInit {
   }
 
   onViewAs() {
-    this.router.navigate(['/app/profile']);
+    this.router.navigate(['/app/profile', this.user.id]);
   }
 
   onBack() {
