@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Tenant } from '../../../../shared/models';
 
 import { OfferService } from '../../services/offer.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -19,13 +20,16 @@ export class OfferSuccessComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private offerService: OfferService
+    private offerService: OfferService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
+      this.cursorWaitService.enable();
+
       const userResponse = await this.offerService.getUser(id);
       this.user = userResponse.user;
 
@@ -33,6 +37,8 @@ export class OfferSuccessComponent implements OnInit {
       this.tenant = tenantResponse.tenant;
     } catch (e) {
       console.log('OfferSuccessComponent->ngOnInit', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 

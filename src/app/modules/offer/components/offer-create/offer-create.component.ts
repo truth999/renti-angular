@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
 import { OfferService } from '../../services/offer.service';
 import { StorageService } from '../../../../core/services/storage.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 export const dateOfMovingInValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const day = control.get('day');
@@ -36,7 +37,8 @@ export class OfferCreateComponent implements OnInit {
     private dateSelectService: DateSelectService,
     private offerService: OfferService,
     private storageService: StorageService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   ngOnInit() {
@@ -111,11 +113,15 @@ export class OfferCreateComponent implements OnInit {
     offerData.dateOfMovingIn = offerData.dateOfMovingIn.day + '-' + offerData.dateOfMovingIn.month + '-' + offerData.dateOfMovingIn.year;
 
     try {
+      this.cursorWaitService.enable();
+
       await this.offerService.createOffer(offerData);
       this.router.navigate(['/app/offers/create-success']);
     } catch (e) {
       this.toastrService.error('Something went wrong', 'Error');
       console.log('OfferCreateComponent->submit', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 

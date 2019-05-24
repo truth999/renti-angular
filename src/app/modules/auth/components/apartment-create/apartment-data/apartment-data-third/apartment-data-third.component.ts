@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { DateSelectService } from '../../../../../../shared/services/date-select.service';
 import { ApartmentCreateService } from '../../../../services/apartment-create.service';
+import { CursorWaitService } from '../../../../../../core/services/cursor-wait.service';
 
 export const dateOfMovingInValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const day = control.get('day');
@@ -28,7 +29,8 @@ export class ApartmentDataThirdComponent implements OnInit {
   constructor(
     private dateSelectService: DateSelectService,
     private apartmentCreateService: ApartmentCreateService,
-    private router: Router
+    private router: Router,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   ngOnInit() {
@@ -107,9 +109,12 @@ export class ApartmentDataThirdComponent implements OnInit {
 
       this.apartmentCreateService.updateApartmentDataWithRoomIds(roomIds);
       await this.apartmentCreateService.createApartment();
+      this.cursorWaitService.enable();
       this.router.navigate(['/app/my-properties']);
     } catch (e) {
       console.log('ApartmentDataThirdComponent->submit->error', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
 
     this.apartmentCreateService.apartment = null;

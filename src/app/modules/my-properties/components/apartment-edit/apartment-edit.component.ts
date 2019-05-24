@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { MyPropertiesService } from '../../services/my-properties.service';
 import { ResponsiveService } from '../../../../shared/services/responsive.service';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 import { Apartment, Room } from '../../../../shared/models';
 
@@ -55,7 +56,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     private myPropertiesService: MyPropertiesService,
     private dateSelectService: DateSelectService,
     private responsiveService: ResponsiveService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private cursorWaitService: CursorWaitService
   ) {
     this.isMobile = this.responsiveService.isMobile;
   }
@@ -68,6 +70,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
+      this.cursorWaitService.enable();
+
       const response = await this.myPropertiesService.getApartment(id);
       this.apartment = response.apartment;
       this.apartment.roomsData = [];
@@ -84,6 +88,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       });
     } catch (e) {
       console.log('ApartmentEditComponent->ngOnInit', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
 
     this.buildApartmentForm();
@@ -305,12 +311,16 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     };
 
     try {
+      this.cursorWaitService.enable();
+
       await this.myPropertiesService.updateApartment(this.apartment);
       this.toastrService.success('The apartment is updated successfully.', 'Success!');
       this.router.navigate(['/app/my-properties']);
     } catch (e) {
       this.toastrService.error('Something went wrong', 'Error');
       console.log('ApartmentEditComponent->submit', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 

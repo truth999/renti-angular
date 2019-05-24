@@ -5,6 +5,7 @@ import { CONFIG_CONST } from '../../../../../config/config-const';
 
 import { AuthService } from '../../../../core/services/auth.service';
 import { ProfileService } from '../../services/profile.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 @Component({
   selector: 'app-profile',
@@ -22,13 +23,16 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
+      this.cursorWaitService.enable();
+
       const response = await this.profileService.getUser(id);
       this.user = response.user;
       this.accountType = response.user.accountType;
@@ -39,6 +43,8 @@ export class ProfileComponent implements OnInit {
       }
     } catch (e) {
       console.log('ProfileComponent->ngOnInit', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 

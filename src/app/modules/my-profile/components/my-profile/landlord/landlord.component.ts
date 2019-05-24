@@ -18,6 +18,7 @@ import { Landlord } from '../../../../../shared/models';
 import { config } from '../../../../../../config';
 
 import { environment } from '../../../../../../environments/environment';
+import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 
 export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const day = control.get('day');
@@ -75,10 +76,13 @@ export class LandlordComponent implements OnInit {
     private authService: AuthService,
     private dateSelectService: DateSelectService,
     private toastrService: ToastrService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   async ngOnInit() {
     try {
+      this.cursorWaitService.enable();
+
       const userResponse = await this.authService.getUser();
       this.user = userResponse.user;
 
@@ -89,7 +93,10 @@ export class LandlordComponent implements OnInit {
       }
       this.buildLandlordForm();
       this.isAgency = !!this.landlord ? this.landlord.isPerson !== true : false;
+    } catch (e) {
+      console.log('LandlordComponent->ngOnInit', e);
     } finally {
+      this.cursorWaitService.disable();
     }
 
     this.photoEditModalService.photoChanged.subscribe(photoURIData => {
@@ -204,6 +211,8 @@ export class LandlordComponent implements OnInit {
 
   async onDeletePhoto() {
     try {
+      this.cursorWaitService.enable();
+
       this.landlordForm.patchValue({profilePicture: ''});
       this.photo = '';
       if (this.landlordId) {
@@ -216,22 +225,30 @@ export class LandlordComponent implements OnInit {
     } catch (e) {
       console.log('LandlordComponent->onDeletePhoto->error', e);
       this.toastrService.error('Something went wrong', 'Error');
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 
   async uploadProfilePicture(photoURIData) {
     try {
+      this.cursorWaitService.enable();
+
       const blobData = this.imageUploaderService.b64toBlob(photoURIData);
       const filenames = await this.imageUploaderService.upload(blobData);
       this.landlordForm.patchValue({profilePicture: filenames[0]});
     } catch (e) {
       console.log('LandlordComponent->uploadProfilePicture->error', e);
       this.toastrService.error('Something went wrong', 'Error');
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 
   async update() {
     try {
+      this.cursorWaitService.enable();
+
       const landlordData = {
         userId: this.storageService.get('userId'),
         ...this.landlordForm.value,
@@ -255,6 +272,7 @@ export class LandlordComponent implements OnInit {
       console.log('LandlordComponent->update->error', e);
       this.toastrService.error('Something went wrong', 'Error');
     } finally {
+      this.cursorWaitService.disable();
     }
   }
 

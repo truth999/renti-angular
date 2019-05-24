@@ -5,6 +5,7 @@ import { Apartment, Page, Room } from '../../../../shared/models';
 
 import { MyPropertiesService } from '../../services/my-properties.service';
 import { StorageService } from '../../../../core/services/storage.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -22,7 +23,8 @@ export class MyPropertiesComponent implements OnInit {
   constructor(
     private router: Router,
     private myPropertiesService: MyPropertiesService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,8 @@ export class MyPropertiesComponent implements OnInit {
 
   async getApartments() {
     try {
+      this.cursorWaitService.enable();
+
       const userId = this.storageService.get('userId');
       const response = await this.myPropertiesService.getApartments(this.page);
       const apartments = !response ? [] : response.apartments;
@@ -60,6 +64,8 @@ export class MyPropertiesComponent implements OnInit {
       this.page.totalPages = !response ? 0 : response.totalPages;
     } catch (e) {
       console.log('MyPropertiesComponent->getApartments', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 

@@ -3,19 +3,22 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { ToastrService } from 'ngx-toastr';
 
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { TenantService } from '../../../services/tenant.service';
 import { AuthService } from '../../../../../core/services/auth.service';
-
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
-import { Tenant } from '../../../../../shared/models';
-import { config } from '../../../../../../config';
-import { environment } from '../../../../../../environments/environment';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
-import { ToastrService } from 'ngx-toastr';
+import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
+
+import { Tenant } from '../../../../../shared/models';
+
+import { config } from '../../../../../../config';
+
+import { environment } from '../../../../../../environments/environment';
 
 export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const day = control.get('day');
@@ -70,24 +73,35 @@ export class TenantComponent implements OnInit {
     private authService: AuthService,
     private dateSelectService: DateSelectService,
     private imageUploaderService: ImageUploaderService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   async ngOnInit() {
     try {
+      this.cursorWaitService.enable();
+
       const userResponse = await this.authService.getUser();
       this.user = userResponse.user;
       this.tenantId = userResponse.user.tenantId;
+    } catch (e) {
+      console.log('TenantComponent->ngOnInit', e);
     } finally {
+      this.cursorWaitService.disable();
     }
 
     try {
+      this.cursorWaitService.enable();
+
       if (!!this.tenantId) {
         const response = await this.tenantService.getTenant(this.tenantId);
         this.tenant = response.tenant;
       }
       this.buildTenantForm();
+    } catch (e) {
+      console.log('TenantComponent->ngOnInit', e);
     } finally {
+      this.cursorWaitService.disable();
     }
 
     this.photoEditModalService.photoChanged.subscribe(photoURIData => {
@@ -232,16 +246,24 @@ export class TenantComponent implements OnInit {
 
   async uploadProfilePicture(photoURIData) {
     try {
+      this.cursorWaitService.enable();
+
       const blobData = this.imageUploaderService.b64toBlob(photoURIData);
       const filenames = await this.imageUploaderService.upload(blobData);
       this.tenantForm.patchValue({profilePicture: filenames[0]});
     } catch (e) {
       console.log('TenantComponent->uploadProfilePicture->error', e);
       this.toastrService.error('Something went wrong', 'Error');
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 
   async update() {
+    if (!this.tenantForm.valid) {
+      return;
+    }
+
     const tenantData = {
       userId: this.storageService.get('userId'),
       ...this.tenantForm.value,
@@ -252,6 +274,8 @@ export class TenantComponent implements OnInit {
     this.tenant = {...this.tenant, ...tenantData};
 
     try {
+      this.cursorWaitService.enable();
+
       if (!this.tenantId) {
         await this.tenantService.createTenant(this.tenant);
       } else {
@@ -263,6 +287,7 @@ export class TenantComponent implements OnInit {
       console.log('TenantComponent->update->error', e);
       this.toastrService.error('Something went wrong', 'Error');
     } finally {
+      this.cursorWaitService.disable();
     }
   }
 
