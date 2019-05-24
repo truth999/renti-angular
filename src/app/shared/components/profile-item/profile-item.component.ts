@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-profile-item',
@@ -7,10 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile-item.component.scss']
 })
 export class ProfileItemComponent implements OnInit, AfterViewInit {
-  @Input() imgUrl: string;
-  @Input() name: string;
-  @Input() explain: string;
+  // @Input() imgUrl: string;
+  // @Input() name: string;
+  // @Input() explain: string;
+  @Input() profile: any;
   @ViewChild('explainParagraph') explainParagraph: ElementRef;
+  uploadBase = environment.uploadBase;
 
   constructor(private router: Router) { }
 
@@ -30,10 +33,6 @@ export class ProfileItemComponent implements OnInit, AfterViewInit {
       wordArray.pop();
       el.textContent = wordArray.join(' ') + '...';
     }
-  }
-
-  onApartmentDetail() {
-    this.router.navigate(['/app/profile/tenant']);
   }
 
 }

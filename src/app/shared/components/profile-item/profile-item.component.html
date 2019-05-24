@@ -1,18 +1,17 @@
-<div class="card-sm position-relative d-flex flex-column justify-content-between"
-     (click)="onApartmentDetail()">
+<div class="card-sm position-relative d-flex flex-column justify-content-between">
   <div class="apartment-image position-absolute">
-    <img [src]="imgUrl"
+    <img [src]="uploadBase + profile.profilePicture"
          alt=""
          width="120"
          height="120">
   </div>
   <div class="explain">
-    <h6 class="font-size-lg">{{ name }}</h6>
+    <h6 class="font-size-lg">{{ profile.userData.firstName }} {{ profile.userData.lastName }}</h6>
     <p class="info text-muted font-weight-bold">
-      <span class="years font-size-lg font-weight-bolder">23</span>, Student @ University of Debrecen
+      <span class="years font-size-lg font-weight-bolder">{{ profile.dateOfBirth | dateToAge }}</span>, {{ profile.currentWorkplace }}
     </p>
     <p #explainParagraph class="information mb-0">
-      {{ explain }}
+      {{ profile.freeTextIntroduction }}
     </p>
   </div>
 </div>

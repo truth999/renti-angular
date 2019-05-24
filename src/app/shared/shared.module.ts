@@ -25,6 +25,8 @@ import { DateSelectService } from './services/date-select.service';
 import { MenuCloseDirective } from './directives/menu-close.directive';
 import { DateSelectValidatorDirective } from './directives/date-select-validator.directive';
 
+import { DateToAgePipe } from './pipes/date-to-age.pipe';
+
 @NgModule({
   declarations: [
     LanguageSelectorComponent,
@@ -37,7 +39,8 @@ import { DateSelectValidatorDirective } from './directives/date-select-validator
     PhotoUploadModalComponent,
     PhotoEditModalComponent,
     CropEditorComponent,
-    DateSelectValidatorDirective
+    DateSelectValidatorDirective,
+    DateToAgePipe
   ],
   entryComponents: [
     PhotoUploadModalComponent,
@@ -65,7 +68,8 @@ import { DateSelectValidatorDirective } from './directives/date-select-validator
     PhotoUploadModalComponent,
     PhotoEditModalComponent,
     CropEditorComponent,
-    DateSelectValidatorDirective
+    DateSelectValidatorDirective,
+    DateToAgePipe
   ],
   providers: [
     PhotoUploadModalService,

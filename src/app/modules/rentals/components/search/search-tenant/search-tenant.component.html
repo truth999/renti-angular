@@ -10,38 +10,11 @@
     </button>
   </div>
   <div class="row">
-    <app-profile-item class="col-lg-6 py-3"
-                      [imgUrl]="'/assets/images/profile/tenant.png'"
-                      [name]="'Kate Tomlins'"
-                      [explain]="'I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'"></app-profile-item>
-    <app-profile-item class="col-lg-6 py-3"
-                      [imgUrl]="'/assets/images/profile/tenant.png'"
-                      [name]="'Kate Tomlins'"
-                      [explain]="'I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'"></app-profile-item>
-    <app-profile-item class="col-lg-6 py-3"
-                      [imgUrl]="'/assets/images/profile/tenant.png'"
-                      [name]="'Kate Tomlins'"
-                      [explain]="'I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'"></app-profile-item>
-    <app-profile-item class="col-lg-6 py-3"
-                      [imgUrl]="'/assets/images/profile/tenant.png'"
-                      [name]="'Kate Tomlins'"
-                      [explain]="'I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'"></app-profile-item>
-    <app-profile-item class="col-lg-6 py-3"
-                      [imgUrl]="'/assets/images/profile/tenant.png'"
-                      [name]="'Kate Tomlins'"
-                      [explain]="'I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'"></app-profile-item>
-    <app-profile-item class="col-lg-6 py-3"
-                      [imgUrl]="'/assets/images/profile/tenant.png'"
-                      [name]="'Kate Tomlins'"
-                      [explain]="'I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'"></app-profile-item>
-    <app-profile-item class="col-lg-6 py-3"
-                      [imgUrl]="'/assets/images/profile/tenant.png'"
-                      [name]="'Kate Tomlins'"
-                      [explain]="'I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'"></app-profile-item>
-    <app-profile-item class="col-lg-6 py-3"
-                      [imgUrl]="'/assets/images/profile/tenant.png'"
-                      [name]="'Kate Tomlins'"
-                      [explain]="'I usually like lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'"></app-profile-item>
+    <ng-container *ngFor="let tenant of tenants">
+      <app-profile-item class="col-lg-6 py-3"
+                        [profile]="tenant" [routerLink]="['/app/profile', tenant.userData.id]"></app-profile-item>
+    </ng-container>
+
   </div>
   <div class="search-bar card-sm-screen position-fixed">
     <div class="close-bar justify-content-between align-items-center px-3 py-2 border-bottom d-sm-flex d-none">
