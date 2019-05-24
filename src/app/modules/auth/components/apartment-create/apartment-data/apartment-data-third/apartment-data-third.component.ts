@@ -116,7 +116,7 @@ export class ApartmentDataThirdComponent implements OnInit {
     this.apartmentCreateService.rooms = null;
   }
 
-  private arrayNumber(n: number) {
+  public arrayNumber(n: number) {
     return Array(n);
   }
 
