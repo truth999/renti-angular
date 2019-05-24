@@ -322,6 +322,8 @@
     "CONFIRM_PASSWORD_REQUIRED": "Confirm password is required.",
     "FISRTNAME_REQUIRED": "First name is required.",
     "LASTNAME_REQUIRED": "Last name is required.",
+    "MAX_FIRSTNAME": "First name must be less then 50 characters.",
+    "MAX_LASTNAME": "Last name must be less then 50 characters.",
     "PASSWORD_NOT_MATCH": "Passwords do not match.",
     "INVALID_EMAIL": "Invalid email address.",
     "MIN_PASSWORD": "Password must be at least 5 characters long.",

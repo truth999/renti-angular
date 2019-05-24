@@ -5,21 +5,25 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { NouisliderModule } from 'ng2-nouislider';
+
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ApartmentItemComponent } from './components/apartment-item/apartment-item.component';
-import { MenuCloseDirective } from './directives/menu-close.directive';
-import { ProfileItemComponent } from './components/profile-item/profile-item.component';
-import { PhotoUploadModalService } from './services/modal/photo-upload-modal.service';
-import { PhotoEditModalService } from './services/modal/photo-edit-modal.service';
 import { PhotoUploadModalComponent } from './components/modal/photo-upload-modal/photo-upload-modal.component';
+import { ProfileItemComponent } from './components/profile-item/profile-item.component';
 import { PhotoEditModalComponent } from './components/modal/photo-edit-modal/photo-edit-modal.component';
 import { CropEditorComponent } from './components/modal/photo-edit-modal/crop-editor/crop-editor.component';
-import { NouisliderModule } from 'ng2-nouislider';
+
+import { PhotoUploadModalService } from './services/modal/photo-upload-modal.service';
+import { PhotoEditModalService } from './services/modal/photo-edit-modal.service';
 import { ResponsiveService } from './services/responsive.service';
 import { DateSelectService } from './services/date-select.service';
+
+import { MenuCloseDirective } from './directives/menu-close.directive';
+import { DateSelectValidatorDirective } from './directives/date-select-validator.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { DateSelectService } from './services/date-select.service';
     ProfileItemComponent,
     PhotoUploadModalComponent,
     PhotoEditModalComponent,
-    CropEditorComponent
+    CropEditorComponent,
+    DateSelectValidatorDirective
   ],
   entryComponents: [
     PhotoUploadModalComponent,
@@ -59,7 +64,8 @@ import { DateSelectService } from './services/date-select.service';
     ProfileItemComponent,
     PhotoUploadModalComponent,
     PhotoEditModalComponent,
-    CropEditorComponent
+    CropEditorComponent,
+    DateSelectValidatorDirective
   ],
   providers: [
     PhotoUploadModalService,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,6 +13,7 @@ import { AuthService } from '../../../../../core/services/auth.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
 import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
+import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
 import { Tenant } from '../../../../../shared/models';
 
@@ -20,13 +21,7 @@ import { config } from '../../../../../../config';
 
 import { environment } from '../../../../../../environments/environment';
 
-export const dateOfBirthValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
-  const day = control.get('day');
-  const month = control.get('month');
-  const year = control.get('year');
-
-  return day && month && year && day.valid === true && month.valid === true && year.valid === true ? null : { required: true } ;
-};
+import { dateSelectValidator } from '../../../../../shared/directives/date-select-validator.directive';
 
 @Component({
   selector: 'app-my-profile-tenant',
@@ -74,7 +69,8 @@ export class TenantComponent implements OnInit {
     private dateSelectService: DateSelectService,
     private imageUploaderService: ImageUploaderService,
     private toastrService: ToastrService,
-    private cursorWaitService: CursorWaitService
+    private cursorWaitService: CursorWaitService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   async ngOnInit() {
@@ -126,7 +122,7 @@ export class TenantComponent implements OnInit {
         day: new FormControl(!!this.tenant ? dateOfBirthArray[0] : '', Validators.required),
         month: new FormControl(!!this.tenant ? dateOfBirthArray[1] : '', Validators.required),
         year: new FormControl(!!this.tenant ? dateOfBirthArray[2] : '', Validators.required)
-      }, { validators: dateOfBirthValidator }),
+      }, { validators: dateSelectValidator }),
       nationality: new FormControl(!!this.tenant ? this.tenant.nationality : '', Validators.required),
       spokenLanguages: new FormControl(!!this.tenant ? this.tenant.spokenLanguages : '', Validators.required),
       currentCity: new FormControl(!!this.tenant ? this.tenant.currentCity : '', Validators.required),
@@ -260,34 +256,34 @@ export class TenantComponent implements OnInit {
   }
 
   async update() {
-    if (!this.tenantForm.valid) {
-      return;
-    }
+    if (this.tenantForm.valid) {
+      const tenantData = {
+        userId: this.storageService.get('userId'),
+        ...this.tenantForm.value,
+      };
 
-    const tenantData = {
-      userId: this.storageService.get('userId'),
-      ...this.tenantForm.value,
-    };
+      tenantData.dateOfBirth = tenantData.dateOfBirth.day + '-' + tenantData.dateOfBirth.month + '-' + tenantData.dateOfBirth.year;
 
-    tenantData.dateOfBirth = tenantData.dateOfBirth.day + '-' + tenantData.dateOfBirth.month + '-' + tenantData.dateOfBirth.year;
+      this.tenant = {...this.tenant, ...tenantData};
 
-    this.tenant = {...this.tenant, ...tenantData};
+      try {
+        this.cursorWaitService.enable();
 
-    try {
-      this.cursorWaitService.enable();
-
-      if (!this.tenantId) {
-        await this.tenantService.createTenant(this.tenant);
-      } else {
-        await this.tenantService.updateTenant(this.tenant);
+        if (!this.tenantId) {
+          await this.tenantService.createTenant(this.tenant);
+        } else {
+          await this.tenantService.updateTenant(this.tenant);
+        }
+        this.toastrService.success('The tenant is updated successfully.', 'Success!');
+        // this.router.navigate(['/app/profile']);
+      } catch (e) {
+        console.log('TenantComponent->update->error', e);
+        this.toastrService.error('Something went wrong', 'Error');
+      } finally {
+        this.cursorWaitService.disable();
       }
-      this.toastrService.success('The tenant is updated successfully.', 'Success!');
-      // this.router.navigate(['/app/profile']);
-    } catch (e) {
-      console.log('TenantComponent->update->error', e);
-      this.toastrService.error('Something went wrong', 'Error');
-    } finally {
-      this.cursorWaitService.disable();
+    } else {
+      this.validateFormFieldsService.validate(this.tenantForm);
     }
   }
 

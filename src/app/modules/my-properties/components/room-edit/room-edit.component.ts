@@ -10,6 +10,7 @@ import { MyPropertiesService } from '../../services/my-properties.service';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
 import { ImageUploaderService } from '../../../../core/services/image-uploader.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
+import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -32,7 +33,8 @@ export class RoomEditComponent implements OnInit {
     private toastrService: ToastrService,
     private dateSelectService: DateSelectService,
     private imageUploaderService: ImageUploaderService,
-    private cursorWaitService: CursorWaitService
+    private cursorWaitService: CursorWaitService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   async ngOnInit() {
@@ -119,22 +121,26 @@ export class RoomEditComponent implements OnInit {
   }
 
   async submit() {
-    const roomData = {
-      ...this.room,
-      ...this.roomForm.value
-    };
+    if (this.roomForm.valid) {
+      const roomData = {
+        ...this.room,
+        ...this.roomForm.value
+      };
 
-    try {
-      this.cursorWaitService.enable();
+      try {
+        this.cursorWaitService.enable();
 
-      await this.myPropertiesService.updateRoom(roomData);
-      this.toastrService.success('The room is updated successfully.', 'Success!');
-      this.location.back();
-    } catch (e) {
-      this.toastrService.error('Something went wrong', 'Error');
-      console.log('RoomEditComponent->submit', e);
-    } finally {
-      this.cursorWaitService.disable();
+        await this.myPropertiesService.updateRoom(roomData);
+        this.toastrService.success('The room is updated successfully.', 'Success!');
+        this.location.back();
+      } catch (e) {
+        this.toastrService.error('Something went wrong', 'Error');
+        console.log('RoomEditComponent->submit', e);
+      } finally {
+        this.cursorWaitService.disable();
+      }
+    } else {
+      this.validateFormFieldsService.validate(this.roomForm);
     }
   }
 

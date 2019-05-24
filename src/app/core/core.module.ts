@@ -2,13 +2,18 @@ import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SharedModule } from '../shared/shared.module';
+
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+
+import { AuthGuard } from './guards/auth.guard';
+
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 import { CursorWaitService } from './services/cursor-wait.service';
 import { ImageUploaderService } from './services/image-uploader.service';
 import { StorageService } from './services/storage.service';
-import { AuthGuard } from './guards/auth.guard';
+import { ValidateFormFieldsService } from './services/validate-form-fields.service';
+
 import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
@@ -25,7 +30,8 @@ import { HomeComponent } from './components/home/home.component';
     CursorWaitService,
     ImageUploaderService,
     StorageService,
-    AuthGuard
+    AuthGuard,
+    ValidateFormFieldsService
   ]
 })
 export class CoreModule { }

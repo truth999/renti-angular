@@ -24,10 +24,12 @@ export class ApartmentCreateComponent implements OnInit {
   }
 
   onNextStep() {
-    this.step = this.step + 1;
+    if (!this.disabled) {
+      this.step = this.step + 1;
 
-    if (this.step > 4) {
-      this.step = 4;
+      if (this.step > 4) {
+        this.step = 4;
+      }
     }
 
     if (this.roomChild) {

@@ -1,7 +1,7 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
@@ -11,18 +11,13 @@ import { MyPropertiesService } from '../../services/my-properties.service';
 import { ResponsiveService } from '../../../../shared/services/responsive.service';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
+import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 import { Apartment, Room } from '../../../../shared/models';
 
 import { environment } from '../../../../../environments/environment';
 
-export const dateOfMovingInValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
-  const day = control.get('day');
-  const month = control.get('month');
-  const year = control.get('year');
-
-  return day && month && year && day.valid === true && month.valid === true && year.valid === true ? null : { required: true } ;
-};
+import { dateSelectValidator } from '../../../../shared/directives/date-select-validator.directive';
 
 @Component({
   selector: 'app-apartment-edit',
@@ -57,7 +52,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     private dateSelectService: DateSelectService,
     private responsiveService: ResponsiveService,
     private toastrService: ToastrService,
-    private cursorWaitService: CursorWaitService
+    private cursorWaitService: CursorWaitService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) {
     this.isMobile = this.responsiveService.isMobile;
   }
@@ -193,7 +189,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
         day: new FormControl(!!this.apartment.dateOfMovingIn ? dateOfMovingInArray[0] : '', Validators.required),
         month: new FormControl(!!this.apartment.dateOfMovingIn ? dateOfMovingInArray[1] : '', Validators.required),
         year: new FormControl(!!this.apartment.dateOfMovingIn ? dateOfMovingInArray[2] : '', Validators.required)
-      }, { validators: dateOfMovingInValidator }),
+      }, { validators: dateSelectValidator }),
       // roomsData: new FormArray(!!this.apartment.roomsData ? this.apartment.roomsData.map(room => {
       //   return new FormGroup({
       //     name: new FormControl(room.name, Validators.required),
@@ -288,39 +284,43 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   }
 
   async submit() {
-    const roomIds = [];
-    this.apartment.roomsData.map(room => {
-      roomIds.push(room._id);
-    });
+    if (this.apartmentForm.valid) {
+      const roomIds = [];
+      this.apartment.roomsData.map(room => {
+        roomIds.push(room._id);
+      });
 
-    const apartmentData = {
-      ...this.apartmentForm.value,
-      rooms: roomIds
-    };
+      const apartmentData = {
+        ...this.apartmentForm.value,
+        rooms: roomIds
+      };
 
-    apartmentData.dateOfMovingIn
-      = apartmentData.dateOfMovingIn.day
-      + '-'
-      + apartmentData.dateOfMovingIn.month
-      + '-'
-      + apartmentData.dateOfMovingIn.year;
+      apartmentData.dateOfMovingIn
+        = apartmentData.dateOfMovingIn.day
+        + '-'
+        + apartmentData.dateOfMovingIn.month
+        + '-'
+        + apartmentData.dateOfMovingIn.year;
 
-    this.apartment = {
-      ...this.apartment,
-      ...apartmentData
-    };
+      this.apartment = {
+        ...this.apartment,
+        ...apartmentData
+      };
 
-    try {
-      this.cursorWaitService.enable();
+      try {
+        this.cursorWaitService.enable();
 
-      await this.myPropertiesService.updateApartment(this.apartment);
-      this.toastrService.success('The apartment is updated successfully.', 'Success!');
-      this.router.navigate(['/app/my-properties']);
-    } catch (e) {
-      this.toastrService.error('Something went wrong', 'Error');
-      console.log('ApartmentEditComponent->submit', e);
-    } finally {
-      this.cursorWaitService.disable();
+        await this.myPropertiesService.updateApartment(this.apartment);
+        this.toastrService.success('The apartment is updated successfully.', 'Success!');
+        this.router.navigate(['/app/my-properties']);
+      } catch (e) {
+        this.toastrService.error('Something went wrong', 'Error');
+        console.log('ApartmentEditComponent->submit', e);
+      } finally {
+        this.cursorWaitService.disable();
+      }
+    } else {
+      this.validateFormFieldsService.validate(this.apartmentForm);
     }
   }
 

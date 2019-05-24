@@ -2,6 +2,7 @@ import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ApartmentCreateService } from '../../../../services/apartment-create.service';
+import { ValidateFormFieldsService } from '../../../../../../core/services/validate-form-fields.service';
 
 import { Apartment } from '../../../../../../shared/models';
 
@@ -19,7 +20,8 @@ export class ApartmentDataSecondComponent implements OnInit, DoCheck {
   @Output() apartmentDataSecondFormValid = new EventEmitter<boolean>();
 
   constructor(
-    private apartmentCreateService: ApartmentCreateService
+    private apartmentCreateService: ApartmentCreateService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
@@ -50,8 +52,12 @@ export class ApartmentDataSecondComponent implements OnInit, DoCheck {
   }
 
   submit() {
-    const apartmentData = { ...this.apartmentDataSecondForm.value };
-    this.apartmentCreateService.createApartmentData(apartmentData);
+    if (this.apartmentDataSecondForm.valid) {
+      const apartmentData = { ...this.apartmentDataSecondForm.value };
+      this.apartmentCreateService.createApartmentData(apartmentData);
+    } else {
+      this.validateFormFieldsService.validate(this.apartmentDataSecondForm);
+    }
   }
 
 }
