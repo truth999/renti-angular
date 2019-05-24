@@ -16,6 +16,7 @@
                       [class.active]="accountType === CONST_ACCOUNT_TYPE.TENANT"
                       (click)="onSelectType(CONST_ACCOUNT_TYPE.TENANT)">{{ 'COMMON.TENANT' | translate }}</button>
             </div>
+            <div class="invalid-feedback d-block" *ngIf="signupForm.controls['accountType'].hasError('required') && signupForm.controls['accountType'].touched">{{ 'ERROR.FIELD_REQUIRED' | translate }}</div>
           </div>
           <div class="form-row">
             <div class="form-group col-6">
@@ -25,6 +26,7 @@
                      id="first-name"
                      formControlName="firstName">
               <div class="invalid-feedback d-block" *ngIf="signupForm.controls['firstName'].hasError('required') && signupForm.controls['firstName'].touched">{{ 'ERROR.FISRTNAME_REQUIRED' | translate }}</div>
+              <div class="invalid-feedback d-block" *ngIf="signupForm.controls['firstName'].hasError('maxlength') && signupForm.controls['firstName'].touched">{{ 'ERROR.MAX_FIRSTNAME' | translate }}</div>
             </div>
             <div class="form-group col-6">
               <label for="last-name">{{ 'COMMON.LAST_NAME' | translate }}:</label>
@@ -33,6 +35,7 @@
                      id="last-name"
                      formControlName="lastName">
               <div class="invalid-feedback d-block" *ngIf="signupForm.controls['lastName'].hasError('required') && signupForm.controls['lastName'].touched">{{ 'ERROR.LASTNAME_REQUIRED' | translate }}</div>
+              <div class="invalid-feedback d-block" *ngIf="signupForm.controls['lastName'].hasError('maxlength') && signupForm.controls['lastName'].touched">{{ 'ERROR.MAX_LASTNAME' | translate }}</div>
             </div>
           </div>
           <div class="form-group">
@@ -43,6 +46,7 @@
                    formControlName="email">
             <div class="invalid-feedback d-block" *ngIf="signupForm.controls['email'].hasError('required') && signupForm.controls['email'].touched">{{ 'ERROR.EMAIL_REQUIRED' | translate }}</div>
             <div class="invalid-feedback d-block" *ngIf="signupForm.controls['email'].hasError('email') && signupForm.controls['email'].touched">{{ 'ERROR.INVALID_EMAIL' | translate }}</div>
+            <div class="invalid-feedback d-block" *ngIf="signupFailed">{{ message }}</div>
           </div>
           <div class="form-group">
             <label for="password">{{ 'COMMON.PASSWORD' | translate }}:</label>
@@ -67,8 +71,7 @@
         </div>
       </div>
       <div class="continue mt-sm-5 bg-white d-flex align-items-center">
-        <button class="btn btn-primary btn-lg w-100"
-                [disabled]="!signupForm.valid">{{ 'SIGNUP.SIGNUP' | translate }}</button>
+        <button class="btn btn-primary btn-lg w-100">{{ 'SIGNUP.SIGNUP' | translate }}</button>
       </div>
     </form>
   </div>

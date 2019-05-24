@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../../core/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { AuthService } from '../../../../core/services/auth.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
+import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
       private authService: AuthService,
       private cursorWaitService: CursorWaitService,
+      private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
@@ -26,15 +29,19 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    try {
-      this.cursorWaitService.enable();
-      this.loginFailed = false;
-      const loginData = this.loginForm.value;
-      await this.authService.login(loginData);
-    } catch (e) {
-      this.loginFailed = true;
-    } finally {
-      this.cursorWaitService.disable();
+    if (this.loginForm.valid) {
+      try {
+        this.cursorWaitService.enable();
+        this.loginFailed = false;
+        const loginData = this.loginForm.value;
+        await this.authService.login(loginData);
+      } catch (e) {
+        this.loginFailed = true;
+      } finally {
+        this.cursorWaitService.disable();
+      }
+    } else {
+      this.validateFormFieldsService.validate(this.loginForm);
     }
   }
 

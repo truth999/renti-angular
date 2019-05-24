@@ -1,11 +1,12 @@
-import { Component, DoCheck, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 import { ApartmentCreateService } from '../../../../services/apartment-create.service';
 import { DateSelectService } from '../../../../../../shared/services/date-select.service';
+import { ValidateFormFieldsService } from '../../../../../../core/services/validate-form-fields.service';
 
 import { Apartment } from '../../../../../../shared/models';
-import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'app-apartment-data-first',
@@ -20,7 +21,8 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
 
   constructor(
     private apartmentCreateService: ApartmentCreateService,
-    private dateSelectService: DateSelectService
+    private dateSelectService: DateSelectService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
@@ -61,8 +63,12 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
   }
 
   submit() {
-    const apartmentData = { ...this.apartmentDataFirstForm.value };
-    this.apartmentCreateService.createApartmentData(apartmentData);
+    if (this.apartmentDataFirstForm.valid) {
+      const apartmentData = { ...this.apartmentDataFirstForm.value };
+      this.apartmentCreateService.createApartmentData(apartmentData);
+    } else  {
+      this.validateFormFieldsService.validate(this.apartmentDataFirstForm);
+    }
   }
 
 }

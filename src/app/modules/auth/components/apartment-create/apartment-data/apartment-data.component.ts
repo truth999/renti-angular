@@ -17,6 +17,7 @@ export class ApartmentDataComponent implements OnInit, AfterViewChecked {
   @Output() apartmentDataValid = new EventEmitter<boolean>();
 
   step = 0;
+  valid: boolean;
 
   constructor() { }
 
@@ -25,23 +26,28 @@ export class ApartmentDataComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     if (this.dataFirst) {
+      this.valid = this.dataFirst.apartmentDataFirstForm.valid;
       this.apartmentDataValid.emit(this.dataFirst.apartmentDataFirstForm.valid);
     }
 
     if (this.dataSecond) {
+      this.valid = this.dataSecond.apartmentDataSecondForm.valid;
       this.apartmentDataValid.emit(this.dataSecond.apartmentDataSecondForm.valid);
     }
 
     if (this.dataThird) {
+      this.valid = this.dataThird.apartmentDataThirdForm.valid;
       this.apartmentDataValid.emit(this.dataThird.apartmentDataThirdForm.valid);
     }
   }
 
   onNextStep() {
-    this.step++;
+    if (this.valid) {
+      this.step++;
 
-    if (this.step > 2) {
-      this.step = 2;
+      if (this.step > 2) {
+        this.step = 2;
+      }
     }
 
     if (this.dataFirst) {

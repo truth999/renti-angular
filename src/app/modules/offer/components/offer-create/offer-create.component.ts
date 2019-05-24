@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { DateSelectService } from '../../../../shared/services/date-select.service';
 import { OfferService } from '../../services/offer.service';
 import { StorageService } from '../../../../core/services/storage.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
+import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
-export const dateOfMovingInValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
-  const day = control.get('day');
-  const month = control.get('month');
-  const year = control.get('year');
-
-  return day && month && year && day.valid === true && month.valid === true && year.valid === true ? null : { required: true } ;
-};
+import { dateSelectValidator } from '../../../../shared/directives/date-select-validator.directive';
 
 @Component({
   selector: 'app-offer-create',
@@ -36,7 +32,9 @@ export class OfferCreateComponent implements OnInit {
     private dateSelectService: DateSelectService,
     private offerService: OfferService,
     private storageService: StorageService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private cursorWaitService: CursorWaitService,
+    private validateFormFields: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
@@ -58,7 +56,7 @@ export class OfferCreateComponent implements OnInit {
         day: new FormControl('', Validators.required),
         month: new FormControl('', Validators.required),
         year: new FormControl('', Validators.required)
-      }, { validators: dateOfMovingInValidator }),
+      }, { validators: dateSelectValidator }),
       movingWith: new FormControl('', Validators.required),
       movingWithPets: new FormControl(false, Validators.required),
       pets: new FormControl(''),
@@ -102,20 +100,28 @@ export class OfferCreateComponent implements OnInit {
   }
 
   async submit() {
-    const userId = this.storageService.get('userId');
-    const offerData = {
-      ...this.offerForm.value,
-      userId,
-      apartmentId: this.apartmentId
-    };
-    offerData.dateOfMovingIn = offerData.dateOfMovingIn.day + '-' + offerData.dateOfMovingIn.month + '-' + offerData.dateOfMovingIn.year;
+    if (this.offerForm.valid) {
+      const userId = this.storageService.get('userId');
+      const offerData = {
+        ...this.offerForm.value,
+        userId,
+        apartmentId: this.apartmentId
+      };
+      offerData.dateOfMovingIn = offerData.dateOfMovingIn.day + '-' + offerData.dateOfMovingIn.month + '-' + offerData.dateOfMovingIn.year;
 
-    try {
-      await this.offerService.createOffer(offerData);
-      this.router.navigate(['/app/offers/create-success']);
-    } catch (e) {
-      this.toastrService.error('Something went wrong', 'Error');
-      console.log('OfferCreateComponent->submit', e);
+      try {
+        this.cursorWaitService.enable();
+
+        await this.offerService.createOffer(offerData);
+        this.router.navigate(['/app/offers/create-success']);
+      } catch (e) {
+        this.toastrService.error('Something went wrong', 'Error');
+        console.log('OfferCreateComponent->submit', e);
+      } finally {
+        this.cursorWaitService.disable();
+      }
+    } else {
+      this.validateFormFields.validate(this.offerForm);
     }
   }
 

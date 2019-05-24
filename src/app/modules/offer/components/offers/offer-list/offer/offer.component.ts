@@ -5,7 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Offer, Tenant } from '../../../../../../shared/models';
 
 import { environment } from '../../../../../../../environments/environment';
+
 import { OfferService } from '../../../../services/offer.service';
+import { CursorWaitService } from '../../../../../../core/services/cursor-wait.service';
 
 @Component({
   selector: 'app-offer',
@@ -24,11 +26,14 @@ export class OfferComponent implements OnInit {
   constructor(
     private router: Router,
     private offerService: OfferService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   async ngOnInit() {
     try {
+      this.cursorWaitService.enable();
+
       const userResponse = await this.offerService.getUser(this.offer.user);
       this.user = userResponse.user;
 
@@ -36,6 +41,8 @@ export class OfferComponent implements OnInit {
       this.tenant = tenantResponse.tenant;
     } catch (e) {
       console.log('OfferComponent->ngOnInit', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 
@@ -49,12 +56,16 @@ export class OfferComponent implements OnInit {
 
   async onDelete() {
     try {
+      this.cursorWaitService.enable();
+
       await this.offerService.deleteOffer(this.offer._id);
       this.toastrService.success('The offer is deleted successfully.', 'Success!');
       this.offerDeleted.emit();
     } catch (e) {
       this.toastrService.error('Something went wrong', 'Error');
       console.log('OfferComponent->onDelete', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 

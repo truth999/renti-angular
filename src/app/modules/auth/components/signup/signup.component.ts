@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CONFIG_CONST } from '../../../../../config/config-const';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+
 import { AuthService } from '../../../../core/services/auth.service';
+import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
+
+import { CONFIG_CONST } from '../../../../../config/config-const';
 
 @Component({
   selector: 'app-signup',
@@ -20,8 +23,12 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
+  signupFailed = false;
+  message = '';
+
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
@@ -29,8 +36,8 @@ export class SignupComponent implements OnInit {
     const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 
     this.signupForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      lastName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       accountType: new FormControl('', [Validators.required]),
       password,
@@ -43,10 +50,20 @@ export class SignupComponent implements OnInit {
     this.signupForm.patchValue({ accountType });
   }
 
-  signup() {
-    const signupData = { ...this.signupForm.value };
-    delete signupData.confirmPassword;
-    this.authService.createUser(signupData);
+  async signup() {
+    if (this.signupForm.valid) {
+      try {
+        this.signupFailed = false;
+        const signupData = { ...this.signupForm.value };
+        delete signupData.confirmPassword;
+        await this.authService.createUser(signupData);
+      } catch (e) {
+        this.signupFailed = true;
+        this.message = e.data[0].msg;
+      }
+    } else {
+      this.validateFormFieldsService.validate(this.signupForm);
+    }
   }
 
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CONFIG_CONST } from '../../../../../config/config-const';
 
 import { AuthService } from '../../../../core/services/auth.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -14,14 +15,19 @@ export class MyProfileComponent implements OnInit {
   accountType: string;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   async ngOnInit() {
     try {
+      this.cursorWaitService.enable();
       const response = await this.authService.getUser();
       this.accountType = response.user.accountType;
+    } catch (e) {
+      console.log('MyProfileComponent->ngOnInit', e);
     } finally {
+      this.cursorWaitService.disable();
     }
   }
 }

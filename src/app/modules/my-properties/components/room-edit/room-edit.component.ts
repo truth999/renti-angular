@@ -9,6 +9,8 @@ import { Room } from '../../../../shared/models';
 import { MyPropertiesService } from '../../services/my-properties.service';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
 import { ImageUploaderService } from '../../../../core/services/image-uploader.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
+import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -30,7 +32,9 @@ export class RoomEditComponent implements OnInit {
     private location: Location,
     private toastrService: ToastrService,
     private dateSelectService: DateSelectService,
-    private imageUploaderService: ImageUploaderService
+    private imageUploaderService: ImageUploaderService,
+    private cursorWaitService: CursorWaitService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   async ngOnInit() {
@@ -39,12 +43,16 @@ export class RoomEditComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
+      this.cursorWaitService.enable();
+
       const response = await this.myPropertiesService.getRoom(id);
       this.room = response.room;
 
       this.buildRoomForm();
     } catch (e) {
       console.log('RoomEditComponent->ngOnInit', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 
@@ -83,6 +91,8 @@ export class RoomEditComponent implements OnInit {
     const newRoomPictures = event.target.files;
 
     try {
+      this.cursorWaitService.enable();
+
       const filenames = await this.imageUploaderService.upload(newRoomPictures);
 
       for (let i = 0; i < filenames.length; i++) {
@@ -90,6 +100,8 @@ export class RoomEditComponent implements OnInit {
       }
     } catch (e) {
       console.log('RoomEditComponent->onFilesChange', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 
@@ -109,18 +121,26 @@ export class RoomEditComponent implements OnInit {
   }
 
   async submit() {
-    const roomData = {
-      ...this.room,
-      ...this.roomForm.value
-    };
+    if (this.roomForm.valid) {
+      const roomData = {
+        ...this.room,
+        ...this.roomForm.value
+      };
 
-    try {
-      await this.myPropertiesService.updateRoom(roomData);
-      this.toastrService.success('The room is updated successfully.', 'Success!');
-      this.location.back();
-    } catch (e) {
-      this.toastrService.error('Something went wrong', 'Error');
-      console.log('RoomEditComponent->submit', e);
+      try {
+        this.cursorWaitService.enable();
+
+        await this.myPropertiesService.updateRoom(roomData);
+        this.toastrService.success('The room is updated successfully.', 'Success!');
+        this.location.back();
+      } catch (e) {
+        this.toastrService.error('Something went wrong', 'Error');
+        console.log('RoomEditComponent->submit', e);
+      } finally {
+        this.cursorWaitService.disable();
+      }
+    } else {
+      this.validateFormFieldsService.validate(this.roomForm);
     }
   }
 

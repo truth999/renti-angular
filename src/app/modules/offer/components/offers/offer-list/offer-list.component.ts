@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 
 import { OfferService } from '../../../services/offer.service';
 import { AuthService } from '../../../../../core/services/auth.service';
+import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 
 import { Offer, Page } from '../../../../../shared/models';
 
@@ -18,7 +19,8 @@ export class OfferListComponent implements OnInit {
   constructor(
     private location: Location,
     private offerService: OfferService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,8 @@ export class OfferListComponent implements OnInit {
 
   async getOffers() {
     try {
+      this.cursorWaitService.enable();
+
       const userResponse = await this.authService.getUser();
       const apartmentIds = userResponse.user.apartmentIds;
 
@@ -47,6 +51,8 @@ export class OfferListComponent implements OnInit {
       this.page.totalElements = response.totalElements;
     } catch (e) {
       console.log('OfferListComponent->getOffers', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
   }
 

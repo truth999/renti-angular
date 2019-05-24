@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { DateSelectService } from '../../../../../../shared/services/date-select.service';
 import { ApartmentCreateService } from '../../../../services/apartment-create.service';
+import { CursorWaitService } from '../../../../../../core/services/cursor-wait.service';
+import { ValidateFormFieldsService } from '../../../../../../core/services/validate-form-fields.service';
 
-export const dateOfMovingInValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
-  const day = control.get('day');
-  const month = control.get('month');
-  const year = control.get('year');
-
-  return day && month && year && day.valid === true && month.valid === true && year.valid === true ? null : { required: true } ;
-};
+import { dateSelectValidator } from '../../../../../../shared/directives/date-select-validator.directive';
 
 @Component({
   selector: 'app-apartment-data-third',
@@ -28,7 +24,9 @@ export class ApartmentDataThirdComponent implements OnInit {
   constructor(
     private dateSelectService: DateSelectService,
     private apartmentCreateService: ApartmentCreateService,
-    private router: Router
+    private router: Router,
+    private cursorWaitService: CursorWaitService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
@@ -52,7 +50,7 @@ export class ApartmentDataThirdComponent implements OnInit {
         day: new FormControl('', Validators.required),
         month: new FormControl('', Validators.required),
         year: new FormControl('', Validators.required)
-      }, { validators: dateOfMovingInValidator })
+      }, { validators: dateSelectValidator })
     });
   }
 
@@ -93,27 +91,34 @@ export class ApartmentDataThirdComponent implements OnInit {
   }
 
   async submit() {
-    const apartmentDataThird = { ...this.apartmentDataThirdForm.value };
-    const dateOfMovingIn = apartmentDataThird.dateOfMovingIn;
-    apartmentDataThird.dateOfMovingIn = dateOfMovingIn.day + '-' + dateOfMovingIn.month + '-' + dateOfMovingIn.year;
+    if (this.apartmentDataThirdForm.valid) {
+      const apartmentDataThird = { ...this.apartmentDataThirdForm.value };
+      const dateOfMovingIn = apartmentDataThird.dateOfMovingIn;
+      apartmentDataThird.dateOfMovingIn = dateOfMovingIn.day + '-' + dateOfMovingIn.month + '-' + dateOfMovingIn.year;
 
-    this.apartmentCreateService.createApartmentData(apartmentDataThird);
+      this.apartmentCreateService.createApartmentData(apartmentDataThird);
 
-    try {
-      const responses = await this.apartmentCreateService.createRooms();
-      const roomIds = responses.rooms.map(room => {
-        return room._id;
-      });
+      try {
+        const responses = await this.apartmentCreateService.createRooms();
+        const roomIds = responses.rooms.map(room => {
+          return room._id;
+        });
 
-      this.apartmentCreateService.updateApartmentDataWithRoomIds(roomIds);
-      await this.apartmentCreateService.createApartment();
-      this.router.navigate(['/app/my-properties']);
-    } catch (e) {
-      console.log('ApartmentDataThirdComponent->submit->error', e);
+        this.apartmentCreateService.updateApartmentDataWithRoomIds(roomIds);
+        await this.apartmentCreateService.createApartment();
+        this.cursorWaitService.enable();
+        this.router.navigate(['/app/my-properties']);
+      } catch (e) {
+        console.log('ApartmentDataThirdComponent->submit->error', e);
+      } finally {
+        this.cursorWaitService.disable();
+      }
+
+      this.apartmentCreateService.apartment = null;
+      this.apartmentCreateService.rooms = null;
+    } else {
+      this.validateFormFieldsService.validate(this.apartmentDataThirdForm);
     }
-
-    this.apartmentCreateService.apartment = null;
-    this.apartmentCreateService.rooms = null;
   }
 
   public arrayNumber(n: number) {

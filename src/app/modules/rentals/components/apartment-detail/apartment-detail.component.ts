@@ -8,6 +8,7 @@ import { Apartment, Room } from '../../../../shared/models';
 import { environment } from '../../../../../environments/environment';
 
 import { RentalsService } from '../../services/rentals.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 @Component({
   selector: 'app-apartment-detail',
@@ -27,13 +28,16 @@ export class ApartmentDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
-    private rentalsService: RentalsService
+    private rentalsService: RentalsService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
+      this.cursorWaitService.enable();
+
       const response = await this.rentalsService.getApartment(id);
       this.apartment = response.apartment;
       this.apartment.roomsData = [];
@@ -50,6 +54,8 @@ export class ApartmentDetailComponent implements OnInit {
       });
     } catch (e) {
       console.log('ApartmentDetailComponent->ngOnInit', e);
+    } finally {
+      this.cursorWaitService.disable();
     }
     this.galleryOptions = [
       {

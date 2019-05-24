@@ -54,7 +54,7 @@ export class AuthService {
   }
 
   createUser(signupRequest: SignupRequest) {
-    this.apiService.post('auth/signup', signupRequest)
+    return this.apiService.post('auth/signup', signupRequest)
         .then((response) => {
               this.successAuth(response);
             }

@@ -2,6 +2,7 @@ import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ApartmentCreateService } from '../../../services/apartment-create.service';
+import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
 import { Room } from '../../../../../shared/models';
 
@@ -16,7 +17,8 @@ export class ApartmentWindowComponent implements OnInit, DoCheck {
   @Output() windowTypeFormValid = new EventEmitter<boolean>();
 
   constructor(
-    private apartmentCreateService: ApartmentCreateService
+    private apartmentCreateService: ApartmentCreateService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
@@ -34,11 +36,15 @@ export class ApartmentWindowComponent implements OnInit, DoCheck {
   }
 
   submit() {
-    const windowTypes = { ...this.windowTypeForm.value };
-    this.rooms.map((room, index) => {
-      room.windowType = windowTypes.windowType[index];
-    });
-    this.apartmentCreateService.createRoomsData(this.rooms);
+    if (this.windowTypeForm.valid) {
+      const windowTypes = { ...this.windowTypeForm.value };
+      this.rooms.map((room, index) => {
+        room.windowType = windowTypes.windowType[index];
+      });
+      this.apartmentCreateService.createRoomsData(this.rooms);
+    } else {
+      this.validateFormFieldsService.validate(this.windowTypeForm);
+    }
   }
 
 }
