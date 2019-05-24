@@ -62,4 +62,8 @@ export class PhotoUploadModalComponent implements OnInit {
     }
   }
 
+  onClose() {
+    this.modal.dismiss();
+  }
+
 }

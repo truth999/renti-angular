@@ -121,7 +121,7 @@ export class ApartmentDataThirdComponent implements OnInit {
     }
   }
 
-  private arrayNumber(n: number) {
+  public arrayNumber(n: number) {
     return Array(n);
   }
 

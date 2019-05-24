@@ -185,4 +185,8 @@ export class PhotoEditModalComponent implements OnInit, OnDestroy {
     this.modal.close(this.canvas.toDataURL());
   }
 
+  onClose() {
+    this.modal.dismiss();
+  }
+
 }
