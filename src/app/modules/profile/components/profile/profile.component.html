@@ -1,10 +1,8 @@
 <ng-container *ngIf="user">
   <app-profile-landlord
-    *ngIf="accountType === AccountTypes.LANDLORD"
-    [user]="user"
-    [landlordId]="landlordId"></app-profile-landlord>
+    *ngIf="user.accountType === AccountTypes.LANDLORD"
+    [user]="user"></app-profile-landlord>
   <app-profile-tenant
-    *ngIf="accountType === AccountTypes.TENANT"
-    [user]="user"
-    [tenantId]="tenantId"></app-profile-tenant>
+    *ngIf="user.accountType === AccountTypes.TENANT"
+    [user]="user"></app-profile-tenant>
 </ng-container>

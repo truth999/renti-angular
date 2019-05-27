@@ -1,5 +1,6 @@
-import { AccountTypes, Language, User } from './shared.model';
+import { Language } from './shared.model';
 
+import { User } from './user.model';
 import { Landlord } from './landlord.model';
 import { Tenant } from './tenant.model';
 import { Apartment } from './apartment.model';
@@ -8,10 +9,9 @@ import { Page } from './page.model';
 import { Offer } from './offer.model';
 
 export {
-  AccountTypes,
   Language,
-  User,
 
+  User,
   Landlord,
   Tenant,
   Apartment,

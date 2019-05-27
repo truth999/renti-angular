@@ -19,7 +19,6 @@ import { dateSelectValidator } from '../../../../shared/directives/date-select-v
 })
 export class OfferCreateComponent implements OnInit {
   offerForm: FormGroup;
-  apartmentId: string;
 
   days: string[];
   months: string[];
@@ -38,8 +37,6 @@ export class OfferCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.apartmentId = this.route.snapshot.paramMap.get('id');
-
     this.days = this.dateSelectService.getDays();
     this.months = this.dateSelectService.getMonths();
     this.years = this.dateSelectService.getYears();
@@ -101,13 +98,15 @@ export class OfferCreateComponent implements OnInit {
 
   async submit() {
     if (this.offerForm.valid) {
+      const id = this.route.snapshot.paramMap.get('id');
       const userId = this.storageService.get('userId');
       const offerData = {
         ...this.offerForm.value,
         userId,
-        apartmentId: this.apartmentId
+        apartmentId: id
       };
-      offerData.dateOfMovingIn = offerData.dateOfMovingIn.day + '-' + offerData.dateOfMovingIn.month + '-' + offerData.dateOfMovingIn.year;
+      const dateOfMovingIn = offerData.dateOfMovingIn;
+      offerData.dateOfMovingIn = dateOfMovingIn.day + '-' + dateOfMovingIn.month + '-' + dateOfMovingIn.year;
 
       try {
         this.cursorWaitService.enable();

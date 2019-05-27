@@ -1,5 +1,5 @@
 <div class="apartment-detail"
-     *ngIf="apartment && rooms">
+     *ngIf="apartment">
   <div class="back mb-sm-4 d-sm-block d-none">
     <button class="btn btn-back"
             (click)="onBack()">
@@ -24,7 +24,7 @@
           </span>
           <span class="unit-rooms font-weight-bold">
             <i class="icon-bed"></i>
-            {{ apartment.roomsData.length }} {{ 'COMMON.ROOMS' | translate }}
+            {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
           </span>
         </div>
         <p class="mt-3">{{ apartment.address }}</p>
@@ -48,7 +48,7 @@
           <img src="/assets/images/floor_plan.png" alt="">
         </div>
         <ul class="list-unstyled mt-3">
-          <li class="font-weight-bold my-1" *ngFor="let room of apartment.roomsData; let i = index">
+          <li class="font-weight-bold my-1" *ngFor="let room of apartment.rooms; let i = index">
             <a [routerLink]="['/app/rentals/room', room._id]">{{ i + 1 }}: {{ room.name }}</a>
           </li>
         </ul>
@@ -232,7 +232,7 @@
         </span>
           <span class="unit-rooms font-weight-bold">
           <i class="icon-bed"></i>
-          {{ apartment.roomsData.length }} {{ 'COMMON.ROOMS' | translate }}
+          {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
         </span>
         </div>
         <p class="mt-3">{{ apartment.address }}</p>

@@ -15,7 +15,7 @@ import { ImageUploaderService } from '../../../../../core/services/image-uploade
 import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
-import { Tenant } from '../../../../../shared/models';
+import { Tenant, User } from '../../../../../shared/models';
 
 import { config } from '../../../../../../config';
 
@@ -29,8 +29,7 @@ import { dateSelectValidator } from '../../../../../shared/directives/date-selec
   styleUrls: ['./tenant.component.scss']
 })
 export class TenantComponent implements OnInit {
-  user: any;
-  tenantId: string;
+  user: User;
   tenant: Tenant;
   photo: string;
   photoDeleted = true;
@@ -77,22 +76,13 @@ export class TenantComponent implements OnInit {
     try {
       this.cursorWaitService.enable();
 
-      const userResponse = await this.authService.getUser();
-      this.user = userResponse.user;
-      this.tenantId = userResponse.user.tenantId;
-    } catch (e) {
-      console.log('TenantComponent->ngOnInit', e);
-    } finally {
-      this.cursorWaitService.disable();
-    }
+      const response = await this.authService.getAuthUser();
+      this.user = response.user;
 
-    try {
-      this.cursorWaitService.enable();
-
-      if (!!this.tenantId) {
-        const response = await this.tenantService.getTenant(this.tenantId);
-        this.tenant = response.tenant;
+      if (!!response.user.tenant) {
+        this.tenant = response.user.tenant;
       }
+
       this.buildTenantForm();
     } catch (e) {
       console.log('TenantComponent->ngOnInit', e);
@@ -210,7 +200,7 @@ export class TenantComponent implements OnInit {
   }
 
   onViewAs() {
-    this.router.navigate(['/app/profile', this.user.id]);
+    this.router.navigate(['/app/profile', this.user._id]);
   }
 
   onBack() {
@@ -255,29 +245,33 @@ export class TenantComponent implements OnInit {
     }
   }
 
-  async update() {
+  async submit() {
     if (this.tenantForm.valid) {
       const tenantData = {
         userId: this.storageService.get('userId'),
         ...this.tenantForm.value,
       };
 
-      tenantData.dateOfBirth = tenantData.dateOfBirth.day + '-' + tenantData.dateOfBirth.month + '-' + tenantData.dateOfBirth.year;
-
-      this.tenant = {...this.tenant, ...tenantData};
+      const dateOfBirth = tenantData.dateOfBirth;
+      tenantData.dateOfBirth = dateOfBirth.day + '-' + dateOfBirth.month + '-' + dateOfBirth.year;
 
       try {
         this.cursorWaitService.enable();
 
-        if (!this.tenantId) {
-          await this.tenantService.createTenant(this.tenant);
+        if (!this.tenant) {
+          await this.tenantService.createTenant(tenantData);
         } else {
+          this.tenant = {
+            ...this.tenant,
+            ...tenantData
+          };
           await this.tenantService.updateTenant(this.tenant);
         }
+
         this.toastrService.success('The tenant is updated successfully.', 'Success!');
-        // this.router.navigate(['/app/profile']);
       } catch (e) {
         console.log('TenantComponent->update->error', e);
+
         this.toastrService.error('Something went wrong', 'Error');
       } finally {
         this.cursorWaitService.disable();

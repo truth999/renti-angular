@@ -1,5 +1,4 @@
-<div class="tenants-profile position-relative"
-     *ngIf="tenant">
+<div class="tenants-profile position-relative">
   <div class="back mb-sm-4 d-sm-block d-none">
     <button class="btn btn-back"
             (click)="onBack()">
@@ -10,7 +9,7 @@
   <div class="avatar">
     <i class="icon-left position-absolute h4 mb-0 d-sm-none"
        (click)="onBack()"></i>
-    <img [src]="uploadBase + tenant.profilePicture"
+    <img [src]="uploadBase + user.tenant.profilePicture"
          alt="Avatar">
   </div>
   <div class="card profile-info">
@@ -43,13 +42,13 @@
         <div class="col-12 mt-3">
           <h5 class="font-weight-bolder">{{ 'COMMON.OTHER_INFORMATION' | translate }}:</h5>
           <p>
-            {{ tenant.otherText }}
+            {{ user.tenant.otherText }}
           </p>
         </div>
         <div class="col-12 mt-3">
           <h5 class="font-weight-bolder">{{ 'COMMON.FREE_TEXT_INTRODUCTION' | translate }}:</h5>
           <p>
-            {{ tenant.freeTextIntroduction }}
+            {{ user.tenant.freeTextIntroduction }}
           </p>
         </div>
       </div>
@@ -67,19 +66,19 @@
               </tr>
               <tr>
                 <td>{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.mobile }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.mobile }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.placeOfBirth }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.placeOfBirth }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.DATE_OF_BIRTH' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.dateOfBirth }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.dateOfBirth }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.NATIONALITY' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.nationality }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.nationality }}</td>
               </tr>
 <!--              <tr>-->
 <!--                <td>{{ 'COMMON.OCCUPATION' | translate }}:</td>-->
@@ -87,7 +86,7 @@
               <!--              </tr>-->
               <tr>
                 <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.spokenLanguages }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.spokenLanguages }}</td>
               </tr>
               <!--              <tr>-->
               <!--                <td>{{ 'PROFILE.MARITAL_STATUS' | translate }}:</td>-->
@@ -103,39 +102,39 @@
               <!--              </tr>-->
               <tr>
                 <td>{{ 'COMMON.CURRENT_CITY' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.currentCity }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.currentCity }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.HIGHEST_LEVEL_OF_QUALIFICATION' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.highestLevelOfQualification }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.highestLevelOfQualification }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.JOB_TITLE' | translate }}:</td>
                 <td class="font-weight-bold text-right">
-                  <span *ngFor="let jobTitle of tenant.jobTitle">{{ jobTitle }} </span>
+                  <span *ngFor="let jobTitle of user.tenant.jobTitle">{{ jobTitle }} </span>
                 </td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.IF_UNIVERSITY_STUDENT_THEN_WHICH_SPECIALITY' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.universitySpeciality }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.universitySpeciality }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.CURRENT_WORKPLACE' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.currentWorkplace }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.currentWorkplace }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.FORMER_WORKPLACES' | translate }}:</td>
                 <td class="font-weight-bold text-right">
-                  <span *ngFor="let formerWorkplace of tenant.formerWorkplaces">{{ formerWorkplace }} </span>
+                  <span *ngFor="let formerWorkplace of user.tenant.formerWorkplaces">{{ formerWorkplace }} </span>
                 </td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.CURRENT_WORKPLACE' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.currentWorkplace }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.currentWorkplace }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.MONTHLY_INCOME' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{  tenant.monthlyIncome }}</td>
+                <td class="font-weight-bold text-right">{{  user.tenant.monthlyIncome }}</td>
               </tr>
             </tbody>
           </table>
@@ -144,7 +143,7 @@
           <div class="card-sm-screen">
             <h5 class="font-weight-bolder">{{ 'COMMON.OTHER_INFORMATION' | translate }}:</h5>
             <p>
-              {{ tenant.otherText }}
+              {{ user.tenant.otherText }}
             </p>
           </div>
         </div>
@@ -152,7 +151,7 @@
           <div class="card-sm-screen">
             <h5 class="font-weight-bolder">{{ 'COMMON.FREE_TEXT_INTRODUCTION' | translate }}:</h5>
             <p>
-              {{ tenant.freeTextIntroduction }}
+              {{ user.tenant.freeTextIntroduction }}
             </p>
           </div>
         </div>
@@ -161,7 +160,7 @@
             <h5 class="font-weight-bolder">{{ 'COMMON.EDUCATION' | translate }}:</h5>
             <table class="table table-borderless">
               <tbody>
-                <tr *ngFor="let education of tenant.education">
+                <tr *ngFor="let education of user.tenant.education">
                   <td class="font-weight-bold pl-0">{{ education.nameOfSchool }}</td>
                   <td class="text-right pr-0">{{ education.yearOfGraduation }}</td>
                 </tr>

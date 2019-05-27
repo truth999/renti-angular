@@ -32,26 +32,30 @@ export class AuthService {
     return this.userId;
   }
 
-  getUser(): Promise<any> {
+  getAuthUser(): Promise<any> {
     const userId = this.storageService.get('userId');
     return this.apiService.get(`users/${userId}`);
   }
 
-  async getCurrentUser(): Promise<any> {
-    try {
-      const userResponse = await this.getUser();
-
-      if (userResponse.user.accountType === this.CONST_ACCOUNT_TYPE.LANDLORD) {
-        return this.apiService.get(`landlords/${userResponse.user.landlordId}`);
-      }
-
-      if (userResponse.user.accountType === this.CONST_ACCOUNT_TYPE.TENANT) {
-        return this.apiService.get(`tenants/${userResponse.user.tenantId}`);
-      }
-    } catch (e) {
-      console.log('AuthService->getCurrentUser', e);
-    }
+  getUser(id: string): Promise<any> {
+    return this.apiService.get(`users/${id}`);
   }
+
+  // async getCurrentUser(): Promise<any> {
+  //   try {
+  //     const userResponse = await this.getUser();
+  //
+  //     if (userResponse.user.accountType === this.CONST_ACCOUNT_TYPE.LANDLORD) {
+  //       return this.apiService.get(`landlords/${userResponse.user.landlordId}`);
+  //     }
+  //
+  //     if (userResponse.user.accountType === this.CONST_ACCOUNT_TYPE.TENANT) {
+  //       return this.apiService.get(`tenants/${userResponse.user.tenantId}`);
+  //     }
+  //   } catch (e) {
+  //     console.log('AuthService->getCurrentUser', e);
+  //   }
+  // }
 
   createUser(signupRequest: SignupRequest) {
     return this.apiService.post('auth/signup', signupRequest)

@@ -13,8 +13,8 @@ export class MyPropertiesService {
     private apiService: ApiService
   ) { }
 
-  getApartments(page): Promise<any> {
-    let url = `${this.apartmentUrl}?page=${page.pageNumber}`;
+  getApartments(page, id: string): Promise<any> {
+    let url = `${this.apartmentUrl}/user/${id}?page=${page.pageNumber}`;
     url += page.pageNumber ? `&perPage=${page.perPage}` : '';
     return this.apiService.get(url);
   }
@@ -25,10 +25,6 @@ export class MyPropertiesService {
 
   updateApartment(apartment: Apartment): Promise<any> {
     return this.apiService.put(`${this.apartmentUrl}/${apartment._id}`, apartment);
-  }
-
-  getRooms(): Promise<any> {
-    return this.apiService.get(this.roomUrl);
   }
 
   getRoom(id: string): Promise<any> {

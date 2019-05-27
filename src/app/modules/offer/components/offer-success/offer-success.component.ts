@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Tenant } from '../../../../shared/models';
+import { User } from '../../../../shared/models';
 
 import { OfferService } from '../../services/offer.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -14,29 +15,30 @@ import { environment } from '../../../../../environments/environment';
   styleUrls: ['./offer-success.component.scss']
 })
 export class OfferSuccessComponent implements OnInit {
-  user: any;
-  tenant: Tenant;
+  user: User;
   uploadBase = environment.uploadBase;
 
   constructor(
     private route: ActivatedRoute,
     private offerService: OfferService,
-    private cursorWaitService: CursorWaitService
+    private cursorWaitService: CursorWaitService,
+    private authService: AuthService
   ) { }
 
-  async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+  ngOnInit() {
+    this.getOfferInfo();
+  }
 
+  async getOfferInfo() {
     try {
       this.cursorWaitService.enable();
 
-      const userResponse = await this.offerService.getUser(id);
-      this.user = userResponse.user;
+      const userId = this.route.snapshot.paramMap.get('id');
 
-      const tenantResponse = await this.offerService.getTenant(this.user.tenantId);
-      this.tenant = tenantResponse.tenant;
+      const response = await this.authService.getUser(userId);
+      this.user = response.user;
     } catch (e) {
-      console.log('OfferSuccessComponent->ngOnInit', e);
+      console.log('OfferSuccessComponent->getOfferInfo', e);
     } finally {
       this.cursorWaitService.disable();
     }

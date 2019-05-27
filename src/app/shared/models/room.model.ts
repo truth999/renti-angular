@@ -1,5 +1,8 @@
+import { Apartment } from './apartment.model';
+
 export class Room {
   _id: string;
+  apartment: Apartment;
   name: string;
   size: number;
   yearOfRenovation: number;

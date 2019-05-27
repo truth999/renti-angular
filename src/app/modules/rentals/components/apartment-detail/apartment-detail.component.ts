@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 
-import { Apartment, Room } from '../../../../shared/models';
+import { Apartment } from '../../../../shared/models';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -17,7 +17,6 @@ import { CursorWaitService } from '../../../../core/services/cursor-wait.service
 })
 export class ApartmentDetailComponent implements OnInit {
   apartment: Apartment;
-  rooms: Room[];
 
   uploadBase = environment.uploadBase;
 
@@ -32,7 +31,11 @@ export class ApartmentDetailComponent implements OnInit {
     private cursorWaitService: CursorWaitService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getApartment();
+  }
+
+  async getApartment() {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
@@ -40,55 +43,44 @@ export class ApartmentDetailComponent implements OnInit {
 
       const response = await this.rentalsService.getApartment(id);
       this.apartment = response.apartment;
-      this.apartment.roomsData = [];
 
-      const roomsResponse = await this.rentalsService.getRooms();
-      this.rooms = roomsResponse.rooms;
+      this.galleryOptions = [
+        {
+          arrowPrevIcon: 'icon-left',
+          arrowNextIcon: 'icon-right',
+          closeIcon: 'icon-cancel',
+          width: '100%',
+          thumbnailsColumns: 4,
+          imageAnimation: NgxGalleryAnimation.Slide
+        },
+        {
+          breakpoint: 576,
+          imageBullets: true,
+          thumbnails: false,
+          imageSwipe: true,
+          previewSwipe: true
+        }
+      ];
 
-      this.apartment.rooms.map(roomId => {
-        this.rooms.map(room => {
-          if (roomId === room._id) {
-            this.apartment.roomsData.push(room);
-          }
-        });
+      const pictures = [];
+      this.apartment.rooms.map(room => {
+        for (let i = 0; i < room.pictures.length; i++) {
+          pictures.push(room.pictures[i]);
+        }
+      });
+
+      this.galleryImages = pictures.map(image => {
+        return {
+          small: this.uploadBase + image,
+          medium: this.uploadBase + image,
+          big: this.uploadBase + image
+        };
       });
     } catch (e) {
-      console.log('ApartmentDetailComponent->ngOnInit', e);
+      console.log('ApartmentDetailComponent->getApartment', e);
     } finally {
       this.cursorWaitService.disable();
     }
-    this.galleryOptions = [
-      {
-        arrowPrevIcon: 'icon-left',
-        arrowNextIcon: 'icon-right',
-        closeIcon: 'icon-cancel',
-        width: '100%',
-        thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide
-      },
-      {
-        breakpoint: 576,
-        imageBullets: true,
-        thumbnails: false,
-        imageSwipe: true,
-        previewSwipe: true
-      }
-    ];
-
-    const pictures = [];
-    this.apartment.roomsData.map(room => {
-      for (let i = 0; i < room.pictures.length; i++) {
-        pictures.push(room.pictures[i]);
-      }
-    });
-
-    this.galleryImages = pictures.map(image => {
-      return {
-        small: this.uploadBase + image,
-        medium: this.uploadBase + image,
-        big: this.uploadBase + image
-      };
-    });
   }
 
   onSendOffer() {

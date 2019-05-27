@@ -4,8 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CONFIG_CONST } from '../../../../../config/config-const';
 
 import { AuthService } from '../../../../core/services/auth.service';
-import { ProfileService } from '../../services/profile.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
+
+import { User } from '../../../../shared/models';
 
 @Component({
   selector: 'app-profile',
@@ -14,35 +15,28 @@ import { CursorWaitService } from '../../../../core/services/cursor-wait.service
 })
 export class ProfileComponent implements OnInit {
   AccountTypes = CONFIG_CONST.accountType;
-  accountType: string;
-  user: any;
-
-  landlordId: string;
-  tenantId: string;
+  user: User;
 
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
-    private profileService: ProfileService,
     private cursorWaitService: CursorWaitService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getUser();
+  }
+
+  async getUser() {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
       this.cursorWaitService.enable();
 
-      const response = await this.profileService.getUser(id);
+      const response = await this.authService.getUser(id);
       this.user = response.user;
-      this.accountType = response.user.accountType;
-      if (this.accountType === this.AccountTypes.LANDLORD) {
-        this.landlordId = response.user.landlordId;
-      } else {
-        this.tenantId = response.user.tenantId;
-      }
     } catch (e) {
-      console.log('ProfileComponent->ngOnInit', e);
+      console.log('ProfileComponent->getUser', e);
     } finally {
       this.cursorWaitService.disable();
     }

@@ -1,6 +1,12 @@
 @import "~src/assets/styles/scss/variables";
 
 .search-profile {
+  app-profile-item {
+    &:focus {
+      outline: none;
+    }
+  }
+
   .btn-search {
     color: $blue;
     box-shadow: $box-shadow-sm;

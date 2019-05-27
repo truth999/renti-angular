@@ -10,17 +10,10 @@
     </button>
   </div>
   <div class="row"
-       *ngIf="apartments && rooms">
+       *ngIf="apartments">
     <ng-container *ngFor="let apartment of apartments">
       <app-apartment-item class="col-lg-6 py-3"
-                          [imgUrl]="apartment.roomsData[0].pictures[0] ? uploadBase + apartment.roomsData[0].pictures[0] : '/assets/images/room/room.svg'"
-                          [name]="'Luxury apartment in the heart of Budapest'"
-                          [explain]="'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…'"
-                          [mo]="389000"
-                          [square]="apartment.size"
-                          [rooms]="apartment.roomsData.length"
-                          [data]="98"
-                          [topRated]="true"
+                          [apartment]="apartment"
                           [routerLink]="['/app/rentals/apartment', apartment._id]"></app-apartment-item>
     </ng-container>
   </div>

@@ -13,7 +13,7 @@ import { Offer, Page } from '../../../../../shared/models';
   styleUrls: ['./offer-list.component.scss']
 })
 export class OfferListComponent implements OnInit {
-  offers: Offer[] = [];
+  offers: Offer[];
   page = new Page();
 
   constructor(
@@ -34,21 +34,11 @@ export class OfferListComponent implements OnInit {
     try {
       this.cursorWaitService.enable();
 
-      const userResponse = await this.authService.getUser();
-      const apartmentIds = userResponse.user.apartmentIds;
+      const userResponse = await this.authService.getAuthUser();
+      const apartmentIds = userResponse.user.apartments;
 
-      const response = await this.offerService.getOffers(this.page);
-      const offers = response.offers;
-
-      offers.map(offer => {
-        apartmentIds.map(apartmentId => {
-          if (offer.apartment === apartmentId) {
-            this.offers.push(offer);
-          }
-        });
-      });
-
-      this.page.totalElements = response.totalElements;
+      const response = await this.offerService.getOffers(this.page, apartmentIds);
+      this.offers = response.offers;
     } catch (e) {
       console.log('OfferListComponent->getOffers', e);
     } finally {
@@ -57,7 +47,6 @@ export class OfferListComponent implements OnInit {
   }
 
   deletedOffers() {
-    this.offers = [];
     this.getOffers();
   }
 

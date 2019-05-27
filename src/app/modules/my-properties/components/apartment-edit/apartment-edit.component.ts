@@ -26,7 +26,6 @@ import { dateSelectValidator } from '../../../../shared/directives/date-select-v
 })
 export class ApartmentEditComponent implements OnInit, DoCheck {
   apartment: Apartment;
-  rooms: Room[];
   apartmentForm: FormGroup;
 
   days: string[];
@@ -70,17 +69,38 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
       const response = await this.myPropertiesService.getApartment(id);
       this.apartment = response.apartment;
-      this.apartment.roomsData = [];
 
-      const roomsResponse = await this.myPropertiesService.getRooms();
-      this.rooms = roomsResponse.rooms;
+      this.buildApartmentForm();
 
-      this.apartment.rooms.map(roomId => {
-        this.rooms.map(room => {
-          if (roomId === room._id) {
-            this.apartment.roomsData.push(room);
-          }
-        });
+      this.galleryOptions = [
+        {
+          arrowPrevIcon: 'icon-left',
+          arrowNextIcon: 'icon-right',
+          closeIcon: 'icon-cancel',
+          width: '100%',
+          thumbnailsColumns: 4,
+          imageAnimation: NgxGalleryAnimation.Slide
+        },
+        {
+          breakpoint: 576,
+          imageBullets: true,
+          thumbnails: false
+        }
+      ];
+
+      const pictures = [];
+      this.apartment.rooms.map(room => {
+        for (let i = 0; i < room.pictures.length; i++) {
+          pictures.push(room.pictures[i]);
+        }
+      });
+
+      this.galleryImages = pictures.map(image => {
+        return {
+          small: this.uploadBase + image,
+          medium: this.uploadBase + image,
+          big: this.uploadBase + image
+        };
       });
     } catch (e) {
       console.log('ApartmentEditComponent->ngOnInit', e);
@@ -88,42 +108,9 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       this.cursorWaitService.disable();
     }
 
-    this.buildApartmentForm();
-
     this.changeBalcony();
     this.changeGarden();
     this.changeTerrace();
-
-    this.galleryOptions = [
-      {
-        arrowPrevIcon: 'icon-left',
-        arrowNextIcon: 'icon-right',
-        closeIcon: 'icon-cancel',
-        width: '100%',
-        thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide
-      },
-      {
-        breakpoint: 576,
-        imageBullets: true,
-        thumbnails: false
-      }
-    ];
-
-    const pictures = [];
-    this.apartment.roomsData.map(room => {
-      for (let i = 0; i < room.pictures.length; i++) {
-        pictures.push(room.pictures[i]);
-      }
-    });
-
-    this.galleryImages = pictures.map(image => {
-      return {
-        small: this.uploadBase + image,
-        medium: this.uploadBase + image,
-        big: this.uploadBase + image
-      };
-    });
   }
 
   ngDoCheck() {
@@ -137,7 +124,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   buildApartmentForm() {
     const dateOfMovingInArray = !!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.split('-') : '';
     let size = 0;
-    this.apartment.roomsData.map(room => {
+    this.apartment.rooms.map(room => {
       size = size + room.size;
     });
 
@@ -286,7 +273,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   async submit() {
     if (this.apartmentForm.valid) {
       const roomIds = [];
-      this.apartment.roomsData.map(room => {
+      this.apartment.rooms.map(room => {
         roomIds.push(room._id);
       });
 
@@ -295,12 +282,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
         rooms: roomIds
       };
 
-      apartmentData.dateOfMovingIn
-        = apartmentData.dateOfMovingIn.day
-        + '-'
-        + apartmentData.dateOfMovingIn.month
-        + '-'
-        + apartmentData.dateOfMovingIn.year;
+      const dateOfMovingIn = apartmentData.dateOfMovingIn;
+      apartmentData.dateOfMovingIn = dateOfMovingIn.day + '-' + dateOfMovingIn.month + '-' + dateOfMovingIn.year;
 
       this.apartment = {
         ...this.apartment,

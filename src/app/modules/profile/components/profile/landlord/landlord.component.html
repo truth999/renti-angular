@@ -1,5 +1,4 @@
-<div class="landlords-profile position-relative"
-     *ngIf="landlord">
+<div class="landlords-profile position-relative">
   <div class="back mb-sm-4 d-sm-block d-none">
     <button class="btn btn-back"
             (click)="onBack()">
@@ -10,7 +9,7 @@
   <div class="avatar">
     <i class="icon-left position-absolute h4 mb-0 d-sm-none"
        (click)="onBack()"></i>
-    <img [src]="landlord.profilePicture ? uploadBase + landlord.profilePicture : '/assets/images/profile/blank.png'"
+    <img [src]="user.landlord.profilePicture ? uploadBase + user.landlord.profilePicture : '/assets/images/profile/blank.png'"
          alt="Avatar">
   </div>
   <div class="card profile-info">
@@ -50,16 +49,16 @@
               </tr>
               <tr>
                 <td>{{ 'COMMON.PHONE_MOBILE_NUMBER' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ landlord.mobile }}</td>
+                <td class="font-weight-bold text-right">{{ user.landlord.mobile }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ landlord.placeOfBirth }}</td>
+                <td class="font-weight-bold text-right">{{ user.landlord.placeOfBirth }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.DATE_OF_BIRTH' | translate }}:</td>
                 <td class="font-weight-bold text-right">
-                  {{ landlord.dateOfBirth }}
+                  {{ user.landlord.dateOfBirth }}
                 </td>
               </tr>
             </tbody>
@@ -70,24 +69,24 @@
             <tbody>
               <tr class="nationality">
                 <td class="border-top-0">{{ 'COMMON.NATIONALITY' | translate }}:</td>
-                <td class="font-weight-bold text-right border-top-0">{{ landlord.nationality }}</td>
+                <td class="font-weight-bold text-right border-top-0">{{ user.landlord.nationality }}</td>
               </tr>
               <tr>
                 <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
                 <td class="font-weight-bold text-right">
-                  {{ landlord.spokenLanguages }}
+                  {{ user.landlord.spokenLanguages }}
                 </td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.PRIVATE_PERSON_AGENCY' | translate }}:</td>
                 <td class="font-weight-bold text-right">
-                  {{ landlord.isPerson ? 'Private person' : 'Agency' }}
+                  {{ user.landlord.isPerson ? 'Private person' : 'Agency' }}
                 </td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.NAME_OF_THE_AGENCY' | translate }}:</td>
                 <td class="font-weight-bold text-right">
-                  {{ landlord.nameOfAgency }}
+                  {{ user.landlord.nameOfAgency }}
                 </td>
               </tr>
             </tbody>

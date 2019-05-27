@@ -1,6 +1,6 @@
 <div class="card-sm position-relative d-flex flex-column justify-content-between">
   <div class="apartment-image position-absolute">
-    <img [src]="imgUrl"
+    <img [src]="apartment.rooms[0].pictures[0] ? uploadBase + apartment.rooms[0].pictures[0] : '/assets/images/room/room.svg'"
          alt=""
          width="120"
          height="120">
@@ -16,11 +16,11 @@
     <span><span class="mo font-weight-bold font-size-lg">{{ mo }}</span>/mo</span>
     <span class="font-weight-bold font-size-lg">
           <i class="icon-fullscreen align-middle mr-1"></i>
-          {{ square }} m<sup>2</sup>
+          {{ apartment.size }} m<sup>2</sup>
         </span>
     <span class="font-weight-bold font-size-lg">
           <i class="icon-bed align-middle mr-1"></i>
-          {{ rooms }} {{ 'COMMON.ROOMS' | translate }}
+          {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
         </span>
   </div>
   <span *ngIf="topRated"

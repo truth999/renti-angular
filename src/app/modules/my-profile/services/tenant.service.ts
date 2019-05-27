@@ -6,19 +6,17 @@ import { ApiService } from '../../../core/services/api.service';
 
 @Injectable()
 export class TenantService {
+  private tenantUrl = 'tenants';
+
   constructor(
     private apiService: ApiService
   ) { }
 
-  getTenant(id: string): Promise<any> {
-    return this.apiService.get(`tenants/${id}`);
-  }
-
   createTenant(tenant: Tenant): Promise<any> {
-    return this.apiService.post('tenants', tenant);
+    return this.apiService.post(this.tenantUrl, tenant);
   }
 
   updateTenant(tenant: Tenant): Promise<any> {
-    return this.apiService.put(`tenants/${tenant._id}`, tenant);
+    return this.apiService.put(`${this.tenantUrl}/${tenant._id}`, tenant);
   }
 }

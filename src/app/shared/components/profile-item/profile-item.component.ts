@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { environment } from '../../../../environments/environment';
+
+import { Tenant } from '../../models';
 
 @Component({
   selector: 'app-profile-item',
@@ -8,14 +10,11 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./profile-item.component.scss']
 })
 export class ProfileItemComponent implements OnInit, AfterViewInit {
-  // @Input() imgUrl: string;
-  // @Input() name: string;
-  // @Input() explain: string;
-  @Input() profile: any;
+  @Input() profile: Tenant;
   @ViewChild('explainParagraph') explainParagraph: ElementRef;
   uploadBase = environment.uploadBase;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
 

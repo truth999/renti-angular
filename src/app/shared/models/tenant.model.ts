@@ -1,5 +1,8 @@
+import { User } from './user.model';
+
 export class Tenant {
   _id: string;
+  user: User;
   lookingRent: string;
   mobile: string;
   profilePicture: string;

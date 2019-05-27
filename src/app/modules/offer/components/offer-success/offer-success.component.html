@@ -1,5 +1,5 @@
 <div class="offer-success"
-     *ngIf="tenant">
+     *ngIf="user">
   <div class="logo d-sm-block d-none text-center">
     <a routerLink="/">
       <img src="/assets/images/logo.png" alt="" width="75">
@@ -13,7 +13,7 @@
       </div>
       <div class="card-sm">
         <div class="avatar text-center">
-          <img [src]="uploadBase + tenant.profilePicture"
+          <img [src]="uploadBase + user.tenant.profilePicture"
                alt=""
                class="rounded-pill"
                width="80"
@@ -25,7 +25,7 @@
           <tbody>
           <tr>
             <td class="border-top-0">{{ 'COMMON.PHONE' | translate }}:</td>
-            <td class="border-top-0 font-weight-bold text-right">{{ tenant.mobile }}</td>
+            <td class="border-top-0 font-weight-bold text-right">{{ user.tenant.mobile }}</td>
           </tr>
           <tr>
             <td>{{ 'COMMON.EMAIL' | translate }}:</td>

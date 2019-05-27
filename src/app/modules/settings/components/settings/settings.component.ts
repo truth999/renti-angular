@@ -21,7 +21,7 @@ export class SettingsComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      const response = await this.authService.getUser();
+      const response = await this.authService.getAuthUser();
       this.user = response.user;
     } finally {
     }

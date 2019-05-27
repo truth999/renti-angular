@@ -13,7 +13,7 @@ import { environment } from '../../../../../../environments/environment';
   styleUrls: ['./search-tenant.component.scss']
 })
 export class SearchTenantComponent implements OnInit {
-  tenants: any[];
+  tenants: Tenant[];
   page = new Page();
 
   uploadBase = environment.uploadBase;
@@ -41,15 +41,7 @@ export class SearchTenantComponent implements OnInit {
       this.cursorWaitService.enable();
 
       const response = await this.rentalsService.getTenants(this.page);
-      const tenants = response.tenants;
-      for (let i = 0; i < tenants.length; i++) {
-        const userResponse = await this.rentalsService.getUser(tenants[i].user);
-        tenants[i].userData = userResponse.user;
-      }
-
-      this.tenants = [...tenants];
-
-      this.page.totalPages = response.totalPages;
+      this.tenants = response.tenants;
     } catch (e) {
       console.log('SearchTenantComponent->getTenants', e);
     } finally {

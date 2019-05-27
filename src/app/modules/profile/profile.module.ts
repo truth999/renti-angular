@@ -9,20 +9,11 @@ import { TenantComponent } from './components/profile/tenant/tenant.component';
 import { LandlordComponent } from './components/profile/landlord/landlord.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
-import { LandlordService } from '../my-profile/services/landlord.service';
-import { TenantService } from '../my-profile/services/tenant.service';
-import { ProfileService } from './services/profile.service';
-
 @NgModule({
   declarations: [
     TenantComponent,
     LandlordComponent,
     ProfileComponent
-  ],
-  providers: [
-    LandlordService,
-    TenantService,
-    ProfileService
   ],
   imports: [
     SharedModule,

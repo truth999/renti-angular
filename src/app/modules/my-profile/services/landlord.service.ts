@@ -6,20 +6,17 @@ import { Landlord } from '../../../shared/models';
 
 @Injectable()
 export class LandlordService {
+  private landlordUrl = 'landlords';
 
   constructor(
     private apiService: ApiService
   ) { }
 
-  getLandlord(id: string): Promise<any> {
-    return this.apiService.get(`landlords/${id}`);
-  }
-
   createLandlord(landlord: Landlord): Promise<any> {
-    return this.apiService.post('landlords', landlord);
+    return this.apiService.post(this.landlordUrl, landlord);
   }
 
   updateLandlord(landlord: Landlord): Promise<any> {
-    return this.apiService.put(`landlords/${landlord._id}`, landlord);
+    return this.apiService.put(`${this.landlordUrl}/${landlord._id}`, landlord);
   }
 }

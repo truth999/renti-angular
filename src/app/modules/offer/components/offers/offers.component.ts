@@ -19,14 +19,18 @@ export class OffersComponent implements OnInit {
     private cursorWaitService: CursorWaitService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getAccountType();
+  }
+
+  async getAccountType() {
     try {
       this.cursorWaitService.enable();
 
-      const response = await this.authService.getUser();
+      const response = await this.authService.getAuthUser();
       this.accountType = response.user.accountType;
     } catch (e) {
-      console.log('OffersComponent->ngOnInit', e);
+      console.log('OffersComponent->getAccountType', e);
     } finally {
       this.cursorWaitService.disable();
     }

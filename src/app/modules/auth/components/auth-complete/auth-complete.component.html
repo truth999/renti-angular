@@ -3,23 +3,27 @@
   <div class="card-body">
     <div class="complete-title text-center">
       <h2 class="text-success">{{ 'COMMON.CONGRATULATIONS' | translate }}!</h2>
-      <p class="font-size-lg" *ngIf="accountType === AccountTypes.LANDLORD">
+      <p class="font-size-lg"
+         *ngIf="accountType === AccountTypes.LANDLORD">
         {{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_ADD_FIRST_UNIT' | translate }}
       </p>
-      <p class="font-size-lg" *ngIf="accountType === AccountTypes.TENANT">
+      <p class="font-size-lg"
+         *ngIf="accountType === AccountTypes.TENANT">
         {{ 'COMMON.PROFILE_READY' | translate }}<br>{{ 'COMMON.CAN_SEARCH_FIRST_UNIT' | translate }}
       </p>
     </div>
     <div class="signup-complete text-center pt-4">
       <div class="form-group"
            *ngIf="accountType === AccountTypes.LANDLORD">
-        <button [routerLink]="['/apartment-create']" class="btn btn-primary btn-lg w-100">
+        <button class="btn btn-primary btn-lg w-100"
+                (click)="onToCreateApartment()">
           {{ 'COMMON.CREATE_APARTMENT' | translate }}
         </button>
       </div>
       <div class="form-group"
            *ngIf="accountType === AccountTypes.TENANT">
-        <button [routerLink]="'/app/rentals/search'" class="btn btn-primary btn-lg w-100">
+        <button class="btn btn-primary btn-lg w-100"
+                (click)="onToSearchApartment()">
           {{ 'COMMON.SEARCHING_APARTMENT' | translate }}
         </button>
       </div>

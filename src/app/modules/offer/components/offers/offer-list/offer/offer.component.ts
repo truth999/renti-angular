@@ -8,6 +8,7 @@ import { environment } from '../../../../../../../environments/environment';
 
 import { OfferService } from '../../../../services/offer.service';
 import { CursorWaitService } from '../../../../../../core/services/cursor-wait.service';
+import { AuthService } from '../../../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-offer',
@@ -18,7 +19,6 @@ export class OfferComponent implements OnInit {
   @Input() offer: Offer;
   @Input() offerIndex: number;
   @Output() offerDeleted = new EventEmitter<void>();
-  user: any;
   tenant: Tenant;
 
   uploadBase = environment.uploadBase;
@@ -27,31 +27,36 @@ export class OfferComponent implements OnInit {
     private router: Router,
     private offerService: OfferService,
     private toastrService: ToastrService,
-    private cursorWaitService: CursorWaitService
+    private cursorWaitService: CursorWaitService,
+    private authService: AuthService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getOfferInfo();
+  }
+
+  async getOfferInfo() {
     try {
       this.cursorWaitService.enable();
 
-      const userResponse = await this.offerService.getUser(this.offer.user);
-      this.user = userResponse.user;
+      const response = await this.authService.getUser(this.offer.user._id);
 
-      const tenantResponse = await this.offerService.getTenant(userResponse.user.tenantId);
-      this.tenant = tenantResponse.tenant;
+      if (!!response.user) {
+        this.tenant = response.user.tenant;
+      }
     } catch (e) {
-      console.log('OfferComponent->ngOnInit', e);
+      console.log('OfferComponent->getOfferInfo');
     } finally {
       this.cursorWaitService.disable();
     }
   }
 
   onProfile() {
-    this.router.navigate(['/app/profile', this.offer.user]);
+    this.router.navigate(['/app/profile', this.offer.user._id]);
   }
 
   onSuccess() {
-    this.router.navigate(['/app/offers', this.offer.user, 'success']);
+    this.router.navigate(['/app/offers', this.offer.user._id, 'success']);
   }
 
   async onDelete() {

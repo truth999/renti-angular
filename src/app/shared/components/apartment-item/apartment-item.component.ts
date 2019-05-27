@@ -1,5 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { Apartment } from '../../models';
+
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-apartment-item',
@@ -7,20 +10,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./apartment-item.component.scss']
 })
 export class ApartmentItemComponent implements OnInit, AfterViewInit {
-  @Input() imgUrl: string;
-  @Input() name: string;
-  @Input() explain: string;
-  @Input() mo: number;
-  @Input() square: number;
-  @Input() rooms: number;
-  @Input() data: number;
-  @Input() topRated: boolean;
+  @Input() apartment: Apartment;
   @ViewChild('explainParagraph') explainParagraph: ElementRef;
+  name = 'Luxury apartment-create in the heart of Budapest';
+  explain = 'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…';
+  mo = 389000;
+  data = 98;
+  topRated = true;
 
-  constructor(private router: Router) { }
+  uploadBase = environment.uploadBase;
+
+  constructor() { }
 
   ngOnInit() {
-
   }
 
   ngAfterViewInit() {

@@ -64,7 +64,7 @@
           </div>
           <ul class="list-unstyled mt-3">
             <li class="font-weight-bold my-1"
-                *ngFor="let room of apartment.roomsData; let i = index">
+                *ngFor="let room of apartment.rooms; let i = index">
               <a [routerLink]="['/app/my-properties/room', room._id, 'edit']">
                 {{ i + 1 }}: {{ room.name }}
               </a>

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CONFIG_CONST } from '../../../../../config/config-const';
+
 import { AuthService } from '../../../../core/services/auth.service';
+import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 @Component({
   selector: 'app-auth-complete',
@@ -15,19 +17,36 @@ export class AuthCompleteComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private cursorWaitService: CursorWaitService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getAccountType();
+  }
+
+  async getAccountType() {
     try {
-      const response = await this.authService.getUser();
+      this.cursorWaitService.enable();
+      const response = await this.authService.getAuthUser();
       this.accountType = response.user.accountType;
+    } catch (e) {
+      console.log('AuthCompleteComponent->getAccountType', e);
     } finally {
+      this.cursorWaitService.disable();
     }
   }
 
   onToProfile() {
     this.router.navigate(['/app/my-profile']);
+  }
+
+  onToSearchApartment() {
+    this.router.navigate(['/app/rentals/search']);
+  }
+
+  onToCreateApartment() {
+    this.router.navigate(['/apartment-create']);
   }
 
 }

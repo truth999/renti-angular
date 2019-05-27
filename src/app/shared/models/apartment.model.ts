@@ -1,7 +1,9 @@
 import { Room } from './room.model';
+import { User } from './user.model';
 
 export class Apartment {
   _id: string;
+  user: User;
   address: string;
   typeOfBuilding: string;
   yearOfConstruction: number;
@@ -34,7 +36,5 @@ export class Apartment {
   deposit: number;
   minimumRentingTime: number;
   dateOfMovingIn: string;
-  rooms: string[];
-  roomsData: Room[];
-  userId: string;
+  rooms: Room[];
 }

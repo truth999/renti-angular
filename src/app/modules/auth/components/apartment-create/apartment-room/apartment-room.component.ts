@@ -45,10 +45,12 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
   }
 
   onAddRoom() {
-    this.rooms.push(new FormGroup({
-      name: new FormControl('', Validators.required),
-      size: new FormControl('', [Validators.required, Validators.min(1)])
-    }));
+    if (this.rooms.length < 20) {
+      this.rooms.push(new FormGroup({
+        name: new FormControl('', Validators.required),
+        size: new FormControl('', [Validators.required, Validators.min(1)])
+      }));
+    }
   }
 
   submit() {

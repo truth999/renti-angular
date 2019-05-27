@@ -7,8 +7,8 @@ import { StorageService } from '../../../core/services/storage.service';
 
 @Injectable()
 export class ApartmentCreateService {
-  apartment: Apartment;
-  rooms: Room[];
+  apartment: any;
+  rooms: any[];
   previewRoomPictures: any[];
   newRoomPictures: any[];
 
