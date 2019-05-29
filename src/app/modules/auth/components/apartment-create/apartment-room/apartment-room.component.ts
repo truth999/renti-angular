@@ -53,6 +53,12 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
     }
   }
 
+  onRemoveRoom(index: number) {
+    if (this.rooms.length > 1) {
+      this.rooms.removeAt(index);
+    }
+  }
+
   submit() {
     if (this.roomForm.valid) {
       const rooms = { ...this.roomForm.value };

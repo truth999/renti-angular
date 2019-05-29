@@ -8,7 +8,7 @@ export class Offer {
   rentalFee: number;
   overhead: number;
   minRentingTime: number;
-  dateOfMovingIn: string;
+  dateOfMovingIn: any;
   movingWith: string;
   movingWithPets: boolean;
   pets: string;

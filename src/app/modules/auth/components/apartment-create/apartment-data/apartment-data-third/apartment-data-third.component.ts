@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { DateSelectService } from '../../../../../../shared/services/date-select.service';
 import { ApartmentCreateService } from '../../../../services/apartment-create.service';
 import { CursorWaitService } from '../../../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../../../core/services/validate-form-fields.service';
-
-import { dateSelectValidator } from '../../../../../../shared/directives/date-select-validator.directive';
 
 @Component({
   selector: 'app-apartment-data-third',
@@ -17,23 +15,24 @@ import { dateSelectValidator } from '../../../../../../shared/directives/date-se
 export class ApartmentDataThirdComponent implements OnInit {
   apartmentDataThirdForm: FormGroup;
 
-  days: string[];
-  months: string[];
-  years: string[];
-
   constructor(
-    private dateSelectService: DateSelectService,
     private apartmentCreateService: ApartmentCreateService,
     private router: Router,
     private cursorWaitService: CursorWaitService,
-    private validateFormFieldsService: ValidateFormFieldsService
-  ) { }
+    private validateFormFieldsService: ValidateFormFieldsService,
+    private datepickerConfig: NgbDatepickerConfig
+  ) {
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    datepickerConfig.minDate = { year, month, day };
+    datepickerConfig.maxDate = { year: year + 10, month: 12, day: 31 };
+  }
 
   ngOnInit() {
-    this.days = this.dateSelectService.getDays();
-    this.months = this.dateSelectService.getMonths();
-    this.years = this.dateSelectService.getYears();
-
     this.apartmentDataThirdForm = new FormGroup({
       externalIsolation: new FormControl(false),
       balcony: new FormControl(false, Validators.required),
@@ -47,10 +46,9 @@ export class ApartmentDataThirdComponent implements OnInit {
       deposit: new FormControl('', Validators.required),
       minimumRentingTime: new FormControl('', Validators.required),
       dateOfMovingIn: new FormGroup({
-        day: new FormControl('', Validators.required),
-        month: new FormControl('', Validators.required),
-        year: new FormControl('', Validators.required)
-      }, { validators: dateSelectValidator })
+        rightNow: new FormControl(false, Validators.required),
+        date: new FormControl(null)
+      })
     });
   }
 
@@ -78,6 +76,14 @@ export class ApartmentDataThirdComponent implements OnInit {
     return this.apartmentDataThirdForm.get('sizeOfTerrace');
   }
 
+  get rightNow() {
+    return this.apartmentDataThirdForm.get('dateOfMovingIn').get('rightNow');
+  }
+
+  get date() {
+    return this.apartmentDataThirdForm.get('dateOfMovingIn').get('date');
+  }
+
   changeBalcony() {
     this.balcony.value ? this.sizeOfBalcony.setValidators(Validators.required) : this.sizeOfBalcony.setErrors(null);
   }
@@ -90,11 +96,13 @@ export class ApartmentDataThirdComponent implements OnInit {
     this.terrace.value ? this.sizeOfTerrace.setValidators(Validators.required) : this.sizeOfTerrace.setErrors(null);
   }
 
+  changeRightNow() {
+    this.rightNow.value ? this.date.setErrors(null) : this.date.setValidators(Validators.required);
+  }
+
   async submit() {
     if (this.apartmentDataThirdForm.valid) {
       const apartmentDataThird = { ...this.apartmentDataThirdForm.value };
-      const dateOfMovingIn = apartmentDataThird.dateOfMovingIn;
-      apartmentDataThird.dateOfMovingIn = dateOfMovingIn.day + '-' + dateOfMovingIn.month + '-' + dateOfMovingIn.year;
 
       this.apartmentCreateService.createApartmentData(apartmentDataThird);
 
@@ -116,6 +124,8 @@ export class ApartmentDataThirdComponent implements OnInit {
 
       this.apartmentCreateService.apartment = null;
       this.apartmentCreateService.rooms = null;
+      this.apartmentCreateService.previewRoomPictures = null;
+      this.apartmentCreateService.newRoomPictures = null;
     } else {
       this.validateFormFieldsService.validate(this.apartmentDataThirdForm);
     }
@@ -123,25 +133,6 @@ export class ApartmentDataThirdComponent implements OnInit {
 
   public arrayNumber(n: number) {
     return Array(n);
-  }
-
-  setDate() {
-    let daysInMonth = null;
-    const date = new Date();
-
-    if (this.apartmentDataThirdForm.get('dateOfMovingIn').get('year').value) {
-      date.setFullYear(+this.apartmentDataThirdForm.get('dateOfMovingIn').get('year').value);
-    }
-
-    if (this.apartmentDataThirdForm.get('dateOfMovingIn').get('month').value) {
-      date.setMonth(+this.apartmentDataThirdForm.get('dateOfMovingIn').get('month').value, 0);
-      daysInMonth = date.getDate();
-      this.days = this.dateSelectService.getDays(daysInMonth);
-
-      if (typeof daysInMonth === 'number' && daysInMonth < +this.apartmentDataThirdForm.get('dateOfMovingIn').get('day').value) {
-        this.apartmentDataThirdForm.get('dateOfMovingIn').get('day').setErrors(Validators.required);
-      }
-    }
   }
 
 }

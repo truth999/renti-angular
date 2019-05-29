@@ -74,7 +74,7 @@
               </tr>
               <tr>
                 <td>{{ 'COMMON.DATE_OF_BIRTH' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ user.tenant.dateOfBirth }}</td>
+                <td class="font-weight-bold text-right">{{ user.tenant.dateOfBirth | dateToString }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.NATIONALITY' | translate }}:</td>

@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { MyPropertiesService } from '../../services/my-properties.service';
 import { ResponsiveService } from '../../../../shared/services/responsive.service';
@@ -13,11 +14,9 @@ import { DateSelectService } from '../../../../shared/services/date-select.servi
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
-import { Apartment, Room } from '../../../../shared/models';
+import { Apartment } from '../../../../shared/models';
 
 import { environment } from '../../../../../environments/environment';
-
-import { dateSelectValidator } from '../../../../shared/directives/date-select-validator.directive';
 
 @Component({
   selector: 'app-apartment-edit',
@@ -27,9 +26,6 @@ import { dateSelectValidator } from '../../../../shared/directives/date-select-v
 export class ApartmentEditComponent implements OnInit, DoCheck {
   apartment: Apartment;
   apartmentForm: FormGroup;
-
-  days: string[];
-  months: string[];
   years: string[];
 
   isMobile: BehaviorSubject<boolean>;
@@ -52,14 +48,22 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     private responsiveService: ResponsiveService,
     private toastrService: ToastrService,
     private cursorWaitService: CursorWaitService,
-    private validateFormFieldsService: ValidateFormFieldsService
+    private validateFormFieldsService: ValidateFormFieldsService,
+    private datepickerConfig: NgbDatepickerConfig
   ) {
     this.isMobile = this.responsiveService.isMobile;
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    datepickerConfig.minDate = { year, month, day };
+    datepickerConfig.maxDate = { year: year + 10, month: 12, day: 31 };
   }
 
   async ngOnInit() {
-    this.days = this.dateSelectService.getDays();
-    this.months = this.dateSelectService.getMonths();
     this.years = this.dateSelectService.getYears();
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -122,7 +126,6 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   }
 
   buildApartmentForm() {
-    const dateOfMovingInArray = !!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.split('-') : '';
     let size = 0;
     this.apartment.rooms.map(room => {
       size = size + room.size;
@@ -173,10 +176,11 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
         !!this.apartment.minimumRentingTime ? this.apartment.minimumRentingTime : '', Validators.required
       ),
       dateOfMovingIn: new FormGroup({
-        day: new FormControl(!!this.apartment.dateOfMovingIn ? dateOfMovingInArray[0] : '', Validators.required),
-        month: new FormControl(!!this.apartment.dateOfMovingIn ? dateOfMovingInArray[1] : '', Validators.required),
-        year: new FormControl(!!this.apartment.dateOfMovingIn ? dateOfMovingInArray[2] : '', Validators.required)
-      }, { validators: dateSelectValidator }),
+        rightNow: new FormControl(
+          !!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.rightNow : false, Validators.required
+        ),
+        date: new FormControl(!!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.date : null)
+      })
       // roomsData: new FormArray(!!this.apartment.roomsData ? this.apartment.roomsData.map(room => {
       //   return new FormGroup({
       //     name: new FormControl(room.name, Validators.required),
@@ -215,6 +219,14 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     return this.apartmentForm.get('sizeOfTerrace');
   }
 
+  get rightNow() {
+    return this.apartmentForm.get('dateOfMovingIn').get('rightNow');
+  }
+
+  get date() {
+    return this.apartmentForm.get('dateOfMovingIn').get('date');
+  }
+
   // get roomsData() {
   //   return this.apartmentForm.get('roomsData') as FormArray;
   // }
@@ -231,27 +243,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     this.terrace.value ? this.sizeOfTerrace.setValidators(Validators.required) : this.sizeOfTerrace.setErrors(null);
   }
 
-  handleAddressChange(address: Address) {
-    this.apartmentForm.get('address').setValue(address.formatted_address);
+  changeRightNow() {
+    this.rightNow.value ? this.date.setErrors(null) : this.date.setValidators(Validators.required);
   }
 
-  setDate() {
-    let daysInMonth = null;
-    const date = new Date();
-
-    if (this.apartmentForm.get('dateOfMovingIn').get('year').value) {
-      date.setFullYear(+this.apartmentForm.get('dateOfMovingIn').get('year').value);
-    }
-
-    if (this.apartmentForm.get('dateOfMovingIn').get('month').value) {
-      date.setMonth(+this.apartmentForm.get('dateOfMovingIn').get('month').value, 0);
-      daysInMonth = date.getDate();
-      this.days = this.dateSelectService.getDays(daysInMonth);
-
-      if (typeof daysInMonth === 'number' && daysInMonth < +this.apartmentForm.get('dateOfMovingIn').get('day').value) {
-        this.apartmentForm.get('dateOfMovingIn').get('day').setErrors(Validators.required);
-      }
-    }
+  handleAddressChange(address: Address) {
+    this.apartmentForm.get('address').setValue(address.formatted_address);
   }
 
   // onAddRoom() {
@@ -281,9 +278,6 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
         ...this.apartmentForm.value,
         rooms: roomIds
       };
-
-      const dateOfMovingIn = apartmentData.dateOfMovingIn;
-      apartmentData.dateOfMovingIn = dateOfMovingIn.day + '-' + dateOfMovingIn.month + '-' + dateOfMovingIn.year;
 
       this.apartment = {
         ...this.apartment,

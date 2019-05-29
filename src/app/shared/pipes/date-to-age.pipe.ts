@@ -7,11 +7,13 @@ export class DateToAgePipe implements PipeTransform {
 
   transform(input): any {
     const today = new Date();
-    const birthDate = input.split('-');
-    let age = today.getFullYear() - birthDate[2];
-    const month = today.getMonth() - birthDate[1];
+    const birthDay = input.day;
+    const birthYear = input.year;
+    const birthMonth = input.month;
+    let age = today.getFullYear() - birthYear;
+    const month = today.getMonth() - birthMonth;
 
-    if (month < 0 || (month === 0 && today.getDate() < birthDate[0])) {
+    if (month < 0 || (month === 0 && today.getDate() < birthDay)) {
       age--;
     }
 

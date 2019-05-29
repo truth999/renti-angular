@@ -7,11 +7,31 @@
     cursor: pointer;
   }
 
-  .number {
-    min-width: 2.6rem;
-    height: 2.6rem;
-    background-color: $blue;
-    color: $white;
-    cursor: pointer;
+  .form-group {
+    .number {
+      min-width: 2.6rem;
+      height: 2.6rem;
+      background-color: $blue;
+      color: $white;
+      cursor: pointer;
+    }
+
+    .remove-button {
+      visibility: hidden;
+      width: 1.5rem;
+      margin-top: .5rem;
+
+      .icon-minus {
+        font-size: 1.5rem;
+        color: $blue;
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      .remove-button {
+        visibility: visible;
+      }
+    }
   }
 }

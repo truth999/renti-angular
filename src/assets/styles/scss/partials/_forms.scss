@@ -53,3 +53,15 @@
     }
   }
 }
+
+table {
+  .form-check-label {
+    &::before {
+      top: 0;
+    }
+  }
+
+  .form-check-input:checked + label::after {
+    top: 4px;
+  }
+}

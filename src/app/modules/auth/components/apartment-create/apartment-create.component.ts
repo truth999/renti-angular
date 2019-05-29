@@ -24,7 +24,7 @@ export class ApartmentCreateComponent implements OnInit {
   }
 
   onNextStep() {
-    if (!this.disabled) {
+    if (!this.disabled || this.step === 0) {
       this.step = this.step + 1;
 
       if (this.step > 4) {

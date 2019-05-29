@@ -509,33 +509,27 @@
               </td>
             </tr>
             <tr>
-              <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
+              <td class="border-bottom align-middle py-0">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
               <td class="border-bottom text-right pr-0" formGroupName="dateOfMovingIn">
-                <div class="form-inline justify-content-between">
-                  <select name="day" class="custom-select"
-                          formControlName="day"
-                          (change)="setDate()">
-                    <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
-                    <option *ngFor="let day of days"
-                            [value]="day">{{ day }}</option>
-                  </select>
-                  <select name="month" class="custom-select"
-                          formControlName="month"
-                          (change)="setDate()">
-                    <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
-                    <option *ngFor="let month of months"
-                            [value]="month">{{ month }}</option>
-                  </select>
-                  <select name="year" class="custom-select"
-                          formControlName="year"
-                          (change)="setDate()">
-                    <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
-                    <option *ngFor="let year of years"
-                            [value]="year">{{ year }}</option>
-                  </select>
-                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('dateOfMovingIn').invalid && (apartmentForm.get('dateOfMovingIn').dirty || apartmentForm.get('dateOfMovingIn').touched)">
-                    <span *ngIf="apartmentForm.get('dateOfMovingIn').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
+                <div class="form-group form-check mb-0">
+                  <input type="checkbox"
+                         class="form-check-input"
+                         id="right-now"
+                         formControlName="rightNow"
+                         (change)="changeRightNow()">
+                  <label for="right-now"
+                         class="form-check-label">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
+                </div>
+                <div *ngIf="!rightNow.value">
+                  <input class="form-control text-right mt-2"
+                         placeholder="yyyy-mm-dd"
+                         ngbDatepicker
+                         #d="ngbDatepicker"
+                         (click)="d.toggle()"
+                         formControlName="date">
+                </div>
+                <div class="invalid-feedback d-block" *ngIf="date.invalid && (date.dirty || date.touched)">
+                  <span *ngIf="date.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                 </div>
               </td>
             </tr>
@@ -1008,31 +1002,25 @@
             <tr>
               <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
               <td class="border-bottom text-right pr-0" formGroupName="dateOfMovingIn">
-                <div class="form-inline justify-content-between">
-                  <select name="day" class="custom-select"
-                          formControlName="day"
-                          (change)="setDate()">
-                    <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
-                    <option *ngFor="let day of days"
-                            [value]="day">{{ day }}</option>
-                  </select>
-                  <select name="month" class="custom-select"
-                          formControlName="month"
-                          (change)="setDate()">
-                    <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
-                    <option *ngFor="let month of months"
-                            [value]="month">{{ month }}</option>
-                  </select>
-                  <select name="year" class="custom-select"
-                          formControlName="year"
-                          (change)="setDate()">
-                    <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
-                    <option *ngFor="let year of years"
-                            [value]="year">{{ year }}</option>
-                  </select>
-                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('dateOfMovingIn').invalid && (apartmentForm.get('dateOfMovingIn').dirty || apartmentForm.get('dateOfMovingIn').touched)">
-                    <span *ngIf="apartmentForm.get('dateOfMovingIn').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
+                <div class="form-group form-check mb-0">
+                  <input type="checkbox"
+                         class="form-check-input"
+                         id="right-now"
+                         formControlName="rightNow"
+                         (change)="changeRightNow()">
+                  <label for="right-now"
+                         class="form-check-label">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
+                </div>
+                <div *ngIf="!rightNow.value">
+                  <input class="form-control text-right mt-2"
+                         placeholder="yyyy-mm-dd"
+                         ngbDatepicker
+                         #d="ngbDatepicker"
+                         (click)="d.toggle()"
+                         formControlName="date">
+                </div>
+                <div class="invalid-feedback d-block" *ngIf="date.invalid && (date.dirty || date.touched)">
+                  <span *ngIf="date.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                 </div>
               </td>
             </tr>

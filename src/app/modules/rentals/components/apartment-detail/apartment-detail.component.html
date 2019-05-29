@@ -182,7 +182,9 @@
           </tr>
           <tr>
             <td class="border-bottom">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
-            <td class="border-bottom text-right font-weight-bold">{{ apartment.dateOfMovingIn }}</td>
+            <td class="border-bottom text-right font-weight-bold">
+              {{ apartment.dateOfMovingIn.rightNow ? ('COMMON.RIGHT_NOW' | translate ) : (apartment.dateOfMovingIn.date | dateToString) }}
+            </td>
           </tr>
           </tbody>
         </table>
@@ -376,7 +378,9 @@
           </tr>
           <tr>
             <td class="border-bottom">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
-            <td class="border-bottom text-right font-weight-bold">{{ apartment.dateOfMovingIn }}</td>
+            <td class="border-bottom text-right font-weight-bold">
+              {{ apartment.dateOfMovingIn.rightNow ? ('COMMON.RIGHT_NOW' | translate ) : (apartment.dateOfMovingIn.date | dateToString) }}
+            </td>
           </tr>
           </tbody>
         </table>

@@ -42,7 +42,7 @@
           <div class="col-sm-6">
             <div class="row name-info">
               <div class="col-sm-12 col-8 pr-0">
-                <h1 class="name font-weight-bolder">{{ user.firstName}} {{ user.lastName }}</h1>
+                <h1 class="name font-weight-bolder">{{ user.firstName }} {{ user.lastName }}</h1>
               </div>
             </div>
             <div class="row mt-5">
@@ -84,35 +84,22 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
-                  <td class="text-right pr-0 w-50"
-                      formGroupName="dateOfBirth">
-                    <select formControlName="day"
-                            class="custom-select w-75"
-                            (change)="setBirthDate()">
-                      <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
-                      <option *ngFor="let day of days" [value]="day">{{ day }}</option>
-                    </select>
-                    <select formControlName="month"
-                            class="custom-select w-75"
-                            (change)="setBirthDate()">
-                      <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
-                      <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-                    </select>
-                    <select formControlName="year"
-                            class="custom-select w-75"
-                            (change)="setBirthDate()">
-                      <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
-                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-                    </select>
+                  <td class="align-middle py-0">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
+                  <td class="text-right py-0 pr-0 w-50">
+                    <input class="form-control border-0 text-right"
+                           placeholder="yyyy-mm-dd"
+                           ngbDatepicker
+                           #d="ngbDatepicker"
+                           (click)="d.toggle()"
+                           formControlName="dateOfBirth">
                     <div class="invalid-feedback d-block" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)">
                       <span *ngIf="dateOfBirth.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-                  <td class="text-right pr-0">
+                  <td class="align-middle py-0">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
+                  <td class="text-right py-0 pr-0">
                     <input ngx-google-places-autocomplete
                            class="form-control border-0 text-right"
                            [options]="{ types: ['(cities)'] }"

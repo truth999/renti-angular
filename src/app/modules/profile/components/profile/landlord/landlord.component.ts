@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { Landlord, User } from '../../../../../shared/models';
+import { User } from '../../../../../shared/models';
 
 import { environment } from '../../../../../../environments/environment';
 

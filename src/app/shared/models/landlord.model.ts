@@ -6,7 +6,7 @@ export class Landlord {
   mobile: string;
   profilePicture: string;
   placeOfBirth: string;
-  dateOfBirth: string;
+  dateOfBirth: any;
   nationality: string[];
   spokenLanguages: string[];
   isPerson: boolean;

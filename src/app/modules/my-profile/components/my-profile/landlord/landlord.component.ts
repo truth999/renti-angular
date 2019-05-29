@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
@@ -11,7 +12,6 @@ import { LandlordService } from '../../../services/landlord.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
 import { AuthService } from '../../../../../core/services/auth.service';
-import { DateSelectService } from '../../../../../shared/services/date-select.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 
@@ -20,8 +20,6 @@ import { Landlord, User } from '../../../../../shared/models';
 import { config } from '../../../../../../config';
 
 import { environment } from '../../../../../../environments/environment';
-
-import { dateSelectValidator } from '../../../../../shared/directives/date-select-validator.directive';
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -34,10 +32,6 @@ export class LandlordComponent implements OnInit {
   photo: string;
   photoDeleted = true;
   isAgency = false;
-
-  days: string[];
-  months: string[];
-  years: string[];
 
   spokenLanguagesVal = [
     'Hungarian',
@@ -68,11 +62,20 @@ export class LandlordComponent implements OnInit {
     private storageService: StorageService,
     private imageUploaderService: ImageUploaderService,
     private authService: AuthService,
-    private dateSelectService: DateSelectService,
     private toastrService: ToastrService,
     private cursorWaitService: CursorWaitService,
-    private validateFormFielsService: ValidateFormFieldsService
-  ) { }
+    private validateFormFielsService: ValidateFormFieldsService,
+    private datepickerConfig: NgbDatepickerConfig
+  ) {
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    datepickerConfig.minDate = { year: year - 100, month: 1, day: 1};
+    datepickerConfig.maxDate = { year: year - 18, month, day };
+  }
 
   async ngOnInit() {
     try {
@@ -99,25 +102,15 @@ export class LandlordComponent implements OnInit {
       this.photoDeleted = false;
     });
 
-    this.days = this.dateSelectService.getDays();
-    this.months = this.dateSelectService.getMonths();
-    this.years = this.dateSelectService.getYears();
-
     this.isPerson.value ? this.nameOfAgency.setErrors(null) : this.nameOfAgency.setValidators(Validators.required);
   }
 
   buildLandlordForm() {
-    const dateOfBirthArray = !!this.landlord ? this.landlord.dateOfBirth.split('-') : '';
-
     this.landlordForm = new FormGroup({
       mobile: new FormControl(!!this.landlord ? this.landlord.mobile : '', Validators.required),
       profilePicture: new FormControl(!!this.landlord ? this.landlord.profilePicture : ''),
       placeOfBirth: new FormControl(!!this.landlord ? this.landlord.placeOfBirth : ''),
-      dateOfBirth: new FormGroup({
-        day: new FormControl(!!this.landlord ? dateOfBirthArray[0] : '', Validators.required),
-        month: new FormControl(!!this.landlord ? dateOfBirthArray[1] : '', Validators.required),
-        year: new FormControl(!!this.landlord ? dateOfBirthArray[2] : '', Validators.required)
-      }, { validators: dateSelectValidator }),
+      dateOfBirth: new FormControl(!!this.landlord ? this.landlord.dateOfBirth : null, Validators.required),
       nationality: new FormControl(!!this.landlord ? this.landlord.nationality : ''),
       spokenLanguages: new FormControl(!!this.landlord ? this.landlord.spokenLanguages : '', Validators.required),
       isPerson: new FormControl(!!this.landlord ? this.landlord.isPerson : '', Validators.required),
@@ -147,25 +140,6 @@ export class LandlordComponent implements OnInit {
 
   handleAddressChange(address: Address) {
     this.landlordForm.get('placeOfBirth').setValue(address.formatted_address);
-  }
-
-  setBirthDate() {
-    let daysInMonth = null;
-    const date = new Date();
-
-    if (this.landlordForm.get('dateOfBirth').get('year').value) {
-      date.setFullYear(+this.landlordForm.get('dateOfBirth').get('year').value);
-    }
-
-    if (this.landlordForm.get('dateOfBirth').get('month').value) {
-      date.setMonth(+this.landlordForm.get('dateOfBirth').get('month').value, 0);
-      daysInMonth = date.getDate();
-      this.days = this.dateSelectService.getDays(daysInMonth);
-
-      if (typeof daysInMonth === 'number' && daysInMonth < +this.landlordForm.get('dateOfBirth').get('day').value) {
-        this.landlordForm.get('dateOfBirth').get('day').setErrors(Validators.required);
-      }
-    }
   }
 
   onBack() {
@@ -246,9 +220,6 @@ export class LandlordComponent implements OnInit {
           userId: this.storageService.get('userId'),
           ...this.landlordForm.value,
         };
-
-        const dateOfBirth = landlordData.dateOfBirth;
-        landlordData.dateOfBirth = dateOfBirth.day + '-' + dateOfBirth.month + '-' + dateOfBirth.year;
 
         if (!this.isAgency) {
           landlordData.nameOfAgency = '';

@@ -19,7 +19,7 @@
             <span *ngIf="roomEl.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
           </div>
         </div>
-        <div>
+        <div class="mr-1">
           <input type="number"
                  class="form-control"
                  min="1"
@@ -29,6 +29,9 @@
           <div class="invalid-feedback d-block" *ngIf="roomEl.get('size').invalid && (roomEl.get('size').dirty || roomEl.get('size').touched)">
             <span *ngIf="roomEl.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
           </div>
+        </div>
+        <div class="remove-button">
+          <i class="icon-minus" (click)="onRemoveRoom(i)"></i>
         </div>
       </div>
       <div class="add-button">

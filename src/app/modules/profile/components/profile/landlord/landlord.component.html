@@ -58,7 +58,7 @@
               <tr>
                 <td>{{ 'COMMON.DATE_OF_BIRTH' | translate }}:</td>
                 <td class="font-weight-bold text-right">
-                  {{ user.landlord.dateOfBirth }}
+                  {{ user.landlord.dateOfBirth | dateToString }}
                 </td>
               </tr>
             </tbody>

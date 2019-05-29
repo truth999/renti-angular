@@ -3,14 +3,12 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { DateSelectService } from '../../../../shared/services/date-select.service';
 import { OfferService } from '../../services/offer.service';
 import { StorageService } from '../../../../core/services/storage.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
-
-import { dateSelectValidator } from '../../../../shared/directives/date-select-validator.directive';
 
 @Component({
   selector: 'app-offer-create',
@@ -20,27 +18,28 @@ import { dateSelectValidator } from '../../../../shared/directives/date-select-v
 export class OfferCreateComponent implements OnInit {
   offerForm: FormGroup;
 
-  days: string[];
-  months: string[];
-  years: string[];
-
   constructor(
     private location: Location,
     private router: Router,
     private route: ActivatedRoute,
-    private dateSelectService: DateSelectService,
     private offerService: OfferService,
     private storageService: StorageService,
     private toastrService: ToastrService,
     private cursorWaitService: CursorWaitService,
-    private validateFormFields: ValidateFormFieldsService
-  ) { }
+    private validateFormFields: ValidateFormFieldsService,
+    private datepickerConfig: NgbDatepickerConfig
+  ) {
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    datepickerConfig.minDate = { year, month, day };
+    datepickerConfig.maxDate = { year: year + 10, month: 12, day: 31 };
+  }
 
   ngOnInit() {
-    this.days = this.dateSelectService.getDays();
-    this.months = this.dateSelectService.getMonths();
-    this.years = this.dateSelectService.getYears();
-
     this.buildOfferForm();
   }
 
@@ -49,11 +48,7 @@ export class OfferCreateComponent implements OnInit {
       rentalFee: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000)]),
       overhead: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000)]),
       minRentingTime: new FormControl('', Validators.required),
-      dateOfMovingIn: new FormGroup({
-        day: new FormControl('', Validators.required),
-        month: new FormControl('', Validators.required),
-        year: new FormControl('', Validators.required)
-      }, { validators: dateSelectValidator }),
+      dateOfMovingIn: new FormControl(null, Validators.required),
       movingWith: new FormControl('', Validators.required),
       movingWithPets: new FormControl(false, Validators.required),
       pets: new FormControl(''),
@@ -67,25 +62,6 @@ export class OfferCreateComponent implements OnInit {
 
   get pets() {
     return this.offerForm.get('pets');
-  }
-
-  setDate() {
-    let daysInMonth = null;
-    const date = new Date();
-
-    if (this.offerForm.get('dateOfMovingIn').get('year').value) {
-      date.setFullYear(+this.offerForm.get('dateOfMovingIn').get('year').value);
-    }
-
-    if (this.offerForm.get('dateOfMovingIn').get('month').value) {
-      date.setMonth(+this.offerForm.get('dateOfMovingIn').get('month').value, 0);
-      daysInMonth = date.getDate();
-      this.days = this.dateSelectService.getDays(daysInMonth);
-
-      if (typeof daysInMonth === 'number' && daysInMonth < +this.offerForm.get('dateOfMovingIn').get('day').value) {
-        this.offerForm.get('dateOfMovingIn').get('day').setErrors(Validators.required);
-      }
-    }
   }
 
   changePets() {
@@ -105,8 +81,6 @@ export class OfferCreateComponent implements OnInit {
         userId,
         apartmentId: id
       };
-      const dateOfMovingIn = offerData.dateOfMovingIn;
-      offerData.dateOfMovingIn = dateOfMovingIn.day + '-' + dateOfMovingIn.month + '-' + dateOfMovingIn.year;
 
       try {
         this.cursorWaitService.enable();

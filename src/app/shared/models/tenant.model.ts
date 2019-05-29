@@ -7,7 +7,7 @@ export class Tenant {
   mobile: string;
   profilePicture: string;
   placeOfBirth: string;
-  dateOfBirth: string;
+  dateOfBirth: any;
   nationality: string;
   spokenLanguages: string[];
   currentCity: string;

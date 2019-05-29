@@ -35,6 +35,9 @@ export class Apartment {
   overhead: number;
   deposit: number;
   minimumRentingTime: number;
-  dateOfMovingIn: string;
+  dateOfMovingIn: {
+    rightNow: boolean;
+    date: any;
+  };
   rooms: Room[];
 }

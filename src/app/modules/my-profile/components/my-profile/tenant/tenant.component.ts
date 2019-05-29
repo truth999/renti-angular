@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
@@ -21,8 +22,6 @@ import { config } from '../../../../../../config';
 
 import { environment } from '../../../../../../environments/environment';
 
-import { dateSelectValidator } from '../../../../../shared/directives/date-select-validator.directive';
-
 @Component({
   selector: 'app-my-profile-tenant',
   templateUrl: './tenant.component.html',
@@ -34,8 +33,6 @@ export class TenantComponent implements OnInit {
   photo: string;
   photoDeleted = true;
   countries = config.countries;
-  days: string[];
-  months: string[];
   years: string[];
 
   spokenLanguages = [
@@ -69,8 +66,18 @@ export class TenantComponent implements OnInit {
     private imageUploaderService: ImageUploaderService,
     private toastrService: ToastrService,
     private cursorWaitService: CursorWaitService,
-    private validateFormFieldsService: ValidateFormFieldsService
-  ) { }
+    private validateFormFieldsService: ValidateFormFieldsService,
+    private datepickerConfig: NgbDatepickerConfig
+  ) {
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    datepickerConfig.minDate = { year: year - 100, month: 1, day: 1};
+    datepickerConfig.maxDate = { year: year - 18, month, day };
+  }
 
   async ngOnInit() {
     try {
@@ -96,23 +103,15 @@ export class TenantComponent implements OnInit {
       this.photoDeleted = false;
     });
 
-    this.days = this.dateSelectService.getDays();
-    this.months = this.dateSelectService.getMonths();
     this.years = this.dateSelectService.getYears();
   }
 
   buildTenantForm() {
-    const dateOfBirthArray = !!this.tenant ? this.tenant.dateOfBirth.split('-') : '';
-
     this.tenantForm = new FormGroup({
       lookingRent: new FormControl(!!this.tenant ? this.tenant.lookingRent : '', Validators.required),
       mobile: new FormControl(!!this.tenant ? this.tenant.mobile : '', Validators.required),
       placeOfBirth: new FormControl(!!this.tenant ? this.tenant.placeOfBirth : '', Validators.required),
-      dateOfBirth: new FormGroup({
-        day: new FormControl(!!this.tenant ? dateOfBirthArray[0] : '', Validators.required),
-        month: new FormControl(!!this.tenant ? dateOfBirthArray[1] : '', Validators.required),
-        year: new FormControl(!!this.tenant ? dateOfBirthArray[2] : '', Validators.required)
-      }, { validators: dateSelectValidator }),
+      dateOfBirth: new FormControl(!!this.tenant ? this.tenant.dateOfBirth : null, Validators.required),
       nationality: new FormControl(!!this.tenant ? this.tenant.nationality : '', Validators.required),
       spokenLanguages: new FormControl(!!this.tenant ? this.tenant.spokenLanguages : '', Validators.required),
       currentCity: new FormControl(!!this.tenant ? this.tenant.currentCity : '', Validators.required),
@@ -180,25 +179,6 @@ export class TenantComponent implements OnInit {
     this.tenantForm.get('currentCity').setValue(address.formatted_address);
   }
 
-  setBirthDate() {
-    let daysInMonth = null;
-    const date = new Date();
-
-    if (this.tenantForm.get('dateOfBirth').get('year').value) {
-      date.setFullYear(+this.tenantForm.get('dateOfBirth').get('year').value);
-    }
-
-    if (this.tenantForm.get('dateOfBirth').get('month').value) {
-      date.setMonth(+this.tenantForm.get('dateOfBirth').get('month').value, 0);
-      daysInMonth = date.getDate();
-      this.days = this.dateSelectService.getDays(daysInMonth);
-
-      if (typeof daysInMonth === 'number' && daysInMonth < +this.tenantForm.get('dateOfBirth').get('day').value) {
-        this.tenantForm.get('dateOfBirth').get('day').setErrors(Validators.required);
-      }
-    }
-  }
-
   onViewAs() {
     this.router.navigate(['/app/profile', this.user._id]);
   }
@@ -251,9 +231,6 @@ export class TenantComponent implements OnInit {
         userId: this.storageService.get('userId'),
         ...this.tenantForm.value,
       };
-
-      const dateOfBirth = tenantData.dateOfBirth;
-      tenantData.dateOfBirth = dateOfBirth.day + '-' + dateOfBirth.month + '-' + dateOfBirth.year;
 
       try {
         this.cursorWaitService.enable();

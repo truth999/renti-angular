@@ -123,7 +123,7 @@
               </tr>
               <tr>
                 <td class="py-0 align-middle">{{ 'COMMON.PLACE_OF_BIRTH' | translate }}:</td>
-                <td class="text-right pr-0">
+                <td class="text-right py-0 pr-0">
                   <input ngx-google-places-autocomplete
                          class="form-control border-0 text-right"
                          [options]="{ types: ['(cities)'] }"
@@ -136,27 +136,14 @@
                 </td>
               </tr>
               <tr>
-                <td class="align-middle">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
-                <td class="text-right pr-0 w-50"
-                    formArrayName="dateOfBirth">
-                  <select formControlName="day"
-                          class="custom-select w-75"
-                          (change)="setBirthDate()">
-                    <option value="" disabled>{{ 'COMMON.DAY' | translate }}</option>
-                    <option *ngFor="let day of days" [value]="day">{{ day }}</option>
-                  </select>
-                  <select formControlName="month"
-                          class="custom-select w-75"
-                          (change)="setBirthDate()">
-                    <option value="" disabled>{{ 'COMMON.MONTH' | translate }}</option>
-                    <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-                  </select>
-                  <select formControlName="year"
-                          class="custom-select w-75"
-                          (change)="setBirthDate()">
-                    <option value="" disabled>{{ 'COMMON.YEAR' | translate }}</option>
-                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-                  </select>
+                <td class="align-middle py-0">{{ 'COMMON.BIRTHDATE' | translate }}:</td>
+                <td class="text-right py-0 pr-0 w-50">
+                  <input class="form-control border-0 text-right"
+                         placeholder="yyyy-mm-dd"
+                         ngbDatepicker
+                         #d="ngbDatepicker"
+                         (click)="d.toggle()"
+                         formControlName="dateOfBirth">
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('dateOfBirth').invalid && (tenantForm.get('dateOfBirth').dirty || tenantForm.get('dateOfBirth').touched)">
                     <span *ngIf="tenantForm.get('dateOfBirth').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
@@ -199,8 +186,8 @@
                 </td>
               </tr>
               <tr>
-                <td class="align-middle">{{ 'COMMON.CURRENT_CITY' | translate }}:</td>
-                <td class="pr-0 text-right">
+                <td class="align-middle py-0">{{ 'COMMON.CURRENT_CITY' | translate }}:</td>
+                <td class="py-0 pr-0 text-right">
                   <input ngx-google-places-autocomplete
                          class="form-control border-0 text-right"
                          [options]="{ types: ['(cities)'] }"
