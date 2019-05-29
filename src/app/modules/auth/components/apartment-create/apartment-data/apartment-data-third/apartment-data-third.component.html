@@ -147,14 +147,16 @@
         <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
         <td class="border-bottom text-right pr-0"
             formGroupName="dateOfMovingIn">
-          <div class="form-group form-check mb-0">
-            <input type="checkbox"
-                   class="form-check-input"
-                   id="right-now"
-                   formControlName="rightNow"
-                   (change)="changeRightNow()">
+          <div class="d-flex align-items-center justify-content-end">
             <label for="right-now"
-                   class="form-check-label">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
+                   class="font-size-base font-weight-normal mb-0 mr-3">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
+            <label class="switch">
+              <input type="checkbox"
+                     id="right-now"
+                     formControlName="rightNow"
+                     (change)="changeRightNow()">
+              <span class="slider round"></span>
+            </label>
           </div>
           <div *ngIf="!rightNow.value">
             <input class="form-control text-right mt-2"
