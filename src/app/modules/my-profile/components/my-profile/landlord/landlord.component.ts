@@ -16,10 +16,8 @@ import { ValidateFormFieldsService } from '../../../../../core/services/validate
 import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 
 import { Landlord, User } from '../../../../../shared/models';
-
-import { config } from '../../../../../../config';
-
 import { environment } from '../../../../../../environments/environment';
+import { Countries } from '../../../../../../config/countries';
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -49,7 +47,7 @@ export class LandlordComponent implements OnInit {
     'Spanish',
     'Other'
   ];
-  countries = config.countries;
+  countries = Countries;
 
   landlordForm: FormGroup;
 

@@ -17,10 +17,8 @@ import { CursorWaitService } from '../../../../../core/services/cursor-wait.serv
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
 import { Tenant, User } from '../../../../../shared/models';
-
-import { config } from '../../../../../../config';
-
 import { environment } from '../../../../../../environments/environment';
+import { Countries } from '../../../../../../config/countries';
 
 @Component({
   selector: 'app-my-profile-tenant',
@@ -32,7 +30,7 @@ export class TenantComponent implements OnInit {
   tenant: Tenant;
   photo: string;
   photoDeleted = true;
-  countries = config.countries;
+  countries = Countries;
   years: string[];
 
   spokenLanguages = [

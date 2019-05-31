@@ -11,13 +11,26 @@ import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  NgxUiLoaderConfig,
   NgxUiLoaderHttpModule,
-  NgxUiLoaderModule,
+  NgxUiLoaderModule, NgxUiLoaderRouterModule, PB_DIRECTION, POSITION, SPINNER,
 } from 'ngx-ui-loader';
+import { config } from '../config';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: config.siteColor,
+  bgsPosition: POSITION.centerCenter,
+  bgsSize: 40,
+  bgsType: SPINNER.rectangleBounce,
+  hasProgressBar: false,
+  logoPosition: POSITION.centerCenter,
+  logoSize: 120,
+  logoUrl: 'assets/images/logo-no-title.png',
+};
 
 @NgModule({
   declarations: [
@@ -38,8 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CoreModule,
     SharedModule,
     ToastrModule.forRoot(),
-    NgxUiLoaderModule,
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderHttpModule.forRoot({ exclude: config.excludeLoaderRoutes })
   ],
   providers: [],
   bootstrap: [AppComponent]
