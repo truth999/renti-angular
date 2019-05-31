@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   NgxUiLoaderConfig,
   NgxUiLoaderHttpModule,
-  NgxUiLoaderModule, NgxUiLoaderRouterModule, PB_DIRECTION, POSITION, SPINNER,
+  NgxUiLoaderModule, POSITION, SPINNER,
 } from 'ngx-ui-loader';
 import { config } from '../config';
 

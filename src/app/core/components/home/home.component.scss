@@ -64,6 +64,7 @@
       max-height: 163px;
       font-size: 3.5vw;
       margin-top: 0;
+      word-break: break-word;
 
       @include media-breakpoint-up(xl) {
         font-size: 35px;

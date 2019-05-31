@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('en');
 
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|hu/) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|hu|de/) ? browserLang : 'en');
   }
   ngOnInit(): void {
     this.authService.autoAuthUser();

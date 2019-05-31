@@ -4,15 +4,23 @@ import { environment } from '../environments/environment';
 export const config = {
   siteName: 'Renti',
   siteColor: '#0b75e3',
-  supportedLanguages: [{
-    name: 'English',
-    code: 'en',
-    flag: 'flag-icon-us'
-  }, {
-    name: 'Magyar',
-    code: 'hu',
-    flag: 'flag-icon-hu'
-  }],
+  supportedLanguages: [
+    {
+      name: 'English',
+      code: 'en',
+      flag: 'flag-icon-us'
+    },
+    {
+      name: 'Magyar',
+      code: 'hu',
+      flag: 'flag-icon-hu'
+    },
+    {
+      name: 'Deutsch',
+      code: 'de',
+      flag: 'flag-icon-de'
+    }
+  ],
   signupSteps: {
     landlord: [
       CONFIG_CONST.signupSteps.TYPE_USERNAME,
