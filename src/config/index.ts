@@ -279,16 +279,45 @@ export const config = {
       CONFIG_CONST.signupSteps.COMPLETE,
     ]
   },
+  spokenLanguages: [
+    'Hungarian',
+    'English',
+    'Arabic',
+    'Chinese',
+    'French',
+    'German',
+    'Hindi',
+    'Italian',
+    'Japanese',
+    'Romanian',
+    'Russian',
+    'Slovakian',
+    'Spanish',
+    'Other:'
+  ],
+  personAgency: ['Private person', 'Agency'],
+  highestLevelOfQualification: ['Elementary School', 'Secondary School', 'University'],
+  monthlyIncome: [
+    '<50,000',
+    '50,000 - 100,000',
+    '100,000 - 200,000',
+    '200,000 - 400,000',
+    '400,000 - 700,000',
+    '700,000 - 1,000,000',
+    '1,000,000+'
+  ],
   apartment: {
-    buildingTypes: ['brick', 'concrete', 'wooden'],
-    energyPerformanceCertificateTypes: ['G', 'H', 'A', 'B'],
-    stateOfApartmentValues: ['normal', 'new', 'refurbished'],
-    buildingSitingValues: ['east', 'east-south', 'south', 'south-west', 'west', 'west-north', 'north', 'north-east'],
-    heatingTypes: ['central', 'gas', 'electric'],
-    allMediaServiceProviders: ['UPC', 'Digi', 'Telekom']
+    typeOfBuilding: ['Brick', 'Panel', 'Loam', 'Other'],
+    stateOfApartment: ['New', 'Good', 'Normal', 'Renovation'],
+    energyPerformanceCertificate: ['AA++', 'AA+', 'AA', 'BB', 'CC', 'DD', 'EE', 'FF', 'GG', 'HH', 'II', 'JJ'],
+    buildingSiting: ['East', 'West', 'North', 'South'],
+    typeOfHeating: ['Gas-circo', 'Electric', 'Convector', 'Central', 'District heating', 'Mixed firing', 'Stove', 'Fireplace'],
+    headroom: ['<2M', '2.0 - 2.5M', '2.5 - 3.0M', '>3M'],
+    parking: ['At the street', 'In garage', 'At the yard', 'Not provided'],
+    availableMediaServiceProviders: ['UPC', 'DIGI', 'Telekom', 'Other']
   },
   room: {
-    windowTypes: ['plastic', 'normal', 'glass'],
-    coverageValues: ['carpet', 'rock']
+    coverage: ['Tiles', 'Laminated wooden', 'Carpet', 'Parquetry', 'Other'],
+    windowType: ['Plastic', 'Wooden', 'Other']
   }
 };

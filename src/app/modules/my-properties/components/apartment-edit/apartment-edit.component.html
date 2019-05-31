@@ -2,8 +2,7 @@
   <form *ngIf="apartmentForm"
         [formGroup]="apartmentForm"
         (ngSubmit)="submit()">
-    <div class="back mb-sm-4"
-         *ngIf="!isMobile.getValue()">
+    <div class="back mb-sm-4 d-sm-block d-none">
       <button type="button"
               class="btn btn-back"
               (click)="onBack()">
@@ -12,17 +11,25 @@
       </button>
     </div>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-lg-6">
         <div class="slider">
-          <i class="icon-left position-absolute h4 mb-0"
-             *ngIf="isMobile.getValue()"
+          <i class="icon-left position-absolute h4 mb-0 d-block d-sm-none"
              (click)="onBack()"></i>
           <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
         </div>
-        <div *ngIf="isMobile.getValue()">
-          <h3 class="mt-4">Luxury apartment in the heart of Budapest</h3>
+        <div class="d-block d-lg-none">
+          <div class="form-group">
+            <label for="name1"
+                   class="h5 font-weight-bolder">{{ 'APARTMENT.NAME' | translate }}:</label>
+            <input type="text"
+                   id="name1"
+                   class="form-control"
+                   formControlName="name">
+            <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('name').invalid && (apartmentForm.get('name').dirty || apartmentForm.get('name').touched)">
+              <span *ngIf="apartmentForm.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            </div>
+          </div>
           <div class="unit d-flex justify-content-between">
-            <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
             <span class="square font-weight-bold">
               <i class="icon-fullscreen"></i>
               {{ apartmentForm.get('size').value }}m<sup>2</sup>
@@ -32,10 +39,10 @@
               {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
             </span>
           </div>
-          <div class="form-group pt-4 position-relative address">
-            <label for="address" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
+          <div class="form-group pt-4 address">
+            <label for="address1" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
             <input ngx-google-places-autocomplete
-                   id="address"
+                   id="address1"
                    class="form-control"
                    (onAddressChange)="handleAddressChange($event)"
                    formControlName="address">
@@ -115,7 +122,7 @@
 <!--            </li>-->
 <!--          </ul>-->
         </div>
-        <div *ngIf="isMobile.getValue()">
+        <div class="d-block d-lg-none">
           <!--        <p class="mt-4">-->
           <!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
           <!--        </p>-->
@@ -512,11 +519,11 @@
               <td class="border-bottom align-middle py-0">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
               <td class="border-bottom text-right pr-0" formGroupName="dateOfMovingIn">
                 <div class="d-flex align-items-center justify-content-end">
-                  <label for="right-now"
+                  <label for="right-now1"
                          class="font-size-base font-weight-normal mb-0 mr-3">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
                   <label class="switch">
                     <input type="checkbox"
-                           id="right-now"
+                           id="right-now1"
                            formControlName="rightNow"
                            (change)="changeRightNow()">
                     <span class="slider round"></span>
@@ -572,11 +579,20 @@
         <!--        </tbody>-->
         <!--      </table>-->
       </div>
-      <div class="col-sm-6">
-        <div *ngIf="!isMobile.getValue()">
-          <h2>Luxury apartment in the heart of Budapest</h2>
+      <div class="col-lg-6">
+        <div class="d-lg-block d-none">
+          <div class="form-group">
+            <label for="name"
+                   class="h5 font-weight-bolder">{{ 'APARTMENT.NAME' | translate }}:</label>
+            <input type="text"
+                   id="name"
+                   class="form-control"
+                   formControlName="name">
+            <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('name').invalid && (apartmentForm.get('name').dirty || apartmentForm.get('name').touched)">
+              <span *ngIf="apartmentForm.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            </div>
+          </div>
           <div class="unit d-flex justify-content-between">
-            <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
             <span class="square font-weight-bold">
               <i class="icon-fullscreen"></i>
               {{ apartmentForm.get('size').value }}m<sup>2</sup>
@@ -951,12 +967,17 @@
               <td class="text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
-                       min="1"
+                       min="0"
                        max="2000"
-                       step="1"
+                       step="2"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
                        formControlName="rentalFee">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('rentalFee').invalid && (apartmentForm.get('rentalFee').dirty || apartmentForm.get('rentalFee').touched)">
                   <span *ngIf="apartmentForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.min || apartmentForm.get('rentalFee').errors.max">
+                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  </span>
                 </div>
               </td>
             </tr>
@@ -965,12 +986,17 @@
               <td class="text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
-                       min="1"
+                       min="0"
                        max="2000"
                        step="1"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
                        formControlName="overhead">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('overhead').invalid && (apartmentForm.get('overhead').dirty || apartmentForm.get('overhead').touched)">
                   <span *ngIf="apartmentForm.get('overhead').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('overhead').errors.min || apartmentForm.get('overhead').errors.max">
+                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  </span>
                 </div>
               </td>
             </tr>
@@ -979,12 +1005,17 @@
               <td class="text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
-                       min="1"
+                       min="0"
                        max="2000"
-                       step="1"
+                       step="2"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
                        formControlName="deposit">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('deposit').invalid && (apartmentForm.get('deposit').dirty || apartmentForm.get('deposit').touched)">
                   <span *ngIf="apartmentForm.get('deposit').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('deposit').errors.min || apartmentForm.get('deposit').errors.max">
+                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  </span>
                 </div>
               </td>
             </tr>

@@ -14,8 +14,5 @@ export const CONFIG_CONST = {
   accountType: {
     LANDLORD: 'landlord',
     TENANT: 'tenant'
-  },
-  qualificationLevels: [],
-  monthlyIncome: [],
-  availableLanguages: []
+  }
 };

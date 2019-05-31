@@ -3,8 +3,19 @@
   <table class="table mt-4">
     <tbody>
       <tr>
-        <td class="border-top-0 py-0 align-middle">{{ 'COMMON.ADDRESS' | translate }}</td>
+        <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.NAME' | translate }}</td>
         <td class="border-top-0 text-right py-0 pr-0">
+          <input type="text"
+                 class="form-control text-right border-0"
+                 formControlName="name">
+          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('name').invalid && (apartmentDataFirstForm.get('name').dirty || apartmentDataFirstForm.get('name').touched)">
+            <span *ngIf="apartmentDataFirstForm.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'COMMON.ADDRESS' | translate }}</td>
+        <td class="text-right py-0 pr-0">
           <input ngx-google-places-autocomplete
                  class="form-control text-right border-0"
                  (onAddressChange)="handleAddressChange($event)"

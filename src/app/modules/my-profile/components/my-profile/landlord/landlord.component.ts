@@ -147,7 +147,7 @@ export class LandlordComponent implements OnInit {
   }
 
   onMyProperties() {
-    this.router.navigate(['/app/rentals/my-properties']);
+    this.router.navigate(['/app/my-properties']);
   }
 
   onViewAs() {

@@ -95,11 +95,16 @@
           <input type="number"
                  class="form-control border-0 text-right"
                  min="0"
+                 max="2000"
+                 step="2"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="rentalFee">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('rentalFee').invalid && (apartmentDataThirdForm.get('rentalFee').dirty || apartmentDataThirdForm.get('rentalFee').touched)">
             <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.min || apartmentDataThirdForm.get('rentalFee').errors.max">
+              {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+            </span>
           </div>
         </td>
       </tr>
@@ -109,11 +114,16 @@
           <input type="number"
                  class="form-control border-0 text-right"
                  min="0"
+                 max="2000"
+                 step="1"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="overhead">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('overhead').invalid && (apartmentDataThirdForm.get('overhead').dirty || apartmentDataThirdForm.get('overhead').touched)">
             <span *ngIf="apartmentDataThirdForm.get('overhead').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            <span *ngIf="apartmentDataThirdForm.get('overhead').errors.min || apartmentDataThirdForm.get('overhead').errors.max">
+              {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+            </span>
           </div>
         </td>
       </tr>
@@ -123,11 +133,16 @@
           <input type="number"
                  class="form-control border-0 text-right"
                  min="0"
+                 max="2000"
+                 step="2"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="deposit">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('deposit').invalid && (apartmentDataThirdForm.get('deposit').dirty || apartmentDataThirdForm.get('deposit').touched)">
             <span *ngIf="apartmentDataThirdForm.get('deposit').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            <span *ngIf="apartmentDataThirdForm.get('deposit').errors.min || apartmentDataThirdForm.get('deposit').errors.max">
+              {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+            </span>
           </div>
         </td>
       </tr>

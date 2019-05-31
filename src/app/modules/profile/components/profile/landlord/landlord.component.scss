@@ -71,7 +71,7 @@
     }
 
     .nationality {
-      @include media-breakpoint-down(xs) {
+      @include media-breakpoint-down(md) {
         border-top: $border-width solid $border-color !important;
       }
     }

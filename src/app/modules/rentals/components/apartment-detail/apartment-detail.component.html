@@ -8,16 +8,16 @@
     </button>
   </div>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-lg-6">
       <div class="slider">
         <i class="icon-left position-absolute h4 mb-0 d-sm-none"
            (click)="onBack()"></i>
         <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
       </div>
-      <div class="d-sm-none">
-        <h3 class="mt-4">Luxury apartment in the heart of Budapest</h3>
+      <div class="d-lg-none">
+        <h3 class="mt-4">{{ apartment.name }}</h3>
         <div class="unit d-flex justify-content-between">
-          <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
+          <span class="mo"><span class="font-weight-bold">{{ apartment.rentalFee * 1000 }}</span>/mo</span>
           <span class="square font-weight-bold">
             <i class="icon-fullscreen"></i>
             {{ apartment.size }}m<sup>2</sup>
@@ -53,7 +53,7 @@
           </li>
         </ul>
       </div>
-      <div class="d-sm-none">
+      <div class="d-lg-none">
 <!--        <p class="mt-4">-->
 <!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
 <!--        </p>-->
@@ -164,10 +164,10 @@
             <td>{{ 'APARTMENT.GARAGE' | translate }}</td>
             <td class="text-right font-weight-bold">{{ apartment.garage }}</td>
           </tr>
-          <tr>
-            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.rentalFee }}</td>
-          </tr>
+<!--          <tr>-->
+<!--            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>-->
+<!--            <td class="text-right font-weight-bold">{{ apartment.rentalFee }}</td>-->
+<!--          </tr>-->
           <tr>
             <td>{{ 'COMMON.OVERHEAD' | translate }}</td>
             <td class="text-right font-weight-bold">{{ apartment.overhead }}</td>
@@ -223,11 +223,11 @@
 <!--        </tbody>-->
 <!--      </table>-->
     </div>
-    <div class="col-sm-6">
-      <div class="d-none d-sm-block">
-        <h2>Luxury apartment in the heart of Budapest</h2>
+    <div class="col-lg-6">
+      <div class="d-none d-lg-block">
+        <h2>{{ apartment.name }}</h2>
         <div class="unit d-flex justify-content-between">
-          <span class="mo"><span class="font-weight-bold">389000</span>/mo</span>
+          <span class="mo"><span class="font-weight-bold">{{ apartment.rentalFee * 1000 }}</span>/mo</span>
           <span class="square font-weight-bold">
           <i class="icon-fullscreen"></i>
           {{ apartment.size }}m<sup>2</sup>
@@ -360,10 +360,10 @@
             <td>{{ 'APARTMENT.GARAGE' | translate }}</td>
             <td class="text-right font-weight-bold">{{ apartment.garage }}</td>
           </tr>
-          <tr>
-            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.rentalFee }}</td>
-          </tr>
+<!--          <tr>-->
+<!--            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>-->
+<!--            <td class="text-right font-weight-bold">{{ apartment.rentalFee }}</td>-->
+<!--          </tr>-->
           <tr>
             <td>{{ 'COMMON.OVERHEAD' | translate }}</td>
             <td class="text-right font-weight-bold">{{ apartment.overhead }}</td>

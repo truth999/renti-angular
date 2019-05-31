@@ -141,7 +141,7 @@
 
     .nationality {
       td {
-        @include media-breakpoint-down(xs) {
+        @include media-breakpoint-down(md) {
           border-top: $table-border-width solid $table-border-color !important;
         }
       }

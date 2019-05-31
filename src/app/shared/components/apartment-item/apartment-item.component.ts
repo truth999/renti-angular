@@ -12,9 +12,7 @@ import { environment } from '../../../../environments/environment';
 export class ApartmentItemComponent implements OnInit, AfterViewInit {
   @Input() apartment: Apartment;
   @ViewChild('explainParagraph') explainParagraph: ElementRef;
-  name = 'Luxury apartment-create in the heart of Budapest';
   explain = 'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…';
-  mo = 389000;
   data = 98;
   topRated = true;
 

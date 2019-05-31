@@ -299,10 +299,10 @@
     "SOCIAL_MEDIA_AVAILABILITIES": "Social media availabilities",
     "WHY_CHOOSE_ME": "Why choose me",
     "OFFERS": "Offers",
-    "PRICE_INCREASES": "Price increases",
-    "GO_TO_FULL_PROFILE": "Go to full profile",
+    "PRICE_INCREASES": "Increasing based on price",
+    "GO_TO_FULL_PROFILE": "Continue to the full profile",
     "OFFER_CREATE_SUCCESS": "Your bid was successfully sent.",
-    "OFFER_SUCCESS": "Below you can see the contact details of your sublease:"
+    "OFFER_SUCCESS": "Below you can find your tenant availabilities:"
   },
   "SEARCH": {
     "SEARCH": "Search",
@@ -330,6 +330,8 @@
     "MIN_PASSWORD": "Password must be at least 5 characters long.",
     "FIELD_REQUIRED": "This field is required.",
     "LOGIN_FAILED": "Email or password is invalid.",
-    "FLOORS_COMPARE": "Floor of apartment must less than floors of building."
+    "FLOORS_COMPARE": "Floor of apartment must less than floors of building.",
+    "EMAIL_ALREADY_EXIST": "Email address already exists.",
+    "BETWEEN_MIN_MAX": "This fleld must be between 1 and 2,000"
   }
 }

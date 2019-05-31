@@ -29,7 +29,7 @@
       background-color: $white;
       z-index: 4000;
 
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-up(lg) {
         left: 0;
       }
 
@@ -83,7 +83,7 @@
     .page-content {
       transition: all 0.3s ease;
 
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-up(lg) {
         margin-left: 180px;
       }
 
@@ -96,7 +96,7 @@
       }
 
       .content {
-        @include media-breakpoint-down(xs) {
+        @include media-breakpoint-down(md) {
           margin-top: 73px;
         }
       }

@@ -4,6 +4,7 @@ import { User } from './user.model';
 export class Apartment {
   _id: string;
   user: User;
+  name: string;
   address: string;
   typeOfBuilding: string;
   yearOfConstruction: number;

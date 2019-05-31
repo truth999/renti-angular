@@ -24,7 +24,6 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
   signupFailed = false;
-  message = '';
 
   constructor(
     private authService: AuthService,
@@ -59,7 +58,6 @@ export class SignupComponent implements OnInit {
         await this.authService.createUser(signupData);
       } catch (e) {
         this.signupFailed = true;
-        this.message = e.data[0].msg;
       }
     } else {
       this.validateFormFieldsService.validate(this.signupForm);

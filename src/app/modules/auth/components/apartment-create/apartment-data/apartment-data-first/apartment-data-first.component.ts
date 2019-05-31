@@ -34,6 +34,7 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
     });
 
     this.apartmentDataFirstForm = new FormGroup({
+      name: new FormControl(!!this.apartmentData ? this.apartmentData.name : '', Validators.required),
       address: new FormControl(!!this.apartmentData ? this.apartmentData.address : '', Validators.required),
       typeOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.typeOfBuilding : '', Validators.required),
       yearOfConstruction: new FormControl(!!this.apartmentData ? this.apartmentData.yearOfConstruction : '', Validators.required),

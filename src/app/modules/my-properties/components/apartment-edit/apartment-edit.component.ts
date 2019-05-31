@@ -132,6 +132,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     });
 
     this.apartmentForm = new FormGroup({
+      name: new FormControl(!!this.apartment ? this.apartment.name : '', Validators.required),
       address: new FormControl(!!this.apartment ? this.apartment.address : '', Validators.required),
       typeOfBuilding: new FormControl(!!this.apartment ? this.apartment.typeOfBuilding : '', Validators.required),
       yearOfConstruction: new FormControl(!!this.apartment ? this.apartment.yearOfConstruction : '', Validators.required),
@@ -169,9 +170,18 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       sizeOfGarden: new FormControl(!!this.apartment.sizeOfGarden ? this.apartment.sizeOfGarden : ''),
       terrace: new FormControl(!!this.apartment.terrace ? this.apartment.terrace : false, Validators.required),
       sizeOfTerrace: new FormControl(!!this.apartment.sizeOfTerrace ? this.apartment.sizeOfTerrace : ''),
-      rentalFee: new FormControl(!!this.apartment.rentalFee ? this.apartment.rentalFee : '', Validators.required),
-      overhead: new FormControl(!!this.apartment.overhead ? this.apartment.overhead : '', Validators.required),
-      deposit: new FormControl(!!this.apartment.deposit ? this.apartment.deposit : '', Validators.required),
+      rentalFee: new FormControl(
+        !!this.apartment.rentalFee ? this.apartment.rentalFee : '',
+        [Validators.required, Validators.min(1), Validators.max(2000)]
+      ),
+      overhead: new FormControl(
+        !!this.apartment.overhead ? this.apartment.overhead : '',
+        [Validators.required, Validators.min(1), Validators.max(2000)]
+      ),
+      deposit: new FormControl(
+        !!this.apartment.deposit ? this.apartment.deposit : '',
+        [Validators.required, Validators.min(1), Validators.max(2000)]
+      ),
       minimumRentingTime: new FormControl(
         !!this.apartment.minimumRentingTime ? this.apartment.minimumRentingTime : '', Validators.required
       ),
