@@ -1,4 +1,14 @@
 <div class="success">
+  <div class="back mb-4 mt-3 mt-sm-0">
+    <button type="button"
+            class="btn btn-back d-sm-block d-none"
+            (click)="onBack()">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+    <i class="icon-left-circle d-sm-none"
+       (click)="onBack()"></i>
+  </div>
   <div class="logo d-sm-block d-none text-center">
     <a routerLink="/">
       <img src="/assets/images/logo.png" alt="" width="75">

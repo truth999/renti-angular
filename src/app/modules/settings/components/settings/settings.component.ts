@@ -41,6 +41,10 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  updatedUser() {
+    this.getUser();
+  }
+
   onBack() {
     this.location.back();
   }

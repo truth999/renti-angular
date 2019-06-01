@@ -133,6 +133,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
     this.apartmentForm = new FormGroup({
       name: new FormControl(!!this.apartment ? this.apartment.name : '', Validators.required),
+      description: new FormControl(!!this.apartment ? this.apartment.description : '', Validators.required),
       address: new FormControl(!!this.apartment ? this.apartment.address : '', Validators.required),
       typeOfBuilding: new FormControl(!!this.apartment ? this.apartment.typeOfBuilding : '', Validators.required),
       yearOfConstruction: new FormControl(!!this.apartment ? this.apartment.yearOfConstruction : '', Validators.required),

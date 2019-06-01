@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 import { SettingsService } from '../../../services/settings.service';
-import { StorageService } from '../../../../../core/services/storage.service';
+import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
 @Component({
   selector: 'app-email-setting',
@@ -9,26 +11,37 @@ import { StorageService } from '../../../../../core/services/storage.service';
   styleUrls: ['./email-setting.component.scss']
 })
 export class EmailSettingComponent implements OnInit {
+  @Input() userId: string;
+  @Output() emailUpdated = new EventEmitter<void>();
   emailForm: FormGroup;
 
   constructor(
     private settingsService: SettingsService,
-    private storageService: StorageService
+    private toastrService: ToastrService,
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
     this.emailForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      email: new FormControl('', [Validators.required, Validators.email]),
+      // password: new FormControl('', Validators.required)
     });
   }
 
   async submit() {
-    const user = { ...this.emailForm.value };
-    const userId = this.storageService.get('userId');
-    try {
-      await this.settingsService.updateUser(userId, user);
-    } finally {
+    if (this.emailForm.valid) {
+      const user = { ...this.emailForm.value };
+
+      try {
+        await this.settingsService.updateUser(this.userId, user);
+        this.emailUpdated.emit();
+        this.toastrService.success('The email is updated successfully.', 'Success!');
+      } catch (e) {
+        console.log('EmailSettingComponent->submit', e);
+        this.toastrService.error('Something went wrong', 'Error');
+      }
+    } else {
+      this.validateFormFieldsService.validate(this.emailForm);
     }
   }
 

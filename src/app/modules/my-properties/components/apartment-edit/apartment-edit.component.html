@@ -29,6 +29,17 @@
               <span *ngIf="apartmentForm.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             </div>
           </div>
+          <div class="form-group">
+            <label for="description1"
+                   class="h5 font-weight-bolder">{{ 'APARTMENT.DESCRIPTION' | translate }}:</label>
+            <textarea id="description1"
+                      class="form-control"
+                      rows="5"
+                      formControlName="description"></textarea>
+            <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('description').invalid && (apartmentForm.get('description').dirty || apartmentForm.get('description').touched)">
+              <span *ngIf="apartmentForm.get('description').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            </div>
+          </div>
           <div class="unit d-flex justify-content-between">
             <span class="square font-weight-bold">
               <i class="icon-fullscreen"></i>
@@ -202,6 +213,7 @@
                        formControlName="floorsOfBuilding">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfBuilding').invalid && (apartmentForm.get('floorsOfBuilding').dirty || apartmentForm.get('floorsOfBuilding').touched)">
                   <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
                 </div>
               </td>
             </tr>
@@ -217,6 +229,7 @@
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfApartment').invalid && (apartmentForm.get('floorsOfApartment').dirty || apartmentForm.get('floorsOfApartment').touched)">
                   <span *ngIf="apartmentForm.get('floorsOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   <span *ngIf="apartmentForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
                 </div>
               </td>
             </tr>
@@ -592,6 +605,17 @@
               <span *ngIf="apartmentForm.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             </div>
           </div>
+          <div class="form-group">
+            <label for="description"
+                   class="h5 font-weight-bolder">{{ 'APARTMENT.DESCRIPTION' | translate }}:</label>
+            <textarea id="description"
+                      class="form-control"
+                      rows="5"
+                      formControlName="description"></textarea>
+            <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('description').invalid && (apartmentForm.get('description').dirty || apartmentForm.get('description').touched)">
+              <span *ngIf="apartmentForm.get('description').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            </div>
+          </div>
           <div class="unit d-flex justify-content-between">
             <span class="square font-weight-bold">
               <i class="icon-fullscreen"></i>
@@ -704,6 +728,7 @@
                        formControlName="floorsOfBuilding">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfBuilding').invalid && (apartmentForm.get('floorsOfBuilding').dirty || apartmentForm.get('floorsOfBuilding').touched)">
                   <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
                 </div>
               </td>
             </tr>
@@ -719,6 +744,7 @@
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfApartment').invalid && (apartmentForm.get('floorsOfApartment').dirty || apartmentForm.get('floorsOfApartment').touched)">
                   <span *ngIf="apartmentForm.get('floorsOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   <span *ngIf="apartmentForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
                 </div>
               </td>
             </tr>
@@ -865,83 +891,81 @@
                 </label>
               </td>
             </tr>
-            <ng-container *ngIf="apartmentForm.get('externalIsolation').value">
-              <tr>
-                <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
-                <td class="text-right pr-0">
-                  <label class="switch">
-                    <input type="checkbox"
-                           formControlName="balcony"
-                           (change)="changeBalcony()">
-                    <span class="slider round"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr *ngIf="balcony.value">
-                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
-                <td class="text-right py-0 pr-0">
-                  <input type="number"
-                         class="form-control border-0 text-right"
-                         min="0"
-                         inputmode="numeric"
-                         pattern="[0-9]*"
-                         formControlName="sizeOfBalcony">
-                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfBalcony').invalid && (apartmentForm.get('sizeOfBalcony').dirty || apartmentForm.get('sizeOfBalcony').touched)">
-                    <span *ngIf="apartmentForm.get('sizeOfBalcony').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
-                <td class="text-right pr-0">
-                  <label class="switch">
-                    <input type="checkbox"
-                           formControlName="garden"
-                           (change)="changeGarden()">
-                    <span class="slider round"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr *ngIf="garden.value">
-                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
-                <td class="text-right py-0 pr-0">
-                  <input type="number"
-                         class="form-control border-0 text-right"
-                         min="0"
-                         inputmode="numeric"
-                         pattern="[0-9]*"
-                         formControlName="sizeOfGarden">
-                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfGarden').invalid && (apartmentForm.get('sizeOfGarden').dirty || apartmentForm.get('sizeOfGarden').touched)">
-                    <span *ngIf="apartmentForm.get('sizeOfGarden').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
-                <td class="text-right pr-0">
-                  <label class="switch">
-                    <input type="checkbox"
-                           formControlName="terrace"
-                           (change)="changeTerrace()">
-                    <span class="slider round"></span>
-                  </label>
-                </td>
-              </tr>
-              <tr *ngIf="terrace.value">
-                <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
-                <td class="text-right py-0 pr-0">
-                  <input type="number"
-                         class="form-control border-0 text-right"
-                         min="0"
-                         inputmode="numeric"
-                         pattern="[0-9]*"
-                         formControlName="sizeOfTerrace">
-                  <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfTerrace').invalid && (apartmentForm.get('sizeOfTerrace').dirty || apartmentForm.get('sizeOfTerrace').touched)">
-                    <span *ngIf="apartmentForm.get('sizeOfTerrace').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-                  </div>
-                </td>
-              </tr>
-            </ng-container>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="balcony"
+                         (change)="changeBalcony()">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr *ngIf="balcony.value">
+              <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="0"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="sizeOfBalcony">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfBalcony').invalid && (apartmentForm.get('sizeOfBalcony').dirty || apartmentForm.get('sizeOfBalcony').touched)">
+                  <span *ngIf="apartmentForm.get('sizeOfBalcony').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="garden"
+                         (change)="changeGarden()">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr *ngIf="garden.value">
+              <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="0"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="sizeOfGarden">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfGarden').invalid && (apartmentForm.get('sizeOfGarden').dirty || apartmentForm.get('sizeOfGarden').touched)">
+                  <span *ngIf="apartmentForm.get('sizeOfGarden').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
+              <td class="text-right pr-0">
+                <label class="switch">
+                  <input type="checkbox"
+                         formControlName="terrace"
+                         (change)="changeTerrace()">
+                  <span class="slider round"></span>
+                </label>
+              </td>
+            </tr>
+            <tr *ngIf="terrace.value">
+              <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
+              <td class="text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="0"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="sizeOfTerrace">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('sizeOfTerrace').invalid && (apartmentForm.get('sizeOfTerrace').dirty || apartmentForm.get('sizeOfTerrace').touched)">
+                  <span *ngIf="apartmentForm.get('sizeOfTerrace').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                </div>
+              </td>
+            </tr>
             <tr>
               <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
               <td class="text-right pr-0">

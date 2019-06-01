@@ -11,6 +11,11 @@
     color: $blue;
     box-shadow: $box-shadow-sm;
     border-radius: $border-radius-lg;
+    max-width: 130px;
+
+    @include media-breakpoint-up(lg) {
+      margin-right: 150px;
+    }
 
     .icon-ellipsis {
       font-size: 1.25rem;

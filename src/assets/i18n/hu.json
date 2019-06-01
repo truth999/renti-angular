@@ -292,7 +292,8 @@
     "FURNITURE_NAME": "Bútor neve",
     "FURNITURE_TYPE": "Bútor típusa",
     "SIZE": "Méret",
-    "SELECT_WINDOW_TYPE": "Válassza ki az ablak szigetelését"
+    "SELECT_WINDOW_TYPE": "Válassza ki az ablak szigetelését",
+    "DESCRIPTION": "Description"
   },
   "OFFER": {
     "MOVING_IN_WITH": "Kivel költözne",
@@ -332,6 +333,7 @@
     "LOGIN_FAILED": "E-mail cím vagy jelszó nem megfelelő.",
     "FLOORS_COMPARE": "Az albérlet szintje nem lehet nagyobb az épület szintjeinél.",
     "EMAIL_ALREADY_EXIST": "Létező e-mail cím",
-    "BETWEEN_MIN_MAX": "This fleld must be between 1 and 2,000"
+    "BETWEEN_MIN_MAX": "This field must be between 1 and 2,000.",
+    "MIN_FIELD": "This field must not be less than 1."
   }
 }

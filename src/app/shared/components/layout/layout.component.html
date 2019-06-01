@@ -95,9 +95,11 @@
           <a routerLink="/">
             <img src="/assets/images/logo-no-title.png" width="40" alt="">
           </a>
+          <app-language-selector></app-language-selector>
         </div>
       </div>
-      <div class="container content">
+      <div class="container content position-relative">
+        <app-language-selector class="d-lg-block d-none"></app-language-selector>
         <router-outlet></router-outlet>
       </div>
     </main>

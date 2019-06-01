@@ -4,8 +4,18 @@
   .text {
     margin-bottom: 5rem;
   }
+
   .icon-check-circle {
     font-size: 3.25rem;
     color: $green;
+  }
+
+  .icon-left-circle {
+    font-size: 28px;
+    color: $blue;
+  }
+
+  .btn-primary {
+    width: 320px;
   }
 }

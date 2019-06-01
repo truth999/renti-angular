@@ -23,7 +23,8 @@
       </div>
       <div class="section-content mt-3"
            [ngbCollapse]="!firstNameCollapsed">
-        <app-first-name-setting></app-first-name-setting>
+        <app-first-name-setting [userId]="user._id"
+                                (firstNameUpdated)="updatedUser()"></app-first-name-setting>
       </div>
     </div>
     <div class="settings-section border-bottom py-3">
@@ -38,7 +39,8 @@
       </div>
       <div class="section-content mt-3"
            [ngbCollapse]="!lastNameCollapsed">
-        <app-last-name-setting></app-last-name-setting>
+        <app-last-name-setting [userId]="user._id"
+                               (lastNameUpdated)="updatedUser()"></app-last-name-setting>
       </div>
     </div>
     <div class="settings-section border-bottom py-3">
@@ -53,7 +55,8 @@
       </div>
       <div class="section-content mt-3"
            [ngbCollapse]="!emailCollapsed">
-        <app-email-setting></app-email-setting>
+        <app-email-setting [userId]="user._id"
+                           (emailUpdated)="updatedUser()"></app-email-setting>
       </div>
     </div>
     <div class="settings-section border-bottom py-3">
@@ -68,7 +71,8 @@
       </div>
       <div class="section-content mt-3"
            [ngbCollapse]="!passwordCollapsed">
-        <app-password-setting></app-password-setting>
+        <app-password-setting [userId]="user._id"
+                              (passwordUpdated)="updatedUser()"></app-password-setting>
       </div>
     </div>
   </div>

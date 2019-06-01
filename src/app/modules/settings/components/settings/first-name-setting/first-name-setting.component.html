@@ -10,6 +10,10 @@
                id="firstName"
                class="form-control"
                formControlName="firstName">
+        <div class="invalid-feedback d-block" *ngIf="firstNameForm.get('firstName').invalid && (firstNameForm.get('firstName').dirty || firstNameForm.get('firstName').touched)">
+          <span *ngIf="firstNameForm.get('firstName').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          <span *ngIf="firstNameForm.get('firstName').errors.maxlength">{{ 'ERROR.MAX_FIRSTNAME' | translate }}</span>
+        </div>
       </div>
     </div>
     <div class="col-3 position-relative">

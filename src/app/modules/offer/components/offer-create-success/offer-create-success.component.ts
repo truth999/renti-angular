@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-offer-create-success',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OfferCreateSuccessComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private location: Location
+  ) { }
 
   ngOnInit() {
+  }
+
+  onBack() {
+    this.location.back();
   }
 
 }

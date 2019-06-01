@@ -14,6 +14,18 @@
         </td>
       </tr>
       <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.DESCRIPTION' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <textarea id="description"
+                    class="form-control"
+                    rows="5"
+                    formControlName="description"></textarea>
+          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('description').invalid && (apartmentDataFirstForm.get('description').dirty || apartmentDataFirstForm.get('description').touched)">
+            <span *ngIf="apartmentDataFirstForm.get('description').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
         <td class="py-0 align-middle">{{ 'COMMON.ADDRESS' | translate }}</td>
         <td class="text-right py-0 pr-0">
           <input ngx-google-places-autocomplete
@@ -98,6 +110,7 @@
                  formControlName="floorsOfBuilding">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').invalid && (apartmentDataFirstForm.get('floorsOfBuilding').dirty || apartmentDataFirstForm.get('floorsOfBuilding').touched)">
             <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>
@@ -113,6 +126,7 @@
           <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('floorsOfApartment').invalid && (apartmentDataFirstForm.get('floorsOfApartment').dirty || apartmentDataFirstForm.get('floorsOfApartment').touched)">
             <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>

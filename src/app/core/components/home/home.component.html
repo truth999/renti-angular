@@ -1,7 +1,7 @@
 <div class="landing position-relative">
-  <app-language-selector></app-language-selector>
   <section class="banner text-center pt-4">
-    <div class="logo">
+    <div class="logo position-relative">
+      <app-language-selector></app-language-selector>
       <a routerLink="/">
         <img src="assets/images/logo.png" alt="Renti" class="logo-image">
       </a>
@@ -15,7 +15,7 @@
     <div class="buttons-wrapper d-flex position-absolute align-items-center justify-content-around w-100">
       <button class="btn btn-primary btn-lg item-button">{{ 'HOME.SELECT1' | translate }}</button>
       <button class="btn btn-primary btn-lg item-button">{{ 'HOME.SELECT2' | translate }}</button>
-      <button class="btn vs position-absolute bg-white font-weight-bold">{{ 'COMMON.OR' | translate }}</button>
+      <span class="btn vs position-absolute bg-white font-weight-bold">{{ 'COMMON.OR' | translate }}</span>
     </div>
     <div class="item item-left d-flex flex-grow-1 justify-content-center"></div>
     <div class="item item-right d-flex flex-grow-1 justify-content-center"></div>

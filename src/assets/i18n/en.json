@@ -292,7 +292,8 @@
     "FURNITURE_NAME": "Furniture name",
     "FURNITURE_TYPE": "Furniture type",
     "SIZE": "Size",
-    "SELECT_WINDOW_TYPE": "Select window type"
+    "SELECT_WINDOW_TYPE": "Select window type",
+    "DESCRIPTION": "Description"
   },
   "OFFER": {
     "MOVING_IN_WITH": "Moving in with",
@@ -323,8 +324,8 @@
     "CONFIRM_PASSWORD_REQUIRED": "Confirm password is required.",
     "FISRTNAME_REQUIRED": "First name is required.",
     "LASTNAME_REQUIRED": "Last name is required.",
-    "MAX_FIRSTNAME": "First name must be less then 50 characters.",
-    "MAX_LASTNAME": "Last name must be less then 50 characters.",
+    "MAX_FIRSTNAME": "First name must be less than 50 characters.",
+    "MAX_LASTNAME": "Last name must be less than 50 characters.",
     "PASSWORD_NOT_MATCH": "Passwords do not match.",
     "INVALID_EMAIL": "Invalid email address.",
     "MIN_PASSWORD": "Password must be at least 5 characters long.",
@@ -332,6 +333,7 @@
     "LOGIN_FAILED": "Email or password is invalid.",
     "FLOORS_COMPARE": "Floor of apartment must less than floors of building.",
     "EMAIL_ALREADY_EXIST": "Email address already exists.",
-    "BETWEEN_MIN_MAX": "This fleld must be between 1 and 2,000"
+    "BETWEEN_MIN_MAX": "This field must be between 1 and 2,000.",
+    "MIN_FIELD": "This field must not be less than 1."
   }
 }

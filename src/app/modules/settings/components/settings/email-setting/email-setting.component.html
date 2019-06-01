@@ -10,14 +10,22 @@
                id="email"
                class="form-control"
                formControlName="email">
+        <div class="invalid-feedback d-block"
+             *ngIf="emailForm.get('email').invalid && (emailForm.get('email').dirty || emailForm.get('email').touched)">
+          <span *ngIf="emailForm.get('email').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+          <span *ngIf="emailForm.get('email').errors.email">{{ 'ERROR.INVALID_EMAIL' | translate }}</span>
+        </div>
       </div>
       <div class="form-group">
         <label for="password"
                class="font-weight-normal font-size-base">{{ 'COMMON.CURRENT_PASSWORD' | translate }}</label>
         <input type="password"
                id="password"
-               class="form-control"
-               formControlName="password">
+               class="form-control">
+<!--        <div class="invalid-feedback d-block"-->
+<!--             *ngIf="emailForm.get('password').invalid && (emailForm.get('password').dirty || emailForm.get('password').touched)">-->
+<!--          <span *ngIf="emailForm.get('password').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>-->
+<!--        </div>-->
       </div>
     </div>
     <div class="col-3 position-relative">

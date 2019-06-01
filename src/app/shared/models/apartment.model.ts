@@ -5,6 +5,7 @@ export class Apartment {
   _id: string;
   user: User;
   name: string;
+  description: string;
   address: string;
   typeOfBuilding: string;
   yearOfConstruction: number;
