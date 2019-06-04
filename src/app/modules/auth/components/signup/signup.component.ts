@@ -6,6 +6,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 import { CONFIG_CONST } from '../../../../../config/config-const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -26,6 +27,7 @@ export class SignupComponent implements OnInit {
   signupFailed = false;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private validateFormFieldsService: ValidateFormFieldsService
   ) { }
@@ -56,6 +58,7 @@ export class SignupComponent implements OnInit {
         const signupData = { ...this.signupForm.value };
         delete signupData.confirmPassword;
         await this.authService.createUser(signupData);
+        this.router.navigate(['/auth/complete']);
       } catch (e) {
         this.signupFailed = true;
       }

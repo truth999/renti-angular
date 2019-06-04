@@ -21,11 +21,16 @@
                class="font-weight-normal font-size-base">{{ 'COMMON.CURRENT_PASSWORD' | translate }}</label>
         <input type="password"
                id="password"
-               class="form-control">
-<!--        <div class="invalid-feedback d-block"-->
-<!--             *ngIf="emailForm.get('password').invalid && (emailForm.get('password').dirty || emailForm.get('password').touched)">-->
-<!--          <span *ngIf="emailForm.get('password').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>-->
-<!--        </div>-->
+               class="form-control"
+               formControlName="currentPassword">
+        <div class="invalid-feedback d-block"
+             *ngIf="emailForm.get('currentPassword').invalid && (emailForm.get('currentPassword').dirty || emailForm.get('currentPassword').touched)">
+          <span *ngIf="emailForm.get('currentPassword').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+        </div>
+        <div class="invalid-feedback d-block"
+             *ngIf="passwordInvalid">
+          <span>{{ 'ERROR.' + message | translate }}</span>
+        </div>
       </div>
     </div>
     <div class="col-3 position-relative">

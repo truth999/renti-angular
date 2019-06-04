@@ -1,4 +1,5 @@
-<div class="layout">
+<div *ngIf="accountType"
+     class="layout">
 <!--  <div class="email-check-bar py-2">-->
 <!--    <div class="container">-->
 <!--      <div class="d-flex align-items-center">-->
@@ -62,7 +63,8 @@
             {{ 'COMMON.SETTINGS' | translate }}
           </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="accountType === AccountTypes.LANDLORD"
+            class="nav-item">
           <a routerLink="/app/my-properties"
              class="nav-link"
              appMenuClose>

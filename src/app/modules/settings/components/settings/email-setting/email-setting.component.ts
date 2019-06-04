@@ -14,6 +14,8 @@ export class EmailSettingComponent implements OnInit {
   @Input() userId: string;
   @Output() emailUpdated = new EventEmitter<void>();
   emailForm: FormGroup;
+  passwordInvalid = false;
+  message = '';
 
   constructor(
     private settingsService: SettingsService,
@@ -24,7 +26,7 @@ export class EmailSettingComponent implements OnInit {
   ngOnInit() {
     this.emailForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      // password: new FormControl('', Validators.required)
+      currentPassword: new FormControl('', Validators.required)
     });
   }
 
@@ -34,11 +36,18 @@ export class EmailSettingComponent implements OnInit {
 
       try {
         await this.settingsService.updateUser(this.userId, user);
+        this.passwordInvalid = false;
+        this.message = '';
         this.emailUpdated.emit();
         this.toastrService.success('The email is updated successfully.', 'Success!');
       } catch (e) {
         console.log('EmailSettingComponent->submit', e);
-        this.toastrService.error('Something went wrong', 'Error');
+        if (e.message === 'PASSWORD_INCORRECT') {
+          this.passwordInvalid = true;
+          this.message = e.message;
+        } else {
+          this.toastrService.error('Something went wrong', 'Error');
+        }
       }
     } else {
       this.validateFormFieldsService.validate(this.emailForm);

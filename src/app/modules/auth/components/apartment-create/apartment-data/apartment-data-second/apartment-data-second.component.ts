@@ -28,14 +28,14 @@ export class ApartmentDataSecondComponent implements OnInit, DoCheck {
     this.apartmentData = this.apartmentCreateService.apartment;
 
     this.apartmentDataSecondForm = new FormGroup({
-      buildingSiting: new FormControl(this.apartmentData.buildingSiting, Validators.required),
-      typeOfHeating: new FormControl(this.apartmentData.typeOfHeating, Validators.required),
-      headroom: new FormControl(this.apartmentData.headroom, Validators.required),
-      parking: new FormControl(this.apartmentData.parking, Validators.required),
+      buildingSiting: new FormControl(!!this.apartmentData.buildingSiting ? this.apartmentData.buildingSiting : '', Validators.required),
+      typeOfHeating: new FormControl(!!this.apartmentData.typeOfHeating ? this.apartmentData.typeOfHeating : '', Validators.required),
+      headroom: new FormControl(!!this.apartmentData.headroom ? this.apartmentData.headroom : '', Validators.required),
+      parking: new FormControl(!!this.apartmentData.parking ? this.apartmentData.parking : '', Validators.required),
       childFriendly: new FormControl(!!this.apartmentData.childFriendly ? this.apartmentData.childFriendly : false, Validators.required),
       petFriendly: new FormControl(!!this.apartmentData.petFriendly ? this.apartmentData.petFriendly : false, Validators.required),
       mediaServiceProviders: new FormControl(
-        this.apartmentData.mediaServiceProviders,
+        !!this.apartmentData.mediaServiceProviders ? this.apartmentData.mediaServiceProviders : '',
         Validators.required
       ),
       handicapAccessible: new FormControl(

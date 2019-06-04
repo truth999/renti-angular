@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
-import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 
-import { AuthRequest, SignupRequest } from '../../modules/auth/models/auth.model';
+import { ApiService } from './api.service';
+import { StorageService } from './storage.service';
 
-import { CONFIG_CONST } from '../../../config/config-const';
+import { AuthRequest, SignupRequest } from '../../modules/auth/models/auth.model';
 
 @Injectable()
 export class AuthService {
   private isAuthenticated = false;
   private token: string;
   private userId: string;
-  private CONST_ACCOUNT_TYPE = CONFIG_CONST.accountType;
 
   constructor(
       private apiService: ApiService,
@@ -40,22 +38,6 @@ export class AuthService {
   getUser(id: string): Promise<any> {
     return this.apiService.get(`users/${id}`);
   }
-
-  // async getCurrentUser(): Promise<any> {
-  //   try {
-  //     const userResponse = await this.getUser();
-  //
-  //     if (userResponse.user.accountType === this.CONST_ACCOUNT_TYPE.LANDLORD) {
-  //       return this.apiService.get(`landlords/${userResponse.user.landlordId}`);
-  //     }
-  //
-  //     if (userResponse.user.accountType === this.CONST_ACCOUNT_TYPE.TENANT) {
-  //       return this.apiService.get(`tenants/${userResponse.user.tenantId}`);
-  //     }
-  //   } catch (e) {
-  //     console.log('AuthService->getCurrentUser', e);
-  //   }
-  // }
 
   createUser(signupRequest: SignupRequest) {
     return this.apiService.post('auth/signup', signupRequest)
@@ -108,7 +90,6 @@ export class AuthService {
           now.getTime() + response.expiresIn * 1000
       );
       this.saveAuthData(token, expirationDate, this.userId);
-      this.router.navigate(['/auth/complete']);
     }
   }
 

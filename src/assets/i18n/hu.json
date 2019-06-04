@@ -334,6 +334,7 @@
     "FLOORS_COMPARE": "Az albérlet szintje nem lehet nagyobb az épület szintjeinél.",
     "EMAIL_ALREADY_EXIST": "Létező e-mail cím",
     "BETWEEN_MIN_MAX": "This field must be between 1 and 2,000.",
-    "MIN_FIELD": "This field must not be less than 1."
+    "MIN_FIELD": "This field must not be less than 1.",
+    "PASSWORD_INCORRECT": "Password is incorrect."
   }
 }

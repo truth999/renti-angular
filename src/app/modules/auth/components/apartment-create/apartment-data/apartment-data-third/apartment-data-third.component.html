@@ -149,6 +149,7 @@
         <td class="text-right py-0 pr-0">
           <select class="custom-select border-0"
                   formControlName="minimumRentingTime">
+            <option value="">-</option>
             <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
           </select>
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('minimumRentingTime').invalid && (apartmentDataThirdForm.get('minimumRentingTime').dirty || apartmentDataThirdForm.get('minimumRentingTime').touched)">

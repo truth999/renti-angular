@@ -332,6 +332,10 @@
               <table class="table table-borderless"
                      formArrayName="education">
                 <tbody>
+                <tr>
+                  <td class="pl-0 pt-0 w-50">{{ 'COMMON.NAME_OF_SCHOOL' | translate }}</td>
+                  <td class="pr-0 pt-0 w-50">{{ 'COMMON.YEAR_OF_GRADUATION' | translate }}</td>
+                </tr>
                 <tr *ngFor="let educationEl of education.controls; let i = index"
                     [formGroupName]="i">
                   <td class="pl-0 pt-0">
@@ -340,10 +344,9 @@
                            placeholder="{{ 'COMMON.NAME_OF_SCHOOL' | translate }}"
                            formControlName="nameOfSchool">
                   </td>
-                  <td class="text-right pt-0 pr-0">
-                    <select class="custom-select w-auto"
+                  <td class="pt-0 pr-0">
+                    <select class="custom-select"
                             formControlName="yearOfGraduation">
-                      <option value="">{{ 'COMMON.YEAR' | translate }}</option>
                       <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                     </select>
                   </td>

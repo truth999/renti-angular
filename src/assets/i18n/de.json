@@ -334,6 +334,7 @@
     "FLOORS_COMPARE": "Stockwerk der Untermiete kann nicht größer sein als das des Baus",
     "EMAIL_ALREADY_EXIST": "Email address already exists.",
     "BETWEEN_MIN_MAX": "This field must be between 1 and 2,000.",
-    "MIN_FIELD": "This field must not be less than 1."
+    "MIN_FIELD": "This field must not be less than 1.",
+    "PASSWORD_INCORRECT": "Password is incorrect."
   }
 }
