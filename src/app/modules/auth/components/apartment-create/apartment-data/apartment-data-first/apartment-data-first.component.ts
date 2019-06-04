@@ -34,22 +34,18 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
     });
 
     this.apartmentDataFirstForm = new FormGroup({
-      name: new FormControl(!!this.apartmentData ? this.apartmentData.name : '', Validators.required),
-      description: new FormControl(!!this.apartmentData ? this.apartmentData.description : '', Validators.required),
-      address: new FormControl(!!this.apartmentData ? this.apartmentData.address : '', Validators.required),
-      typeOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.typeOfBuilding : '', Validators.required),
-      yearOfConstruction: new FormControl(!!this.apartmentData ? this.apartmentData.yearOfConstruction : '', Validators.required),
-      stateOfApartment: new FormControl(!!this.apartmentData ? this.apartmentData.stateOfApartment : '', Validators.required),
-      energyPerformanceCertificate: new FormControl(!!this.apartmentData ? this.apartmentData.energyPerformanceCertificate : ''),
-      floorsOfBuilding: new FormControl(
-        !!this.apartmentData ? this.apartmentData.floorsOfBuilding : '', [Validators.required, Validators.min(1)]
-      ),
-      floorsOfApartment: new FormControl(
-        !!this.apartmentData ? this.apartmentData.floorsOfApartment : '', [Validators.required, Validators.min(1)]
-      ),
-      size: new FormControl(!!this.apartmentData ? this.apartmentData.size : size, Validators.required),
-      elevator: new FormControl(!!this.apartmentData ? this.apartmentData.elevator : false, Validators.required),
-      rooftop: new FormControl(!!this.apartmentData ? this.apartmentData.rooftop : false, Validators.required)
+      name: new FormControl(!!this.apartmentData ? this.apartmentData.name : null, Validators.required),
+      description: new FormControl(!!this.apartmentData ? this.apartmentData.description : null),
+      address: new FormControl(!!this.apartmentData ? this.apartmentData.address : null, Validators.required),
+      typeOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.typeOfBuilding : null),
+      yearOfConstruction: new FormControl(!!this.apartmentData ? this.apartmentData.yearOfConstruction : null),
+      stateOfApartment: new FormControl(!!this.apartmentData ? this.apartmentData.stateOfApartment : null),
+      energyPerformanceCertificate: new FormControl(!!this.apartmentData ? this.apartmentData.energyPerformanceCertificate : null),
+      floorsOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.floorsOfBuilding : null, Validators.min(1)),
+      floorsOfApartment: new FormControl(!!this.apartmentData ? this.apartmentData.floorsOfApartment : null, Validators.min(1)),
+      size: new FormControl(!!this.apartmentData ? this.apartmentData.size : size),
+      elevator: new FormControl(!!this.apartmentData ? this.apartmentData.elevator : false),
+      rooftop: new FormControl(!!this.apartmentData ? this.apartmentData.rooftop : false)
     });
   }
 

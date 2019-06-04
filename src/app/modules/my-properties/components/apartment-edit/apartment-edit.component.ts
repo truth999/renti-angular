@@ -111,10 +111,6 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     } finally {
       this.cursorWaitService.disable();
     }
-
-    this.changeBalcony();
-    this.changeGarden();
-    this.changeTerrace();
   }
 
   ngDoCheck() {
@@ -132,76 +128,62 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     });
 
     this.apartmentForm = new FormGroup({
-      name: new FormControl(!!this.apartment ? this.apartment.name : '', Validators.required),
-      description: new FormControl(!!this.apartment ? this.apartment.description : '', Validators.required),
-      address: new FormControl(!!this.apartment ? this.apartment.address : '', Validators.required),
-      typeOfBuilding: new FormControl(!!this.apartment ? this.apartment.typeOfBuilding : '', Validators.required),
-      yearOfConstruction: new FormControl(!!this.apartment ? this.apartment.yearOfConstruction : '', Validators.required),
-      stateOfApartment: new FormControl(!!this.apartment ? this.apartment.stateOfApartment : '', Validators.required),
-      energyPerformanceCertificate: new FormControl(!!this.apartment ? this.apartment.energyPerformanceCertificate : ''),
-      floorsOfBuilding: new FormControl(
-        !!this.apartment ? this.apartment.floorsOfBuilding : '', [Validators.required, Validators.min(1)]
-      ),
-      floorsOfApartment: new FormControl(
-        !!this.apartment ? this.apartment.floorsOfApartment : '', [Validators.required, Validators.min(1)]
-      ),
-      size: new FormControl(size, Validators.required),
-      elevator: new FormControl(!!this.apartment ? this.apartment.elevator : false, Validators.required),
-      rooftop: new FormControl(!!this.apartment ? this.apartment.rooftop : false, Validators.required),
-      buildingSiting: new FormControl(this.apartment.buildingSiting, Validators.required),
-      typeOfHeating: new FormControl(this.apartment.typeOfHeating, Validators.required),
-      headroom: new FormControl(this.apartment.headroom, Validators.required),
-      parking: new FormControl(this.apartment.parking, Validators.required),
-      childFriendly: new FormControl(!!this.apartment.childFriendly ? this.apartment.childFriendly : false, Validators.required),
-      petFriendly: new FormControl(!!this.apartment.petFriendly ? this.apartment.petFriendly : false, Validators.required),
-      mediaServiceProviders: new FormControl(
-        this.apartment.mediaServiceProviders,
-        Validators.required
-      ),
-      handicapAccessible: new FormControl(
-        !!this.apartment.handicapAccessible ? this.apartment.handicapAccessible : false,
-        Validators.required
-      ),
-      airConditioner: new FormControl(!!this.apartment.airConditioner ? this.apartment.airConditioner : false, Validators.required),
-      garage: new FormControl(!!this.apartment.garage ? this.apartment.garage : false, Validators.required),
+      name: new FormControl(!!this.apartment ? this.apartment.name : null, Validators.required),
+      description: new FormControl(!!this.apartment ? this.apartment.description : null),
+      address: new FormControl(!!this.apartment ? this.apartment.address : null, Validators.required),
+      typeOfBuilding: new FormControl(!!this.apartment ? this.apartment.typeOfBuilding : null),
+      yearOfConstruction: new FormControl(!!this.apartment ? this.apartment.yearOfConstruction : null),
+      stateOfApartment: new FormControl(!!this.apartment ? this.apartment.stateOfApartment : null),
+      energyPerformanceCertificate: new FormControl(!!this.apartment ? this.apartment.energyPerformanceCertificate : null),
+      floorsOfBuilding: new FormControl(!!this.apartment ? this.apartment.floorsOfBuilding : null, Validators.min(1)),
+      floorsOfApartment: new FormControl(!!this.apartment ? this.apartment.floorsOfApartment : null, Validators.min(1)),
+      size: new FormControl(size),
+      elevator: new FormControl(!!this.apartment ? this.apartment.elevator : false),
+      rooftop: new FormControl(!!this.apartment ? this.apartment.rooftop : false),
+      buildingSiting: new FormControl(this.apartment.buildingSiting),
+      typeOfHeating: new FormControl(this.apartment.typeOfHeating),
+      headroom: new FormControl(this.apartment.headroom),
+      parking: new FormControl(this.apartment.parking),
+      childFriendly: new FormControl(!!this.apartment.childFriendly ? this.apartment.childFriendly : false),
+      petFriendly: new FormControl(!!this.apartment.petFriendly ? this.apartment.petFriendly : false),
+      mediaServiceProviders: new FormControl(this.apartment.mediaServiceProviders),
+      handicapAccessible: new FormControl(!!this.apartment.handicapAccessible ? this.apartment.handicapAccessible : false),
+      airConditioner: new FormControl(!!this.apartment.airConditioner ? this.apartment.airConditioner : false),
+      garage: new FormControl(!!this.apartment.garage ? this.apartment.garage : false),
       externalIsolation: new FormControl(!!this.apartment.externalIsolation ? this.apartment.externalIsolation : false),
-      balcony: new FormControl(!!this.apartment.balcony ? this.apartment.balcony : false, Validators.required),
-      sizeOfBalcony: new FormControl(!!this.apartment.sizeOfBalcony ? this.apartment.sizeOfBalcony : ''),
-      garden: new FormControl(!!this.apartment.garden ? this.apartment.garden : false, Validators.required),
-      sizeOfGarden: new FormControl(!!this.apartment.sizeOfGarden ? this.apartment.sizeOfGarden : ''),
-      terrace: new FormControl(!!this.apartment.terrace ? this.apartment.terrace : false, Validators.required),
-      sizeOfTerrace: new FormControl(!!this.apartment.sizeOfTerrace ? this.apartment.sizeOfTerrace : ''),
+      balcony: new FormControl(!!this.apartment.balcony ? this.apartment.balcony : false),
+      sizeOfBalcony: new FormControl(!!this.apartment.sizeOfBalcony ? this.apartment.sizeOfBalcony : null),
+      garden: new FormControl(!!this.apartment.garden ? this.apartment.garden : false),
+      sizeOfGarden: new FormControl(!!this.apartment.sizeOfGarden ? this.apartment.sizeOfGarden : null),
+      terrace: new FormControl(!!this.apartment.terrace ? this.apartment.terrace : false),
+      sizeOfTerrace: new FormControl(!!this.apartment.sizeOfTerrace ? this.apartment.sizeOfTerrace : null),
       rentalFee: new FormControl(
-        !!this.apartment.rentalFee ? this.apartment.rentalFee : '',
-        [Validators.required, Validators.min(1), Validators.max(2000)]
+        !!this.apartment.rentalFee ? this.apartment.rentalFee : null,
+        [Validators.min(1), Validators.max(2000)]
       ),
       overhead: new FormControl(
-        !!this.apartment.overhead ? this.apartment.overhead : '',
-        [Validators.required, Validators.min(1), Validators.max(2000)]
+        !!this.apartment.overhead ? this.apartment.overhead : null,
+        [Validators.min(1), Validators.max(2000)]
       ),
       deposit: new FormControl(
-        !!this.apartment.deposit ? this.apartment.deposit : '',
-        [Validators.required, Validators.min(1), Validators.max(2000)]
+        !!this.apartment.deposit ? this.apartment.deposit : null,
+        [Validators.min(1), Validators.max(2000)]
       ),
-      minimumRentingTime: new FormControl(
-        !!this.apartment.minimumRentingTime ? this.apartment.minimumRentingTime : '', Validators.required
-      ),
+      minimumRentingTime: new FormControl(!!this.apartment.minimumRentingTime ? this.apartment.minimumRentingTime : null),
       dateOfMovingIn: new FormGroup({
-        rightNow: new FormControl(
-          !!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.rightNow : false, Validators.required
-        ),
+        rightNow: new FormControl(!!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.rightNow : false),
         date: new FormControl(!!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.date : null)
       })
       // roomsData: new FormArray(!!this.apartment.roomsData ? this.apartment.roomsData.map(room => {
       //   return new FormGroup({
-      //     name: new FormControl(room.name, Validators.required),
+      //     name: new FormControl(room.name),
       //     size: new FormControl(room.size, [Validators.required, Validators.min(0)]),
-      //     windowType: new FormControl(room.windowType, Validators.required)
+      //     windowType: new FormControl(room.windowType)
       //   });
       // }) : [new FormGroup({
-      //   name: new FormControl('', Validators.required),
-      //   size: new FormControl('', [Validators.required, Validators.min(0)]),
-      //   windowType: new FormControl('', Validators.required)
+      //   name: new FormControl(null),
+      //   size: new FormControl(null, [Validators.required, Validators.min(0)]),
+      //   windowType: new FormControl(null)
       // })])
     });
   }
@@ -210,24 +192,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     return this.apartmentForm.get('balcony');
   }
 
-  get sizeOfBalcony() {
-    return this.apartmentForm.get('sizeOfBalcony');
-  }
-
   get garden() {
     return this.apartmentForm.get('garden');
   }
 
-  get sizeOfGarden() {
-    return this.apartmentForm.get('sizeOfGarden');
-  }
-
   get terrace() {
     return this.apartmentForm.get('terrace');
-  }
-
-  get sizeOfTerrace() {
-    return this.apartmentForm.get('sizeOfTerrace');
   }
 
   get rightNow() {
@@ -242,31 +212,15 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   //   return this.apartmentForm.get('roomsData') as FormArray;
   // }
 
-  changeBalcony() {
-    this.balcony.value ? this.sizeOfBalcony.setValidators(Validators.required) : this.sizeOfBalcony.setErrors(null);
-  }
-
-  changeGarden() {
-    this.garden.value ? this.sizeOfGarden.setValidators(Validators.required) : this.sizeOfGarden.setErrors(null);
-  }
-
-  changeTerrace() {
-    this.terrace.value ? this.sizeOfTerrace.setValidators(Validators.required) : this.sizeOfTerrace.setErrors(null);
-  }
-
-  changeRightNow() {
-    this.rightNow.value ? this.date.setErrors(null) : this.date.setValidators(Validators.required);
-  }
-
   handleAddressChange(address: Address) {
     this.apartmentForm.get('address').setValue(address.formatted_address);
   }
 
   // onAddRoom() {
   //   this.roomsData.push(new FormGroup({
-  //     name: new FormControl('', Validators.required),
-  //     size: new FormControl('', [Validators.required, Validators.min(0)]),
-  //     windowType: new FormControl('', Validators.required)
+  //     name: new FormControl(null),
+  //     size: new FormControl(null, [Validators.required, Validators.min(0)]),
+  //     windowType: new FormControl(null)
   //   }));
   // }
 

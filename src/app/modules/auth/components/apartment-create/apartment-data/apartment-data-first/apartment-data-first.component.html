@@ -20,9 +20,6 @@
                     class="form-control"
                     rows="5"
                     formControlName="description"></textarea>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('description').invalid && (apartmentDataFirstForm.get('description').dirty || apartmentDataFirstForm.get('description').touched)">
-            <span *ngIf="apartmentDataFirstForm.get('description').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -48,9 +45,6 @@
             <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
             <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
           </select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('typeOfBuilding').invalid && (apartmentDataFirstForm.get('typeOfBuilding').dirty || apartmentDataFirstForm.get('typeOfBuilding').touched)">
-            <span *ngIf="apartmentDataFirstForm.get('typeOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -61,9 +55,6 @@
             <option value="">-</option>
             <option *ngFor="let year of years" [value]="year">{{ year }}</option>
           </select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('yearOfConstruction').invalid && (apartmentDataFirstForm.get('yearOfConstruction').dirty || apartmentDataFirstForm.get('yearOfConstruction').touched)">
-            <span *ngIf="apartmentDataFirstForm.get('yearOfConstruction').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -77,9 +68,6 @@
             <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
             <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
           </select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('stateOfApartment').invalid && (apartmentDataFirstForm.get('stateOfApartment').dirty || apartmentDataFirstForm.get('stateOfApartment').touched)">
-            <span *ngIf="apartmentDataFirstForm.get('stateOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -113,7 +101,6 @@
                  pattern="[0-9]*"
                  formControlName="floorsOfBuilding">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').invalid && (apartmentDataFirstForm.get('floorsOfBuilding').dirty || apartmentDataFirstForm.get('floorsOfBuilding').touched)">
-            <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
           </div>
         </td>
@@ -128,7 +115,6 @@
                  pattern="[0-9]*"
                  formControlName="floorsOfApartment">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('floorsOfApartment').invalid && (apartmentDataFirstForm.get('floorsOfApartment').dirty || apartmentDataFirstForm.get('floorsOfApartment').touched)">
-            <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
             <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
           </div>

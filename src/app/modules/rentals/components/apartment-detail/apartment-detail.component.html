@@ -17,7 +17,7 @@
       <div class="d-lg-none">
         <h3 class="mt-4">{{ apartment.name }}</h3>
         <div class="unit d-flex justify-content-between">
-          <span class="mo"><span class="font-weight-bold">{{ apartment.rentalFee * 1000 }}</span>/mo</span>
+          <span class="mo"><span class="font-weight-bold">{{ (apartment.rentalFee / apartment.size).toFixed(0) }}</span>/mo</span>
           <span class="square font-weight-bold">
             <i class="icon-fullscreen"></i>
             {{ apartment.size }}m<sup>2</sup>
@@ -227,7 +227,7 @@
       <div class="d-none d-lg-block">
         <h2>{{ apartment.name }}</h2>
         <div class="unit d-flex justify-content-between">
-          <span class="mo"><span class="font-weight-bold">{{ apartment.rentalFee * 1000 }}</span>/mo</span>
+          <span class="mo"><span class="font-weight-bold">{{ (apartment.rentalFee * 1000 / apartment.size).toFixed(0) }}</span>/mo</span>
           <span class="square font-weight-bold">
           <i class="icon-fullscreen"></i>
           {{ apartment.size }}m<sup>2</sup>

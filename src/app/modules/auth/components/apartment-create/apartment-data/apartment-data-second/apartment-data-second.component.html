@@ -13,9 +13,6 @@
             <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
             <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
           </select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataSecondForm.get('buildingSiting').invalid && (apartmentDataSecondForm.get('buildingSiting').dirty || apartmentDataSecondForm.get('buildingSiting').touched)">
-            <span *ngIf="apartmentDataSecondForm.get('buildingSiting').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -33,9 +30,6 @@
             <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
             <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
           </select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataSecondForm.get('typeOfHeating').invalid && (apartmentDataSecondForm.get('typeOfHeating').dirty || apartmentDataSecondForm.get('typeOfHeating').touched)">
-            <span *ngIf="apartmentDataSecondForm.get('typeOfHeating').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -50,9 +44,6 @@
             <option value="3m">2.5 - 3.0M</option>
             <option value="3mp">> 3M</option>
           </select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataSecondForm.get('headroom').invalid && (apartmentDataSecondForm.get('headroom').dirty || apartmentDataSecondForm.get('headroom').touched)">
-            <span *ngIf="apartmentDataSecondForm.get('headroom').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -66,9 +57,6 @@
             <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
             <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
           </select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataSecondForm.get('parking').invalid && (apartmentDataSecondForm.get('parking').dirty || apartmentDataSecondForm.get('parking').touched)">
-            <span *ngIf="apartmentDataSecondForm.get('parking').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -98,9 +86,6 @@
                      [multiple]="true"
                      [closeOnSelect]="false"
                      formControlName="mediaServiceProviders"></ng-select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataSecondForm.get('mediaServiceProviders').invalid && (apartmentDataSecondForm.get('mediaServiceProviders').dirty || apartmentDataSecondForm.get('mediaServiceProviders').touched)">
-            <span *ngIf="apartmentDataSecondForm.get('mediaServiceProviders').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>

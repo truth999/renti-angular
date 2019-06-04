@@ -35,18 +35,18 @@ export class ApartmentDataThirdComponent implements OnInit {
   ngOnInit() {
     this.apartmentDataThirdForm = new FormGroup({
       externalIsolation: new FormControl(false),
-      balcony: new FormControl(false, Validators.required),
-      sizeOfBalcony: new FormControl(''),
-      garden: new FormControl(false, Validators.required),
-      sizeOfGarden: new FormControl(''),
-      terrace: new FormControl(false, Validators.required),
-      sizeOfTerrace: new FormControl(''),
-      rentalFee: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000)]),
-      overhead: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000)]),
-      deposit: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000)]),
-      minimumRentingTime: new FormControl('', Validators.required),
+      balcony: new FormControl(false),
+      sizeOfBalcony: new FormControl(null),
+      garden: new FormControl(false),
+      sizeOfGarden: new FormControl(null),
+      terrace: new FormControl(false),
+      sizeOfTerrace: new FormControl(null),
+      rentalFee: new FormControl(null, [Validators.min(1), Validators.max(2000)]),
+      overhead: new FormControl(null, [Validators.min(1), Validators.max(2000)]),
+      deposit: new FormControl(null, [Validators.min(1), Validators.max(2000)]),
+      minimumRentingTime: new FormControl(null),
       dateOfMovingIn: new FormGroup({
-        rightNow: new FormControl(false, Validators.required),
+        rightNow: new FormControl(false),
         date: new FormControl(null)
       })
     });
@@ -56,24 +56,12 @@ export class ApartmentDataThirdComponent implements OnInit {
     return this.apartmentDataThirdForm.get('balcony');
   }
 
-  get sizeOfBalcony() {
-    return this.apartmentDataThirdForm.get('sizeOfBalcony');
-  }
-
   get garden() {
     return this.apartmentDataThirdForm.get('garden');
   }
 
-  get sizeOfGarden() {
-    return this.apartmentDataThirdForm.get('sizeOfGarden');
-  }
-
   get terrace() {
     return this.apartmentDataThirdForm.get('terrace');
-  }
-
-  get sizeOfTerrace() {
-    return this.apartmentDataThirdForm.get('sizeOfTerrace');
   }
 
   get rightNow() {
@@ -82,22 +70,6 @@ export class ApartmentDataThirdComponent implements OnInit {
 
   get date() {
     return this.apartmentDataThirdForm.get('dateOfMovingIn').get('date');
-  }
-
-  changeBalcony() {
-    this.balcony.value ? this.sizeOfBalcony.setValidators(Validators.required) : this.sizeOfBalcony.setErrors(null);
-  }
-
-  changeGarden() {
-    this.garden.value ? this.sizeOfGarden.setValidators(Validators.required) : this.sizeOfGarden.setErrors(null);
-  }
-
-  changeTerrace() {
-    this.terrace.value ? this.sizeOfTerrace.setValidators(Validators.required) : this.sizeOfTerrace.setErrors(null);
-  }
-
-  changeRightNow() {
-    this.rightNow.value ? this.date.setErrors(null) : this.date.setValidators(Validators.required);
   }
 
   async submit() {

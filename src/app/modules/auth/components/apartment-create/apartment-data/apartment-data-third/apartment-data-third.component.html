@@ -17,8 +17,7 @@
         <td class="text-right pr-0">
           <label class="switch">
             <input type="checkbox"
-                   formControlName="balcony"
-                   (change)="changeBalcony()">
+                   formControlName="balcony">
             <span class="slider round"></span>
           </label>
         </td>
@@ -32,9 +31,6 @@
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="sizeOfBalcony">
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('sizeOfBalcony').invalid && (apartmentDataThirdForm.get('sizeOfBalcony').dirty || apartmentDataThirdForm.get('sizeOfBalcony').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('sizeOfBalcony').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -42,8 +38,7 @@
         <td class="text-right pr-0">
           <label class="switch">
             <input type="checkbox"
-                   formControlName="garden"
-                   (change)="changeGarden()">
+                   formControlName="garden">
             <span class="slider round"></span>
           </label>
         </td>
@@ -57,9 +52,6 @@
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="sizeOfGarden">
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('sizeOfGarden').invalid && (apartmentDataThirdForm.get('sizeOfGarden').dirty || apartmentDataThirdForm.get('sizeOfGarden').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('sizeOfGarden').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -67,8 +59,7 @@
         <td class="text-right pr-0">
           <label class="switch">
             <input type="checkbox"
-                   formControlName="terrace"
-                   (change)="changeTerrace()">
+                   formControlName="terrace">
             <span class="slider round"></span>
           </label>
         </td>
@@ -82,9 +73,6 @@
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="sizeOfTerrace">
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('sizeOfTerrace').invalid && (apartmentDataThirdForm.get('sizeOfTerrace').dirty || apartmentDataThirdForm.get('sizeOfTerrace').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('sizeOfTerrace').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -99,7 +87,6 @@
                  pattern="[0-9]*"
                  formControlName="rentalFee">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('rentalFee').invalid && (apartmentDataThirdForm.get('rentalFee').dirty || apartmentDataThirdForm.get('rentalFee').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.min || apartmentDataThirdForm.get('rentalFee').errors.max">
               {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
             </span>
@@ -118,7 +105,6 @@
                  pattern="[0-9]*"
                  formControlName="overhead">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('overhead').invalid && (apartmentDataThirdForm.get('overhead').dirty || apartmentDataThirdForm.get('overhead').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('overhead').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             <span *ngIf="apartmentDataThirdForm.get('overhead').errors.min || apartmentDataThirdForm.get('overhead').errors.max">
               {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
             </span>
@@ -137,7 +123,6 @@
                  pattern="[0-9]*"
                  formControlName="deposit">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('deposit').invalid && (apartmentDataThirdForm.get('deposit').dirty || apartmentDataThirdForm.get('deposit').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('deposit').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             <span *ngIf="apartmentDataThirdForm.get('deposit').errors.min || apartmentDataThirdForm.get('deposit').errors.max">
               {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
             </span>
@@ -152,9 +137,6 @@
             <option value="">-</option>
             <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
           </select>
-          <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('minimumRentingTime').invalid && (apartmentDataThirdForm.get('minimumRentingTime').dirty || apartmentDataThirdForm.get('minimumRentingTime').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('minimumRentingTime').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
         </td>
       </tr>
       <tr>
@@ -167,8 +149,7 @@
             <label class="switch">
               <input type="checkbox"
                      id="right-now"
-                     formControlName="rightNow"
-                     (change)="changeRightNow()">
+                     formControlName="rightNow">
               <span class="slider round"></span>
             </label>
           </div>
@@ -179,9 +160,6 @@
                    #d="ngbDatepicker"
                    (click)="d.toggle()"
                    formControlName="date">
-          </div>
-          <div class="invalid-feedback d-block" *ngIf="date.invalid && (date.dirty || date.touched)">
-            <span *ngIf="date.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
           </div>
         </td>
       </tr>
