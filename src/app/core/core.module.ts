@@ -13,6 +13,7 @@ import { CursorWaitService } from './services/cursor-wait.service';
 import { ImageUploaderService } from './services/image-uploader.service';
 import { StorageService } from './services/storage.service';
 import { ValidateFormFieldsService } from './services/validate-form-fields.service';
+import { HomeService } from './services/home.service';
 
 import { HomeComponent } from './components/home/home.component';
 
@@ -31,7 +32,8 @@ import { HomeComponent } from './components/home/home.component';
     ImageUploaderService,
     StorageService,
     AuthGuard,
-    ValidateFormFieldsService
+    ValidateFormFieldsService,
+    HomeService
   ]
 })
 export class CoreModule { }

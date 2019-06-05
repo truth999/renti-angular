@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 import { AuthService } from './core/services/auth.service';
 
 @Component({
@@ -18,7 +19,9 @@ export class AppComponent implements OnInit {
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|hu|de/) ? browserLang : 'en');
   }
+
   ngOnInit(): void {
     this.authService.autoAuthUser();
   }
+
 }

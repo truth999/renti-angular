@@ -159,15 +159,15 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       sizeOfTerrace: new FormControl(!!this.apartment.sizeOfTerrace ? this.apartment.sizeOfTerrace : null),
       rentalFee: new FormControl(
         !!this.apartment.rentalFee ? this.apartment.rentalFee : null,
-        [Validators.min(1), Validators.max(2000)]
+        [Validators.min(1), Validators.max(2000000)]
       ),
       overhead: new FormControl(
         !!this.apartment.overhead ? this.apartment.overhead : null,
-        [Validators.min(1), Validators.max(2000)]
+        [Validators.min(1), Validators.max(2000000)]
       ),
       deposit: new FormControl(
         !!this.apartment.deposit ? this.apartment.deposit : null,
-        [Validators.min(1), Validators.max(2000)]
+        [Validators.min(1), Validators.max(2000000)]
       ),
       minimumRentingTime: new FormControl(!!this.apartment.minimumRentingTime ? this.apartment.minimumRentingTime : null),
       dateOfMovingIn: new FormGroup({

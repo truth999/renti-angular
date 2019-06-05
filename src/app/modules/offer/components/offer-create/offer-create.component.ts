@@ -45,8 +45,8 @@ export class OfferCreateComponent implements OnInit {
 
   buildOfferForm() {
     this.offerForm = new FormGroup({
-      rentalFee: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000)]),
-      overhead: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000)]),
+      rentalFee: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000000)]),
+      overhead: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000000)]),
       minRentingTime: new FormControl('', Validators.required),
       dateOfMovingIn: new FormControl(null, Validators.required),
       movingWith: new FormControl('', Validators.required),

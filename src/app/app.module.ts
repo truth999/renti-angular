@@ -1,20 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 import {
   NgxUiLoaderConfig,
   NgxUiLoaderHttpModule,
   NgxUiLoaderModule, POSITION, SPINNER,
 } from 'ngx-ui-loader';
+
+import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+
+import { AppComponent } from './app.component';
+
 import { config } from '../config';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -52,7 +55,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SharedModule,
     ToastrModule.forRoot(),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    NgxUiLoaderHttpModule.forRoot({ exclude: config.excludeLoaderRoutes })
+    NgxUiLoaderHttpModule.forRoot({ exclude: config.excludeLoaderRoutes }),
+    AgmCoreModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -41,9 +41,9 @@ export class ApartmentDataThirdComponent implements OnInit {
       sizeOfGarden: new FormControl(null),
       terrace: new FormControl(false),
       sizeOfTerrace: new FormControl(null),
-      rentalFee: new FormControl(null, [Validators.min(1), Validators.max(2000)]),
-      overhead: new FormControl(null, [Validators.min(1), Validators.max(2000)]),
-      deposit: new FormControl(null, [Validators.min(1), Validators.max(2000)]),
+      rentalFee: new FormControl(null, [Validators.min(1), Validators.max(2000000)]),
+      overhead: new FormControl(null, [Validators.min(1), Validators.max(2000000)]),
+      deposit: new FormControl(null, [Validators.min(1), Validators.max(2000000)]),
       minimumRentingTime: new FormControl(null),
       dateOfMovingIn: new FormGroup({
         rightNow: new FormControl(false),

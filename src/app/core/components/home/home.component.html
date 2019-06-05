@@ -1,6 +1,6 @@
 <div class="landing position-relative">
   <section class="banner text-center pt-4">
-    <div class="logo position-relative">
+    <div class="logo position-relative mx-sm-5">
       <app-language-selector></app-language-selector>
       <a routerLink="/">
         <img src="assets/images/logo.png" alt="Renti" class="logo-image">
@@ -13,8 +13,10 @@
   </section>
   <section class="items d-flex position-relative">
     <div class="buttons-wrapper d-flex position-absolute align-items-center justify-content-around w-100">
-      <button class="btn btn-primary btn-lg item-button">{{ 'HOME.SELECT1' | translate }}</button>
-      <button class="btn btn-primary btn-lg item-button">{{ 'HOME.SELECT2' | translate }}</button>
+      <button class="btn btn-primary btn-lg item-button"
+              (click)="onOpenHeatmapFlatModal()">{{ 'HOME.SELECT1' | translate }}</button>
+      <button class="btn btn-primary btn-lg item-button"
+              (click)="onOpenHeatmapTenantModal()">{{ 'HOME.SELECT2' | translate }}</button>
       <span class="btn vs position-absolute bg-white font-weight-bold">{{ 'COMMON.OR' | translate }}</span>
     </div>
     <div class="item item-left d-flex flex-grow-1 justify-content-center"></div>

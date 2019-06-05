@@ -1,6 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
-
+import { Injectable } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { PhotoUploadModalComponent } from '../../components/modal/photo-upload-modal/photo-upload-modal.component';
 
 @Injectable()
