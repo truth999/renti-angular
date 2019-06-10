@@ -29,7 +29,7 @@ export class SearchApartmentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.page.perPage = 10;
+    this.page.perPage = 100;
     this.page.pageNumber = 1;
 
     this.getApartments();

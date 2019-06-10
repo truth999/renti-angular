@@ -41,5 +41,6 @@ export class Apartment {
     rightNow: boolean;
     date: any;
   };
+  dataPercent: number;
   rooms: Room[];
 }

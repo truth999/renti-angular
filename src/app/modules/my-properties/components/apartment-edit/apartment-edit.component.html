@@ -141,7 +141,7 @@
               <td class="border-top-0 text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="typeOfBuilding">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
                   <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
                   <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
@@ -154,7 +154,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="yearOfConstruction">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option *ngFor="let year of years"
                           [value]="year">{{ year }}</option>
                 </select>
@@ -165,7 +165,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="stateOfApartment">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="new">{{ 'COMMON.NEW' | translate }}</option>
                   <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
                   <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
@@ -178,7 +178,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="energyPerformanceCertificate">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="aapp">AA++</option>
                   <option value="aap">AA+</option>
                   <option value="aa">AA</option>
@@ -254,7 +254,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="buildingSiting">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="east">{{ 'COMMON.EAST' | translate }}</option>
                   <option value="west">{{ 'COMMON.WEST' | translate }}</option>
                   <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
@@ -267,7 +267,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="typeOfHeating">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
                   <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
                   <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
@@ -285,7 +285,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="headroom">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="2m">< 2M</option>
                   <option value="2.5m">2.0 - 2.5M</option>
                   <option value="3m">2.5 - 3.0M</option>
@@ -298,7 +298,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="parking">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
                   <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
                   <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
@@ -360,7 +360,8 @@
               <td class="text-right pr-0">
                 <label class="switch">
                   <input type="checkbox"
-                         formControlName="balcony">
+                         formControlName="balcony"
+                         (change)="onChangeBalcony()">
                   <span class="slider round"></span>
                 </label>
               </td>
@@ -381,7 +382,8 @@
               <td class="text-right pr-0">
                 <label class="switch">
                   <input type="checkbox"
-                         formControlName="garden">
+                         formControlName="garden"
+                         (change)="onChangeGarden()">
                   <span class="slider round"></span>
                 </label>
               </td>
@@ -402,7 +404,8 @@
               <td class="text-right pr-0">
                 <label class="switch">
                   <input type="checkbox"
-                         formControlName="terrace">
+                         formControlName="terrace"
+                         (change)="onChangeTerrace()">
                   <span class="slider round"></span>
                 </label>
               </td>
@@ -497,7 +500,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="minimumRentingTime">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option *ngFor="let month of arrayNumber(121); let i = index"
                           [value]="i">{{ i }}</option>
                 </select>
@@ -512,7 +515,8 @@
                   <label class="switch">
                     <input type="checkbox"
                            id="right-now1"
-                           formControlName="rightNow">
+                           formControlName="rightNow"
+                           (change)="onChangeRightNow()">
                     <span class="slider round"></span>
                   </label>
                 </div>
@@ -529,7 +533,7 @@
             </tbody>
           </table>
         </div>
-        <app-feedback></app-feedback>
+        <app-feedback [rate]="rate"></app-feedback>
         <!--      <table class="table mt-4">-->
         <!--        <tbody>-->
         <!--        <tr>-->
@@ -627,7 +631,7 @@
               <td class="border-top-0 text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="typeOfBuilding">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
                   <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
                   <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
@@ -640,7 +644,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="yearOfConstruction">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option *ngFor="let year of years"
                           [value]="year">{{ year }}</option>
                 </select>
@@ -651,7 +655,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="stateOfApartment">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="new">{{ 'COMMON.NEW' | translate }}</option>
                   <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
                   <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
@@ -664,7 +668,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="energyPerformanceCertificate">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="aapp">AA++</option>
                   <option value="aap">AA+</option>
                   <option value="aa">AA</option>
@@ -740,7 +744,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="buildingSiting">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="east">{{ 'COMMON.EAST' | translate }}</option>
                   <option value="west">{{ 'COMMON.WEST' | translate }}</option>
                   <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
@@ -753,7 +757,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="typeOfHeating">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
                   <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
                   <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
@@ -771,7 +775,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="headroom">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="2m">< 2M</option>
                   <option value="2.5m">2.0 - 2.5M</option>
                   <option value="3m">2.5 - 3.0M</option>
@@ -784,7 +788,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="parking">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
                   <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
                   <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
@@ -846,7 +850,8 @@
               <td class="text-right pr-0">
                 <label class="switch">
                   <input type="checkbox"
-                         formControlName="balcony">
+                         formControlName="balcony"
+                         (change)="onChangeBalcony()">
                   <span class="slider round"></span>
                 </label>
               </td>
@@ -867,7 +872,8 @@
               <td class="text-right pr-0">
                 <label class="switch">
                   <input type="checkbox"
-                         formControlName="garden">
+                         formControlName="garden"
+                         (change)="onChangeGarden()">
                   <span class="slider round"></span>
                 </label>
               </td>
@@ -888,7 +894,8 @@
               <td class="text-right pr-0">
                 <label class="switch">
                   <input type="checkbox"
-                         formControlName="terrace">
+                         formControlName="terrace"
+                         (change)="onChangeTerrace()">
                   <span class="slider round"></span>
                 </label>
               </td>
@@ -922,6 +929,12 @@
                          formControlName="garage">
                   <span class="slider round"></span>
                 </label>
+<!--                <label class="switch">-->
+<!--                  <input type="radio">Yes-->
+<!--                  <input type="radio">N/A-->
+<!--                  <input type="radio">No-->
+<!--                  <span class="slider round"></span>-->
+<!--                </label>-->
               </td>
             </tr>
             <tr>
@@ -983,7 +996,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="minimumRentingTime">
-                  <option value="">-</option>
+                  <option [ngValue]="null">-</option>
                   <option *ngFor="let month of arrayNumber(121); let i = index"
                           [value]="i">{{ i }}</option>
                 </select>
@@ -998,7 +1011,8 @@
                   <label class="switch">
                     <input type="checkbox"
                            id="right-now"
-                           formControlName="rightNow">
+                           formControlName="rightNow"
+                           (change)="onChangeRightNow()">
                     <span class="slider round"></span>
                   </label>
                 </div>

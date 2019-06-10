@@ -12,9 +12,6 @@ import { environment } from '../../../../environments/environment';
 export class ApartmentItemComponent implements OnInit, AfterViewInit {
   @Input() apartment: Apartment;
   @ViewChild('explainParagraph') explainParagraph: ElementRef;
-  explain = 'Classic Lorem Ipsum text contains Latin words derived from the works of Cicero. According to…';
-  data = 98;
-  topRated = true;
 
   uploadBase = environment.uploadBase;
 

@@ -4,7 +4,7 @@
          alt=""
          width="120"
          height="120">
-    <span class="badge badge-success image-badge position-absolute">{{ data }}% {{ 'COMMON.DATA' | translate }}</span>
+    <span class="badge badge-success image-badge position-absolute">{{ apartment.dataPercent }}% {{ 'COMMON.DATA' | translate }}</span>
   </div>
   <div class="explain">
     <h6 class="font-size-lg mb-0">{{ apartment.name }}</h6>
@@ -23,6 +23,6 @@
           {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
         </span>
   </div>
-  <span *ngIf="topRated"
+  <span *ngIf="apartment.dataPercent >= 95"
         class="badge badge-primary card-badge position-absolute">{{ 'COMMON.TOP_RATED' | translate }}</span>
 </div>

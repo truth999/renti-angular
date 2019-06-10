@@ -1,5 +1,5 @@
 <div class="rating d-inline-flex align-items-center justify-content-between mb-3">
-  <ngb-rating [rate]="5"
+  <ngb-rating [rate]="rate"
               [readonly]="true"
               max="5"
               class="all-rating mr-2">
@@ -11,7 +11,7 @@
     </ng-template>
   </ngb-rating>
   <div class="rating-text">
-    <span class="font-size-lg font-weight-bold">5 star rating</span><br>
-    <span>(Based on 2 ratings)</span>
+    <span class="font-size-lg font-weight-bold">{{ rate }} star rating</span><br>
+<!--    <span>(Based on 2 ratings)</span>-->
   </div>
 </div>

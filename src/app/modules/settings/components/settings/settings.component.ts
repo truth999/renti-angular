@@ -43,6 +43,10 @@ export class SettingsComponent implements OnInit {
 
   updatedUser() {
     this.getUser();
+    this.firstNameCollapsed = false;
+    this.lastNameCollapsed = false;
+    this.emailCollapsed = false;
+    this.passwordCollapsed = false;
   }
 
   onBack() {

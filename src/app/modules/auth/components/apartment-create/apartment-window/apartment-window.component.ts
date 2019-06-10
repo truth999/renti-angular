@@ -40,8 +40,40 @@ export class ApartmentWindowComponent implements OnInit, DoCheck {
       const windowTypes = { ...this.windowTypeForm.value };
       this.rooms.map((room, index) => {
         room.windowType = windowTypes.windowType[index];
+        room.yearOfRenovation = null;
+        room.coverage = null;
+        room.equipment = false;
+        room.furniture = null;
+        room.dataPercent = null;
       });
-      this.apartmentCreateService.createRoomsData(this.rooms);
+
+      const rooms = [];
+      this.rooms.map((room, index) => {
+        rooms[index] = { ...room };
+      });
+
+      rooms.map(room => {
+        let roomLength = 0;
+        const name = room.name;
+
+        delete room.name;
+        delete room.dataPercent;
+
+        for (const i in room) {
+          if (room.hasOwnProperty(i)) {
+            if (room[i] !== null) {
+              if (room[i].length !== 0) {
+                roomLength++;
+              }
+            }
+          }
+        }
+
+        room.dataPercent = parseInt((roomLength / Object.keys(room).length * 100).toFixed(0), 10);
+        room.name = name;
+      });
+
+      this.apartmentCreateService.createRoomsData(rooms);
     } else {
       this.validateFormFieldsService.validate(this.windowTypeForm);
     }

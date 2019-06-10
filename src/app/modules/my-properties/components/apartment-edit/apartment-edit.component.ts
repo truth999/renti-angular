@@ -25,6 +25,7 @@ import { environment } from '../../../../../environments/environment';
 })
 export class ApartmentEditComponent implements OnInit, DoCheck {
   apartment: Apartment;
+  rate: number;
   apartmentForm: FormGroup;
   years: string[];
 
@@ -106,6 +107,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
           big: this.uploadBase + image
         };
       });
+      this.rate = this.apartment.dataPercent * .05;
     } catch (e) {
       console.log('ApartmentEditComponent->ngOnInit', e);
     } finally {
@@ -200,12 +202,48 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     return this.apartmentForm.get('terrace');
   }
 
+  get sizeOfBalcony() {
+    return this.apartmentForm.get('sizeOfBalcony');
+  }
+
+  get sizeOfGarden() {
+    return this.apartmentForm.get('sizeOfGarden');
+  }
+
+  get sizeOfTerrace() {
+    return this.apartmentForm.get('sizeOfTerrace');
+  }
+
   get rightNow() {
     return this.apartmentForm.get('dateOfMovingIn').get('rightNow');
   }
 
   get date() {
     return this.apartmentForm.get('dateOfMovingIn').get('date');
+  }
+
+  onChangeBalcony() {
+    if (!this.balcony.value) {
+      this.sizeOfBalcony.setValue(null);
+    }
+  }
+
+  onChangeGarden() {
+    if (!this.garden.value) {
+      this.sizeOfGarden.setValue(null);
+    }
+  }
+
+  onChangeTerrace() {
+    if (!this.terrace.value) {
+      this.sizeOfTerrace.setValue(null);
+    }
+  }
+
+  onChangeRightNow() {
+    if (this.rightNow.value) {
+      this.date.setValue(null);
+    }
   }
 
   // get roomsData() {
@@ -239,20 +277,73 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
         roomIds.push(room._id);
       });
 
-      const apartmentData = {
+      let apartmentData = {
         ...this.apartmentForm.value,
         rooms: roomIds
       };
 
-      this.apartment = {
+      apartmentData = {
         ...this.apartment,
         ...apartmentData
+      };
+
+      const apartment = { ...this.apartmentForm.value };
+      const rooms = [];
+      let apartmentLength = 0;
+      let roomsLength = 0;
+      let apartmentRate;
+      let roomsRate;
+      this.apartment.rooms.map((room, index) => {
+        rooms[index] = { ...room };
+      });
+
+      delete apartment.name;
+      delete apartment.address;
+      delete apartment.size;
+
+      rooms.map(room => {
+        delete room._id;
+        delete room.name;
+        delete room.createdAt;
+        delete room.updatedAt;
+        delete room.__v;
+      });
+
+      for (const i in apartment) {
+        if (apartment.hasOwnProperty(i)) {
+          if (apartment[i] !== null) {
+            if (apartment[i].length !== 0) {
+              apartmentLength++;
+            }
+          }
+        }
+      }
+
+      rooms.map(room => {
+        for (const i in room) {
+          if (room.hasOwnProperty(i)) {
+            if (room[i] !== null) {
+              if (room[i].length !== 0) {
+                roomsLength++;
+              }
+            }
+          }
+        }
+      });
+
+      apartmentRate = apartmentLength / Object.keys(apartment).length * 80;
+      roomsRate = roomsLength / (Object.keys(rooms[0]).length * rooms.length) * 20;
+      const dataPercent = parseInt((apartmentRate + roomsRate).toFixed(0), 10);
+
+      apartmentData = {
+        ...apartmentData,
+        dataPercent
       };
 
       try {
         this.cursorWaitService.enable();
 
-        await this.myPropertiesService.updateApartment(this.apartment);
+        await this.myPropertiesService.updateApartment(apartmentData);
         this.toastrService.success('The apartment is updated successfully.', 'Success!');
         this.router.navigate(['/app/my-properties']);
       } catch (e) {
