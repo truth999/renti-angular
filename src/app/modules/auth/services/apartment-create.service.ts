@@ -40,61 +40,11 @@ export class ApartmentCreateService {
     return this.apiService.post('rooms', this.rooms);
   }
 
-  updateApartmentDataWithRoomIds(roomIds: string[]) {
-    this.apartment.rooms = roomIds;
+  updateApartmentDataWithRooms(rooms: Room[]) {
+    this.apartment.rooms = rooms;
   }
 
   createApartment(): Promise<any> {
-    const apartment = { ...this.apartment };
-    const rooms = [];
-    let apartmentLength = 0;
-    let roomsLength = 0;
-    let apartmentRate;
-    let roomsRate;
-    this.rooms.map((room, index) => {
-      rooms[index] = { ...room };
-    });
-
-    delete apartment.name;
-    delete apartment.address;
-    delete apartment.size;
-
-    rooms.map(room => {
-      delete room.name;
-      delete room.dataPercent;
-    });
-
-    for (const i in apartment) {
-      if (apartment.hasOwnProperty(i)) {
-        if (apartment[i] !== null) {
-          if (apartment[i].length !== 0) {
-            apartmentLength++;
-          }
-        }
-      }
-    }
-
-    rooms.map(room => {
-      for (const i in room) {
-        if (room.hasOwnProperty(i)) {
-          if (room[i] !== null) {
-            if (room[i].length !== 0) {
-              roomsLength++;
-            }
-          }
-        }
-      }
-    });
-
-    apartmentRate = apartmentLength / Object.keys(apartment).length * 80;
-    roomsRate = roomsLength / (Object.keys(rooms[0]).length * rooms.length) * 20;
-    const dataPercent = parseInt((apartmentRate + roomsRate).toFixed(0), 10);
-
-    this.apartment = {
-      ...this.apartment,
-      dataPercent
-    };
-
     this.apartment.userId = this.storageService.get('userId');
     return this.apiService.post('apartments', this.apartment);
   }

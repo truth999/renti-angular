@@ -34,19 +34,19 @@ export class ApartmentDataThirdComponent implements OnInit {
 
   ngOnInit() {
     this.apartmentDataThirdForm = new FormGroup({
-      externalIsolation: new FormControl(false),
-      balcony: new FormControl(false),
+      externalIsolation: new FormControl(null),
+      balcony: new FormControl(null),
       sizeOfBalcony: new FormControl(null),
-      garden: new FormControl(false),
+      garden: new FormControl(null),
       sizeOfGarden: new FormControl(null),
-      terrace: new FormControl(false),
+      terrace: new FormControl(null),
       sizeOfTerrace: new FormControl(null),
       rentalFee: new FormControl(null, [Validators.min(1), Validators.max(2000000)]),
       overhead: new FormControl(null, [Validators.min(1), Validators.max(2000000)]),
       deposit: new FormControl(null, [Validators.min(1), Validators.max(2000000)]),
       minimumRentingTime: new FormControl(null),
       dateOfMovingIn: new FormGroup({
-        rightNow: new FormControl(false),
+        rightNow: new FormControl(null),
         date: new FormControl(null)
       })
     });
@@ -64,12 +64,48 @@ export class ApartmentDataThirdComponent implements OnInit {
     return this.apartmentDataThirdForm.get('terrace');
   }
 
+  get sizeOfBalcony() {
+    return this.apartmentDataThirdForm.get('sizeOfBalcony');
+  }
+
+  get sizeOfGarden() {
+    return this.apartmentDataThirdForm.get('sizeOfGarden');
+  }
+
+  get sizeOfTerrace() {
+    return this.apartmentDataThirdForm.get('sizeOfTerrace');
+  }
+
   get rightNow() {
     return this.apartmentDataThirdForm.get('dateOfMovingIn').get('rightNow');
   }
 
   get date() {
     return this.apartmentDataThirdForm.get('dateOfMovingIn').get('date');
+  }
+
+  onChangeBalcony() {
+    if (!this.balcony.value) {
+      this.sizeOfBalcony.setValue(null);
+    }
+  }
+
+  onChangeGarden() {
+    if (!this.garden.value) {
+      this.sizeOfGarden.setValue(null);
+    }
+  }
+
+  onChangeTerrace() {
+    if (!this.terrace.value) {
+      this.sizeOfTerrace.setValue(null);
+    }
+  }
+
+  onChangeRightNow() {
+    if (this.rightNow.value) {
+      this.date.setValue(null);
+    }
   }
 
   async submit() {
@@ -80,11 +116,8 @@ export class ApartmentDataThirdComponent implements OnInit {
 
       try {
         const responses = await this.apartmentCreateService.createRooms();
-        const roomIds = responses.rooms.map(room => {
-          return room._id;
-        });
 
-        this.apartmentCreateService.updateApartmentDataWithRoomIds(roomIds);
+        this.apartmentCreateService.updateApartmentDataWithRooms(responses.rooms);
         await this.apartmentCreateService.createApartment();
         this.cursorWaitService.enable();
         this.router.navigate(['/app/my-properties']);

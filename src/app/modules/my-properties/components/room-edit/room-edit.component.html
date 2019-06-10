@@ -77,6 +77,7 @@
             <td class="text-right py-0 pr-0">
               <select class="custom-select border-0 w-auto"
                       formControlName="yearOfRenovation">
+                <option [ngValue]="null">-</option>
                 <option *ngFor="let year of years"
                         [value]="year">{{ year }}</option>
               </select>
@@ -86,6 +87,7 @@
             <td class="py-0 align-middle">{{ 'APARTMENT.COVERAGE' | translate }}</td>
             <td class="text-right py-0 pr-0">
               <select class="custom-select border-0 w-auto" formControlName="coverage">
+                <option [ngValue]="null">-</option>
                 <option value="tiles">{{ 'COMMON.TILES' | translate }}</option>
                 <option value="wooden">{{ 'COMMON.LAMINATED_WOODEN' | translate }}</option>
                 <option value="carpet">{{ 'COMMON.CARPET' | translate }}</option>
@@ -99,24 +101,34 @@
             <td class="text-right py-0 pr-0">
               <select class="custom-select border-0 w-auto"
                       formControlName="windowType">
+                <option [ngValue]="null">-</option>
                 <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>
                 <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
                 <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
               </select>
-              <div class="invalid-feedback d-block text-right"
-                   *ngIf="roomForm.get('windowType').invalid && (roomForm.get('windowType').dirty || roomForm.get('windowType').touched)">
-                <span *ngIf="roomForm.get('windowType').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-              </div>
             </td>
           </tr>
           <tr>
             <td class="py-0 align-middle">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
             <td class="text-right pr-0">
-              <label class="switch">
-                <input type="checkbox"
+              <div class="switch">
+                <input type="radio"
+                       id="equipment-no"
+                       [value]="false"
                        formControlName="equipment">
-                <span class="slider round"></span>
-              </label>
+                <label for="equipment-no">{{ 'COMMON.NO' | translate }}</label>
+                <input type="radio"
+                       id="equipment-na"
+                       [value]="null"
+                       formControlName="equipment">
+                <label for="equipment-na">N/A</label>
+                <input type="radio"
+                       id="equipment-yes"
+                       [value]="true"
+                       formControlName="equipment">
+                <label for="equipment-yes">{{ 'COMMON.YES' | translate }}</label>
+                <span class="slider"></span>
+              </div>
             </td>
           </tr>
           <tr>

@@ -60,12 +60,12 @@ export class RoomEditComponent implements OnInit {
 
   buildRoomForm() {
     this.roomForm = new FormGroup({
-      name: new FormControl(!!this.room.name ? this.room.name : null, Validators.required),
-      size: new FormControl(!!this.room.size ? this.room.size : null, [Validators.required, Validators.min(0)]),
-      yearOfRenovation: new FormControl(!!this.room.yearOfRenovation ? this.room.yearOfRenovation : null),
-      coverage: new FormControl(!!this.room.coverage ? this.room.coverage : null),
-      windowType: new FormControl(!!this.room.windowType ? this.room.windowType : null, Validators.required),
-      equipment: new FormControl(!!this.room.equipment ? this.room.equipment : false),
+      name: new FormControl(!!this.room ? this.room.name : null, Validators.required),
+      size: new FormControl(!!this.room ? this.room.size : null, [Validators.required, Validators.min(0)]),
+      yearOfRenovation: new FormControl(!!this.room ? this.room.yearOfRenovation : null),
+      coverage: new FormControl(!!this.room ? this.room.coverage : null),
+      windowType: new FormControl(!!this.room ? this.room.windowType : null),
+      equipment: new FormControl(!!this.room ? this.room.equipment : null),
       furniture: new FormArray(!!this.room.furniture ? this.room.furniture.map(furniture => {
         return new FormGroup({
           furnitureName: new FormControl(!!furniture.furnitureName ? furniture.furnitureName : null),
@@ -121,37 +121,15 @@ export class RoomEditComponent implements OnInit {
 
   async submit() {
     if (this.roomForm.valid) {
-      let roomData = {
+      const roomData = {
         ...this.room,
         ...this.roomForm.value
-      };
-
-      const room = { ...this.roomForm.value };
-      let roomLength = 0;
-
-      delete room.name;
-
-      for (const i in room) {
-        if (room.hasOwnProperty(i)) {
-          if (room[i] !== null) {
-            if (room[i].length !== 0) {
-              roomLength++;
-            }
-          }
-        }
-      }
-
-      const dataPercent = parseInt((roomLength / Object.keys(room).length * 100).toFixed(0), 10);
-
-      roomData = {
-        ...roomData,
-        dataPercent
       };
 
       try {
         this.cursorWaitService.enable();
 
-        await this.myPropertiesService.updateRoom(roomData);
+        this.myPropertiesService.updateRoom(roomData);
         this.toastrService.success('The room is updated successfully.', 'Success!');
         this.location.back();
       } catch (e) {

@@ -62,21 +62,47 @@
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
+          <div class="switch">
+            <input type="radio"
+                   id="childFriendly-no"
+                   [value]="false"
                    formControlName="childFriendly">
-            <span class="slider round"></span>
-          </label>
+            <label for="childFriendly-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="childFriendly-na"
+                   [value]="null"
+                   formControlName="childFriendly">
+            <label for="childFriendly-na">N/A</label>
+            <input type="radio"
+                   id="childFriendly-yes"
+                   [value]="true"
+                   formControlName="childFriendly">
+            <label for="childFriendly-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
+          <div class="switch">
+            <input type="radio"
+                   id="petFriendly-no"
+                   [value]="false"
                    formControlName="petFriendly">
-            <span class="slider round"></span>
-          </label>
+            <label for="petFriendly-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="petFriendly-na"
+                   [value]="null"
+                   formControlName="petFriendly">
+            <label for="petFriendly-na">N/A</label>
+            <input type="radio"
+                   id="petFriendly-yes"
+                   [value]="true"
+                   formControlName="petFriendly">
+            <label for="petFriendly-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -91,31 +117,70 @@
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
+          <div class="switch">
+            <input type="radio"
+                   id="handicapAccessible-no"
+                   [value]="false"
                    formControlName="handicapAccessible">
-            <span class="slider round"></span>
-          </label>
+            <label for="handicapAccessible-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="handicapAccessible-na"
+                   [value]="null"
+                   formControlName="handicapAccessible">
+            <label for="handicapAccessible-na">N/A</label>
+            <input type="radio"
+                   id="handicapAccessible-yes"
+                   [value]="true"
+                   formControlName="handicapAccessible">
+            <label for="handicapAccessible-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
+          <div class="switch">
+            <input type="radio"
+                   id="airConditioner-no"
+                   [value]="false"
                    formControlName="airConditioner">
-            <span class="slider round"></span>
-          </label>
+            <label for="airConditioner-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="airConditioner-na"
+                   [value]="null"
+                   formControlName="airConditioner">
+            <label for="airConditioner-na">N/A</label>
+            <input type="radio"
+                   id="airConditioner-yes"
+                   [value]="true"
+                   formControlName="airConditioner">
+            <label for="airConditioner-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
+          <div class="switch">
+            <input type="radio"
+                   id="garage-no"
+                   [value]="false"
                    formControlName="garage">
-            <span class="slider round"></span>
-          </label>
+            <label for="garage-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="garage-na"
+                   [value]="null"
+                   formControlName="garage">
+            <label for="garage-na">N/A</label>
+            <input type="radio"
+                   id="garage-yes"
+                   [value]="true"
+                   formControlName="garage">
+            <label for="garage-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
     </tbody>

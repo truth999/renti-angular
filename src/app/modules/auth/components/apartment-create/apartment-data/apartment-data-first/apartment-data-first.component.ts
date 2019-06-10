@@ -44,8 +44,8 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
       floorsOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.floorsOfBuilding : null, Validators.min(1)),
       floorsOfApartment: new FormControl(!!this.apartmentData ? this.apartmentData.floorsOfApartment : null, Validators.min(1)),
       size: new FormControl(!!this.apartmentData ? this.apartmentData.size : size),
-      elevator: new FormControl(!!this.apartmentData ? this.apartmentData.elevator : false),
-      rooftop: new FormControl(!!this.apartmentData ? this.apartmentData.rooftop : false)
+      elevator: new FormControl(!!this.apartmentData ? this.apartmentData.elevator : null),
+      rooftop: new FormControl(!!this.apartmentData ? this.apartmentData.rooftop : null)
     });
   }
 

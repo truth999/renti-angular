@@ -5,21 +5,50 @@
       <tr>
         <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
         <td class="border-top-0 text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
+          <div class="switch">
+            <input type="radio"
+                   id="externalIsolation-no"
+                   [value]="false"
                    formControlName="externalIsolation">
-            <span class="slider round"></span>
-          </label>
+            <label for="externalIsolation-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="externalIsolation-na"
+                   [value]="null"
+                   formControlName="externalIsolation">
+            <label for="externalIsolation-na">N/A</label>
+            <input type="radio"
+                   id="externalIsolation-yes"
+                   [value]="true"
+                   formControlName="externalIsolation">
+            <label for="externalIsolation-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.BALCONY' | translate }}?</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
-                   formControlName="balcony">
-            <span class="slider round"></span>
-          </label>
+          <div class="switch">
+            <input type="radio"
+                   id="balcony-no"
+                   [value]="false"
+                   formControlName="balcony"
+                   (change)="onChangeBalcony()">
+            <label for="balcony-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="balcony-na"
+                   [value]="null"
+                   formControlName="balcony"
+                   (change)="onChangeBalcony()">
+            <label for="balcony-na">N/A</label>
+            <input type="radio"
+                   id="balcony-yes"
+                   [value]="true"
+                   formControlName="balcony"
+                   (change)="onChangeBalcony()">
+            <label for="balcony-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr *ngIf="balcony.value">
@@ -36,11 +65,27 @@
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.GARDEN' | translate }}?</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
-                   formControlName="garden">
-            <span class="slider round"></span>
-          </label>
+          <div class="switch">
+            <input type="radio"
+                   id="garden-no"
+                   [value]="false"
+                   formControlName="garden"
+                   (change)="onChangeGarden()">
+            <label for="garden-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="garden-na"
+                   [value]="null"
+                   formControlName="garden"
+                   (change)="onChangeGarden()">
+            <label for="garden-na">N/A</label>
+            <input type="radio"
+                   id="garden-yes"
+                   [value]="true"
+                   formControlName="garden"
+                   (change)="onChangeGarden()">
+            <label for="garden-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr *ngIf="garden.value">
@@ -57,11 +102,27 @@
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.TERRACE' | translate }}?</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
-                   formControlName="terrace">
-            <span class="slider round"></span>
-          </label>
+          <div class="switch">
+            <input type="radio"
+                   id="terrace-no"
+                   [value]="false"
+                   formControlName="terrace"
+                   (change)="onChangeTerrace()">
+            <label for="terrace-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="terrace-na"
+                   [value]="null"
+                   formControlName="terrace"
+                   (change)="onChangeTerrace()">
+            <label for="terrace-na">N/A</label>
+            <input type="radio"
+                   id="terrace-yes"
+                   [value]="true"
+                   formControlName="terrace"
+                   (change)="onChangeTerrace()">
+            <label for="terrace-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr *ngIf="terrace.value">
@@ -141,17 +202,31 @@
       </tr>
       <tr>
         <td class="border-bottom align-middle">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</td>
-        <td class="border-bottom text-right pr-0"
+        <td class="border-bottom text-right pr-0 w-50"
             formGroupName="dateOfMovingIn">
-          <div class="d-flex align-items-center justify-content-end">
-            <label for="right-now"
-                   class="font-size-base font-weight-normal mb-0 mr-3">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
-            <label class="switch">
-              <input type="checkbox"
-                     id="right-now"
-                     formControlName="rightNow">
-              <span class="slider round"></span>
-            </label>
+          <div>
+            <label class="font-size-base font-weight-normal mb-sm-0 mb-1 mr-sm-3 align-middle">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
+            <div class="switch">
+              <input type="radio"
+                     id="rightNow-no"
+                     [value]="false"
+                     formControlName="rightNow"
+                     (change)="onChangeRightNow()">
+              <label for="rightNow-no">{{ 'COMMON.NO' | translate }}</label>
+              <input type="radio"
+                     id="rightNow-na"
+                     [value]="null"
+                     formControlName="rightNow"
+                     (change)="onChangeRightNow()">
+              <label for="rightNow-na">N/A</label>
+              <input type="radio"
+                     id="rightNow-yes"
+                     [value]="true"
+                     formControlName="rightNow"
+                     (change)="onChangeRightNow()">
+              <label for="rightNow-yes">{{ 'COMMON.YES' | translate }}</label>
+              <span class="slider"></span>
+            </div>
           </div>
           <div *ngIf="!rightNow.value">
             <input class="form-control text-right mt-2"

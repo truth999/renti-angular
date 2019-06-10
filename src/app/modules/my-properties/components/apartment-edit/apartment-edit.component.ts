@@ -140,41 +140,41 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       floorsOfBuilding: new FormControl(!!this.apartment ? this.apartment.floorsOfBuilding : null, Validators.min(1)),
       floorsOfApartment: new FormControl(!!this.apartment ? this.apartment.floorsOfApartment : null, Validators.min(1)),
       size: new FormControl(size),
-      elevator: new FormControl(!!this.apartment ? this.apartment.elevator : false),
-      rooftop: new FormControl(!!this.apartment ? this.apartment.rooftop : false),
-      buildingSiting: new FormControl(this.apartment.buildingSiting),
-      typeOfHeating: new FormControl(this.apartment.typeOfHeating),
-      headroom: new FormControl(this.apartment.headroom),
-      parking: new FormControl(this.apartment.parking),
-      childFriendly: new FormControl(!!this.apartment.childFriendly ? this.apartment.childFriendly : false),
-      petFriendly: new FormControl(!!this.apartment.petFriendly ? this.apartment.petFriendly : false),
-      mediaServiceProviders: new FormControl(this.apartment.mediaServiceProviders),
-      handicapAccessible: new FormControl(!!this.apartment.handicapAccessible ? this.apartment.handicapAccessible : false),
-      airConditioner: new FormControl(!!this.apartment.airConditioner ? this.apartment.airConditioner : false),
-      garage: new FormControl(!!this.apartment.garage ? this.apartment.garage : false),
-      externalIsolation: new FormControl(!!this.apartment.externalIsolation ? this.apartment.externalIsolation : false),
-      balcony: new FormControl(!!this.apartment.balcony ? this.apartment.balcony : false),
-      sizeOfBalcony: new FormControl(!!this.apartment.sizeOfBalcony ? this.apartment.sizeOfBalcony : null),
-      garden: new FormControl(!!this.apartment.garden ? this.apartment.garden : false),
-      sizeOfGarden: new FormControl(!!this.apartment.sizeOfGarden ? this.apartment.sizeOfGarden : null),
-      terrace: new FormControl(!!this.apartment.terrace ? this.apartment.terrace : false),
-      sizeOfTerrace: new FormControl(!!this.apartment.sizeOfTerrace ? this.apartment.sizeOfTerrace : null),
+      elevator: new FormControl(!!this.apartment ? this.apartment.elevator : null),
+      rooftop: new FormControl(!!this.apartment ? this.apartment.rooftop : null),
+      buildingSiting: new FormControl(!!this.apartment ? this.apartment.buildingSiting : null),
+      typeOfHeating: new FormControl(!!this.apartment ? this.apartment.typeOfHeating : null),
+      headroom: new FormControl(!!this.apartment ? this.apartment.headroom : null),
+      parking: new FormControl(!!this.apartment ? this.apartment.parking : null),
+      childFriendly: new FormControl(!!this.apartment ? this.apartment.childFriendly : null),
+      petFriendly: new FormControl(!!this.apartment ? this.apartment.petFriendly : null),
+      mediaServiceProviders: new FormControl(!!this.apartment ? this.apartment.mediaServiceProviders : null),
+      handicapAccessible: new FormControl(!!this.apartment ? this.apartment.handicapAccessible : null),
+      airConditioner: new FormControl(!!this.apartment ? this.apartment.airConditioner : null),
+      garage: new FormControl(!!this.apartment ? this.apartment.garage : null),
+      externalIsolation: new FormControl(!!this.apartment ? this.apartment.externalIsolation : null),
+      balcony: new FormControl(!!this.apartment ? this.apartment.balcony : null),
+      sizeOfBalcony: new FormControl(!!this.apartment ? this.apartment.sizeOfBalcony : null),
+      garden: new FormControl(!!this.apartment ? this.apartment.garden : null),
+      sizeOfGarden: new FormControl(!!this.apartment ? this.apartment.sizeOfGarden : null),
+      terrace: new FormControl(!!this.apartment ? this.apartment.terrace : null),
+      sizeOfTerrace: new FormControl(!!this.apartment ? this.apartment.sizeOfTerrace : null),
       rentalFee: new FormControl(
-        !!this.apartment.rentalFee ? this.apartment.rentalFee : null,
+        !!this.apartment ? this.apartment.rentalFee : null,
         [Validators.min(1), Validators.max(2000000)]
       ),
       overhead: new FormControl(
-        !!this.apartment.overhead ? this.apartment.overhead : null,
+        !!this.apartment ? this.apartment.overhead : null,
         [Validators.min(1), Validators.max(2000000)]
       ),
       deposit: new FormControl(
-        !!this.apartment.deposit ? this.apartment.deposit : null,
+        !!this.apartment ? this.apartment.deposit : null,
         [Validators.min(1), Validators.max(2000000)]
       ),
-      minimumRentingTime: new FormControl(!!this.apartment.minimumRentingTime ? this.apartment.minimumRentingTime : null),
+      minimumRentingTime: new FormControl(!!this.apartment ? this.apartment.minimumRentingTime : null),
       dateOfMovingIn: new FormGroup({
-        rightNow: new FormControl(!!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.rightNow : false),
-        date: new FormControl(!!this.apartment.dateOfMovingIn ? this.apartment.dateOfMovingIn.date : null)
+        rightNow: new FormControl(!!this.apartment ? this.apartment.dateOfMovingIn.rightNow : null),
+        date: new FormControl(!!this.apartment ? this.apartment.dateOfMovingIn.date : null)
       })
       // roomsData: new FormArray(!!this.apartment.roomsData ? this.apartment.roomsData.map(room => {
       //   return new FormGroup({
@@ -272,72 +272,9 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
   async submit() {
     if (this.apartmentForm.valid) {
-      const roomIds = [];
-      this.apartment.rooms.map(room => {
-        roomIds.push(room._id);
-      });
-
-      let apartmentData = {
-        ...this.apartmentForm.value,
-        rooms: roomIds
-      };
-
-      apartmentData = {
+      const apartmentData = {
         ...this.apartment,
-        ...apartmentData
-      };
-
-      const apartment = { ...this.apartmentForm.value };
-      const rooms = [];
-      let apartmentLength = 0;
-      let roomsLength = 0;
-      let apartmentRate;
-      let roomsRate;
-      this.apartment.rooms.map((room, index) => {
-        rooms[index] = { ...room };
-      });
-
-      delete apartment.name;
-      delete apartment.address;
-      delete apartment.size;
-
-      rooms.map(room => {
-        delete room._id;
-        delete room.name;
-        delete room.createdAt;
-        delete room.updatedAt;
-        delete room.__v;
-      });
-
-      for (const i in apartment) {
-        if (apartment.hasOwnProperty(i)) {
-          if (apartment[i] !== null) {
-            if (apartment[i].length !== 0) {
-              apartmentLength++;
-            }
-          }
-        }
-      }
-
-      rooms.map(room => {
-        for (const i in room) {
-          if (room.hasOwnProperty(i)) {
-            if (room[i] !== null) {
-              if (room[i].length !== 0) {
-                roomsLength++;
-              }
-            }
-          }
-        }
-      });
-
-      apartmentRate = apartmentLength / Object.keys(apartment).length * 80;
-      roomsRate = roomsLength / (Object.keys(rooms[0]).length * rooms.length) * 20;
-      const dataPercent = parseInt((apartmentRate + roomsRate).toFixed(0), 10);
-
-      apartmentData = {
-        ...apartmentData,
-        dataPercent
+        ...this.apartmentForm.value
       };
 
       try {

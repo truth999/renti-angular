@@ -41,7 +41,7 @@
         </tr>
         <tr>
           <td>{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
-          <td class="text-right font-weight-bold">{{ room.equipment }}</td>
+          <td class="text-right font-weight-bold">{{ room.equipment ? ('COMMON.YES' | translate) : (room.equipment === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
         </tr>
         <tr>
           <td>{{ 'APARTMENT.FURNITURE' | translate }}</td>

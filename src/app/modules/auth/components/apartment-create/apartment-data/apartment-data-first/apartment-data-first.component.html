@@ -134,21 +134,47 @@
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
+          <div class="switch">
+            <input type="radio"
+                   id="elevator-no"
+                   [value]="false"
                    formControlName="elevator">
-            <span class="slider round"></span>
-          </label>
+            <label for="elevator-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="elevator-na"
+                   [value]="null"
+                   formControlName="elevator">
+            <label for="elevator-na">N/A</label>
+            <input type="radio"
+                   id="elevator-yes"
+                   [value]="true"
+                   formControlName="elevator">
+            <label for="elevator-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
         <td class="text-right pr-0">
-          <label class="switch">
-            <input type="checkbox"
+          <div class="switch">
+            <input type="radio"
+                   id="rooftop-no"
+                   [value]="false"
                    formControlName="rooftop">
-            <span class="slider round"></span>
-          </label>
+            <label for="rooftop-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="rooftop-na"
+                   [value]="null"
+                   formControlName="rooftop">
+            <label for="rooftop-na">N/A</label>
+            <input type="radio"
+                   id="rooftop-yes"
+                   [value]="true"
+                   formControlName="rooftop">
+            <label for="rooftop-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
         </td>
       </tr>
     </tbody>

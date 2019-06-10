@@ -1,5 +1,5 @@
 import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import { ApartmentCreateService } from '../../../services/apartment-create.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
@@ -26,7 +26,7 @@ export class ApartmentWindowComponent implements OnInit, DoCheck {
 
     this.windowTypeForm = new FormGroup({
       windowType: new FormArray(this.rooms.map(room => {
-        return new FormControl(room.windowType, Validators.required);
+        return new FormControl(room.windowType);
       }))
     });
   }
@@ -42,38 +42,11 @@ export class ApartmentWindowComponent implements OnInit, DoCheck {
         room.windowType = windowTypes.windowType[index];
         room.yearOfRenovation = null;
         room.coverage = null;
-        room.equipment = false;
+        room.equipment = null;
         room.furniture = null;
-        room.dataPercent = null;
       });
 
-      const rooms = [];
-      this.rooms.map((room, index) => {
-        rooms[index] = { ...room };
-      });
-
-      rooms.map(room => {
-        let roomLength = 0;
-        const name = room.name;
-
-        delete room.name;
-        delete room.dataPercent;
-
-        for (const i in room) {
-          if (room.hasOwnProperty(i)) {
-            if (room[i] !== null) {
-              if (room[i].length !== 0) {
-                roomLength++;
-              }
-            }
-          }
-        }
-
-        room.dataPercent = parseInt((roomLength / Object.keys(room).length * 100).toFixed(0), 10);
-        room.name = name;
-      });
-
-      this.apartmentCreateService.createRoomsData(rooms);
+      this.apartmentCreateService.createRoomsData(this.rooms);
     } else {
       this.validateFormFieldsService.validate(this.windowTypeForm);
     }

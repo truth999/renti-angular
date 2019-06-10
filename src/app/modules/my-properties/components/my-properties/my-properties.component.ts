@@ -27,7 +27,7 @@ export class MyPropertiesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.page.perPage = 10;
+    this.page.perPage = 10000;
     this.page.pageNumber = 1;
 
     this.getApartments();

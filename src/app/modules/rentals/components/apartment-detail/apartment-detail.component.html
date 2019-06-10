@@ -89,11 +89,11 @@
           <!--          </tr>-->
           <tr>
             <td>{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.elevator }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.elevator ? ('COMMON.YES' | translate) : (apartment.elevator === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.rooftop }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.rooftop ? ('COMMON.YES' | translate) : (apartment.rooftop === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
@@ -104,6 +104,7 @@
             <td class="text-right font-weight-bold">{{ apartment.typeOfHeating }}</td>
           </tr>
           <tr>
+          <tr>
             <td>{{ 'APARTMENT.HEADROOM' | translate }}</td>
             <td class="text-right font-weight-bold">{{ apartment.headroom }}</td>
           </tr>
@@ -113,15 +114,15 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.childFriendly }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.childFriendly ? ('COMMON.YES' | translate) : (apartment.childFriendly === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.petFriendly }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.petFriendly ? ('COMMON.YES' | translate) : (apartment.petFriendly === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.externalIsolation }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.externalIsolation ? ('COMMON.YES' | translate) : (apartment.externalIsolation === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
@@ -129,11 +130,11 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.handicapAccessible }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.handicapAccessible ? ('COMMON.YES' | translate) : (apartment.handicapAccessible === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.BALCONY' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.balcony }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.balcony ? ('COMMON.YES' | translate) : (apartment.balcony === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
@@ -141,7 +142,7 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.GARDEN' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.garden }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.garden ? ('COMMON.YES' | translate) : (apartment.garden === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
@@ -149,7 +150,7 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.TERRACE' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.terrace }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.terrace ? ('COMMON.YES' | translate) : (apartment.terrace === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
@@ -157,16 +158,16 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.airConditioner }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.airConditioner ? ('COMMON.YES' | translate) : (apartment.airConditioner === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.GARAGE' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.garage }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.garage ? ('COMMON.YES' | translate) : (apartment.garage === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
-<!--          <tr>-->
-<!--            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>-->
-<!--            <td class="text-right font-weight-bold">{{ apartment.rentalFee }}</td>-->
-<!--          </tr>-->
+          <!--          <tr>-->
+          <!--            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>-->
+          <!--            <td class="text-right font-weight-bold">{{ apartment.rentalFee }}</td>-->
+          <!--          </tr>-->
           <tr>
             <td>{{ 'COMMON.OVERHEAD' | translate }}</td>
             <td class="text-right font-weight-bold">{{ apartment.overhead }}</td>
@@ -284,11 +285,11 @@
 <!--          </tr>-->
           <tr>
             <td>{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.elevator ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.elevator ? ('COMMON.YES' | translate) : (apartment.elevator === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.rooftop ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.rooftop ? ('COMMON.YES' | translate) : (apartment.rooftop === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.BUILDING_SITING' | translate }}</td>
@@ -309,15 +310,15 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.childFriendly ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.childFriendly ? ('COMMON.YES' | translate) : (apartment.childFriendly === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.PET_FRIENDLY' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.petFriendly ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.petFriendly ? ('COMMON.YES' | translate) : (apartment.petFriendly === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.externalIsolation ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.externalIsolation ? ('COMMON.YES' | translate) : (apartment.externalIsolation === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
@@ -325,11 +326,11 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.handicapAccessible ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.handicapAccessible ? ('COMMON.YES' | translate) : (apartment.handicapAccessible === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.BALCONY' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.balcony ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.balcony ? ('COMMON.YES' | translate) : (apartment.balcony === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }}</td>
@@ -337,7 +338,7 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.GARDEN' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.garden ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.garden ? ('COMMON.YES' | translate) : (apartment.garden === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }}</td>
@@ -345,7 +346,7 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.TERRACE' | translate }}?</td>
-            <td class="text-right font-weight-bold">{{ apartment.terrace ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.terrace ? ('COMMON.YES' | translate) : (apartment.terrace === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }}</td>
@@ -353,11 +354,11 @@
           </tr>
           <tr>
             <td>{{ 'APARTMENT.AIRCONDITIONER' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.airConditioner ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.airConditioner ? ('COMMON.YES' | translate) : (apartment.airConditioner === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
           <tr>
             <td>{{ 'APARTMENT.GARAGE' | translate }}</td>
-            <td class="text-right font-weight-bold">{{ apartment.garage ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}</td>
+            <td class="text-right font-weight-bold">{{ apartment.garage ? ('COMMON.YES' | translate) : (apartment.garage === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
           </tr>
 <!--          <tr>-->
 <!--            <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>-->

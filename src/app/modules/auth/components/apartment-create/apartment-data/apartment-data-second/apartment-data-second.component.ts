@@ -32,12 +32,12 @@ export class ApartmentDataSecondComponent implements OnInit, DoCheck {
       typeOfHeating: new FormControl(!!this.apartmentData.typeOfHeating ? this.apartmentData.typeOfHeating : null),
       headroom: new FormControl(!!this.apartmentData.headroom ? this.apartmentData.headroom : null),
       parking: new FormControl(!!this.apartmentData.parking ? this.apartmentData.parking : null),
-      childFriendly: new FormControl(!!this.apartmentData.childFriendly ? this.apartmentData.childFriendly : false),
-      petFriendly: new FormControl(!!this.apartmentData.petFriendly ? this.apartmentData.petFriendly : false),
+      childFriendly: new FormControl(!!this.apartmentData.childFriendly ? this.apartmentData.childFriendly : null),
+      petFriendly: new FormControl(!!this.apartmentData.petFriendly ? this.apartmentData.petFriendly : null),
       mediaServiceProviders: new FormControl(!!this.apartmentData.mediaServiceProviders ? this.apartmentData.mediaServiceProviders : null),
-      handicapAccessible: new FormControl(!!this.apartmentData.handicapAccessible ? this.apartmentData.handicapAccessible : false),
-      airConditioner: new FormControl(!!this.apartmentData.airConditioner ? this.apartmentData.airConditioner : false),
-      garage: new FormControl(!!this.apartmentData.garage ? this.apartmentData.garage : false)
+      handicapAccessible: new FormControl(!!this.apartmentData.handicapAccessible ? this.apartmentData.handicapAccessible : null),
+      airConditioner: new FormControl(!!this.apartmentData.airConditioner ? this.apartmentData.airConditioner : null),
+      garage: new FormControl(!!this.apartmentData.garage ? this.apartmentData.garage : null)
     });
   }
 
