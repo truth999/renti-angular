@@ -18,7 +18,7 @@ import { ApartmentCreateComponent } from './components/apartment-create/apartmen
 import { ApartmentDrawComponent } from './components/apartment-create/apartment-draw/apartment-draw.component';
 import { ApartmentRoomComponent } from './components/apartment-create/apartment-room/apartment-room.component';
 import { ApartmentUploadComponent } from './components/apartment-create/apartment-upload/apartment-upload.component';
-
+import { ApartmentPictureComponent } from './components/apartment-create/apartment-picture/apartment-picture.component';
 import { ApartmentDataComponent } from './components/apartment-create/apartment-data/apartment-data.component';
 import {
   SignupFunnelTypeUsernameComponent
@@ -51,6 +51,7 @@ import {
   ApartmentDataThirdComponent
 } from './components/apartment-create/apartment-data/apartment-data-third/apartment-data-third.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { AuthAlertComponent } from './components/auth-alert/auth-alert.component';
 
 @NgModule({
   declarations: [
@@ -74,9 +75,11 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     SignupComponent,
     AuthCompleteComponent,
     ApartmentWindowComponent,
+    ApartmentPictureComponent,
     ApartmentDataFirstComponent,
     ApartmentDataSecondComponent,
-    ApartmentDataThirdComponent
+    ApartmentDataThirdComponent,
+    AuthAlertComponent,
   ],
   providers: [
     ApartmentCreateService

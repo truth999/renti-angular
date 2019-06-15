@@ -19,6 +19,7 @@ import { ValidateFormFieldsService } from '../../../../../core/services/validate
 import { Tenant, User } from '../../../../../shared/models';
 import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
+import { Validate } from '../../../../../../config/validate';
 
 @Component({
   selector: 'app-my-profile-tenant',
@@ -32,6 +33,8 @@ export class TenantComponent implements OnInit {
   photoDeleted = true;
   countries = Countries;
   years: string[];
+  pattern = Validate;
+  rate: number;
 
   spokenLanguages = [
     'Hungarian',
@@ -86,6 +89,7 @@ export class TenantComponent implements OnInit {
 
       if (!!response.user.tenant) {
         this.tenant = response.user.tenant;
+        this.rate = response.user.tenant.rank * .05;
       }
 
       this.buildTenantForm();
@@ -106,35 +110,41 @@ export class TenantComponent implements OnInit {
 
   buildTenantForm() {
     this.tenantForm = new FormGroup({
-      lookingRent: new FormControl(!!this.tenant ? this.tenant.lookingRent : '', Validators.required),
-      mobile: new FormControl(!!this.tenant ? this.tenant.mobile : '', Validators.required),
-      placeOfBirth: new FormControl(!!this.tenant ? this.tenant.placeOfBirth : '', Validators.required),
-      dateOfBirth: new FormControl(!!this.tenant ? this.tenant.dateOfBirth : null, Validators.required),
-      nationality: new FormControl(!!this.tenant ? this.tenant.nationality : '', Validators.required),
-      spokenLanguages: new FormControl(!!this.tenant ? this.tenant.spokenLanguages : '', Validators.required),
-      currentCity: new FormControl(!!this.tenant ? this.tenant.currentCity : '', Validators.required),
-      highestLevelOfQualification: new FormControl(!!this.tenant ? this.tenant.highestLevelOfQualification : '', Validators.required),
+      lookingRent: new FormControl(!!this.tenant ? this.tenant.lookingRent : null, Validators.required),
+      mobile: new FormControl(!!this.tenant ? this.tenant.mobile : null),
+      placeOfBirth: new FormControl(!!this.tenant ? this.tenant.placeOfBirth : null),
+      dateOfBirth: new FormControl(!!this.tenant ? this.tenant.dateOfBirth : null),
+      nationality: new FormControl(!!this.tenant ? this.tenant.nationality : null),
+      spokenLanguages: new FormControl(!!this.tenant ? this.tenant.spokenLanguages : null),
+      currentCity: new FormControl(!!this.tenant ? this.tenant.currentCity : null),
+      highestLevelOfQualification: new FormControl(!!this.tenant ? this.tenant.highestLevelOfQualification : null),
       education: new FormArray(!!this.tenant ? this.tenant.education.map(education => {
         return new FormGroup({
           nameOfSchool: new FormControl(education.nameOfSchool),
           yearOfGraduation: new FormControl(education.yearOfGraduation)
         });
       }) : [new FormGroup({
-        nameOfSchool: new FormControl(''),
-        yearOfGraduation: new FormControl('')
+        nameOfSchool: new FormControl(null),
+        yearOfGraduation: new FormControl(null)
       })]),
       jobTitle: new FormArray(!!this.tenant ? this.tenant.jobTitle.map(jobTitle => {
-        return new FormControl(jobTitle, Validators.required);
-      }) : [new FormControl('', Validators.required)]),
-      universitySpeciality: new FormControl(!!this.tenant ? this.tenant.universitySpeciality : '', Validators.required),
-      currentWorkplace: new FormControl(!!this.tenant ? this.tenant.currentWorkplace : '', Validators.required),
+        return new FormControl(jobTitle);
+      }) : [new FormControl(null)]),
+      universitySpeciality: new FormControl(
+        !!this.tenant ? this.tenant.universitySpeciality : null
+      ),
+      currentWorkplace: new FormControl(
+        !!this.tenant ? this.tenant.currentWorkplace : null
+      ),
       formerWorkplaces: new FormArray(!!this.tenant ?  this.tenant.formerWorkplaces.map(formerWorkplaces => {
         return new FormControl(formerWorkplaces);
-      }) : [new FormControl('')]),
-      monthlyIncome: new FormControl(!!this.tenant ? this.tenant.monthlyIncome : '', Validators.required),
-      otherText: new FormControl(!!this.tenant ? this.tenant.otherText : ''),
-      freeTextIntroduction: new FormControl(!!this.tenant ? this.tenant.freeTextIntroduction : ''),
-      profilePicture: new FormControl(!!this.tenant ? this.tenant.profilePicture : '', Validators.required)
+      }) : [new FormControl(null)]),
+      monthlyIncome: new FormControl(!!this.tenant ? this.tenant.monthlyIncome : null),
+      otherText: new FormControl(!!this.tenant ? this.tenant.otherText : null),
+      freeTextIntroduction: new FormControl(
+        !!this.tenant ? this.tenant.freeTextIntroduction : null
+      ),
+      profilePicture: new FormControl(!!this.tenant ? this.tenant.profilePicture : null)
     });
   }
 
@@ -143,7 +153,7 @@ export class TenantComponent implements OnInit {
   }
 
   addJobTitle() {
-    this.jobTitle.push(new FormControl('', Validators.required));
+    this.jobTitle.push(new FormControl(null));
   }
 
   get formerWorkplaces() {
@@ -151,7 +161,7 @@ export class TenantComponent implements OnInit {
   }
 
   addFormerWorkplaces() {
-    this.formerWorkplaces.push(new FormControl(''));
+    this.formerWorkplaces.push(new FormControl(null));
   }
 
   get education() {
@@ -160,8 +170,8 @@ export class TenantComponent implements OnInit {
 
   addEducation() {
     this.education.push(new FormGroup({
-      nameOfSchool: new FormControl(''),
-      yearOfGraduation: new FormControl('')
+      nameOfSchool: new FormControl(null),
+      yearOfGraduation: new FormControl(null)
     }));
   }
 
@@ -204,9 +214,17 @@ export class TenantComponent implements OnInit {
   }
 
   onDeletePhoto() {
-    this.tenantForm.patchValue({profilePicture: ''});
+    this.tenantForm.patchValue({profilePicture: null});
     this.photo = '';
   }
+
+  // async onDelete() {
+  //   try {
+  //     await this.tenantService.deleteTenant(this.tenant._id);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
   async uploadProfilePicture(photoURIData) {
     try {

@@ -13,7 +13,7 @@
       </div>
       <div class="card-sm">
         <div class="avatar text-center">
-          <img [src]="uploadBase + user.tenant.profilePicture"
+          <img [src]="!!user.tenant.profilePicture ? uploadBase + user.tenant.profilePicture : '/assets/images/profile/blank.png'"
                alt=""
                class="rounded-pill"
                width="80"

@@ -11,6 +11,7 @@ import { environment } from '../../../../../../environments/environment';
 })
 export class TenantComponent implements OnInit {
   @Input() user: User;
+  rate: number;
   uploadBase = environment.uploadBase;
 
   constructor(
@@ -18,6 +19,7 @@ export class TenantComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.rate = this.user.tenant.rank * .05;
   }
 
   onBack() {

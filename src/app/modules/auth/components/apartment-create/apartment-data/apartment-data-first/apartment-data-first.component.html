@@ -97,11 +97,20 @@
           <input type="number"
                  class="form-control border-0 text-right"
                  min="1"
+                 max="100"
+                 step="1"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="floorsOfBuilding">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').invalid && (apartmentDataFirstForm.get('floorsOfBuilding').dirty || apartmentDataFirstForm.get('floorsOfBuilding').touched)">
-            <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.min"
+                  translate [translateParams]="{ min: apartmentDataFirstForm.get('floorsOfBuilding').errors.min.min }">
+              ERROR.MIN_FIELD
+            </span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.max"
+                  translate [translateParams]="{ max: apartmentDataFirstForm.get('floorsOfBuilding').errors.max.max }">
+              ERROR.MAX_FIELD
+            </span>
           </div>
         </td>
       </tr>
@@ -111,12 +120,21 @@
           <input type="number"
                  class="form-control border-0 text-right"
                  min="1"
+                 max="100"
+                 step="1"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="floorsOfApartment">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('floorsOfApartment').invalid && (apartmentDataFirstForm.get('floorsOfApartment').dirty || apartmentDataFirstForm.get('floorsOfApartment').touched)">
             <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
-            <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.min"
+                  translate [translateParams]="{ min: apartmentDataFirstForm.get('floorsOfApartment').errors.min.min }">
+              ERROR.MIN_FIELD
+            </span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.max"
+                  translate [translateParams]="{ max: apartmentDataFirstForm.get('floorsOfApartment').errors.max.max }">
+              ERROR.MAX_FIELD
+            </span>
           </div>
         </td>
       </tr>

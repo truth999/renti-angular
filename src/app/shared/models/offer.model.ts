@@ -13,4 +13,6 @@ export class Offer {
   movingWithPets: boolean;
   pets: string;
   whyChooseMe: string;
+  accepted: boolean;
+  feedback: boolean;
 }

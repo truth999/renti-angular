@@ -10,7 +10,9 @@
                           (uploadValid)="disabled = !$event"></app-apartment-upload>
     <app-apartment-window *ngIf="step == 3"
                           (windowTypeFormValid)="disabled = !$event"></app-apartment-window>
-    <app-apartment-data *ngIf="step == 4"
+    <app-apartment-picture *ngIf="step == 4"
+                           (pictureValid)="disabled = !$event"></app-apartment-picture>
+    <app-apartment-data *ngIf="step == 5"
                         (apartmentDataValid)="disabled = !$event"></app-apartment-data>
     <div class="continue mt-sm-5 bg-white d-flex align-items-center">
       <span class="icon-left-circle mr-4"

@@ -1,4 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
 import { CropCommand } from '../command/crop.command';
 
 @Component({
@@ -13,7 +15,7 @@ export class CropEditorComponent implements OnInit {
   @ViewChild('frame') frame: ElementRef;
   @ViewChild('backgroundImage') backgroundImage: ElementRef;
   @ViewChild('frameImage') frameImage: ElementRef;
-
+  zoomForm: FormGroup;
   preview;
 
   options = {
@@ -50,6 +52,9 @@ export class CropEditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.zoomForm = new FormGroup({
+      zoom: new FormControl(1)
+    });
     // this.preview = this.mainController.canvas.toDataURL();
     this.preview = this.mainController.result;
 
@@ -144,10 +149,10 @@ export class CropEditorComponent implements OnInit {
   }
 
   onZoomChange(zoom) {
-    this.options.zoom = zoom;
+    this.options.zoom = this.zoomForm.value.zoom;
 
-    const width = this.params.imageWidthStart * zoom;
-    const height = this.params.imageHeightStart  * zoom;
+    const width = this.params.imageWidthStart * this.zoomForm.value.zoom;
+    const height = this.params.imageHeightStart  * this.zoomForm.value.zoom;
 
     const left = this.params.imageLeft - (width - this.params.imageWidth) / 2;
     const top = this.params.imageTop - (height - this.params.imageHeight) / 2;

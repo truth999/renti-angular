@@ -173,12 +173,13 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            <app-feedback></app-feedback>
-            <div class="feedback">
+            <app-feedback [rate]="rate"></app-feedback>
+            <div class="feedback mt-4"
+                 *ngFor="let feedback of user.feedback">
               <div class="client d-flex justify-content-between">
-                <span class="client-name font-weight-bold">Kelsey Taylor</span>
+                <span class="client-name font-weight-bold">{{ feedback.user.firstName }} {{ feedback.user.lastName }}</span>
                 <div class="rating-date d-flex">
-                  <ngb-rating [rate]="5"
+                  <ngb-rating [rate]="feedback.feedbackStar"
                               [readonly]="true"
                               max="5"
                               class="item-rating mr-1">
@@ -189,33 +190,11 @@
                          *ngIf="fill !== 100"></i>
                     </ng-template>
                   </ngb-rating>
-                  <span class="date">2019.07.12</span>
+                  <span class="date">{{ dateFormat(feedback.updatedAt) }}</span>
                 </div>
               </div>
               <p class="feedback-content mt-2">
-                Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-              </p>
-            </div>
-            <div class="feedback mt-4">
-              <div class="client d-flex justify-content-between">
-                <span class="client-name font-weight-bold">Kate Tomlins</span>
-                <div class="rating-date d-flex">
-                  <ngb-rating [rate]="5"
-                              [readonly]="true"
-                              max="5"
-                              class="item-rating mr-1">
-                    <ng-template let-fill="fill">
-                      <i class="icon-star-fill"
-                         *ngIf="fill === 100"></i>
-                      <i class="icon-star"
-                         *ngIf="fill !== 100"></i>
-                    </ng-template>
-                  </ngb-rating>
-                  <span class="date">2019.08.24</span>
-                </div>
-              </div>
-              <p class="feedback-content mt-2">
-                We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                {{ feedback.feedbackText }}
               </p>
             </div>
           </div>

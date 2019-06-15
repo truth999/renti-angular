@@ -40,11 +40,7 @@ export class AuthService {
   }
 
   createUser(signupRequest: SignupRequest) {
-    return this.apiService.post('auth/signup', signupRequest)
-        .then((response) => {
-              this.successAuth(response);
-            }
-        );
+    return this.apiService.post('auth/signup', signupRequest);
   }
 
   login(authRequest: AuthRequest) {

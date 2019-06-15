@@ -1,6 +1,6 @@
 <div class="card-sm position-relative d-flex flex-column justify-content-between">
   <div class="apartment-image position-absolute">
-    <img [src]="uploadBase + profile.profilePicture"
+    <img [src]="!!profile.profilePicture ? uploadBase + profile.profilePicture : '/assets/images/profile/blank.png'"
          alt=""
          width="120"
          height="120">
@@ -8,7 +8,10 @@
   <div class="explain">
     <h6 class="font-size-lg">{{ profile.user.firstName }} {{ profile.user.lastName }}</h6>
     <p class="info text-muted font-weight-bold">
-      <span class="years font-size-lg font-weight-bolder">{{ profile.dateOfBirth | dateToAge }}</span>, {{ profile.currentWorkplace }}
+      <span class="years font-size-lg font-weight-bolder"
+            *ngIf="profile.dateOfBirth">{{ profile.dateOfBirth | dateToAge }}</span>
+      <span *ngIf="profile.dateOfBirth || profile.currentWorkplace">, </span>
+      <span *ngIf="profile.currentWorkplace">{{ profile.currentWorkplace }}</span>
     </p>
     <p #explainParagraph class="information mb-0">
       {{ profile.freeTextIntroduction }}

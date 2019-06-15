@@ -1,0 +1,25 @@
+@import "~src/assets/styles/scss/variables";
+
+ngb-rating {
+  &:focus {
+    outline: none;
+  }
+
+  i {
+    color: $yellow;
+  }
+
+  &.all-rating {
+    i {
+      font-size: 1.6rem;
+      margin-right: .4rem;
+    }
+  }
+
+  &.item-rating {
+    i {
+      font-size: 1rem;
+      margin-right: .2rem;
+    }
+  }
+}

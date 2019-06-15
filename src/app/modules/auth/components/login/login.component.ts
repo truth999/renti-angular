@@ -40,9 +40,11 @@ export class LoginComponent implements OnInit {
         this.loginFailed = false;
         const loginData = this.loginForm.value;
         await this.authService.login(loginData);
+        // this.router.navigate(['/auth/complete']);
         this.router.navigate(['/app/rentals/search']);
       } catch (e) {
         this.loginFailed = true;
+        console.log('LoginComponent->login', e);
       } finally {
         this.cursorWaitService.disable();
       }

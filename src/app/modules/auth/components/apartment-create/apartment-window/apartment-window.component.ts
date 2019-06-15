@@ -1,8 +1,7 @@
-import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import { ApartmentCreateService } from '../../../services/apartment-create.service';
-import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
 import { Room } from '../../../../../shared/models';
 
@@ -11,14 +10,13 @@ import { Room } from '../../../../../shared/models';
   templateUrl: './apartment-window.component.html',
   styleUrls: ['./apartment-window.component.scss']
 })
-export class ApartmentWindowComponent implements OnInit, DoCheck {
+export class ApartmentWindowComponent implements OnInit {
   rooms: Room[];
   windowTypeForm: FormGroup;
   @Output() windowTypeFormValid = new EventEmitter<boolean>();
 
   constructor(
-    private apartmentCreateService: ApartmentCreateService,
-    private validateFormFieldsService: ValidateFormFieldsService
+    private apartmentCreateService: ApartmentCreateService
   ) { }
 
   ngOnInit() {
@@ -29,27 +27,21 @@ export class ApartmentWindowComponent implements OnInit, DoCheck {
         return new FormControl(room.windowType);
       }))
     });
-  }
 
-  ngDoCheck() {
-    this.windowTypeFormValid.emit(this.windowTypeForm.valid);
+    this.windowTypeFormValid.emit(true);
   }
 
   submit() {
-    if (this.windowTypeForm.valid) {
-      const windowTypes = { ...this.windowTypeForm.value };
-      this.rooms.map((room, index) => {
-        room.windowType = windowTypes.windowType[index];
-        room.yearOfRenovation = null;
-        room.coverage = null;
-        room.equipment = null;
-        room.furniture = null;
-      });
+    const windowTypes = { ...this.windowTypeForm.value };
+    this.rooms.map((room, index) => {
+      room.windowType = windowTypes.windowType[index];
+      room.yearOfRenovation = null;
+      room.coverage = null;
+      room.equipment = null;
+      room.furniture = null;
+    });
 
-      this.apartmentCreateService.createRoomsData(this.rooms);
-    } else {
-      this.validateFormFieldsService.validate(this.windowTypeForm);
-    }
+    this.apartmentCreateService.createRoomsData(this.rooms);
   }
 
 }

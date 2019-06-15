@@ -81,6 +81,9 @@
             <button type="button"
                     class="btn btn-outline-primary btn-lg"
                     (click)="onViewAs()">{{ 'COMMON.VIEW_AS' | translate }}...</button>
+<!--            <button type="button"-->
+<!--                    class="btn btn-outline-primary btn-lg"-->
+<!--                    (click)="onDelete()">Delete</button>-->
           </div>
         </div>
         <div class="form-group mt-3">
@@ -401,6 +404,9 @@
                 </tr>
                 </tbody>
               </table>
+            </div>
+            <div class="feedback text-right">
+              <app-feedback [rate]="rate"></app-feedback>
             </div>
           </div>
         </div>

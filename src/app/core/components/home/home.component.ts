@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
 
     this.getCountryLocation();
     try {
+      // const res = await this.homeService.delete();
+      // console.log(res);
       const tenantResponse = await this.homeService.getTenants(this.page);
       const apartmentResponse = await this.homeService.getApartments(this.page);
       tenantResponse.tenants.map(tenant => {

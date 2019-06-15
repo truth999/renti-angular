@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,6 +19,7 @@ import { PhotoEditModalComponent } from './components/modal/photo-edit-modal/pho
 import { CropEditorComponent } from './components/modal/photo-edit-modal/crop-editor/crop-editor.component';
 import { HeatmapFlatModalComponent } from './components/modal/heatmap/heatmap-flat-modal/heatmap-flat-modal.component';
 import { HeatmapTenantModalComponent } from './components/modal/heatmap/heatmap-tenant-modal/heatmap-tenant-modal.component';
+import { FeedbackModalComponent } from './components/modal/feedback-modal/feedback-modal.component';
 
 import { PhotoUploadModalService } from './services/modal/photo-upload-modal.service';
 import { PhotoEditModalService } from './services/modal/photo-edit-modal.service';
@@ -26,6 +27,7 @@ import { ResponsiveService } from './services/responsive.service';
 import { DateSelectService } from './services/date-select.service';
 import { HeatmapFlatModalService } from './services/modal/heatmap/heatmap-flat-modal.service';
 import { HeatmapTenantModalService } from './services/modal/heatmap/heatmap-tenant-modal.service';
+import { FeedbackModalService } from './services/modal/feedback-modal.service';
 
 import { MenuCloseDirective } from './directives/menu-close.directive';
 
@@ -47,13 +49,15 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     DateToAgePipe,
     DateToStringPipe,
     HeatmapFlatModalComponent,
-    HeatmapTenantModalComponent
+    HeatmapTenantModalComponent,
+    FeedbackModalComponent
   ],
   entryComponents: [
     PhotoUploadModalComponent,
     PhotoEditModalComponent,
     HeatmapFlatModalComponent,
-    HeatmapTenantModalComponent
+    HeatmapTenantModalComponent,
+    FeedbackModalComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +65,8 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     TranslateModule,
     NgbModule,
     NouisliderModule,
-    AgmCoreModule
+    AgmCoreModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
@@ -81,7 +86,8 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     DateToAgePipe,
     DateToStringPipe,
     HeatmapFlatModalComponent,
-    HeatmapTenantModalComponent
+    HeatmapTenantModalComponent,
+    FeedbackModalComponent
   ],
   providers: [
     PhotoUploadModalService,
@@ -89,7 +95,8 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     ResponsiveService,
     DateSelectService,
     HeatmapFlatModalService,
-    HeatmapTenantModalService
+    HeatmapTenantModalService,
+    FeedbackModalService
   ]
 })
 export class SharedModule { }

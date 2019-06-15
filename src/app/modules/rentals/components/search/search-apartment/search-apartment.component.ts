@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { Apartment, Page } from '../../../../../shared/models';
 
-import { environment } from '../../../../../../environments/environment';
-
 import { RentalsService } from '../../../services/rentals.service';
 import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 
@@ -15,7 +13,6 @@ import { CursorWaitService } from '../../../../../core/services/cursor-wait.serv
 export class SearchApartmentComponent implements OnInit {
   apartments: Apartment[];
   page = new Page();
-  uploadBase = environment.uploadBase;
 
   toggled = false;
   minPrice = 0;

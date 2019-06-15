@@ -19,4 +19,8 @@ export class TenantService {
   updateTenant(tenant: Tenant): Promise<any> {
     return this.apiService.put(`${this.tenantUrl}/${tenant._id}`, tenant);
   }
+
+  deleteTenant(id: string): Promise<any> {
+    return this.apiService.delete(`${this.tenantUrl}/${id}`);
+  }
 }

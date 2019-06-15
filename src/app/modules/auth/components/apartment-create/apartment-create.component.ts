@@ -4,6 +4,7 @@ import { ApartmentRoomComponent } from './apartment-room/apartment-room.componen
 import { ApartmentWindowComponent } from './apartment-window/apartment-window.component';
 import { ApartmentDataComponent } from './apartment-data/apartment-data.component';
 import { ApartmentUploadComponent } from './apartment-upload/apartment-upload.component';
+import { ApartmentPictureComponent } from './apartment-picture/apartment-picture.component';
 
 @Component({
   selector: 'app-apartment-create',
@@ -16,6 +17,7 @@ export class ApartmentCreateComponent implements OnInit {
   @ViewChild(ApartmentRoomComponent) roomChild: ApartmentRoomComponent;
   @ViewChild(ApartmentUploadComponent) uploadChild: ApartmentUploadComponent;
   @ViewChild(ApartmentWindowComponent) windowChild: ApartmentWindowComponent;
+  @ViewChild(ApartmentPictureComponent) pictureChild: ApartmentPictureComponent;
   @ViewChild(ApartmentDataComponent) apartmentChild: ApartmentDataComponent;
 
   constructor() { }
@@ -27,8 +29,8 @@ export class ApartmentCreateComponent implements OnInit {
     if (!this.disabled || this.step === 0) {
       this.step = this.step + 1;
 
-      if (this.step > 4) {
-        this.step = 4;
+      if (this.step > 5) {
+        this.step = 5;
       }
     }
 
@@ -44,13 +46,17 @@ export class ApartmentCreateComponent implements OnInit {
       this.windowChild.submit();
     }
 
+    if (this.pictureChild) {
+      this.pictureChild.submit();
+    }
+
     if (this.apartmentChild) {
       this.apartmentChild.onNextStep();
     }
   }
 
   onPreviewStep() {
-    if (this.step === 4 && this.apartmentChild.step !== 0) {
+    if (this.step === 5 && this.apartmentChild.step !== 0) {
       if (this.apartmentChild) {
         this.apartmentChild.onPreviewStep();
       }

@@ -13,6 +13,7 @@ import { CursorWaitService } from '../../../../core/services/cursor-wait.service
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 import { environment } from '../../../../../environments/environment';
+import { Validate } from '../../../../../config/validate';
 
 @Component({
   selector: 'app-room-edit',
@@ -24,6 +25,7 @@ export class RoomEditComponent implements OnInit {
   rate: number;
   uploadBase = environment.uploadBase;
   roomForm: FormGroup;
+  pattern = Validate;
 
   years: string[];
 
@@ -48,7 +50,7 @@ export class RoomEditComponent implements OnInit {
 
       const response = await this.myPropertiesService.getRoom(id);
       this.room = response.room;
-      this.rate = response.room.dataPercent * .05;
+      this.rate = response.room.rank * .05;
 
       this.buildRoomForm();
     } catch (e) {
@@ -60,16 +62,20 @@ export class RoomEditComponent implements OnInit {
 
   buildRoomForm() {
     this.roomForm = new FormGroup({
-      name: new FormControl(!!this.room ? this.room.name : null, Validators.required),
-      size: new FormControl(!!this.room ? this.room.size : null, [Validators.required, Validators.min(0)]),
+      name: new FormControl(!!this.room ? this.room.name : null, [Validators.required, Validators.pattern(this.pattern.roomName)]),
+      size: new FormControl(!!this.room ? this.room.size : null, [Validators.required, Validators.min(1), Validators.max(100)]),
       yearOfRenovation: new FormControl(!!this.room ? this.room.yearOfRenovation : null),
       coverage: new FormControl(!!this.room ? this.room.coverage : null),
       windowType: new FormControl(!!this.room ? this.room.windowType : null),
       equipment: new FormControl(!!this.room ? this.room.equipment : null),
       furniture: new FormArray(!!this.room.furniture ? this.room.furniture.map(furniture => {
         return new FormGroup({
-          furnitureName: new FormControl(!!furniture.furnitureName ? furniture.furnitureName : null),
-          furnitureType: new FormControl(!!furniture.furnitureType ? furniture.furnitureType : null)
+          furnitureName: new FormControl(
+            !!furniture.furnitureName ? furniture.furnitureName : null, Validators.pattern(this.pattern.furnitureName)
+          ),
+          furnitureType: new FormControl(
+            !!furniture.furnitureType ? furniture.furnitureType : null, Validators.pattern(this.pattern.furnitureType)
+          )
         });
       }) : []),
       pictures: new FormArray(!!this.room.pictures ? this.room.pictures.map(picture => {
@@ -114,8 +120,8 @@ export class RoomEditComponent implements OnInit {
 
   onAddFurniture() {
     this.furniture.push(new FormGroup({
-      furnitureName: new FormControl(null),
-      furnitureType: new FormControl(null)
+      furnitureName: new FormControl(null, Validators.pattern(this.pattern.furnitureName)),
+      furnitureType: new FormControl(null, Validators.pattern(this.pattern.furnitureType))
     }));
   }
 

@@ -19,7 +19,13 @@
         </div>
       </div>
       <div class="room-image mt-2">
-        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        <ngx-gallery *ngIf="room.pictures.length !== 0"
+                     [options]="galleryOptions"
+                     [images]="galleryImages"></ngx-gallery>
+        <img *ngIf="room.pictures.length === 0"
+             src="/assets/images/no_image.png"
+             alt=""
+             style="width: 100%;">
       </div>
       <table class="table mt-2">
         <tbody>
@@ -60,7 +66,7 @@
       </table>
     </div>
     <div class="col-lg-6 text-lg-right">
-      <app-feedback [rate]="room.dataPercent * .05"></app-feedback>
+      <app-feedback [rate]="room.rank * .05"></app-feedback>
       <div class="text-left">
         <div class="feedback mt-4">
           <div class="client">

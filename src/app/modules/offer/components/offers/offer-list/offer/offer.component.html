@@ -1,7 +1,7 @@
 <div class="card-sm mt-5"
      *ngIf="tenant">
   <div class="avatar text-center">
-    <img [src]="uploadBase + tenant.profilePicture" alt="" width="80" height="80" class="rounded-pill">
+    <img [src]="!!tenant.profilePicture ? uploadBase + tenant.profilePicture : '/assets/images/profile/blank.png'" alt="" width="80" height="80" class="rounded-pill">
   </div>
   <h4 class="text-center">{{ offer.user.firstName }} {{ offer.user.lastName }}</h4>
 <!--  <p class="text-center text-muted font-weight-bold"><span class="year font-size-lg">23</span>, Student</p>-->

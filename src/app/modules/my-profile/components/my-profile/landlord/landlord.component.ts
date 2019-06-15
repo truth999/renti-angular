@@ -18,6 +18,7 @@ import { CursorWaitService } from '../../../../../core/services/cursor-wait.serv
 import { Landlord, User } from '../../../../../shared/models';
 import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
+import { Validate } from '../../../../../../config/validate';
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -30,6 +31,8 @@ export class LandlordComponent implements OnInit {
   photo: string;
   photoDeleted = true;
   isAgency = false;
+  pattern = Validate;
+  rate: number;
 
   spokenLanguagesVal = [
     'Hungarian',
@@ -78,9 +81,15 @@ export class LandlordComponent implements OnInit {
   async ngOnInit() {
     try {
       this.cursorWaitService.enable();
-
+      let totalRate = 0;
       const response = await this.authService.getAuthUser();
+      response.user.feedback.map(async feedback => {
+        totalRate = totalRate + feedback.feedbackStar;
+        const userResponse = await this.authService.getUser(feedback.user);
+        feedback.user = userResponse.user;
+      });
       this.user = response.user;
+      this.rate = parseInt((totalRate / response.user.feedback.length).toFixed(0), 10) - 1;
 
       if (response.user.landlord) {
         this.landlord = response.user.landlord;
@@ -207,6 +216,20 @@ export class LandlordComponent implements OnInit {
     } finally {
       this.cursorWaitService.disable();
     }
+  }
+
+  dateFormat(dateString: string) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    let month = '' + (date.getMonth() + 1);
+    let day = '' + date.getDate();
+    if (month.length < 2) {
+      month = '0' + month;
+    }
+    if (day.length < 2) {
+      day = '0' + day;
+    }
+    return [year, month, day].join('.');
   }
 
   async submit() {

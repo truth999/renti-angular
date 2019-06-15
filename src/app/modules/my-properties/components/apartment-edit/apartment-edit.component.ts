@@ -2,17 +2,15 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
-import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { MyPropertiesService } from '../../services/my-properties.service';
-import { ResponsiveService } from '../../../../shared/services/responsive.service';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
+import { ImageUploaderService } from '../../../../core/services/image-uploader.service';
 
 import { Apartment } from '../../../../shared/models';
 
@@ -29,12 +27,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   apartmentForm: FormGroup;
   years: string[];
 
-  isMobile: BehaviorSubject<boolean>;
-
   uploadBase = environment.uploadBase;
-
-  galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
 
   mediaService = [
     'UPC', 'DIGI', 'Telekom', 'Other'
@@ -46,14 +39,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     private location: Location,
     private myPropertiesService: MyPropertiesService,
     private dateSelectService: DateSelectService,
-    private responsiveService: ResponsiveService,
     private toastrService: ToastrService,
     private cursorWaitService: CursorWaitService,
     private validateFormFieldsService: ValidateFormFieldsService,
-    private datepickerConfig: NgbDatepickerConfig
+    private datepickerConfig: NgbDatepickerConfig,
+    private imageUploaderService: ImageUploaderService
   ) {
-    this.isMobile = this.responsiveService.isMobile;
-
     const today = new Date();
 
     const year = today.getFullYear();
@@ -77,37 +68,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
       this.buildApartmentForm();
 
-      this.galleryOptions = [
-        {
-          arrowPrevIcon: 'icon-left',
-          arrowNextIcon: 'icon-right',
-          closeIcon: 'icon-cancel',
-          width: '100%',
-          thumbnailsColumns: 4,
-          imageAnimation: NgxGalleryAnimation.Slide
-        },
-        {
-          breakpoint: 576,
-          imageBullets: true,
-          thumbnails: false
-        }
-      ];
-
-      const pictures = [];
-      this.apartment.rooms.map(room => {
-        for (let i = 0; i < room.pictures.length; i++) {
-          pictures.push(room.pictures[i]);
-        }
-      });
-
-      this.galleryImages = pictures.map(image => {
-        return {
-          small: this.uploadBase + image,
-          medium: this.uploadBase + image,
-          big: this.uploadBase + image
-        };
-      });
-      this.rate = this.apartment.dataPercent * .05;
+      this.rate = this.apartment.rank * .05;
     } catch (e) {
       console.log('ApartmentEditComponent->ngOnInit', e);
     } finally {
@@ -137,8 +98,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       yearOfConstruction: new FormControl(!!this.apartment ? this.apartment.yearOfConstruction : null),
       stateOfApartment: new FormControl(!!this.apartment ? this.apartment.stateOfApartment : null),
       energyPerformanceCertificate: new FormControl(!!this.apartment ? this.apartment.energyPerformanceCertificate : null),
-      floorsOfBuilding: new FormControl(!!this.apartment ? this.apartment.floorsOfBuilding : null, Validators.min(1)),
-      floorsOfApartment: new FormControl(!!this.apartment ? this.apartment.floorsOfApartment : null, Validators.min(1)),
+      floorsOfBuilding: new FormControl(
+        !!this.apartment ? this.apartment.floorsOfBuilding : null, [Validators.min(1), Validators.max(100)]
+      ),
+      floorsOfApartment: new FormControl(
+        !!this.apartment ? this.apartment.floorsOfApartment : null, [Validators.min(1), Validators.max(100)]
+      ),
       size: new FormControl(size),
       elevator: new FormControl(!!this.apartment ? this.apartment.elevator : null),
       rooftop: new FormControl(!!this.apartment ? this.apartment.rooftop : null),
@@ -156,26 +121,29 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       balcony: new FormControl(!!this.apartment ? this.apartment.balcony : null),
       sizeOfBalcony: new FormControl(!!this.apartment ? this.apartment.sizeOfBalcony : null),
       garden: new FormControl(!!this.apartment ? this.apartment.garden : null),
-      sizeOfGarden: new FormControl(!!this.apartment ? this.apartment.sizeOfGarden : null),
+      sizeOfGarden: new FormControl(!!this.apartment ? this.apartment.sizeOfGarden : null, [Validators.min(0), Validators.max(999999)]),
       terrace: new FormControl(!!this.apartment ? this.apartment.terrace : null),
-      sizeOfTerrace: new FormControl(!!this.apartment ? this.apartment.sizeOfTerrace : null),
+      sizeOfTerrace: new FormControl(!!this.apartment ? this.apartment.sizeOfTerrace : null, [Validators.min(1), Validators.max(100)]),
       rentalFee: new FormControl(
         !!this.apartment ? this.apartment.rentalFee : null,
-        [Validators.min(1), Validators.max(2000000)]
+        [Validators.min(1000), Validators.max(2000000)]
       ),
       overhead: new FormControl(
         !!this.apartment ? this.apartment.overhead : null,
-        [Validators.min(1), Validators.max(2000000)]
+        [Validators.min(1000), Validators.max(1000000)]
       ),
       deposit: new FormControl(
         !!this.apartment ? this.apartment.deposit : null,
-        [Validators.min(1), Validators.max(2000000)]
+        [Validators.min(1000), Validators.max(2000000)]
       ),
       minimumRentingTime: new FormControl(!!this.apartment ? this.apartment.minimumRentingTime : null),
       dateOfMovingIn: new FormGroup({
         rightNow: new FormControl(!!this.apartment ? this.apartment.dateOfMovingIn.rightNow : null),
         date: new FormControl(!!this.apartment ? this.apartment.dateOfMovingIn.date : null)
-      })
+      }),
+      pictures: new FormArray(!!this.apartment ? this.apartment.pictures.map(picture => {
+        return new FormControl(picture);
+      }) : [])
       // roomsData: new FormArray(!!this.apartment.roomsData ? this.apartment.roomsData.map(room => {
       //   return new FormGroup({
       //     name: new FormControl(room.name),
@@ -222,6 +190,10 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     return this.apartmentForm.get('dateOfMovingIn').get('date');
   }
 
+  get pictures() {
+    return this.apartmentForm.get('pictures') as FormArray;
+  }
+
   onChangeBalcony() {
     if (!this.balcony.value) {
       this.sizeOfBalcony.setValue(null);
@@ -261,6 +233,28 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   //     windowType: new FormControl(null)
   //   }));
   // }
+
+  async onFilesChange(event) {
+    const newApartmentPictures = event.target.files;
+
+    try {
+      this.cursorWaitService.enable();
+
+      const filenames = await this.imageUploaderService.upload(newApartmentPictures);
+
+      for (let i = 0; i < filenames.length; i++) {
+        this.pictures.push(new FormControl(filenames[i]));
+      }
+    } catch (e) {
+      console.log('ApartmentEditComponent->onFilesChange', e);
+    } finally {
+      this.cursorWaitService.disable();
+    }
+  }
+
+  removeApartmentPicture(index) {
+    this.pictures.removeAt(index);
+  }
 
   arrayNumber(n: number) {
     return Array(n);

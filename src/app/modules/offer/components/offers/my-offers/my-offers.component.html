@@ -1,0 +1,42 @@
+<div class="my-offers">
+  <div class="back mb-4 mt-3 mt-sm-0">
+    <button class="btn btn-back d-sm-block d-none"
+            (click)="onBack()">
+      <i class="icon-left h4 align-middle mb-0"></i>
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+    <i class="icon-left-circle d-sm-none"
+       (click)="onBack()"></i>
+  </div>
+  <ngb-tabset>
+    <ngb-tab>
+      <ng-template ngbTabTitle>Accepted</ng-template>
+      <ng-template ngbTabContent>
+        <div class="row">
+          <ng-container *ngFor="let offer of acceptedOffers">
+            <app-apartment-item class="col-lg-6 py-3"
+                                [apartment]="offer.apartment"
+                                [routerLink]="['/app/rentals/apartment', offer.apartment._id]">
+              <button *ngIf="!offer.feedback"
+                      type="button"
+                      class="btn btn-primary btn-sm position-absolute"
+                      (click)="onGiveFeedback($event, { offerId: offer._id, userId: offer.apartment.user })">Give feedback to landlord</button>
+            </app-apartment-item>
+          </ng-container>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle>Pending</ng-template>
+      <ng-template ngbTabContent>
+        <div class="row">
+          <ng-container *ngFor="let offer of pendingOffers">
+            <app-apartment-item class="col-lg-6 py-3"
+                                [apartment]="offer.apartment"
+                                [routerLink]="['/app/rentals/apartment', offer.apartment._id]"></app-apartment-item>
+          </ng-container>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

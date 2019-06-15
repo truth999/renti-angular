@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">Give feedback to landlord</h4>
+  <button type="button"
+          class="close"
+          aria-label="true"
+          (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="feedbackForm"
+        (ngSubmit)="submit()">
+    <div class="form-group d-flex align-items-center">
+      <ngb-rating formControlName="feedbackStar"
+                  max="5"
+                  class="all-rating mr-2">
+        <ng-template let-fill="fill">
+          <i class="icon-star-fill"
+             *ngIf="fill === 100"></i>
+          <i class="icon-star"
+             *ngIf="fill !== 100"></i>
+        </ng-template>
+      </ngb-rating>
+      <span class="font-weight-bold font-size-lg">Score: {{ feedbackForm.value.feedbackStar }}</span>
+    </div>
+    <div class="form-group">
+      <label for="feedback-text">Your feedback:</label>
+      <textarea id="feedback-text"
+                class="form-control"
+                rows="6"
+                formControlName="feedbackText"></textarea>
+    </div>
+    <div class="form-group text-right">
+      <button type="submit"
+              class="btn btn-primary btn-lg">Give feedback</button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer"></div>

@@ -94,9 +94,21 @@
           <input type="number"
                  class="form-control border-0 text-right"
                  min="0"
+                 max="999999"
+                 step="1"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="sizeOfGarden">
+          <div class="invalid-feedback d-block" *ngIf="sizeOfGarden.invalid && (sizeOfGarden.dirty || sizeOfGarden.touched)">
+            <span *ngIf="sizeOfGarden.errors.min"
+                  translate [translateParams]="{ min: sizeOfGarden.errors.min.min }">
+              ERROR.MIN_FIELD
+            </span>
+            <span *ngIf="sizeOfGarden.errors.max"
+                  translate [translateParams]="{ max: sizeOfGarden.errors.max.max }">
+              ERROR.MAX_FIELD
+            </span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -130,10 +142,22 @@
         <td class="text-right py-0 pr-0">
           <input type="number"
                  class="form-control border-0 text-right"
-                 min="0"
+                 min="1"
+                 max="100"
+                 step="1"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="sizeOfTerrace">
+          <div class="invalid-feedback d-block" *ngIf="sizeOfTerrace.invalid && (sizeOfTerrace.dirty || sizeOfTerrace.touched)">
+            <span *ngIf="sizeOfTerrace.errors.min"
+                  translate [translateParams]="{ min: sizeOfTerrace.errors.min.min }">
+              ERROR.MIN_FIELD
+            </span>
+            <span *ngIf="sizeOfTerrace.errors.max"
+                  translate [translateParams]="{ max: sizeOfTerrace.errors.max.max }">
+              ERROR.MAX_FIELD
+            </span>
+          </div>
         </td>
       </tr>
       <tr>
@@ -141,15 +165,22 @@
         <td class="text-right py-0 pr-0">
           <input type="number"
                  class="form-control border-0 text-right"
-                 min="0"
+                 min="1000"
                  max="2000000"
-                 step="2000"
+                 step="1000"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="rentalFee">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('rentalFee').invalid && (apartmentDataThirdForm.get('rentalFee').dirty || apartmentDataThirdForm.get('rentalFee').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.min || apartmentDataThirdForm.get('rentalFee').errors.max">
-              {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+            <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.min"
+                  translate
+                  [translateParams]="{ min: apartmentDataThirdForm.get('rentalFee').errors.min.min }">
+              ERROR.MIN_FIELD
+            </span>
+            <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.max"
+                  translate
+                  [translateParams]="{ max: apartmentDataThirdForm.get('rentalFee').errors.max.max }">
+              ERROR.MAX_FIELD
             </span>
           </div>
         </td>
@@ -159,15 +190,22 @@
         <td class="text-right py-0 pr-0">
           <input type="number"
                  class="form-control border-0 text-right"
-                 min="0"
-                 max="2000000"
+                 min="1000"
+                 max="1000000"
                  step="1000"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="overhead">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('overhead').invalid && (apartmentDataThirdForm.get('overhead').dirty || apartmentDataThirdForm.get('overhead').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('overhead').errors.min || apartmentDataThirdForm.get('overhead').errors.max">
-              {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+            <span *ngIf="apartmentDataThirdForm.get('overhead').errors.min"
+                  translate
+                  [translateParams]="{ min: apartmentDataThirdForm.get('overhead').errors.min.min }">
+              ERROR.MIN_FIELD
+            </span>
+            <span *ngIf="apartmentDataThirdForm.get('overhead').errors.max"
+                  translate
+                  [translateParams]="{ max: apartmentDataThirdForm.get('overhead').errors.max.max }">
+              ERROR.MAX_FIELD
             </span>
           </div>
         </td>
@@ -177,15 +215,22 @@
         <td class="text-right py-0 pr-0">
           <input type="number"
                  class="form-control border-0 text-right"
-                 min="0"
+                 min="1000"
                  max="2000000"
-                 step="2000"
+                 step="1000"
                  inputmode="numeric"
                  pattern="[0-9]*"
                  formControlName="deposit">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('deposit').invalid && (apartmentDataThirdForm.get('deposit').dirty || apartmentDataThirdForm.get('deposit').touched)">
-            <span *ngIf="apartmentDataThirdForm.get('deposit').errors.min || apartmentDataThirdForm.get('deposit').errors.max">
-              {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+            <span *ngIf="apartmentDataThirdForm.get('deposit').errors.min"
+                  translate
+                  [translateParams]="{ min: apartmentDataThirdForm.get('deposit').errors.min.min }">
+              ERROR.MIN_FIELD
+            </span>
+            <span *ngIf="apartmentDataThirdForm.get('deposit').errors.max"
+                  translate
+                  [translateParams]="{ max: apartmentDataThirdForm.get('deposit').errors.max.max }">
+              ERROR.MAX_FIELD
             </span>
           </div>
         </td>

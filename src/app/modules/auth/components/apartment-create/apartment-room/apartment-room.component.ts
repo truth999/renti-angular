@@ -5,6 +5,7 @@ import { ApartmentCreateService } from '../../../services/apartment-create.servi
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
 import { Room } from '../../../../../shared/models';
+import { Validate } from '../../../../../../config/validate';
 
 @Component({
   selector: 'app-apartment-room',
@@ -14,6 +15,7 @@ import { Room } from '../../../../../shared/models';
 export class ApartmentRoomComponent implements OnInit, DoCheck {
   roomForm: FormGroup;
   roomsData: Room[];
+  pattern = Validate;
   @Output() roomFormValid = new EventEmitter<boolean>();
 
   constructor(
@@ -27,11 +29,11 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
       rooms: new FormArray(!!this.roomsData ? this.roomsData.map(room => {
         return new FormGroup({
           name: new FormControl(room.name, Validators.required),
-          size: new FormControl(room.size, [Validators.required, Validators.min(1)])
+          size: new FormControl(room.size, [Validators.required, Validators.min(1), Validators.max(100)])
         });
       }) : [new FormGroup({
-        name: new FormControl('', Validators.required),
-        size: new FormControl('', [Validators.required, Validators.min(1)])
+        name: new FormControl(null, Validators.required),
+        size: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(100)])
       })])
     });
   }
@@ -47,8 +49,8 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
   onAddRoom() {
     if (this.rooms.length < 20) {
       this.rooms.push(new FormGroup({
-        name: new FormControl('', Validators.required),
-        size: new FormControl('', [Validators.required, Validators.min(1)])
+        name: new FormControl(null, Validators.required),
+        size: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(100)])
       }));
     }
   }

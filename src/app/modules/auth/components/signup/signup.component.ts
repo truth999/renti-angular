@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
 
 import { AuthService } from '../../../../core/services/auth.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 import { CONFIG_CONST } from '../../../../../config/config-const';
-import { Router } from '@angular/router';
+
+import { Validate } from '../../../../../config/validate';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
   CONST_ACCOUNT_TYPE = CONFIG_CONST.accountType;
+  pattern = Validate;
 
   accountType: string;
 
@@ -37,8 +40,10 @@ export class SignupComponent implements OnInit {
     const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 
     this.signupForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      lastName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      // firstName: new FormControl('', [Validators.required, Validators.pattern(this.pattern.firstName)]),
+      // lastName: new FormControl('', [Validators.required, Validators.pattern(this.pattern.lastName)]),
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       accountType: new FormControl('', [Validators.required]),
       password,
@@ -58,7 +63,8 @@ export class SignupComponent implements OnInit {
         const signupData = { ...this.signupForm.value };
         delete signupData.confirmPassword;
         await this.authService.createUser(signupData);
-        this.router.navigate(['/auth/complete']);
+        this.router.navigate(['/alert']);
+        // this.router.navigate(['/auth/complete']);
       } catch (e) {
         this.signupFailed = true;
       }

@@ -84,6 +84,7 @@
     "DRAG_ROOM_NUMBER": "Mozgassa a szobák számát az alaprajzon megfelelő helyre",
     "ROOM_NAME": "Szoba neve",
     "ADD_PICTURES": "Töltsön fel egy meglévő alaprajzot",
+    "ADD_APARTMENT_PICTURES": "Add picture to apartment",
     "UPLOAD_FROM_GALLERY": "Feltöltés a fényképtárból",
     "ADD_ALL_DATA": "Adja hozzá az összes adatot albérletéhez",
     "PLEASE_SELECT": "Kérem válasszon",
@@ -333,8 +334,9 @@
     "LOGIN_FAILED": "E-mail cím vagy jelszó nem megfelelő.",
     "FLOORS_COMPARE": "Az albérlet szintje nem lehet nagyobb az épület szintjeinél.",
     "EMAIL_ALREADY_EXIST": "Létező e-mail cím",
-    "BETWEEN_MIN_MAX": "This field must be between 1 and 2,000,000.",
-    "MIN_FIELD": "This field must not be less than 1.",
+    "BETWEEN_MIN_MAX": "This field must be between {{ min }} and {{ max }}.",
+    "MIN_FIELD": "This field must not be less than {{ min }}.",
+    "MAX_FIELD": "This field must not be less than {{ max }}.",
     "PASSWORD_INCORRECT": "Password is incorrect."
   }
 }

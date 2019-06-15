@@ -84,6 +84,7 @@
     "DRAG_ROOM_NUMBER": "Drag room numbers to their places and name each room",
     "ROOM_NAME": "Room name",
     "ADD_PICTURES": "Add pictures to each room",
+    "ADD_APARTMENT_PICTURES": "Add picture to apartment",
     "UPLOAD_FROM_GALLERY": "Upload from gallery",
     "ADD_ALL_DATA": "Add all data to the apartment",
     "PLEASE_SELECT": "Please select",
@@ -333,8 +334,9 @@
     "LOGIN_FAILED": "Email or password is invalid.",
     "FLOORS_COMPARE": "Floor of apartment must less than floors of building.",
     "EMAIL_ALREADY_EXIST": "Email address already exists.",
-    "BETWEEN_MIN_MAX": "This field must be between 1 and 2,000,000.",
-    "MIN_FIELD": "This field must not be less than 1.",
+    "BETWEEN_MIN_MAX": "This field must be between {{ min }} and {{ max }}.",
+    "MIN_FIELD": "This field must not be less than {{ min }}.",
+    "MAX_FIELD": "This field must not be less than {{ max }}.",
     "PASSWORD_INCORRECT": "Password is incorrect."
   }
 }

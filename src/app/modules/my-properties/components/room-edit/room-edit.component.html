@@ -18,7 +18,6 @@
           <h4>{{ room.name }}</h4>
         </div>
         <div class="room-image mt-2">
-          <!--        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>-->
           <input type="file"
                  #picturesChooser
                  style="display: none;"
@@ -26,16 +25,6 @@
                  multiple
                  (change)="onFilesChange($event)">
           <div class="row mb-2">
-<!--            <div class="col-lg-3 col-md-4 col-sm-3 col-4 position-relative py-2"-->
-<!--                 *ngFor="let previewPicture of previewNewRoomPictures; let i = index;">-->
-<!--              <div class="img-item position-relative">-->
-<!--                <img [src]="previewPicture"-->
-<!--                     class="position-absolute rounded w-100 h-100"-->
-<!--                     alt="">-->
-<!--              </div>-->
-<!--              <i class="icon-delete position-absolute text-danger"-->
-<!--                 (click)="removeRoomPicture(i)"></i>-->
-<!--            </div>-->
             <div class="col-lg-3 col-md-4 col-sm-3 col-4 position-relative pb-4"
                  *ngFor="let picture of pictures.controls; let i = index">
               <div class="img-item position-relative">
@@ -62,13 +51,25 @@
             <td class="border-top-0 py-0 pr-0">
               <input type="number"
                      class="form-control text-right border-0"
-                     min="0"
+                     min="1"
+                     max="100"
+                     step="1"
                      inputmode="numeric"
                      pattern="[0-9]*"
                      formControlName="size">
               <div class="invalid-feedback d-block text-right"
                    *ngIf="roomForm.get('size').invalid && (roomForm.get('size').dirty || roomForm.get('size').touched)">
                 <span *ngIf="roomForm.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                <span *ngIf="roomForm.get('size').errors.min"
+                      translate
+                      [translateParams]="{ min: roomForm.get('size').errors.min.min }">
+                  ERROR.MIN_FIELD
+                </span>
+                <span *ngIf="roomForm.get('size').errors.max"
+                      translate
+                      [translateParams]="{ max: roomForm.get('size').errors.max.max }">
+                  ERROR.MAX_FIELD
+                </span>
               </div>
             </td>
           </tr>

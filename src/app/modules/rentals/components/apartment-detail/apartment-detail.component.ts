@@ -62,14 +62,7 @@ export class ApartmentDetailComponent implements OnInit {
         }
       ];
 
-      const pictures = [];
-      this.apartment.rooms.map(room => {
-        for (let i = 0; i < room.pictures.length; i++) {
-          pictures.push(room.pictures[i]);
-        }
-      });
-
-      this.galleryImages = pictures.map(image => {
+      this.galleryImages = response.apartment.pictures.map(image => {
         return {
           small: this.uploadBase + image,
           medium: this.uploadBase + image,

@@ -12,6 +12,9 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit() {
     this.rate = Math.floor(this.rate) + 1;
+    if (this.rate > 5) {
+      this.rate = 5;
+    }
   }
 
 }

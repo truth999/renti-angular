@@ -9,7 +9,7 @@
   <div class="avatar">
     <i class="icon-left position-absolute h4 mb-0 d-sm-none"
        (click)="onBack()"></i>
-    <img [src]="uploadBase + user.tenant.profilePicture"
+    <img [src]="user.tenant.profilePicture ? uploadBase + user.tenant.profilePicture : '/assets/images/profile/blank.png'"
          alt="Avatar">
   </div>
   <div class="card profile-info">
@@ -74,7 +74,7 @@
               </tr>
               <tr>
                 <td>{{ 'COMMON.DATE_OF_BIRTH' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ user.tenant.dateOfBirth | dateToString }}</td>
+                <td class="font-weight-bold text-right">{{ !!user.tenant.dateOfBirth ? (user.tenant.dateOfBirth | dateToString) : '' }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.NATIONALITY' | translate }}:</td>
@@ -186,6 +186,9 @@
                 <img src="/assets/images/social/instagram.png" alt="" class="img-fluid">
               </li>
             </ul>
+          </div>
+          <div class="feedback mt-5">
+            <app-feedback [rate]="rate"></app-feedback>
           </div>
         </div>
       </div>

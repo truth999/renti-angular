@@ -9,6 +9,7 @@ import { OfferService } from '../../services/offer.service';
 import { StorageService } from '../../../../core/services/storage.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
+import { Validate } from '../../../../../config/validate';
 
 @Component({
   selector: 'app-offer-create',
@@ -17,6 +18,7 @@ import { ValidateFormFieldsService } from '../../../../core/services/validate-fo
 })
 export class OfferCreateComponent implements OnInit {
   offerForm: FormGroup;
+  pattern = Validate;
 
   constructor(
     private location: Location,
@@ -45,14 +47,14 @@ export class OfferCreateComponent implements OnInit {
 
   buildOfferForm() {
     this.offerForm = new FormGroup({
-      rentalFee: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000000)]),
-      overhead: new FormControl('', [Validators.required, Validators.min(1), Validators.max(2000000)]),
-      minRentingTime: new FormControl('', Validators.required),
+      rentalFee: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(2000000)]),
+      overhead: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(2000000)]),
+      minRentingTime: new FormControl(null, Validators.required),
       dateOfMovingIn: new FormControl(null, Validators.required),
-      movingWith: new FormControl('', Validators.required),
+      movingWith: new FormControl(null, Validators.required),
       movingWithPets: new FormControl(false, Validators.required),
-      pets: new FormControl(''),
-      whyChooseMe: new FormControl('')
+      pets: new FormControl(null),
+      whyChooseMe: new FormControl(null)
     });
   }
 
@@ -79,7 +81,8 @@ export class OfferCreateComponent implements OnInit {
       const offerData = {
         ...this.offerForm.value,
         userId,
-        apartmentId: id
+        apartmentId: id,
+        accepted: false
       };
 
       try {

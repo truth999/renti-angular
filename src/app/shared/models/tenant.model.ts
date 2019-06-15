@@ -23,4 +23,5 @@ export class Tenant {
   monthlyIncome: string;
   otherText: string;
   freeTextIntroduction: string;
+  rank: number;
 }

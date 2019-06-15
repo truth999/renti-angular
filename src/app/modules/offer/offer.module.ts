@@ -11,6 +11,7 @@ import { OfferComponent} from './components/offers/offer-list/offer/offer.compon
 import { OfferSuccessComponent} from './components/offer-success/offer-success.component';
 import { OfferCreateComponent } from './components/offer-create/offer-create.component';
 import { OfferCreateSuccessComponent } from './components/offer-create-success/offer-create-success.component';
+import { MyOffersComponent } from './components/offers/my-offers/my-offers.component';
 
 import { OfferService } from './services/offer.service';
 
@@ -22,6 +23,7 @@ import { OfferService } from './services/offer.service';
     OfferSuccessComponent,
     OfferCreateComponent,
     OfferCreateSuccessComponent,
+    MyOffersComponent,
   ],
   providers: [
     OfferService

@@ -14,5 +14,5 @@ export class Room {
     furnitureType: string;
   }];
   pictures: string[];
-  dataPercent: number;
+  rank: number;
 }

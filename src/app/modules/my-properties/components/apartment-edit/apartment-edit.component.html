@@ -2,20 +2,39 @@
   <form *ngIf="apartmentForm"
         [formGroup]="apartmentForm"
         (ngSubmit)="submit()">
-    <div class="back mb-sm-4 d-sm-block d-none">
+    <div class="back mb-4 mt-3 mt-sm-0">
       <button type="button"
-              class="btn btn-back"
+              class="btn btn-back d-sm-block d-none"
               (click)="onBack()">
         <i class="icon-left h4 align-middle mb-0"></i>
         {{ 'COMMON.BACK' | translate }}
       </button>
+      <i class="icon-left-circle d-sm-none"
+         (click)="onBack()"></i>
     </div>
     <div class="row">
       <div class="col-lg-6">
-        <div class="slider">
-          <i class="icon-left position-absolute h4 mb-0 d-block d-sm-none"
-             (click)="onBack()"></i>
-          <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        <div class="apartment-image mt-2 mb-4">
+          <input type="file"
+                 #picturesChooser
+                 style="display: none;"
+                 accept="image/png, image/jpeg, image/jpg"
+                 multiple
+                 (change)="onFilesChange($event)">
+          <div class="row mb-2">
+            <div class="col-lg-3 col-md-4 col-sm-3 col-4 position-relative pb-4"
+                 *ngFor="let picture of pictures.controls; let i = index">
+              <div class="img-item position-relative">
+                <img [src]="uploadBase + picture.value"
+                     class="position-absolute rounded w-100 h-100">
+              </div>
+              <i class="icon-delete position-absolute text-danger"
+                 (click)="removeApartmentPicture(i)"></i>
+            </div>
+          </div>
+          <button type="button"
+                  class="btn btn-primary btn-lg w-100"
+                  (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_FROM_GALLERY' | translate }}</button>
         </div>
         <div class="d-block d-lg-none">
           <div class="form-group">
@@ -200,11 +219,22 @@
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="1"
+                       max="100"
+                       step="1"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="floorsOfBuilding">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfBuilding').invalid && (apartmentForm.get('floorsOfBuilding').dirty || apartmentForm.get('floorsOfBuilding').touched)">
-                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.min"
+                        translate
+                        [translateParams]="{ min: apartmentForm.get('floorsOfBuilding').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.max"
+                        translate
+                        [translateParams]="{ max: apartmentForm.get('floorsOfBuilding').errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
                 </div>
               </td>
             </tr>
@@ -214,12 +244,23 @@
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="1"
+                       max="100"
+                       step="1"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="floorsOfApartment">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfApartment').invalid && (apartmentForm.get('floorsOfApartment').dirty || apartmentForm.get('floorsOfApartment').touched)">
                   <span *ngIf="apartmentForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
-                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.min"
+                        translate
+                        [translateParams]="{ min: apartmentForm.get('floorsOfApartment').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.max"
+                        translate
+                        [translateParams]="{ max: apartmentForm.get('floorsOfApartment').errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
                 </div>
               </td>
             </tr>
@@ -502,9 +543,23 @@
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="0"
+                       max="999999"
+                       step="1"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="sizeOfGarden">
+                <div class="invalid-feedback d-block" *ngIf="sizeOfGarden.invalid && (sizeOfGarden.dirty || sizeOfGarden.touched)">
+                  <span *ngIf="sizeOfGarden.errors.min"
+                        translate
+                        [translateParams]="{ min: sizeOfGarden.errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="sizeOfGarden.errors.max"
+                        translate
+                        [translateParams]="{ max: sizeOfGarden.errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
+                </div>
               </td>
             </tr>
             <tr>
@@ -538,10 +593,24 @@
               <td class="text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
-                       min="0"
+                       min="1"
+                       max="100"
+                       step="1"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="sizeOfTerrace">
+                <div class="invalid-feedback d-block" *ngIf="sizeOfTerrace.invalid && (sizeOfTerrace.dirty || sizeOfTerrace.touched)">
+                  <span *ngIf="sizeOfTerrace.errors.min"
+                        translate
+                        [translateParams]="{ min: sizeOfTerrace.errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="sizeOfTerrace.errors.max"
+                        translate
+                        [translateParams]="{ max: sizeOfTerrace.errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
+                </div>
               </td>
             </tr>
             <tr>
@@ -602,13 +671,18 @@
                        class="form-control border-0 text-right"
                        min="0"
                        max="2000000"
-                       step="2000"
+                       step="1000"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="rentalFee">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('rentalFee').invalid && (apartmentForm.get('rentalFee').dirty || apartmentForm.get('rentalFee').touched)">
-                  <span *ngIf="apartmentForm.get('rentalFee').errors.min || apartmentForm.get('rentalFee').errors.max">
-                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.min"
+                        translate [translateParams]="{ min: apartmentForm.get('rentalFee').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.max"
+                        translate [translateParams]="{ max: apartmentForm.get('rentalFee').errors.max.max }">
+                    ERROR.MAX_FIELD
                   </span>
                 </div>
               </td>
@@ -619,14 +693,19 @@
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="0"
-                       max="2000000"
+                       max="1000000"
                        step="1000"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="overhead">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('overhead').invalid && (apartmentForm.get('overhead').dirty || apartmentForm.get('overhead').touched)">
-                  <span *ngIf="apartmentForm.get('overhead').errors.min || apartmentForm.get('overhead').errors.max">
-                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  <span *ngIf="apartmentForm.get('overhead').errors.min"
+                        translate [translateParams]="{ min: apartmentForm.get('overhead').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('overhead').errors.max"
+                        translate [translateParams]="{ max: apartmentForm.get('overhead').errors.max.max }">
+                    ERROR.MAX_FIELD
                   </span>
                 </div>
               </td>
@@ -638,13 +717,18 @@
                        class="form-control border-0 text-right"
                        min="0"
                        max="2000000"
-                       step="2000"
+                       step="1000"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="deposit">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('deposit').invalid && (apartmentForm.get('deposit').dirty || apartmentForm.get('deposit').touched)">
-                  <span *ngIf="apartmentForm.get('deposit').errors.min || apartmentForm.get('deposit').errors.max">
-                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  <span *ngIf="apartmentForm.get('deposit').errors.min"
+                        translate [translateParams]="{ min: apartmentForm.get('deposit').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('deposit').errors.max"
+                        translate [translateParams]="{ max: apartmentForm.get('deposit').errors.max.max }">
+                    ERROR.MAX_FIELD
                   </span>
                 </div>
               </td>
@@ -857,11 +941,22 @@
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="1"
+                       max="100"
+                       step="1"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="floorsOfBuilding">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfBuilding').invalid && (apartmentForm.get('floorsOfBuilding').dirty || apartmentForm.get('floorsOfBuilding').touched)">
-                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.min"
+                        translate
+                        [translateParams]="{ min: apartmentForm.get('floorsOfBuilding').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('floorsOfBuilding').errors.max"
+                        translate
+                        [translateParams]="{ max: apartmentForm.get('floorsOfBuilding').errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
                 </div>
               </td>
             </tr>
@@ -871,12 +966,23 @@
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="1"
+                       max="100"
+                       step="1"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="floorsOfApartment">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('floorsOfApartment').invalid && (apartmentForm.get('floorsOfApartment').dirty || apartmentForm.get('floorsOfApartment').touched)">
                   <span *ngIf="apartmentForm.get('floorsOfApartment').errors.maxError">{{ 'ERROR.FLOORS_COMPARE' | translate }}</span>
-                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.min">{{ 'ERROR.MIN_FIELD' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.min"
+                        translate
+                        [translateParams]="{ min: apartmentForm.get('floorsOfApartment').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('floorsOfApartment').errors.max"
+                        translate
+                        [translateParams]="{ max: apartmentForm.get('floorsOfApartment').errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
                 </div>
               </td>
             </tr>
@@ -1159,9 +1265,23 @@
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="0"
+                       max="999999"
+                       step="1"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="sizeOfGarden">
+                <div class="invalid-feedback d-block" *ngIf="sizeOfGarden.invalid && (sizeOfGarden.dirty || sizeOfGarden.touched)">
+                  <span *ngIf="sizeOfGarden.errors.min"
+                        translate
+                        [translateParams]="{ min: sizeOfGarden.errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="sizeOfGarden.errors.max"
+                        translate
+                        [translateParams]="{ max: sizeOfGarden.errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
+                </div>
               </td>
             </tr>
             <tr>
@@ -1195,10 +1315,24 @@
               <td class="text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
-                       min="0"
+                       min="1"
+                       max="100"
+                       step="1"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="sizeOfTerrace">
+                <div class="invalid-feedback d-block" *ngIf="sizeOfTerrace.invalid && (sizeOfTerrace.dirty || sizeOfTerrace.touched)">
+                  <span *ngIf="sizeOfTerrace.errors.min"
+                        translate
+                        [translateParams]="{ min: sizeOfTerrace.errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="sizeOfTerrace.errors.max"
+                        translate
+                        [translateParams]="{ max: sizeOfTerrace.errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
+                </div>
               </td>
             </tr>
             <tr>
@@ -1257,15 +1391,20 @@
               <td class="text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
-                       min="0"
+                       min="1000"
                        max="2000000"
-                       step="2000"
+                       step="1000"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="rentalFee">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('rentalFee').invalid && (apartmentForm.get('rentalFee').dirty || apartmentForm.get('rentalFee').touched)">
-                  <span *ngIf="apartmentForm.get('rentalFee').errors.min || apartmentForm.get('rentalFee').errors.max">
-                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.min"
+                        translate [translateParams]="{ min: apartmentForm.get('rentalFee').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.max"
+                        translate [translateParams]="{ max: apartmentForm.get('rentalFee').errors.max.max }">
+                    ERROR.MAX_FIELD
                   </span>
                 </div>
               </td>
@@ -1275,15 +1414,20 @@
               <td class="text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
-                       min="0"
-                       max="2000000"
+                       min="1000"
+                       max="1000000"
                        step="1000"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="overhead">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('overhead').invalid && (apartmentForm.get('overhead').dirty || apartmentForm.get('overhead').touched)">
-                  <span *ngIf="apartmentForm.get('overhead').errors.min || apartmentForm.get('overhead').errors.max">
-                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  <span *ngIf="apartmentForm.get('overhead').errors.min"
+                        translate [translateParams]="{ min: apartmentForm.get('overhead').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('overhead').errors.max"
+                        translate [translateParams]="{ max: apartmentForm.get('overhead').errors.max.max }">
+                    ERROR.MAX_FIELD
                   </span>
                 </div>
               </td>
@@ -1293,15 +1437,20 @@
               <td class="text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
-                       min="0"
+                       min="1000"
                        max="2000000"
-                       step="2000"
+                       step="1000"
                        inputmode="numeric"
                        pattern="[0-9]*"
                        formControlName="deposit">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('deposit').invalid && (apartmentForm.get('deposit').dirty || apartmentForm.get('deposit').touched)">
-                  <span *ngIf="apartmentForm.get('deposit').errors.min || apartmentForm.get('deposit').errors.max">
-                    {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
+                  <span *ngIf="apartmentForm.get('deposit').errors.min"
+                        translate [translateParams]="{ min: apartmentForm.get('deposit').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('deposit').errors.max"
+                        translate [translateParams]="{ max: apartmentForm.get('deposit').errors.max.max }">
+                    ERROR.MAX_FIELD
                   </span>
                 </div>
               </td>

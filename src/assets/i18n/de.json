@@ -84,6 +84,7 @@
     "DRAG_ROOM_NUMBER": "Bewegen Sie die Zimmerzahl auf dem Grundriss zum passenden Ort",
     "ROOM_NAME": "Name des Zimmers",
     "ADD_PICTURES": "Laden Sie einen vorhandenen Grundriss hoh",
+    "ADD_APARTMENT_PICTURES": "Add picture to apartment",
     "UPLOAD_FROM_GALLERY": "Hohladen von der Fotogalerie",
     "ADD_ALL_DATA": "Add all data to the apartment",
     "PLEASE_SELECT": "Wählen Sie",
@@ -214,8 +215,8 @@
   "HOME": {
     "TITLE": "Renti - Kanaan der Untermieten",
     "FIND_YOUR": "Finden Sie mit einigen Schritten",
-    "SELECT1": "Ihren Traumuntermiete",
-    "SELECT2": "Ihre(n) Traumuntermiete/in"
+    "SELECT1": "Ihren<br>Traum-<br>untermiete",
+    "SELECT2": "Ihre(n)<br>Traum-<br>untermiete/in"
   },
   "LOGIN": {
     "LOGIN": "Anmeldung",
@@ -333,8 +334,9 @@
     "LOGIN_FAILED": "E-Mail oder Passwort ist falsch",
     "FLOORS_COMPARE": "Stockwerk der Untermiete kann nicht größer sein als das des Baus",
     "EMAIL_ALREADY_EXIST": "Email address already exists.",
-    "BETWEEN_MIN_MAX": "This field must be between 1 and 2,000,000.",
-    "MIN_FIELD": "This field must not be less than 1.",
+    "BETWEEN_MIN_MAX": "This field must be between {{ min }} and {{ max }}.",
+    "MIN_FIELD": "This field must not be less than {{ min }}.",
+    "MAX_FIELD": "This field must not be less than {{ max }}.",
     "PASSWORD_INCORRECT": "Password is incorrect."
   }
 }

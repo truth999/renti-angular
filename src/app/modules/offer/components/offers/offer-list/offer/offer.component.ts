@@ -55,8 +55,18 @@ export class OfferComponent implements OnInit {
     this.router.navigate(['/app/profile', this.offer.user._id]);
   }
 
-  onSuccess() {
-    this.router.navigate(['/app/offers', this.offer.user._id, 'success']);
+  async onSuccess() {
+    try {
+      const offer = {
+        ...this.offer,
+        accepted: true
+      };
+
+      await this.offerService.updateOffer(offer);
+      this.router.navigate(['/app/offers', this.offer.user._id, 'success']);
+    } catch (e) {
+      console.log('OfferComponent->onSuccess', e);
+    }
   }
 
   async onDelete() {

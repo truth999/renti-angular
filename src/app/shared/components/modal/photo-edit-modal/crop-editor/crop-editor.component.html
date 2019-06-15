@@ -15,13 +15,15 @@
 <div class="editor-menu crop">
   <div class="row">
     <div class="col-6 offset-3 slider-container">
-      <nouislider [min]="1"
-                  [max]="2"
-                  [step]="0.05"
-                  [ngModel]="options.zoom"
-                  (update)="onZoomChange($event)"
-                  class="mt-0 mb-3">
-      </nouislider>
+      <form [formGroup]="zoomForm">
+        <nouislider [min]="1"
+                    [max]="2"
+                    [step]="0.05"
+                    [formControl]="zoomForm.controls.zoom"
+                    (update)="onZoomChange($event)"
+                    class="mt-0 mb-3">
+        </nouislider>
+      </form>
       <div class="hint text-center">
         {{ 'COMMON.ZOOM' | translate }}
       </div>

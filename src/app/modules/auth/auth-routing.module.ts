@@ -7,13 +7,15 @@ import { ApartmentCreateComponent } from './components/apartment-create/apartmen
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthCompleteComponent } from './components/auth-complete/auth-complete.component';
 import { AuthGuard } from '../../core/guards/auth.guard';
+import { AuthAlertComponent } from './components/auth-alert/auth-alert.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'signup-funnel', component: SignupFunnelComponent },
   { path: 'auth/complete', component: AuthCompleteComponent, canLoad: [AuthGuard] },
-  { path: 'apartment-create', component: ApartmentCreateComponent }
+  { path: 'apartment-create', component: ApartmentCreateComponent },
+  { path: 'alert', component: AuthAlertComponent }
 ];
 
 @NgModule({

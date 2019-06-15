@@ -12,7 +12,12 @@
       <div class="slider">
         <i class="icon-left position-absolute h4 mb-0 d-sm-none"
            (click)="onBack()"></i>
-        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        <ngx-gallery *ngIf="apartment.pictures.length !== 0"
+                     [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        <img *ngIf="apartment.pictures.length === 0"
+             src="/assets/images/no_image.png"
+             alt=""
+             style="width: 100%;">
       </div>
       <div class="d-lg-none">
         <h3 class="mt-4">{{ apartment.name }}</h3>
@@ -189,7 +194,7 @@
           </tbody>
         </table>
       </div>
-      <app-feedback [rate]="apartment.dataPercent * .05"></app-feedback>
+      <app-feedback [rate]="apartment.rank * .05"></app-feedback>
 <!--      <table class="table mt-4">-->
 <!--        <tbody>-->
 <!--        <tr>-->
