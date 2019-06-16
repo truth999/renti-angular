@@ -28,6 +28,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
   signupFailed = false;
+  message = '';
 
   constructor(
     private router: Router,
@@ -66,7 +67,11 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['/alert']);
         // this.router.navigate(['/auth/complete']);
       } catch (e) {
+        console.log('SignupComponent->signup', e);
         this.signupFailed = true;
+        if (e.data[0].msg === 'ERROR.EMAIL_ALREADY_EXIST') {
+          this.message = e.data[0].msg;
+        }
       }
     } else {
       this.validateFormFieldsService.validate(this.signupForm);
