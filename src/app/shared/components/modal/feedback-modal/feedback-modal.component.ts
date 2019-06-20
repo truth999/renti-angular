@@ -33,13 +33,14 @@ export class FeedbackModalComponent implements OnInit {
 
   async submit() {
     try {
-      const userId = this.storageService.get('userId');
+      const tenantId = this.storageService.get('tenantId');
       const feedbackData = {
-        userId,
+        ...this.result,
+        tenantId,
         ...this.feedbackForm.value
       };
 
-      await this.offerService.createFeedback(this.result, feedbackData);
+      await this.offerService.createFeedback(feedbackData);
       this.modal.dismiss();
     } catch (e) {
       console.log('FeedbackModalComponent->submit', e);

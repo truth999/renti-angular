@@ -9,17 +9,16 @@ import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
 import { StorageService } from '../../../../../core/services/storage.service';
-import { TenantService } from '../../../services/tenant.service';
 import { AuthService } from '../../../../../core/services/auth.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
-import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
-import { Tenant, User } from '../../../../../shared/models';
+import { Tenant } from '../../../../../shared/models';
 import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
+import { MyProfileService } from '../../../services/my-profile.service';
 
 @Component({
   selector: 'app-my-profile-tenant',
@@ -27,7 +26,6 @@ import { Validate } from '../../../../../../config/validate';
   styleUrls: ['./tenant.component.scss']
 })
 export class TenantComponent implements OnInit {
-  user: User;
   tenant: Tenant;
   photo: string;
   photoDeleted = true;
@@ -61,12 +59,11 @@ export class TenantComponent implements OnInit {
     private photoUploadModalService: PhotoUploadModalService,
     private photoEditModalService: PhotoEditModalService,
     private storageService: StorageService,
-    private tenantService: TenantService,
+    private myProfileService: MyProfileService,
     private authService: AuthService,
     private dateSelectService: DateSelectService,
     private imageUploaderService: ImageUploaderService,
     private toastrService: ToastrService,
-    private cursorWaitService: CursorWaitService,
     private validateFormFieldsService: ValidateFormFieldsService,
     private datepickerConfig: NgbDatepickerConfig
   ) {
@@ -82,21 +79,20 @@ export class TenantComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.cursorWaitService.enable();
+      const tenantId = this.storageService.get('tenantId');
+      const tenantResponse = await this.authService.getTenant(tenantId);
+      const tenant = tenantResponse.tenant;
 
-      const response = await this.authService.getAuthUser();
-      this.user = response.user;
-
-      if (!!response.user.tenant) {
-        this.tenant = response.user.tenant;
-        this.rate = response.user.tenant.rank * .05;
+      this.tenant = tenant;
+      if (tenant.rank) {
+        this.rate = tenant.rank * .05;
+      } else {
+        this.rate = 0;
       }
 
       this.buildTenantForm();
     } catch (e) {
       console.log('TenantComponent->ngOnInit', e);
-    } finally {
-      this.cursorWaitService.disable();
     }
 
     this.photoEditModalService.photoChanged.subscribe(photoURIData => {
@@ -110,15 +106,15 @@ export class TenantComponent implements OnInit {
 
   buildTenantForm() {
     this.tenantForm = new FormGroup({
-      lookingRent: new FormControl(!!this.tenant ? this.tenant.lookingRent : null, Validators.required),
-      mobile: new FormControl(!!this.tenant ? this.tenant.mobile : null),
-      placeOfBirth: new FormControl(!!this.tenant ? this.tenant.placeOfBirth : null),
-      dateOfBirth: new FormControl(!!this.tenant ? this.tenant.dateOfBirth : null),
-      nationality: new FormControl(!!this.tenant ? this.tenant.nationality : null),
-      spokenLanguages: new FormControl(!!this.tenant ? this.tenant.spokenLanguages : null),
-      currentCity: new FormControl(!!this.tenant ? this.tenant.currentCity : null),
-      highestLevelOfQualification: new FormControl(!!this.tenant ? this.tenant.highestLevelOfQualification : null),
-      education: new FormArray(!!this.tenant ? this.tenant.education.map(education => {
+      lookingRent: new FormControl(this.tenant.lookingRent, Validators.required),
+      mobile: new FormControl(this.tenant.mobile),
+      placeOfBirth: new FormControl(this.tenant.placeOfBirth),
+      dateOfBirth: new FormControl(this.tenant.dateOfBirth),
+      nationality: new FormControl(this.tenant.nationality),
+      spokenLanguages: new FormControl(this.tenant.spokenLanguages),
+      currentCity: new FormControl(this.tenant.currentCity),
+      highestLevelOfQualification: new FormControl(this.tenant.highestLevelOfQualification),
+      education: new FormArray(this.tenant.education.length !== 0 ? this.tenant.education.map(education => {
         return new FormGroup({
           nameOfSchool: new FormControl(education.nameOfSchool),
           yearOfGraduation: new FormControl(education.yearOfGraduation)
@@ -127,24 +123,24 @@ export class TenantComponent implements OnInit {
         nameOfSchool: new FormControl(null),
         yearOfGraduation: new FormControl(null)
       })]),
-      jobTitle: new FormArray(!!this.tenant ? this.tenant.jobTitle.map(jobTitle => {
+      jobTitle: new FormArray(this.tenant.jobTitle.length !== 0 ? this.tenant.jobTitle.map(jobTitle => {
         return new FormControl(jobTitle);
       }) : [new FormControl(null)]),
       universitySpeciality: new FormControl(
-        !!this.tenant ? this.tenant.universitySpeciality : null
+        this.tenant.universitySpeciality
       ),
       currentWorkplace: new FormControl(
-        !!this.tenant ? this.tenant.currentWorkplace : null
+        this.tenant.currentWorkplace
       ),
-      formerWorkplaces: new FormArray(!!this.tenant ?  this.tenant.formerWorkplaces.map(formerWorkplaces => {
+      formerWorkplaces: new FormArray(this.tenant.formerWorkplaces.length !== 0 ? this.tenant.formerWorkplaces.map(formerWorkplaces => {
         return new FormControl(formerWorkplaces);
       }) : [new FormControl(null)]),
-      monthlyIncome: new FormControl(!!this.tenant ? this.tenant.monthlyIncome : null),
-      otherText: new FormControl(!!this.tenant ? this.tenant.otherText : null),
+      monthlyIncome: new FormControl(this.tenant.monthlyIncome),
+      otherText: new FormControl(this.tenant.otherText),
       freeTextIntroduction: new FormControl(
-        !!this.tenant ? this.tenant.freeTextIntroduction : null
+        this.tenant.freeTextIntroduction
       ),
-      profilePicture: new FormControl(!!this.tenant ? this.tenant.profilePicture : null)
+      profilePicture: new FormControl(this.tenant.profilePicture)
     });
   }
 
@@ -188,7 +184,7 @@ export class TenantComponent implements OnInit {
   }
 
   onViewAs() {
-    this.router.navigate(['/app/profile', this.user._id]);
+    this.router.navigate(['/app/profile/tenant', this.tenant._id]);
   }
 
   onBack() {
@@ -218,26 +214,14 @@ export class TenantComponent implements OnInit {
     this.photo = '';
   }
 
-  // async onDelete() {
-  //   try {
-  //     await this.tenantService.deleteTenant(this.tenant._id);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
   async uploadProfilePicture(photoURIData) {
     try {
-      this.cursorWaitService.enable();
-
       const blobData = this.imageUploaderService.b64toBlob(photoURIData);
       const filenames = await this.imageUploaderService.upload(blobData);
       this.tenantForm.patchValue({profilePicture: filenames[0]});
     } catch (e) {
       console.log('TenantComponent->uploadProfilePicture->error', e);
       this.toastrService.error('Something went wrong', 'Error');
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 
@@ -249,25 +233,17 @@ export class TenantComponent implements OnInit {
       };
 
       try {
-        this.cursorWaitService.enable();
-
-        if (!this.tenant) {
-          await this.tenantService.createTenant(tenantData);
-        } else {
-          this.tenant = {
-            ...this.tenant,
-            ...tenantData
-          };
-          await this.tenantService.updateTenant(this.tenant);
-        }
+        this.tenant = {
+          ...this.tenant,
+          ...tenantData
+        };
+        await this.myProfileService.updateTenant(this.tenant);
 
         this.toastrService.success('The tenant is updated successfully.', 'Success!');
       } catch (e) {
         console.log('TenantComponent->update->error', e);
 
         this.toastrService.error('Something went wrong', 'Error');
-      } finally {
-        this.cursorWaitService.disable();
       }
     } else {
       this.validateFormFieldsService.validate(this.tenantForm);

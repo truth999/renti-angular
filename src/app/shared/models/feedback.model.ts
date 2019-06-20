@@ -1,8 +1,10 @@
-import { User } from './user.model';
+import { Landlord } from './landlord.model';
+import { Tenant } from './tenant.model';
 
 export class Feedback {
   _id: string;
-  user: User;
+  landlord: Landlord;
+  tenant: Tenant;
   feedbackStar: number;
   feedbackText: string;
   updatedAt: string;

@@ -11,7 +11,8 @@
   <div class="row">
     <ng-container *ngFor="let tenant of tenants">
       <app-profile-item class="col-lg-6 py-3"
-                        [profile]="tenant" [routerLink]="['/app/profile', tenant.user._id]"></app-profile-item>
+                        [profile]="tenant"
+                        [routerLink]="['/app/profile/tenant', tenant._id]"></app-profile-item>
     </ng-container>
 
   </div>

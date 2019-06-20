@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Apartment, Page } from '../../../../shared/models';
 
 import { MyPropertiesService } from '../../services/my-properties.service';
+import { AuthService } from '../../../../core/services/auth.service';
 import { StorageService } from '../../../../core/services/storage.service';
-import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -22,8 +22,8 @@ export class MyPropertiesComponent implements OnInit {
   constructor(
     private router: Router,
     private myPropertiesService: MyPropertiesService,
-    private storageService: StorageService,
-    private cursorWaitService: CursorWaitService
+    private authService: AuthService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -34,17 +34,17 @@ export class MyPropertiesComponent implements OnInit {
   }
 
   async getApartments() {
-    const userId = this.storageService.get('userId');
-
     try {
-      this.cursorWaitService.enable();
-
-      const response = await this.myPropertiesService.getApartments(this.page, userId);
-      this.apartments = response.apartments;
+      const landlordId = this.storageService.get('landlordId');
+      const landlordResponse = await this.authService.getLandlord(landlordId);
+      const landlord = landlordResponse.landlord;
+      const apartmentsResponse = await this.myPropertiesService.getApartments(this.page);
+      const apartments = apartmentsResponse.apartments;
+      this.apartments = apartments.filter(apartment => {
+        return apartment.landlord === landlord._id;
+      });
     } catch (e) {
       console.log('MyPropertiesComponent->getApartments', e);
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 

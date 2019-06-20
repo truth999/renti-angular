@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ApiService } from '../../../core/services/api.service';
 
-import { Apartment, Room } from '../../../shared/models';
+import { Apartment, Page, Room } from '../../../shared/models';
 
 @Injectable()
 export class MyPropertiesService {
@@ -13,8 +13,8 @@ export class MyPropertiesService {
     private apiService: ApiService
   ) { }
 
-  getApartments(page, id: string): Promise<any> {
-    let url = `${this.apartmentUrl}/user/${id}?page=${page.pageNumber}`;
+  getApartments(page: Page): Promise<any> {
+    let url = `${this.apartmentUrl}?page=${page.pageNumber}`;
     url += page.pageNumber ? `&perPage=${page.perPage}` : '';
     return this.apiService.get(url);
   }

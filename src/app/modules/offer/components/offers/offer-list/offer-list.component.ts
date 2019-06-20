@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { OfferService } from '../../../services/offer.service';
 import { AuthService } from '../../../../../core/services/auth.service';
 import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
+import { StorageService } from '../../../../../core/services/storage.service';
 
 import { Offer, Page } from '../../../../../shared/models';
 
@@ -20,7 +21,8 @@ export class OfferListComponent implements OnInit {
     private location: Location,
     private offerService: OfferService,
     private authService: AuthService,
-    private cursorWaitService: CursorWaitService
+    private cursorWaitService: CursorWaitService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -34,11 +36,15 @@ export class OfferListComponent implements OnInit {
     try {
       this.cursorWaitService.enable();
 
-      const userResponse = await this.authService.getAuthUser();
-      const apartmentIds = userResponse.user.apartments;
+      const landlordId = this.storageService.get('landlordId');
+      const landlordResponse = await this.authService.getLandlord(landlordId);
+      const apartmentIds = landlordResponse.landlord.apartments;
 
-      const response = await this.offerService.getOffers(this.page, apartmentIds);
-      this.offers = response.offers;
+      const response = await this.offerService.getOffers(this.page);
+      const offers = response.offers;
+      this.offers = offers.filter(offer => {
+        return apartmentIds.includes(offer.apartment._id) && offer.accepted === false;
+      });
     } catch (e) {
       console.log('OfferListComponent->getOffers', e);
     } finally {

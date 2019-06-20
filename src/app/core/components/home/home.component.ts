@@ -95,34 +95,4 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // async getApartmentsAddress() {
-  //   try {
-  //     const response = await this.homeService.getApartments(this.page);
-  //     response.apartments.map(apartment => {
-  //       this.geocoder.geocode({ address: apartment.address }, (results, status) => {
-  //         if (status === google.maps.GeocoderStatus.OK) {
-  //           this.apartmentLocations.push(results[0].geometry.location);
-  //         }
-  //       });
-  //     });
-  //   } catch (e) {
-  //     console.log('HomeComponent->getApartmentsAddress', e);
-  //   }
-  // }
-  //
-  // async getTenantsAddress() {
-  //   try {
-  //     const response = await this.homeService.getTenants(this.page);
-  //     response.tenants.map(tenant => {
-  //       this.geocoder.geocode({ address: tenant.lookingRent }, (results, status) => {
-  //         if (status === google.maps.GeocoderStatus.OK) {
-  //           this.tenantLocations.push(results[0].geometry.location);
-  //         }
-  //       });
-  //     });
-  //   } catch (e) {
-  //     console.log('HomeComponent->getTenantsAddress', e);
-  //   }
-  // }
-
 }

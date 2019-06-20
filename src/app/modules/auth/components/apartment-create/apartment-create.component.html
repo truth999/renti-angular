@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <p><ngb-progressbar [value]="50"
+    <p><ngb-progressbar [value]="100 / 6 * progress"
                         height="10px"></ngb-progressbar></p>
     <app-apartment-draw *ngIf="step == 0"
                         (nextStep)="onNextStep()"></app-apartment-draw>
@@ -8,12 +8,11 @@
                         (roomFormValid)="disabled = !$event"></app-apartment-room>
     <app-apartment-upload *ngIf="step == 2"
                           (uploadValid)="disabled = !$event"></app-apartment-upload>
-    <app-apartment-window *ngIf="step == 3"
-                          (windowTypeFormValid)="disabled = !$event"></app-apartment-window>
-    <app-apartment-picture *ngIf="step == 4"
+    <app-apartment-picture *ngIf="step == 3"
                            (pictureValid)="disabled = !$event"></app-apartment-picture>
-    <app-apartment-data *ngIf="step == 5"
-                        (apartmentDataValid)="disabled = !$event"></app-apartment-data>
+    <app-apartment-data *ngIf="step == 4"
+                        (apartmentDataValid)="disabled = !$event"
+                        (apartmentDataStep)="progress = $event + 4"></app-apartment-data>
     <div class="continue mt-sm-5 bg-white d-flex align-items-center">
       <span class="icon-left-circle mr-4"
             (click)="onPreviewStep()"

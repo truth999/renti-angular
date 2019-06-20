@@ -9,6 +9,7 @@ import { environment } from '../../../../../environments/environment';
 
 import { RentalsService } from '../../services/rentals.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
+import { StorageService } from '../../../../core/services/storage.service';
 
 @Component({
   selector: 'app-apartment-detail',
@@ -28,7 +29,8 @@ export class ApartmentDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private rentalsService: RentalsService,
-    private cursorWaitService: CursorWaitService
+    private cursorWaitService: CursorWaitService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -78,6 +80,16 @@ export class ApartmentDetailComponent implements OnInit {
 
   onSendOffer() {
     this.router.navigate(['/app/offers/create', this.apartment._id]);
+  }
+
+  async onSaveToFavorites() {
+    try {
+      const tenantId = this.storageService.get('tenantId');
+      const response = await this.rentalsService.setFavorite(tenantId, { apartmentId: this.apartment._id });
+      console.log(response);
+    } catch (e) {
+      console.log('ApartmentDetailComponent->onSaveToFavorites', e);
+    }
   }
 
   onBack() {

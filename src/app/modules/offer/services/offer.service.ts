@@ -13,8 +13,8 @@ export class OfferService {
     private apiService: ApiService
   ) { }
 
-  getOffers(page: Page, ids: string[]): Promise<any> {
-    const url = `${this.offerUrl}?page=${page.pageNumber}&perPage=${page.perPage}&apartmentIds=${ids}`;
+  getOffers(page: Page): Promise<any> {
+    const url = `${this.offerUrl}?page=${page.pageNumber}&perPage=${page.perPage}`;
     return this.apiService.get(url);
   }
 
@@ -35,7 +35,7 @@ export class OfferService {
     return this.apiService.delete(`${this.offerUrl}/${id}`);
   }
 
-  createFeedback(feedbackData, feedback: Feedback): Promise<any> {
-    return this.apiService.post(`${this.feedbackUrl}?userId=${feedbackData.userId}&offerId=${feedbackData.offerId}`, feedback);
+  createFeedback(feedbackData: any): Promise<any> {
+    return this.apiService.post(`${this.feedbackUrl}`, feedbackData);
   }
 }

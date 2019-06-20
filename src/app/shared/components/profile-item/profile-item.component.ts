@@ -17,7 +17,6 @@ export class ProfileItemComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-
   }
 
   ngAfterViewInit() {

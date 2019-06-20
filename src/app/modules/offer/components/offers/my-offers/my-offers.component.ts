@@ -33,13 +33,14 @@ export class MyOffersComponent implements OnInit {
 
   async getOffers() {
     try {
-      const userId = this.storageService.get('userId');
-      const response = await this.offerService.getOffersByTenant(this.page, userId);
-      this.acceptedOffers = response.offers.filter(offer => {
-        return offer.accepted === true;
+      const tenantId = this.storageService.get('tenantId');
+      const response = await this.offerService.getOffers(this.page);
+      const offers = response.offers;
+      this.acceptedOffers = offers.filter(offer => {
+        return offer.tenant._id === tenantId && offer.accepted === true;
       });
-      this.pendingOffers = response.offers.filter(offer => {
-        return offer.accepted === false;
+      this.pendingOffers = offers.filter(offer => {
+        return offer.tenant._id === tenantId && offer.accepted === false;
       });
     } catch (e) {
       console.log('MyOffersComponent->getOffers', e);

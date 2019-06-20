@@ -12,6 +12,6 @@ app-apartment-item {
   border-radius: $border-radius-lg;
 
   @include media-breakpoint-up(lg) {
-    margin-right: 150px;
+    margin-right: 250px;
   }
 }

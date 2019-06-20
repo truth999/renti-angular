@@ -21,7 +21,7 @@ export class HomeService {
     return this.apiService.get(url);
   }
 
-  // delete(): Promise<any> {
-  //   return this.apiService.delete('remove');
-  // }
+  delete(): Promise<any> {
+    return this.apiService.delete('remove');
+  }
 }

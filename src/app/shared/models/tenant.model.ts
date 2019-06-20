@@ -1,4 +1,12 @@
 import { User } from './user.model';
+import { Offer } from './offer.model';
+import { Feedback } from './feedback.model';
+import { Apartment } from './apartment.model';
+
+class Education {
+  nameOfSchool: string;
+  yearOfGraduation: number;
+}
 
 export class Tenant {
   _id: string;
@@ -12,10 +20,7 @@ export class Tenant {
   spokenLanguages: string[];
   currentCity: string;
   highestLevelOfQualification: string;
-  education: [{
-    nameOfSchool: string,
-    yearOfGraduation: number
-  }];
+  education: Education[];
   jobTitle: string[];
   universitySpeciality: string;
   currentWorkplace: string;
@@ -24,4 +29,7 @@ export class Tenant {
   otherText: string;
   freeTextIntroduction: string;
   rank: number;
+  offers: Offer[];
+  feedback: Feedback[];
+  favorites: Apartment[];
 }

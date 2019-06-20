@@ -28,14 +28,9 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.years = this.dateSelectService.getYears();
     this.apartmentData = this.apartmentCreateService.apartment;
-    let size = 0;
-    this.apartmentCreateService.rooms.forEach(room => {
-      size = size + room.size;
-    });
 
     this.apartmentDataFirstForm = new FormGroup({
       name: new FormControl(!!this.apartmentData ? this.apartmentData.name : null, Validators.required),
-      description: new FormControl(!!this.apartmentData ? this.apartmentData.description : null),
       address: new FormControl(!!this.apartmentData ? this.apartmentData.address : null, Validators.required),
       typeOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.typeOfBuilding : null),
       yearOfConstruction: new FormControl(!!this.apartmentData ? this.apartmentData.yearOfConstruction : null),
@@ -47,7 +42,9 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
       floorsOfApartment: new FormControl(
         !!this.apartmentData ? this.apartmentData.floorsOfApartment : null, [Validators.min(1), Validators.max(100)]
       ),
-      size: new FormControl(size),
+      size: new FormControl(
+        !!this.apartmentData ? this.apartmentData.size : null, [Validators.required, Validators.min(1), Validators.max(9999)]
+      ),
       elevator: new FormControl(!!this.apartmentData ? this.apartmentData.elevator : null),
       rooftop: new FormControl(!!this.apartmentData ? this.apartmentData.rooftop : null)
     });

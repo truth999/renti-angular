@@ -10,4 +10,10 @@
     font-size: 28px;
     color: $blue;
   }
+
+  .window-type {
+    @include media-breakpoint-up(lg) {
+      border: none;
+    }
+  }
 }

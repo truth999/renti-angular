@@ -7,7 +7,7 @@
         <td class="border-top-0 text-right py-0 pr-0">
           <select class="custom-select border-0"
                   formControlName="buildingSiting">
-            <option value="">-</option>
+            <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
             <option value="east">{{ 'COMMON.EAST' | translate }}</option>
             <option value="west">{{ 'COMMON.WEST' | translate }}</option>
             <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
@@ -20,7 +20,7 @@
         <td class="text-right py-0 pr-0">
           <select class="custom-select border-0"
                   formControlName="typeOfHeating">
-            <option value="">-</option>
+            <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
             <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
             <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
             <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
@@ -38,7 +38,7 @@
         <td class="text-right py-0 pr-0">
           <select class="custom-select border-0"
                   formControlName="headroom">
-            <option value="">-</option>
+            <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
             <option value="2m">< 2M</option>
             <option value="2.5m">2.0 - 2.5M</option>
             <option value="3m">2.5 - 3.0M</option>
@@ -51,7 +51,7 @@
         <td class="text-right py-0 pr-0">
           <select class="custom-select border-0"
                   formControlName="parking">
-            <option value="">-</option>
+            <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
             <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
             <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
             <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
@@ -72,7 +72,7 @@
                    id="childFriendly-na"
                    [value]="null"
                    formControlName="childFriendly">
-            <label for="childFriendly-na">N/A</label>
+            <label for="childFriendly-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="childFriendly-yes"
                    [value]="true"
@@ -95,7 +95,7 @@
                    id="petFriendly-na"
                    [value]="null"
                    formControlName="petFriendly">
-            <label for="petFriendly-na">N/A</label>
+            <label for="petFriendly-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="petFriendly-yes"
                    [value]="true"
@@ -127,7 +127,7 @@
                    id="handicapAccessible-na"
                    [value]="null"
                    formControlName="handicapAccessible">
-            <label for="handicapAccessible-na">N/A</label>
+            <label for="handicapAccessible-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="handicapAccessible-yes"
                    [value]="true"
@@ -150,7 +150,7 @@
                    id="airConditioner-na"
                    [value]="null"
                    formControlName="airConditioner">
-            <label for="airConditioner-na">N/A</label>
+            <label for="airConditioner-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="airConditioner-yes"
                    [value]="true"
@@ -173,7 +173,7 @@
                    id="garage-na"
                    [value]="null"
                    formControlName="garage">
-            <label for="garage-na">N/A</label>
+            <label for="garage-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="garage-yes"
                    [value]="true"

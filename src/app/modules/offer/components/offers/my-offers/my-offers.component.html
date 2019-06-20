@@ -12,7 +12,8 @@
     <ngb-tab>
       <ng-template ngbTabTitle>Accepted</ng-template>
       <ng-template ngbTabContent>
-        <div class="row">
+        <div class="row"
+             *ngIf="acceptedOffers">
           <ng-container *ngFor="let offer of acceptedOffers">
             <app-apartment-item class="col-lg-6 py-3"
                                 [apartment]="offer.apartment"
@@ -20,7 +21,7 @@
               <button *ngIf="!offer.feedback"
                       type="button"
                       class="btn btn-primary btn-sm position-absolute"
-                      (click)="onGiveFeedback($event, { offerId: offer._id, userId: offer.apartment.user })">Give feedback to landlord</button>
+                      (click)="onGiveFeedback($event, { offerId: offer._id, landlordId: offer.apartment.landlord })">Give feedback to landlord</button>
             </app-apartment-item>
           </ng-container>
         </div>
@@ -29,7 +30,8 @@
     <ngb-tab>
       <ng-template ngbTabTitle>Pending</ng-template>
       <ng-template ngbTabContent>
-        <div class="row">
+        <div class="row"
+             *ngIf="pendingOffers">
           <ng-container *ngFor="let offer of pendingOffers">
             <app-apartment-item class="col-lg-6 py-3"
                                 [apartment]="offer.apartment"

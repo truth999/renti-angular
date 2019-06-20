@@ -7,6 +7,14 @@
     }
   }
 
+  .btn {
+    width: 160px;
+
+    @include media-breakpoint-down(xs) {
+      width: 100%;
+    }
+  }
+
   .avatar {
     margin-left: -15px;
     margin-right: -15px;
@@ -144,26 +152,6 @@
           bottom: 12px;
           left: 9px;
           color: $blue;
-        }
-      }
-
-      .button-group {
-        @include media-breakpoint-down(xs) {
-          display: flex;
-          justify-content: space-between;
-        }
-
-        .btn {
-          width: 160px;
-
-          @include media-breakpoint-up(sm) {
-            display: block;
-            margin-left: auto;
-          }
-
-          @include media-breakpoint-down(xs) {
-            width: 45%;
-          }
         }
       }
     }

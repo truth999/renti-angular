@@ -68,6 +68,11 @@ export class ApartmentUploadComponent implements OnInit {
   submit() {
     this.rooms.map((room, index) => {
       room.pictures = this.newRoomPictures[index];
+      room.yearOfRenovation = null;
+      room.coverage = null;
+      room.equipment = null;
+      room.furniture = null;
+      room.windowType = null;
     });
 
     this.apartmentCreateService.createPreviewRoomPictures(this.previewNewRoomPictures);

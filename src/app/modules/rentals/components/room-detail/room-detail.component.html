@@ -27,7 +27,10 @@
              alt=""
              style="width: 100%;">
       </div>
-      <table class="table mt-2">
+    </div>
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6">
+      <table class="table mt-2 mb-0">
         <tbody>
         <tr>
           <td class="border-top-0">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
@@ -41,9 +44,15 @@
           <td>{{ 'APARTMENT.COVERAGE' | translate }}</td>
           <td class="text-right font-weight-bold">{{ room.coverage }}</td>
         </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-6">
+      <table class="table mt-sm-2 mb-0">
+        <tbody>
         <tr>
-          <td>{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
-          <td class="text-right font-weight-bold">{{ room.windowType }}</td>
+          <td class="window-type">{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
+          <td class="window-type text-right font-weight-bold">{{ room.windowType }}</td>
         </tr>
         <tr>
           <td>{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
@@ -64,27 +73,6 @@
         </tr>
         </tbody>
       </table>
-    </div>
-    <div class="col-lg-6 text-lg-right">
-      <app-feedback [rate]="room.rank * .05"></app-feedback>
-      <div class="text-left">
-        <div class="feedback mt-4">
-          <div class="client">
-            <span class="client-name font-weight-bold">Kelsey Taylor</span>
-          </div>
-          <p class="feedback-content mt-2">
-            Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-          </p>
-        </div>
-        <div class="feedback mt-4">
-          <div class="client">
-            <span class="client-name font-weight-bold">Kate Tomlins</span>
-          </div>
-          <p class="feedback-content mt-2">
-            We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </div>

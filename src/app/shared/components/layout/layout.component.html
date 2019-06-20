@@ -1,22 +1,5 @@
 <div *ngIf="accountType"
      class="layout">
-<!--  <div class="email-check-bar py-2">-->
-<!--    <div class="container">-->
-<!--      <div class="d-flex align-items-center">-->
-<!--        <div class="check-email font-size-lg font-weight-bolder">-->
-<!--          <i class="icon-letter align-middle"></i>-->
-<!--          {{ 'COMMON.CHECK_YOUR_EMAIL' | translate }}-->
-<!--        </div>-->
-<!--        <div class="check-email-alert">-->
-<!--          {{ 'COMMON.TO_COMPLETE_REGISTRATION' | translate }}-->
-<!--        </div>-->
-<!--        <div class="link font-size-lg">-->
-<!--          <a href="javascript:" class="font-weight-bolder mr-4">{{ 'COMMON.RESEND' | translate }}</a>-->
-<!--          <a href="javascript:" class="font-weight-bolder">{{ 'COMMON.CHANGE' | translate }}</a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
   <div class="wrapper">
     <nav class="sidebar position-fixed shadow">
       <div class="sidebar-close position-absolute d-md-none"
@@ -30,23 +13,8 @@
                width="40">
         </a>
       </div>
-      <ul class="nav flex-column nav-content py-3">
-        <li class="nav-item">
-          <a routerLink="rentals/search"
-             class="nav-link"
-             appMenuClose>
-            <i class="icon-search mr-2"></i>
-            {{ 'COMMON.SEARCH' | translate }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/app/offers"
-             class="nav-link"
-             appMenuClose>
-            <i class="icon-alert mr-2"></i>
-            {{ 'COMMON.NOTIFICATIONS' | translate }}
-          </a>
-        </li>
+      <ul class="nav flex-column nav-content py-3"
+          *ngIf="accountType === AccountTypes.TENANT">
         <li class="nav-item">
           <a routerLink="/app/my-profile"
              class="nav-link"
@@ -56,15 +24,50 @@
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="settings"
+          <a routerLink="/app/offers"
              class="nav-link"
              appMenuClose>
-            <i class="icon-setting mr-2"></i>
-            {{ 'COMMON.SETTINGS' | translate }}
+            <i class="icon-alert mr-2"></i>
+            {{ 'OFFER.OFFERS' | translate }}
+            <span class="badge badge-pill badge-primary align-middle ml-4">2</span>
           </a>
         </li>
-        <li *ngIf="accountType === AccountTypes.LANDLORD"
-            class="nav-item">
+        <li class="nav-item">
+          <a routerLink="rentals/search"
+             class="nav-link"
+             appMenuClose>
+            <i class="icon-search mr-2"></i>
+            {{ 'COMMON.SEARCH' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="rentals/favorites"
+             class="nav-link"
+             appMenuClose>
+            <i class="icon-favorite mr-2"></i>
+            {{ 'COMMON.FAVORITES' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/app/heatmap"
+             class="nav-link"
+             appMenuClose>
+            <i class="icon-heatmap mr-2"></i>
+            {{ 'COMMON.HEATMAP' | translate }}
+          </a>
+        </li>
+      </ul>
+      <ul class="nav flex-column nav-content py-3"
+          *ngIf="accountType === AccountTypes.LANDLORD">
+        <li class="nav-item">
+          <a routerLink="/app/my-profile"
+             class="nav-link"
+             appMenuClose>
+            <i class="icon-person mr-2"></i>
+            {{ 'COMMON.MY_PROFILE' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
           <a routerLink="/app/my-properties"
              class="nav-link"
              appMenuClose>
@@ -72,12 +75,21 @@
             {{ 'COMMON.MY_PROPERTIES' | translate }}
           </a>
         </li>
-      </ul>
-      <ul class="nav flex-column nav-logout position-absolute w-100">
         <li class="nav-item">
-          <a href="javascript:void(0)" class="nav-link" (click)="logOut()">
-            <i class="icon-exit mr-2"></i>
-            {{ 'COMMON.LOGOUT' | translate }}
+          <a routerLink="/app/offers"
+             class="nav-link"
+             appMenuClose>
+            <i class="icon-alert mr-2"></i>
+            {{ 'OFFER.OFFERS' | translate }}
+            <span class="badge badge-pill badge-primary align-middle ml-4">2</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/app/heatmap"
+             class="nav-link"
+             appMenuClose>
+            <i class="icon-heatmap mr-2"></i>
+            {{ 'COMMON.HEATMAP' | translate }}
           </a>
         </li>
       </ul>
@@ -98,10 +110,42 @@
             <img src="/assets/images/logo-no-title.png" width="40" alt="">
           </a>
           <app-language-selector></app-language-selector>
+          <ul class="nav top-menu position-absolute">
+            <li class="nav-item">
+              <a routerLink="/app/offers"
+                 class="nav-link position-relative">
+                <i class="icon-alert"></i>
+                <span class="badge badge-pill badge-primary position-absolute">2</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:void(0)"
+                 class="nav-link"
+                 (click)="logOut()">
+                <i class="icon-exit"></i>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="container content position-relative">
         <app-language-selector class="d-lg-block d-none"></app-language-selector>
+        <ul class="nav top-menu position-absolute d-lg-flex d-none">
+          <li class="nav-item">
+            <a routerLink="/app/offers"
+               class="nav-link position-relative">
+              <i class="icon-alert"></i>
+              <span class="badge badge-pill badge-primary position-absolute">2</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:void(0)"
+               class="nav-link"
+               (click)="logOut()">
+              <i class="icon-exit"></i>
+            </a>
+          </li>
+        </ul>
         <router-outlet></router-outlet>
       </div>
     </main>

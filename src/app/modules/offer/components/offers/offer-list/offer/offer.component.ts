@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { Offer, Tenant } from '../../../../../../shared/models';
+import { Offer, User } from '../../../../../../shared/models';
 
 import { environment } from '../../../../../../../environments/environment';
 
@@ -17,9 +17,8 @@ import { AuthService } from '../../../../../../core/services/auth.service';
 })
 export class OfferComponent implements OnInit {
   @Input() offer: Offer;
-  @Input() offerIndex: number;
   @Output() offerDeleted = new EventEmitter<void>();
-  tenant: Tenant;
+  user: User;
 
   uploadBase = environment.uploadBase;
 
@@ -37,22 +36,15 @@ export class OfferComponent implements OnInit {
 
   async getOfferInfo() {
     try {
-      this.cursorWaitService.enable();
-
-      const response = await this.authService.getUser(this.offer.user._id);
-
-      if (!!response.user) {
-        this.tenant = response.user.tenant;
-      }
+      const response = await this.authService.getUser(this.offer.tenant.user);
+      this.user = response.user;
     } catch (e) {
       console.log('OfferComponent->getOfferInfo');
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 
   onProfile() {
-    this.router.navigate(['/app/profile', this.offer.user._id]);
+    this.router.navigate(['/app/profile/tenant', this.offer.tenant._id]);
   }
 
   async onSuccess() {
@@ -63,7 +55,7 @@ export class OfferComponent implements OnInit {
       };
 
       await this.offerService.updateOffer(offer);
-      this.router.navigate(['/app/offers', this.offer.user._id, 'success']);
+      this.router.navigate(['/app/offers', this.offer.tenant._id, 'success']);
     } catch (e) {
       console.log('OfferComponent->onSuccess', e);
     }
@@ -71,16 +63,12 @@ export class OfferComponent implements OnInit {
 
   async onDelete() {
     try {
-      this.cursorWaitService.enable();
-
       await this.offerService.deleteOffer(this.offer._id);
       this.toastrService.success('The offer is deleted successfully.', 'Success!');
       this.offerDeleted.emit();
     } catch (e) {
       this.toastrService.error('Something went wrong', 'Error');
       console.log('OfferComponent->onDelete', e);
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 

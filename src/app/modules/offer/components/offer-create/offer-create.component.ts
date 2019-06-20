@@ -48,7 +48,6 @@ export class OfferCreateComponent implements OnInit {
   buildOfferForm() {
     this.offerForm = new FormGroup({
       rentalFee: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(2000000)]),
-      overhead: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(2000000)]),
       minRentingTime: new FormControl(null, Validators.required),
       dateOfMovingIn: new FormControl(null, Validators.required),
       movingWith: new FormControl(null, Validators.required),
@@ -76,33 +75,24 @@ export class OfferCreateComponent implements OnInit {
 
   async submit() {
     if (this.offerForm.valid) {
-      const id = this.route.snapshot.paramMap.get('id');
-      const userId = this.storageService.get('userId');
+      const apartmentId = this.route.snapshot.paramMap.get('id');
+      const tenantId = this.storageService.get('tenantId');
       const offerData = {
         ...this.offerForm.value,
-        userId,
-        apartmentId: id,
-        accepted: false
+        tenantId,
+        apartmentId
       };
 
       try {
-        this.cursorWaitService.enable();
-
         await this.offerService.createOffer(offerData);
         this.router.navigate(['/app/offers/create-success']);
       } catch (e) {
         this.toastrService.error('Something went wrong', 'Error');
         console.log('OfferCreateComponent->submit', e);
-      } finally {
-        this.cursorWaitService.disable();
       }
     } else {
       this.validateFormFields.validate(this.offerForm);
     }
-  }
-
-  arrayNumber(n: number) {
-    return Array(n);
   }
 
 }

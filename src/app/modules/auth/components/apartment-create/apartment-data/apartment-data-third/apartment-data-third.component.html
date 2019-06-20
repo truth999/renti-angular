@@ -15,7 +15,7 @@
                    id="externalIsolation-na"
                    [value]="null"
                    formControlName="externalIsolation">
-            <label for="externalIsolation-na">N/A</label>
+            <label for="externalIsolation-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="externalIsolation-yes"
                    [value]="true"
@@ -40,7 +40,7 @@
                    [value]="null"
                    formControlName="balcony"
                    (change)="onChangeBalcony()">
-            <label for="balcony-na">N/A</label>
+            <label for="balcony-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="balcony-yes"
                    [value]="true"
@@ -77,7 +77,7 @@
                    [value]="null"
                    formControlName="garden"
                    (change)="onChangeGarden()">
-            <label for="garden-na">N/A</label>
+            <label for="garden-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="garden-yes"
                    [value]="true"
@@ -126,7 +126,7 @@
                    [value]="null"
                    formControlName="terrace"
                    (change)="onChangeTerrace()">
-            <label for="terrace-na">N/A</label>
+            <label for="terrace-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="terrace-yes"
                    [value]="true"
@@ -172,6 +172,7 @@
                  pattern="[0-9]*"
                  formControlName="rentalFee">
           <div class="invalid-feedback d-block" *ngIf="apartmentDataThirdForm.get('rentalFee').invalid && (apartmentDataThirdForm.get('rentalFee').dirty || apartmentDataThirdForm.get('rentalFee').touched)">
+            <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.min"
                   translate
                   [translateParams]="{ min: apartmentDataThirdForm.get('rentalFee').errors.min.min }">
@@ -240,7 +241,7 @@
         <td class="text-right py-0 pr-0">
           <select class="custom-select border-0"
                   formControlName="minimumRentingTime">
-            <option value="">-</option>
+            <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
             <option value="{{ i }}" *ngFor="let month of arrayNumber(121); let i = index">{{ i }}</option>
           </select>
         </td>
@@ -263,7 +264,7 @@
                      [value]="null"
                      formControlName="rightNow"
                      (change)="onChangeRightNow()">
-              <label for="rightNow-na">N/A</label>
+              <label for="rightNow-na">{{ 'COMMON.NA' | translate }}</label>
               <input type="radio"
                      id="rightNow-yes"
                      [value]="true"

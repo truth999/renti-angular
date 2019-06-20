@@ -8,17 +8,16 @@ import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
-import { LandlordService } from '../../../services/landlord.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
 import { AuthService } from '../../../../../core/services/auth.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
-import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 
-import { Landlord, User } from '../../../../../shared/models';
+import { Feedback, Landlord } from '../../../../../shared/models';
 import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
+import { MyProfileService } from '../../../services/my-profile.service';
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -26,8 +25,8 @@ import { Validate } from '../../../../../../config/validate';
   styleUrls: ['./landlord.component.scss']
 })
 export class LandlordComponent implements OnInit {
-  user: User;
   landlord: Landlord;
+  feedbacks: Feedback[];
   photo: string;
   photoDeleted = true;
   isAgency = false;
@@ -59,12 +58,11 @@ export class LandlordComponent implements OnInit {
     private router: Router,
     private photoEditModalService: PhotoEditModalService,
     private photoUploadModalService: PhotoUploadModalService,
-    private landlordService: LandlordService,
+    private myProfileService: MyProfileService,
     private storageService: StorageService,
     private imageUploaderService: ImageUploaderService,
     private authService: AuthService,
     private toastrService: ToastrService,
-    private cursorWaitService: CursorWaitService,
     private validateFormFielsService: ValidateFormFieldsService,
     private datepickerConfig: NgbDatepickerConfig
   ) {
@@ -80,27 +78,25 @@ export class LandlordComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.cursorWaitService.enable();
       let totalRate = 0;
-      const response = await this.authService.getAuthUser();
-      response.user.feedback.map(async feedback => {
-        totalRate = totalRate + feedback.feedbackStar;
-        const userResponse = await this.authService.getUser(feedback.user);
-        feedback.user = userResponse.user;
-      });
-      this.user = response.user;
-      this.rate = parseInt((totalRate / response.user.feedback.length).toFixed(0), 10) - 1;
+      const landlordId = this.storageService.get('landlordId');
+      const landlordResponse = await this.authService.getLandlord(landlordId);
+      this.landlord = landlordResponse.landlord;
 
-      if (response.user.landlord) {
-        this.landlord = response.user.landlord;
-      }
+      const feedbackResponse = await this.myProfileService.getFeedbacks();
+      this.feedbacks = feedbackResponse.feedbacks.filter(feedback => {
+        return feedback.landlord === landlordId;
+      });
+
+      this.feedbacks.map(feedback => {
+        totalRate = totalRate + feedback.feedbackStar;
+      });
+      this.rate = parseInt((totalRate / this.feedbacks.length).toFixed(0), 10) - 1;
 
       this.buildLandlordForm();
-      this.isAgency = !!this.landlord ? this.landlord.isPerson !== true : false;
+      this.isAgency = this.landlord.isPerson !== true;
     } catch (e) {
       console.log('LandlordComponent->ngOnInit', e);
-    } finally {
-      this.cursorWaitService.disable();
     }
 
     this.photoEditModalService.photoChanged.subscribe(photoURIData => {
@@ -114,14 +110,14 @@ export class LandlordComponent implements OnInit {
 
   buildLandlordForm() {
     this.landlordForm = new FormGroup({
-      mobile: new FormControl(!!this.landlord ? this.landlord.mobile : '', Validators.required),
-      profilePicture: new FormControl(!!this.landlord ? this.landlord.profilePicture : ''),
-      placeOfBirth: new FormControl(!!this.landlord ? this.landlord.placeOfBirth : ''),
-      dateOfBirth: new FormControl(!!this.landlord ? this.landlord.dateOfBirth : null, Validators.required),
-      nationality: new FormControl(!!this.landlord ? this.landlord.nationality : ''),
-      spokenLanguages: new FormControl(!!this.landlord ? this.landlord.spokenLanguages : '', Validators.required),
-      isPerson: new FormControl(!!this.landlord ? this.landlord.isPerson : '', Validators.required),
-      nameOfAgency: new FormControl(!!this.landlord ? this.landlord.nameOfAgency : '')
+      mobile: new FormControl(this.landlord.mobile, Validators.required),
+      profilePicture: new FormControl(this.landlord.profilePicture),
+      placeOfBirth: new FormControl(this.landlord.placeOfBirth),
+      dateOfBirth: new FormControl(this.landlord.dateOfBirth, Validators.required),
+      nationality: new FormControl(this.landlord.nationality),
+      spokenLanguages: new FormControl(this.landlord.spokenLanguages, Validators.required),
+      isPerson: new FormControl(this.landlord.isPerson, Validators.required),
+      nameOfAgency: new FormControl(this.landlord.nameOfAgency)
     });
   }
 
@@ -153,14 +149,6 @@ export class LandlordComponent implements OnInit {
     this.location.back();
   }
 
-  onMyProperties() {
-    this.router.navigate(['/app/my-properties']);
-  }
-
-  onViewAs() {
-    this.router.navigate(['/app/profile', this.user._id]);
-  }
-
   onIsPersonChange() {
     this.isAgency = !this.isPerson.value;
     this.isPerson.value ? this.nameOfAgency.setErrors(null) : this.nameOfAgency.setValidators(Validators.required);
@@ -186,35 +174,27 @@ export class LandlordComponent implements OnInit {
 
   async onDeletePhoto() {
     try {
-      this.cursorWaitService.enable();
-
       this.landlordForm.patchValue({profilePicture: ''});
       this.photo = '';
       if (this.landlord) {
         this.landlord.profilePicture = '';
-        await this.landlordService.updateLandlord(this.landlord);
+        await this.myProfileService.updateLandlord(this.landlord);
         this.toastrService.success('The profile picture is deleted successfully.', 'Success!');
       }
     } catch (e) {
       console.log('LandlordComponent->onDeletePhoto->error', e);
       this.toastrService.error('Something went wrong', 'Error');
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 
   async uploadProfilePicture(photoURIData) {
     try {
-      this.cursorWaitService.enable();
-
       const blobData = this.imageUploaderService.b64toBlob(photoURIData);
       const filenames = await this.imageUploaderService.upload(blobData);
       this.landlordForm.patchValue({profilePicture: filenames[0]});
     } catch (e) {
       console.log('LandlordComponent->uploadProfilePicture->error', e);
       this.toastrService.error('Something went wrong', 'Error');
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 
@@ -235,8 +215,6 @@ export class LandlordComponent implements OnInit {
   async submit() {
     if (this.landlordForm.valid) {
       try {
-        this.cursorWaitService.enable();
-
         const landlordData = {
           userId: this.storageService.get('userId'),
           ...this.landlordForm.value,
@@ -246,24 +224,18 @@ export class LandlordComponent implements OnInit {
           landlordData.nameOfAgency = '';
         }
 
-        if (!this.landlord) {
-          await this.landlordService.createLandlord(landlordData);
-        } else {
-          this.landlord = {
-            ...this.landlord,
-            ...landlordData
-          };
+        this.landlord = {
+          ...this.landlord,
+          ...landlordData
+        };
 
-          await this.landlordService.updateLandlord(this.landlord);
-        }
+        await this.myProfileService.updateLandlord(this.landlord);
 
         this.toastrService.success('The landlord is updated successfully.', 'Success!');
       } catch (e) {
         console.log('LandlordComponent->update->error', e);
 
         this.toastrService.error('Something went wrong', 'Error');
-      } finally {
-        this.cursorWaitService.disable();
       }
     } else {
       this.validateFormFielsService.validate(this.landlordForm);

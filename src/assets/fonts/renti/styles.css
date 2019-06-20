@@ -143,3 +143,9 @@
 .icon-right:before {
   content: "\49";
 }
+.icon-favorite:before {
+  content: "\4a";
+}
+.icon-heatmap:before {
+  content: "\4b";
+}

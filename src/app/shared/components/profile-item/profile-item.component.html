@@ -4,6 +4,7 @@
          alt=""
          width="120"
          height="120">
+    <span class="badge badge-success image-badge position-absolute">{{ profile.rank }}% {{ 'COMMON.DATA' | translate }}</span>
   </div>
   <div class="explain">
     <h6 class="font-size-lg">{{ profile.user.firstName }} {{ profile.user.lastName }}</h6>
@@ -17,4 +18,6 @@
       {{ profile.freeTextIntroduction }}
     </p>
   </div>
+  <span *ngIf="profile.rank >= 95"
+        class="badge badge-primary card-badge position-absolute">{{ 'COMMON.TOP_RATED' | translate }}</span>
 </div>

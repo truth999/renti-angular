@@ -35,8 +35,16 @@ export class AuthService {
     return this.apiService.get(`users/${userId}`);
   }
 
-  getUser(id: string): Promise<any> {
+  getUser(id: any): Promise<any> {
     return this.apiService.get(`users/${id}`);
+  }
+
+  getLandlord(id: string): Promise<any> {
+    return this.apiService.get(`landlords/${id}`);
+  }
+
+  getTenant(id: string): Promise<any> {
+    return this.apiService.get(`tenants/${id}`);
   }
 
   createUser(signupRequest: SignupRequest) {
@@ -81,24 +89,30 @@ export class AuthService {
     if (token) {
       this.isAuthenticated = true;
       this.userId = response.userId;
+      const landlordId = response.landlordId;
+      const tenantId = response.tenantId;
       const now = new Date();
       const expirationDate = new Date(
           now.getTime() + response.expiresIn * 1000
       );
-      this.saveAuthData(token, expirationDate, this.userId);
+      this.saveAuthData(token, expirationDate, this.userId, landlordId, tenantId);
     }
   }
 
-  private saveAuthData(token: string, expirationDate: Date, userId: string) {
+  private saveAuthData(token: string, expirationDate: Date, userId: string, landlordId: string, tenantId: string) {
     this.storageService.save('token', token);
     this.storageService.save('expiration', expirationDate.toISOString());
     this.storageService.save('userId', userId);
+    this.storageService.save('landlordId', landlordId);
+    this.storageService.save('tenantId', tenantId);
   }
 
   private clearAuthData() {
     this.storageService.remove('token');
     this.storageService.remove('expiration');
     this.storageService.remove('userId');
+    this.storageService.remove('landlordId');
+    this.storageService.remove('tenantId');
   }
 
   private getAuthData() {

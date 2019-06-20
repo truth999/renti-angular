@@ -31,4 +31,8 @@ export class RentalsService {
     url += page.pageNumber ? `&perPage=${page.perPage}` : '';
     return this.apiService.get(url);
   }
+
+  setFavorite(id: string, apartment: any): Promise<any> {
+    return this.apiService.put(`${this.tenantUrl}/${id}/favorite`, apartment);
+  }
 }

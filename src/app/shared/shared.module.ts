@@ -28,6 +28,7 @@ import { DateSelectService } from './services/date-select.service';
 import { HeatmapFlatModalService } from './services/modal/heatmap/heatmap-flat-modal.service';
 import { HeatmapTenantModalService } from './services/modal/heatmap/heatmap-tenant-modal.service';
 import { FeedbackModalService } from './services/modal/feedback-modal.service';
+import { LayoutService } from './services/layout.service';
 
 import { MenuCloseDirective } from './directives/menu-close.directive';
 
@@ -96,7 +97,8 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     DateSelectService,
     HeatmapFlatModalService,
     HeatmapTenantModalService,
-    FeedbackModalService
+    FeedbackModalService,
+    LayoutService
   ]
 })
 export class SharedModule { }

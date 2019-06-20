@@ -10,6 +10,7 @@ import { RoomDetailComponent } from './components/room-detail/room-detail.compon
 import { SearchComponent } from './components/search/search.component';
 import { SearchTenantComponent } from './components/search/search-tenant/search-tenant.component';
 import { SearchApartmentComponent } from './components/search/search-apartment/search-apartment.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 import { RentalsService } from './services/rentals.service';
 
@@ -19,7 +20,8 @@ import { RentalsService } from './services/rentals.service';
     RoomDetailComponent,
     SearchComponent,
     SearchTenantComponent,
-    SearchApartmentComponent
+    SearchApartmentComponent,
+    FavoritesComponent
   ],
   providers: [
     RentalsService

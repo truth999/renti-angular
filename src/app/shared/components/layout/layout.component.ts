@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth.service'
+import { LayoutService } from '../../services/layout.service';
 
 import { CONFIG_CONST } from '../../../../config/config-const';
 
@@ -15,15 +16,16 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private layoutService: LayoutService
   ) { }
 
-  ngOnInit() {
-    this.getAccountType();
-  }
-
-  async getAccountType() {
-    const response = await this.authService.getAuthUser();
-    this.accountType = response.user.accountType;
+  async ngOnInit() {
+    try {
+      const response = await this.authService.getAuthUser();
+      this.accountType = response.user.accountType;
+    } catch (e) {
+      console.log('LayoutComponent->ngOnInit', e);
+    }
   }
 
   onOpenMenu() {

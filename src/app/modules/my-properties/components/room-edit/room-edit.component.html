@@ -78,7 +78,7 @@
             <td class="text-right py-0 pr-0">
               <select class="custom-select border-0 w-auto"
                       formControlName="yearOfRenovation">
-                <option [ngValue]="null">-</option>
+                <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                 <option *ngFor="let year of years"
                         [value]="year">{{ year }}</option>
               </select>
@@ -88,7 +88,7 @@
             <td class="py-0 align-middle">{{ 'APARTMENT.COVERAGE' | translate }}</td>
             <td class="text-right py-0 pr-0">
               <select class="custom-select border-0 w-auto" formControlName="coverage">
-                <option [ngValue]="null">-</option>
+                <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                 <option value="tiles">{{ 'COMMON.TILES' | translate }}</option>
                 <option value="wooden">{{ 'COMMON.LAMINATED_WOODEN' | translate }}</option>
                 <option value="carpet">{{ 'COMMON.CARPET' | translate }}</option>
@@ -102,7 +102,7 @@
             <td class="text-right py-0 pr-0">
               <select class="custom-select border-0 w-auto"
                       formControlName="windowType">
-                <option [ngValue]="null">-</option>
+                <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                 <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>
                 <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
                 <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
@@ -122,7 +122,7 @@
                        id="equipment-na"
                        [value]="null"
                        formControlName="equipment">
-                <label for="equipment-na">N/A</label>
+                <label for="equipment-na">{{ 'COMMON.NA' | translate }}</label>
                 <input type="radio"
                        id="equipment-yes"
                        [value]="true"
@@ -156,27 +156,6 @@
           </tr>
           </tbody>
         </table>
-      </div>
-      <div class="col-lg-6 text-lg-right mt-3">
-        <app-feedback [rate]="rate"></app-feedback>
-        <div class="text-left">
-          <div class="feedback mt-4">
-            <div class="client">
-              <span class="client-name font-weight-bold">Kelsey Taylor</span>
-            </div>
-            <p class="feedback-content mt-2">
-              Peter has been really a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-          </div>
-          <div class="feedback mt-4">
-            <div class="client">
-              <span class="client-name font-weight-bold">Kate Tomlins</span>
-            </div>
-            <p class="feedback-content mt-2">
-              We had a lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   </form>

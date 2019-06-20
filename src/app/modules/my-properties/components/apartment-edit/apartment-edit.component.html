@@ -48,14 +48,6 @@
               <span *ngIf="apartmentForm.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             </div>
           </div>
-          <div class="form-group">
-            <label for="description1"
-                   class="h5 font-weight-bolder">{{ 'APARTMENT.DESCRIPTION' | translate }}:</label>
-            <textarea id="description1"
-                      class="form-control"
-                      rows="5"
-                      formControlName="description"></textarea>
-          </div>
           <div class="unit d-flex justify-content-between">
             <span class="square font-weight-bold">
               <i class="icon-fullscreen"></i>
@@ -77,22 +69,9 @@
               <span *ngIf="apartmentForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             </div>
           </div>
-          <!--        <div class="data-complete w-100">-->
-          <!--          <div class="data-status d-flex justify-content-between font-weight-bold mb-2">-->
-          <!--            <span>{{ 'APARTMENT.DATA_COMPLETION' | translate }}:</span>-->
-          <!--            <span>97/132</span>-->
-          <!--          </div>-->
-          <!--          <p><ngb-progressbar [value]="73" height="10px"></ngb-progressbar></p>-->
-          <!--        </div>-->
-          <div class="button-group d-flex justify-content-between mt-4">
-            <button type="submit"
-                    class="btn btn-outline-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>
-            <!--          <button class="btn btn-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}</button>-->
-          </div>
         </div>
         <div class="rooms mt-4">
           <h3>{{ 'COMMON.ROOMS' | translate }}</h3>
-<!--          <p>A megtekintéshez kattintson a szoba nevére  vagy az alaprajzban elfoglalt helyére!</p>-->
           <div class="draw-room">
             <img src="/assets/images/floor_plan.png" alt="">
           </div>
@@ -104,63 +83,15 @@
               </a>
             </li>
           </ul>
-<!--          <ul class="list-unstyled mt-3" formArrayName="roomsData">-->
-<!--            <li class="d-flex justify-content-between mb-1"-->
-<!--                *ngFor="let roomEl of roomsData.controls; let i = index"-->
-<!--                [formGroupName]="i">-->
-<!--              <div class="number rounded-circle d-flex justify-content-center align-items-center mt-2 mr-2 font-weight-bold">{{ i + 1 }}</div>-->
-<!--              <div class="mr-1">-->
-<!--                <input type="text"-->
-<!--                       class="form-control"-->
-<!--                       placeholder="{{ 'COMMON.ROOM_NAME' | translate }}"-->
-<!--                       formControlName="name">-->
-<!--                <div class="invalid-feedback d-block" *ngIf="roomEl.get('name').invalid && (roomEl.get('name').dirty || roomEl.get('name').touched)">-->
-<!--                  <span *ngIf="roomEl.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="mr-1">-->
-<!--                <input type="number"-->
-<!--                       class="form-control"-->
-<!--                       min="0"-->
-<!--                       inputmode="numeric"-->
-<!--                       pattern="[0-9]*"-->
-<!--                       placeholder="{{ 'APARTMENT.SIZE' | translate }}"-->
-<!--                       formControlName="size">-->
-<!--                <div class="invalid-feedback d-block" *ngIf="roomEl.get('size').invalid && (roomEl.get('size').dirty || roomEl.get('size').touched)">-->
-<!--                  <span *ngIf="roomEl.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div>-->
-<!--                <select class="custom-select"-->
-<!--                        formControlName="windowType">-->
-<!--                  <option value="" disabled>{{ 'APARTMENT.WINDOW_TYPE' | translate }}</option>-->
-<!--                  <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>-->
-<!--                  <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>-->
-<!--                  <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>-->
-<!--                </select>-->
-<!--                <div class="invalid-feedback d-block" *ngIf="roomEl.get('windowType').invalid && (roomEl.get('windowType').dirty || roomEl.get('windowType').touched)">-->
-<!--                  <span *ngIf="roomEl.get('windowType').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--              <i class="icon-plus"-->
-<!--                   (click)="onAddRoom()"></i>-->
-<!--            </li>-->
-<!--          </ul>-->
         </div>
         <div class="d-block d-lg-none">
-          <!--        <p class="mt-4">-->
-          <!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
-          <!--        </p>-->
           <table class="table mt-4">
-            <tbody>
             <tr>
               <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
               <td class="border-top-0 text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="typeOfBuilding">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
                   <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
                   <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
@@ -173,7 +104,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="yearOfConstruction">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option *ngFor="let year of years"
                           [value]="year">{{ year }}</option>
                 </select>
@@ -184,7 +115,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="stateOfApartment">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="new">{{ 'COMMON.NEW' | translate }}</option>
                   <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
                   <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
@@ -197,7 +128,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="energyPerformanceCertificate">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="aapp">AA++</option>
                   <option value="aap">AA+</option>
                   <option value="aa">AA</option>
@@ -264,15 +195,37 @@
                 </div>
               </td>
             </tr>
-            <!--            <tr>-->
-            <!--              <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>-->
-            <!--              <td class="text-right py-0 pr-0">-->
-            <!--                <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*"required>-->
-            <!--              </td>-->
-            <!--            </tr>-->
             <tr>
-              <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-              <td class="text-right pr-0">
+              <td class="border-bottom py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }} (m<sup>2</sup>)</td>
+              <td class="border-bottom text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       max="9999"
+                       step="1"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="size">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('size').invalid && (apartmentForm.get('size').dirty || apartmentForm.get('size').touched)">
+                  <span *ngIf="apartmentForm.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('size').errors.min"
+                        translate
+                        [translateParams]="{ min: apartmentForm.get('size').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('size').errors.max"
+                        translate
+                        [translateParams]="{ max: apartmentForm.get('size').errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <table class="table mt-5">
+            <tr>
+              <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+              <td class="border-top-0 text-right pr-0">
                 <div class="switch">
                   <input type="radio"
                          id="elevator1-no"
@@ -283,7 +236,7 @@
                          id="elevator1-na"
                          [value]="null"
                          formControlName="elevator">
-                  <label for="elevator1-na">N/A</label>
+                  <label for="elevator1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="elevator1-yes"
                          [value]="true"
@@ -306,7 +259,7 @@
                          id="rooftop1-na"
                          [value]="null"
                          formControlName="rooftop">
-                  <label for="rooftop1-na">N/A</label>
+                  <label for="rooftop1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="rooftop1-yes"
                          [value]="true"
@@ -321,7 +274,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="buildingSiting">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="east">{{ 'COMMON.EAST' | translate }}</option>
                   <option value="west">{{ 'COMMON.WEST' | translate }}</option>
                   <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
@@ -334,7 +287,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="typeOfHeating">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
                   <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
                   <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
@@ -352,7 +305,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="headroom">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="2m">< 2M</option>
                   <option value="2.5m">2.0 - 2.5M</option>
                   <option value="3m">2.5 - 3.0M</option>
@@ -365,7 +318,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="parking">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
                   <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
                   <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
@@ -386,7 +339,7 @@
                          id="childFriendly1-na"
                          [value]="null"
                          formControlName="childFriendly">
-                  <label for="childFriendly1-na">N/A</label>
+                  <label for="childFriendly1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="childFriendly1-yes"
                          [value]="true"
@@ -409,7 +362,7 @@
                          id="petFriendly1-na"
                          [value]="null"
                          formControlName="petFriendly">
-                  <label for="petFriendly1-na">N/A</label>
+                  <label for="petFriendly1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="petFriendly1-yes"
                          [value]="true"
@@ -441,7 +394,7 @@
                          id="handicapAccessible1-na"
                          [value]="null"
                          formControlName="handicapAccessible">
-                  <label for="handicapAccessible1-na">N/A</label>
+                  <label for="handicapAccessible1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="handicapAccessible1-yes"
                          [value]="true"
@@ -464,7 +417,7 @@
                          id="externalIsolation1-na"
                          [value]="null"
                          formControlName="externalIsolation">
-                  <label for="externalIsolation1-na">N/A</label>
+                  <label for="externalIsolation1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="externalIsolation1-yes"
                          [value]="true"
@@ -489,7 +442,7 @@
                          [value]="null"
                          formControlName="balcony"
                          (change)="onChangeBalcony()">
-                  <label for="balcony1-na">N/A</label>
+                  <label for="balcony1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="balcony1-yes"
                          [value]="true"
@@ -526,7 +479,7 @@
                          [value]="null"
                          formControlName="garden"
                          (change)="onChangeGarden()">
-                  <label for="garden1-na">N/A</label>
+                  <label for="garden1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="garden1-yes"
                          [value]="true"
@@ -577,7 +530,7 @@
                          [value]="null"
                          formControlName="terrace"
                          (change)="onChangeTerrace()">
-                  <label for="terrace1-na">N/A</label>
+                  <label for="terrace1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="terrace1-yes"
                          [value]="true"
@@ -626,7 +579,7 @@
                          id="airConditioner1-na"
                          [value]="null"
                          formControlName="airConditioner">
-                  <label for="airConditioner1-na">N/A</label>
+                  <label for="airConditioner1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="airConditioner1-yes"
                          [value]="true"
@@ -637,13 +590,8 @@
               </td>
             </tr>
             <tr>
-              <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
-              <td class="text-right pr-0">
-                <!--                <label class="switch">-->
-                <!--                  <input type="checkbox"-->
-                <!--                         formControlName="garage">-->
-                <!--                  <span class="slider round"></span>-->
-                <!--                </label>-->
+              <td class="border-bottom py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
+              <td class="border-bottom text-right pr-0">
                 <div class="switch">
                   <input type="radio"
                          id="garage1-no"
@@ -654,7 +602,7 @@
                          id="garage1-na"
                          [value]="null"
                          formControlName="garage">
-                  <label for="garage1-na">N/A</label>
+                  <label for="garage1-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="garage1-yes"
                          [value]="true"
@@ -664,9 +612,11 @@
                 </div>
               </td>
             </tr>
+          </table>
+          <table class="table mt-5">
             <tr>
-              <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
-              <td class="text-right py-0 pr-0">
+              <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+              <td class="border-top-0 text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="0"
@@ -676,6 +626,7 @@
                        pattern="[0-9]*"
                        formControlName="rentalFee">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('rentalFee').invalid && (apartmentForm.get('rentalFee').dirty || apartmentForm.get('rentalFee').touched)">
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   <span *ngIf="apartmentForm.get('rentalFee').errors.min"
                         translate [translateParams]="{ min: apartmentForm.get('rentalFee').errors.min.min }">
                     ERROR.MIN_FIELD
@@ -738,7 +689,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="minimumRentingTime">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option *ngFor="let month of arrayNumber(121); let i = index"
                           [value]="i">{{ i }}</option>
                 </select>
@@ -761,7 +712,7 @@
                            [value]="null"
                            formControlName="rightNow"
                            (change)="onChangeRightNow()">
-                    <label for="rightNow1-na">N/A</label>
+                    <label for="rightNow1-na">{{ 'COMMON.NA' | translate }}</label>
                     <input type="radio"
                            id="rightNow1-yes"
                            [value]="true"
@@ -781,42 +732,8 @@
                 </div>
               </td>
             </tr>
-            </tbody>
           </table>
         </div>
-        <app-feedback [rate]="rate"></app-feedback>
-        <!--      <table class="table mt-4">-->
-        <!--        <tbody>-->
-        <!--        <tr>-->
-        <!--          <td class="border-top-0">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>-->
-        <!--          <td class="border-top-0 font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <td>Épület építési éve</td>-->
-        <!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <td>Ingatlan állapota</td>-->
-        <!--          <td class="font-weight-bold text-right">2011</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <td>{{ 'APARTMENT.ENERGY_PERFORMANCE_CERTIFICATE' | translate }}</td>-->
-        <!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <td>{{ 'APARTMENT.FLOORS_OF_THE_BUILDING' | translate }}</td>-->
-        <!--          <td class="font-weight-bold text-right">{{ 'APARTMENT.BRICK' | translate }}</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <td>Lakás emelete</td>-->
-        <!--          <td class="font-weight-bold text-right">2011</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <td class="border-bottom">Lakás négyeztméter</td>-->
-        <!--          <td class="border-bottom font-weight-bold text-right">{{ 'APARTMENT.APARTMENT' | translate }}</td>-->
-        <!--        </tr>-->
-        <!--        </tbody>-->
-        <!--      </table>-->
       </div>
       <div class="col-lg-6">
         <div class="d-lg-block d-none">
@@ -830,14 +747,6 @@
             <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('name').invalid && (apartmentForm.get('name').dirty || apartmentForm.get('name').touched)">
               <span *ngIf="apartmentForm.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="description"
-                   class="h5 font-weight-bolder">{{ 'APARTMENT.DESCRIPTION' | translate }}:</label>
-            <textarea id="description"
-                      class="form-control"
-                      rows="5"
-                      formControlName="description"></textarea>
           </div>
           <div class="unit d-flex justify-content-between">
             <span class="square font-weight-bold">
@@ -860,29 +769,13 @@
               <span *ngIf="apartmentForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
             </div>
           </div>
-          <!--        <div class="data-complete w-100">-->
-          <!--          <div class="data-status d-flex justify-content-between font-weight-bold mb-2">-->
-          <!--            <span>{{ 'APARTMENT.DATA_COMPLETION' | translate }}:</span>-->
-          <!--            <span>97/132</span>-->
-          <!--          </div>-->
-          <!--          <p><ngb-progressbar [value]="73" height="10px"></ngb-progressbar></p>-->
-          <!--        </div>-->
-          <div class="button-group d-flex justify-content-between mt-4">
-            <button type="submit"
-                    class="btn btn-outline-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>
-            <!--          <button class="btn btn-primary btn-lg">{{ 'COMMON.VIEW_AS' | translate }}</button>-->
-          </div>
-          <!--        <p class="mt-4">-->
-          <!--          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.-->
-          <!--        </p>-->
           <table class="table mt-4">
-            <tbody>
             <tr>
               <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.TYPE_OF_BUILDING' | translate }}</td>
               <td class="border-top-0 text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="typeOfBuilding">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
                   <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
                   <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
@@ -895,7 +788,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="yearOfConstruction">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option *ngFor="let year of years"
                           [value]="year">{{ year }}</option>
                 </select>
@@ -906,7 +799,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="stateOfApartment">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="new">{{ 'COMMON.NEW' | translate }}</option>
                   <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
                   <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
@@ -919,7 +812,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="energyPerformanceCertificate">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="aapp">AA++</option>
                   <option value="aap">AA+</option>
                   <option value="aa">AA</option>
@@ -986,15 +879,37 @@
                 </div>
               </td>
             </tr>
-<!--            <tr>-->
-<!--              <td class="py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }}</td>-->
-<!--              <td class="text-right py-0 pr-0">-->
-<!--                <input type="number" class="form-control border-0 text-right" min="0" inputmode="numeric" pattern="[0-9]*"required>-->
-<!--              </td>-->
-<!--            </tr>-->
             <tr>
-              <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
-              <td class="text-right pr-0">
+              <td class="border-bottom py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_APARTMENT' | translate }} (m<sup>2</sup>)</td>
+              <td class="border-bottom text-right py-0 pr-0">
+                <input type="number"
+                       class="form-control border-0 text-right"
+                       min="1"
+                       max="9999"
+                       step="1"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       formControlName="size">
+                <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('size').invalid && (apartmentForm.get('size').dirty || apartmentForm.get('size').touched)">
+                  <span *ngIf="apartmentForm.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('size').errors.min"
+                        translate
+                        [translateParams]="{ min: apartmentForm.get('size').errors.min.min }">
+                    ERROR.MIN_FIELD
+                  </span>
+                  <span *ngIf="apartmentForm.get('size').errors.max"
+                        translate
+                        [translateParams]="{ max: apartmentForm.get('size').errors.max.max }">
+                    ERROR.MAX_FIELD
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <table class="table mt-5">
+            <tr>
+              <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+              <td class="border-top-0 text-right pr-0">
                 <div class="switch">
                   <input type="radio"
                          id="elevator-no"
@@ -1005,7 +920,7 @@
                          id="elevator-na"
                          [value]="null"
                          formControlName="elevator">
-                  <label for="elevator-na">N/A</label>
+                  <label for="elevator-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="elevator-yes"
                          [value]="true"
@@ -1028,7 +943,7 @@
                          id="rooftop-na"
                          [value]="null"
                          formControlName="rooftop">
-                  <label for="rooftop-na">N/A</label>
+                  <label for="rooftop-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="rooftop-yes"
                          [value]="true"
@@ -1043,7 +958,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="buildingSiting">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="east">{{ 'COMMON.EAST' | translate }}</option>
                   <option value="west">{{ 'COMMON.WEST' | translate }}</option>
                   <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
@@ -1056,7 +971,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="typeOfHeating">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
                   <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
                   <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
@@ -1074,7 +989,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="headroom">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="2m">< 2M</option>
                   <option value="2.5m">2.0 - 2.5M</option>
                   <option value="3m">2.5 - 3.0M</option>
@@ -1087,7 +1002,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="parking">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
                   <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
                   <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
@@ -1108,7 +1023,7 @@
                          id="childFriendly-na"
                          [value]="null"
                          formControlName="childFriendly">
-                  <label for="childFriendly-na">N/A</label>
+                  <label for="childFriendly-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="childFriendly-yes"
                          [value]="true"
@@ -1131,7 +1046,7 @@
                          id="petFriendly-na"
                          [value]="null"
                          formControlName="petFriendly">
-                  <label for="petFriendly-na">N/A</label>
+                  <label for="petFriendly-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="petFriendly-yes"
                          [value]="true"
@@ -1163,7 +1078,7 @@
                          id="handicapAccessible-na"
                          [value]="null"
                          formControlName="handicapAccessible">
-                  <label for="handicapAccessible-na">N/A</label>
+                  <label for="handicapAccessible-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="handicapAccessible-yes"
                          [value]="true"
@@ -1186,7 +1101,7 @@
                          id="externalIsolation-na"
                          [value]="null"
                          formControlName="externalIsolation">
-                  <label for="externalIsolation-na">N/A</label>
+                  <label for="externalIsolation-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="externalIsolation-yes"
                          [value]="true"
@@ -1211,7 +1126,7 @@
                          [value]="null"
                          formControlName="balcony"
                          (change)="onChangeBalcony()">
-                  <label for="balcony-na">N/A</label>
+                  <label for="balcony-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="balcony-yes"
                          [value]="true"
@@ -1248,7 +1163,7 @@
                          [value]="null"
                          formControlName="garden"
                          (change)="onChangeGarden()">
-                  <label for="garden-na">N/A</label>
+                  <label for="garden-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="garden-yes"
                          [value]="true"
@@ -1299,7 +1214,7 @@
                          [value]="null"
                          formControlName="terrace"
                          (change)="onChangeTerrace()">
-                  <label for="terrace-na">N/A</label>
+                  <label for="terrace-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="terrace-yes"
                          [value]="true"
@@ -1348,7 +1263,7 @@
                          id="airConditioner-na"
                          [value]="null"
                          formControlName="airConditioner">
-                  <label for="airConditioner-na">N/A</label>
+                  <label for="airConditioner-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="airConditioner-yes"
                          [value]="true"
@@ -1359,13 +1274,8 @@
               </td>
             </tr>
             <tr>
-              <td class="py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
-              <td class="text-right pr-0">
-<!--                <label class="switch">-->
-<!--                  <input type="checkbox"-->
-<!--                         formControlName="garage">-->
-<!--                  <span class="slider round"></span>-->
-<!--                </label>-->
+              <td class="border-bottom py-0 align-middle">{{ 'APARTMENT.GARAGE' | translate }}</td>
+              <td class="border-bottom text-right pr-0">
                 <div class="switch">
                   <input type="radio"
                          id="garage-no"
@@ -1376,7 +1286,7 @@
                          id="garage-na"
                          [value]="null"
                          formControlName="garage">
-                  <label for="garage-na">N/A</label>
+                  <label for="garage-na">{{ 'COMMON.NA' | translate }}</label>
                   <input type="radio"
                          id="garage-yes"
                          [value]="true"
@@ -1386,9 +1296,11 @@
                 </div>
               </td>
             </tr>
+          </table>
+          <table class="table mt-5">
             <tr>
-              <td class="py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
-              <td class="text-right py-0 pr-0">
+              <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.RENTAL_FEE' | translate }}</td>
+              <td class="border-top-0 text-right py-0 pr-0">
                 <input type="number"
                        class="form-control border-0 text-right"
                        min="1000"
@@ -1398,6 +1310,7 @@
                        pattern="[0-9]*"
                        formControlName="rentalFee">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('rentalFee').invalid && (apartmentForm.get('rentalFee').dirty || apartmentForm.get('rentalFee').touched)">
+                  <span *ngIf="apartmentForm.get('rentalFee').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   <span *ngIf="apartmentForm.get('rentalFee').errors.min"
                         translate [translateParams]="{ min: apartmentForm.get('rentalFee').errors.min.min }">
                     ERROR.MIN_FIELD
@@ -1460,7 +1373,7 @@
               <td class="text-right py-0 pr-0">
                 <select class="custom-select border-0 w-auto"
                         formControlName="minimumRentingTime">
-                  <option [ngValue]="null">-</option>
+                  <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
                   <option *ngFor="let month of arrayNumber(121); let i = index"
                           [value]="i">{{ i }}</option>
                 </select>
@@ -1483,7 +1396,7 @@
                            [value]="null"
                            formControlName="rightNow"
                            (change)="onChangeRightNow()">
-                    <label for="rightNow-na">N/A</label>
+                    <label for="rightNow-na">{{ 'COMMON.NA' | translate }}</label>
                     <input type="radio"
                            id="rightNow-yes"
                            [value]="true"
@@ -1503,9 +1416,12 @@
                 </div>
               </td>
             </tr>
-            </tbody>
           </table>
         </div>
+      </div>
+      <div class="col-lg-12 text-right">
+        <button type="submit"
+                class="btn btn-outline-primary btn-lg button-save">{{ 'COMMON.SAVE' | translate }}</button>
       </div>
     </div>
   </form>

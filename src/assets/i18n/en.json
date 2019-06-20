@@ -210,7 +210,14 @@
     "NEW_LAST_NAME": "New last name",
     "NEW_EMAIL_ADDRESS": "New email address",
     "EDIT_MY_PROFILE": "Edit my profile",
-    "RIGHT_NOW": "Right now"
+    "RIGHT_NOW": "Right now",
+    "NOT_SELECTED": "Not selected",
+    "NA": "N.s.",
+    "FAVORITES": "Favorites",
+    "HEATMAP": "Heatmap",
+    "MY_FAVORITES": "My favorites",
+    "CHANGE_PASSWORD": "Change password",
+    "REJECT": "Reject"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",

@@ -1,0 +1,8 @@
+<app-heatmap-flat *ngIf="accountType === AccountTypes.TENANT"
+                  [latitude]="latitude"
+                  [longitude]="longitude"
+                  [apartmentLocations]="apartmentLocations"></app-heatmap-flat>
+<app-heatmap-tenant *ngIf="accountType === AccountTypes.LANDLORD"
+                    [latitude]="latitude"
+                    [longitude]="longitude"
+                    [tenantLocations]="tenantLocations"></app-heatmap-tenant>

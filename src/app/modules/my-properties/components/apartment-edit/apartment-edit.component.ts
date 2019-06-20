@@ -8,7 +8,6 @@ import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { MyPropertiesService } from '../../services/my-properties.service';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
-import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 import { ImageUploaderService } from '../../../../core/services/image-uploader.service';
 
@@ -23,7 +22,6 @@ import { environment } from '../../../../../environments/environment';
 })
 export class ApartmentEditComponent implements OnInit, DoCheck {
   apartment: Apartment;
-  rate: number;
   apartmentForm: FormGroup;
   years: string[];
 
@@ -40,7 +38,6 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     private myPropertiesService: MyPropertiesService,
     private dateSelectService: DateSelectService,
     private toastrService: ToastrService,
-    private cursorWaitService: CursorWaitService,
     private validateFormFieldsService: ValidateFormFieldsService,
     private datepickerConfig: NgbDatepickerConfig,
     private imageUploaderService: ImageUploaderService
@@ -61,18 +58,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
-      this.cursorWaitService.enable();
-
       const response = await this.myPropertiesService.getApartment(id);
       this.apartment = response.apartment;
 
       this.buildApartmentForm();
-
-      this.rate = this.apartment.rank * .05;
     } catch (e) {
       console.log('ApartmentEditComponent->ngOnInit', e);
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 
@@ -85,63 +76,57 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   }
 
   buildApartmentForm() {
-    let size = 0;
-    this.apartment.rooms.map(room => {
-      size = size + room.size;
-    });
-
     this.apartmentForm = new FormGroup({
-      name: new FormControl(!!this.apartment ? this.apartment.name : null, Validators.required),
-      description: new FormControl(!!this.apartment ? this.apartment.description : null),
-      address: new FormControl(!!this.apartment ? this.apartment.address : null, Validators.required),
-      typeOfBuilding: new FormControl(!!this.apartment ? this.apartment.typeOfBuilding : null),
-      yearOfConstruction: new FormControl(!!this.apartment ? this.apartment.yearOfConstruction : null),
-      stateOfApartment: new FormControl(!!this.apartment ? this.apartment.stateOfApartment : null),
-      energyPerformanceCertificate: new FormControl(!!this.apartment ? this.apartment.energyPerformanceCertificate : null),
+      name: new FormControl(this.apartment.name, Validators.required),
+      address: new FormControl(this.apartment.address, Validators.required),
+      typeOfBuilding: new FormControl(this.apartment.typeOfBuilding),
+      yearOfConstruction: new FormControl(this.apartment.yearOfConstruction),
+      stateOfApartment: new FormControl(this.apartment.stateOfApartment),
+      energyPerformanceCertificate: new FormControl(this.apartment.energyPerformanceCertificate),
       floorsOfBuilding: new FormControl(
-        !!this.apartment ? this.apartment.floorsOfBuilding : null, [Validators.min(1), Validators.max(100)]
+        this.apartment.floorsOfBuilding, [Validators.min(1), Validators.max(100)]
       ),
       floorsOfApartment: new FormControl(
-        !!this.apartment ? this.apartment.floorsOfApartment : null, [Validators.min(1), Validators.max(100)]
+        this.apartment.floorsOfApartment, [Validators.min(1), Validators.max(100)]
       ),
-      size: new FormControl(size),
-      elevator: new FormControl(!!this.apartment ? this.apartment.elevator : null),
-      rooftop: new FormControl(!!this.apartment ? this.apartment.rooftop : null),
-      buildingSiting: new FormControl(!!this.apartment ? this.apartment.buildingSiting : null),
-      typeOfHeating: new FormControl(!!this.apartment ? this.apartment.typeOfHeating : null),
-      headroom: new FormControl(!!this.apartment ? this.apartment.headroom : null),
-      parking: new FormControl(!!this.apartment ? this.apartment.parking : null),
-      childFriendly: new FormControl(!!this.apartment ? this.apartment.childFriendly : null),
-      petFriendly: new FormControl(!!this.apartment ? this.apartment.petFriendly : null),
-      mediaServiceProviders: new FormControl(!!this.apartment ? this.apartment.mediaServiceProviders : null),
-      handicapAccessible: new FormControl(!!this.apartment ? this.apartment.handicapAccessible : null),
-      airConditioner: new FormControl(!!this.apartment ? this.apartment.airConditioner : null),
-      garage: new FormControl(!!this.apartment ? this.apartment.garage : null),
-      externalIsolation: new FormControl(!!this.apartment ? this.apartment.externalIsolation : null),
-      balcony: new FormControl(!!this.apartment ? this.apartment.balcony : null),
-      sizeOfBalcony: new FormControl(!!this.apartment ? this.apartment.sizeOfBalcony : null),
-      garden: new FormControl(!!this.apartment ? this.apartment.garden : null),
-      sizeOfGarden: new FormControl(!!this.apartment ? this.apartment.sizeOfGarden : null, [Validators.min(0), Validators.max(999999)]),
-      terrace: new FormControl(!!this.apartment ? this.apartment.terrace : null),
-      sizeOfTerrace: new FormControl(!!this.apartment ? this.apartment.sizeOfTerrace : null, [Validators.min(1), Validators.max(100)]),
+      size: new FormControl(this.apartment.size, [Validators.required, Validators.min(1), Validators.max(9999)]),
+      elevator: new FormControl(this.apartment.elevator),
+      rooftop: new FormControl(this.apartment.rooftop),
+      buildingSiting: new FormControl(this.apartment.buildingSiting),
+      typeOfHeating: new FormControl(this.apartment.typeOfHeating),
+      headroom: new FormControl(this.apartment.headroom),
+      parking: new FormControl(this.apartment.parking),
+      childFriendly: new FormControl(this.apartment.childFriendly),
+      petFriendly: new FormControl(this.apartment.petFriendly),
+      mediaServiceProviders: new FormControl(this.apartment.mediaServiceProviders),
+      handicapAccessible: new FormControl(this.apartment.handicapAccessible),
+      airConditioner: new FormControl(this.apartment.airConditioner),
+      garage: new FormControl(this.apartment.garage),
+      externalIsolation: new FormControl(this.apartment.externalIsolation),
+      balcony: new FormControl(this.apartment.balcony),
+      sizeOfBalcony: new FormControl(this.apartment.sizeOfBalcony),
+      garden: new FormControl(this.apartment.garden),
+      sizeOfGarden: new FormControl(this.apartment.sizeOfGarden, [Validators.min(0), Validators.max(999999)]),
+      terrace: new FormControl(this.apartment.terrace),
+      sizeOfTerrace: new FormControl(this.apartment.sizeOfTerrace, [Validators.min(1), Validators.max(100)]),
       rentalFee: new FormControl(
-        !!this.apartment ? this.apartment.rentalFee : null,
-        [Validators.min(1000), Validators.max(2000000)]
+        this.apartment.rentalFee,
+        [Validators.required, Validators.min(1000), Validators.max(2000000)]
       ),
       overhead: new FormControl(
-        !!this.apartment ? this.apartment.overhead : null,
+        this.apartment.overhead,
         [Validators.min(1000), Validators.max(1000000)]
       ),
       deposit: new FormControl(
-        !!this.apartment ? this.apartment.deposit : null,
+        this.apartment.deposit,
         [Validators.min(1000), Validators.max(2000000)]
       ),
-      minimumRentingTime: new FormControl(!!this.apartment ? this.apartment.minimumRentingTime : null),
+      minimumRentingTime: new FormControl(this.apartment.minimumRentingTime),
       dateOfMovingIn: new FormGroup({
-        rightNow: new FormControl(!!this.apartment ? this.apartment.dateOfMovingIn.rightNow : null),
-        date: new FormControl(!!this.apartment ? this.apartment.dateOfMovingIn.date : null)
+        rightNow: new FormControl(this.apartment.dateOfMovingIn.rightNow),
+        date: new FormControl(this.apartment.dateOfMovingIn.date)
       }),
-      pictures: new FormArray(!!this.apartment ? this.apartment.pictures.map(picture => {
+      pictures: new FormArray(this.apartment.pictures.length !== 0 ? this.apartment.pictures.map(picture => {
         return new FormControl(picture);
       }) : [])
       // roomsData: new FormArray(!!this.apartment.roomsData ? this.apartment.roomsData.map(room => {
@@ -238,8 +223,6 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     const newApartmentPictures = event.target.files;
 
     try {
-      this.cursorWaitService.enable();
-
       const filenames = await this.imageUploaderService.upload(newApartmentPictures);
 
       for (let i = 0; i < filenames.length; i++) {
@@ -247,8 +230,6 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       }
     } catch (e) {
       console.log('ApartmentEditComponent->onFilesChange', e);
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 
@@ -272,16 +253,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       };
 
       try {
-        this.cursorWaitService.enable();
-
         await this.myPropertiesService.updateApartment(apartmentData);
         this.toastrService.success('The apartment is updated successfully.', 'Success!');
         this.router.navigate(['/app/my-properties']);
       } catch (e) {
         this.toastrService.error('Something went wrong', 'Error');
         console.log('ApartmentEditComponent->submit', e);
-      } finally {
-        this.cursorWaitService.disable();
       }
     } else {
       this.validateFormFieldsService.validate(this.apartmentForm);

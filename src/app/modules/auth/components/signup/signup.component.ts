@@ -69,7 +69,7 @@ export class SignupComponent implements OnInit {
       } catch (e) {
         console.log('SignupComponent->signup', e);
         this.signupFailed = true;
-        if (e.data[0].msg === 'ERROR.EMAIL_ALREADY_EXIST') {
+        if (!!e.data[0].msg || e.data[0].msg === 'ERROR.EMAIL_ALREADY_EXIST') {
           this.message = e.data[0].msg;
         }
       }

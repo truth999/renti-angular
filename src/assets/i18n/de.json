@@ -210,7 +210,14 @@
     "NEW_LAST_NAME": "Neuer Familienname",
     "NEW_EMAIL_ADDRESS": "Neue E-Mail Adresse",
     "EDIT_MY_PROFILE": "Mein Profil editieren",
-    "RIGHT_NOW": "Right now"
+    "RIGHT_NOW": "Right now",
+    "NOT_SELECTED": "Nicht ausgewählt",
+    "NA": "N.a.",
+    "FAVORITES": "Favorites",
+    "HEATMAP": "Heatmap",
+    "MY_FAVORITES": "My favorites",
+    "CHANGE_PASSWORD": "Change password",
+    "REJECT": "Reject"
   },
   "HOME": {
     "TITLE": "Renti - Kanaan der Untermieten",

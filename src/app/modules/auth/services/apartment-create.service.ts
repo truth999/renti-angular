@@ -7,8 +7,8 @@ import { StorageService } from '../../../core/services/storage.service';
 
 @Injectable()
 export class ApartmentCreateService {
-  apartment: any;
-  rooms: any[];
+  apartment: Apartment;
+  rooms: Room[];
   previewRoomPictures: any[];
   newRoomPictures: any[];
 
@@ -45,7 +45,7 @@ export class ApartmentCreateService {
   }
 
   createApartment(): Promise<any> {
-    this.apartment.userId = this.storageService.get('userId');
+    this.apartment.landlord = this.storageService.get('landlordId');
     return this.apiService.post('apartments', this.apartment);
   }
 

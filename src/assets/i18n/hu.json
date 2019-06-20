@@ -210,7 +210,14 @@
     "NEW_LAST_NAME": "Új vezetéknév",
     "NEW_EMAIL_ADDRESS": "Új e-mail cím",
     "EDIT_MY_PROFILE": "Profilom szerkesztése",
-    "RIGHT_NOW": "Most azonnal"
+    "RIGHT_NOW": "Most azonnal",
+    "NOT_SELECTED": "Nincs kiválasztva",
+    "NA": "N.k.",
+    "FAVORITES": "Favorites",
+    "HEATMAP": "Heatmap",
+    "MY_FAVORITES": "My favorites",
+    "CHANGE_PASSWORD": "Change password",
+    "REJECT": "Reject"
   },
   "HOME": {
     "TITLE": "Renti - az albérletek Kánaánja",

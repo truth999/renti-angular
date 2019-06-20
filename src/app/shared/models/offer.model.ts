@@ -1,18 +1,17 @@
-import { User } from './user.model';
+import { Tenant } from './tenant.model';
 import { Apartment } from './apartment.model';
 
 export class Offer {
   _id: string;
-  user: User;
-  apartment: Apartment;
   rentalFee: number;
-  overhead: number;
-  minRentingTime: number;
+  minRentingTime: string;
   dateOfMovingIn: any;
   movingWith: string;
   movingWithPets: boolean;
   pets: string;
   whyChooseMe: string;
+  tenant: Tenant;
+  apartment: Apartment;
   accepted: boolean;
   feedback: boolean;
 }

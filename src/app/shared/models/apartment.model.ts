@@ -1,11 +1,10 @@
 import { Room } from './room.model';
-import { User } from './user.model';
+import { Landlord } from './landlord.model';
 
 export class Apartment {
   _id: string;
-  user: User;
+  landlord: Landlord;
   name: string;
-  description: string;
   address: string;
   typeOfBuilding: string;
   yearOfConstruction: number;

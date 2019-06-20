@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 import { Apartment } from '../../models';
 
@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './apartment-item.component.html',
   styleUrls: ['./apartment-item.component.scss']
 })
-export class ApartmentItemComponent implements OnInit, AfterViewInit {
+export class ApartmentItemComponent implements OnInit {
   @Input() apartment: Apartment;
   @ViewChild('explainParagraph') explainParagraph: ElementRef;
 
@@ -18,10 +18,6 @@ export class ApartmentItemComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-    this.ellipsizeTextBox();
   }
 
   ellipsizeTextBox() {

@@ -1,0 +1,9 @@
+@import "~src/assets/styles/scss/variables";
+
+.favorites {
+  app-apartment-item {
+    &:focus {
+      outline: none;
+    }
+  }
+}

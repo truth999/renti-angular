@@ -10,7 +10,7 @@
         <div class="number h3 rounded-circle d-flex justify-content-center align-items-center mb-0 mr-2">
           {{ i + 1 }}
         </div>
-        <div class="mr-1">
+        <div class="mr-1 field">
           <input type="text"
                  class="form-control"
                  placeholder="{{ 'APARTMENT.NAME' | translate }}:"
@@ -19,7 +19,7 @@
             <span *ngIf="roomEl.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
           </div>
         </div>
-        <div class="mr-1">
+        <div class="mr-1 field">
           <input type="number"
                  class="form-control"
                  min="1"

@@ -84,12 +84,6 @@
     }
   }
 
-  .button-group {
-    .btn {
-      width: 48%;
-    }
-  }
-
   table {
     .custom-select {
       text-align-last: right;
@@ -98,6 +92,14 @@
     .slider {
       margin-left: 0 !important;
       margin-right: 0 !important;
+    }
+  }
+
+  .button-save {
+    width: 160px;
+
+    @include media-breakpoint-down(xs) {
+      width: 100%;
     }
   }
 }

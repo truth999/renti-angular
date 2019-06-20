@@ -42,7 +42,7 @@
           <div class="col-sm-6">
             <div class="row name-info">
               <div class="col-sm-12 col-8 pr-0">
-                <h1 class="name font-weight-bolder">{{ user.firstName }} {{ user.lastName }}</h1>
+                <h1 class="name font-weight-bolder">{{ landlord.user.firstName }} {{ landlord.user.lastName }}</h1>
               </div>
             </div>
             <div class="row mt-5">
@@ -55,15 +55,6 @@
 <!--                  <p><ngb-progressbar [value]="92" height="10px"></ngb-progressbar></p>-->
 <!--                </div>-->
               </div>
-            </div>
-          </div>
-          <div class="col-sm-6 py-2">
-            <div class="button-group text-sm-right py-2">
-              <button type="submit"
-                      class="btn btn-outline-primary btn-lg mb-sm-3">{{ 'COMMON.SAVE' | translate }}</button>
-              <button type="button"
-                      class="btn btn-outline-primary btn-lg"
-                      (click)="onViewAs()">{{ 'COMMON.VIEW_AS' | translate }}...</button>
             </div>
           </div>
         </div>
@@ -166,45 +157,41 @@
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="card mt-sm-4">
-      <div class="card-body">
-        <div class="row">
           <div class="col-lg-6">
-            <app-feedback [rate]="rate"></app-feedback>
-            <div class="feedback mt-4"
-                 *ngFor="let feedback of user.feedback">
-              <div class="client d-flex justify-content-between">
-                <span class="client-name font-weight-bold">{{ feedback.user.firstName }} {{ feedback.user.lastName }}</span>
-                <div class="rating-date d-flex">
-                  <ngb-rating [rate]="feedback.feedbackStar"
-                              [readonly]="true"
-                              max="5"
-                              class="item-rating mr-1">
-                    <ng-template let-fill="fill">
-                      <i class="icon-star-fill"
-                         *ngIf="fill === 100"></i>
-                      <i class="icon-star"
-                         *ngIf="fill !== 100"></i>
-                    </ng-template>
-                  </ngb-rating>
-                  <span class="date">{{ dateFormat(feedback.updatedAt) }}</span>
+            <button type="submit"
+                    class="btn btn-outline-primary btn-lg mb-sm-3">{{ 'COMMON.SAVE' | translate }}</button>
+          </div>
+          <div class="col-lg-6 mt-4 mt-sm-0">
+            <div *ngIf="!!feedbacks && feedbacks.length !== 0">
+              <app-feedback [rate]="rate"></app-feedback>
+              <div class="feedback mt-4"
+                   *ngFor="let feedback of feedbacks">
+                <div class="client d-flex justify-content-between">
+                  <span class="client-name font-weight-bold">{{ feedback.tenant.user.firstName }} {{ feedback.tenant.user.lastName }}</span>
+                  <div class="rating-date d-flex">
+                    <ngb-rating [rate]="feedback.feedbackStar"
+                                [readonly]="true"
+                                max="5"
+                                class="item-rating mr-1">
+                      <ng-template let-fill="fill">
+                        <i class="icon-star-fill"
+                           *ngIf="fill === 100"></i>
+                        <i class="icon-star"
+                           *ngIf="fill !== 100"></i>
+                      </ng-template>
+                    </ngb-rating>
+                    <span class="date">{{ dateFormat(feedback.updatedAt) }}</span>
+                  </div>
                 </div>
+                <p class="feedback-content mt-2">
+                  {{ feedback.feedbackText }}
+                </p>
               </div>
-              <p class="feedback-content mt-2">
-                {{ feedback.feedbackText }}
-              </p>
             </div>
           </div>
-          <div class="col-lg-6 text-lg-right text-center">
-            <button type="button"
-                    class="btn btn-primary btn-lg"
-                    (click)="onMyProperties()">{{ 'COMMON.MANAGE_MY_PROPERTIES' | translate }}</button>
-          </div>
         </div>
       </div>
     </div>
+    <app-change-password></app-change-password>
   </form>
 </div>

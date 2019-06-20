@@ -32,22 +32,12 @@
     <div class="search-price px-sm-3 py-3">
       <label class="font-weight-bold">{{ 'SEARCH.PRICE_PER_MONTH' | translate }}:</label>
       <nouislider [connect]="true" [min]="minPrice" [max]="maxPrice" [step]="1" [(ngModel)]="priceRange" [tooltips]="[true, true]"></nouislider>
-      <div class="form-inline">
-        <label for="unit" class="mr-3 font-weight-bold">{{ 'SEARCH.SHOW_PRICE_IN' | translate }}:</label>
-        <select id="unit" class="custom-select font-weight-bold w-auto">
-          <option value="">HUF</option>
-        </select>
-      </div>
     </div>
     <div class="search-features border-top p-3 d-sm-block d-none">
       <h6 class="font-size-lg mb-4">{{ 'SEARCH.MUST_HAVE_FEATURES' | translate }}:</h6>
       <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
         <label for="furnish" class="mb-0">{{ 'SEARCH.FURNISHED' | translate }}</label>
         <input type="checkbox" id="furnish" class="search-checkbox">
-      </div>
-      <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
-        <label for="barrier" class="mb-0">{{ 'SEARCH.BARRIER_FREE' | translate }}</label>
-        <input type="checkbox" id="barrier" class="search-checkbox">
       </div>
       <div class="d-flex justify-content-between align-items-center pl-2">
         <label for="availability" class="mb-0">{{ 'SEARCH.IMMEDIATE_AVAILABILITY' | translate }}</label>

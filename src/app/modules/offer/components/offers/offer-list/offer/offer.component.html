@@ -1,19 +1,15 @@
 <div class="card-sm mt-5"
-     *ngIf="tenant">
+     *ngIf="user">
   <div class="avatar text-center">
-    <img [src]="!!tenant.profilePicture ? uploadBase + tenant.profilePicture : '/assets/images/profile/blank.png'" alt="" width="80" height="80" class="rounded-pill">
+    <img [src]="!!offer.tenant.profilePicture ? uploadBase + offer.tenant.profilePicture : '/assets/images/profile/blank.png'" alt="" width="80" height="80" class="rounded-pill">
   </div>
-  <h4 class="text-center">{{ offer.user.firstName }} {{ offer.user.lastName }}</h4>
+  <h4 class="text-center">{{ user.firstName }} {{ user.lastName }}</h4>
 <!--  <p class="text-center text-muted font-weight-bold"><span class="year font-size-lg">23</span>, Student</p>-->
   <table class="table">
     <tbody>
     <tr>
       <td class="border-top-0">{{ 'APARTMENT.RENTAL_FEE' | translate }}:</td>
       <td class="border-top-0 font-weight-bold text-right">{{ offer.rentalFee }}</td>
-    </tr>
-    <tr>
-      <td>{{ 'COMMON.OVERHEAD' | translate }}:</td>
-      <td class="font-weight-bold text-right">{{ offer.overhead }}</td>
     </tr>
     <tr>
       <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }}):</td>
@@ -42,6 +38,6 @@
     <button class="btn btn-success btn-lg"
             (click)="onSuccess()">{{ 'COMMON.ACCEPT' | translate }}</button>
     <button class="btn btn-outline-danger btn-lg"
-            (click)="onDelete()">{{ 'COMMON.DELETE' | translate }}</button>
+            (click)="onDelete()">{{ 'COMMON.REJECT' | translate }}</button>
   </div>
 </div>
