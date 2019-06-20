@@ -12,6 +12,7 @@
     box-shadow: $box-shadow-sm;
     border-radius: $border-radius-lg;
     max-width: 130px;
+    background-color: $white;
 
     @include media-breakpoint-up(lg) {
       margin-right: 250px;

@@ -62,6 +62,10 @@
       .nav-logout {
         bottom: 0;
       }
+
+      .badge {
+        margin-top: 2px;
+      }
     }
 
     .overlay {
@@ -74,6 +78,20 @@
       opacity: 0;
       transition: opacity 0.3s;
       z-index: 3000;
+    }
+
+    .background {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: #d8d8d8;
+      background-image: url("/assets/images/background.png");
+      z-index: 0;
+
+      @include media-breakpoint-down(xs) {
+        visibility: hidden;
+      }
     }
 
     .border-bottom {

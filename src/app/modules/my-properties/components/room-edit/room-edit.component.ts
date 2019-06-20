@@ -78,7 +78,7 @@ export class RoomEditComponent implements OnInit {
       }) : []),
       pictures: new FormArray(this.room.pictures.length !== 0 ? this.room.pictures.map(picture => {
         return new FormControl(picture);
-      }) : [new FormControl(null)])
+      }) : [])
     });
   }
 

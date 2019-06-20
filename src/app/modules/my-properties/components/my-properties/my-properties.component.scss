@@ -10,6 +10,7 @@ app-apartment-item {
   color: $blue;
   box-shadow: $box-shadow-sm;
   border-radius: $border-radius-lg;
+  background-color: $white;
 
   @include media-breakpoint-up(lg) {
     margin-right: 250px;

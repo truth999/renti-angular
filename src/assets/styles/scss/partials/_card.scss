@@ -1,4 +1,5 @@
 .card {
+  background-color: $white;
   border: none;
   box-shadow: $box-shadow;
 
@@ -21,12 +22,14 @@
 }
 
 .card-sm {
+  background-color: $white;
   box-shadow: $box-shadow-sm;
   @include border-radius($border-radius-lg);
   padding: 1.125rem 1rem;
 }
 
 .card-sm-screen {
+  background-color: $white;
   @include media-breakpoint-down(xs) {
     box-shadow: $box-shadow-sm;
     @include border-radius($border-radius-lg);
