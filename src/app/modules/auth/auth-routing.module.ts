@@ -5,7 +5,6 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthAlertComponent } from './components/auth-alert/auth-alert.component';
 import { AuthCompleteComponent } from './components/auth-complete/auth-complete.component';
-// import { SignupFunnelComponent } from './components/signup-funnel/signup-funnel.component';
 import { ApartmentCreateComponent } from './components/apartment-create/apartment-create.component';
 
 import { AuthGuard } from '../../core/guards/auth.guard';
@@ -15,7 +14,6 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'alert', component: AuthAlertComponent },
   { path: 'auth/complete', component: AuthCompleteComponent, canLoad: [AuthGuard] },
-  // { path: 'signup-funnel', component: SignupFunnelComponent },
   { path: 'apartment-create', component: ApartmentCreateComponent },
 ];
 
