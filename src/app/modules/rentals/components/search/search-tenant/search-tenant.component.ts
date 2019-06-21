@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Page, Tenant } from '../../../../../shared/models';
 
 import { RentalsService } from '../../../services/rentals.service';
-import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 
 import { environment } from '../../../../../../environments/environment';
 
@@ -25,8 +24,7 @@ export class SearchTenantComponent implements OnInit {
   priceRange = [90, 250];
 
   constructor(
-    private rentalsService: RentalsService,
-    private cursorWaitService: CursorWaitService
+    private rentalsService: RentalsService
   ) { }
 
   ngOnInit() {
@@ -38,14 +36,12 @@ export class SearchTenantComponent implements OnInit {
 
   async getTenants() {
     try {
-      this.cursorWaitService.enable();
-
       const response = await this.rentalsService.getTenants(this.page);
-      this.tenants = response.tenants;
+      this.tenants = response.tenants.filter(tenant => {
+        return tenant.user.active;
+      });
     } catch (e) {
       console.log('SearchTenantComponent->getTenants', e);
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 
