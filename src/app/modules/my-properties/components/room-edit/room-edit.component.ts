@@ -64,7 +64,6 @@ export class RoomEditComponent implements OnInit {
       size: new FormControl(this.room.size, [Validators.required, Validators.min(1), Validators.max(100)]),
       yearOfRenovation: new FormControl(this.room.yearOfRenovation),
       coverage: new FormControl(this.room.coverage),
-      windowType: new FormControl(this.room.windowType),
       equipment: new FormControl(this.room.equipment),
       furniture: new FormArray(!!this.room.furniture ? this.room.furniture.map(furniture => {
         return new FormGroup({

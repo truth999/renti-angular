@@ -4,7 +4,6 @@ export class Room {
   size: number;
   yearOfRenovation: number;
   coverage: string;
-  windowType: string;
   equipment: boolean;
   furniture: [{
     furnitureName: string;

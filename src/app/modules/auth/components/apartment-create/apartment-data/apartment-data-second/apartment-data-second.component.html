@@ -60,6 +60,18 @@
         </td>
       </tr>
       <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0"
+                  formControlName="windowType">
+            <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
+            <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>
+            <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
+            <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
         <td class="text-right pr-0">
           <div class="switch">

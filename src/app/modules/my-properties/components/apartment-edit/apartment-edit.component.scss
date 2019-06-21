@@ -94,12 +94,4 @@
       margin-right: 0 !important;
     }
   }
-
-  .button-save {
-    width: 160px;
-
-    @include media-breakpoint-down(xs) {
-      width: 100%;
-    }
-  }
 }

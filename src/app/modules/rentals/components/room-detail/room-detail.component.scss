@@ -11,7 +11,7 @@
     color: $blue;
   }
 
-  .window-type {
+  .equipped {
     @include media-breakpoint-up(lg) {
       border: none;
     }

@@ -53,12 +53,8 @@
           <table class="table mt-sm-2 mb-0">
             <tbody>
             <tr>
-              <td class="window-type">{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
-              <td class="window-type text-right font-weight-bold">{{ room.windowType }}</td>
-            </tr>
-            <tr>
-              <td>{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
-              <td class="text-right font-weight-bold">{{ room.equipment ? ('COMMON.YES' | translate) : (room.equipment === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
+              <td class="equipped">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
+              <td class="equipped text-right font-weight-bold">{{ room.equipment ? ('COMMON.YES' | translate) : (room.equipment === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
             </tr>
             <tr>
               <td>{{ 'APARTMENT.FURNITURE' | translate }}</td>

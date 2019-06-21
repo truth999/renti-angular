@@ -41,6 +41,7 @@ export class Apartment {
     date: any;
   };
   pictures: string[];
+  windowType: String;
   rank: number;
   rooms: Room[];
 }

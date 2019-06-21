@@ -125,10 +125,6 @@
       }
     }
 
-    .btn {
-      width: 160px;
-    }
-
     .nationality {
       td {
         @include media-breakpoint-down(md) {

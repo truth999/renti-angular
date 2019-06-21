@@ -32,6 +32,7 @@ export class ApartmentDataSecondComponent implements OnInit, DoCheck {
       typeOfHeating: new FormControl(!!this.apartmentData.typeOfHeating ? this.apartmentData.typeOfHeating : null),
       headroom: new FormControl(!!this.apartmentData.headroom ? this.apartmentData.headroom : null),
       parking: new FormControl(!!this.apartmentData.parking ? this.apartmentData.parking : null),
+      windowType: new FormControl(!!this.apartmentData.windowType ? this.apartmentData.windowType : null),
       childFriendly: new FormControl(!!this.apartmentData.childFriendly ? this.apartmentData.childFriendly : null),
       petFriendly: new FormControl(!!this.apartmentData.petFriendly ? this.apartmentData.petFriendly : null),
       mediaServiceProviders: new FormControl(!!this.apartmentData.mediaServiceProviders ? this.apartmentData.mediaServiceProviders : null),

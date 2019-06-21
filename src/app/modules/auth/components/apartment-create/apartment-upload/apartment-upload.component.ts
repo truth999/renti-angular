@@ -72,7 +72,6 @@ export class ApartmentUploadComponent implements OnInit {
       room.coverage = null;
       room.equipment = null;
       room.furniture = null;
-      room.windowType = null;
     });
 
     this.apartmentCreateService.createPreviewRoomPictures(this.previewNewRoomPictures);
