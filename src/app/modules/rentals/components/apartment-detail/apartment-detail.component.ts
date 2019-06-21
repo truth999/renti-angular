@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { ToastrService } from 'ngx-toastr';
 
 import { Apartment } from '../../../../shared/models';
 
 import { environment } from '../../../../../environments/environment';
 
 import { RentalsService } from '../../services/rentals.service';
-import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 import { StorageService } from '../../../../core/services/storage.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-apartment-detail',
@@ -18,6 +19,7 @@ import { StorageService } from '../../../../core/services/storage.service';
 })
 export class ApartmentDetailComponent implements OnInit {
   apartment: Apartment;
+  favorite: boolean;
 
   uploadBase = environment.uploadBase;
 
@@ -29,20 +31,20 @@ export class ApartmentDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private rentalsService: RentalsService,
-    private cursorWaitService: CursorWaitService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private authService: AuthService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
     this.getApartment();
+    this.getFavorite();
   }
 
   async getApartment() {
     const id = this.route.snapshot.paramMap.get('id');
 
     try {
-      this.cursorWaitService.enable();
-
       const response = await this.rentalsService.getApartment(id);
       this.apartment = response.apartment;
 
@@ -73,8 +75,20 @@ export class ApartmentDetailComponent implements OnInit {
       });
     } catch (e) {
       console.log('ApartmentDetailComponent->getApartment', e);
-    } finally {
-      this.cursorWaitService.disable();
+    }
+  }
+
+  async getFavorite() {
+    try {
+      const apartmentId = this.route.snapshot.paramMap.get('id');
+      const tenantId = this.storageService.get('tenantId');
+      const response = await this.authService.getTenant(tenantId);
+      const favoriteIds = response.tenant.favorites.map(favorite => {
+        return favorite._id;
+      });
+      this.favorite = favoriteIds.includes(apartmentId);
+    } catch (e) {
+      console.log('ApartmentDetailComponent->getFavorite', e);
     }
   }
 
@@ -85,10 +99,22 @@ export class ApartmentDetailComponent implements OnInit {
   async onSaveToFavorites() {
     try {
       const tenantId = this.storageService.get('tenantId');
-      const response = await this.rentalsService.setFavorite(tenantId, { apartmentId: this.apartment._id });
-      console.log(response);
+      await this.rentalsService.setFavorite(tenantId, { apartmentId: this.apartment._id });
+      this.toastrService.success('The apartment has saved to favorites successfully.', 'Success!');
     } catch (e) {
+      this.toastrService.error('Something went wrong', 'Error');
       console.log('ApartmentDetailComponent->onSaveToFavorites', e);
+    }
+  }
+
+  async onRemoveToFavorites() {
+    try {
+      const tenantId = this.storageService.get('tenantId');
+      await this.rentalsService.removeFavorite(tenantId, { apartmentId: this.apartment._id });
+      this.toastrService.success('The apartment has removed to favorites successfully.', 'Success!');
+    } catch (e) {
+      this.toastrService.error('Something went wrong', 'Error');
+      console.log('ApartmentDetailComponent->onRemoveToFavorites', e);
     }
   }
 

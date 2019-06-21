@@ -35,4 +35,8 @@ export class RentalsService {
   setFavorite(id: string, apartment: any): Promise<any> {
     return this.apiService.put(`${this.tenantUrl}/${id}/favorite`, apartment);
   }
+
+  removeFavorite(id: string, apartment: any): Promise<any> {
+    return this.apiService.put(`${this.tenantUrl}/${id}/favorite/remove`, apartment);
+  }
 }
