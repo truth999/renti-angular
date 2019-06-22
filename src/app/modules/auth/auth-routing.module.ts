@@ -12,7 +12,7 @@ import { AuthGuard } from '../../core/guards/auth.guard';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'alert', component: AuthAlertComponent },
+  { path: 'confirmation', component: AuthAlertComponent },
   { path: 'auth/complete', component: AuthCompleteComponent, canLoad: [AuthGuard] },
   { path: 'apartment-create', component: ApartmentCreateComponent },
 ];
