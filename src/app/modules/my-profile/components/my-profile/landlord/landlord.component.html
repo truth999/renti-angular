@@ -161,32 +161,31 @@
             <button type="submit"
                     class="btn btn-outline-primary btn-lg mb-sm-3 w-100">{{ 'COMMON.SAVE' | translate }}</button>
           </div>
-          <div class="col-lg-6 mt-4 mt-sm-0">
-            <div *ngIf="!!feedbacks && feedbacks.length !== 0">
-              <app-feedback [rate]="rate"></app-feedback>
-              <div class="feedback mt-4"
-                   *ngFor="let feedback of feedbacks">
-                <div class="client d-flex justify-content-between">
-                  <span class="client-name font-weight-bold">{{ feedback.tenant.user.firstName }} {{ feedback.tenant.user.lastName }}</span>
-                  <div class="rating-date d-flex">
-                    <ngb-rating [rate]="feedback.feedbackStar"
-                                [readonly]="true"
-                                max="5"
-                                class="item-rating mr-1">
-                      <ng-template let-fill="fill">
-                        <i class="icon-star-fill"
-                           *ngIf="fill === 100"></i>
-                        <i class="icon-star"
-                           *ngIf="fill !== 100"></i>
-                      </ng-template>
-                    </ngb-rating>
-                    <span class="date">{{ dateFormat(feedback.updatedAt) }}</span>
-                  </div>
+          <div class="col-lg-6 mt-4 mt-sm-0"
+               *ngIf="landlord.feedback.length !== 0">
+            <app-feedback [rate]="rate"></app-feedback>
+            <div class="feedback mt-4"
+                 *ngFor="let feedback of landlord.feedback">
+              <div class="client d-flex justify-content-between">
+                <span class="client-name font-weight-bold">{{ feedback.tenant.user.firstName }} {{ feedback.tenant.user.lastName }}</span>
+                <div class="rating-date d-flex">
+                  <ngb-rating [rate]="feedback.feedbackStar"
+                              [readonly]="true"
+                              max="5"
+                              class="item-rating mr-1">
+                    <ng-template let-fill="fill">
+                      <i class="icon-star-fill"
+                         *ngIf="fill === 100"></i>
+                      <i class="icon-star"
+                         *ngIf="fill !== 100"></i>
+                    </ng-template>
+                  </ngb-rating>
+                  <span class="date">{{ dateFormat(feedback.updatedAt) }}</span>
                 </div>
-                <p class="feedback-content mt-2">
-                  {{ feedback.feedbackText }}
-                </p>
               </div>
+              <p class="feedback-content mt-2">
+                {{ feedback.feedbackText }}
+              </p>
             </div>
           </div>
         </div>

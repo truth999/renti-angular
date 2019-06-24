@@ -26,7 +26,6 @@ import { MyProfileService } from '../../../services/my-profile.service';
 })
 export class LandlordComponent implements OnInit {
   landlord: Landlord;
-  feedbacks: Feedback[];
   photo: string;
   photoDeleted = true;
   isAgency = false;
@@ -78,20 +77,16 @@ export class LandlordComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      let totalRate = 0;
       const landlordId = this.storageService.get('landlordId');
       const landlordResponse = await this.authService.getLandlord(landlordId);
-      this.landlord = landlordResponse.landlord;
-
-      const feedbackResponse = await this.myProfileService.getFeedbacks();
-      this.feedbacks = feedbackResponse.feedbacks.filter(feedback => {
-        return feedback.landlord === landlordId;
-      });
-
-      this.feedbacks.map(feedback => {
-        totalRate = totalRate + feedback.feedbackStar;
-      });
-      this.rate = parseInt((totalRate / this.feedbacks.length).toFixed(0), 10) - 1;
+      const landlord = landlordResponse.landlord;
+      if (landlord.feedback.length !== 0) {
+        const totalRate = landlord.feedback.reduce((total, currentValue) => {
+          return total + currentValue.feedbackStar;
+        }, 0);
+        this.rate = parseInt((totalRate / landlord.feedback.length).toFixed(0), 10) - 1;
+      }
+      this.landlord = landlord;
 
       this.buildLandlordForm();
       this.isAgency = this.landlord.isPerson !== true;
@@ -176,11 +171,12 @@ export class LandlordComponent implements OnInit {
     try {
       this.landlordForm.patchValue({profilePicture: ''});
       this.photo = '';
-      if (this.landlord) {
-        this.landlord.profilePicture = '';
-        await this.myProfileService.updateLandlord(this.landlord);
-        this.toastrService.success('The profile picture is deleted successfully.', 'Success!');
-      }
+      const landlord = {
+        _id: this.landlord._id,
+        ...this.landlordForm.value,
+      };
+      await this.myProfileService.updateLandlord(landlord);
+      this.toastrService.success('The profile picture is deleted successfully.', 'Success!');
     } catch (e) {
       console.log('LandlordComponent->onDeletePhoto->error', e);
       this.toastrService.error('Something went wrong', 'Error');
@@ -216,7 +212,6 @@ export class LandlordComponent implements OnInit {
     if (this.landlordForm.valid) {
       try {
         const landlordData = {
-          userId: this.storageService.get('userId'),
           ...this.landlordForm.value,
         };
 
@@ -224,12 +219,12 @@ export class LandlordComponent implements OnInit {
           landlordData.nameOfAgency = '';
         }
 
-        this.landlord = {
-          ...this.landlord,
+        const landlord = {
+          _id: this.landlord._id,
           ...landlordData
         };
 
-        await this.myProfileService.updateLandlord(this.landlord);
+        await this.myProfileService.updateLandlord(landlord);
 
         this.toastrService.success('The landlord is updated successfully.', 'Success!');
       } catch (e) {

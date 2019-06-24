@@ -20,8 +20,4 @@ export class HomeService {
     url += page.pageNumber ? `&perPage=${page.perPage}` : '';
     return this.apiService.get(url);
   }
-
-  delete(): Promise<any> {
-    return this.apiService.delete('remove');
-  }
 }

@@ -82,13 +82,15 @@ export class TenantComponent implements OnInit {
       const tenantId = this.storageService.get('tenantId');
       const tenantResponse = await this.authService.getTenant(tenantId);
       const tenant = tenantResponse.tenant;
+      if (tenant.feedback.length !== 0) {
+        const totalRate = tenant.feedback.reduce((total, currentValue) => {
+          return total + currentValue.feedbackStar;
+        }, 0);
+
+        this.rate = parseInt((totalRate / tenant.feedback.length).toFixed(0), 10) - 1;
+      }
 
       this.tenant = tenant;
-      if (tenant.rank) {
-        this.rate = tenant.rank * .05;
-      } else {
-        this.rate = 0;
-      }
 
       this.buildTenantForm();
     } catch (e) {
@@ -183,10 +185,6 @@ export class TenantComponent implements OnInit {
     this.tenantForm.get('currentCity').setValue(address.formatted_address);
   }
 
-  onViewAs() {
-    this.router.navigate(['/app/profile/tenant', this.tenant._id]);
-  }
-
   onBack() {
     this.location.back();
   }
@@ -225,19 +223,32 @@ export class TenantComponent implements OnInit {
     }
   }
 
+  dateFormat(dateString: string) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    let month = '' + (date.getMonth() + 1);
+    let day = '' + date.getDate();
+    if (month.length < 2) {
+      month = '0' + month;
+    }
+    if (day.length < 2) {
+      day = '0' + day;
+    }
+    return [year, month, day].join('.');
+  }
+
   async submit() {
     if (this.tenantForm.valid) {
       const tenantData = {
-        userId: this.storageService.get('userId'),
         ...this.tenantForm.value,
       };
 
       try {
-        this.tenant = {
-          ...this.tenant,
+        const tenant = {
+          _id: this.tenant._id,
           ...tenantData
         };
-        await this.myProfileService.updateTenant(this.tenant);
+        await this.myProfileService.updateTenant(tenant);
 
         this.toastrService.success('The tenant is updated successfully.', 'Success!');
       } catch (e) {

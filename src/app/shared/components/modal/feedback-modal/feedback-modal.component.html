@@ -29,6 +29,9 @@
                 class="form-control"
                 rows="6"
                 formControlName="feedbackText"></textarea>
+      <div class="invalid-feedback d-block" *ngIf="feedbackForm.get('feedbackText').invalid && (feedbackForm.get('feedbackText').dirty || feedbackForm.get('feedbackText').touched)">
+        <span *ngIf="feedbackForm.get('feedbackText').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+      </div>
     </div>
     <div class="form-group text-right">
       <button type="submit"

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { OfferService } from '../../../services/offer.service';
 import { AuthService } from '../../../../../core/services/auth.service';
-import { CursorWaitService } from '../../../../../core/services/cursor-wait.service';
 import { StorageService } from '../../../../../core/services/storage.service';
+import { FeedbackModalService } from '../../../../../shared/services/modal/feedback-modal.service';
 
 import { Offer, Page } from '../../../../../shared/models';
 
@@ -21,38 +22,45 @@ export class OfferListComponent implements OnInit {
     private location: Location,
     private offerService: OfferService,
     private authService: AuthService,
-    private cursorWaitService: CursorWaitService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private feedbackModalService: FeedbackModalService
   ) { }
 
   ngOnInit() {
+    this.getOffers();
+    this.feedbackModalService.giveFeedback.subscribe(() => {
+      this.getOffers(true);
+    });
+  }
+
+  async getOffers(accepted?: boolean) {
     this.page.perPage = 10;
     this.page.pageNumber = 1;
 
-    this.getOffers();
-  }
-
-  async getOffers() {
     try {
-      this.cursorWaitService.enable();
-
       const landlordId = this.storageService.get('landlordId');
-      const landlordResponse = await this.authService.getLandlord(landlordId);
-      const apartmentIds = landlordResponse.landlord.apartments;
-
-      const response = await this.offerService.getOffers(this.page);
-      const offers = response.offers;
-      this.offers = offers.filter(offer => {
-        return apartmentIds.includes(offer.apartment._id) && offer.accepted === false;
-      });
+      const offersResponse = typeof accepted === 'undefined'
+        ? await this.offerService.getOffersByLandlord(this.page, landlordId)
+        : await this.offerService.getOffersByLandlord(this.page, landlordId, accepted);
+      this.offers = offersResponse.offers;
     } catch (e) {
       console.log('OfferListComponent->getOffers', e);
-    } finally {
-      this.cursorWaitService.disable();
     }
   }
 
-  deletedOffers() {
+  changeTab(event: NgbTabChangeEvent) {
+    if (event.nextId === 'received') {
+      this.getOffers();
+    }
+    if (event.nextId === 'accepted') {
+      this.getOffers(true);
+    }
+    if (event.nextId === 'rejected') {
+      this.getOffers(false);
+    }
+  }
+
+  rejectedOffers() {
     this.getOffers();
   }
 

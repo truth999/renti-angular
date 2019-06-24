@@ -13,5 +13,6 @@ export class Offer {
   tenant: Tenant;
   apartment: Apartment;
   accepted: boolean;
-  feedback: boolean;
+  landlordFeedback: boolean;
+  tenantFeedback: boolean;
 }

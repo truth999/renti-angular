@@ -28,11 +28,31 @@ export class TenantComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     try {
       const response = await this.tenantService.getTenant(id);
-      this.tenant = response.tenant;
-      this.rate = this.tenant.rank * .05;
+      const tenant = response.tenant;
+      if (tenant.feedback.length !== 0) {
+        const totalRate = tenant.feedback.reduce((total, currentValue) => {
+          return total + currentValue.feedbackStar;
+        }, 0);
+        this.rate = parseInt((totalRate / tenant.feedback.length).toFixed(0), 10) - 1;
+      }
+      this.tenant = tenant;
     } catch (e) {
       console.log('TenantComponent->ngOnInit', e);
     }
+  }
+
+  dateFormat(dateString: string) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    let month = '' + (date.getMonth() + 1);
+    let day = '' + date.getDate();
+    if (month.length < 2) {
+      month = '0' + month;
+    }
+    if (day.length < 2) {
+      day = '0' + day;
+    }
+    return [year, month, day].join('.');
   }
 
   onBack() {

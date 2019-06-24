@@ -2,13 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { Offer, User } from '../../../../../../shared/models';
+import { Offer } from '../../../../../../shared/models';
 
 import { environment } from '../../../../../../../environments/environment';
 
 import { OfferService } from '../../../../services/offer.service';
-import { CursorWaitService } from '../../../../../../core/services/cursor-wait.service';
-import { AuthService } from '../../../../../../core/services/auth.service';
+import { FeedbackModalService } from '../../../../../../shared/services/modal/feedback-modal.service';
 
 @Component({
   selector: 'app-offer',
@@ -17,8 +16,7 @@ import { AuthService } from '../../../../../../core/services/auth.service';
 })
 export class OfferComponent implements OnInit {
   @Input() offer: Offer;
-  @Output() offerDeleted = new EventEmitter<void>();
-  user: User;
+  @Output() offerChanged = new EventEmitter<void>();
 
   uploadBase = environment.uploadBase;
 
@@ -26,28 +24,17 @@ export class OfferComponent implements OnInit {
     private router: Router,
     private offerService: OfferService,
     private toastrService: ToastrService,
-    private cursorWaitService: CursorWaitService,
-    private authService: AuthService
+    private feedbackModalService: FeedbackModalService
   ) { }
 
   ngOnInit() {
-    this.getOfferInfo();
-  }
-
-  async getOfferInfo() {
-    try {
-      const response = await this.authService.getUser(this.offer.tenant.user);
-      this.user = response.user;
-    } catch (e) {
-      console.log('OfferComponent->getOfferInfo');
-    }
   }
 
   onProfile() {
     this.router.navigate(['/app/profile/tenant', this.offer.tenant._id]);
   }
 
-  async onSuccess() {
+  async onAccept() {
     try {
       const offer = {
         ...this.offer,
@@ -61,15 +48,24 @@ export class OfferComponent implements OnInit {
     }
   }
 
-  async onDelete() {
+  async onReject() {
     try {
-      await this.offerService.deleteOffer(this.offer._id);
-      this.toastrService.success('The offer is deleted successfully.', 'Success!');
-      this.offerDeleted.emit();
+      const offer = {
+        ...this.offer,
+        accepted: false
+      };
+
+      await this.offerService.updateOffer(offer);
+      this.toastrService.success('The offer is rejected successfully.', 'Success!');
+      this.offerChanged.emit();
     } catch (e) {
       this.toastrService.error('Something went wrong', 'Error');
       console.log('OfferComponent->onDelete', e);
     }
+  }
+
+  onGiveFeedback(feedbackData) {
+    this.feedbackModalService.show(feedbackData);
   }
 
 }

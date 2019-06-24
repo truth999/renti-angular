@@ -14,12 +14,41 @@
       <option value="">{{ 'OFFER.PRICE_INCREASES' | translate }}</option>
     </select>
   </div>
-<!--  <p class="font-weight-bold mt-2">Budapest, Andrássy út 72, 3/32. :</p>-->
-  <div class="row">
-    <div class="col-sm-6 py-3"
-         *ngFor="let offer of offers; let i = index">
-      <app-offer [offer]="offer"
-                 (offerDeleted)="deletedOffers()"></app-offer>
-    </div>
-  </div>
+  <!--  <p class="font-weight-bold mt-2">Budapest, Andrássy út 72, 3/32. :</p>-->
+  <ngb-tabset (tabChange)="changeTab($event)">
+    <ngb-tab id="received">
+      <ng-template ngbTabTitle>Received</ng-template>
+      <ng-template ngbTabContent>
+        <div class="row">
+          <div class="col-sm-6 py-3"
+               *ngFor="let offer of offers; let i = index">
+            <app-offer [offer]="offer"
+                       (offerChanged)="rejectedOffers()"></app-offer>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="accepted">
+      <ng-template ngbTabTitle>Accepted</ng-template>
+      <ng-template ngbTabContent>
+        <div class="row">
+          <div class="col-sm-6 py-3"
+               *ngFor="let offer of offers; let i = index">
+            <app-offer [offer]="offer"></app-offer>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="rejected">
+      <ng-template ngbTabTitle>Rejected</ng-template>
+      <ng-template ngbTabContent>
+        <div class="row">
+          <div class="col-sm-6 py-3"
+               *ngFor="let offer of offers; let i = index">
+            <app-offer [offer]="offer"></app-offer>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 </div>

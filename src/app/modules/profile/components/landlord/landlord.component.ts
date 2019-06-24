@@ -7,7 +7,7 @@ import { environment } from '../../../../../environments/environment';
 import { AuthService } from '../../../../core/services/auth.service';
 import { LandlordService } from '../../services/landlord.service';
 
-import { Feedback, Landlord } from '../../../../shared/models';
+import { Landlord } from '../../../../shared/models';
 
 @Component({
   selector: 'app-profile-landlord',
@@ -16,7 +16,6 @@ import { Feedback, Landlord } from '../../../../shared/models';
 })
 export class LandlordComponent implements OnInit {
   landlord: Landlord;
-  feedbacks: Feedback[];
   uploadBase = environment.uploadBase;
   rate: number;
 
@@ -32,18 +31,14 @@ export class LandlordComponent implements OnInit {
 
     try {
       const response = await this.landlordService.getLandlord(id);
-      this.landlord = response.landlord;
-      let totalRate = 0;
-
-      const feedbackResponse = await this.landlordService.getFeedbacks();
-      this.feedbacks = feedbackResponse.feedbacks.filter(feedback => {
-        return feedback.landlord === id;
-      });
-
-      this.feedbacks.map(feedback => {
-        totalRate = totalRate + feedback.feedbackStar;
-      });
-      this.rate = parseInt((totalRate / this.landlord.feedback.length).toFixed(0), 10) - 1;
+      const landlord = response.landlord;
+      if (landlord.feedback.length !== 0) {
+        const totalRate = landlord.feedback.reduce((total, currentValue) => {
+          return total + currentValue.feedbackStar;
+        }, 0);
+        this.rate = parseInt((totalRate / landlord.feedback.length).toFixed(0), 10) - 1;
+      }
+      this.landlord = landlord;
     } catch (e) {
       console.log('LandlordComponent->ngOnInit', e);
     }

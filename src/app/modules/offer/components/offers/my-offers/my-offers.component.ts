@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { OfferService } from '../../../services/offer.service';
 import { StorageService } from '../../../../../core/services/storage.service';
@@ -13,8 +14,7 @@ import { Offer, Page } from '../../../../../shared/models';
   styleUrls: ['./my-offers.component.scss']
 })
 export class MyOffersComponent implements OnInit {
-  acceptedOffers: Offer[];
-  pendingOffers: Offer[];
+  offers: Offer[];
   page = new Page();
 
   constructor(
@@ -25,25 +25,36 @@ export class MyOffersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getOffers();
+    this.feedbackModalService.giveFeedback.subscribe(() => {
+      this.getOffers(true);
+    });
+  }
+
+  async getOffers(accepted?: boolean) {
     this.page.perPage = 10;
     this.page.pageNumber = 1;
 
-    this.getOffers();
-  }
-
-  async getOffers() {
     try {
       const tenantId = this.storageService.get('tenantId');
-      const response = await this.offerService.getOffers(this.page);
-      const offers = response.offers;
-      this.acceptedOffers = offers.filter(offer => {
-        return offer.tenant._id === tenantId && offer.accepted === true;
-      });
-      this.pendingOffers = offers.filter(offer => {
-        return offer.tenant._id === tenantId && offer.accepted === false;
-      });
+      const response = typeof accepted === 'undefined'
+        ? await this.offerService.getOffersByTenant(this.page, tenantId)
+        : await this.offerService.getOffersByTenant(this.page, tenantId, accepted);
+      this.offers = response.offers;
     } catch (e) {
       console.log('MyOffersComponent->getOffers', e);
+    }
+  }
+
+  changeTab(event: NgbTabChangeEvent) {
+    if (event.nextId === 'pending') {
+      this.getOffers();
+    }
+    if (event.nextId === 'accepted') {
+      this.getOffers(true);
+    }
+    if (event.nextId === 'rejected') {
+      this.getOffers(false);
     }
   }
 

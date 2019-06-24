@@ -35,7 +35,7 @@ export class AuthService {
     return this.apiService.get(`users/${userId}`);
   }
 
-  getUser(id: any): Promise<any> {
+  getUser(id: string): Promise<any> {
     return this.apiService.get(`users/${id}`);
   }
 

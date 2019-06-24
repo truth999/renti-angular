@@ -8,17 +8,28 @@
     <i class="icon-left-circle d-sm-none"
        (click)="onBack()"></i>
   </div>
-  <ngb-tabset>
-    <ngb-tab>
+  <ngb-tabset (tabChange)="changeTab($event)">
+    <ngb-tab id="pending">
+      <ng-template ngbTabTitle>Pending</ng-template>
+      <ng-template ngbTabContent>
+        <div class="row">
+          <ng-container *ngFor="let offer of offers">
+            <app-apartment-item class="col-lg-6 py-3"
+                                [apartment]="offer.apartment"
+                                [routerLink]="['/app/rentals/apartment', offer.apartment._id]"></app-apartment-item>
+          </ng-container>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="accepted">
       <ng-template ngbTabTitle>Accepted</ng-template>
       <ng-template ngbTabContent>
-        <div class="row"
-             *ngIf="acceptedOffers">
-          <ng-container *ngFor="let offer of acceptedOffers">
+        <div class="row">
+          <ng-container *ngFor="let offer of offers">
             <app-apartment-item class="col-lg-6 py-3"
                                 [apartment]="offer.apartment"
                                 [routerLink]="['/app/rentals/apartment', offer.apartment._id]">
-              <button *ngIf="!offer.feedback"
+              <button *ngIf="!offer.tenantFeedback"
                       type="button"
                       class="btn btn-primary btn-sm position-absolute"
                       (click)="onGiveFeedback($event, { offerId: offer._id, landlordId: offer.apartment.landlord })">Give feedback to landlord</button>
@@ -27,12 +38,11 @@
         </div>
       </ng-template>
     </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle>Pending</ng-template>
+    <ngb-tab id="rejected">
+      <ng-template ngbTabTitle>Rejected</ng-template>
       <ng-template ngbTabContent>
-        <div class="row"
-             *ngIf="pendingOffers">
-          <ng-container *ngFor="let offer of pendingOffers">
+        <div class="row">
+          <ng-container *ngFor="let offer of offers">
             <app-apartment-item class="col-lg-6 py-3"
                                 [apartment]="offer.apartment"
                                 [routerLink]="['/app/rentals/apartment', offer.apartment._id]"></app-apartment-item>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ApiService } from '../../../core/services/api.service';
 
-import { Feedback, Offer, Page } from '../../../shared/models';
+import { Offer, Page } from '../../../shared/models';
 
 @Injectable()
 export class OfferService {
@@ -13,13 +13,17 @@ export class OfferService {
     private apiService: ApiService
   ) { }
 
-  getOffers(page: Page): Promise<any> {
-    const url = `${this.offerUrl}?page=${page.pageNumber}&perPage=${page.perPage}`;
+  getOffersByLandlord(page: Page, landlordId: string, accepted?: boolean): Promise<any> {
+    const url = typeof accepted === 'undefined'
+      ? `${this.offerUrl}/landlord/${landlordId}?page=${page.pageNumber}&perPage=${page.perPage}`
+      : `${this.offerUrl}/landlord/${landlordId}?page=${page.pageNumber}&perPage=${page.perPage}&accepted=${accepted}`;
     return this.apiService.get(url);
   }
 
-  getOffersByTenant(page: Page, id: string): Promise<any> {
-    const url = `${this.offerUrl}/user?page=${page.pageNumber}&perPage=${page.perPage}&userId=${id}`;
+  getOffersByTenant(page: Page, tenantId: string, accepted?: boolean): Promise<any> {
+    const url = typeof accepted === 'undefined'
+      ? `${this.offerUrl}/tenant/${tenantId}?page=${page.pageNumber}&perPage=${page.perPage}`
+      : `${this.offerUrl}/tenant/${tenantId}?page=${page.pageNumber}&perPage=${page.perPage}&accepted=${accepted}`;
     return this.apiService.get(url);
   }
 
@@ -31,11 +35,11 @@ export class OfferService {
     return this.apiService.put(`${this.offerUrl}/${offer._id}`, offer);
   }
 
-  deleteOffer(id: string): Promise<any> {
-    return this.apiService.delete(`${this.offerUrl}/${id}`);
+  createFeedbackByTenant(tenantId: string, feedbackData: any): Promise<any> {
+    return this.apiService.post(`${this.feedbackUrl}/tenant/${tenantId}`, feedbackData);
   }
 
-  createFeedback(feedbackData: any): Promise<any> {
-    return this.apiService.post(`${this.feedbackUrl}`, feedbackData);
+  createFeedbackByLandlord(landlordId: string, feedbackData: any): Promise<any> {
+    return this.apiService.post(`${this.feedbackUrl}/landlord/${landlordId}`, feedbackData);
   }
 }

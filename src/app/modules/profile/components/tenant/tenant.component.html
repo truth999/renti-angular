@@ -188,8 +188,32 @@
               </li>
             </ul>
           </div>
-          <div class="feedback mt-5">
+          <div class="feedback mt-5"
+               *ngIf="tenant.feedback.length !== 0">
             <app-feedback [rate]="rate"></app-feedback>
+            <div class="feedback mt-4"
+                 *ngFor="let feedback of tenant.feedback">
+              <div class="client d-flex justify-content-between">
+                <span class="client-name font-weight-bold">{{ feedback.landlord.user.firstName }} {{ feedback.landlord.user.lastName }}</span>
+                <div class="rating-date d-flex">
+                  <ngb-rating [rate]="feedback.feedbackStar"
+                              [readonly]="true"
+                              max="5"
+                              class="item-rating mr-1">
+                    <ng-template let-fill="fill">
+                      <i class="icon-star-fill"
+                         *ngIf="fill === 100"></i>
+                      <i class="icon-star"
+                         *ngIf="fill !== 100"></i>
+                    </ng-template>
+                  </ngb-rating>
+                  <span class="date">{{ dateFormat(feedback.updatedAt) }}</span>
+                </div>
+              </div>
+              <p class="feedback-content mt-2">
+                {{ feedback.feedbackText }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
