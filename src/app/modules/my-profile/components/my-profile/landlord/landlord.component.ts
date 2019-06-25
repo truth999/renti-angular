@@ -13,7 +13,7 @@ import { ImageUploaderService } from '../../../../../core/services/image-uploade
 import { AuthService } from '../../../../../core/services/auth.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
-import { Feedback, Landlord } from '../../../../../shared/models';
+import { Landlord } from '../../../../../shared/models';
 import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
@@ -31,6 +31,7 @@ export class LandlordComponent implements OnInit {
   isAgency = false;
   pattern = Validate;
   rate: number;
+  feedbackNumber: number;
 
   spokenLanguagesVal = [
     'Hungarian',
@@ -85,6 +86,7 @@ export class LandlordComponent implements OnInit {
           return total + currentValue.feedbackStar;
         }, 0);
         this.rate = parseInt((totalRate / landlord.feedback.length).toFixed(0), 10) - 1;
+        this.feedbackNumber = landlord.feedback.length;
       }
       this.landlord = landlord;
 

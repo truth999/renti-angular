@@ -1,6 +1,11 @@
 @import "~src/assets/styles/scss/variables";
 
 .apartment-detail {
+  .landlord-info {
+    top: 0;
+    right: 0;
+  }
+
   .slider {
     @include media-breakpoint-down(xs) {
       margin-left: -15px;
@@ -45,6 +50,83 @@
   .button-group {
     .btn {
       width: 48%;
+    }
+  }
+
+  .search-bar {
+    background-color: $white;
+    z-index: 2200;
+    overflow: auto;
+    transition: all 0.3s ease;
+    width: 375px;
+    right: -100%;
+    bottom: 0;
+
+    @include media-breakpoint-up(lg) {
+      top: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+      top: 73px;
+    }
+
+    .icon-close {
+      font-size: 1.125rem;
+      cursor: pointer;
+    }
+
+    .search-bar-content {
+      .profile-picture {
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      ngb-rating {
+        &:focus {
+          outline: none;
+        }
+
+        i {
+          color: $yellow;
+        }
+
+        &.all-rating {
+          i {
+            font-size: 1.6rem;
+            margin-right: .4rem;
+          }
+        }
+
+        &.item-rating {
+          i {
+            font-size: 1rem;
+            margin-right: .2rem;
+          }
+        }
+      }
+    }
+  }
+
+  .overlay {
+    visibility: hidden;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $black;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2100;
+  }
+
+  &.toggled {
+    .search-bar {
+      right: 0;
+    }
+
+    .overlay {
+      visibility: visible;
+      opacity: .8;
     }
   }
 }

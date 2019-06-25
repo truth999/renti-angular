@@ -20,6 +20,9 @@ import { AuthService } from '../../../../core/services/auth.service';
 export class ApartmentDetailComponent implements OnInit {
   apartment: Apartment;
   favorite: boolean;
+  toggled = false;
+  rate: number;
+  feedbackNumber: number;
 
   uploadBase = environment.uploadBase;
 
@@ -46,7 +49,15 @@ export class ApartmentDetailComponent implements OnInit {
 
     try {
       const response = await this.rentalsService.getApartment(id);
-      this.apartment = response.apartment;
+      const apartment = response.apartment;
+      if (apartment.landlord.feedback !== 0) {
+        const totalRate = apartment.landlord.feedback.reduce((total, currentValue) => {
+          return total + currentValue.feedbackStar;
+        }, 0);
+        this.rate = this.rate = parseInt((totalRate / apartment.landlord.feedback.length).toFixed(0), 10) - 1;
+        this.feedbackNumber = apartment.landlord.feedback.length;
+      }
+      this.apartment = apartment;
 
       this.galleryOptions = [
         {

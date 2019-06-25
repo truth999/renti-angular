@@ -1,4 +1,5 @@
-<div class="apartment-detail">
+<div class="apartment-detail"
+     [class.toggled]="toggled">
   <div class="back mb-sm-4 d-sm-block d-none">
     <button class="btn btn-back"
             (click)="onBack()">
@@ -8,7 +9,9 @@
   </div>
   <div class="card"
        *ngIf="apartment">
-    <div class="card-body">
+    <div class="card-body position-relative">
+      <button class="btn btn-primary btn-sm landlord-info position-absolute d-lg-inline-block d-none"
+              (click)="toggled = true">About the landlord</button>
       <div class="row">
         <div class="col-lg-6">
           <div class="slider">
@@ -21,10 +24,12 @@
                  alt=""
                  style="width: 100%;">
           </div>
-          <div class="d-lg-none">
+          <div class="d-lg-none position-relative">
+            <button class="btn btn-primary btn-sm landlord-info position-absolute d-lg-none"
+                    (click)="toggled = true">About the landlord</button>
             <h3 class="mt-4">{{ apartment.name }}</h3>
             <div class="unit d-flex justify-content-between">
-              <span class="mo"><span class="font-weight-bold">{{ (apartment.rentalFee / apartment.size).toFixed(0) }}</span>/mo</span>
+              <span class="mo"><span class="font-weight-bold">{{ apartment.rentalFee }}</span>/mo</span>
               <span class="square font-weight-bold">
             <i class="icon-fullscreen"></i>
                 {{ apartment.size }}m<sup>2</sup>
@@ -192,7 +197,7 @@
           <div class="d-none d-lg-block">
             <h2>{{ apartment.name }}</h2>
             <div class="unit d-flex justify-content-between">
-              <span class="mo"><span class="font-weight-bold">{{ (apartment.rentalFee / apartment.size).toFixed(0) }}</span>/mo</span>
+              <span class="mo"><span class="font-weight-bold">{{ apartment.rentalFee }}</span>/mo</span>
               <span class="square font-weight-bold">
           <i class="icon-fullscreen"></i>
                 {{ apartment.size }}m<sup>2</sup>
@@ -353,4 +358,50 @@
       </div>
     </div>
   </div>
+  <div class="search-bar position-fixed">
+    <div class="close-bar justify-content-between align-items-center px-3 py-2 border-bottom d-flex">
+      <i class="icon-close"
+         (click)="toggled = false"></i>
+    </div>
+    <div class="search-bar-content px-3 py-3"
+         *ngIf="apartment">
+      <div class="d-flex align-items-end">
+        <img [src]="apartment.landlord.profilePicture ? apartment.landlord.profilePicture : '/assets/images/profile/blank.png'"
+             width="80"
+             height="80"
+             class="rounded-circle profile-picture mr-5"
+             alt="">
+        <h3>{{ apartment.landlord.user.firstName }} {{ apartment.landlord.user.lastName }}</h3>
+      </div>
+      <div class="feedback mt-3"
+           *ngIf="apartment.landlord.feedback.length !== 0">
+        <app-feedback [rate]="rate"
+                      [number]="feedbackNumber"></app-feedback>
+        <div class="feedback mt-4"
+             *ngFor="let feedback of apartment.landlord.feedback">
+          <div class="client d-flex justify-content-between">
+            <span class="client-name font-weight-bold">{{ feedback.tenant.user.firstName }} {{ feedback.tenant.user.lastName }}</span>
+            <div class="rating-date d-flex">
+              <ngb-rating [rate]="feedback.feedbackStar"
+                          [readonly]="true"
+                          max="5"
+                          class="item-rating mr-1">
+                <ng-template let-fill="fill">
+                  <i class="icon-star-fill"
+                     *ngIf="fill === 100"></i>
+                  <i class="icon-star"
+                     *ngIf="fill !== 100"></i>
+                </ng-template>
+              </ngb-rating>
+            </div>
+          </div>
+          <p class="feedback-content mt-2">
+            {{ feedback.feedbackText }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay position-fixed"
+       (click)="toggled = false"></div>
 </div>

@@ -33,6 +33,7 @@ export class TenantComponent implements OnInit {
   years: string[];
   pattern = Validate;
   rate: number;
+  feedbackNumber: number;
 
   spokenLanguages = [
     'Hungarian',
@@ -88,6 +89,7 @@ export class TenantComponent implements OnInit {
         }, 0);
 
         this.rate = parseInt((totalRate / tenant.feedback.length).toFixed(0), 10) - 1;
+        this.feedbackNumber = tenant.feedback.length;
       }
 
       this.tenant = tenant;

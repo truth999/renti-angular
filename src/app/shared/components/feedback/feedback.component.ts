@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FeedbackComponent implements OnInit {
   @Input() rate: number;
+  @Input() number: number;
 
   constructor() { }
 

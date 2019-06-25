@@ -18,6 +18,7 @@ export class LandlordComponent implements OnInit {
   landlord: Landlord;
   uploadBase = environment.uploadBase;
   rate: number;
+  feedbackNumber: number;
 
   constructor(
     private location: Location,
@@ -37,6 +38,7 @@ export class LandlordComponent implements OnInit {
           return total + currentValue.feedbackStar;
         }, 0);
         this.rate = parseInt((totalRate / landlord.feedback.length).toFixed(0), 10) - 1;
+        this.feedbackNumber = landlord.feedback.length;
       }
       this.landlord = landlord;
     } catch (e) {

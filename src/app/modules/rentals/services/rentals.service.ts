@@ -19,7 +19,7 @@ export class RentalsService {
   }
 
   getApartment(id: string): Promise<any> {
-    return this.apiService.get(`${this.apartmentUrl}/${id}`);
+    return this.apiService.get(`${this.apartmentUrl}/${id}/detail`);
   }
 
   getRoom(id: string): Promise<any> {

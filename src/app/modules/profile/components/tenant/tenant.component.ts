@@ -16,6 +16,7 @@ import { Tenant } from '../../../../shared/models';
 export class TenantComponent implements OnInit {
   tenant: Tenant;
   rate: number;
+  feedbackNumber: number;
   uploadBase = environment.uploadBase;
 
   constructor(
@@ -34,6 +35,7 @@ export class TenantComponent implements OnInit {
           return total + currentValue.feedbackStar;
         }, 0);
         this.rate = parseInt((totalRate / tenant.feedback.length).toFixed(0), 10) - 1;
+        this.feedbackNumber = tenant.feedback.length;
       }
       this.tenant = tenant;
     } catch (e) {

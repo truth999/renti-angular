@@ -92,7 +92,8 @@
         <div class="col-lg-6"></div>
         <div class="col-lg-6">
           <div *ngIf="landlord.feedback.length !== 0">
-            <app-feedback [rate]="rate"></app-feedback>
+            <app-feedback [rate]="rate"
+                          [number]="feedbackNumber"></app-feedback>
             <div class="feedback mt-4"
                  *ngFor="let feedback of landlord.feedback">
               <div class="client d-flex justify-content-between">
