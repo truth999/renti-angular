@@ -366,7 +366,7 @@
     <div class="search-bar-content px-3 py-3"
          *ngIf="apartment">
       <div class="d-flex align-items-end">
-        <img [src]="apartment.landlord.profilePicture ? apartment.landlord.profilePicture : '/assets/images/profile/blank.png'"
+        <img [src]="apartment.landlord.profilePicture ? uploadBase + apartment.landlord.profilePicture : '/assets/images/profile/blank.png'"
              width="80"
              height="80"
              class="rounded-circle profile-picture mr-5"
