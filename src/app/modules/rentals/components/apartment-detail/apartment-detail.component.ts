@@ -40,8 +40,18 @@ export class ApartmentDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.setApartmentChecked();
     this.getApartment();
     this.getFavorite();
+  }
+
+  async setApartmentChecked() {
+    const id = this.route.snapshot.paramMap.get('id');
+    try {
+      await this.rentalsService.setApartmentChecked(id);
+    } catch (e) {
+      console.log('ApartmentDetailComponent->setApartmentChecked', e);
+    }
   }
 
   async getApartment() {

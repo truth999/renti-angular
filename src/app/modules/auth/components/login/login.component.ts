@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../../core/services/auth.service';
-import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 import { CONFIG_CONST } from '../../../../../config/config-const';
@@ -22,7 +21,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private cursorWaitService: CursorWaitService,
     private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
@@ -36,17 +34,12 @@ export class LoginComponent implements OnInit {
   async login() {
     if (this.loginForm.valid) {
       try {
-        this.cursorWaitService.enable();
         this.loginFailed = false;
         const loginData = this.loginForm.value;
         await this.authService.login(loginData);
-        // this.router.navigate(['/auth/complete']);
-        this.router.navigate(['/app/rentals/search']);
       } catch (e) {
         this.loginFailed = true;
         console.log('LoginComponent->login', e);
-      } finally {
-        this.cursorWaitService.disable();
       }
     } else {
       this.validateFormFieldsService.validate(this.loginForm);

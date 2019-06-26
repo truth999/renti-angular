@@ -16,6 +16,7 @@ import { environment } from '../../../../../environments/environment';
 })
 export class MyPropertiesComponent implements OnInit {
   apartments: Apartment[];
+
   page = new Page();
   uploadBase = environment.uploadBase;
 
@@ -36,13 +37,8 @@ export class MyPropertiesComponent implements OnInit {
   async getApartments() {
     try {
       const landlordId = this.storageService.get('landlordId');
-      const landlordResponse = await this.authService.getLandlord(landlordId);
-      const landlord = landlordResponse.landlord;
-      const apartmentsResponse = await this.myPropertiesService.getApartments(this.page);
-      const apartments = apartmentsResponse.apartments;
-      this.apartments = apartments.filter(apartment => {
-        return apartment.landlord === landlord._id;
-      });
+      const apartmentsResponse = await this.myPropertiesService.getApartments(this.page, landlordId);
+      this.apartments = apartmentsResponse.apartments;
     } catch (e) {
       console.log('MyPropertiesComponent->getApartments', e);
     }

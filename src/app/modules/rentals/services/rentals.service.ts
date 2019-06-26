@@ -22,6 +22,10 @@ export class RentalsService {
     return this.apiService.get(`${this.apartmentUrl}/${id}/detail`);
   }
 
+  setApartmentChecked(id: string): Promise<any> {
+    return this.apiService.get(`${this.apartmentUrl}/${id}/checked`);
+  }
+
   getRoom(id: string): Promise<any> {
     return this.apiService.get(`${this.roomUrl}/${id}`);
   }

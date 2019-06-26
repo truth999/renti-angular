@@ -13,8 +13,8 @@ export class MyPropertiesService {
     private apiService: ApiService
   ) { }
 
-  getApartments(page: Page): Promise<any> {
-    let url = `${this.apartmentUrl}?page=${page.pageNumber}`;
+  getApartments(page: Page, landlordId: string): Promise<any> {
+    let url = `${this.apartmentUrl}/landlord/${landlordId}?page=${page.pageNumber}`;
     url += page.pageNumber ? `&perPage=${page.perPage}` : '';
     return this.apiService.get(url);
   }

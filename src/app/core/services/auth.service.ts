@@ -6,11 +6,15 @@ import { StorageService } from './storage.service';
 
 import { AuthRequest, SignupRequest } from '../../modules/auth/models/auth.model';
 
+import { CONFIG_CONST } from '../../../config/config-const';
+import { AccountTypes } from '../../shared/models/user.model';
+
 @Injectable()
 export class AuthService {
   private isAuthenticated = false;
   private token: string;
   private userId: string;
+  private AccountTypes = CONFIG_CONST.accountType;
 
   constructor(
       private apiService: ApiService,
@@ -85,6 +89,7 @@ export class AuthService {
 
   private successAuth(response) {
     const token = response.token;
+    const accountType = response.accountType;
     this.token = token;
     if (token) {
       this.isAuthenticated = true;
@@ -96,6 +101,12 @@ export class AuthService {
           now.getTime() + response.expiresIn * 1000
       );
       this.saveAuthData(token, expirationDate, this.userId, landlordId, tenantId);
+      if (accountType === this.AccountTypes.LANDLORD) {
+        this.router.navigate(['/app/my-properties']);
+      }
+      if (accountType === this.AccountTypes.TENANT) {
+        this.router.navigate(['app/rentals/search']);
+      }
     }
   }
 

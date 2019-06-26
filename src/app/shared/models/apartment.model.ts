@@ -1,5 +1,6 @@
 import { Room } from './room.model';
 import { Landlord } from './landlord.model';
+import { Offer } from './offer.model';
 
 export class Apartment {
   _id: string;
@@ -41,7 +42,10 @@ export class Apartment {
     date: any;
   };
   pictures: string[];
-  windowType: String;
+  windowType: string;
   rank: number;
   rooms: Room[];
+  offers: Offer[];
+  checked: number;
+  createdAt: string;
 }
