@@ -1,4 +1,4 @@
-<div *ngIf="accountType"
+<div *ngIf="user"
      class="layout">
   <div class="wrapper">
     <nav class="sidebar position-fixed shadow">
@@ -14,7 +14,7 @@
         </a>
       </div>
       <ul class="nav flex-column nav-content py-3"
-          *ngIf="accountType === AccountTypes.TENANT">
+          *ngIf="user.accountType === AccountTypes.TENANT">
         <li class="nav-item">
           <a routerLink="/app/my-profile"
              class="nav-link"
@@ -29,7 +29,8 @@
              appMenuClose>
             <i class="icon-alert mr-2"></i>
             {{ 'OFFER.OFFERS' | translate }}
-            <span class="badge badge-pill badge-primary float-right">2</span>
+            <span class="badge badge-pill badge-primary float-right"
+                  *ngIf="user.notification !== 0">{{ user.notification }}</span>
           </a>
         </li>
         <li class="nav-item">
@@ -58,7 +59,7 @@
         </li>
       </ul>
       <ul class="nav flex-column nav-content py-3"
-          *ngIf="accountType === AccountTypes.LANDLORD">
+          *ngIf="user.accountType === AccountTypes.LANDLORD">
         <li class="nav-item">
           <a routerLink="/app/my-profile"
              class="nav-link"
@@ -81,7 +82,8 @@
              appMenuClose>
             <i class="icon-alert mr-2"></i>
             {{ 'OFFER.OFFERS' | translate }}
-            <span class="badge badge-pill badge-primary float-right">2</span>
+            <span class="badge badge-pill badge-primary float-right"
+                  *ngIf="user.notification !== 0">{{ user.notification }}</span>
           </a>
         </li>
         <li class="nav-item">
@@ -116,7 +118,8 @@
               <a routerLink="/app/offers"
                  class="nav-link position-relative">
                 <i class="icon-alert"></i>
-                <span class="badge badge-pill badge-primary position-absolute">2</span>
+                <span class="badge badge-pill badge-primary position-absolute"
+                      *ngIf="user.notification !== 0">{{ user.notification }}</span>
               </a>
             </li>
             <li class="nav-item">
@@ -136,7 +139,8 @@
             <a routerLink="/app/offers"
                class="nav-link position-relative">
               <i class="icon-alert"></i>
-              <span class="badge badge-pill badge-primary position-absolute">2</span>
+              <span class="badge badge-pill badge-primary position-absolute"
+                    *ngIf="user.notification !== 0">{{ user.notification }}</span>
             </a>
           </li>
           <li class="nav-item">

@@ -4,6 +4,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { LayoutService } from '../../services/layout.service';
 
 import { CONFIG_CONST } from '../../../../config/config-const';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +13,7 @@ import { CONFIG_CONST } from '../../../../config/config-const';
 })
 export class LayoutComponent implements OnInit {
   AccountTypes = CONFIG_CONST.accountType;
-  accountType: string;
+  user: User;
 
   constructor(
     private authService: AuthService,
@@ -20,13 +21,13 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAccountType();
+    this.getUser();
   }
 
-  async getAccountType() {
+  async getUser() {
     try {
       const response = await this.authService.getAuthUser();
-      this.accountType = response.user.accountType;
+      this.user = response.user;
     } catch (e) {
       console.log('LayoutComponent->getAccountType', e);
     }
