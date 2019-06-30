@@ -345,6 +345,29 @@
                   </td>
                 </tr>
                 <tr>
+                  <td class="py-0 align-middle">{{ 'SEARCH.FURNISHED' | translate }}</td>
+                  <td class="text-right py-0 pr-0">
+                    <div class="switch">
+                      <input type="radio"
+                             id="furnished1-no"
+                             [value]="false"
+                             formControlName="furnished">
+                      <label for="furnished1-no">{{ 'COMMON.NO' | translate }}</label>
+                      <input type="radio"
+                             id="furnished1-na"
+                             [value]="null"
+                             formControlName="furnished">
+                      <label for="furnished1-na">{{ 'COMMON.NA' | translate }}</label>
+                      <input type="radio"
+                             id="furnished1-yes"
+                             [value]="true"
+                             formControlName="furnished">
+                      <label for="furnished1-yes">{{ 'COMMON.YES' | translate }}</label>
+                      <span class="slider"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
                   <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
                   <td class="text-right pr-0">
                     <div class="switch">
@@ -520,16 +543,16 @@
                            pattern="[0-9]*"
                            formControlName="sizeOfGarden">
                     <div class="invalid-feedback d-block" *ngIf="sizeOfGarden.invalid && (sizeOfGarden.dirty || sizeOfGarden.touched)">
-                  <span *ngIf="sizeOfGarden.errors.min"
-                        translate
-                        [translateParams]="{ min: sizeOfGarden.errors.min.min }">
-                    ERROR.MIN_FIELD
-                  </span>
-                      <span *ngIf="sizeOfGarden.errors.max"
+                      <span *ngIf="sizeOfGarden.errors.min"
                             translate
-                            [translateParams]="{ max: sizeOfGarden.errors.max.max }">
-                    ERROR.MAX_FIELD
-                  </span>
+                            [translateParams]="{ min: sizeOfGarden.errors.min.min }">
+                        ERROR.MIN_FIELD
+                      </span>
+                          <span *ngIf="sizeOfGarden.errors.max"
+                                translate
+                                [translateParams]="{ max: sizeOfGarden.errors.max.max }">
+                        ERROR.MAX_FIELD
+                      </span>
                     </div>
                   </td>
                 </tr>
@@ -1046,6 +1069,29 @@
                       <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
                       <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
                     </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-0 align-middle">{{ 'SEARCH.FURNISHED' | translate }}</td>
+                  <td class="text-right py-0 pr-0">
+                    <div class="switch">
+                      <input type="radio"
+                             id="furnished-no"
+                             [value]="false"
+                             formControlName="furnished">
+                      <label for="furnished-no">{{ 'COMMON.NO' | translate }}</label>
+                      <input type="radio"
+                             id="furnished-na"
+                             [value]="null"
+                             formControlName="furnished">
+                      <label for="furnished-na">{{ 'COMMON.NA' | translate }}</label>
+                      <input type="radio"
+                             id="furnished-yes"
+                             [value]="true"
+                             formControlName="furnished">
+                      <label for="furnished-yes">{{ 'COMMON.YES' | translate }}</label>
+                      <span class="slider"></span>
+                    </div>
                   </td>
                 </tr>
                 <tr>

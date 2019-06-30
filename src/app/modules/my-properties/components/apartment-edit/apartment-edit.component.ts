@@ -97,6 +97,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       headroom: new FormControl(this.apartment.headroom),
       parking: new FormControl(this.apartment.parking),
       windowType: new FormControl(this.apartment.windowType),
+      furnished: new FormControl(this.apartment.furnished),
       childFriendly: new FormControl(this.apartment.childFriendly),
       petFriendly: new FormControl(this.apartment.petFriendly),
       mediaServiceProviders: new FormControl(this.apartment.mediaServiceProviders),

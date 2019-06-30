@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 import { PhotoEditModalService } from '../../../services/modal/photo-edit-modal.service';
 
@@ -15,7 +15,8 @@ export class PhotoUploadModalComponent implements OnInit {
 
   constructor(
     private modal: NgbActiveModal,
-    private photoEditModalService: PhotoEditModalService
+    private photoEditModalService: PhotoEditModalService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -42,6 +43,10 @@ export class PhotoUploadModalComponent implements OnInit {
 
   onFileChanged(event) {
     const file = event.target.files[0];
+    if (file.size > 1048576) {
+      this.toastrService.error('The image\'s size must be less than 1MB.', 'Error');
+      return;
+    }
 
     this.readFile(file);
   }

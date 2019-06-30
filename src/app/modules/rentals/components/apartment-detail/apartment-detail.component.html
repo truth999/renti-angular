@@ -119,6 +119,10 @@
                 <td class="text-right font-weight-bold">{{ apartment.windowType }}</td>
               </tr>
               <tr>
+                <td>{{ 'SEARCH.FURNISHED' | translate }}</td>
+                <td class="text-right font-weight-bold">{{ apartment.furnished }}</td>
+              </tr>
+              <tr>
                 <td>{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
                 <td class="text-right font-weight-bold">{{ apartment.childFriendly ? ('COMMON.YES' | translate) : (apartment.childFriendly === false ? ('COMMON.NO' | translate) : ('COMMON.NA' | translate)) }}</td>
               </tr>
@@ -278,7 +282,11 @@
               </tr>
               <tr>
                 <td>{{ 'APARTMENT.WINDOW_TYPE' | translate }}</td>
-                <td class="text-right font-weight-bold">{{ apartment.windowType }}</td>
+                <td class="text-right font-weight-bold">{{ apartment.windowType ? ('COMMON.YES' | translate) : (apartment.windowType === false ? ('COMMON.NO' | translate) : ('COMMON.NA' | translate)) }}</td>
+              </tr>
+              <tr>
+                <td>{{ 'SEARCH.FURNISHED' | translate }}</td>
+                <td class="text-right font-weight-bold">{{ apartment.furnished ? ('COMMON.YES' | translate) : (apartment.furnished === false ? ('COMMON.NO' | translate) : ('COMMON.NA' | translate)) }}</td>
               </tr>
               <tr>
                 <td>{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>

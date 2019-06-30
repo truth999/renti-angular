@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NouisliderModule } from 'ng2-nouislider';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { SharedModule } from '../../shared/shared.module';
 import { RentalsRoutingModule } from './rentals-routing.module';
@@ -27,10 +30,13 @@ import { RentalsService } from './services/rentals.service';
     RentalsService
   ],
   imports: [
+    ReactiveFormsModule,
     SharedModule,
     RentalsRoutingModule,
     NouisliderModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    GooglePlaceModule,
+    NgSelectModule
   ]
 })
 export class RentalsModule { }

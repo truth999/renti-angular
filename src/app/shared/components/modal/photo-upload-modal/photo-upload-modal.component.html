@@ -13,7 +13,7 @@
        (dragover)="onDragOver($event)"
        (dragleave)="onDragLeave()"
        #dropContainer>
-    <p class="font-weight-bold">{{ 'COMMON.DROP_PICTURE_HEAR' | translate }}</p>
+    <p class="font-weight-bold">{{ 'COMMON.DROP_PICTURE_HEAR' | translate }}<br>(Max size 1MB)</p>
     <button class="btn btn-primary btn-lg"
             (click)="fileInput.click()">{{ 'COMMON.UPLOAD_FROM_COMPUTER' | translate }}</button>
     <input type="file"

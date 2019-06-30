@@ -72,6 +72,29 @@
         </td>
       </tr>
       <tr>
+        <td class="py-0 align-middle">{{ 'SEARCH.FURNISHED' | translate }}</td>
+        <td class="text-right pr-0">
+          <div class="switch">
+            <input type="radio"
+                   id="furnished1-no"
+                   [value]="false"
+                   formControlName="furnished">
+            <label for="furnished1-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="furnished1-na"
+                   [value]="null"
+                   formControlName="furnished">
+            <label for="furnished1-na">{{ 'COMMON.NA' | translate }}</label>
+            <input type="radio"
+                   id="furnished1-yes"
+                   [value]="true"
+                   formControlName="furnished">
+            <label for="furnished1-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</td>
         <td class="text-right pr-0">
           <div class="switch">

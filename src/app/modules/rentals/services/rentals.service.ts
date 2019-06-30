@@ -7,6 +7,7 @@ export class RentalsService {
   private apartmentUrl = 'apartments';
   private roomUrl = 'rooms';
   private tenantUrl = 'tenants';
+  private searchUrl = 'search';
 
   constructor(
     private apiService: ApiService
@@ -42,5 +43,11 @@ export class RentalsService {
 
   removeFavorite(id: string, apartment: any): Promise<any> {
     return this.apiService.put(`${this.tenantUrl}/${id}/favorite/remove`, apartment);
+  }
+
+  getSearchApartments(page, filters): Promise<any> {
+    let url = `${this.searchUrl}/apartments?page=${page.pageNumber}`;
+    url += page.pageNumber ? `&perPage=${page.perPage}` : '';
+    return this.apiService.post(url, filters);
   }
 }

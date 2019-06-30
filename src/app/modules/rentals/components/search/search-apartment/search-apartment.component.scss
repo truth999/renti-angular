@@ -105,6 +105,16 @@
       box-shadow: none !important;
       color: $blue;
     }
+
+    .custom-select {
+      text-align-last: right;
+    }
+
+    nouislider {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .overlay {

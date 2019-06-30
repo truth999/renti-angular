@@ -43,6 +43,7 @@ export class Apartment {
   };
   pictures: string[];
   windowType: string;
+  furnished: boolean;
   rank: number;
   rooms: Room[];
   offers: Offer[];
