@@ -1,0 +1,52 @@
+<div class="room-detail card-lg-screen"
+     *ngIf="room">
+  <div class="room-name d-flex justify-content-between">
+    <h4>{{ room.name }}</h4>
+    <div class="square font-weight-bold">
+      <i class="icon-fullscreen align-middle"></i>
+      {{ room.size }}m<sup>2</sup>
+    </div>
+  </div>
+  <div class="room-image mt-2">
+    <ngx-gallery *ngIf="room.pictures.length !== 0"
+                 [options]="galleryOptions"
+                 [images]="galleryImages"></ngx-gallery>
+    <img *ngIf="room.pictures.length === 0"
+         src="/assets/images/no_image.png"
+         alt=""
+         style="width: 100%;">
+  </div>
+  <table class="table mt-2 mb-0">
+    <tbody>
+    <tr>
+      <td class="border-top-0">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
+      <td class="border-top-0 text-right font-weight-bold">{{ room.size }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'APARTMENT.YEAR_OF_RENOVATION' | translate }}</td>
+      <td class="text-right font-weight-bold">{{ room.yearOfRenovation }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'APARTMENT.COVERAGE' | translate }}</td>
+      <td class="text-right font-weight-bold">{{ room.coverage }}</td>
+    </tr>
+    <tr>
+      <td class="equipped">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
+      <td class="equipped text-right font-weight-bold">{{ room.equipment ? ('COMMON.YES' | translate) : (room.equipment === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
+    </tr>
+    <tr>
+      <td class="border-bottom">{{ 'APARTMENT.FURNITURE' | translate }}</td>
+      <td class="border-bottom">
+        <table class="table mb-0">
+          <tr *ngFor="let furniture of room.furniture">
+            <td class="border-top-0 py-0 text-right">{{ 'APARTMENT.NAME' | translate }}:</td>
+            <td class="border-top-0 py-0 text-right font-weight-bold">{{ furniture.furnitureName }}</td>
+            <td class="border-top-0 py-0 text-right">{{ 'APARTMENT.TYPE' | translate }}:</td>
+            <td class="border-top-0 py-0 pr-0 text-right font-weight-bold">{{ furniture.furnitureType }}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

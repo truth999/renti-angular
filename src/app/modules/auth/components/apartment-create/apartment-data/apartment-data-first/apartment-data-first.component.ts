@@ -7,6 +7,7 @@ import { DateSelectService } from '../../../../../../shared/services/date-select
 import { ValidateFormFieldsService } from '../../../../../../core/services/validate-form-fields.service';
 
 import { Apartment } from '../../../../../../shared/models';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-apartment-data-first',
@@ -18,6 +19,7 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
   apartmentData: Apartment;
   years: string[];
   @Output() apartmentDataFirstFormValid = new EventEmitter<boolean>();
+  searchTerms = new EventEmitter<string>();
 
   constructor(
     private apartmentCreateService: ApartmentCreateService,
@@ -48,6 +50,22 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
       elevator: new FormControl(!!this.apartmentData ? this.apartmentData.elevator : null),
       rooftop: new FormControl(!!this.apartmentData ? this.apartmentData.rooftop : null)
     });
+
+    this.searchTerms
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(async term => {
+        try {
+          const addressResponse = await this.apartmentCreateService.checkAddress(term);
+          if (addressResponse && addressResponse.message) {
+            this.apartmentDataFirstForm.get('address').setErrors({ checkError: true, errorMsg: addressResponse.message });
+          }
+        } catch (e) {
+          console.log('ApartmentDataFirstComponent->searchTerms', e);
+        }
+      });
   }
 
   ngDoCheck() {
@@ -59,6 +77,11 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
 
   handleAddressChange(address: Address) {
     this.apartmentDataFirstForm.get('address').setValue(address.formatted_address);
+    this.searchTerms.emit(address.formatted_address);
+  }
+
+  search(term: string) {
+    this.searchTerms.emit(term);
   }
 
   submit() {

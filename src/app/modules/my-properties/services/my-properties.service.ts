@@ -34,4 +34,8 @@ export class MyPropertiesService {
   updateRoom(room: Room): Promise<any> {
     return this.apiService.put(`${this.roomUrl}/${room._id}`, room);
   }
+
+  checkAddress(term: string): Promise<any> {
+    return this.apiService.get(`${this.apartmentUrl}/check-address?term=${term}`);
+  }
 }

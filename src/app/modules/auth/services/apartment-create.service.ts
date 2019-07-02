@@ -49,4 +49,8 @@ export class ApartmentCreateService {
     return this.apiService.post('apartments', this.apartment);
   }
 
+  checkAddress(term: string): Promise<any> {
+    return this.apiService.get(`apartments/check-address?term=${term}`);
+  }
+
 }

@@ -14,9 +14,11 @@
            class="form-control"
            (onAddressChange)="handleAddressChange($event)"
            formControlName="address"
-           placeholder="{{ 'COMMON.ADDRESS' | translate }}:">
+           placeholder="{{ 'COMMON.ADDRESS' | translate }}:"
+           (input)="search(apartmentDataFirstForm.get('address').value)">
     <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('address').invalid && (apartmentDataFirstForm.get('address').dirty || apartmentDataFirstForm.get('address').touched)">
       <span *ngIf="apartmentDataFirstForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+      <span *ngIf="apartmentDataFirstForm.get('address').errors.checkError">{{ 'ERROR.' + apartmentDataFirstForm.get('address').errors.errorMsg | translate }}</span>
     </div>
   </div>
   <table class="table mt-4">

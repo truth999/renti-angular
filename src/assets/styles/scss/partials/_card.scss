@@ -36,3 +36,12 @@
     padding: 1.125rem 1rem;
   }
 }
+
+.card-lg-screen {
+  background-color: $white;
+  @include media-breakpoint-down(md) {
+    box-shadow: $box-shadow-sm;
+    @include border-radius($border-radius-lg);
+    padding: 1.125rem 1rem;
+  }
+}

@@ -66,9 +66,11 @@
                        id="address1"
                        class="form-control"
                        (onAddressChange)="handleAddressChange($event)"
-                       formControlName="address">
+                       formControlName="address"
+                       (input)="search(apartmentForm.get('address').value)">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('address').invalid && (apartmentForm.get('address').dirty || apartmentForm.get('address').touched)">
                   <span *ngIf="apartmentForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('address').errors.checkError">{{ 'ERROR.' + apartmentForm.get('address').errors.errorMsg | translate }}</span>
                 </div>
               </div>
               <div class="save">
@@ -346,7 +348,7 @@
                 </tr>
                 <tr>
                   <td class="py-0 align-middle">{{ 'SEARCH.FURNISHED' | translate }}</td>
-                  <td class="text-right py-0 pr-0">
+                  <td class="text-right pr-0">
                     <div class="switch">
                       <input type="radio"
                              id="furnished1-no"
@@ -741,27 +743,12 @@
                   <td class="border-bottom text-right pr-0" formGroupName="dateOfMovingIn">
                     <div>
                       <label class="font-size-base font-weight-normal mb-1">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
-                      <div class="switch">
-                        <input type="radio"
-                               id="rightNow1-no"
-                               [value]="false"
+                      <label class="switch-toggle">
+                        <input type="checkbox"
                                formControlName="rightNow"
                                (change)="onChangeRightNow()">
-                        <label for="rightNow1-no">{{ 'COMMON.NO' | translate }}</label>
-                        <input type="radio"
-                               id="rightNow1-na"
-                               [value]="null"
-                               formControlName="rightNow"
-                               (change)="onChangeRightNow()">
-                        <label for="rightNow1-na">{{ 'COMMON.NA' | translate }}</label>
-                        <input type="radio"
-                               id="rightNow1-yes"
-                               [value]="true"
-                               formControlName="rightNow"
-                               (change)="onChangeRightNow()">
-                        <label for="rightNow1-yes">{{ 'COMMON.YES' | translate }}</label>
-                        <span class="slider"></span>
-                      </div>
+                        <span class="slider round"></span>
+                      </label>
                     </div>
                     <div *ngIf="!rightNow.value">
                       <input class="form-control text-right mt-2"
@@ -809,9 +796,11 @@
                        id="address"
                        class="form-control"
                        (onAddressChange)="handleAddressChange($event)"
-                       formControlName="address">
+                       formControlName="address"
+                       (input)="search(apartmentForm.get('address').value)">
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('address').invalid && (apartmentForm.get('address').dirty || apartmentForm.get('address').touched)">
                   <span *ngIf="apartmentForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                  <span *ngIf="apartmentForm.get('address').errors.checkError">{{ 'ERROR.' + apartmentForm.get('address').errors.errorMsg | translate }}</span>
                 </div>
               </div>
               <div class="save">
@@ -1073,7 +1062,7 @@
                 </tr>
                 <tr>
                   <td class="py-0 align-middle">{{ 'SEARCH.FURNISHED' | translate }}</td>
-                  <td class="text-right py-0 pr-0">
+                  <td class="text-right pr-0">
                     <div class="switch">
                       <input type="radio"
                              id="furnished-no"
@@ -1468,27 +1457,12 @@
                   <td class="border-bottom text-right pr-0" formGroupName="dateOfMovingIn">
                     <div>
                       <label class="font-size-base font-weight-normal mb-0 mr-3 align-middle">{{ 'COMMON.RIGHT_NOW' | translate }}</label>
-                      <div class="switch">
-                        <input type="radio"
-                               id="rightNow-no"
-                               [value]="false"
+                      <label class="switch-toggle">
+                        <input type="checkbox"
                                formControlName="rightNow"
                                (change)="onChangeRightNow()">
-                        <label for="rightNow-no">{{ 'COMMON.NO' | translate }}</label>
-                        <input type="radio"
-                               id="rightNow-na"
-                               [value]="null"
-                               formControlName="rightNow"
-                               (change)="onChangeRightNow()">
-                        <label for="rightNow-na">{{ 'COMMON.NA' | translate }}</label>
-                        <input type="radio"
-                               id="rightNow-yes"
-                               [value]="true"
-                               formControlName="rightNow"
-                               (change)="onChangeRightNow()">
-                        <label for="rightNow-yes">{{ 'COMMON.YES' | translate }}</label>
-                        <span class="slider"></span>
-                      </div>
+                        <span class="slider round"></span>
+                      </label>
                     </div>
                     <div *ngIf="!rightNow.value">
                       <input class="form-control text-right mt-2"

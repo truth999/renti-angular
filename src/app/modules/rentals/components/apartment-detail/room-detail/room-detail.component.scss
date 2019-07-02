@@ -1,4 +1,4 @@
-@import "~src/assets/styles/scss/variables";
+@import "../../../../../../assets/styles/scss/variables";
 
 .room-detail {
   .icon-fullscreen {
@@ -9,11 +9,5 @@
   .icon-left-circle {
     font-size: 28px;
     color: $blue;
-  }
-
-  .equipped {
-    @include media-breakpoint-up(lg) {
-      border: none;
-    }
   }
 }

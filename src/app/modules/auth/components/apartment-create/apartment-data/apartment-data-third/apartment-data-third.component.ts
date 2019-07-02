@@ -46,7 +46,7 @@ export class ApartmentDataThirdComponent implements OnInit {
       deposit: new FormControl(null, [Validators.min(1000), Validators.max(2000000)]),
       minimumRentingTime: new FormControl(null),
       dateOfMovingIn: new FormGroup({
-        rightNow: new FormControl(null),
+        rightNow: new FormControl(false),
         date: new FormControl(null)
       })
     });

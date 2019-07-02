@@ -347,6 +347,7 @@
     "BETWEEN_MIN_MAX": "This field must be between {{ min }} and {{ max }}.",
     "MIN_FIELD": "This field must not be less than {{ min }}.",
     "MAX_FIELD": "This field must not be less than {{ max }}.",
-    "PASSWORD_INCORRECT": "Password is incorrect."
+    "PASSWORD_INCORRECT": "Password is incorrect.",
+    "ADDRESS_ALREADY_EXIST": "The address already exists."
   }
 }

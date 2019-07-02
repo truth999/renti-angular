@@ -56,11 +56,12 @@
             <div class="draw-room">
               <img src="/assets/images/floor_plan.png" alt="">
             </div>
-            <ul class="list-unstyled mt-3">
+            <ul class="list-unstyled mt-3 mb-5">
               <li class="font-weight-bold my-1" *ngFor="let room of apartment.rooms; let i = index">
-                <a [routerLink]="['/app/rentals/room', room._id]">{{ i + 1 }}: {{ room.name }}</a>
+                <a [routerLink]="['room', room._id]">{{ i + 1 }}: {{ room.name }}</a>
               </li>
             </ul>
+            <router-outlet></router-outlet>
           </div>
           <div class="d-lg-none">
             <table class="table mt-4">
@@ -212,13 +213,6 @@
         </span>
             </div>
             <p class="mt-3">{{ apartment.address }}</p>
-            <!--        <div class="data-complete w-100">-->
-            <!--          <div class="data-status d-flex justify-content-between font-weight-bold mb-2">-->
-            <!--            <span>{{ 'APARTMENT.DATA_COMPLETION' | translate }}:</span>-->
-            <!--            <span>97/132</span>-->
-            <!--          </div>-->
-            <!--          <p><ngb-progressbar [value]="73" height="10px"></ngb-progressbar></p>-->
-            <!--        </div>-->
             <div class="button-group d-flex justify-content-between mt-4">
               <button class="btn btn-outline-primary btn-lg"
                       *ngIf="!favorite"

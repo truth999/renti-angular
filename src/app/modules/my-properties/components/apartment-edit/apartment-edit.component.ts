@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -14,6 +14,7 @@ import { ImageUploaderService } from '../../../../core/services/image-uploader.s
 import { Apartment } from '../../../../shared/models';
 
 import { environment } from '../../../../../environments/environment';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-apartment-edit',
@@ -30,6 +31,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   mediaService = [
     'UPC', 'DIGI', 'Telekom', 'Other'
   ];
+
+  searchTerms = new EventEmitter<string>();
 
   constructor(
     private router: Router,
@@ -65,6 +68,22 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     } catch (e) {
       console.log('ApartmentEditComponent->ngOnInit', e);
     }
+
+    this.searchTerms
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(async term => {
+        try {
+          const addressResponse = await this.myPropertiesService.checkAddress(term);
+          if (addressResponse && addressResponse.message) {
+            this.apartmentForm.get('address').setErrors({ checkError: true, errorMsg: addressResponse.message });
+          }
+        } catch (e) {
+          console.log('ApartmentEditComponent->searchTerms', e);
+        }
+      });
   }
 
   ngDoCheck() {
@@ -131,17 +150,6 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       pictures: new FormArray(this.apartment.pictures.length !== 0 ? this.apartment.pictures.map(picture => {
         return new FormControl(picture);
       }) : [])
-      // roomsData: new FormArray(!!this.apartment.roomsData ? this.apartment.roomsData.map(room => {
-      //   return new FormGroup({
-      //     name: new FormControl(room.name),
-      //     size: new FormControl(room.size, [Validators.required, Validators.min(0)]),
-      //     windowType: new FormControl(room.windowType)
-      //   });
-      // }) : [new FormGroup({
-      //   name: new FormControl(null),
-      //   size: new FormControl(null, [Validators.required, Validators.min(0)]),
-      //   windowType: new FormControl(null)
-      // })])
     });
   }
 
@@ -205,21 +213,10 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     }
   }
 
-  // get roomsData() {
-  //   return this.apartmentForm.get('roomsData') as FormArray;
-  // }
-
   handleAddressChange(address: Address) {
     this.apartmentForm.get('address').setValue(address.formatted_address);
+    this.searchTerms.emit(address.formatted_address);
   }
-
-  // onAddRoom() {
-  //   this.roomsData.push(new FormGroup({
-  //     name: new FormControl(null),
-  //     size: new FormControl(null, [Validators.required, Validators.min(0)]),
-  //     windowType: new FormControl(null)
-  //   }));
-  // }
 
   async onFilesChange(event) {
     const newApartmentPictures = event.target.files;
@@ -237,6 +234,10 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
   removeApartmentPicture(index) {
     this.pictures.removeAt(index);
+  }
+
+  search(term: string) {
+    this.searchTerms.emit(term);
   }
 
   arrayNumber(n: number) {

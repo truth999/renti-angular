@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { ToastrService } from 'ngx-toastr';
 
@@ -32,7 +31,6 @@ export class ApartmentDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location,
     private rentalsService: RentalsService,
     private storageService: StorageService,
     private authService: AuthService,
@@ -140,7 +138,7 @@ export class ApartmentDetailComponent implements OnInit {
   }
 
   onBack() {
-    this.location.back();
+    this.router.navigate(['/app/rentals/search']);
   }
 
 }
