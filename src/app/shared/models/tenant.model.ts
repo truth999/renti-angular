@@ -28,6 +28,11 @@ export class Tenant {
   monthlyIncome: string;
   otherText: string;
   freeTextIntroduction: string;
+  socialMediaAvailabilities: {
+    facebook: string;
+    linkedin: string;
+    instagram: string
+  };
   rank: number;
   offers: Offer[];
   feedback: Feedback[];

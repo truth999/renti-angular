@@ -19,6 +19,7 @@ import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
 import { MyProfileService } from '../../../services/my-profile.service';
+declare var FB: any;
 
 @Component({
   selector: 'app-my-profile-tenant',
@@ -34,6 +35,7 @@ export class TenantComponent implements OnInit {
   pattern = Validate;
   rate: number;
   feedbackNumber: number;
+  facebookUrl: string;
 
   spokenLanguages = [
     'Hungarian',
@@ -106,6 +108,27 @@ export class TenantComponent implements OnInit {
     });
 
     this.years = this.dateSelectService.getYears();
+
+    (window as any).fbAsyncInit = () => {
+      FB.init({
+        appId: '2427761724124878',
+        cookie: true,
+        xfbml: true,
+        version: 'v3.3'
+      });
+    };
+
+    ((d, s, id) => {
+      let js;
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
   }
 
   buildTenantForm() {
@@ -144,6 +167,11 @@ export class TenantComponent implements OnInit {
       freeTextIntroduction: new FormControl(
         this.tenant.freeTextIntroduction
       ),
+      socialMediaAvailabilities: new FormGroup({
+        facebook: new FormControl(!!this.tenant.socialMediaAvailabilities ? this.tenant.socialMediaAvailabilities.facebook : null),
+        linkedin: new FormControl(!!this.tenant.socialMediaAvailabilities ? this.tenant.socialMediaAvailabilities.linkedin : null),
+        instagram: new FormControl(!!this.tenant.socialMediaAvailabilities ? this.tenant.socialMediaAvailabilities.instagram : null)
+      }),
       profilePicture: new FormControl(this.tenant.profilePicture)
     });
   }
@@ -237,6 +265,19 @@ export class TenantComponent implements OnInit {
       day = '0' + day;
     }
     return [year, month, day].join('.');
+  }
+
+  loginFacebook() {
+    FB.login((response) => {
+      if (response.status === 'connected') {
+        FB.api('/me', res => {
+          const urlName = res.name.toLowerCase().split(' ').join('');
+          const profileUrl = 'https://www.facebook.com/' + urlName;
+          this.tenantForm.get('socialMediaAvailabilities').get('facebook').setValue(profileUrl);
+        });
+      } else {
+      }
+    });
   }
 
   async submit() {

@@ -337,46 +337,52 @@
             </div>
             <div class="social mt-4">
               <h5 class="font-weight-bolder">{{ 'PROFILE.MY_SOCIAL_PROFILES' | translate }}:</h5>
-              <table class="table table-borderless">
+              <p>If you verified social account, please click the social icon.</p>
+              <table class="table table-borderless"
+                     formGroupName="socialMediaAvailabilities">
                 <tbody>
                 <tr>
                   <td class="pl-0 pt-0">
-                    <img src="/assets/images/social/facebook.png" alt="">
+                    <img src="/assets/images/social/facebook.png"
+                         alt=""
+                         class="rounded"
+                         (click)="loginFacebook()"
+                         style="cursor: pointer;">
                   </td>
                   <td class="px-0 pt-0 w-100">
-                    <input type="text" class="form-control" placeholder="Facebook username:">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Click the Facebook icon."
+                           formControlName="facebook"
+                           readonly>
                   </td>
                 </tr>
                 <tr>
                   <td class="pl-0 pt-0">
-                    <img src="/assets/images/social/twitter.png" alt="">
+                    <img src="/assets/images/social/linkedin.png"
+                         alt=""
+                         class="rounded">
                   </td>
                   <td class="px-0 pt-0 w-100">
-                    <input type="text" class="form-control" placeholder="Twitter username:">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Click the Linkedin icon."
+                           formControlName="linkedin"
+                           readonly>
                   </td>
                 </tr>
                 <tr>
                   <td class="pl-0 pt-0">
-                    <img src="/assets/images/social/twitch.png" alt="">
+                    <img src="/assets/images/social/instagram.png"
+                         alt=""
+                         class="rounded">
                   </td>
                   <td class="px-0 pt-0 w-100">
-                    <input type="text" class="form-control" placeholder="Twitch username:">
-                  </td>
-                </tr>
-                <tr>
-                  <td class="pl-0 pt-0">
-                    <img src="/assets/images/social/youtube.png" alt="">
-                  </td>
-                  <td class="px-0 pt-0 w-100">
-                    <input type="text" class="form-control" placeholder="Youtube username:">
-                  </td>
-                </tr>
-                <tr>
-                  <td class="pl-0 pt-0">
-                    <img src="/assets/images/social/instagram.png" alt="">
-                  </td>
-                  <td class="px-0 pt-0 w-100">
-                    <input type="text" class="form-control" placeholder="Instagram username:">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Click the Instagram icon."
+                           formControlName="instagram"
+                           readonly>
                   </td>
                 </tr>
                 </tbody>
