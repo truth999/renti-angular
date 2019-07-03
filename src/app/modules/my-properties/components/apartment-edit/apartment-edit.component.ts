@@ -1,7 +1,8 @@
 import { Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +15,15 @@ import { ImageUploaderService } from '../../../../core/services/image-uploader.s
 import { Apartment } from '../../../../shared/models';
 
 import { environment } from '../../../../../environments/environment';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+const addressFormGroupValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const city = control.get('city');
+  const building = control.get('building');
+  const floor = control.get('floor');
+  const door = control.get('door');
+
+  return city && building && floor && door && city.valid && building.valid && floor.valid && door.valid ? null : { required: true };
+};
 
 @Component({
   selector: 'app-apartment-edit',
@@ -32,7 +41,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     'UPC', 'DIGI', 'Telekom', 'Other'
   ];
 
-  searchTerms = new EventEmitter<string>();
+  searchTerms = new EventEmitter<Apartment['address']>();
 
   constructor(
     private router: Router,
@@ -74,9 +83,16 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
         debounceTime(300),
         distinctUntilChanged()
       )
-      .subscribe(async term => {
+      .subscribe(async (term: Apartment['address']) => {
         try {
-          const addressResponse = await this.myPropertiesService.checkAddress(term);
+          const params = new URLSearchParams();
+          for (const key in term) {
+            if (term.hasOwnProperty(key)) {
+              params.set(key, term[key]);
+            }
+          }
+          params.set('id', id);
+          const addressResponse = await this.myPropertiesService.checkAddress(params.toString());
           if (addressResponse && addressResponse.message) {
             this.apartmentForm.get('address').setErrors({ checkError: true, errorMsg: addressResponse.message });
           }
@@ -97,7 +113,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   buildApartmentForm() {
     this.apartmentForm = new FormGroup({
       name: new FormControl(this.apartment.name, Validators.required),
-      address: new FormControl(this.apartment.address, Validators.required),
+      address: new FormGroup({
+        city: new FormControl(this.apartment.address.city, Validators.required),
+        building: new FormControl(this.apartment.address.building, Validators.required),
+        floor: new FormControl(this.apartment.address.floor, Validators.required),
+        door: new FormControl(this.apartment.address.door, Validators.required)
+      }, { validators: addressFormGroupValidator }),
       typeOfBuilding: new FormControl(this.apartment.typeOfBuilding),
       yearOfConstruction: new FormControl(this.apartment.yearOfConstruction),
       stateOfApartment: new FormControl(this.apartment.stateOfApartment),
@@ -214,8 +235,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   }
 
   handleAddressChange(address: Address) {
-    this.apartmentForm.get('address').setValue(address.formatted_address);
-    this.searchTerms.emit(address.formatted_address);
+    this.apartmentForm.get('address').get('city').setValue(address.formatted_address);
+    this.searchTerms.emit(this.apartmentForm.get('address').value);
   }
 
   async onFilesChange(event) {
@@ -236,7 +257,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     this.pictures.removeAt(index);
   }
 
-  search(term: string) {
+  search(term: Apartment['address']) {
     this.searchTerms.emit(term);
   }
 

@@ -304,7 +304,10 @@
     "FURNITURE_TYPE": "Bútor típusa",
     "SIZE": "Méret",
     "SELECT_WINDOW_TYPE": "Válassza ki az ablak szigetelését",
-    "DESCRIPTION": "Description"
+    "DESCRIPTION": "Description",
+    "BUILDING": "Building",
+    "FLOOR": "Floor",
+    "DOOR": "Door"
   },
   "OFFER": {
     "MOVING_IN_WITH": "Kivel költözne",

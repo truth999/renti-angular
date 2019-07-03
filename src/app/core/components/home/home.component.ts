@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
         });
       });
       apartmentResponse.apartments.map(apartment => {
-        this.geocoder.geocode({ address: apartment.address }, (results, status) => {
+        this.geocoder.geocode({ address: apartment.address.city }, (results, status) => {
           if (status === google.maps.GeocoderStatus.OK) {
             this.apartmentLocations.push(results[0].geometry.location);
           }

@@ -50,7 +50,7 @@ export class ApartmentCreateService {
   }
 
   checkAddress(term: string): Promise<any> {
-    return this.apiService.get(`apartments/check-address?term=${term}`);
+    return this.apiService.get(`apartments/check-address?${term}`);
   }
 
 }

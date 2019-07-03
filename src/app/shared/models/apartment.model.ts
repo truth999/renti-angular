@@ -6,7 +6,12 @@ export class Apartment {
   _id: string;
   landlord: Landlord;
   name: string;
-  address: string;
+  address: {
+    city: string;
+    building: string;
+    floor: string;
+    door: string;
+  };
   typeOfBuilding: string;
   yearOfConstruction: number;
   stateOfApartment: string;

@@ -113,36 +113,13 @@ export class SearchApartmentComponent implements OnInit {
       deposit: new FormControl(null),
       minimumRentingTime: new FormControl(null),
       dateOfMovingIn: new FormGroup({
-        rightNow: new FormControl(null),
-        date: new FormControl(null)
+        rightNow: new FormControl(null)
       })
     });
   }
 
   handleAddressChange(address: Address) {
     this.searchForm.get('address').setValue(address.formatted_address);
-  }
-
-  onChangeFurnished(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('furnished').setValue(null);
-    } else {
-      this.searchForm.get('furnished').setValue(false);
-    }
-  }
-
-  onChangeRightNow(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('dateOfMovingIn').get('rightNow').setValue(null);
-    } else {
-      this.searchForm.get('dateOfMovingIn').get('rightNow').setValue(false);
-    }
-  }
-
-  changeRightNow() {
-    if (this.searchForm.get('dateOfMovingIn').get('rightNow')) {
-      this.searchForm.get('dateOfMovingIn').get('date').setValue(null);
-    }
   }
 
   onChangeTypeOfBuilding(event: Event) {
@@ -193,22 +170,6 @@ export class SearchApartmentComponent implements OnInit {
     }
   }
 
-  onChangeElevator(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('elevator').setValue(null);
-    } else {
-      this.searchForm.get('elevator').setValue(false);
-    }
-  }
-
-  onChangeRooftop(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('rooftop').setValue(null);
-    } else {
-      this.searchForm.get('rooftop').setValue(false);
-    }
-  }
-
   onChangeBuildingSiting(event: Event) {
     if (!(event.target as HTMLInputElement).checked) {
       this.searchForm.get('buildingSiting').setValue(null);
@@ -239,127 +200,31 @@ export class SearchApartmentComponent implements OnInit {
     }
   }
 
-  onChangeChildFriendly(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('childFriendly').setValue(null);
-    } else {
-      this.searchForm.get('childFriendly').setValue(false);
-    }
-  }
-
-  onChangePetFriendly(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('petFriendly').setValue(null);
-    } else {
-      this.searchForm.get('petFriendly').setValue(false);
-    }
-  }
-
   onChangeMediaServiceProviders(event: Event) {
     if (!(event.target as HTMLInputElement).checked) {
       this.searchForm.get('mediaServiceProviders').setValue(null);
     }
   }
 
-  onChangeHandicapAccessible(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('handicapAccessible').setValue(null);
-    } else {
-      this.searchForm.get('handicapAccessible').setValue(false);
-    }
+  onChangeBalcony() {
+    this.searchForm.get('balcony').value
+      ? this.searchForm.get('sizeOfBalcony').setValue([0, 100])
+      : this.searchForm.get('sizeOfBalcony').setValue(null);
   }
 
-  onChangeExternalIsolation(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('externalIsolation').setValue(null);
-    } else {
-      this.searchForm.get('externalIsolation').setValue(false);
-    }
+  onChangeGarden() {
+    this.searchForm.get('garden').value
+      ? this.searchForm.get('sizeOfGarden').setValue([0, 999999])
+      : this.searchForm.get('sizeOfGarden').setValue(null);
   }
 
-  onChangeBalcony(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('balcony').setValue(null);
-      this.searchForm.get('sizeOfBalcony').setValue(null);
-    } else {
-      this.searchForm.get('balcony').setValue(false);
-    }
-  }
-
-  changeBalcony() {
-    if (!this.searchForm.get('balcony').value) {
-      this.searchForm.get('sizeOfBalcony').setValue(null);
-    }
-  }
-
-  onChangeSizeOfBalcony(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('sizeOfBalcony').setValue(null);
-    } else {
-      this.searchForm.get('sizeOfBalcony').setValue([0, 100]);
-    }
-  }
-
-  onChangeGarden(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('garden').setValue(null);
-      this.searchForm.get('sizeOfGarden').setValue(null);
-    } else {
-      this.searchForm.get('garden').setValue(false);
-    }
-  }
-
-  changeGarden() {
-    if (!this.searchForm.get('garden').value) {
-      this.searchForm.get('sizeOfGarden').setValue(null);
-    }
-  }
-
-  onChangeSizeOfGarden(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('sizeOfGarden').setValue(null);
-    } else {
-      this.searchForm.get('sizeOfGarden').setValue([0, 999999]);
-    }
-  }
-
-  onChangeTerrace(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('terrace').setValue(null);
-      this.searchForm.get('sizeOfTerrace').setValue(null);
-    } else {
-      this.searchForm.get('terrace').setValue(false);
-    }
-  }
-
-  changeTerrace() {
+  onChangeTerrace() {
     if (!this.searchForm.get('terrace').value) {
       this.searchForm.get('sizeOfTerrace').setValue(null);
     }
-  }
-
-  onChangeSizeOfTerrace(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('sizeOfTerrace').setValue(null);
-    } else {
-      this.searchForm.get('sizeOfTerrace').setValue([1, 100]);
-    }
-  }
-
-  onChangeAirConditioner(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('airConditioner').setValue(null);
-    } else {
-      this.searchForm.get('airConditioner').setValue(false);
-    }
-  }
-
-  onChangeGarage(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('garage').setValue(null);
-    } else {
-      this.searchForm.get('garage').setValue(false);
-    }
+    this.searchForm.get('terrace').value
+      ? this.searchForm.get('sizeOfTerrace').setValue([1, 100])
+      : this.searchForm.get('sizeOfTerrace').setValue(null);
   }
 
   onChangeOverhead(event: Event) {
@@ -384,12 +249,6 @@ export class SearchApartmentComponent implements OnInit {
     }
   }
 
-  onChangeDate(event: Event) {
-    if (!(event.target as HTMLInputElement).checked) {
-      this.searchForm.get('dateOfMovingIn').get('date').setValue(null);
-    }
-  }
-
   clearAllFilters() {
     const checkboxes = document.querySelectorAll('.search-checkbox');
     checkboxes.forEach((checkbox: HTMLInputElement) => {
@@ -405,9 +264,6 @@ export class SearchApartmentComponent implements OnInit {
 
   async submit() {
     const filters = this.searchForm.value;
-    if (filters.dateOfMovingIn.rightNow === null && filters.dateOfMovingIn.date === null) {
-      filters.dateOfMovingIn = null;
-    }
 
     try {
       const response = await this.rentalsService.getSearchApartments(this.page, filters);

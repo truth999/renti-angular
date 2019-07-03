@@ -36,7 +36,7 @@ export class HeatmapComponent implements OnInit {
       const apartmentResponse = await this.heatmapService.getApartments(this.page);
       const tenantResponse = await this.heatmapService.getTenants(this.page);
       apartmentResponse.apartments.map(apartment => {
-        this.geocoder.geocode({ address: apartment.address }, (results, status) => {
+        this.geocoder.geocode({ address: apartment.address.city }, (results, status) => {
           if (status === google.maps.GeocoderStatus.OK) {
             this.apartmentLocations.push(results[0].geometry.location);
           }

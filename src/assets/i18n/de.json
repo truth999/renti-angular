@@ -304,7 +304,10 @@
     "FURNITURE_TYPE": "Möbeltyp",
     "SIZE": "Größe",
     "SELECT_WINDOW_TYPE": "Wählen Sie Typ der Fenster",
-    "DESCRIPTION": "Description"
+    "DESCRIPTION": "Description",
+    "BUILDING": "Building",
+    "FLOOR": "Floor",
+    "DOOR": "Door"
   },
   "OFFER": {
     "MOVING_IN_WITH": "Mit wem ziehen Sie ein",

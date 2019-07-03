@@ -60,14 +60,48 @@
                       {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
                 </span>
               </div>
-              <div class="form-group pt-4 address">
-                <label for="address1" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
+              <div class="form-group pt-4 address"
+                   formGroupName="address">
+                <label for="address1"
+                       class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
                 <input ngx-google-places-autocomplete
                        id="address1"
                        class="form-control"
                        (onAddressChange)="handleAddressChange($event)"
-                       formControlName="address"
+                       formControlName="city"
                        (input)="search(apartmentForm.get('address').value)">
+                <div class="d-flex mt-2">
+                  <div class="form-group mr-2 mb-0">
+                    <label for="building1"
+                           class="font-size-base">{{ 'APARTMENT.BUILDING' | translate }}</label>
+                    <input type="text"
+                           id="building1"
+                           class="form-control"
+                           placeholder="{{ 'APARTMENT.BUILDING' | translate }}"
+                           formControlName="building"
+                           (input)="search(apartmentForm.get('address').value)">
+                  </div>
+                  <div class="form-group mr-2 mb-0">
+                    <label for="floor1"
+                           class="font-size-base">{{ 'APARTMENT.FLOOR' | translate }}</label>
+                    <input type="text"
+                           id="floor1"
+                           class="form-control mr-2"
+                           placeholder="{{ 'APARTMENT.FLOOR' | translate }}"
+                           formControlName="floor"
+                           (input)="search(apartmentForm.get('address').value)">
+                  </div>
+                  <div class="form-group mb-0">
+                    <label for="door1"
+                           class="font-size-base">{{ 'APARTMENT.DOOR' | translate }}</label>
+                    <input type="text"
+                           id="door1"
+                           class="form-control"
+                           placeholder="{{ 'APARTMENT.DOOR' | translate }}"
+                           formControlName="door"
+                           (input)="search(apartmentForm.get('address').value)">
+                  </div>
+                </div>
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('address').invalid && (apartmentForm.get('address').dirty || apartmentForm.get('address').touched)">
                   <span *ngIf="apartmentForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   <span *ngIf="apartmentForm.get('address').errors.checkError">{{ 'ERROR.' + apartmentForm.get('address').errors.errorMsg | translate }}</span>
@@ -790,14 +824,48 @@
                       {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
                 </span>
               </div>
-              <div class="form-group pt-4 position-relative address">
-                <label for="address" class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
+              <div class="form-group pt-4 position-relative address"
+                   formGroupName="address">
+                <label for="address"
+                       class="h5 font-weight-bolder">{{ 'COMMON.ADDRESS' | translate }}:</label>
                 <input ngx-google-places-autocomplete
                        id="address"
                        class="form-control"
                        (onAddressChange)="handleAddressChange($event)"
-                       formControlName="address"
+                       formControlName="city"
                        (input)="search(apartmentForm.get('address').value)">
+                <div class="d-flex mt-2">
+                  <div class="form-group mr-2 mb-0">
+                    <label for="building"
+                           class="font-size-base">{{ 'APARTMENT.BUILDING' | translate }}</label>
+                    <input type="text"
+                           id="building"
+                           class="form-control"
+                           placeholder="{{ 'APARTMENT.BUILDING' | translate }}"
+                           formControlName="building"
+                           (input)="search(apartmentForm.get('address').value)">
+                  </div>
+                  <div class="form-group mr-2 mb-0">
+                    <label for="floor"
+                           class="font-size-base">{{ 'APARTMENT.FLOOR' | translate }}</label>
+                    <input type="text"
+                           id="floor"
+                           class="form-control mr-2"
+                           placeholder="{{ 'APARTMENT.FLOOR' | translate }}"
+                           formControlName="floor"
+                           (input)="search(apartmentForm.get('address').value)">
+                  </div>
+                  <div class="form-group mb-0">
+                    <label for="door"
+                           class="font-size-base">{{ 'APARTMENT.DOOR' | translate }}</label>
+                    <input type="text"
+                           id="door"
+                           class="form-control"
+                           placeholder="{{ 'APARTMENT.DOOR' | translate }}"
+                           formControlName="door"
+                           (input)="search(apartmentForm.get('address').value)">
+                  </div>
+                </div>
                 <div class="invalid-feedback d-block" *ngIf="apartmentForm.get('address').invalid && (apartmentForm.get('address').dirty || apartmentForm.get('address').touched)">
                   <span *ngIf="apartmentForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   <span *ngIf="apartmentForm.get('address').errors.checkError">{{ 'ERROR.' + apartmentForm.get('address').errors.errorMsg | translate }}</span>

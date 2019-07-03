@@ -38,7 +38,7 @@
                  formControlName="address">
         </div>
       </div>
-      <div class="search-price p-3">
+      <div class="search-price px-3 pt-3">
         <label class="font-weight-bold">{{ 'SEARCH.PRICE_PER_MONTH' | translate }}:</label>
         <nouislider [connect]="true"
                     [min]="0"
@@ -49,43 +49,22 @@
       </div>
       <div class="search-features border-top p-3 d-block">
         <h6 class="font-size-lg mb-4">{{ 'SEARCH.MUST_HAVE_FEATURES' | translate }}:</h6>
-        <div class="pl-2 mb-3">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <label for="furnish" class="mb-0">{{ 'SEARCH.FURNISHED' | translate }}</label>
-            <input type="checkbox"
-                   id="furnish"
-                   class="search-checkbox"
-                   #furnished
-                   (change)="onChangeFurnished($event)">
-          </div>
-          <div class="text-right"
-               *ngIf="furnished.checked">
-            <label class="switch-toggle">
-              <input type="checkbox"
-                     formControlName="furnished">
-              <span class="slider round"></span>
-            </label>
-          </div>
+        <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+          <label for="furnish"
+                 class="mb-0">{{ 'SEARCH.FURNISHED' | translate }}</label>
+          <input type="checkbox"
+                 id="furnish"
+                 class="search-checkbox"
+                 formControlName="furnished">
         </div>
-        <div class="pl-2 mb-3"
+        <div class="d-flex justify-content-between align-items-center pl-2 mb-3"
              formGroupName="dateOfMovingIn">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <label for="availability" class="mb-0">{{ 'SEARCH.IMMEDIATE_AVAILABILITY' | translate }}</label>
-            <input type="checkbox"
-                   id="availability"
-                   class="search-checkbox"
-                   #rightNow
-                   (change)="onChangeRightNow($event)">
-          </div>
-          <div class="text-right"
-               *ngIf="rightNow.checked">
-            <label class="switch-toggle">
-              <input type="checkbox"
-                     formControlName="rightNow"
-                     (change)="changeRightNow()">
-              <span class="slider round"></span>
-            </label>
-          </div>
+          <label for="availability"
+                 class="mb-0">{{ 'SEARCH.IMMEDIATE_AVAILABILITY' | translate }}</label>
+          <input type="checkbox"
+                 id="availability"
+                 class="search-checkbox"
+                 formControlName="rightNow">
         </div>
         <button type="button"
                 class="btn btn-outline-primary btn-lg w-100 mt-4"
@@ -104,14 +83,15 @@
                      #typeOfBuilding
                      (change)="onChangeTypeOfBuilding($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="typeOfBuilding"
-                    *ngIf="typeOfBuilding.checked">
-              <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
-              <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
-              <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
-              <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="typeOfBuilding"
+                       *ngIf="typeOfBuilding.checked">
+              <ng-option value="brick">{{ 'APARTMENT.BRICK' | translate }}</ng-option>
+              <ng-option value="panel">{{ 'APARTMENT.PANEL' | translate }}</ng-option>
+              <ng-option value="loam">{{ 'APARTMENT.LOAM' | translate }}</ng-option>
+              <ng-option value="other">{{ 'COMMON.OTHER' | translate }}</ng-option>
+            </ng-select>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -123,12 +103,13 @@
                      #yearOfConstruction
                      (change)="onChangeYearOfConstruction($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="yearOfConstruction"
-                    *ngIf="yearOfConstruction.checked">
-              <option *ngFor="let year of years"
-                      [value]="year">{{ year }}</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="yearOfConstruction"
+                       *ngIf="yearOfConstruction.checked">
+              <ng-option *ngFor="let year of years"
+                         [value]="year">{{ year }}</ng-option>
+            </ng-select>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -139,14 +120,15 @@
                      #stateOfApartment
                      (change)="onChangeStateOfApartment($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="stateOfApartment"
-                    *ngIf="stateOfApartment.checked">
-              <option value="new">{{ 'COMMON.NEW' | translate }}</option>
-              <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
-              <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
-              <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="stateOfApartment"
+                       *ngIf="stateOfApartment.checked">
+              <ng-option value="new">{{ 'COMMON.NEW' | translate }}</ng-option>
+              <ng-option value="good">{{ 'COMMON.GOOD' | translate }}</ng-option>
+              <ng-option value="normal">{{ 'COMMON.NORMAL' | translate }}</ng-option>
+              <ng-option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</ng-option>
+            </ng-select>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -158,22 +140,23 @@
                      #energyPerformanceCertificate
                      (change)="onChangeEnergyPerformanceCertificate($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="energyPerformanceCertificate"
-                    *ngIf="energyPerformanceCertificate.checked">
-              <option value="aapp">AA++</option>
-              <option value="aap">AA+</option>
-              <option value="aa">AA</option>
-              <option value="bb">BB</option>
-              <option value="cc">CC</option>
-              <option value="dd">DD</option>
-              <option value="ee">EE</option>
-              <option value="ff">FF</option>
-              <option value="gg">GG</option>
-              <option value="hh">HH</option>
-              <option value="ii">II</option>
-              <option value="jj">JJ</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="energyPerformanceCertificate"
+                       *ngIf="energyPerformanceCertificate.checked">
+              <ng-option value="aapp">AA++</ng-option>
+              <ng-option value="aap">AA+</ng-option>
+              <ng-option value="aa">AA</ng-option>
+              <ng-option value="bb">BB</ng-option>
+              <ng-option value="cc">CC</ng-option>
+              <ng-option value="dd">DD</ng-option>
+              <ng-option value="ee">EE</ng-option>
+              <ng-option value="ff">FF</ng-option>
+              <ng-option value="gg">GG</ng-option>
+              <ng-option value="hh">HH</ng-option>
+              <ng-option value="ii">II</ng-option>
+              <ng-option value="jj">JJ</ng-option>
+            </ng-select>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -228,42 +211,20 @@
                         [formControl]="searchForm.controls.size"
                         [tooltips]="[true, true]"></nouislider>
           </div>
-          <div class="pl-2 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="elevator"
-                     class="mb-0">{{ 'APARTMENT.ELEVATOR' | translate }}</label>
-              <input type="checkbox"
-                     id="elevator"
-                     class="search-checkbox"
-                     #elevator
-                     (change)="onChangeElevator($event)">
-            </div>
-            <div class="text-right"
-                 *ngIf="elevator.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="elevator">
-                <span class="slider round"></span>
-              </label>
-            </div>
+          <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+            <label for="elevator"
+                   class="mb-0">{{ 'APARTMENT.ELEVATOR' | translate }}</label>
+            <input type="checkbox"
+                   id="elevator"
+                   class="search-checkbox"
+                   formControlName="elevator">
           </div>
-          <div class="pl-2 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="rooftop" class="mb-0">{{ 'APARTMENT.ROOFTOP' | translate }}</label>
-              <input type="checkbox"
-                     id="rooftop"
-                     class="search-checkbox"
-                     #rooftop
-                     (change)="onChangeRooftop($event)">
-            </div>
-            <div class="text-right"
-                 *ngIf="rooftop.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="rooftop">
-                <span class="slider round"></span>
-              </label>
-            </div>
+          <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+            <label for="rooftop" class="mb-0">{{ 'APARTMENT.ROOFTOP' | translate }}</label>
+            <input type="checkbox"
+                   id="rooftop"
+                   class="search-checkbox"
+                   formControlName="rooftop">
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -275,14 +236,15 @@
                      #buildingSiting
                      (change)="onChangeBuildingSiting($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="buildingSiting"
-                    *ngIf="buildingSiting.checked">
-              <option value="east">{{ 'COMMON.EAST' | translate }}</option>
-              <option value="west">{{ 'COMMON.WEST' | translate }}</option>
-              <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
-              <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="buildingSiting"
+                       *ngIf="buildingSiting.checked">
+              <ng-option value="east">{{ 'COMMON.EAST' | translate }}</ng-option>
+              <ng-option value="west">{{ 'COMMON.WEST' | translate }}</ng-option>
+              <ng-option value="north">{{ 'COMMON.NORTH' | translate }}</ng-option>
+              <ng-option value="south">{{ 'COMMON.SOUTH' | translate }}</ng-option>
+            </ng-select>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -294,18 +256,19 @@
                      #typeOfHeating
                      (change)="onChangeTypeOfHeating($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="typeOfHeating"
-                    *ngIf="typeOfHeating.checked">
-              <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
-              <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
-              <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
-              <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
-              <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
-              <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
-              <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
-              <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="typeOfHeating"
+                       *ngIf="typeOfHeating.checked">
+              <ng-option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</ng-option>
+              <ng-option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</ng-option>
+              <ng-option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</ng-option>
+              <ng-option value="central">{{ 'COMMON.CENTRAL' | translate }}</ng-option>
+              <ng-option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</ng-option>
+              <ng-option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</ng-option>
+              <ng-option value="stove">{{ 'COMMON.STOVE' | translate }}</ng-option>
+              <ng-option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</ng-option>
+            </ng-select>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -316,14 +279,15 @@
                      #headroom
                      (change)="onChangeHeadroom($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="headroom"
-                    *ngIf="headroom.checked">
-              <option value="2m">< 2M</option>
-              <option value="2.5m">2.0 - 2.5M</option>
-              <option value="3m">2.5 - 3.0M</option>
-              <option value="3mp">> 3M</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="headroom"
+                       *ngIf="headroom.checked">
+              <ng-option value="2m">- 2M</ng-option>
+              <ng-option value="2.5m">2.0 - 2.5M</ng-option>
+              <ng-option value="3m">2.5 - 3.0M</ng-option>
+              <ng-option value="3mp">3M -</ng-option>
+            </ng-select>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -335,14 +299,15 @@
                      #parking
                      (change)="onChangeParking($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="parking"
-                    *ngIf="parking.checked">
-              <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
-              <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
-              <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
-              <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="parking"
+                       *ngIf="parking.checked">
+              <ng-option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</ng-option>
+              <ng-option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</ng-option>
+              <ng-option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</ng-option>
+              <ng-option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</ng-option>
+            </ng-select>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -354,51 +319,30 @@
                      #windowType
                      (change)="onChangeWindowType($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="windowType"
-                    *ngIf="windowType.checked">
-              <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>
-              <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
-              <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
-            </select>
+            <ng-select [multiple]="true"
+                       [closeOnSelect]="false"
+                       formControlName="windowType"
+                       *ngIf="windowType.checked">
+              <ng-option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</ng-option>
+              <ng-option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</ng-option>
+              <ng-option value="Other">{{ 'COMMON.OTHER' | translate }}</ng-option>
+            </ng-select>
           </div>
-          <div class="pl-2 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="childFriendly"
-                     class="mb-0">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</label>
-              <input type="checkbox"
-                     id="childFriendly"
-                     class="search-checkbox"
-                     #childFriendly
-                     (change)="onChangeChildFriendly($event)">
-            </div>
-            <div class="text-right"
-                 *ngIf="childFriendly.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="childFriendly">
-                <span class="slider round"></span>
-              </label>
-            </div>
+          <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+            <label for="childFriendly"
+                   class="mb-0">{{ 'APARTMENT.CHILD_FRIENDLY' | translate }}</label>
+            <input type="checkbox"
+                   id="childFriendly"
+                   class="search-checkbox"
+                   formControlName="childFriendly">
           </div>
-          <div class="pl-2 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="petFriendly"
-                     class="mb-0">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</label>
-              <input type="checkbox"
-                     id="petFriendly"
-                     class="search-checkbox"
-                     #petFriendly
-                     (change)="onChangePetFriendly($event)">
-            </div>
-            <div class="text-right"
-                 *ngIf="petFriendly.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="petFriendly">
-                <span class="slider round"></span>
-              </label>
-            </div>
+          <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+            <label for="petFriendly"
+                   class="mb-0">{{ 'APARTMENT.PET_FRIENDLY' | translate }}</label>
+            <input type="checkbox"
+                   id="petFriendly"
+                   class="search-checkbox"
+                   formControlName="petFriendly">
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -416,43 +360,21 @@
                        [closeOnSelect]="false"
                        formControlName="mediaServiceProviders"></ng-select>
           </div>
-          <div class="pl-2 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <label for="handicapAccessible"
-                     class="mb-0">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}</label>
-              <input type="checkbox"
-                     id="handicapAccessible"
-                     class="search-checkbox"
-                     #handicapAccessible
-                     (change)="onChangeHandicapAccessible($event)">
-            </div>
-            <div class="text-right"
-                 *ngIf="handicapAccessible.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="handicapAccessible">
-                <span class="slider round"></span>
-              </label>
-            </div>
+          <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+            <label for="handicapAccessible"
+                   class="mb-0">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}</label>
+            <input type="checkbox"
+                   id="handicapAccessible"
+                   class="search-checkbox"
+                   formControlName="handicapAccessible">
           </div>
-          <div class="pl-2 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="externalIsolation"
-                     class="mb-0">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</label>
-              <input type="checkbox"
-                     id="externalIsolation"
-                     class="search-checkbox"
-                     #externalIsolation
-                     (change)="onChangeExternalIsolation($event)">
-            </div>
-            <div class="text-right"
-                 *ngIf="externalIsolation.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="externalIsolation">
-                <span class="slider round"></span>
-              </label>
-            </div>
+          <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+            <label for="externalIsolation"
+                   class="mb-0">{{ 'APARTMENT.EXTERNAL_ISOLATION' | translate }}</label>
+            <input type="checkbox"
+                   id="externalIsolation"
+                   class="search-checkbox"
+                   formControlName="externalIsolation">
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -460,31 +382,10 @@
               <input type="checkbox"
                      id="balcony"
                      class="search-checkbox"
-                     #balcony
-                     (change)="onChangeBalcony($event)">
+                     formControlName="balcony"
+                     (change)="onChangeBalcony()">
             </div>
-            <div class="text-right"
-                 *ngIf="balcony.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="balcony"
-                       (change)="changeBalcony()">
-                <span class="slider round"></span>
-              </label>
-            </div>
-          </div>
-          <div class="pl-2 mb-3"
-               *ngIf="searchForm.get('balcony').value">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="sizeOfBalcony"
-                     class="mb-0">{{ 'APARTMENT.SIZE_OF_THE_BALCONY' | translate }} (m<sup>2</sup>)</label>
-              <input type="checkbox"
-                     id="sizeOfBalcony"
-                     class="search-checkbox"
-                     #sizeOfBalcony
-                     (change)="onChangeSizeOfBalcony($event)">
-            </div>
-            <nouislider *ngIf="sizeOfBalcony.checked"
+            <nouislider *ngIf="searchForm.get('balcony').value"
                         [connect]="true"
                         [min]="0"
                         [max]="100"
@@ -499,31 +400,10 @@
               <input type="checkbox"
                      id="garden"
                      class="search-checkbox"
-                     #garden
-                     (change)="onChangeGarden($event)">
+                     formControlName="garden"
+                     (change)="onChangeGarden()">
             </div>
-            <div class="text-right"
-                 *ngIf="garden.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="garden"
-                       (change)="changeGarden()">
-                <span class="slider round"></span>
-              </label>
-            </div>
-          </div>
-          <div class="pl-2 mb-3"
-               *ngIf="searchForm.get('garden').value">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="sizeOfGarden"
-                     class="mb-0">{{ 'APARTMENT.SIZE_OF_THE_GARDEN' | translate }} (m<sup>2</sup>)</label>
-              <input type="checkbox"
-                     id="sizeOfGarden"
-                     class="search-checkbox"
-                     #sizeOfGarden
-                     (change)="onChangeSizeOfGarden($event)">
-            </div>
-            <nouislider *ngIf="sizeOfGarden.checked"
+            <nouislider *ngIf="searchForm.get('garden').value"
                         [connect]="true"
                         [min]="0"
                         [max]="999999"
@@ -537,31 +417,10 @@
               <input type="checkbox"
                      id="terrace"
                      class="search-checkbox"
-                     #terrace
-                     (change)="onChangeTerrace($event)">
+                     formControlName="terrace"
+                     (change)="onChangeTerrace()">
             </div>
-            <div class="text-right"
-                 *ngIf="terrace.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="terrace"
-                       (change)="changeTerrace()">
-                <span class="slider round"></span>
-              </label>
-            </div>
-          </div>
-          <div class="pl-2 mb-3"
-               *ngIf="searchForm.get('terrace').value">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="sizeOfTerrace"
-                     class="mb-0">{{ 'APARTMENT.SIZE_OF_THE_TERRACE' | translate }} (m<sup>2</sup>)</label>
-              <input type="checkbox"
-                     id="sizeOfTerrace"
-                     class="search-checkbox"
-                     #sizeOfTerrace
-                     (change)="onChangeSizeOfTerrace($event)">
-            </div>
-            <nouislider *ngIf="sizeOfTerrace.checked"
+            <nouislider *ngIf="searchForm.get('terrace').value"
                         [connect]="true"
                         [min]="1"
                         [max]="100"
@@ -569,43 +428,21 @@
                         [formControl]="searchForm.controls.sizeOfTerrace"
                         [tooltips]="[true, true]"></nouislider>
           </div>
-          <div class="pl-2 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="airConditioner"
-                     class="mb-0">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</label>
-              <input type="checkbox"
-                     id="airConditioner"
-                     class="search-checkbox"
-                     #airConditioner
-                     (change)="onChangeAirConditioner($event)">
-            </div>
-            <div class="text-right"
-                 *ngIf="airConditioner.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="airConditioner">
-                <span class="slider round"></span>
-              </label>
-            </div>
+          <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+            <label for="airConditioner"
+                   class="mb-0">{{ 'APARTMENT.AIRCONDITIONER' | translate }}</label>
+            <input type="checkbox"
+                   id="airConditioner"
+                   class="search-checkbox"
+                   formControlName="airConditioner">
           </div>
-          <div class="pl-2 mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="garage"
-                     class="mb-0">{{ 'APARTMENT.GARAGE' | translate }}</label>
-              <input type="checkbox"
-                     id="garage"
-                     class="search-checkbox"
-                     #garage
-                     (change)="onChangeGarage($event)">
-            </div>
-            <div class="text-right"
-                 *ngIf="garage.checked">
-              <label class="switch-toggle">
-                <input type="checkbox"
-                       formControlName="garage">
-                <span class="slider round"></span>
-              </label>
-            </div>
+          <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
+            <label for="garage"
+                   class="mb-0">{{ 'APARTMENT.GARAGE' | translate }}</label>
+            <input type="checkbox"
+                   id="garage"
+                   class="search-checkbox"
+                   formControlName="garage">
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -659,26 +496,6 @@
               <option *ngFor="let month of arrayNumber(121); let i = index"
                       [value]="i">{{ i }}</option>
             </select>
-          </div>
-          <div class="pl-2 position-relative"
-               formGroupName="dateOfMovingIn"
-               *ngIf="!searchForm.get('dateOfMovingIn').get('rightNow').value">
-            <div class="d-flex justify-content-between align-items-center">
-              <label for="date"
-                     class="mb-0">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</label>
-              <input type="checkbox"
-                     id="date"
-                     class="search-checkbox"
-                     #date
-                     (change)="onChangeDate($event)">
-            </div>
-            <input class="form-control mt-3"
-                   placeholder="yyyy-mm-dd"
-                   ngbDatepicker
-                   #d="ngbDatepicker"
-                   (click)="d.toggle()"
-                   formControlName="date"
-                   *ngIf="date.checked">
           </div>
         </ng-container>
       </div>

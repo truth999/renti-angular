@@ -36,6 +36,6 @@ export class MyPropertiesService {
   }
 
   checkAddress(term: string): Promise<any> {
-    return this.apiService.get(`${this.apartmentUrl}/check-address?term=${term}`);
+    return this.apiService.get(`${this.apartmentUrl}/check-address?${term}`);
   }
 }

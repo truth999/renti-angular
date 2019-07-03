@@ -9,13 +9,46 @@
       <span *ngIf="apartmentDataFirstForm.get('name').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group"
+       formGroupName="address">
     <input ngx-google-places-autocomplete
            class="form-control"
            (onAddressChange)="handleAddressChange($event)"
-           formControlName="address"
+           formControlName="city"
            placeholder="{{ 'COMMON.ADDRESS' | translate }}:"
            (input)="search(apartmentDataFirstForm.get('address').value)">
+    <div class="d-flex mt-2">
+      <div class="form-group mr-2 mb-0">
+        <label for="building"
+               class="font-size-base">{{ 'APARTMENT.BUILDING' | translate }}</label>
+        <input type="text"
+               id="building"
+               class="form-control"
+               placeholder="{{ 'APARTMENT.BUILDING' | translate }}"
+               formControlName="building"
+               (input)="search(apartmentDataFirstForm.get('address').value)">
+      </div>
+      <div class="form-group mr-2 mb-0">
+        <label for="floor"
+               class="font-size-base">{{ 'APARTMENT.FLOOR' | translate }}</label>
+        <input type="text"
+               id="floor"
+               class="form-control mr-2"
+               placeholder="{{ 'APARTMENT.FLOOR' | translate }}"
+               formControlName="floor"
+               (input)="search(apartmentDataFirstForm.get('address').value)">
+      </div>
+      <div class="form-group mb-0">
+        <label for="door"
+               class="font-size-base">{{ 'APARTMENT.DOOR' | translate }}</label>
+        <input type="text"
+               id="door"
+               class="form-control"
+               placeholder="{{ 'APARTMENT.DOOR' | translate }}"
+               formControlName="door"
+               (input)="search(apartmentDataFirstForm.get('address').value)">
+      </div>
+    </div>
     <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('address').invalid && (apartmentDataFirstForm.get('address').dirty || apartmentDataFirstForm.get('address').touched)">
       <span *ngIf="apartmentDataFirstForm.get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
       <span *ngIf="apartmentDataFirstForm.get('address').errors.checkError">{{ 'ERROR.' + apartmentDataFirstForm.get('address').errors.errorMsg | translate }}</span>

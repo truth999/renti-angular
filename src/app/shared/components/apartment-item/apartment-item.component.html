@@ -9,7 +9,9 @@
   <div class="explain">
     <h6 class="font-size-lg mb-0">{{ apartment.name }}</h6>
     <p class="mb-0"
-       #addressParagraph>{{ apartment.address }}</p>
+       #addressParagraph>
+      {{ apartment.address.city }}, {{ apartment.address.building }}/{{ apartment.address.floor }}/{{ apartment.address.door }}
+    </p>
   </div>
   <table class="table mt-3 mb-0">
     <tr class="unit">
