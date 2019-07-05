@@ -29,7 +29,7 @@
                   <div class="img-item position-relative">
                     <img [src]="uploadBase + picture.value"
                          class="position-absolute rounded w-100 h-100">
-                    <div class="default d-flex align-items-center justify-content-center position-absolute text-center rounded"
+                    <div class="default d-flex align-items-center justify-content-center position-absolute text-center rounded py-2"
                          *ngIf="picture.value !== apartmentForm.get('setAsPicture').value"
                          (click)="setAsPicture(picture.value)">
                       {{ 'COMMON.SET_AS_DEFAULT' | translate }}

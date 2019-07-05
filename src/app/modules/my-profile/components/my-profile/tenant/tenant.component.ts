@@ -112,10 +112,10 @@ export class TenantComponent implements OnInit {
 
     (window as any).fbAsyncInit = () => {
       FB.init({
-        appId: environment.facebookAppId,
+        appId: environment.facebook.appId,
         cookie: true,
         xfbml: true,
-        version: environment.facebookVersion
+        version: environment.facebook.version
       });
     };
 
@@ -299,8 +299,8 @@ export class TenantComponent implements OnInit {
   }
 
   loginInstagram() {
-    const clientId = environment.instagramClientId;
-    const redirectUri = environment.instagramRedirectUri;
+    const clientId = environment.instagram.clientId;
+    const redirectUri = environment.instagram.redirectUri;
     window.location.href = `
       https://api.instagram.com/oauth/authorize/?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code
     `;
