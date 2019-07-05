@@ -47,6 +47,7 @@ export class Apartment {
     date: any;
   };
   pictures: string[];
+  setAsPicture: string;
   windowType: string;
   furnished: boolean;
   rank: number;

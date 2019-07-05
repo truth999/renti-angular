@@ -490,12 +490,13 @@
                      #minimumRentingTime
                      (change)="onChangeMinimumRentingTime($event)">
             </div>
-            <select class="custom-select"
-                    formControlName="minimumRentingTime"
-                    *ngIf="minimumRentingTime.checked">
-              <option *ngFor="let month of arrayNumber(121); let i = index"
-                      [value]="i">{{ i }}</option>
-            </select>
+            <nouislider *ngIf="minimumRentingTime.checked"
+                        [connect]="true"
+                        [min]="0"
+                        [max]="120"
+                        [step]="1"
+                        [formControl]="searchForm.controls.minimumRentingTime"
+                        [tooltips]="[true, true]"></nouislider>
           </div>
         </ng-container>
       </div>

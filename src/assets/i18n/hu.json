@@ -220,7 +220,8 @@
     "HEATMAP": "Heatmap",
     "MY_FAVORITES": "My favorites",
     "CHANGE_PASSWORD": "Change password",
-    "REJECT": "Reject"
+    "REJECT": "Reject",
+    "SET_AS_DEFAULT": "Set as default"
   },
   "HOME": {
     "TITLE": "Renti - az albérletek Kánaánja",

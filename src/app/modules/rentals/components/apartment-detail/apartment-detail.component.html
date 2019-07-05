@@ -39,7 +39,12 @@
                 {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
           </span>
             </div>
-            <p class="mt-3">{{ apartment.address }}</p>
+            <p class="mt-3">
+              {{ apartment.address.city }}{{ apartment.address.building || apartment.address.floor || apartment.address.door ? ',' : '' }}
+              {{ apartment.address.building }}
+              {{ apartment.address.floor }}
+              {{ apartment.address.door }}
+            </p>
             <div class="button-group d-flex justify-content-between mt-4">
               <button class="btn btn-outline-primary btn-lg"
                       *ngIf="!favorite"
@@ -212,7 +217,12 @@
                 {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
         </span>
             </div>
-            <p class="mt-3">{{ apartment.address }}</p>
+            <p class="mt-3">
+              {{ apartment.address.city }}{{ apartment.address.building || apartment.address.floor || apartment.address.door ? ',' : '' }}
+              {{ apartment.address.building }}
+              {{ apartment.address.floor }}
+              {{ apartment.address.door }}
+            </p>
             <div class="button-group d-flex justify-content-between mt-4">
               <button class="btn btn-outline-primary btn-lg"
                       *ngIf="!favorite"

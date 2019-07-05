@@ -32,7 +32,8 @@ export class ApartmentPictureComponent implements OnInit {
     this.apartmentPictureForm = new FormGroup({
       pictures: new FormArray(!!this.apartment ? this.apartment.pictures.map(picture => {
         return new FormControl(picture);
-      }) : [])
+      }) : []),
+      setAsPicture: new FormControl(!!this.apartment ? this.apartment.setAsPicture : null)
     });
 
     this.pictureValid.emit(true);
@@ -57,7 +58,14 @@ export class ApartmentPictureComponent implements OnInit {
   }
 
   removeApartmentPicture(index) {
+    if (this.pictures.value[index] === this.apartmentPictureForm.get('setAsPicture').value) {
+      this.apartmentPictureForm.get('setAsPicture').reset();
+    }
     this.pictures.removeAt(index);
+  }
+
+  setAsPicture(picture: string) {
+    this.apartmentPictureForm.get('setAsPicture').setValue(picture);
   }
 
   submit() {

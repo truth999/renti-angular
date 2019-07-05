@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
@@ -19,6 +19,7 @@ import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
 import { MyProfileService } from '../../../services/my-profile.service';
+
 declare var FB: any;
 
 @Component({
@@ -35,7 +36,6 @@ export class TenantComponent implements OnInit {
   pattern = Validate;
   rate: number;
   feedbackNumber: number;
-  facebookUrl: string;
 
   spokenLanguages = [
     'Hungarian',
@@ -58,6 +58,7 @@ export class TenantComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private location: Location,
     private photoUploadModalService: PhotoUploadModalService,
     private photoEditModalService: PhotoEditModalService,
@@ -111,10 +112,10 @@ export class TenantComponent implements OnInit {
 
     (window as any).fbAsyncInit = () => {
       FB.init({
-        appId: '2427761724124878',
+        appId: environment.facebookAppId,
         cookie: true,
         xfbml: true,
-        version: 'v3.3'
+        version: environment.facebookVersion
       });
     };
 
@@ -129,6 +130,23 @@ export class TenantComponent implements OnInit {
       js.src = 'https://connect.facebook.net/en_US/sdk.js';
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
+
+    this.route.queryParams.subscribe(async (params: Params) => {
+      if (params.code) {
+        this.router.navigate([], {
+          queryParams: { code: null },
+          queryParamsHandling: 'merge'
+        });
+
+        try {
+          const response = await this.myProfileService.getInstagramUserDetails(params.code);
+          const instagramProfileUrl = `https://www.instagram.com/${response.data}`;
+          this.tenantForm.get('socialMediaAvailabilities').get('instagram').setValue(instagramProfileUrl);
+        } catch (e) {
+          console.log('TenantComponent->getInstagramUserDetails', e);
+        }
+      }
+    });
   }
 
   buildTenantForm() {
@@ -278,6 +296,14 @@ export class TenantComponent implements OnInit {
       } else {
       }
     });
+  }
+
+  loginInstagram() {
+    const clientId = environment.instagramClientId;
+    const redirectUri = environment.instagramRedirectUri;
+    window.location.href = `
+      https://api.instagram.com/oauth/authorize/?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code
+    `;
   }
 
   async submit() {

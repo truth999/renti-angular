@@ -18,35 +18,46 @@
            placeholder="{{ 'COMMON.ADDRESS' | translate }}:"
            (input)="search(apartmentDataFirstForm.get('address').value)">
     <div class="d-flex mt-2">
-      <div class="form-group mr-2 mb-0">
+      <div class="form-group mr-2 mb-0"
+           style="flex: 1;">
         <label for="building"
                class="font-size-base">{{ 'APARTMENT.BUILDING' | translate }}</label>
-        <input type="text"
-               id="building"
-               class="form-control"
-               placeholder="{{ 'APARTMENT.BUILDING' | translate }}"
-               formControlName="building"
-               (input)="search(apartmentDataFirstForm.get('address').value)">
+        <select class="custom-select"
+                id="building"
+                formControlName="building"
+                (change)="search(apartmentDataFirstForm.get('address').value)">
+          <option [ngValue]="null">-</option>
+          <option *ngFor="let char of arrayChar()"
+                  [value]="char">{{ char }}</option>
+          <option *ngFor="let building of arrayNumber(50); let i = index"
+                  [value]="i + 1">{{ i + 1 }}</option>
+        </select>
       </div>
-      <div class="form-group mr-2 mb-0">
+      <div class="form-group mr-2 mb-0"
+           style="flex: 1;">
         <label for="floor"
                class="font-size-base">{{ 'APARTMENT.FLOOR' | translate }}</label>
-        <input type="text"
-               id="floor"
-               class="form-control mr-2"
-               placeholder="{{ 'APARTMENT.FLOOR' | translate }}"
-               formControlName="floor"
-               (input)="search(apartmentDataFirstForm.get('address').value)">
+        <select class="custom-select"
+                id="floor"
+                formControlName="floor"
+                (change)="search(apartmentDataFirstForm.get('address').value)">
+          <option [ngValue]="null">-</option>
+          <option *ngFor="let floor of arrayNumber(101); let i = index"
+                  [value]="i">{{ i }}</option>
+        </select>
       </div>
-      <div class="form-group mb-0">
+      <div class="form-group mb-0"
+           style="flex: 1;">
         <label for="door"
                class="font-size-base">{{ 'APARTMENT.DOOR' | translate }}</label>
-        <input type="text"
-               id="door"
-               class="form-control"
-               placeholder="{{ 'APARTMENT.DOOR' | translate }}"
-               formControlName="door"
-               (input)="search(apartmentDataFirstForm.get('address').value)">
+        <select class="custom-select"
+                id="door"
+                formControlName="door"
+                (change)="search(apartmentDataFirstForm.get('address').value)">
+          <option [ngValue]="null">-</option>
+          <option *ngFor="let door of arrayNumber(100); let i = index"
+                  [value]="i + 1">{{ i + 1 }}</option>
+        </select>
       </div>
     </div>
     <div class="invalid-feedback d-block" *ngIf="apartmentDataFirstForm.get('address').invalid && (apartmentDataFirstForm.get('address').dirty || apartmentDataFirstForm.get('address').touched)">

@@ -1,6 +1,6 @@
 <div class="card-sm position-relative d-flex flex-column justify-content-between">
   <div class="apartment-image position-absolute">
-    <img [src]="apartment.pictures.length !== 0 ? uploadBase + apartment.pictures[0] : '/assets/images/empty_image.png'"
+    <img [src]="apartment.setAsPicture ? (uploadBase + apartment.setAsPicture) : (apartment.pictures.length !== 0 ? (uploadBase + apartment.pictures[0]) : '/assets/images/empty_image.png')"
          alt=""
          width="120"
          height="120">
@@ -10,7 +10,10 @@
     <h6 class="font-size-lg mb-0">{{ apartment.name }}</h6>
     <p class="mb-0"
        #addressParagraph>
-      {{ apartment.address.city }}, {{ apartment.address.building }}/{{ apartment.address.floor }}/{{ apartment.address.door }}
+      {{ apartment.address.city }}{{ apartment.address.building || apartment.address.floor || apartment.address.door ? ',' : '' }}
+      {{ apartment.address.building }}
+      {{ apartment.address.floor }}
+      {{ apartment.address.door }}
     </p>
   </div>
   <table class="table mt-3 mb-0">

@@ -44,9 +44,9 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
       name: new FormControl(!!this.apartmentData ? this.apartmentData.name : null, Validators.required),
       address: new FormGroup({
         city: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.city : null, Validators.required),
-        building: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.building : null, Validators.required),
-        floor: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.floor : null, Validators.required),
-        door: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.door : null, Validators.required)
+        building: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.building : null),
+        floor: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.floor : null),
+        door: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.door : null)
       }, { validators: addressFormGroupValidator }),
       typeOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.typeOfBuilding : null),
       yearOfConstruction: new FormControl(!!this.apartmentData ? this.apartmentData.yearOfConstruction : null),
@@ -102,6 +102,20 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
 
   search(term: Apartment['address']) {
     this.searchTerms.emit(term);
+  }
+
+  arrayNumber(n: number) {
+    return Array(n);
+  }
+
+  arrayChar() {
+    const charArray = [];
+
+    for (let i = 65; i <= 90; i++) {
+      charArray.push(String.fromCharCode(i));
+    }
+
+    return charArray;
   }
 
   submit() {

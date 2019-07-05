@@ -9,6 +9,7 @@ export class MyProfileService {
   private tenantUrl = 'tenants';
   private feedbackUrl = 'feedbacks';
   private userUrl = 'users';
+  private instagramUrl = 'instagram';
 
   constructor(
     private apiService: ApiService
@@ -28,5 +29,9 @@ export class MyProfileService {
 
   updateUser(id: string, user: any): Promise<any> {
     return this.apiService.put(`${this.userUrl}/${id}`, user);
+  }
+
+  getInstagramUserDetails(code: string): Promise<any> {
+    return this.apiService.get(`${this.instagramUrl}?code=${code}`);
   }
 }

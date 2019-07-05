@@ -115,9 +115,9 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       name: new FormControl(this.apartment.name, Validators.required),
       address: new FormGroup({
         city: new FormControl(this.apartment.address.city, Validators.required),
-        building: new FormControl(this.apartment.address.building, Validators.required),
-        floor: new FormControl(this.apartment.address.floor, Validators.required),
-        door: new FormControl(this.apartment.address.door, Validators.required)
+        building: new FormControl(this.apartment.address.building),
+        floor: new FormControl(this.apartment.address.floor),
+        door: new FormControl(this.apartment.address.door)
       }, { validators: addressFormGroupValidator }),
       typeOfBuilding: new FormControl(this.apartment.typeOfBuilding),
       yearOfConstruction: new FormControl(this.apartment.yearOfConstruction),
@@ -170,7 +170,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       }),
       pictures: new FormArray(this.apartment.pictures.length !== 0 ? this.apartment.pictures.map(picture => {
         return new FormControl(picture);
-      }) : [])
+      }) : []),
+      setAsPicture: new FormControl(this.apartment.setAsPicture)
     });
   }
 
@@ -254,7 +255,14 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   }
 
   removeApartmentPicture(index) {
+    if (this.pictures.value[index] === this.apartmentForm.get('setAsPicture').value) {
+      this.apartmentForm.get('setAsPicture').reset();
+    }
     this.pictures.removeAt(index);
+  }
+
+  setAsPicture(picture: string) {
+    this.apartmentForm.get('setAsPicture').setValue(picture);
   }
 
   search(term: Apartment['address']) {
@@ -263,6 +271,16 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
   arrayNumber(n: number) {
     return Array(n);
+  }
+
+  arrayChar() {
+    const charArray = [];
+
+    for (let i = 65; i <= 90; i++) {
+      charArray.push(String.fromCharCode(i));
+    }
+
+    return charArray;
   }
 
   onBack() {

@@ -16,7 +16,14 @@
             <img [src]="uploadBase + picture.value"
                  class="position-absolute rounded w-100 h-100"
                  alt="">
+            <div class="default d-flex align-items-center justify-content-center position-absolute text-center rounded"
+                 *ngIf="picture.value !== apartmentPictureForm.get('setAsPicture').value"
+                 (click)="setAsPicture(picture.value)">
+              {{ 'COMMON.SET_AS_DEFAULT' | translate }}
+            </div>
           </div>
+          <i class="icon-check-circle position-absolute text-success"
+             *ngIf="picture.value === apartmentPictureForm.get('setAsPicture').value"></i>
           <i class="icon-delete position-absolute text-danger"
              (click)="removeApartmentPicture(i)"></i>
         </div>

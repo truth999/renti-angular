@@ -246,6 +246,8 @@ export class SearchApartmentComponent implements OnInit {
   onChangeMinimumRentingTime(event: Event) {
     if (!(event.target as HTMLInputElement).checked) {
       this.searchForm.get('minimumRentingTime').setValue(null);
+    } else {
+      this.searchForm.get('minimumRentingTime').setValue([0, 120]);
     }
   }
 
