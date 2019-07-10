@@ -232,8 +232,10 @@
   "LOGIN": {
     "LOGIN": "Login",
     "MEMBER_LOGIN": "Member login",
-    "FORGOT_PASSWORD": "Forgot password?",
-    "NEW_USER": "New user? Sign up here."
+    "FORGOT_PASSWORD": "Forgot password",
+    "NEW_USER": "New user? Sign up here.",
+    "RESET_PASSWORD": "Reset password",
+    "UPDATE_PASSWORD": "Update password"
   },
   "SIGNUP": {
     "SIGNUP": "Signup",
@@ -352,6 +354,8 @@
     "MIN_FIELD": "This field must not be less than {{ min }}.",
     "MAX_FIELD": "This field must not be less than {{ max }}.",
     "PASSWORD_INCORRECT": "Password is incorrect.",
-    "ADDRESS_ALREADY_EXIST": "The address already exists."
+    "ADDRESS_ALREADY_EXIST": "The address already exists.",
+    "EMAIL_INCORRECT": "Your email address is incorrect.",
+    "PASSWORD_RESET_FAILED": "Password reset token is invalid or has expired."
   }
 }

@@ -232,8 +232,10 @@
   "LOGIN": {
     "LOGIN": "Bejelentkezés",
     "MEMBER_LOGIN": "Regisztrált tag belépése",
-    "FORGOT_PASSWORD": "Elfelejtette a jelszavát?",
-    "NEW_USER": "Új felhasználó? Regisztráljon itt."
+    "FORGOT_PASSWORD": "Elfelejtette a jelszavát",
+    "NEW_USER": "Új felhasználó? Regisztráljon itt.",
+    "RESET_PASSWORD": "Reset password",
+    "UPDATE_PASSWORD": "Update password"
   },
   "SIGNUP": {
     "SIGNUP": "Regisztráció",
@@ -352,6 +354,8 @@
     "MIN_FIELD": "This field must not be less than {{ min }}.",
     "MAX_FIELD": "This field must not be less than {{ max }}.",
     "PASSWORD_INCORRECT": "Password is incorrect.",
-    "ADDRESS_ALREADY_EXIST": "The address already exists."
+    "ADDRESS_ALREADY_EXIST": "The address already exists.",
+    "EMAIL_INCORRECT": "Your email address is incorrect.",
+    "PASSWORD_RESET_FAILED": "Password reset token is invalid or has expired."
   }
 }

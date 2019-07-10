@@ -33,7 +33,6 @@
           <input ngx-google-places-autocomplete
                  id="search"
                  class="form-control border"
-                 [options]="{ types: ['(cities)'] }"
                  (onAddressChange)="handleAddressChange($event)"
                  formControlName="address">
         </div>

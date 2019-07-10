@@ -49,6 +49,8 @@ import {
 import {
   ApartmentDataThirdComponent
 } from './components/apartment-create/apartment-data/apartment-data-third/apartment-data-third.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 import { ApartmentCreateService } from './services/apartment-create.service';
 
@@ -78,6 +80,8 @@ import { ApartmentCreateService } from './services/apartment-create.service';
     ApartmentDataFirstComponent,
     ApartmentDataSecondComponent,
     ApartmentDataThirdComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   providers: [
     ApartmentCreateService

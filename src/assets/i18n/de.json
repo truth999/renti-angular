@@ -233,7 +233,9 @@
     "LOGIN": "Anmeldung",
     "MEMBER_LOGIN": "Mitgliedanmeldung",
     "FORGOT_PASSWORD": "Ihr Passwort vergessen",
-    "NEW_USER": "Neuer Benutzer? Hier registrieren"
+    "NEW_USER": "Neuer Benutzer? Hier registrieren",
+    "RESET_PASSWORD": "Reset password",
+    "UPDATE_PASSWORD": "Update password"
   },
   "SIGNUP": {
     "SIGNUP": "Registrieren",
@@ -352,6 +354,8 @@
     "MIN_FIELD": "This field must not be less than {{ min }}.",
     "MAX_FIELD": "This field must not be less than {{ max }}.",
     "PASSWORD_INCORRECT": "Password is incorrect.",
-    "ADDRESS_ALREADY_EXIST": "The address already exists."
+    "ADDRESS_ALREADY_EXIST": "The address already exists.",
+    "EMAIL_INCORRECT": "Your email address is incorrect.",
+    "PASSWORD_RESET_FAILED": "Password reset token is invalid or has expired."
   }
 }

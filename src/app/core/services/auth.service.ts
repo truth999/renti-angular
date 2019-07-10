@@ -87,6 +87,14 @@ export class AuthService {
     this.router.navigate(['/auth/signin']);
   }
 
+  forgotPassword(email: { email: string }): Promise<any> {
+    return this.apiService.post('auth/forgot', email);
+  }
+
+  resetPasssword(token: string, password: { password: string }): Promise<any> {
+    return this.apiService.post(`auth/reset/${token}`, password);
+  }
+
   private successAuth(response) {
     const token = response.token;
     const accountType = response.accountType;
