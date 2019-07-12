@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrService } from 'ngx-toastr';
 
 import { PhotoEditModalService } from '../../../services/modal/photo-edit-modal.service';
 
@@ -15,8 +14,7 @@ export class PhotoUploadModalComponent implements OnInit {
 
   constructor(
     private modal: NgbActiveModal,
-    private photoEditModalService: PhotoEditModalService,
-    private toastrService: ToastrService
+    private photoEditModalService: PhotoEditModalService
   ) { }
 
   ngOnInit() {

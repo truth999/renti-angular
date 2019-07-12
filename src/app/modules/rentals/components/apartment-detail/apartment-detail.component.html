@@ -58,8 +58,13 @@
           </div>
           <div class="rooms mt-4">
             <h3>{{ 'COMMON.ROOMS' | translate }}</h3>
-            <div class="draw-room">
-              <img src="/assets/images/floor_plan.png" alt="">
+            <div class="draw-room row"
+                 *ngIf="apartment.draw">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                <img [src]="uploadBase + apartment.draw"
+                     width="100%"
+                     alt="">
+              </div>
             </div>
             <ul class="list-unstyled mt-3 mb-5">
               <li class="font-weight-bold my-1" *ngFor="let room of apartment.rooms; let i = index">

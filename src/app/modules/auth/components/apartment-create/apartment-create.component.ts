@@ -4,6 +4,7 @@ import { ApartmentRoomComponent } from './apartment-room/apartment-room.componen
 import { ApartmentDataComponent } from './apartment-data/apartment-data.component';
 import { ApartmentUploadComponent } from './apartment-upload/apartment-upload.component';
 import { ApartmentPictureComponent } from './apartment-picture/apartment-picture.component';
+import { ApartmentDrawComponent } from './apartment-draw/apartment-draw.component';
 
 @Component({
   selector: 'app-apartment-create',
@@ -14,18 +15,24 @@ export class ApartmentCreateComponent implements OnInit {
   step = 0;
   progress = 0;
   disabled: boolean;
+  @ViewChild(ApartmentDrawComponent) drawChild: ApartmentDrawComponent;
   @ViewChild(ApartmentRoomComponent) roomChild: ApartmentRoomComponent;
   @ViewChild(ApartmentUploadComponent) uploadChild: ApartmentUploadComponent;
   @ViewChild(ApartmentPictureComponent) pictureChild: ApartmentPictureComponent;
   @ViewChild(ApartmentDataComponent) apartmentChild: ApartmentDataComponent;
+  drawImage: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  getDrawImage(event: string) {
+    this.drawImage = event;
+  }
+
   onNextStep() {
-    if (!this.disabled || this.step === 0) {
+    if (!this.disabled) {
       this.step = this.step + 1;
       this.progress++;
 
@@ -35,6 +42,10 @@ export class ApartmentCreateComponent implements OnInit {
       if (this.progress > 6) {
         this.progress = 6;
       }
+    }
+
+    if (this.drawChild) {
+      this.drawChild.submit();
     }
 
     if (this.roomChild) {

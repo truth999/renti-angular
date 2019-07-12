@@ -1,13 +1,28 @@
 <div class="apartment-room">
-  <!-- Draw -->
   <h5>{{ 'COMMON.DRAG_ROOM_NUMBER' | translate }}:</h5>
   <form [formGroup]="roomForm"
         (ngSubmit)="submit()">
+    <div class="row my-4">
+      <div class="position-relative mx-auto"
+           id="draw"
+           [ngStyle]="{'background-image': getDrawUrl()}"
+           (drop)="drop($event)"
+           (dragover)="allowDrop($event)"
+           #draw>
+      </div>
+    </div>
     <div formArrayName="rooms">
       <div class="form-group d-flex justify-content-between"
            *ngFor="let roomEl of rooms.controls; let i = index"
            [formGroupName]="i">
-        <div class="number h3 rounded-circle d-flex justify-content-center align-items-center mb-0 mr-2">
+        <div class="number h3 rounded-circle d-flex justify-content-center align-items-center mb-0 mr-2"
+             id="room{{ i + 1 }}"
+             draggable="true"
+             (dragstart)="dragstart($event, i)">
+          {{ i + 1 }}
+        </div>
+        <div class="small-number h6 rounded-circle justify-content-center align-items-center mt-1 mb-0 mx-2"
+             id="small-room{{ i + 1 }}">
           {{ i + 1 }}
         </div>
         <div class="mr-1 field">
@@ -42,7 +57,7 @@
             </span>
           </div>
         </div>
-        <div class="remove-button">
+        <div class="remove-button" id="remove{{ i + 1 }}">
           <i class="icon-minus" (click)="onRemoveRoom(i)"></i>
         </div>
       </div>

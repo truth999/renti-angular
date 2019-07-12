@@ -1,11 +1,15 @@
-import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, DoCheck, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import html2canvas from 'html2canvas';
 
 import { ApartmentCreateService } from '../../../services/apartment-create.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
+import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
 
-import { Room } from '../../../../../shared/models';
+import { Apartment, Room } from '../../../../../shared/models';
 import { Validate } from '../../../../../../config/validate';
+
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-apartment-room',
@@ -13,18 +17,26 @@ import { Validate } from '../../../../../../config/validate';
   styleUrls: ['./apartment-room.component.scss']
 })
 export class ApartmentRoomComponent implements OnInit, DoCheck {
+  @Input() drawImage: string;
   roomForm: FormGroup;
   roomsData: Room[];
+  apartment: Apartment;
   pattern = Validate;
   @Output() roomFormValid = new EventEmitter<boolean>();
+  uploadBase = environment.uploadBase;
+  pointX: number;
+  pointY: number;
+  @ViewChild('draw') draw: ElementRef;
 
   constructor(
     private apartmentCreateService: ApartmentCreateService,
-    private validateFormFieldsService: ValidateFormFieldsService
+    private validateFormFieldsService: ValidateFormFieldsService,
+    private imageUploaderService: ImageUploaderService
   ) { }
 
   ngOnInit() {
     this.roomsData = this.apartmentCreateService.rooms;
+    this.apartment = this.apartmentCreateService.apartment;
     this.roomForm = new FormGroup({
       rooms: new FormArray(!!this.roomsData ? this.roomsData.map(room => {
         return new FormGroup({
@@ -61,8 +73,49 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
     }
   }
 
+  allowDrop(event) {
+    event.preventDefault();
+  }
+
+  dragstart(event, index) {
+    this.pointX = event.offsetX;
+    this.pointY = event.offsetY;
+    event.dataTransfer.setData('text', event.target.id + ',' + (index + 1));
+  }
+
+  drop(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData('text').split(',');
+    const dragData = document.getElementById(data[0]);
+    const x = event.offsetX - this.pointX;
+    const y = event.offsetY - this.pointY;
+    document.getElementById('draw').appendChild(dragData);
+    dragData.style.left = x + 'px';
+    dragData.style.top = y + 'px';
+    document.getElementById('small-room' + data[1]).style.display = 'flex';
+    document.getElementById('remove' + data[1]).remove();
+  }
+
+  getDrawUrl() {
+    return `url(${this.drawImage})`;
+  }
+
   submit() {
     if (this.roomForm.valid) {
+      html2canvas(this.draw.nativeElement).then(async canvas => {
+        const image = canvas.toDataURL();
+        const blobImage = this.imageUploaderService.b64toBlob(image);
+        try {
+          const imageName = await this.imageUploaderService.upload(blobImage);
+          const draw = {
+            ...this.apartment,
+            draw: imageName[0]
+          };
+          this.apartmentCreateService.createApartmentData(draw);
+        } catch (e) {
+          console.log('ApartmentRoomComponent->html2canvas', e);
+        }
+      });
       const rooms = { ...this.roomForm.value };
       this.apartmentCreateService.createRoomsData(rooms.rooms);
     } else {

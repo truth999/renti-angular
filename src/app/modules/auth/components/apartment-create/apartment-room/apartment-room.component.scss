@@ -7,13 +7,40 @@
     cursor: pointer;
   }
 
+  .number {
+    width: 2.6rem;
+    height: 2.6rem;
+    background-color: $blue;
+    color: $white;
+    cursor: pointer;
+  }
+
+  .small-number {
+    display: none;
+    min-width: 2rem;
+    height: 2rem;
+    background-color: $gray-400;
+    color: $white;
+    cursor: pointer;
+  }
+
+  #draw {
+    width: 180px;
+    height: 180px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    .number {
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      font-size: $font-size-base;
+    }
+  }
+
   .form-group {
     .number {
       min-width: 2.6rem;
-      height: 2.6rem;
-      background-color: $blue;
-      color: $white;
-      cursor: pointer;
       flex: 1;
     }
 

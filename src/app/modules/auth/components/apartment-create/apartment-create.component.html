@@ -3,8 +3,10 @@
     <p><ngb-progressbar [value]="100 / 6 * progress"
                         height="10px"></ngb-progressbar></p>
     <app-apartment-draw *ngIf="step == 0"
-                        (nextStep)="onNextStep()"></app-apartment-draw>
+                        (drawValid)="disabled = !$event"
+                        (drawImage)="getDrawImage($event)"></app-apartment-draw>
     <app-apartment-room *ngIf="step == 1"
+                        [drawImage]="drawImage"
                         (roomFormValid)="disabled = !$event"></app-apartment-room>
     <app-apartment-upload *ngIf="step == 2"
                           (uploadValid)="disabled = !$event"></app-apartment-upload>
@@ -18,8 +20,7 @@
             (click)="onPreviewStep()"
             *ngIf="step != 0"></span>
       <button class="btn btn-primary btn-lg w-100"
-              (click)="onNextStep()"
-              *ngIf="step != 0">{{ 'COMMON.CONTINUE' | translate }}</button>
+              (click)="onNextStep()">{{ 'COMMON.CONTINUE' | translate }}</button>
     </div>
   </div>
 </div>
