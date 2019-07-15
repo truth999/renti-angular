@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Give feedback to landlord</h4>
+  <h4 class="modal-title">{{ 'OFFER.GIVE_FEEDBACK_LANDLORD' | translate }}</h4>
   <button type="button"
           class="close"
           aria-label="true"
@@ -24,7 +24,7 @@
       <span class="font-weight-bold font-size-lg">Score: {{ feedbackForm.value.feedbackStar }}</span>
     </div>
     <div class="form-group">
-      <label for="feedback-text">Your feedback:</label>
+      <label for="feedback-text">{{ 'OFFER.YOUR_FEEDBACK' | translate }}:</label>
       <textarea id="feedback-text"
                 class="form-control"
                 rows="6"
@@ -35,7 +35,7 @@
     </div>
     <div class="form-group text-right">
       <button type="submit"
-              class="btn btn-primary btn-lg">Give feedback</button>
+              class="btn btn-primary btn-lg">{{ 'COMMON.GIVE_FEEDBACK' | translate }}</button>
     </div>
   </form>
 </div>

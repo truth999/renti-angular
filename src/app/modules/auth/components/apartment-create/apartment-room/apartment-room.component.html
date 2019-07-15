@@ -18,7 +18,10 @@
         <div class="number h3 rounded-circle d-flex justify-content-center align-items-center mb-0 mr-2"
              id="room{{ i + 1 }}"
              draggable="true"
-             (dragstart)="dragstart($event, i)">
+             (dragstart)="dragstart($event, i)"
+             (touchstart)="touchstart($event)"
+             (touchmove)="touchmove($event)"
+             (touchend)="touchend($event)">
           {{ i + 1 }}
         </div>
         <div class="small-number h6 rounded-circle justify-content-center align-items-center mt-1 mb-0 mx-2"

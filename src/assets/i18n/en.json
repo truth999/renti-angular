@@ -189,6 +189,7 @@
     "WOODEN": "Wooden",
     "BACK": "Back",
     "ACCEPT": "Accept",
+    "ACCEPTED": "Accepted",
     "DELETE": "Delete",
     "SEARCH": "Search",
     "NOTIFICATIONS": "Notifications",
@@ -221,7 +222,22 @@
     "MY_FAVORITES": "My favorites",
     "CHANGE_PASSWORD": "Change password",
     "REJECT": "Reject",
-    "SET_AS_DEFAULT": "Set as default"
+    "REJECTED": "Rejected",
+    "SET_AS_DEFAULT": "Set as default",
+    "CONFIRM": "Confirm",
+    "CHECK_EMAIL": "Please check the Email. We have sent the confirmation Email.",
+    "CLICK_SOCIAL_ICON": "If you verified social account, please click the social icon.",
+    "CLICK_FACEBOOK": "Click the Facebook icon.",
+    "CLICK_LINKEDIN": "Click the Linkedin icon.",
+    "CLICK_INSTAGRAM": "Click the Instagram icon.",
+    "SUBMIT": "Submit",
+    "RECEIVED": "Received",
+    "PENDING": "Pending",
+    "ABOUT_LANDLORD": "About the landlord",
+    "CHECKED": "Checked",
+    "STAR_RATING": "star rating",
+    "BASED_ON": "Based on",
+    "RATINGS": "ratings"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
@@ -320,7 +336,12 @@
     "PRICE_INCREASES": "Increasing based on price",
     "GO_TO_FULL_PROFILE": "Continue to the full profile",
     "OFFER_CREATE_SUCCESS": "Your bid was successfully sent.",
-    "OFFER_SUCCESS": "Below you can find your tenant availabilities:"
+    "OFFER_SUCCESS": "Below you can find your tenant availabilities:",
+    "PRICE_BIDDING": "Price bidding",
+    "GIVE_FEEDBACK_TENANT": "Give the feedback to tenant",
+    "GIVE_FEEDBACK_LANDLORD": "Give feedback to landlord",
+    "YOUR_FEEDBACK": "Your feedback",
+    "GIVE_FEEDBACK": "Give feedback"
   },
   "SEARCH": {
     "SEARCH": "Search",

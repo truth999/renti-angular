@@ -47,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
         delete password.confirmPassword;
         await this.authService.resetPasssword(token, password);
         this.error = false;
-        this.toastrService.success('Your password has been changed successfully', 'success');
+        this.toastrService.success('Your password has been changed successfully', 'Success');
         this.router.navigate(['/login']);
       } catch (e) {
         if (e.message === 'PASSWORD_RESET_FAILED') {

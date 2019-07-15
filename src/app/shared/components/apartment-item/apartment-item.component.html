@@ -39,10 +39,10 @@
         <span>{{ dateFormat(apartment.createdAt) }}</span>
       </td>
       <td class="border-0 pb-0 pr-0">
-        <span><span class="font-weight-bold font-size-lg">{{ apartment.checked }}</span> checked</span>
+        <span><span class="font-weight-bold font-size-lg">{{ apartment.checked }}</span> {{ 'COMMON.CHECKED' | translate }}</span>
       </td>
       <td class="border-0 pb-0 pr-0">
-        <span><span class="font-weight-bold font-size-lg">{{ apartment.offers.length }}</span> offers</span>
+        <span><span class="font-weight-bold font-size-lg">{{ apartment.offers.length }}</span> {{ 'OFFER.OFFERS' | translate }}</span>
       </td>
     </tr>
   </table>

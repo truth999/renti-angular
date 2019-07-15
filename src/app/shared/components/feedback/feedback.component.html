@@ -11,7 +11,7 @@
     </ng-template>
   </ngb-rating>
   <div class="rating-text">
-    <span class="font-size-lg font-weight-bold">{{ rate }} star rating</span><br>
-    <span>(Based on {{ number }} ratings)</span>
+    <span class="font-size-lg font-weight-bold">{{ rate }} {{ 'COMMON.STAR_RATING' | translate }}</span><br>
+    <span>({{ 'COMMON.BASED_ON' | translate }} {{ number }} {{ 'COMMON.RATINGS' | translate }})</span>
   </div>
 </div>

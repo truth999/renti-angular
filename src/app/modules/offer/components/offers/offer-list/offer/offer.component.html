@@ -36,7 +36,7 @@
   <div class="text-right mt-4"
        *ngIf="offer.accepted && !offer.landlordFeedback">
     <button class="btn btn-primary btn-sm"
-            (click)="onGiveFeedback({ offerId: offer._id, tenantId: offer.tenant._id })">Give the feedback to tenant</button>
+            (click)="onGiveFeedback({ offerId: offer._id, tenantId: offer.tenant._id })">{{ 'OFFER.GIVE_FEEDBACK_TENANT' | translate }}</button>
   </div>
   <div class="button-group d-flex justify-content-between mt-4"
        *ngIf="offer.accepted === null">

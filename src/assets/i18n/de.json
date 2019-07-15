@@ -189,6 +189,7 @@
     "WOODEN": "Hölzern",
     "BACK": "Zurück",
     "ACCEPT": "Annehmen",
+    "ACCEPTED": "Accepted",
     "DELETE": "Löschen",
     "SEARCH": "Suchen",
     "NOTIFICATIONS": "Nachrichten",
@@ -221,7 +222,22 @@
     "MY_FAVORITES": "My favorites",
     "CHANGE_PASSWORD": "Change password",
     "REJECT": "Reject",
-    "SET_AS_DEFAULT": "Set as default"
+    "REJECTED": "Rejected",
+    "SET_AS_DEFAULT": "Set as default",
+    "CONFIRM": "Confirm",
+    "CHECK_EMAIL": "Please check the Email. We have sent the confirmation Email.",
+    "CLICK_SOCIAL_ICON": "If you verified social account, please click the social icon.",
+    "CLICK_FACEBOOK": "Click the Facebook icon.",
+    "CLICK_LINKEDIN": "Click the Linkedin icon.",
+    "CLICK_INSTAGRAM": "Click the Instagram icon.",
+    "SUBMIT": "Submit",
+    "RECEIVED": "Received",
+    "PENDING": "Pending",
+    "ABOUT_LANDLORD": "About the landlord",
+    "CHECKED": "Checked",
+    "STAR_RATING": "star rating",
+    "BASED_ON": "Based on",
+    "RATINGS": "ratings"
   },
   "HOME": {
     "TITLE": "Renti - Kanaan der Untermieten",
@@ -320,7 +336,12 @@
     "PRICE_INCREASES": "Nach dem Preis steigend",
     "GO_TO_FULL_PROFILE": "Go to full profile",
     "OFFER_CREATE_SUCCESS": "Angebot erfolgreich gesendet",
-    "OFFER_SUCCESS": "Hier sehen Sie die Erreichbarkeit des/der Untermieters(in):"
+    "OFFER_SUCCESS": "Hier sehen Sie die Erreichbarkeit des/der Untermieters(in):",
+    "PRICE_BIDDING": "Price bidding",
+    "GIVE_FEEDBACK_TENANT": "Give the feedback to tenant",
+    "GIVE_FEEDBACK_LANDLORD": "Give feedback to landlord",
+    "YOUR_FEEDBACK": "Your feedback",
+    "GIVE_FEEDBACK": "Give feedback"
   },
   "SEARCH": {
     "SEARCH": "Suchen",

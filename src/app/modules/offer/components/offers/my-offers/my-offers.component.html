@@ -10,7 +10,7 @@
   </div>
   <ngb-tabset (tabChange)="changeTab($event)">
     <ngb-tab id="pending">
-      <ng-template ngbTabTitle>Pending</ng-template>
+      <ng-template ngbTabTitle>{{ 'COMMON.PENDING' | translate }}</ng-template>
       <ng-template ngbTabContent>
         <div class="row">
           <ng-container *ngFor="let offer of offers">
@@ -22,7 +22,7 @@
       </ng-template>
     </ngb-tab>
     <ngb-tab id="accepted">
-      <ng-template ngbTabTitle>Accepted</ng-template>
+      <ng-template ngbTabTitle>{{ 'COMMON.ACCEPTED' | translate }}</ng-template>
       <ng-template ngbTabContent>
         <div class="row">
           <ng-container *ngFor="let offer of offers">
@@ -32,14 +32,14 @@
               <button *ngIf="!offer.tenantFeedback"
                       type="button"
                       class="btn btn-primary btn-sm position-absolute"
-                      (click)="onGiveFeedback($event, { offerId: offer._id, landlordId: offer.apartment.landlord })">Give feedback to landlord</button>
+                      (click)="onGiveFeedback($event, { offerId: offer._id, landlordId: offer.apartment.landlord })">{{ 'OFFER.GIVE_FEEDBACK_LANDLORD' | translate }}</button>
             </app-apartment-item>
           </ng-container>
         </div>
       </ng-template>
     </ngb-tab>
     <ngb-tab id="rejected">
-      <ng-template ngbTabTitle>Rejected</ng-template>
+      <ng-template ngbTabTitle>{{ 'COMMON.REJECTED' | translate }}</ng-template>
       <ng-template ngbTabContent>
         <div class="row">
           <ng-container *ngFor="let offer of offers">

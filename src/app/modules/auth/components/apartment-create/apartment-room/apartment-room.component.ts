@@ -81,6 +81,7 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
     this.pointX = event.offsetX;
     this.pointY = event.offsetY;
     event.dataTransfer.setData('text', event.target.id + ',' + (index + 1));
+    console.log(event);
   }
 
   drop(event) {
@@ -93,7 +94,21 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
     dragData.style.left = x + 'px';
     dragData.style.top = y + 'px';
     document.getElementById('small-room' + data[1]).style.display = 'flex';
-    document.getElementById('remove' + data[1]).remove();
+    if (document.getElementById('remove' + data[1])) {
+      document.getElementById('remove' + data[1]).remove();
+    }
+  }
+
+  touchstart(event) {
+    // console.log(event);
+  }
+
+  touchmove(event) {
+    // console.log(event);
+  }
+
+  touchend(event) {
+    // console.log(event);
   }
 
   getDrawUrl() {
