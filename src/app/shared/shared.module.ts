@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AgmCoreModule } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 import { NouisliderModule } from 'ng2-nouislider';
 
@@ -67,6 +68,7 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     NgbModule,
     NouisliderModule,
     AgmCoreModule,
+    AgmJsMarkerClustererModule,
     ReactiveFormsModule
   ],
   exports: [

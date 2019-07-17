@@ -86,6 +86,9 @@ export const config = {
   excludeLoaderRoutes: [
     environment.apiBase + 'auth/login',
     environment.apiBase + 'auth/signup',
-    environment.apiBase + 'apartments/check-address'
+    environment.apiBase + 'apartments/check-address',
+    environment.apiBase + 'map/default',
+    environment.apiBase + 'map/tenants',
+    environment.apiBase + 'map/apartments'
   ],
 };

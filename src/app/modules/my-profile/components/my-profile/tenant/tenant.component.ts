@@ -151,7 +151,10 @@ export class TenantComponent implements OnInit {
 
   buildTenantForm() {
     this.tenantForm = new FormGroup({
-      lookingRent: new FormControl(this.tenant.lookingRent, Validators.required),
+      lookingRent: new FormGroup({
+        address: new FormControl(this.tenant.lookingRent.address, Validators.required),
+        location: new FormControl(this.tenant.lookingRent.location)
+      }),
       mobile: new FormControl(this.tenant.mobile),
       placeOfBirth: new FormControl(this.tenant.placeOfBirth),
       dateOfBirth: new FormControl(this.tenant.dateOfBirth),
@@ -222,7 +225,11 @@ export class TenantComponent implements OnInit {
   }
 
   handleRentChange(address: Address) {
-    this.tenantForm.get('lookingRent').setValue(address.formatted_address);
+    this.tenantForm.get('lookingRent').get('address').setValue(address.formatted_address);
+    this.tenantForm.get('lookingRent').get('location').setValue({
+      lat: address.geometry.location.lat(),
+      lng: address.geometry.location.lng()
+    });
   }
 
   handlePlaceChange(address: Address) {

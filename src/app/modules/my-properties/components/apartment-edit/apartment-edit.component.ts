@@ -117,7 +117,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
         city: new FormControl(this.apartment.address.city, Validators.required),
         building: new FormControl(this.apartment.address.building),
         floor: new FormControl(this.apartment.address.floor),
-        door: new FormControl(this.apartment.address.door)
+        door: new FormControl(this.apartment.address.door),
+        location: new FormControl(this.apartment.address.location)
       }, { validators: addressFormGroupValidator }),
       typeOfBuilding: new FormControl(this.apartment.typeOfBuilding),
       yearOfConstruction: new FormControl(this.apartment.yearOfConstruction),
@@ -237,6 +238,10 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
   handleAddressChange(address: Address) {
     this.apartmentForm.get('address').get('city').setValue(address.formatted_address);
+    this.apartmentForm.get('address').get('location').setValue({
+      lat: address.geometry.location.lat(),
+      lng: address.geometry.location.lng()
+    });
     this.searchTerms.emit(this.apartmentForm.get('address').value);
   }
 

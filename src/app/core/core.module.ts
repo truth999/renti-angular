@@ -16,6 +16,7 @@ import { ValidateFormFieldsService } from './services/validate-form-fields.servi
 import { HomeService } from './services/home.service';
 
 import { HomeComponent } from './components/home/home.component';
+import { HeatmapService } from '../modules/heatmap/services/heatmap.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HomeComponent } from './components/home/home.component';
     StorageService,
     AuthGuard,
     ValidateFormFieldsService,
-    HomeService
+    HomeService,
+    HeatmapService
   ]
 })
 export class CoreModule { }

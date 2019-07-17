@@ -11,6 +11,10 @@ export class Apartment {
     building: string;
     floor: string;
     door: string;
+    location: {
+      lat: number;
+      lng: number;
+    };
   };
   typeOfBuilding: string;
   yearOfConstruction: number;

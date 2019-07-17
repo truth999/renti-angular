@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HeatmapService } from '../../../services/heatmap.service';
 
 @Component({
   selector: 'app-heatmap-tenant',
@@ -6,23 +7,24 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./heatmap-tenant.component.scss']
 })
 export class HeatmapTenantComponent implements OnInit {
-  @Input() tenantLocations;
-  @Input() latitude: number;
-  @Input() longitude: number;
-  map: google.maps.Map;
-  heatmap: google.maps.visualization.HeatmapLayer;
+  @Input() defaultLocation: any;
+  tenantsLocation: any;
 
-  constructor() { }
+  constructor(
+    private heatmapService: HeatmapService
+  ) { }
 
   ngOnInit() {
+    this.getTenantsLocation();
   }
 
-  onMapLoad(mapInstance: google.maps.Map) {
-    this.map = mapInstance;
-    this.heatmap = new google.maps.visualization.HeatmapLayer({
-      map: this.map,
-      data: this.tenantLocations
-    });
+  async getTenantsLocation() {
+    try {
+      const tenantsResponse = await this.heatmapService.getTenantsLocation();
+      this.tenantsLocation = tenantsResponse.tenantsLocation;
+    } catch (e) {
+      console.log('HeatmapTenantComponent->getTenantsLocation', e);
+    }
   }
 
 }

@@ -11,8 +11,15 @@
   </button>
 </div>
 <div class="modal-body">
-  <agm-map [latitude]="result.latitude"
-           [longitude]="result.longitude"
-           (mapReady)="onMapLoad($event)"></agm-map>
+  <agm-map *ngIf="result"
+           [latitude]="result.lat"
+           [longitude]="result.lng">
+    <agm-marker-cluster *ngIf="tenantsLocation"
+                        imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+      <agm-marker *ngFor="let location of tenantsLocation"
+                  [latitude]="location.lat"
+                  [longitude]="location.lng"></agm-marker>
+    </agm-marker-cluster>
+  </agm-map>
 </div>
 <div class="modal-footer"></div>

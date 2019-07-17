@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { HeatmapService } from '../../../../../modules/heatmap/services/heatmap.service';
+
 @Component({
   selector: 'app-heatmap-tenant-modal',
   templateUrl: './heatmap-tenant-modal.component.html',
@@ -8,22 +10,24 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HeatmapTenantModalComponent implements OnInit {
   @Input() result: any;
-  map: google.maps.Map;
-  heatmap: google.maps.visualization.HeatmapLayer;
+  tenantsLocation: any;
 
   constructor(
-    private modal: NgbActiveModal
+    private modal: NgbActiveModal,
+    private heatmapService: HeatmapService
   ) { }
 
   ngOnInit() {
+    this.getTenantsLocation();
   }
 
-  onMapLoad(mapInstance: google.maps.Map) {
-    this.map = mapInstance;
-    this.heatmap = new google.maps.visualization.HeatmapLayer({
-      map: this.map,
-      data: this.result.locations
-    });
+  async getTenantsLocation() {
+    try {
+      const response = await this.heatmapService.getTenantsLocation();
+      this.tenantsLocation = response.tenantsLocation;
+    } catch (e) {
+      console.log('HeatmapTenantModalComponent->getTenantsLocation', e);
+    }
   }
 
   onClose() {

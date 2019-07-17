@@ -11,7 +11,13 @@ class Education {
 export class Tenant {
   _id: string;
   user: User;
-  lookingRent: string;
+  lookingRent: {
+    address: string;
+    location: {
+      lat: number;
+      lng: number;
+    }
+  };
   mobile: string;
   profilePicture: string;
   placeOfBirth: string;

@@ -9,6 +9,7 @@ import { HeatmapTenantComponent } from './components/heatmap/heatmap-tenant/heat
 
 import { HeatmapService } from './services/heatmap.service';
 import { AgmCoreModule } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     CommonModule,
     AgmCoreModule,
+    AgmJsMarkerClustererModule,
     HeatmapRoutingModule
   ]
 })

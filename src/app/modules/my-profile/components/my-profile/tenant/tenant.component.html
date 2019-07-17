@@ -58,14 +58,15 @@
 <!--                  </div>-->
 <!--                  <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>-->
 <!--                </div>-->
-                <div class="form-group pt-2 position-relative rent">
+                <div class="form-group pt-2 position-relative rent"
+                     formGroupName="lookingRent">
                   <label for="rent" class="h5 font-weight-bolder">{{ 'COMMON.LOOKING_TO_RENT_IN' | translate }}:</label>
                   <input ngx-google-places-autocomplete
                          id="rent"
                          class="form-control custom-select"
                          [options]="{ types: ['(cities)'] }"
                          (onAddressChange)="handleRentChange($event)"
-                         formControlName="lookingRent">
+                         formControlName="address">
 <!--                  <i class="icon-location position-absolute"></i>-->
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('lookingRent').invalid && (tenantForm.get('lookingRent').dirty || tenantForm.get('lookingRent').touched)">

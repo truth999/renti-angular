@@ -4,20 +4,21 @@ import { ApiService } from '../../../core/services/api.service';
 
 @Injectable()
 export class HeatmapService {
+  private mapUrl = 'map';
 
   constructor(
     private apiService: ApiService
   ) { }
 
-  getApartments(page): Promise<any> {
-    let url = `apartments?page=${page.pageNumber}`;
-    url += page.pageNumber ? `&perPage=${page.perPage}` : '';
-    return this.apiService.get(url);
+  getDefaultLocation(): Promise<any> {
+    return this.apiService.get(`${this.mapUrl}/default`);
   }
 
-  getTenants(page): Promise<any> {
-    let url = `tenants?page=${page.pageNumber}`;
-    url += page.pageNumber ? `&perPage=${page.perPage}` : '';
-    return this.apiService.get(url);
+  getTenantsLocation(): Promise<any> {
+    return this.apiService.get(`${this.mapUrl}/tenants`);
+  }
+
+  getApartments(): Promise<any> {
+    return this.apiService.get(`${this.mapUrl}/apartments`);
   }
 }

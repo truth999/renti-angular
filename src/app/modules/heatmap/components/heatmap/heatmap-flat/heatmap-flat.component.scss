@@ -1,0 +1,16 @@
+@import "~src/assets/styles/scss/variables";
+
+.image-badge {
+  right: 0;
+  bottom: 0;
+}
+
+.apartment-content {
+  .mo {
+    color: $blue;
+  }
+
+  i {
+    color: $blue;
+  }
+}

@@ -11,8 +11,42 @@
   </button>
 </div>
 <div class="modal-body">
-  <agm-map [latitude]="result.latitude"
-           [longitude]="result.longitude"
-           (mapReady)="onMapLoad($event)"></agm-map>
+  <agm-map *ngIf="result"
+           [latitude]="result.lat"
+           [longitude]="result.lng">
+    <agm-marker-cluster *ngIf="apartments"
+                        imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+      <agm-marker *ngFor="let apartment of apartments"
+                  [latitude]="apartment.address.location.lat"
+                  [longitude]="apartment.address.location.lng"
+                  (markerClick)="clickedMarker(infoWindow)">
+        <agm-info-window #infoWindow>
+          <div class="d-flex">
+            <div class="apartment-image position-relative mr-3">
+              <img [src]="apartment.setAsPicture ? (uploadBase + apartment.setAsPicture) : (apartment.pictures.length !== 0 ? (uploadBase + apartment.pictures[0]) : '/assets/images/empty_image.png')"
+                   alt=""
+                   width="100"
+                   height="100">
+              <span class="badge badge-success image-badge position-absolute">{{ apartment.rank }}%</span>
+            </div>
+            <div class="apartment-content d-flex flex-column justify-content-between">
+              <h6 class="font-size-lg mb-0">{{ apartment.name }}</h6>
+              <div class="d-flex flex-column">
+                <span class="mb-1"><span class="mo font-weight-bold">{{ !!apartment.rentalFee ? apartment.rentalFee : '' }}</span>/mo</span>
+                <span class="font-weight-bold mb-1">
+                  <i class="icon-fullscreen align-middle mr-1"></i>
+                  {{ apartment.size }} m<sup>2</sup>
+                </span>
+                <span class="font-weight-bold">
+                  <i class="icon-bed align-middle mr-1"></i>
+                  {{ apartment.rooms.length }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </agm-info-window>
+      </agm-marker>
+    </agm-marker-cluster>
+  </agm-map>
 </div>
 <div class="modal-footer"></div>
