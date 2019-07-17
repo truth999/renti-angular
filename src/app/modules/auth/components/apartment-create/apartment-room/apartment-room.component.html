@@ -19,9 +19,9 @@
              id="room{{ i + 1 }}"
              draggable="true"
              (dragstart)="dragstart($event, i)"
-             (touchstart)="touchstart($event)"
+             (touchstart)="touchstart($event, i)"
              (touchmove)="touchmove($event)"
-             (touchend)="touchend($event)">
+             (touchend)="touchend($event, i)">
           {{ i + 1 }}
         </div>
         <div class="small-number h6 rounded-circle justify-content-center align-items-center mt-1 mb-0 mx-2"

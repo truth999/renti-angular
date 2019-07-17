@@ -26,6 +26,8 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
   uploadBase = environment.uploadBase;
   pointX: number;
   pointY: number;
+  originalX: number;
+  originalY: number;
   @ViewChild('draw') draw: ElementRef;
 
   constructor(
@@ -81,7 +83,6 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
     this.pointX = event.offsetX;
     this.pointY = event.offsetY;
     event.dataTransfer.setData('text', event.target.id + ',' + (index + 1));
-    console.log(event);
   }
 
   drop(event) {
@@ -99,16 +100,89 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
     }
   }
 
-  touchstart(event) {
-    // console.log(event);
+  touchstart(event, index) {
+    this.originalX = event.target.offsetLeft;
+    this.originalY = event.target.offsetTop;
+
+    event.target.style.position = 'absolute';
+
+    document.getElementById('small-room' + (index + 1)).style.display = 'flex';
   }
 
   touchmove(event) {
-    // console.log(event);
+    const touchLocation = event.targetTouches[0];
+    const left = this.getPosition(touchLocation.target.offsetParent).left;
+    const top = this.getPosition(touchLocation.target.offsetParent).top;
+    const pageX = (touchLocation.pageX - event.target.offsetWidth / 2 - left) + 'px';
+    const pageY = (touchLocation.pageY - event.target.offsetHeight / 2 - top) + 'px';
+    event.target.style.left = pageX;
+    event.target.style.top = pageY;
   }
 
-  touchend(event) {
-    // console.log(event);
+  touchend(event, index) {
+    const pageX = parseInt(event.target.style.left, 10);
+    const pageY = parseInt(event.target.style.top, 10);
+    const draw = this.draw.nativeElement;
+
+    if (!draw.hasChildNodes() || !draw.contains(event.target)) {
+      const dropZoneWidth = draw.offsetWidth - event.target.offsetWidth;
+      const dropZoneHeight = draw.offsetHeight - event.target.offsetHeight;
+
+      if (this.detectTouchEnd(draw.offsetLeft, draw.offsetTop, pageX, pageY, dropZoneWidth, dropZoneHeight)) {
+        draw.appendChild(event.target);
+        event.target.style.left = (pageX - draw.offsetLeft) + 'px';
+        event.target.style.top = (pageY - draw.offsetTop) + 'px';
+
+        if (document.getElementById('remove' + (index + 1))) {
+          document.getElementById('remove' + (index + 1)).remove();
+        }
+      } else {
+        event.target.style.position = '';
+        event.target.style.left = '';
+        event.target.style.top = '';
+        document.getElementById('small-room' + (index + 1)).style.display = 'none';
+      }
+    } else {
+      const left = parseInt(event.target.style.left, 10);
+      const top = parseInt(event.target.style.top, 10);
+      const width = draw.offsetWidth - event.target.offsetWidth;
+      const height = draw.offsetHeight - event.target.offsetHeight;
+
+      if (left < 0 || left > width) {
+        event.target.style.left = this.originalX + 'px';
+      }
+
+      if (top < 0 || top > height) {
+        event.target.style.top = this.originalY + 'px';
+      }
+    }
+  }
+
+  getPosition(elem) {
+    let left = 0;
+    let top = 0;
+
+    while (elem) {
+      if (!isNaN(elem.offsetLeft)) {
+        left += elem.offsetLeft;
+        top += elem.offsetTop;
+        elem = elem.offsetParent;
+      }
+    }
+
+    return { left, top };
+  }
+
+  detectTouchEnd(x1, y1, x2, y2, w, h) {
+    if (x2 - x1 > w || x2 - x1 < 0) {
+      return false;
+    }
+
+    if (y2 - y1 > h || y2 - y1 < 0) {
+      return false;
+    }
+
+    return true;
   }
 
   getDrawUrl() {
