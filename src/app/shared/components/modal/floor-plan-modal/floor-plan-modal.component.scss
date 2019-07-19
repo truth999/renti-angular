@@ -1,0 +1,70 @@
+@import "~src/assets/styles/scss/variables";
+
+.modal-body {
+  .icon-plus {
+    font-size: 2.6rem;
+    color: $blue;
+    cursor: pointer;
+  }
+
+  .number {
+    width: 2.6rem;
+    height: 2.6rem;
+    background-color: $blue;
+    color: $white;
+    cursor: pointer;
+  }
+
+  .small-number {
+    display: none;
+    min-width: 2rem;
+    height: 2rem;
+    background-color: $gray-400;
+    color: $white;
+    cursor: pointer;
+  }
+
+  #draw {
+    width: 180px;
+    height: 180px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    .number {
+      position: absolute;
+      min-width: 2rem;
+      width: 2rem;
+      height: 2rem;
+      font-size: $font-size-base;
+    }
+  }
+
+  .form-group {
+    .number {
+      min-width: 2.6rem;
+      flex: 1;
+    }
+
+    .field {
+      flex: 5;
+    }
+
+    .remove-button {
+      visibility: hidden;
+      width: 1.5rem;
+      margin-top: .5rem;
+
+      .icon-minus {
+        font-size: 1.5rem;
+        color: $blue;
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      .remove-button {
+        visibility: visible;
+      }
+    }
+  }
+}

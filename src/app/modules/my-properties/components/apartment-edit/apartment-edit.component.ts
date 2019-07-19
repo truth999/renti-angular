@@ -11,6 +11,7 @@ import { MyPropertiesService } from '../../services/my-properties.service';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 import { ImageUploaderService } from '../../../../core/services/image-uploader.service';
+import { FloorPlanModalService } from '../../../../shared/services/modal/floor-plan-modal.service';
 
 import { Apartment } from '../../../../shared/models';
 
@@ -31,6 +32,7 @@ const addressFormGroupValidator: ValidatorFn = (control: FormGroup): ValidationE
   styleUrls: ['./apartment-edit.component.scss']
 })
 export class ApartmentEditComponent implements OnInit, DoCheck {
+  paramsId: string;
   apartment: Apartment;
   apartmentForm: FormGroup;
   years: string[];
@@ -52,7 +54,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     private toastrService: ToastrService,
     private validateFormFieldsService: ValidateFormFieldsService,
     private datepickerConfig: NgbDatepickerConfig,
-    private imageUploaderService: ImageUploaderService
+    private imageUploaderService: ImageUploaderService,
+    private floorPlanModalService: FloorPlanModalService
   ) {
     const today = new Date();
 
@@ -64,19 +67,15 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     datepickerConfig.maxDate = { year: year + 10, month: 12, day: 31 };
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.years = this.dateSelectService.getYears();
 
-    const id = this.route.snapshot.paramMap.get('id');
+    this.paramsId = this.route.snapshot.paramMap.get('id');
 
-    try {
-      const response = await this.myPropertiesService.getApartment(id);
-      this.apartment = response.apartment;
-
-      this.buildApartmentForm();
-    } catch (e) {
-      console.log('ApartmentEditComponent->ngOnInit', e);
-    }
+    this.getApartment();
+    this.floorPlanModalService.saveFloorplan.subscribe(() => {
+      this.getApartment();
+    });
 
     this.searchTerms
       .pipe(
@@ -91,7 +90,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
               params.set(key, term[key]);
             }
           }
-          params.set('id', id);
+          params.set('id', this.paramsId);
           const addressResponse = await this.myPropertiesService.checkAddress(params.toString());
           if (addressResponse && addressResponse.message) {
             this.apartmentForm.get('address').setErrors({ checkError: true, errorMsg: addressResponse.message });
@@ -107,6 +106,17 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       if (this.apartmentForm.get('floorsOfApartment').value > this.apartmentForm.get('floorsOfBuilding').value) {
         this.apartmentForm.get('floorsOfApartment').setErrors({ maxError: true });
       }
+    }
+  }
+
+  async getApartment() {
+    try {
+      const response = await this.myPropertiesService.getApartment(this.paramsId);
+      this.apartment = response.apartment;
+
+      this.buildApartmentForm();
+    } catch (e) {
+      console.log('ApartmentEditComponent->getApartment', e);
     }
   }
 
@@ -290,6 +300,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
   onBack() {
     this.location.back();
+  }
+
+  onOpenFloorPlanModal() {
+    const results = this.apartment;
+
+    this.floorPlanModalService.show(results);
   }
 
   async submit() {

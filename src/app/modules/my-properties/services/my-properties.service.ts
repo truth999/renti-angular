@@ -27,12 +27,20 @@ export class MyPropertiesService {
     return this.apiService.put(`${this.apartmentUrl}/${apartment._id}`, apartment);
   }
 
+  createRooms(rooms: Room[]): Promise<any> {
+    return this.apiService.post(this.roomUrl, rooms);
+  }
+
   getRoom(id: string): Promise<any> {
     return this.apiService.get(`${this.roomUrl}/${id}`);
   }
 
   updateRoom(room: Room): Promise<any> {
     return this.apiService.put(`${this.roomUrl}/${room._id}`, room);
+  }
+
+  deleteRoom(id: string): Promise<any> {
+    return this.apiService.delete(`${this.roomUrl}/${id}`);
   }
 
   checkAddress(term: string): Promise<any> {

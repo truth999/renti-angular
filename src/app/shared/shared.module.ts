@@ -21,6 +21,7 @@ import { CropEditorComponent } from './components/modal/photo-edit-modal/crop-ed
 import { HeatmapFlatModalComponent } from './components/modal/heatmap/heatmap-flat-modal/heatmap-flat-modal.component';
 import { HeatmapTenantModalComponent } from './components/modal/heatmap/heatmap-tenant-modal/heatmap-tenant-modal.component';
 import { FeedbackModalComponent } from './components/modal/feedback-modal/feedback-modal.component';
+import { FloorPlanModalComponent } from './components/modal/floor-plan-modal/floor-plan-modal.component';
 
 import { PhotoUploadModalService } from './services/modal/photo-upload-modal.service';
 import { PhotoEditModalService } from './services/modal/photo-edit-modal.service';
@@ -30,6 +31,7 @@ import { HeatmapFlatModalService } from './services/modal/heatmap/heatmap-flat-m
 import { HeatmapTenantModalService } from './services/modal/heatmap/heatmap-tenant-modal.service';
 import { FeedbackModalService } from './services/modal/feedback-modal.service';
 import { LayoutService } from './services/layout.service';
+import { FloorPlanModalService } from './services/modal/floor-plan-modal.service';
 
 import { MenuCloseDirective } from './directives/menu-close.directive';
 
@@ -52,14 +54,16 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     DateToStringPipe,
     HeatmapFlatModalComponent,
     HeatmapTenantModalComponent,
-    FeedbackModalComponent
+    FeedbackModalComponent,
+    FloorPlanModalComponent
   ],
   entryComponents: [
     PhotoUploadModalComponent,
     PhotoEditModalComponent,
     HeatmapFlatModalComponent,
     HeatmapTenantModalComponent,
-    FeedbackModalComponent
+    FeedbackModalComponent,
+    FloorPlanModalComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +94,8 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     DateToStringPipe,
     HeatmapFlatModalComponent,
     HeatmapTenantModalComponent,
-    FeedbackModalComponent
+    FeedbackModalComponent,
+    FloorPlanModalComponent
   ],
   providers: [
     PhotoUploadModalService,
@@ -100,7 +105,8 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     HeatmapFlatModalService,
     HeatmapTenantModalService,
     FeedbackModalService,
-    LayoutService
+    LayoutService,
+    FloorPlanModalService
   ]
 })
 export class SharedModule { }

@@ -46,7 +46,8 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
         city: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.city : null, Validators.required),
         building: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.building : null),
         floor: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.floor : null),
-        door: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.door : null)
+        door: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.door : null),
+        location: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.location : null)
       }, { validators: addressFormGroupValidator }),
       typeOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.typeOfBuilding : null),
       yearOfConstruction: new FormControl(!!this.apartmentData ? this.apartmentData.yearOfConstruction : null),
@@ -97,6 +98,10 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
 
   handleAddressChange(address: Address) {
     this.apartmentDataFirstForm.get('address').get('city').setValue(address.formatted_address);
+    this.apartmentDataFirstForm.get('address').get('location').setValue({
+      lat: address.geometry.location.lat(),
+      lng: address.geometry.location.lng()
+    });
     this.searchTerms.emit(this.apartmentDataFirstForm.get('address').value);
   }
 

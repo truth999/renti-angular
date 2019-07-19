@@ -12,18 +12,24 @@ import { TenantComponent } from './components/my-profile/tenant/tenant.component
 import { LandlordComponent } from './components/my-profile/landlord/landlord.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ChangePasswordComponent } from './components/my-profile/change-password/change-password.component';
+import { DeleteAccountComponent } from './components/my-profile/delete-account/delete-account.component';
+import { DeleteAccountModalComponent } from './components/modal/delete-account-modal/delete-account-modal.component';
 
 import { MyProfileService } from './services/my-profile.service';
+import { DeleteAccountModalService } from './services/modal/delete-account-modal.service';
 
 @NgModule({
   declarations: [
     TenantComponent,
     LandlordComponent,
     MyProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    DeleteAccountComponent,
+    DeleteAccountModalComponent
   ],
   providers: [
-    MyProfileService
+    MyProfileService,
+    DeleteAccountModalService
   ],
   imports: [
     SharedModule,
@@ -33,6 +39,9 @@ import { MyProfileService } from './services/my-profile.service';
     InternationalPhoneNumberModule,
     GooglePlaceModule,
     ToastrModule,
+  ],
+  entryComponents: [
+    DeleteAccountModalComponent
   ]
 })
 export class MyProfileModule { }
