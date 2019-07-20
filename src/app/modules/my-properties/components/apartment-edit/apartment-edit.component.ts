@@ -12,6 +12,7 @@ import { DateSelectService } from '../../../../shared/services/date-select.servi
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 import { ImageUploaderService } from '../../../../core/services/image-uploader.service';
 import { FloorPlanModalService } from '../../../../shared/services/modal/floor-plan-modal.service';
+import { ConfirmModalService } from '../../../../shared/services/modal/confirm-modal.service';
 
 import { Apartment } from '../../../../shared/models';
 
@@ -55,7 +56,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     private validateFormFieldsService: ValidateFormFieldsService,
     private datepickerConfig: NgbDatepickerConfig,
     private imageUploaderService: ImageUploaderService,
-    private floorPlanModalService: FloorPlanModalService
+    private floorPlanModalService: FloorPlanModalService,
+    private confirmModalService: ConfirmModalService
   ) {
     const today = new Date();
 
@@ -306,6 +308,17 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     const results = this.apartment;
 
     this.floorPlanModalService.show(results);
+  }
+
+  onOpenConfirmModal() {
+    const result = {
+      title: 'DELETE_APARTMENT',
+      message: ['ACTION_NOT_REVERSIBLE', 'SURE_DELETE_APARTMENT'],
+      btnOk: 'DELETE',
+      btnCancel: 'CANCEL'
+    };
+
+    this.confirmModalService.show(result);
   }
 
   async submit() {

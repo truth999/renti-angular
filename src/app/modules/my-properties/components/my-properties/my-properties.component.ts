@@ -28,7 +28,7 @@ export class MyPropertiesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.page.perPage = 10000;
+    this.page.perPage = 10;
     this.page.pageNumber = 1;
 
     this.getApartments();
@@ -39,9 +39,16 @@ export class MyPropertiesComponent implements OnInit {
       const landlordId = this.storageService.get('landlordId');
       const apartmentsResponse = await this.myPropertiesService.getApartments(this.page, landlordId);
       this.apartments = apartmentsResponse.apartments;
+      this.page.totalElements = apartmentsResponse.totalItems;
+      this.page.totalPages = Math.ceil(this.page.totalElements / this.page.perPage);
     } catch (e) {
       console.log('MyPropertiesComponent->getApartments', e);
     }
+  }
+
+  pageChange(event) {
+    this.page.pageNumber = event;
+    this.getApartments();
   }
 
   onAdd() {

@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { AgmCoreModule } from '@agm/core';
-import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 import { NouisliderModule } from 'ng2-nouislider';
 
@@ -18,20 +16,18 @@ import { PhotoUploadModalComponent } from './components/modal/photo-upload-modal
 import { ProfileItemComponent } from './components/profile-item/profile-item.component';
 import { PhotoEditModalComponent } from './components/modal/photo-edit-modal/photo-edit-modal.component';
 import { CropEditorComponent } from './components/modal/photo-edit-modal/crop-editor/crop-editor.component';
-import { HeatmapFlatModalComponent } from './components/modal/heatmap/heatmap-flat-modal/heatmap-flat-modal.component';
-import { HeatmapTenantModalComponent } from './components/modal/heatmap/heatmap-tenant-modal/heatmap-tenant-modal.component';
 import { FeedbackModalComponent } from './components/modal/feedback-modal/feedback-modal.component';
 import { FloorPlanModalComponent } from './components/modal/floor-plan-modal/floor-plan-modal.component';
+import { ConfirmModalComponent } from './components/modal/confirm-modal/confirm-modal.component';
 
 import { PhotoUploadModalService } from './services/modal/photo-upload-modal.service';
 import { PhotoEditModalService } from './services/modal/photo-edit-modal.service';
 import { ResponsiveService } from './services/responsive.service';
 import { DateSelectService } from './services/date-select.service';
-import { HeatmapFlatModalService } from './services/modal/heatmap/heatmap-flat-modal.service';
-import { HeatmapTenantModalService } from './services/modal/heatmap/heatmap-tenant-modal.service';
 import { FeedbackModalService } from './services/modal/feedback-modal.service';
 import { LayoutService } from './services/layout.service';
 import { FloorPlanModalService } from './services/modal/floor-plan-modal.service';
+import { ConfirmModalService } from './services/modal/confirm-modal.service';
 
 import { MenuCloseDirective } from './directives/menu-close.directive';
 
@@ -52,18 +48,16 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     CropEditorComponent,
     DateToAgePipe,
     DateToStringPipe,
-    HeatmapFlatModalComponent,
-    HeatmapTenantModalComponent,
     FeedbackModalComponent,
-    FloorPlanModalComponent
+    FloorPlanModalComponent,
+    ConfirmModalComponent
   ],
   entryComponents: [
     PhotoUploadModalComponent,
     PhotoEditModalComponent,
-    HeatmapFlatModalComponent,
-    HeatmapTenantModalComponent,
     FeedbackModalComponent,
-    FloorPlanModalComponent
+    FloorPlanModalComponent,
+    ConfirmModalComponent
   ],
   imports: [
     CommonModule,
@@ -71,8 +65,6 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     TranslateModule,
     NgbModule,
     NouisliderModule,
-    AgmCoreModule,
-    AgmJsMarkerClustererModule,
     ReactiveFormsModule
   ],
   exports: [
@@ -92,8 +84,6 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     CropEditorComponent,
     DateToAgePipe,
     DateToStringPipe,
-    HeatmapFlatModalComponent,
-    HeatmapTenantModalComponent,
     FeedbackModalComponent,
     FloorPlanModalComponent
   ],
@@ -102,11 +92,10 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     PhotoEditModalService,
     ResponsiveService,
     DateSelectService,
-    HeatmapFlatModalService,
-    HeatmapTenantModalService,
     FeedbackModalService,
     LayoutService,
-    FloorPlanModalService
+    FloorPlanModalService,
+    ConfirmModalService
   ]
 })
 export class SharedModule { }

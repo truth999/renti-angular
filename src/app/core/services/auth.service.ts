@@ -47,8 +47,11 @@ export class AuthService {
     return this.apiService.get(`landlords/${id}`);
   }
 
-  getTenant(id: string): Promise<any> {
-    return this.apiService.get(`tenants/${id}`);
+  getTenant(id: string, page?): Promise<any> {
+    const url = typeof page === 'undefined'
+      ? `tenants/${id}`
+      : `tenants/${id}?page=${page.pageNumber}&perPage=${page.perPage}`;
+    return this.apiService.get(url);
   }
 
   createUser(signupRequest: SignupRequest) {

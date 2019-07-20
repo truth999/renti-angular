@@ -1,5 +1,12 @@
 @import "~src/assets/styles/scss/variables";
 
+.my-properties {
+  height: calc(100vh - 2rem);
+
+  @include media-breakpoint-down(md) {
+    height: calc(100vh - 2rem - 73px);
+  }
+}
 app-apartment-item {
   &:focus {
     outline: none;

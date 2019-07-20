@@ -1,16 +1,27 @@
-<div class="my-properties">
-  <div class="d-flex justify-content-between align-items-center mb-4 mt-sm-0 mt-3">
-    <h4>{{ 'COMMON.AVAILABLE_APARTMENTS' | translate }}</h4>
-    <button class="btn btn-add d-flex justify-content-between align-items-center text-left font-weight-bold"
-            (click)="onAdd()">{{ 'COMMON.ADD_NEW' | translate  }}</button>
+<div class="my-properties d-flex flex-column justify-content-between">
+  <div class="my-properties-content">
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-sm-0 mt-3">
+      <h4>{{ 'COMMON.AVAILABLE_APARTMENTS' | translate }}</h4>
+      <button class="btn btn-add d-flex justify-content-between align-items-center text-left font-weight-bold"
+              (click)="onAdd()">{{ 'COMMON.ADD_NEW' | translate  }}</button>
+    </div>
+    <div class="row"
+         *ngIf="apartments">
+      <ng-container *ngFor="let apartment of apartments">
+        <app-apartment-item class="col-lg-6 py-3"
+                            [apartment]="apartment"
+                            [apartmentSummary]="true"
+                            [routerLink]="['/app/my-properties/apartment', apartment._id, 'edit']"></app-apartment-item>
+      </ng-container>
+    </div>
   </div>
-  <div class="row"
-       *ngIf="apartments">
-    <ng-container *ngFor="let apartment of apartments">
-      <app-apartment-item class="col-lg-6 py-3"
-                          [apartment]="apartment"
-                          [apartmentSummary]="true"
-                          [routerLink]="['/app/my-properties/apartment', apartment._id, 'edit']"></app-apartment-item>
-    </ng-container>
+  <div class="pages" *ngIf="apartments && apartments.length !== 0">
+    <ngb-pagination class="d-flex justify-content-center"
+                    [collectionSize]="page.totalPages * 10"
+                    [(page)]="page.pageNumber"
+                    [maxSize]="5"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    (pageChange)="pageChange($event)"></ngb-pagination>
   </div>
 </div>

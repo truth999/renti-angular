@@ -1,54 +1,69 @@
-<div class="my-offers">
-  <div class="back mb-4 mt-3 mt-sm-0">
-    <button class="btn btn-back d-sm-block d-none"
-            (click)="onBack()">
-      <i class="icon-left h4 align-middle mb-0"></i>
-      {{ 'COMMON.BACK' | translate }}
-    </button>
-    <i class="icon-left-circle d-sm-none"
-       (click)="onBack()"></i>
+<div class="my-offers d-flex flex-column justify-content-between">
+  <div class="my-offers-content">
+    <div class="back mb-4 mt-3 mt-sm-0">
+      <button class="btn btn-back d-sm-block d-none"
+              (click)="onBack()">
+        <i class="icon-left h4 align-middle mb-0"></i>
+        {{ 'COMMON.BACK' | translate }}
+      </button>
+      <i class="icon-left-circle d-sm-none"
+         (click)="onBack()"></i>
+    </div>
+    <ngb-tabset (tabChange)="changeTab($event)">
+      <ngb-tab id="pending">
+        <ng-template ngbTabTitle>{{ 'COMMON.PENDING' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+          <div class="row"
+               *ngIf="offers">
+            <ng-container *ngFor="let offer of offers">
+              <app-apartment-item class="col-lg-6 py-3"
+                                  [apartment]="offer.apartment"
+                                  [routerLink]="['/app/rentals/apartment', offer.apartment._id]"></app-apartment-item>
+            </ng-container>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="accepted">
+        <ng-template ngbTabTitle>{{ 'COMMON.ACCEPTED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+          <div class="row"
+               *ngIf="offers">
+            <ng-container *ngFor="let offer of offers">
+              <app-apartment-item class="col-lg-6 py-3"
+                                  [apartment]="offer.apartment"
+                                  [routerLink]="['/app/rentals/apartment', offer.apartment._id]">
+                <button *ngIf="!offer.tenantFeedback"
+                        type="button"
+                        class="btn btn-primary btn-sm position-absolute"
+                        (click)="onGiveFeedback($event, { offerId: offer._id, landlordId: offer.apartment.landlord })">{{ 'OFFER.GIVE_FEEDBACK_LANDLORD' | translate }}</button>
+              </app-apartment-item>
+            </ng-container>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="rejected">
+        <ng-template ngbTabTitle>{{ 'COMMON.REJECTED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+          <div class="row"
+               *ngIf="offers">
+            <ng-container *ngFor="let offer of offers">
+              <app-apartment-item class="col-lg-6 py-3"
+                                  [apartment]="offer.apartment"
+                                  [routerLink]="['/app/rentals/apartment', offer.apartment._id]"></app-apartment-item>
+            </ng-container>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
   </div>
-  <ngb-tabset (tabChange)="changeTab($event)">
-    <ngb-tab id="pending">
-      <ng-template ngbTabTitle>{{ 'COMMON.PENDING' | translate }}</ng-template>
-      <ng-template ngbTabContent>
-        <div class="row">
-          <ng-container *ngFor="let offer of offers">
-            <app-apartment-item class="col-lg-6 py-3"
-                                [apartment]="offer.apartment"
-                                [routerLink]="['/app/rentals/apartment', offer.apartment._id]"></app-apartment-item>
-          </ng-container>
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="accepted">
-      <ng-template ngbTabTitle>{{ 'COMMON.ACCEPTED' | translate }}</ng-template>
-      <ng-template ngbTabContent>
-        <div class="row">
-          <ng-container *ngFor="let offer of offers">
-            <app-apartment-item class="col-lg-6 py-3"
-                                [apartment]="offer.apartment"
-                                [routerLink]="['/app/rentals/apartment', offer.apartment._id]">
-              <button *ngIf="!offer.tenantFeedback"
-                      type="button"
-                      class="btn btn-primary btn-sm position-absolute"
-                      (click)="onGiveFeedback($event, { offerId: offer._id, landlordId: offer.apartment.landlord })">{{ 'OFFER.GIVE_FEEDBACK_LANDLORD' | translate }}</button>
-            </app-apartment-item>
-          </ng-container>
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="rejected">
-      <ng-template ngbTabTitle>{{ 'COMMON.REJECTED' | translate }}</ng-template>
-      <ng-template ngbTabContent>
-        <div class="row">
-          <ng-container *ngFor="let offer of offers">
-            <app-apartment-item class="col-lg-6 py-3"
-                                [apartment]="offer.apartment"
-                                [routerLink]="['/app/rentals/apartment', offer.apartment._id]"></app-apartment-item>
-          </ng-container>
-        </div>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
+  <div class="pages"
+       *ngIf="offers && offers.length !== 0">
+    <ngb-pagination class="d-flex justify-content-center"
+                    [collectionSize]="page.totalPages * 10"
+                    [(page)]="page.pageNumber"
+                    [maxSize]="5"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    (pageChange)="pageChange($event)"></ngb-pagination>
+  </div>
 </div>

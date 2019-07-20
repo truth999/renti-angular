@@ -1,6 +1,12 @@
 @import "~src/assets/styles/scss/variables";
 
 .offers {
+  height: calc(100vh - 2rem);
+
+  @include media-breakpoint-down(md) {
+    height: calc(100vh - 2rem - 73px);
+  }
+
   .custom-select {
     color: $blue;
   }

@@ -1,0 +1,70 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    <span *ngIf="result.type === 'flat'"
+          class="d-flex"
+          [innerHTML]="'HOME.SELECT1' | translate"></span>
+    <span *ngIf="result.type === 'tenant'"
+          class="d-flex"
+          [innerHTML]="'HOME.SELECT2' | translate"></span>
+  </h4>
+  <button type="button"
+          class="close"
+          aria-label="true"
+          (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <ng-container *ngIf="result.type === 'flat'">
+    <agm-map *ngIf="result.location"
+             [latitude]="result.location.lat"
+             [longitude]="result.location.lng">
+      <agm-marker-cluster *ngIf="apartments"
+                          imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+        <agm-marker *ngFor="let apartment of apartments"
+                    [latitude]="apartment.address.location.lat"
+                    [longitude]="apartment.address.location.lng"
+                    (markerClick)="clickedMarker(infoWindow)">
+          <agm-info-window #infoWindow>
+            <div class="d-flex">
+              <div class="apartment-image position-relative mr-3">
+                <img [src]="apartment.setAsPicture ? (uploadBase + apartment.setAsPicture) : (apartment.pictures.length !== 0 ? (uploadBase + apartment.pictures[0]) : '/assets/images/empty_image.png')"
+                     alt=""
+                     width="100"
+                     height="100">
+                <span class="badge badge-success image-badge position-absolute">{{ apartment.rank }}%</span>
+              </div>
+              <div class="apartment-content d-flex flex-column justify-content-between">
+                <h6 class="font-size-lg mb-0">{{ apartment.name }}</h6>
+                <div class="d-flex flex-column">
+                  <span class="mb-1"><span class="mo font-weight-bold">{{ !!apartment.rentalFee ? apartment.rentalFee : '' }}</span>/mo</span>
+                  <span class="font-weight-bold mb-1">
+                  <i class="icon-fullscreen align-middle mr-1"></i>
+                    {{ apartment.size }} m<sup>2</sup>
+                </span>
+                  <span class="font-weight-bold">
+                  <i class="icon-bed align-middle mr-1"></i>
+                    {{ apartment.rooms.length }}
+                </span>
+                </div>
+              </div>
+            </div>
+          </agm-info-window>
+        </agm-marker>
+      </agm-marker-cluster>
+    </agm-map>
+  </ng-container>
+  <ng-container *ngIf="result.type === 'tenant'">
+    <agm-map *ngIf="result.location"
+             [latitude]="result.location.lat"
+             [longitude]="result.location.lng">
+      <agm-marker-cluster *ngIf="tenantsLocation"
+                          imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+        <agm-marker *ngFor="let location of tenantsLocation"
+                    [latitude]="location.lat"
+                    [longitude]="location.lng"></agm-marker>
+      </agm-marker-cluster>
+    </agm-map>
+  </ng-container>
+</div>
+<div class="modal-footer"></div>

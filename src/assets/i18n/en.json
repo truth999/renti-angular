@@ -238,7 +238,12 @@
     "STAR_RATING": "star rating",
     "BASED_ON": "Based on",
     "RATINGS": "ratings",
-    "UPLOAD_BASIC_FLOOR_PLAN": "Upload basic floor plan"
+    "UPLOAD_BASIC_FLOOR_PLAN": "Upload basic floor plan",
+    "ACTION_NOT_REVERSIBLE": "This action is not reversible!",
+    "SURE_DELETE_ACCOUNT": "Are you sure you want to delete your account?",
+    "OK": "OK",
+    "DELETE_APARTMENT": "Delete apartment",
+    "SURE_DELETE_APARTMENT": "Are you sure you want to delete apartment?"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",

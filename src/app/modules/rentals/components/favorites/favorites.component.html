@@ -1,13 +1,25 @@
-<div class="favorites">
-  <div class="mb-4 mt-sm-0 mt-3">
-    <h4>{{ 'COMMON.MY_FAVORITES' | translate }}</h4>
+<div class="favorites d-flex flex-column justify-content-between">
+  <div class="favorites-content">
+    <div class="mb-4 mt-sm-0 mt-3">
+      <h4>{{ 'COMMON.MY_FAVORITES' | translate }}</h4>
+    </div>
+    <div class="row"
+         *ngIf="favorites">
+      <ng-container *ngFor="let favorite of favorites">
+        <app-apartment-item class="col-lg-6 py-3"
+                            [apartment]="favorite"
+                            [routerLink]="['/app/rentals/apartment', favorite._id]"></app-apartment-item>
+      </ng-container>
+    </div>
   </div>
-  <div class="row"
-       *ngIf="favorites">
-    <ng-container *ngFor="let favorite of favorites">
-      <app-apartment-item class="col-lg-6 py-3"
-                          [apartment]="favorite"
-                          [routerLink]="['/app/rentals/apartment', favorite._id]"></app-apartment-item>
-    </ng-container>
+  <div class="pages"
+       *ngIf="favorites && favorites.length !== 0">
+    <ngb-pagination class="d-flex justify-content-center"
+                    [collectionSize]="page.totalPages * 10"
+                    [(page)]="page.pageNumber"
+                    [maxSize]="5"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    (pageChange)="pageChange($event)"></ngb-pagination>
   </div>
 </div>

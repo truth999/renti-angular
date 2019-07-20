@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DeleteAccountModalService } from '../../../services/modal/delete-account-modal.service';
+import { ConfirmModalService } from '../../../../../shared/services/modal/confirm-modal.service';
 
 @Component({
   selector: 'app-delete-account',
@@ -10,14 +10,21 @@ import { DeleteAccountModalService } from '../../../services/modal/delete-accoun
 export class DeleteAccountComponent implements OnInit {
 
   constructor(
-    private deleteAccountModalService: DeleteAccountModalService
+    private confirmModalService: ConfirmModalService
   ) { }
 
   ngOnInit() {
   }
 
-  onOpenDeleteAccountModal() {
-    this.deleteAccountModalService.show();
+  onOpenConfirmModal() {
+    const result = {
+      title: 'DELETE_MY_ACCOUNT',
+      message: ['ACTION_NOT_REVERSIBLE', 'SURE_DELETE_ACCOUNT'],
+      btnOk: 'DELETE',
+      btnCancel: 'CANCEL'
+    };
+
+    this.confirmModalService.show(result);
   }
 
 }

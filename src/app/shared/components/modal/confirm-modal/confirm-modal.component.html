@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{ 'COMMON.' + result.title | translate }}
+  </h4>
+  <button type="button"
+          class="close"
+          aria-label="true"
+          (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>{{ 'COMMON.' + result.message[0] | translate }} {{ 'COMMON.' + result.message[1] | translate }}</p>
+</div>
+<div class="modal-footer">
+  <button *ngIf="result.btnCancel"
+          type="button" class="btn btn-outline-primary"
+          (click)="onClose()">{{ 'COMMON.' + result.btnCancel | translate }}</button>
+  <button *ngIf="result.btnOk"
+          type="button" class="btn btn-danger">{{ 'COMMON.' + result.btnOk | translate }}</button>
+</div>

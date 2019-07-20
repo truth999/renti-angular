@@ -1,54 +1,69 @@
-<div class="offers">
-  <div class="back mb-4 mt-3 mt-sm-0">
-    <button class="btn btn-back d-sm-block d-none"
-            (click)="onBack()">
-      <i class="icon-left h4 align-middle mb-0"></i>
-      {{ 'COMMON.BACK' | translate }}
-    </button>
-    <i class="icon-left-circle d-sm-none"
-       (click)="onBack()"></i>
+<div class="offers d-flex flex-column justify-content-between">
+  <div class="offers-content">
+    <div class="back mb-4 mt-3 mt-sm-0">
+      <button class="btn btn-back d-sm-block d-none"
+              (click)="onBack()">
+        <i class="icon-left h4 align-middle mb-0"></i>
+        {{ 'COMMON.BACK' | translate }}
+      </button>
+      <i class="icon-left-circle d-sm-none"
+         (click)="onBack()"></i>
+    </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <h2 class="mb-0">{{ 'OFFER.OFFERS' | translate }}:</h2>
+      <select class="custom-select w-auto border-0 font-size-lg font-weight-bold">
+        <option value="">{{ 'OFFER.PRICE_INCREASES' | translate }}</option>
+      </select>
+    </div>
+    <!--  <p class="font-weight-bold mt-2">Budapest, Andrássy út 72, 3/32. :</p>-->
+    <ngb-tabset (tabChange)="changeTab($event)">
+      <ngb-tab id="received">
+        <ng-template ngbTabTitle>{{ 'COMMON.RECEIVED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+          <div class="row"
+               *ngIf="offers">
+            <div class="col-sm-6 py-3"
+                 *ngFor="let offer of offers; let i = index">
+              <app-offer [offer]="offer"
+                         (offerChanged)="rejectedOffers()"></app-offer>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="accepted">
+        <ng-template ngbTabTitle>{{ 'COMMON.ACCEPTED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+          <div class="row"
+               *ngIf="offers">
+            <div class="col-sm-6 py-3"
+                 *ngFor="let offer of offers; let i = index">
+              <app-offer [offer]="offer"></app-offer>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="rejected">
+        <ng-template ngbTabTitle>{{ 'COMMON.REJECTED' | translate }}</ng-template>
+        <ng-template ngbTabContent>
+          <div class="row"
+               *ngIf="offers">
+            <div class="col-sm-6 py-3"
+                 *ngFor="let offer of offers; let i = index">
+              <app-offer [offer]="offer"></app-offer>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
   </div>
-  <div class="d-flex align-items-center justify-content-between">
-    <h2 class="mb-0">{{ 'OFFER.OFFERS' | translate }}:</h2>
-    <select class="custom-select w-auto border-0 font-size-lg font-weight-bold">
-      <option value="">{{ 'OFFER.PRICE_INCREASES' | translate }}</option>
-    </select>
+  <div class="pages"
+       *ngIf="offers && offers.length !== 0">
+    <ngb-pagination class="d-flex justify-content-center"
+                    [collectionSize]="page.totalPages * 10"
+                    [(page)]="page.pageNumber"
+                    [maxSize]="5"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    (pageChange)="pageChange($event)"></ngb-pagination>
   </div>
-  <!--  <p class="font-weight-bold mt-2">Budapest, Andrássy út 72, 3/32. :</p>-->
-  <ngb-tabset (tabChange)="changeTab($event)">
-    <ngb-tab id="received">
-      <ng-template ngbTabTitle>{{ 'COMMON.RECEIVED' | translate }}</ng-template>
-      <ng-template ngbTabContent>
-        <div class="row">
-          <div class="col-sm-6 py-3"
-               *ngFor="let offer of offers; let i = index">
-            <app-offer [offer]="offer"
-                       (offerChanged)="rejectedOffers()"></app-offer>
-          </div>
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="accepted">
-      <ng-template ngbTabTitle>{{ 'COMMON.ACCEPTED' | translate }}</ng-template>
-      <ng-template ngbTabContent>
-        <div class="row">
-          <div class="col-sm-6 py-3"
-               *ngFor="let offer of offers; let i = index">
-            <app-offer [offer]="offer"></app-offer>
-          </div>
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab id="rejected">
-      <ng-template ngbTabTitle>{{ 'COMMON.REJECTED' | translate }}</ng-template>
-      <ng-template ngbTabContent>
-        <div class="row">
-          <div class="col-sm-6 py-3"
-               *ngFor="let offer of offers; let i = index">
-            <app-offer [offer]="offer"></app-offer>
-          </div>
-        </div>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
 </div>

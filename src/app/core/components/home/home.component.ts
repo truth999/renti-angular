@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { HeatmapFlatModalService } from '../../../shared/services/modal/heatmap/heatmap-flat-modal.service';
-import { HeatmapTenantModalService } from '../../../shared/services/modal/heatmap/heatmap-tenant-modal.service';
 import { HeatmapService } from '../../../modules/heatmap/services/heatmap.service';
+import { MapModalService } from '../../services/modal/map-modal.service';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private heatmapFlatModalService: HeatmapFlatModalService,
-    private heatmapTenantModalService: HeatmapTenantModalService,
+    private mapModalService: MapModalService,
     private heatmapService: HeatmapService
   ) { }
 
@@ -42,16 +40,13 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login'], { relativeTo: this.route });
   }
 
-  onOpenHeatmapFlatModal() {
-    const results = this.defaultLocation;
+  onOpenMapModal(type) {
+    const results = {
+      location: this.defaultLocation,
+      type
+    };
 
-    this.heatmapFlatModalService.show(results);
-  }
-
-  onOpenHeatmapTenantModal() {
-    const results = this.defaultLocation;
-
-    this.heatmapTenantModalService.show(results);
+    this.mapModalService.show(results);
   }
 
 }

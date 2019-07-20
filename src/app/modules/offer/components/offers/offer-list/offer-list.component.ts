@@ -17,6 +17,7 @@ import { Offer, Page } from '../../../../../shared/models';
 export class OfferListComponent implements OnInit {
   offers: Offer[];
   page = new Page();
+  accepted: boolean;
 
   constructor(
     private location: Location,
@@ -27,6 +28,9 @@ export class OfferListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.page.perPage = 10;
+    this.page.pageNumber = 1;
+
     this.getOffers();
     this.feedbackModalService.giveFeedback.subscribe(() => {
       this.getOffers(true);
@@ -34,15 +38,14 @@ export class OfferListComponent implements OnInit {
   }
 
   async getOffers(accepted?: boolean) {
-    this.page.perPage = 10;
-    this.page.pageNumber = 1;
-
     try {
       const landlordId = this.storageService.get('landlordId');
       const offersResponse = typeof accepted === 'undefined'
         ? await this.offerService.getOffersByLandlord(this.page, landlordId)
         : await this.offerService.getOffersByLandlord(this.page, landlordId, accepted);
       this.offers = offersResponse.offers;
+      this.page.totalElements = offersResponse.totalItems;
+      this.page.totalPages = Math.ceil(this.page.totalElements / this.page.perPage);
     } catch (e) {
       console.log('OfferListComponent->getOffers', e);
     }
@@ -50,18 +53,29 @@ export class OfferListComponent implements OnInit {
 
   changeTab(event: NgbTabChangeEvent) {
     if (event.nextId === 'received') {
+      this.page.pageNumber = 1;
+      this.accepted = null;
       this.getOffers();
     }
     if (event.nextId === 'accepted') {
+      this.page.pageNumber = 1;
+      this.accepted = true;
       this.getOffers(true);
     }
     if (event.nextId === 'rejected') {
+      this.page.pageNumber = 1;
+      this.accepted = false;
       this.getOffers(false);
     }
   }
 
   rejectedOffers() {
     this.getOffers();
+  }
+
+  pageChange(event) {
+    this.page.pageNumber = event;
+    this.getOffers(this.accepted);
   }
 
   onBack() {

@@ -14,12 +14,12 @@
   <section class="items d-flex position-relative">
     <div class="buttons-wrapper d-flex position-absolute align-items-center justify-content-around w-100">
       <button class="btn btn-primary btn-lg item-button"
-              (click)="onOpenHeatmapFlatModal()">
+              (click)="onOpenMapModal('flat')">
         <span class="d-block"
               [innerHTML]="'HOME.SELECT1' | translate"></span>
       </button>
       <button class="btn btn-primary btn-lg item-button"
-              (click)="onOpenHeatmapTenantModal()">
+              (click)="onOpenMapModal('tenant')">
         <span class="d-block"
               [innerHTML]="'HOME.SELECT2' | translate"></span>
       </button>

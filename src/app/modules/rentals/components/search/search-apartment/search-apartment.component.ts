@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -29,6 +29,8 @@ export class SearchApartmentComponent implements OnInit {
     'UPC', 'DIGI', 'Telekom', 'Other'
   ];
 
+  searched = false;
+
   constructor(
     private rentalsService: RentalsService,
     private authService: AuthService,
@@ -47,7 +49,7 @@ export class SearchApartmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.page.perPage = 10000;
+    this.page.perPage = 10;
     this.page.pageNumber = 1;
     this.years = this.dateSelectService.getYears();
 
@@ -59,19 +61,12 @@ export class SearchApartmentComponent implements OnInit {
     try {
       const tenantId = this.storageService.get('tenantId');
       const tenantResponse = await this.authService.getTenant(tenantId);
-      const lookingToRentIn = tenantResponse.tenant.lookingRent;
+      const lookingToRentIn = tenantResponse.tenant.lookingRent.address;
 
-      const apartmentResponse = await this.rentalsService.getApartments(this.page);
-      const apartments = apartmentResponse.apartments;
-
-      const tenantApartments = apartments.filter(apartment => {
-        return apartment.address === lookingToRentIn;
-      });
-      const diffApartments = apartments.filter(apartment => {
-        return apartment.address !== lookingToRentIn;
-      });
-
-      this.apartments = tenantApartments.concat(diffApartments);
+      const apartmentResponse = await this.rentalsService.getApartments(this.page, lookingToRentIn);
+      this.apartments = apartmentResponse.apartments;
+      this.page.totalElements = apartmentResponse.totalItems;
+      this.page.totalPages = Math.ceil(this.page.totalElements / this.page.perPage);
     } catch (e) {
       console.log('SearchApartmentComponent->getApartments', e);
     }
@@ -260,20 +255,34 @@ export class SearchApartmentComponent implements OnInit {
     this.searchForm.get('rentalFee').setValue([0, 2000000]);
   }
 
+  async getSearchApartments() {
+    try {
+      const response = await this.rentalsService.getSearchApartments(this.page, this.searchForm.value);
+      this.apartments = response.apartments;
+      this.page.totalElements = response.totalItems;
+      this.page.totalPages = Math.ceil(this.page.totalElements / this.page.perPage);
+      this.toggled = false;
+    } catch (e) {
+      console.log('SearchApartmentComponent->getSearchApartments', e);
+    }
+  }
+
+  pageChange(event) {
+    this.page.pageNumber = event;
+    if (this.searched) {
+      this.getSearchApartments();
+    } else {
+      this.getApartments();
+    }
+  }
+
   arrayNumber(n: number) {
     return Array(n);
   }
 
-  async submit() {
-    const filters = this.searchForm.value;
-
-    try {
-      const response = await this.rentalsService.getSearchApartments(this.page, filters);
-      this.apartments = response.apartments;
-      this.toggled = false;
-    } catch (e) {
-      console.log('SearchApartmentComponent->submit', e);
-    }
+  submit() {
+    this.searched = true;
+    this.getSearchApartments();
   }
 
 }

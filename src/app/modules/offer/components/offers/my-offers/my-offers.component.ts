@@ -16,6 +16,7 @@ import { Offer, Page } from '../../../../../shared/models';
 export class MyOffersComponent implements OnInit {
   offers: Offer[];
   page = new Page();
+  accepted: boolean;
 
   constructor(
     private location: Location,
@@ -25,6 +26,9 @@ export class MyOffersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.page.perPage = 10;
+    this.page.pageNumber = 1;
+
     this.getOffers();
     this.feedbackModalService.giveFeedback.subscribe(() => {
       this.getOffers(true);
@@ -32,15 +36,14 @@ export class MyOffersComponent implements OnInit {
   }
 
   async getOffers(accepted?: boolean) {
-    this.page.perPage = 10;
-    this.page.pageNumber = 1;
-
     try {
       const tenantId = this.storageService.get('tenantId');
       const response = typeof accepted === 'undefined'
         ? await this.offerService.getOffersByTenant(this.page, tenantId)
         : await this.offerService.getOffersByTenant(this.page, tenantId, accepted);
       this.offers = response.offers;
+      this.page.totalElements = response.totalItems;
+      this.page.totalPages = Math.ceil(this.page.totalElements / this.page.perPage);
     } catch (e) {
       console.log('MyOffersComponent->getOffers', e);
     }
@@ -48,12 +51,18 @@ export class MyOffersComponent implements OnInit {
 
   changeTab(event: NgbTabChangeEvent) {
     if (event.nextId === 'pending') {
+      this.page.pageNumber = 1;
+      this.accepted = null;
       this.getOffers();
     }
     if (event.nextId === 'accepted') {
+      this.page.pageNumber = 1;
+      this.accepted = true;
       this.getOffers(true);
     }
     if (event.nextId === 'rejected') {
+      this.page.pageNumber = 1;
+      this.accepted = false;
       this.getOffers(false);
     }
   }
@@ -61,6 +70,11 @@ export class MyOffersComponent implements OnInit {
   onGiveFeedback(event: Event, feedbackData) {
     event.stopPropagation();
     this.feedbackModalService.show(feedbackData);
+  }
+
+  pageChange(event) {
+    this.page.pageNumber = event;
+    this.getOffers(this.accepted);
   }
 
   onBack() {
