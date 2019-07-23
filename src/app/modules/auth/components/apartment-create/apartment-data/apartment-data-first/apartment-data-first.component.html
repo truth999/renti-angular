@@ -97,9 +97,11 @@
                   formControlName="stateOfApartment">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
             <option value="new">{{ 'COMMON.NEW' | translate }}</option>
+            <option value="newish">{{ 'COMMON.NEWISH' | translate }}</option>
+            <option value="renovated">{{ 'COMMON.RENOVATED' | translate }}</option>
             <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
-            <option value="normal">{{ 'COMMON.NORMAL' | translate }}</option>
-            <option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</option>
+            <option value="average">{{ 'COMMON.AVERAGE' | translate }}</option>
+            <option value="needs_renovation">{{ 'COMMON.NEED_RENOVATION' | translate }}</option>
           </select>
         </td>
       </tr>
@@ -129,7 +131,7 @@
         <td class="text-right py-0 pr-0">
           <input type="number"
                  class="form-control border-0 text-right"
-                 min="1"
+                 min="0"
                  max="100"
                  step="1"
                  inputmode="numeric"
@@ -152,7 +154,7 @@
         <td class="text-right py-0 pr-0">
           <input type="number"
                  class="form-control border-0 text-right"
-                 min="1"
+                 min="0"
                  max="100"
                  step="1"
                  inputmode="numeric"

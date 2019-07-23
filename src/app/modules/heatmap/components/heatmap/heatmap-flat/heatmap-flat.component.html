@@ -16,19 +16,19 @@
                    alt=""
                    width="100"
                    height="100">
-              <span class="badge badge-success image-badge position-absolute">{{ apartment.rank }}%</span>
+              <span class="badge badge-success image-badge position-absolute">{{ apartment.rank }}% {{ 'COMMON.DATA' | translate }}</span>
             </div>
             <div class="apartment-content d-flex flex-column justify-content-between">
               <h6 class="font-size-lg mb-0">{{ apartment.name }}</h6>
               <div class="d-flex flex-column">
-                <span class="mb-1"><span class="mo font-weight-bold">{{ !!apartment.rentalFee ? apartment.rentalFee : '' }}</span>/mo</span>
+                <span class="mb-1"><span class="mo font-weight-bold">{{ !!apartment.rentalFee ? (apartment.rentalFee | number) : '' }}</span>/{{ 'COMMON.MONTH' | translate | lowercase }}</span>
                 <span class="font-weight-bold mb-1">
                   <i class="icon-fullscreen align-middle mr-1"></i>
-                  {{ apartment.size }} m<sup>2</sup>
+                  {{ apartment.size | number }} m<sup>2</sup>
                 </span>
                 <span class="font-weight-bold">
                   <i class="icon-bed align-middle mr-1"></i>
-                  {{ apartment.rooms.length }}
+                  {{ apartment.rooms.length }} {{ 'COMMON.ROOMS' | translate }}
                 </span>
               </div>
             </div>

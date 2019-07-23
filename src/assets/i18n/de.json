@@ -159,9 +159,12 @@
     "FREE_TEXT_INTRODUCTION": "Vorstellung",
     "ADDRESS": "Adresse",
     "NEW": "Neu",
+    "NEWISH": "Newish",
+    "RENOVATED": "Renovated",
     "GOOD": "Schön",
     "NORMAL": "Normal",
-    "RENOVATION": "Zu renovierend",
+    "AVERAGE": "Average",
+    "NEED_RENOVATION": "Needs renovation",
     "EAST": "Ost",
     "WEST": "West",
     "NORTH": "Nord",
@@ -243,7 +246,11 @@
     "SURE_DELETE_ACCOUNT": "Are you sure you want to delete your account?",
     "OK": "OK",
     "DELETE_APARTMENT": "Delete apartment",
-    "SURE_DELETE_APARTMENT": "Are you sure you want to delete apartment?"
+    "SURE_DELETE_APARTMENT": "Are you sure you want to delete apartment?",
+    "EDIT_FLOOR_PLAN": "Edit the floor plan",
+    "YMD": "jjjj-mm-tt",
+    "AVAILABLE_TENANTS": "Available tenants",
+    "AVAILABLE_FLATS": "Available flats"
   },
   "HOME": {
     "TITLE": "Renti - Kanaan der Untermieten",
@@ -339,7 +346,6 @@
     "SOCIAL_MEDIA_AVAILABILITIES": "Will be modified",
     "WHY_CHOOSE_ME": "Warum wählen Sie mich",
     "OFFERS": "Angebote",
-    "PRICE_INCREASES": "Nach dem Preis steigend",
     "GO_TO_FULL_PROFILE": "Go to full profile",
     "OFFER_CREATE_SUCCESS": "Angebot erfolgreich gesendet",
     "OFFER_SUCCESS": "Hier sehen Sie die Erreichbarkeit des/der Untermieters(in):",
@@ -347,7 +353,10 @@
     "GIVE_FEEDBACK_TENANT": "Give the feedback to tenant",
     "GIVE_FEEDBACK_LANDLORD": "Give feedback to landlord",
     "YOUR_FEEDBACK": "Your feedback",
-    "GIVE_FEEDBACK": "Give feedback"
+    "GIVE_FEEDBACK": "Give feedback",
+    "INCREASING_BASED_RENTAL_FEE": "Increasing based on Rental fee",
+    "INCREASING_BASED_MINIMUM_RENTING_TIME": "Increasing based on Minimum renting time",
+    "INCREASING_BASED_ARRIVAL_DATE_OFFER": "Increasing based on Arrival date of the offer"
   },
   "SEARCH": {
     "SEARCH": "Suchen",

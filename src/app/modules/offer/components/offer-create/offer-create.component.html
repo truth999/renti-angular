@@ -37,11 +37,11 @@
               class="custom-select"
               formControlName="minRentingTime">
         <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-        <option value="1 month">1 {{ 'COMMON.MONTH' | translate }}</option>
-        <option value="3 months">3 {{ 'COMMON.MONTHS' | translate }}</option>
-        <option value="6 months">6 {{ 'COMMON.MONTHS' | translate }}</option>
-        <option value="12+ months">12+ {{ 'COMMON.MONTHS' | translate }}</option>
-        <option value="24+ months">24+ {{ 'COMMON.MONTHS' | translate }}</option>
+        <option value="1">1 {{ 'COMMON.MONTH' | translate }}</option>
+        <option value="3">3 {{ 'COMMON.MONTHS' | translate }}</option>
+        <option value="6">6 {{ 'COMMON.MONTHS' | translate }}</option>
+        <option value="12">12+ {{ 'COMMON.MONTHS' | translate }}</option>
+        <option value="24">24+ {{ 'COMMON.MONTHS' | translate }}</option>
       </select>
       <div class="invalid-feedback d-block" *ngIf="offerForm.get('minRentingTime').invalid && (offerForm.get('minRentingTime').dirty || offerForm.get('minRentingTime').touched)">
         <span *ngIf="offerForm.get('minRentingTime').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
@@ -51,7 +51,7 @@
       <label for="dateOfMovingIn">{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}</label>
       <input class="form-control w-auto"
              id="dateOfMovingIn"
-             placeholder="yyyy-mm-dd"
+             placeholder="{{ 'COMMON.YMD' | translate }}"
              ngbDatepicker
              #d="ngbDatepicker"
              (click)="d.toggle()"

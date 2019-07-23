@@ -3,7 +3,8 @@
   <form [formGroup]="roomForm"
         (ngSubmit)="submit()">
     <div class="row my-4">
-      <div class="position-relative mx-auto"
+      <div *ngIf="drawImage"
+           class="position-relative mx-auto"
            id="draw"
            [ngStyle]="{'background-image': getDrawUrl()}"
            (drop)="drop($event)"

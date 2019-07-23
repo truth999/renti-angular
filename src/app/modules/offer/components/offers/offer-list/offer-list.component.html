@@ -9,11 +9,16 @@
       <i class="icon-left-circle d-sm-none"
          (click)="onBack()"></i>
     </div>
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="mb-3">
       <h2 class="mb-0">{{ 'OFFER.OFFERS' | translate }}:</h2>
-      <select class="custom-select w-auto border-0 font-size-lg font-weight-bold">
-        <option value="">{{ 'OFFER.PRICE_INCREASES' | translate }}</option>
-      </select>
+      <div class="text-right">
+        <select class="custom-select w-auto border-0 font-size-lg font-weight-bold"
+                (change)="onSort($event)">
+          <option value="rentalFee">{{ 'OFFER.INCREASING_BASED_RENTAL_FEE' | translate }}</option>
+          <option value="minRentingTime">{{ 'OFFER.INCREASING_BASED_MINIMUM_RENTING_TIME' | translate }}</option>
+          <option value="createdAt">{{ 'OFFER.INCREASING_BASED_ARRIVAL_DATE_OFFER' | translate }}</option>
+        </select>
+      </div>
     </div>
     <!--  <p class="font-weight-bold mt-2">Budapest, Andrássy út 72, 3/32. :</p>-->
     <ngb-tabset (tabChange)="changeTab($event)">

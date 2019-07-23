@@ -38,7 +38,7 @@ export class ApartmentDataThirdComponent implements OnInit {
       balcony: new FormControl(null),
       sizeOfBalcony: new FormControl(null),
       garden: new FormControl(null),
-      sizeOfGarden: new FormControl(null, [Validators.min(0), Validators.max(999999)]),
+      sizeOfGarden: new FormControl(null, [Validators.min(0), Validators.max(5000)]),
       terrace: new FormControl(null),
       sizeOfTerrace: new FormControl(null, [Validators.min(1), Validators.max(100)]),
       rentalFee: new FormControl(null, [Validators.required, Validators.min(1000), Validators.max(2000000)]),

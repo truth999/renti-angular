@@ -1,5 +1,5 @@
 <div class="apartment-draw">
-  <h5>{{ 'COMMON.FLOOR_PLAN' | translate }}?</h5>
+  <h5>{{ 'COMMON.FLOOR_PLAN' | translate }}</h5>
   <p class="text-muted">{{ 'COMMON.INCREASE_CHANCES_FLOOR_PLAN' | translate }}</p>
   <form [formGroup]="apartmentDrawForm"
         (ngSubmit)="submit()">
@@ -10,15 +10,11 @@
              accept="image/png, image/jpeg, image/jpg"
              (change)="onFileChange($event)">
       <div class="row my-4">
-        <div class="col-6 offset-3">
+        <div class="col-8 offset-2">
           <img *ngIf="apartmentDrawForm.get('draw').value"
                [src]="apartmentDrawForm.get('draw').value"
                alt=""
-               class="img-fluid">
-          <div class="invalid-feedback d-block"
-               *ngIf="apartmentDrawForm.get('draw').invalid && (apartmentDrawForm.get('draw').dirty || apartmentDrawForm.get('draw').touched)">
-            <span *ngIf="apartmentDrawForm.get('draw').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-          </div>
+               width="100%">
         </div>
       </div>
       <button type="button"

@@ -30,10 +30,12 @@ export class ApartmentPictureComponent implements OnInit {
     this.apartment = this.apartmentCreateService.apartment;
 
     this.apartmentPictureForm = new FormGroup({
-      pictures: new FormArray(!!this.apartment.pictures && this.apartment.pictures.length !== 0 ? this.apartment.pictures.map(picture => {
-        return new FormControl(picture);
-      }) : []),
-      setAsPicture: new FormControl(!!this.apartment.setAsPicture ? this.apartment.setAsPicture : null)
+      pictures: new FormArray(
+        !!this.apartment && !!this.apartment.pictures && this.apartment.pictures.length !== 0 ? this.apartment.pictures.map(picture => {
+          return new FormControl(picture);
+        }) : []
+      ),
+      setAsPicture: new FormControl(!!this.apartment && !!this.apartment.setAsPicture ? this.apartment.setAsPicture : null)
     });
 
     this.pictureValid.emit(true);

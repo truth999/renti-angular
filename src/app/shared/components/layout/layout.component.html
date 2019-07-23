@@ -17,7 +17,7 @@
           *ngIf="user.accountType === AccountTypes.TENANT">
         <li class="nav-item">
           <a routerLink="/app/my-profile"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-person mr-2"></i>
             {{ 'COMMON.MY_PROFILE' | translate }}
@@ -25,7 +25,7 @@
         </li>
         <li class="nav-item">
           <a routerLink="/app/offers"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-alert mr-2"></i>
             {{ 'OFFER.OFFERS' | translate }}
@@ -35,7 +35,7 @@
         </li>
         <li class="nav-item">
           <a routerLink="rentals/search"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-search mr-2"></i>
             {{ 'COMMON.SEARCH' | translate }}
@@ -43,7 +43,7 @@
         </li>
         <li class="nav-item">
           <a routerLink="rentals/favorites"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-favorite mr-2"></i>
             {{ 'COMMON.FAVORITES' | translate }}
@@ -51,10 +51,10 @@
         </li>
         <li class="nav-item">
           <a routerLink="/app/heatmap"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-heatmap mr-2"></i>
-            {{ 'COMMON.HEATMAP' | translate }}
+            {{ 'COMMON.AVAILABLE_FLATS' | translate }}
           </a>
         </li>
       </ul>
@@ -62,7 +62,7 @@
           *ngIf="user.accountType === AccountTypes.LANDLORD">
         <li class="nav-item">
           <a routerLink="/app/my-profile"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-person mr-2"></i>
             {{ 'COMMON.MY_PROFILE' | translate }}
@@ -70,7 +70,7 @@
         </li>
         <li class="nav-item">
           <a routerLink="/app/my-properties"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-property mr-2"></i>
             {{ 'COMMON.MY_APARTMENTS' | translate }}
@@ -78,7 +78,7 @@
         </li>
         <li class="nav-item">
           <a routerLink="/app/offers"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-alert mr-2"></i>
             {{ 'OFFER.OFFERS' | translate }}
@@ -88,10 +88,10 @@
         </li>
         <li class="nav-item">
           <a routerLink="/app/heatmap"
-             class="nav-link"
+             class="nav-link d-flex align-items-center"
              appMenuClose>
             <i class="icon-heatmap mr-2"></i>
-            {{ 'COMMON.HEATMAP' | translate }}
+            {{ 'COMMON.AVAILABLE_TENANTS' | translate }}
           </a>
         </li>
       </ul>

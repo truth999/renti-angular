@@ -209,7 +209,7 @@ export class SearchApartmentComponent implements OnInit {
 
   onChangeGarden() {
     this.searchForm.get('garden').value
-      ? this.searchForm.get('sizeOfGarden').setValue([0, 999999])
+      ? this.searchForm.get('sizeOfGarden').setValue([0, 5000])
       : this.searchForm.get('sizeOfGarden').setValue(null);
   }
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HeatmapRoutingModule } from './heatmap-routing.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { HeatmapComponent } from './components/heatmap/heatmap.component';
 import { HeatmapFlatComponent } from './components/heatmap/heatmap-flat/heatmap-flat.component';
@@ -22,6 +23,7 @@ import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     AgmCoreModule,
     AgmJsMarkerClustererModule,
     HeatmapRoutingModule

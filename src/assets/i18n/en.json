@@ -159,9 +159,12 @@
     "FREE_TEXT_INTRODUCTION": "Free text introduction",
     "ADDRESS": "Address",
     "NEW": "New",
+    "NEWISH": "Newish",
+    "RENOVATED": "Renovated",
     "GOOD": "Good",
     "NORMAL": "Normal",
-    "RENOVATION": "Renovation",
+    "AVERAGE": "Average",
+    "NEED_RENOVATION": "Needs renovation",
     "EAST": "East",
     "WEST": "West",
     "NORTH": "North",
@@ -243,7 +246,11 @@
     "SURE_DELETE_ACCOUNT": "Are you sure you want to delete your account?",
     "OK": "OK",
     "DELETE_APARTMENT": "Delete apartment",
-    "SURE_DELETE_APARTMENT": "Are you sure you want to delete apartment?"
+    "SURE_DELETE_APARTMENT": "Are you sure you want to delete apartment?",
+    "EDIT_FLOOR_PLAN": "Edit the floor plan",
+    "YMD": "yyyy-mm-dd",
+    "AVAILABLE_TENANTS": "Available tenants",
+    "AVAILABLE_FLATS": "Available flats"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
@@ -339,7 +346,6 @@
     "SOCIAL_MEDIA_AVAILABILITIES": "Social media availabilities",
     "WHY_CHOOSE_ME": "Why choose me",
     "OFFERS": "Offers",
-    "PRICE_INCREASES": "Increasing based on price",
     "GO_TO_FULL_PROFILE": "Continue to the full profile",
     "OFFER_CREATE_SUCCESS": "Your bid was successfully sent.",
     "OFFER_SUCCESS": "Below you can find your tenant availabilities:",
@@ -347,7 +353,10 @@
     "GIVE_FEEDBACK_TENANT": "Give the feedback to tenant",
     "GIVE_FEEDBACK_LANDLORD": "Give feedback to landlord",
     "YOUR_FEEDBACK": "Your feedback",
-    "GIVE_FEEDBACK": "Give feedback"
+    "GIVE_FEEDBACK": "Give feedback",
+    "INCREASING_BASED_RENTAL_FEE": "Increasing based on Rental fee",
+    "INCREASING_BASED_MINIMUM_RENTING_TIME": "Increasing based on Minimum renting time",
+    "INCREASING_BASED_ARRIVAL_DATE_OFFER": "Increasing based on Arrival date of the offer"
   },
   "SEARCH": {
     "SEARCH": "Search",

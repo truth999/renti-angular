@@ -19,7 +19,8 @@
              accept="image/png, image/jpeg, image/jpg"
              (change)="onFileChange($event)">
       <div class="row my-4">
-        <div class="position-relative mx-auto"
+        <div *ngIf="getDrawUrl()"
+             class="position-relative mx-auto"
              id="draw"
              [ngStyle]="{'background-image': getDrawUrl()}"
              (drop)="drop($event)"

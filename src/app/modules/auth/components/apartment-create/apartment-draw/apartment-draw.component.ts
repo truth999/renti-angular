@@ -1,5 +1,5 @@
 import { Component, DoCheck, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
 
@@ -13,9 +13,7 @@ export class ApartmentDrawComponent implements OnInit, DoCheck {
   @Output() drawValid = new EventEmitter<boolean>();
   @Output() drawImage = new EventEmitter<string>();
 
-  constructor(
-    private validateFormFieldsService: ValidateFormFieldsService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     this.buildForm();
@@ -27,7 +25,7 @@ export class ApartmentDrawComponent implements OnInit, DoCheck {
 
   buildForm() {
     this.apartmentDrawForm = new FormGroup({
-      draw: new FormControl(null, Validators.required)
+      draw: new FormControl(null)
     });
   }
 
@@ -51,12 +49,8 @@ export class ApartmentDrawComponent implements OnInit, DoCheck {
   }
 
   submit() {
-    if (this.apartmentDrawForm.valid) {
-      const apartmentDraw = this.apartmentDrawForm.value;
-      this.drawImage.emit(apartmentDraw.draw);
-    } else {
-      this.validateFormFieldsService.validate(this.apartmentDrawForm);
-    }
+    const apartmentDraw = this.apartmentDrawForm.value;
+    this.drawImage.emit(apartmentDraw.draw);
   }
 
 }

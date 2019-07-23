@@ -74,7 +74,7 @@ export class MyOffersComponent implements OnInit {
 
   pageChange(event) {
     this.page.pageNumber = event;
-    this.getOffers(this.accepted);
+    this.accepted ? this.getOffers(this.accepted) : this.getOffers();
   }
 
   onBack() {

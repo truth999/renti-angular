@@ -94,7 +94,7 @@
           <input type="number"
                  class="form-control border-0 text-right"
                  min="0"
-                 max="999999"
+                 max="5000"
                  step="1"
                  inputmode="numeric"
                  pattern="[0-9]*"
@@ -261,7 +261,7 @@
           </div>
           <div *ngIf="!rightNow.value">
             <input class="form-control text-right mt-2"
-                   placeholder="yyyy-mm-dd"
+                   placeholder="{{ 'COMMON.YMD' | translate }}"
                    ngbDatepicker
                    #d="ngbDatepicker"
                    (click)="d.toggle()"

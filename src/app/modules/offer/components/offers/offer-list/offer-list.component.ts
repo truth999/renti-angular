@@ -18,6 +18,7 @@ export class OfferListComponent implements OnInit {
   offers: Offer[];
   page = new Page();
   accepted: boolean;
+  sort: string;
 
   constructor(
     private location: Location,
@@ -30,19 +31,20 @@ export class OfferListComponent implements OnInit {
   ngOnInit() {
     this.page.perPage = 10;
     this.page.pageNumber = 1;
+    this.sort = 'rentalFee';
 
-    this.getOffers();
+    this.getOffers(this.sort);
     this.feedbackModalService.giveFeedback.subscribe(() => {
-      this.getOffers(true);
+      this.getOffers(this.sort, true);
     });
   }
 
-  async getOffers(accepted?: boolean) {
+  async getOffers(sort, accepted?: boolean) {
     try {
       const landlordId = this.storageService.get('landlordId');
       const offersResponse = typeof accepted === 'undefined'
-        ? await this.offerService.getOffersByLandlord(this.page, landlordId)
-        : await this.offerService.getOffersByLandlord(this.page, landlordId, accepted);
+        ? await this.offerService.getOffersByLandlord(this.page, landlordId, sort)
+        : await this.offerService.getOffersByLandlord(this.page, landlordId, sort, accepted);
       this.offers = offersResponse.offers;
       this.page.totalElements = offersResponse.totalItems;
       this.page.totalPages = Math.ceil(this.page.totalElements / this.page.perPage);
@@ -55,27 +57,32 @@ export class OfferListComponent implements OnInit {
     if (event.nextId === 'received') {
       this.page.pageNumber = 1;
       this.accepted = null;
-      this.getOffers();
+      this.getOffers(this.sort);
     }
     if (event.nextId === 'accepted') {
       this.page.pageNumber = 1;
       this.accepted = true;
-      this.getOffers(true);
+      this.getOffers(this.sort, true);
     }
     if (event.nextId === 'rejected') {
       this.page.pageNumber = 1;
       this.accepted = false;
-      this.getOffers(false);
+      this.getOffers(this.sort, false);
     }
   }
 
   rejectedOffers() {
-    this.getOffers();
+    this.getOffers(this.sort);
   }
 
   pageChange(event) {
     this.page.pageNumber = event;
-    this.getOffers(this.accepted);
+    this.accepted ? this.getOffers(this.sort, this.accepted) : this.getOffers(this.sort);
+  }
+
+  onSort(event) {
+    this.sort = event.target.value;
+    this.accepted ? this.getOffers(this.sort, this.accepted) : this.getOffers(this.sort);
   }
 
   onBack() {

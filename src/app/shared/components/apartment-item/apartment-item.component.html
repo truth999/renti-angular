@@ -19,12 +19,12 @@
   <table class="table mt-3 mb-0">
     <tr class="unit">
       <td class="border-0 pb-0 pr-0">
-        <span><span class="mo font-weight-bold font-size-lg">{{ !!apartment.rentalFee ? apartment.rentalFee : '' }}</span>/mo</span>
+        <span><span class="mo font-weight-bold font-size-lg">{{ !!apartment.rentalFee ? (apartment.rentalFee | number) : '' }}</span>/{{ 'COMMON.MONTH' | translate | lowercase }}</span>
       </td>
       <td class="border-0 pb-0 pr-0">
         <span class="font-weight-bold font-size-lg">
           <i class="icon-fullscreen align-middle mr-1"></i>
-              {{ apartment.size }} m<sup>2</sup>
+              {{ apartment.size | number }} m<sup>2</sup>
         </span>
       </td>
       <td class="border-0 pb-0 pr-0">

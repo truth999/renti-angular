@@ -137,10 +137,10 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       stateOfApartment: new FormControl(this.apartment.stateOfApartment),
       energyPerformanceCertificate: new FormControl(this.apartment.energyPerformanceCertificate),
       floorsOfBuilding: new FormControl(
-        this.apartment.floorsOfBuilding, [Validators.min(1), Validators.max(100)]
+        this.apartment.floorsOfBuilding, [Validators.min(0), Validators.max(100)]
       ),
       floorsOfApartment: new FormControl(
-        this.apartment.floorsOfApartment, [Validators.min(1), Validators.max(100)]
+        this.apartment.floorsOfApartment, [Validators.min(0), Validators.max(100)]
       ),
       size: new FormControl(this.apartment.size, [Validators.required, Validators.min(1), Validators.max(9999)]),
       elevator: new FormControl(this.apartment.elevator),
@@ -161,7 +161,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       balcony: new FormControl(this.apartment.balcony),
       sizeOfBalcony: new FormControl(this.apartment.sizeOfBalcony),
       garden: new FormControl(this.apartment.garden),
-      sizeOfGarden: new FormControl(this.apartment.sizeOfGarden, [Validators.min(0), Validators.max(999999)]),
+      sizeOfGarden: new FormControl(this.apartment.sizeOfGarden, [Validators.min(0), Validators.max(5000)]),
       terrace: new FormControl(this.apartment.terrace),
       sizeOfTerrace: new FormControl(this.apartment.sizeOfTerrace, [Validators.min(1), Validators.max(100)]),
       rentalFee: new FormControl(

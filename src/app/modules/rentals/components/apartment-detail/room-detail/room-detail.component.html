@@ -4,7 +4,7 @@
     <h4>{{ room.name }}</h4>
     <div class="square font-weight-bold">
       <i class="icon-fullscreen align-middle"></i>
-      {{ room.size }}m<sup>2</sup>
+      {{ room.size | number }}m<sup>2</sup>
     </div>
   </div>
   <div class="room-image mt-2">
@@ -20,7 +20,7 @@
     <tbody>
     <tr>
       <td class="border-top-0">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
-      <td class="border-top-0 text-right font-weight-bold">{{ room.size }}</td>
+      <td class="border-top-0 text-right font-weight-bold">{{ room.size | number }}</td>
     </tr>
     <tr>
       <td>{{ 'APARTMENT.YEAR_OF_RENOVATION' | translate }}</td>

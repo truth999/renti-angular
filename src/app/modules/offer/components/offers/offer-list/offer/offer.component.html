@@ -8,7 +8,7 @@
     <tbody>
     <tr>
       <td class="border-top-0">{{ 'APARTMENT.RENTAL_FEE' | translate }}:</td>
-      <td class="border-top-0 font-weight-bold text-right">{{ offer.rentalFee }}</td>
+      <td class="border-top-0 font-weight-bold text-right">{{ offer.rentalFee | number }}</td>
     </tr>
     <tr>
       <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }}):</td>
@@ -34,7 +34,7 @@
   </p>
   <button class="btn btn-outline-primary btn-lg w-100 mt-3" (click)="onProfile()">{{ 'OFFER.GO_TO_FULL_PROFILE' | translate }}</button>
   <div class="text-right mt-4"
-       *ngIf="offer.accepted && !offer.landlordFeedback">
+       *ngIf="offer.accepted && offer.feedbackReady && !offer.landlordFeedback">
     <button class="btn btn-primary btn-sm"
             (click)="onGiveFeedback({ offerId: offer._id, tenantId: offer.tenant._id })">{{ 'OFFER.GIVE_FEEDBACK_TENANT' | translate }}</button>
   </div>

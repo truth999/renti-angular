@@ -186,25 +186,30 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
   }
 
   getDrawUrl() {
-    return `url(${this.drawImage})`;
+    if (this.drawImage) {
+      return `url(${this.drawImage})`;
+    }
   }
 
   submit() {
     if (this.roomForm.valid) {
-      html2canvas(this.draw.nativeElement).then(async canvas => {
-        const image = canvas.toDataURL();
-        const blobImage = this.imageUploaderService.b64toBlob(image);
-        try {
-          const imageName = await this.imageUploaderService.upload(blobImage);
-          const draw = {
-            ...this.apartment,
-            draw: imageName[0]
-          };
-          this.apartmentCreateService.createApartmentData(draw);
-        } catch (e) {
-          console.log('ApartmentRoomComponent->html2canvas', e);
-        }
-      });
+      if (this.drawImage) {
+        html2canvas(this.draw.nativeElement).then(async canvas => {
+          const image = canvas.toDataURL();
+          const blobImage = this.imageUploaderService.b64toBlob(image);
+          try {
+            const imageName = await this.imageUploaderService.upload(blobImage);
+            const draw = {
+              ...this.apartment,
+              draw: imageName[0]
+            };
+            this.apartmentCreateService.createApartmentData(draw);
+          } catch (e) {
+            console.log('ApartmentRoomComponent->html2canvas', e);
+          }
+        });
+      }
+
       const rooms = { ...this.roomForm.value };
       this.apartmentCreateService.createRoomsData(rooms.rooms);
     } else {

@@ -13,10 +13,10 @@ export class OfferService {
     private apiService: ApiService
   ) { }
 
-  getOffersByLandlord(page: Page, landlordId: string, accepted?: boolean): Promise<any> {
+  getOffersByLandlord(page: Page, landlordId: string, sort: string, accepted?: boolean): Promise<any> {
     const url = typeof accepted === 'undefined'
-      ? `${this.offerUrl}/landlord/${landlordId}?page=${page.pageNumber}&perPage=${page.perPage}`
-      : `${this.offerUrl}/landlord/${landlordId}?page=${page.pageNumber}&perPage=${page.perPage}&accepted=${accepted}`;
+      ? `${this.offerUrl}/landlord/${landlordId}?page=${page.pageNumber}&perPage=${page.perPage}&sort=${sort}`
+      : `${this.offerUrl}/landlord/${landlordId}?page=${page.pageNumber}&perPage=${page.perPage}&sort=${sort}&accepted=${accepted}`;
     return this.apiService.get(url);
   }
 

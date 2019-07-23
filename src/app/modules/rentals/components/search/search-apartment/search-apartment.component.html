@@ -136,9 +136,11 @@
                        formControlName="stateOfApartment"
                        *ngIf="stateOfApartment.checked">
               <ng-option value="new">{{ 'COMMON.NEW' | translate }}</ng-option>
+              <ng-option value="newish">{{ 'COMMON.NEWISH' | translate }}</ng-option>
+              <ng-option value="renovated">{{ 'COMMON.RENOVATED' | translate }}</ng-option>
               <ng-option value="good">{{ 'COMMON.GOOD' | translate }}</ng-option>
-              <ng-option value="normal">{{ 'COMMON.NORMAL' | translate }}</ng-option>
-              <ng-option value="renovation">{{ 'COMMON.RENOVATION' | translate }}</ng-option>
+              <ng-option value="average">{{ 'COMMON.AVERAGE' | translate }}</ng-option>
+              <ng-option value="needs_renovation">{{ 'COMMON.NEED_RENOVATION' | translate }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -255,6 +257,10 @@
               <ng-option value="west">{{ 'COMMON.WEST' | translate }}</ng-option>
               <ng-option value="north">{{ 'COMMON.NORTH' | translate }}</ng-option>
               <ng-option value="south">{{ 'COMMON.SOUTH' | translate }}</ng-option>
+              <ng-option value="north_west">{{ 'COMMON.NORTH' | translate }}-{{ 'COMMON.WEST' | translate }}</ng-option>
+              <ng-option value="north_east">{{ 'COMMON.NORTH' | translate }}-{{ 'COMMON.EAST' | translate }}</ng-option>
+              <ng-option value="south_west">{{ 'COMMON.SOUTH' | translate }}-{{ 'COMMON.WEST' | translate }}</ng-option>
+              <ng-option value="south_east">{{ 'COMMON.SOUTH' | translate }}-{{ 'COMMON.EAST' | translate }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -389,7 +395,7 @@
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="balcony" class="mb-0">{{ 'APARTMENT.BALCONY' | translate }}</label>
+              <label for="balcony" class="mb-0">{{ 'APARTMENT.BALCONY' | translate }} (m<sup>2</sup>)</label>
               <input type="checkbox"
                      id="balcony"
                      class="search-checkbox"
@@ -407,7 +413,7 @@
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <label for="garden"
-                     class="mb-0">{{ 'APARTMENT.GARDEN' | translate }}</label>
+                     class="mb-0">{{ 'APARTMENT.GARDEN' | translate }} (m<sup>2</sup>)</label>
               <input type="checkbox"
                      id="garden"
                      class="search-checkbox"
@@ -417,14 +423,14 @@
             <nouislider *ngIf="searchForm.get('garden').value"
                         [connect]="true"
                         [min]="0"
-                        [max]="999999"
+                        [max]="5000"
                         [step]="1"
                         [formControl]="searchForm.controls.sizeOfGarden"
                         [tooltips]="[true, true]"></nouislider>
           </div>
           <div class="pl-2 mb-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <label for="terrace" class="mb-0">{{ 'APARTMENT.TERRACE' | translate }}</label>
+              <label for="terrace" class="mb-0">{{ 'APARTMENT.TERRACE' | translate }} (m<sup>2</sup>)</label>
               <input type="checkbox"
                      id="terrace"
                      class="search-checkbox"
