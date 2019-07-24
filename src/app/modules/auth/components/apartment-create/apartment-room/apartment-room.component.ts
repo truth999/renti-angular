@@ -38,7 +38,6 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.roomsData = this.apartmentCreateService.rooms;
-    this.apartment = this.apartmentCreateService.apartment;
     this.roomForm = new FormGroup({
       rooms: new FormArray(!!this.roomsData ? this.roomsData.map(room => {
         return new FormGroup({
@@ -194,14 +193,18 @@ export class ApartmentRoomComponent implements OnInit, DoCheck {
   submit() {
     if (this.roomForm.valid) {
       if (this.drawImage) {
-        html2canvas(this.draw.nativeElement).then(async canvas => {
+        html2canvas(this.draw.nativeElement, { logging: false }).then(async canvas => {
           const image = canvas.toDataURL();
           const blobImage = this.imageUploaderService.b64toBlob(image);
           try {
+            this.apartment = this.apartmentCreateService.apartment;
             const imageName = await this.imageUploaderService.upload(blobImage);
             const draw = {
               ...this.apartment,
-              draw: imageName[0]
+              draw: {
+                basicDraw: this.apartment.draw.basicDraw,
+                updatedDraw: imageName[0]
+              }
             };
             this.apartmentCreateService.createApartmentData(draw);
           } catch (e) {

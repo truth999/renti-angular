@@ -26,14 +26,13 @@
              (drop)="drop($event)"
              (dragover)="allowDrop($event)"
              #draw></div>
-        <div class="invalid-feedback d -block"
-             *ngIf="floorPlanForm.get('draw').invalid && (floorPlanForm.get('draw').dirty || floorPlanForm.get('draw').touched)">
-          <span *ngIf="floorPlanForm.get('draw').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
-        </div>
       </div>
-      <button type="button"
-              class="btn btn-primary"
-              (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_BASIC_FLOOR_PLAN' | translate }}</button>
+      <div class="d-flex justify-content-around">
+        <a href="javascript:void(0);"
+           (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_BASIC_FLOOR_PLAN' | translate }}</a>
+        <a href="javascript:void(0);"
+           (click)="onReset()">{{ 'COMMON.RESET' | translate }}</a>
+      </div>
     </div>
     <div formArrayName="rooms">
       <div class="form-group d-flex justify-content-between"

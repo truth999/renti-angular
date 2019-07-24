@@ -133,9 +133,9 @@
             <div class="rooms mt-4">
               <h3>{{ 'COMMON.ROOMS' | translate }}</h3>
               <div class="draw-room row"
-                   *ngIf="apartment.draw">
+                   *ngIf="apartment.draw && apartment.draw.updatedDraw">
                 <div class="col-sm-9">
-                  <img [src]="uploadBase + apartment.draw"
+                  <img [src]="uploadBase + apartment.draw.updatedDraw"
                        width="100%"
                        alt="">
                 </div>

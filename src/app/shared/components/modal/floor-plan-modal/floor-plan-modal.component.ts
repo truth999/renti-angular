@@ -27,6 +27,7 @@ export class FloorPlanModalComponent implements OnInit {
   originalY: number;
   @ViewChild('draw') draw: ElementRef;
   uploadBase = environment.uploadBase;
+  drawUrl: string;
 
   constructor(
     private modal: NgbActiveModal,
@@ -37,13 +38,16 @@ export class FloorPlanModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (!!this.result.draw && !!this.result.draw.updatedDraw) {
+      this.drawUrl = this.uploadBase + this.result.draw.updatedDraw;
+    }
+
     this.buildForm();
     this.onAddRoom();
   }
 
   buildForm() {
     this.floorPlanForm = new FormGroup({
-      draw: new FormControl(null),
       rooms: new FormArray(this.result.rooms.map(room => {
         return new FormGroup({
           _id: new FormControl(room._id),
@@ -77,7 +81,7 @@ export class FloorPlanModalComponent implements OnInit {
     }
   }
 
-  onFileChange(event) {
+  async onFileChange(event) {
     const newPicture = event.target.files;
     this.readFile(newPicture[0]);
   }
@@ -86,8 +90,16 @@ export class FloorPlanModalComponent implements OnInit {
     if (file.type.match(/image.*/)) {
       const fileReader = new FileReader();
 
-      fileReader.addEventListener('loadend', (event: any) => {
-        this.floorPlanForm.get('draw').setValue(event.target.result);
+      fileReader.addEventListener('loadend', async (event: any) => {
+        this.drawUrl = event.target.result;
+        const blobImage = this.imageUploaderService.b64toBlob(this.drawUrl);
+
+        try {
+          const imageName = await this.imageUploaderService.upload(blobImage);
+          this.result.draw.basicDraw = imageName[0];
+        } catch (e) {
+          console.log('FloorPlanModalComponent->onFileChange->html2canvas', e);
+        }
       });
 
       fileReader.readAsDataURL(file);
@@ -96,17 +108,18 @@ export class FloorPlanModalComponent implements OnInit {
     }
   }
 
-  getDrawUrl() {
-    let draw = this.result.draw;
-
-    if (this.floorPlanForm.value.draw) {
-      draw = null;
-
-      return `url(${this.floorPlanForm.value.draw})`;
-    } else if (draw) {
-      return `url(${this.uploadBase + this.result.draw})`;
+  onReset() {
+    if (this.result.draw && this.result.draw.basicDraw) {
+      this.drawUrl = this.uploadBase + this.result.draw.basicDraw;
     }
   }
+
+  getDrawUrl() {
+    if (!!this.drawUrl) {
+      return `url(${this.drawUrl})`;
+    }
+  }
+
 
   allowDrop(event) {
     event.preventDefault();
@@ -250,29 +263,22 @@ export class FloorPlanModalComponent implements OnInit {
           }
         }
 
-        if (this.floorPlanForm.value.draw) {
-          html2canvas(this.draw.nativeElement, { logging: false }).then(async canvas => {
-            const image = canvas.toDataURL();
-            const blobImage = this.imageUploaderService.b64toBlob(image);
+        html2canvas(this.draw.nativeElement, { logging: false, useCORS: true }).then(async canvas => {
+          const image = canvas.toDataURL();
+          const blobImage = this.imageUploaderService.b64toBlob(image);
 
-            try {
-              const imageName = await this.imageUploaderService.upload(blobImage);
-              apartment.draw = imageName[0];
+          try {
+            const imageName = await this.imageUploaderService.upload(blobImage);
+            apartment.draw.updatedDraw = imageName[0];
 
-              await this.myPropertiesService.updateApartment(apartment);
+            await this.myPropertiesService.updateApartment(apartment);
 
-              this.toastrService.success('The apartment is updated successfully.', 'Success!');
-              this.modal.close();
-            } catch (e) {
-              console.log('FloorPlanModalComponent->submit->html2canvas', e);
-            }
-          });
-        } else {
-          await this.myPropertiesService.updateApartment(apartment);
-
-          this.toastrService.success('The apartment is updated successfully.', 'Success!');
-          this.modal.close();
-        }
+            this.toastrService.success('The apartment is updated successfully.', 'Success!');
+            this.modal.close();
+          } catch (e) {
+            console.log('FloorPlanModalComponent->submit->html2canvas', e);
+          }
+        });
       } catch (e) {
         console.log('FloorPlanModalComponent->submit', e);
         this.toastrService.error('Something went wrong', 'Error');

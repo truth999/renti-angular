@@ -54,7 +54,10 @@ export class Apartment {
   setAsPicture: string;
   windowType: string;
   furnished: boolean;
-  draw: string;
+  draw: {
+    basicDraw: string;
+    updatedDraw: string;
+  };
   rank: number;
   rooms: Room[];
   offers: Offer[];
