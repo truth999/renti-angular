@@ -187,7 +187,11 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
       pictures: new FormArray(this.apartment.pictures.length !== 0 ? this.apartment.pictures.map(picture => {
         return new FormControl(picture);
       }) : []),
-      setAsPicture: new FormControl(this.apartment.setAsPicture)
+      setAsPicture: new FormControl(this.apartment.setAsPicture),
+      draw: new FormGroup({
+        basicDraw: new FormControl(!!this.apartment.draw && !!this.apartment.draw.basicDraw ? this.apartment.draw.basicDraw : null),
+        updatedDraw: new FormControl(!!this.apartment.draw && !!this.apartment.draw.updatedDraw ? this.apartment.draw.updatedDraw : null)
+      })
     });
   }
 

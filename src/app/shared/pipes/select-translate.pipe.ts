@@ -1,12 +1,11 @@
-import { OnDestroy, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Pipe({
   name: 'selectTranslate'
 })
-export class SelectTranslatePipe implements PipeTransform, OnDestroy {
-  subscription: Subscription;
+export class SelectTranslatePipe implements PipeTransform {
 
   constructor(
     private translateService: TranslateService
@@ -18,16 +17,12 @@ export class SelectTranslatePipe implements PipeTransform, OnDestroy {
         observer.next(result);
       });
 
-      this.subscription = this.translateService.onLangChange.subscribe(() => {
+      this.translateService.onLangChange.subscribe(() => {
         this.translateService.get(value).subscribe(result => {
           observer.next(result);
         });
       });
     });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
 }
