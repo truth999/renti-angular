@@ -68,6 +68,8 @@
       margin-top: 0;
       word-break: break-word;
       line-height: 1;
+      padding-left: .7rem;
+      padding-right: .7rem;
 
       @include media-breakpoint-up(xl) {
         font-size: 35px;

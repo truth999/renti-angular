@@ -8,14 +8,8 @@
           <select class="custom-select border-0"
                   formControlName="buildingSiting">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-            <option value="east">{{ 'COMMON.EAST' | translate }}</option>
-            <option value="west">{{ 'COMMON.WEST' | translate }}</option>
-            <option value="north">{{ 'COMMON.NORTH' | translate }}</option>
-            <option value="south">{{ 'COMMON.SOUTH' | translate }}</option>
-            <option value="north_west">{{ 'COMMON.NORTH' | translate }}-{{ 'COMMON.WEST' | translate }}</option>
-            <option value="north_east">{{ 'COMMON.NORTH' | translate }}-{{ 'COMMON.EAST' | translate }}</option>
-            <option value="south_west">{{ 'COMMON.SOUTH' | translate }}-{{ 'COMMON.WEST' | translate }}</option>
-            <option value="south_east">{{ 'COMMON.SOUTH' | translate }}-{{ 'COMMON.EAST' | translate }}</option>
+            <option *ngFor="let key of Object.keys(apartmentConfig.buildingSiting)"
+                    [value]="key">{{ apartmentConfig.buildingSiting[key] | translate }}</option>
           </select>
         </td>
       </tr>
@@ -25,14 +19,8 @@
           <select class="custom-select border-0"
                   formControlName="typeOfHeating">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-            <option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</option>
-            <option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</option>
-            <option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</option>
-            <option value="central">{{ 'COMMON.CENTRAL' | translate }}</option>
-            <option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</option>
-            <option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</option>
-            <option value="stove">{{ 'COMMON.STOVE' | translate }}</option>
-            <option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</option>
+            <option *ngFor="let key of Object.keys(apartmentConfig.typeOfHeating)"
+                    [value]="key">{{ apartmentConfig.typeOfHeating[key] | translate }}</option>
           </select>
         </td>
       </tr>
@@ -43,10 +31,8 @@
           <select class="custom-select border-0"
                   formControlName="headroom">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-            <option value="2m">< 2M</option>
-            <option value="2.5m">2.0 - 2.5M</option>
-            <option value="3m">2.5 - 3.0M</option>
-            <option value="3mp">> 3M</option>
+            <option *ngFor="let key of Object.keys(apartmentConfig.headroom)"
+                    [value]="key">{{ apartmentConfig.headroom[key] }}</option>
           </select>
         </td>
       </tr>
@@ -56,10 +42,8 @@
           <select class="custom-select border-0"
                   formControlName="parking">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-            <option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</option>
-            <option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</option>
-            <option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</option>
-            <option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</option>
+            <option *ngFor="let key of Object.keys(apartmentConfig.parking)"
+                    [value]="key">{{ apartmentConfig.parking[key] | translate }}</option>
           </select>
         </td>
       </tr>
@@ -69,9 +53,8 @@
           <select class="custom-select border-0"
                   formControlName="windowType">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-            <option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</option>
-            <option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</option>
-            <option value="Other">{{ 'COMMON.OTHER' | translate }}</option>
+            <option *ngFor="let key of Object.keys(apartmentConfig.windowType)"
+                    [value]="key">{{ apartmentConfig.windowType[key] | translate }}</option>
           </select>
         </td>
       </tr>
@@ -147,14 +130,16 @@
       <tr>
         <td class="py-0 align-middle">{{ 'APARTMENT.AVAILABLE_MEDIA_SERVICE_PROVIDERS' | translate }}</td>
         <td class="text-right py-0 pr-0 w-50">
-          <ng-select [items]="mediaService"
-                     [multiple]="true"
+          <ng-select [multiple]="true"
                      [closeOnSelect]="false"
-                     formControlName="mediaServiceProviders"></ng-select>
+                     formControlName="mediaServiceProviders">
+            <ng-option *ngFor="let item of Object.values(apartmentConfig.availableMediaServiceProviders) | selectTranslate | async | keyvalue: keepOrder"
+                       [value]="[apartmentConfig.availableMediaServiceProviders, item.key] | valueToKey">{{ item.value }}</ng-option>
+          </ng-select>
         </td>
       </tr>
       <tr>
-        <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}?</td>
+        <td class="py-0 align-middle">{{ 'APARTMENT.HANDICAP_ACCESSIBLE' | translate }}</td>
         <td class="text-right pr-0">
           <div class="switch">
             <input type="radio"

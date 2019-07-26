@@ -10,6 +10,7 @@ import { environment } from '../../../../../environments/environment';
 import { RentalsService } from '../../services/rentals.service';
 import { StorageService } from '../../../../core/services/storage.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { config } from '../../../../../config';
 
 @Component({
   selector: 'app-apartment-detail',
@@ -22,6 +23,7 @@ export class ApartmentDetailComponent implements OnInit {
   toggled = false;
   rate: number;
   feedbackNumber: number;
+  apartmentConfig = config.apartment;
 
   uploadBase = environment.uploadBase;
 

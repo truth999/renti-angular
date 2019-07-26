@@ -100,21 +100,23 @@
                 <tr class="nationality">
                   <td class="align-middle border-top-0">{{ 'COMMON.NATIONALITY' | translate }}:</td>
                   <td class="text-right border-top-0 pr-0 py-0 w-50">
-                    <ng-select [items]="countries"
-                               [multiple]="true"
+                    <ng-select [multiple]="true"
                                [closeOnSelect]="false"
-                               bindLabel="cname"
-                               bindValue="ccode"
-                               formControlName="nationality"></ng-select>
+                               formControlName="nationality">
+                      <ng-option *ngFor="let key of Object.keys(countries)"
+                                 [value]="key">{{ countries[key] }}</ng-option>
+                    </ng-select>
                   </td>
                 </tr>
                 <tr>
                   <td class="align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
                   <td class="text-right pr-0 py-0">
-                    <ng-select [items]="spokenLanguagesVal"
-                               [multiple]="true"
+                    <ng-select [multiple]="true"
                                [closeOnSelect]="false"
-                               formControlName="spokenLanguages"></ng-select>
+                               formControlName="spokenLanguages">
+                      <ng-option *ngFor="let item of Object.values(userConfig.spokenLanguages) | selectTranslate | async | keyvalue: keepOrder"
+                                 [value]="[userConfig.spokenLanguages, item.key] | valueToKey">{{ item.value }}</ng-option>
+                    </ng-select>
                     <div class="invalid-feedback d-block" *ngIf="spokenLanguages.invalid && (spokenLanguages.dirty || spokenLanguages.touched)">
                       <span *ngIf="spokenLanguages.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                     </div>
@@ -127,8 +129,8 @@
                             formControlName="isPerson"
                             class="custom-select border-0 w-auto"
                             (change)="onIsPersonChange()">
-                      <option [ngValue]="true">{{ 'COMMON.PRIVATE_PERSON' | translate }}</option>
-                      <option [ngValue]="false">{{ 'COMMON.AGENCY' | translate }}</option>
+                      <option *ngFor="let key of Object.keys(userConfig.personAgency)"
+                              [ngValue]="key === 'true'">{{ userConfig.personAgency[key] | translate }}</option>
                     </select>
                     <div class="invalid-feedback d-block" *ngIf="isPerson.invalid && (isPerson.dirty || isPerson.touched)">
                       <span *ngIf="isPerson.errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>

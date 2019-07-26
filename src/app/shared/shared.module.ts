@@ -33,6 +33,8 @@ import { MenuCloseDirective } from './directives/menu-close.directive';
 
 import { DateToAgePipe } from './pipes/date-to-age.pipe';
 import { DateToStringPipe } from './pipes/date-to-string.pipe';
+import { SelectTranslatePipe } from './pipes/select-translate.pipe';
+import { ValueToKeyPipe } from './pipes/value-to-key.pipe';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     CropEditorComponent,
     DateToAgePipe,
     DateToStringPipe,
+    SelectTranslatePipe,
+    ValueToKeyPipe,
     FeedbackModalComponent,
     FloorPlanModalComponent,
     ConfirmModalComponent
@@ -84,6 +88,8 @@ import { DateToStringPipe } from './pipes/date-to-string.pipe';
     CropEditorComponent,
     DateToAgePipe,
     DateToStringPipe,
+    SelectTranslatePipe,
+    ValueToKeyPipe,
     FeedbackModalComponent,
     FloorPlanModalComponent
   ],

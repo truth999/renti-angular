@@ -19,6 +19,7 @@ import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
 import { MyProfileService } from '../../../services/my-profile.service';
+import { config } from '../../../../../../config';
 
 declare var FB: any;
 
@@ -36,25 +37,14 @@ export class TenantComponent implements OnInit {
   pattern = Validate;
   rate: number;
   feedbackNumber: number;
-
-  spokenLanguages = [
-    'Hungarian',
-    'English',
-    'Arabic',
-    'Chinese',
-    'French',
-    'German',
-    'Hindi',
-    'Hindi',
-    'Japanese',
-    'Romanian',
-    'Russian',
-    'Slovakian',
-    'Spanish',
-    'Other'
-  ];
+  userConfig = config.user;
+  Object = Object;
 
   tenantForm: FormGroup;
+
+  keepOrder = (a, b) => {
+    return a;
+  }
 
   constructor(
     private router: Router,

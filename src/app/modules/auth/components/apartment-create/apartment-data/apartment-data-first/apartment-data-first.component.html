@@ -73,10 +73,8 @@
           <select class="custom-select border-0"
                   formControlName="typeOfBuilding">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-            <option value="brick">{{ 'APARTMENT.BRICK' | translate }}</option>
-            <option value="panel">{{ 'APARTMENT.PANEL' | translate }}</option>
-            <option value="loam">{{ 'APARTMENT.LOAM' | translate }}</option>
-            <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
+            <option *ngFor="let key of Object.keys(apartmentConfig.typeOfBuilding)"
+                    [value]="key">{{ apartmentConfig.typeOfBuilding[key] | translate }}</option>
           </select>
         </td>
       </tr>
@@ -96,12 +94,8 @@
           <select class="custom-select border-0"
                   formControlName="stateOfApartment">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-            <option value="new">{{ 'COMMON.NEW' | translate }}</option>
-            <option value="newish">{{ 'COMMON.NEWISH' | translate }}</option>
-            <option value="renovated">{{ 'COMMON.RENOVATED' | translate }}</option>
-            <option value="good">{{ 'COMMON.GOOD' | translate }}</option>
-            <option value="average">{{ 'COMMON.AVERAGE' | translate }}</option>
-            <option value="needs_renovation">{{ 'COMMON.NEED_RENOVATION' | translate }}</option>
+            <option *ngFor="let key of Object.keys(apartmentConfig.stateOfApartment)"
+                    [value]="key">{{ apartmentConfig.stateOfApartment[key] | translate }}</option>
           </select>
         </td>
       </tr>
@@ -111,18 +105,8 @@
           <select class="custom-select border-0"
                   formControlName="energyPerformanceCertificate">
             <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-            <option value="aapp">AA++</option>
-            <option value="aap">AA+</option>
-            <option value="aa">AA</option>
-            <option value="bb">BB</option>
-            <option value="cc">CC</option>
-            <option value="dd">DD</option>
-            <option value="ee">EE</option>
-            <option value="ff">FF</option>
-            <option value="gg">GG</option>
-            <option value="hh">HH</option>
-            <option value="ii">II</option>
-            <option value="jj">JJ</option>
+            <option *ngFor="let key of Object.keys(apartmentConfig.energyPerformanceCertificate)"
+                    [value]="key">{{ apartmentConfig.energyPerformanceCertificate[key] }}</option>
           </select>
         </td>
       </tr>
@@ -198,7 +182,7 @@
         </td>
       </tr>
       <tr>
-        <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}?</td>
+        <td class="py-0 align-middle">{{ 'APARTMENT.ELEVATOR' | translate }}</td>
         <td class="text-right pr-0">
           <div class="switch">
             <input type="radio"
@@ -221,7 +205,7 @@
         </td>
       </tr>
       <tr>
-        <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}?</td>
+        <td class="py-0 align-middle">{{ 'APARTMENT.ROOFTOP' | translate }}</td>
         <td class="text-right pr-0">
           <div class="switch">
             <input type="radio"

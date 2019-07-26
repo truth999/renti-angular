@@ -98,10 +98,8 @@
                        [closeOnSelect]="false"
                        formControlName="typeOfBuilding"
                        *ngIf="typeOfBuilding.checked">
-              <ng-option value="brick">{{ 'APARTMENT.BRICK' | translate }}</ng-option>
-              <ng-option value="panel">{{ 'APARTMENT.PANEL' | translate }}</ng-option>
-              <ng-option value="loam">{{ 'APARTMENT.LOAM' | translate }}</ng-option>
-              <ng-option value="other">{{ 'COMMON.OTHER' | translate }}</ng-option>
+              <ng-option *ngFor="let item of Object.values(apartmentConfig.typeOfBuilding) | selectTranslate | async | keyvalue: keepOrder"
+                         [value]="[apartmentConfig.typeOfBuilding, item.key] | valueToKey">{{ item.value }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -135,12 +133,8 @@
                        [closeOnSelect]="false"
                        formControlName="stateOfApartment"
                        *ngIf="stateOfApartment.checked">
-              <ng-option value="new">{{ 'COMMON.NEW' | translate }}</ng-option>
-              <ng-option value="newish">{{ 'COMMON.NEWISH' | translate }}</ng-option>
-              <ng-option value="renovated">{{ 'COMMON.RENOVATED' | translate }}</ng-option>
-              <ng-option value="good">{{ 'COMMON.GOOD' | translate }}</ng-option>
-              <ng-option value="average">{{ 'COMMON.AVERAGE' | translate }}</ng-option>
-              <ng-option value="needs_renovation">{{ 'COMMON.NEED_RENOVATION' | translate }}</ng-option>
+              <ng-option *ngFor="let item of Object.values(apartmentConfig.stateOfApartment) | selectTranslate | async | keyvalue: keepOrder"
+                         [value]="[apartmentConfig.stateOfApartment, item.key] | valueToKey">{{ item.value }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -157,18 +151,8 @@
                        [closeOnSelect]="false"
                        formControlName="energyPerformanceCertificate"
                        *ngIf="energyPerformanceCertificate.checked">
-              <ng-option value="aapp">AA++</ng-option>
-              <ng-option value="aap">AA+</ng-option>
-              <ng-option value="aa">AA</ng-option>
-              <ng-option value="bb">BB</ng-option>
-              <ng-option value="cc">CC</ng-option>
-              <ng-option value="dd">DD</ng-option>
-              <ng-option value="ee">EE</ng-option>
-              <ng-option value="ff">FF</ng-option>
-              <ng-option value="gg">GG</ng-option>
-              <ng-option value="hh">HH</ng-option>
-              <ng-option value="ii">II</ng-option>
-              <ng-option value="jj">JJ</ng-option>
+              <ng-option *ngFor="let key of Object.keys(apartmentConfig.energyPerformanceCertificate)"
+                         [value]="key">{{ apartmentConfig.energyPerformanceCertificate[key] }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -253,14 +237,8 @@
                        [closeOnSelect]="false"
                        formControlName="buildingSiting"
                        *ngIf="buildingSiting.checked">
-              <ng-option value="east">{{ 'COMMON.EAST' | translate }}</ng-option>
-              <ng-option value="west">{{ 'COMMON.WEST' | translate }}</ng-option>
-              <ng-option value="north">{{ 'COMMON.NORTH' | translate }}</ng-option>
-              <ng-option value="south">{{ 'COMMON.SOUTH' | translate }}</ng-option>
-              <ng-option value="north_west">{{ 'COMMON.NORTH' | translate }}-{{ 'COMMON.WEST' | translate }}</ng-option>
-              <ng-option value="north_east">{{ 'COMMON.NORTH' | translate }}-{{ 'COMMON.EAST' | translate }}</ng-option>
-              <ng-option value="south_west">{{ 'COMMON.SOUTH' | translate }}-{{ 'COMMON.WEST' | translate }}</ng-option>
-              <ng-option value="south_east">{{ 'COMMON.SOUTH' | translate }}-{{ 'COMMON.EAST' | translate }}</ng-option>
+              <ng-option *ngFor="let item of Object.values(apartmentConfig.buildingSiting) | selectTranslate | async | keyvalue: keepOrder"
+                         [value]="[apartmentConfig.buildingSiting, item.key] | valueToKey">{{ item.value }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -277,14 +255,8 @@
                        [closeOnSelect]="false"
                        formControlName="typeOfHeating"
                        *ngIf="typeOfHeating.checked">
-              <ng-option value="gas">{{ 'COMMON.GAS_CIRCO' | translate }}</ng-option>
-              <ng-option value="electric">{{ 'COMMON.ELECTRIC' | translate }}</ng-option>
-              <ng-option value="convector">{{ 'COMMON.CONVECTOR' | translate }}</ng-option>
-              <ng-option value="central">{{ 'COMMON.CENTRAL' | translate }}</ng-option>
-              <ng-option value="district">{{ 'COMMON.DISTRICT_HEATING' | translate }}</ng-option>
-              <ng-option value="mixed">{{ 'COMMON.MIXED_FIRING' | translate }}</ng-option>
-              <ng-option value="stove">{{ 'COMMON.STOVE' | translate }}</ng-option>
-              <ng-option value="fireplace">{{ 'COMMON.FIREPLACE' | translate }}</ng-option>
+              <ng-option *ngFor="let item of Object.values(apartmentConfig.typeOfHeating) | selectTranslate | async | keyvalue: keepOrder"
+                         [value]="[apartmentConfig.typeOfHeating, item.key] | valueToKey">{{ item.value }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -300,10 +272,8 @@
                        [closeOnSelect]="false"
                        formControlName="headroom"
                        *ngIf="headroom.checked">
-              <ng-option value="2m">- 2M</ng-option>
-              <ng-option value="2.5m">2.0 - 2.5M</ng-option>
-              <ng-option value="3m">2.5 - 3.0M</ng-option>
-              <ng-option value="3mp">3M -</ng-option>
+              <ng-option *ngFor="let key of Object.keys(apartmentConfig.headroom)"
+                         [value]="key">{{ apartmentConfig.headroom[key] }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -320,10 +290,8 @@
                        [closeOnSelect]="false"
                        formControlName="parking"
                        *ngIf="parking.checked">
-              <ng-option value="street">{{ 'COMMON.AT_THE_STREET' | translate }}</ng-option>
-              <ng-option value="garage">{{ 'COMMON.IN_GARAGE' | translate }}</ng-option>
-              <ng-option value="yard">{{ 'COMMON.AT_THE_YARD' | translate }}</ng-option>
-              <ng-option value="provided">{{ 'COMMON.NOT_PROVIDED' | translate }}</ng-option>
+              <ng-option *ngFor="let item of Object.values(apartmentConfig.parking) | selectTranslate | async | keyvalue: keepOrder"
+                         [value]="[apartmentConfig.parking, item.key] | valueToKey">{{ item.value }}</ng-option>
             </ng-select>
           </div>
           <div class="pl-2 mb-3">
@@ -340,9 +308,8 @@
                        [closeOnSelect]="false"
                        formControlName="windowType"
                        *ngIf="windowType.checked">
-              <ng-option value="Plastic">{{ 'COMMON.PLASTIC' | translate }}</ng-option>
-              <ng-option value="Wooden">{{ 'COMMON.WOODEN' | translate }}</ng-option>
-              <ng-option value="Other">{{ 'COMMON.OTHER' | translate }}</ng-option>
+              <ng-option *ngFor="let item of Object.values(apartmentConfig.windowType) | selectTranslate | async | keyvalue: keepOrder"
+                         [value]="[apartmentConfig.windowType, item.key] | valueToKey">{{ item.value }}</ng-option>
             </ng-select>
           </div>
           <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
@@ -372,10 +339,12 @@
                      (change)="onChangeMediaServiceProviders($event)">
             </div>
             <ng-select *ngIf="mediaServiceProviders.checked"
-                       [items]="mediaService"
                        [multiple]="true"
                        [closeOnSelect]="false"
-                       formControlName="mediaServiceProviders"></ng-select>
+                       formControlName="mediaServiceProviders">
+              <ng-option *ngFor="let item of Object.values(apartmentConfig.availableMediaServiceProviders) | selectTranslate | async | keyvalue: keepOrder"
+                         [value]="[apartmentConfig.availableMediaServiceProviders, item.key] | valueToKey">{{ item.value }}</ng-option>
+            </ng-select>
           </div>
           <div class="d-flex justify-content-between align-items-center pl-2 mb-3">
             <label for="handicapAccessible"
@@ -521,10 +490,6 @@
         <button type="submit"
                 class="btn btn-primary btn-lg w-100">{{ 'COMMON.SEARCH' | translate }}</button>
       </div>
-<!--      <div class="button-group justify-content-between d-flex d-sm-none">-->
-<!--        <button class="btn btn-primary btn-lg w-75">{{ 'SEARCH.SEARCH' | translate }}</button>-->
-<!--        <button class="btn btn-outline-primary btn-lg advanced-search border-0 p-0">{{ 'SEARCH.ADVANCED_SEARCH' | translate }}</button>-->
-<!--      </div>-->
     </form>
   </div>
   <div class="overlay position-fixed"

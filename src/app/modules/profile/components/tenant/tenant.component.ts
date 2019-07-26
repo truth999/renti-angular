@@ -7,6 +7,8 @@ import { environment } from '../../../../../environments/environment';
 import { TenantService } from '../../services/tenant.service';
 
 import { Tenant } from '../../../../shared/models';
+import { config } from '../../../../../config';
+import { Countries } from '../../../../../config/countries';
 
 @Component({
   selector: 'app-profile-tenant',
@@ -18,6 +20,8 @@ export class TenantComponent implements OnInit {
   rate: number;
   feedbackNumber: number;
   uploadBase = environment.uploadBase;
+  userConfig = config.user;
+  countries = Countries;
 
   constructor(
     private location: Location,

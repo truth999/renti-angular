@@ -42,46 +42,132 @@ export const config = {
       CONFIG_CONST.signupSteps.COMPLETE,
     ]
   },
-  spokenLanguages: [
-    'COMMON.HUNGARIAN',
-    'COMMON.ENGLISH',
-    'COMMON.ARABIC',
-    'COMMON.CHINESE',
-    'COMMON.FRENCH',
-    'COMMON.GERMAN',
-    'COMMON.HINDI',
-    'COMMON.ITALIAN',
-    'COMMON.JAPANESE',
-    'COMMON.ROMANIAN',
-    'COMMON.RUSSIAN',
-    'COMMON.SLOVAKIAN',
-    'COMMON.SPANISH',
-    'COMMON.OTHER'
-  ],
-  personAgency: ['COMMON.PRIVATE_PERSON', 'COMMON.AGENCY'],
-  highestLevelOfQualification: ['COMMON.ELEMENTARY_SCHOOL', 'COMMON.SECONDARY_SCHOOL', 'COMMON.UNIVERSITY'],
-  monthlyIncome: [
-    '< 50,000',
-    '50,000 - 100,000',
-    '100,000 - 200,000',
-    '200,000 - 400,000',
-    '400,000 - 700,000',
-    '700,000 - 1,000,000',
-    '1,000,000+'
-  ],
+  user: {
+    spokenLanguages: {
+      hungarian: 'COMMON.HUNGARIAN',
+      english: 'COMMON.ENGLISH',
+      arabic: 'COMMON.ARABIC',
+      chinese: 'COMMON.CHINESE',
+      french: 'COMMON.FRENCH',
+      german: 'COMMON.GERMAN',
+      hindi: 'COMMON.HINDI',
+      italian: 'COMMON.ITALIAN',
+      japanese: 'COMMON.JAPANESE',
+      romanian: 'COMMON.ROMANIAN',
+      russian: 'COMMON.RUSSIAN',
+      slovakian: 'COMMON.SLOVAKIAN',
+      spanish: 'COMMON.SPANISH',
+      other: 'COMMON.OTHER'
+    },
+    personAgency: {
+      true: 'COMMON.PRIVATE_PERSON',
+      false: 'COMMON.AGENCY'
+    },
+    highestLevelOfQualification: {
+      elementary_school: 'COMMON.ELEMENTARY_SCHOOL',
+      secondary_school: 'COMMON.SECONDARY_SCHOOL',
+      university: 'COMMON.UNIVERSITY'
+    },
+    monthlyIncome: {
+      1: '< 50,000',
+      50000: '50,000 - 100,000',
+      100000: '100,000 - 200,000',
+      200000: '200,000 - 400,000',
+      400000: '400,000 - 700,000',
+      700000: '700,000 - 1,000,000',
+      1000000: '1,000,000+'
+    }
+  },
   apartment: {
-    typeOfBuilding: ['APARTMENT.BRICK', 'APARTMENT.PANEL', 'APARTMENT.LOAM', 'COMMON.OTHER'],
-    stateOfApartment: ['COMMON.NEW', 'COMMON.GOOD', 'COMMON.NORMAL', 'COMMON.RENOVATION'],
-    energyPerformanceCertificate: ['AA++', 'AA+', 'AA', 'BB', 'CC', 'DD', 'EE', 'FF', 'GG', 'HH', 'II', 'JJ'],
-    buildingSiting: ['COMMON.EAST', 'COMMON.WEST', 'COMMON.NORTH', 'COMMON.SOUTH'],
-    typeOfHeating: ['Gas-circo', 'Electric', 'Convector', 'Central', 'District heating', 'Mixed firing', 'Stove', 'Fireplace'],
-    headroom: ['<2M', '2.0 - 2.5M', '2.5 - 3.0M', '>3M'],
-    parking: ['At the street', 'In garage', 'At the yard', 'Not provided'],
-    availableMediaServiceProviders: ['UPC', 'DIGI', 'Telekom', 'Other']
+    typeOfBuilding: {
+      brick: 'APARTMENT.BRICK',
+      panel: 'APARTMENT.PANEL',
+      loam: 'APARTMENT.LOAM',
+      other: 'COMMON.OTHER'
+    },
+    stateOfApartment: {
+      new: 'COMMON.NEW',
+      newish: 'COMMON.NEWISH',
+      renovated: 'COMMON.RENOVATED',
+      good: 'COMMON.GOOD',
+      average: 'COMMON.AVERAGE',
+      need_renovation: 'COMMON.NEED_RENOVATION'
+    },
+    energyPerformanceCertificate: {
+      aapp: 'AA++',
+      aap: 'AA+',
+      aa: 'AA',
+      bb: 'BB',
+      cc: 'CC',
+      dd: 'DD',
+      ee: 'EE',
+      ff: 'FF',
+      gg: 'GG',
+      hh: 'HH',
+      ii: 'II',
+      jj: 'JJ'
+    },
+    buildingSiting: {
+      east: 'COMMON.EAST',
+      west: 'COMMON.WEST',
+      north: 'COMMON.NORTH',
+      south: 'COMMON.SOUTH',
+      north_west: 'COMMON.NORTH_WEST',
+      north_east: 'COMMON.NORTH_EAST',
+      south_west: 'COMMON.SOUTH_WEST',
+      south_east: 'COMMON.SOUTH_EAST'
+    },
+    typeOfHeating: {
+      gas_circo: 'COMMON.GAS_CIRCO',
+      electric: 'COMMON.ELECTRIC',
+      convector: 'COMMON.CONVECTOR',
+      central: 'COMMON.CENTRAL',
+      district_heating: 'COMMON.DISTRICT_HEATING',
+      mixed_firing: 'COMMON.MIXED_FIRING',
+      stove: 'COMMON.STOVE',
+      fireplace: 'COMMON.FIREPLACE'
+    },
+    headroom: {
+      1: '<2M',
+      2: '2.0 - 2.5M',
+      2.5: '2.5 - 3.0M',
+      3: '>3M',
+    },
+    parking: {
+      at_the_street: 'COMMON.AT_THE_STREET',
+      in_garage: 'COMMON.IN_GARAGE',
+      at_the_yard: 'COMMON.AT_THE_YARD',
+      not_provided: 'COMMON.NOT_PROVIDED',
+    },
+    windowType: {
+      plastic: 'COMMON.PLASTIC',
+      wooden: 'COMMON.WOODEN',
+      other: 'COMMON.OTHER',
+    },
+    availableMediaServiceProviders: {
+      upc: 'COMMON.UPC',
+      digi: 'COMMON.DIGI',
+      telekom: 'COMMON.TELEKOM',
+      other: 'COMMON.OTHER',
+    }
   },
   room: {
-    coverage: ['Tiles', 'Laminated wooden', 'Carpet', 'Parquetry', 'Other'],
-    windowType: ['Plastic', 'Wooden', 'Other']
+    coverage: {
+      titles: 'COMMON.TILES',
+      laminated_wooden: 'COMMON.LAMINATED_WOODEN',
+      carpet: 'COMMON.CARPET',
+      parquetry: 'COMMON.PARQUETRY',
+      other: 'COMMON.OTHER',
+    }
+  },
+  offer: {
+    minRentingTime: {
+      1: ['1', 'COMMON.MONTH'],
+      3: ['3', 'COMMON.MONTHS'],
+      6: ['6', 'COMMON.MONTHS'],
+      12: ['12+', 'COMMON.MONTHS'],
+      24: ['24+', 'COMMON.MONTHS']
+    }
   },
   excludeLoaderRoutes: [
     environment.apiBase + 'auth/login',

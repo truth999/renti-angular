@@ -9,6 +9,7 @@ import { RentalsService } from '../../../services/rentals.service';
 import { AuthService } from '../../../../../core/services/auth.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
+import { config } from '../../../../../../config';
 
 @Component({
   selector: 'app-search-apartment',
@@ -18,6 +19,7 @@ import { DateSelectService } from '../../../../../shared/services/date-select.se
 export class SearchApartmentComponent implements OnInit {
   apartments: Apartment[] = [];
   page = new Page();
+  apartmentConfig = config.apartment;
 
   searchForm: FormGroup;
 
@@ -25,11 +27,13 @@ export class SearchApartmentComponent implements OnInit {
   moreFilters = false;
 
   years: number[];
-  mediaService = [
-    'UPC', 'DIGI', 'Telekom', 'Other'
-  ];
 
   searched = false;
+  Object = Object;
+
+  keepOrder = (a, b) => {
+    return a;
+  }
 
   constructor(
     private rentalsService: RentalsService,

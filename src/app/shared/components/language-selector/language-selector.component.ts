@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Language } from '../../models/shared.model';
+import { Language } from '../../models';
 import { config } from '../../../../config';
 import { TranslateService } from '@ngx-translate/core';
 

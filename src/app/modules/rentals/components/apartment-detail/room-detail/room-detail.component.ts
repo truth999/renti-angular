@@ -7,6 +7,7 @@ import { Room } from '../../../../../shared/models';
 import { environment } from '../../../../../../environments/environment';
 
 import { RentalsService } from '../../../services/rentals.service';
+import { config } from '../../../../../../config';
 
 @Component({
   selector: 'app-room-detail',
@@ -19,6 +20,7 @@ export class RoomDetailComponent implements OnInit {
 
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  roomConfig = config.room;
 
   constructor(
     private route: ActivatedRoute,

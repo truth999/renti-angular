@@ -8,6 +8,7 @@ import { environment } from '../../../../../../../environments/environment';
 
 import { OfferService } from '../../../../services/offer.service';
 import { FeedbackModalService } from '../../../../../../shared/services/modal/feedback-modal.service';
+import { config } from '../../../../../../../config';
 
 @Component({
   selector: 'app-offer',
@@ -19,6 +20,7 @@ export class OfferComponent implements OnInit {
   @Output() offerChanged = new EventEmitter<void>();
 
   uploadBase = environment.uploadBase;
+  offerConfig = config.offer;
 
   constructor(
     private router: Router,

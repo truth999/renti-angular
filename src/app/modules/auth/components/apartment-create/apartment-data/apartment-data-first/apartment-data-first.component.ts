@@ -8,6 +8,7 @@ import { DateSelectService } from '../../../../../../shared/services/date-select
 import { ValidateFormFieldsService } from '../../../../../../core/services/validate-form-fields.service';
 
 import { Apartment } from '../../../../../../shared/models';
+import { config } from '../../../../../../../config';
 
 const addressFormGroupValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const city = control.get('city');
@@ -29,6 +30,8 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
   years: string[];
   @Output() apartmentDataFirstFormValid = new EventEmitter<boolean>();
   searchTerms = new EventEmitter<Apartment['address']>();
+  apartmentConfig = config.apartment;
+  Object = Object;
 
   constructor(
     private apartmentCreateService: ApartmentCreateService,

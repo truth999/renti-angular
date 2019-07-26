@@ -5,6 +5,7 @@ import { ApartmentCreateService } from '../../../../services/apartment-create.se
 import { ValidateFormFieldsService } from '../../../../../../core/services/validate-form-fields.service';
 
 import { Apartment } from '../../../../../../shared/models';
+import { config } from '../../../../../../../config';
 
 @Component({
   selector: 'app-apartment-data-second',
@@ -14,10 +15,13 @@ import { Apartment } from '../../../../../../shared/models';
 export class ApartmentDataSecondComponent implements OnInit, DoCheck {
   apartmentDataSecondForm: FormGroup;
   apartmentData: Apartment;
-  mediaService = [
-    'UPC', 'DIGI', 'Telekom', 'Other'
-  ];
   @Output() apartmentDataSecondFormValid = new EventEmitter<boolean>();
+  apartmentConfig = config.apartment;
+  Object = Object;
+
+  keepOrder = (a, b) => {
+    return a;
+  }
 
   constructor(
     private apartmentCreateService: ApartmentCreateService,

@@ -28,11 +28,13 @@
     </tr>
     <tr>
       <td>{{ 'APARTMENT.COVERAGE' | translate }}</td>
-      <td class="text-right font-weight-bold">{{ room.coverage }}</td>
+      <td class="text-right font-weight-bold">
+        {{ !!room.coverage ? (roomConfig.coverage[room.coverage] | translate) : '' }}
+      </td>
     </tr>
     <tr>
       <td class="equipped">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
-      <td class="equipped text-right font-weight-bold">{{ room.equipment ? ('COMMON.YES' | translate) : (room.equipment === false ? ('COMMON.NO' | translate) : 'N/A') }}</td>
+      <td class="equipped text-right font-weight-bold">{{ room.equipment ? ('COMMON.YES' | translate) : (room.equipment === false ? ('COMMON.NO' | translate) : '') }}</td>
     </tr>
     <tr>
       <td class="border-bottom">{{ 'APARTMENT.FURNITURE' | translate }}</td>

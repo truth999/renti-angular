@@ -12,7 +12,9 @@
     </tr>
     <tr>
       <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }}):</td>
-      <td class="font-weight-bold text-right">{{ offer.minRentingTime }}</td>
+      <td class="font-weight-bold text-right">
+        {{ !!offer.minRentingTime ? offerConfig.minRentingTime[offer.minRentingTime][0] + ' ' + (offerConfig.minRentingTime[offer.minRentingTime][1] | translate) : '' }}
+      </td>
     </tr>
     <tr>
       <td>{{ 'COMMON.DATE_OF_MOVING_IN' | translate }}:</td>
@@ -24,7 +26,9 @@
     </tr>
     <tr>
       <td class="border-bottom">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}:</td>
-      <td class="border-bottom font-weight-bold text-right">{{ offer.pets }}</td>
+      <td class="border-bottom font-weight-bold text-right">
+        {{ offer.pets ? ('COMMON.YES' | translate) : ('COMMON.NO' | translate) }}
+      </td>
     </tr>
     </tbody>
   </table>

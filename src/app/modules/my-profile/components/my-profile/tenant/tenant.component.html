@@ -46,18 +46,10 @@
             <div class="row name-info">
               <div class="col-sm-12 col-8 pr-0">
                 <h1 class="name font-weight-bolder">{{ tenant.user.firstName }} {{ tenant.user.lastName }}</h1>
-<!--                <p class="info text-muted font-weight-bold"><span class="font-size-lg font-weight-bolder">23</span>, Student @ University of Debrecen</p>-->
               </div>
             </div>
             <div class="row mt-5">
               <div class="col-sm-8">
-<!--                <div class="profile-complete w-100">-->
-<!--                  <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">-->
-<!--                    <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>-->
-<!--                    <span>9/12</span>-->
-<!--                  </div>-->
-<!--                  <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>-->
-<!--                </div>-->
                 <div class="form-group pt-2 position-relative rent"
                      formGroupName="lookingRent">
                   <label for="rent" class="h5 font-weight-bolder">{{ 'COMMON.LOOKING_TO_RENT_IN' | translate }}:</label>
@@ -66,7 +58,6 @@
                          class="form-control custom-select"
                          (onAddressChange)="handleRentChange($event)"
                          formControlName="address">
-<!--                  <i class="icon-location position-absolute"></i>-->
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('lookingRent').invalid && (tenantForm.get('lookingRent').dirty || tenantForm.get('lookingRent').touched)">
                     <span *ngIf="tenantForm.get('lookingRent').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
@@ -130,21 +121,14 @@
                   </div>
                 </td>
               </tr>
-              <!--            <tr>-->
-              <!--              <td class="py-0 align-middle">{{ 'COMMON.GENDER' | translate }}:</td>-->
-              <!--              <td class="py-0 text-right">-->
-              <!--                <select name="gender" class="custom-select border-0 w-auto">-->
-              <!--                  <option value="">{{ 'COMMON.FEMALE' | translate }}</option>-->
-              <!--                </select>-->
-              <!--              </td>-->
-              <!--            </tr>-->
               <tr>
                 <td class="py-0 align-middle">{{ 'COMMON.NATIONALITY' | translate }}:</td>
                 <td class="py-0 pr-0 text-right">
                   <select name="nationality"
                           class="custom-select border-0"
                           formControlName="nationality">
-                    <option *ngFor="let country of countries" [value]="country.ccode">{{ country.cname }}</option>
+                    <option *ngFor="let key of Object.keys(countries)"
+                            [value]="key">{{ countries[key] }}</option>
                   </select>
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('nationality').invalid && (tenantForm.get('nationality').dirty || tenantForm.get('nationality').touched)">
@@ -155,10 +139,12 @@
               <tr>
                 <td class="py-0 align-middle">{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
                 <td class="py-0 pr-0 text-right">
-                  <ng-select [items]="spokenLanguages"
-                             [multiple]="true"
+                  <ng-select [multiple]="true"
                              [closeOnSelect]="false"
-                             formControlName="spokenLanguages"></ng-select>
+                             formControlName="spokenLanguages">
+                    <ng-option *ngFor="let item of Object.values(userConfig.spokenLanguages) | selectTranslate | async | keyvalue: keepOrder"
+                               [value]="[userConfig.spokenLanguages, item.key] | valueToKey">{{ item.value }}</ng-option>
+                  </ng-select>
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('spokenLanguages').invalid && (tenantForm.get('spokenLanguages').dirty || tenantForm.get('spokenLanguages').touched)">
                     <span *ngIf="tenantForm.get('spokenLanguages').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
@@ -184,9 +170,8 @@
                 <td class="py-0 pr-0 text-right">
                   <select class="custom-select border-0 w-auto"
                           formControlName="highestLevelOfQualification">
-                    <option value="elementary">{{ 'COMMON.ELEMENTARY_SCHOOL' | translate }}</option>
-                    <option value="secondary">{{ 'COMMON.SECONDARY_SCHOOL' | translate }}</option>
-                    <option value="university">{{ 'COMMON.UNIVERSITY' | translate }}</option>
+                    <option *ngFor="let key of Object.keys(userConfig.highestLevelOfQualification)"
+                            [value]="key">{{ userConfig.highestLevelOfQualification[key] | translate }}</option>
                   </select>
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('highestLevelOfQualification').invalid && (tenantForm.get('highestLevelOfQualification').dirty || tenantForm.get('highestLevelOfQualification').touched)">
@@ -251,26 +236,13 @@
                          [formControlName]="i">
                 </td>
               </tr>
-              <!--            <tr>-->
-              <!--              <td class="py-0 align-middle">{{ 'COMMON.OCCUPATION' | translate }}:</td>-->
-              <!--              <td class="py-0 text-right">-->
-              <!--                <select name="occupation" class="custom-select border-0 w-auto">-->
-              <!--                  <option value="">{{ 'COMMON.STUDENT' | translate }}</option>-->
-              <!--                </select>-->
-              <!--              </td>-->
-              <!--            </tr>-->
               <tr>
                 <td class="py-0 align-middle">{{ 'COMMON.MONTHLY_INCOME' | translate }}:</td>
                 <td class="py-0 pr-0 text-right">
                   <select class="custom-select border-0 w-auto"
                           formControlName="monthlyIncome">
-                    <option value="50000"><50,000</option>
-                    <option value="100000">50,000 - 100,000</option>
-                    <option value="200000">100,000 - 200,000</option>
-                    <option value="400000">200,000 - 400,000</option>
-                    <option value="700000">400,000 - 700,000</option>
-                    <option value="1000000">700,000 - 1,000,000</option>
-                    <option value="1500000">1,000,000+</option>
+                    <option *ngFor="let key of Object.keys(userConfig.monthlyIncome)"
+                            [value]="key">{{ userConfig.monthlyIncome[key] }}</option>
                   </select>
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('monthlyIncome').invalid && (tenantForm.get('monthlyIncome').dirty || tenantForm.get('monthlyIncome').touched)">
@@ -278,31 +250,6 @@
                   </div>
                 </td>
               </tr>
-              <!--            <tr>-->
-              <!--              <td class="py-0 align-middle">{{ 'PROFILE.MARITAL_STATUS' | translate }}:</td>-->
-              <!--              <td class="py-0 text-right">-->
-              <!--                <select name="maritalStatus" class="custom-select border-0 w-auto">-->
-              <!--                  <option value="">{{ 'COMMON.SINGLE' | translate }}</option>-->
-              <!--                </select>-->
-              <!--              </td>-->
-              <!--            </tr>-->
-              <!--            <tr>-->
-              <!--              <td class="py-0 align-middle">{{ 'PROFILE.LOOKING_FOR_COTENANCY' | translate }}:</td>-->
-              <!--              <td class="py-0 text-right">-->
-              <!--                <select name="cotenancy" class="custom-select border-0 w-auto">-->
-              <!--                  <option value="">{{ 'COMMON.NO' | translate }}</option>-->
-              <!--                </select>-->
-              <!--              </td>-->
-              <!--            </tr>-->
-              <!--            <tr>-->
-              <!--              <td class="py-0 align-middle">{{ 'PROFILE.MOVING_WITH_PETS' | translate }}:</td>-->
-              <!--              <td class="py-0 text-right">-->
-              <!--                <select name="pet" class="custom-select border-0 w-auto">-->
-              <!--                  <option value="yes">{{ 'COMMON.YES' | translate }}</option>-->
-              <!--                  <option value="no">{{ 'COMMON.NO' | translate }}</option>-->
-              <!--                </select>-->
-              <!--              </td>-->
-              <!--            </tr>-->
               </tbody>
             </table>
           </div>

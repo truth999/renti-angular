@@ -18,6 +18,7 @@ import { environment } from '../../../../../../environments/environment';
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
 import { MyProfileService } from '../../../services/my-profile.service';
+import { config } from '../../../../../../config';
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -32,26 +33,16 @@ export class LandlordComponent implements OnInit {
   pattern = Validate;
   rate: number;
   feedbackNumber: number;
+  userConfig = config.user;
+  Object = Object;
 
-  spokenLanguagesVal = [
-    'Hungarian',
-    'English',
-    'Arabic',
-    'Chinese',
-    'French',
-    'German',
-    'Hindi',
-    'Hindi',
-    'Japanese',
-    'Romanian',
-    'Russian',
-    'Slovakian',
-    'Spanish',
-    'Other'
-  ];
   countries = Countries;
 
   landlordForm: FormGroup;
+
+  keepOrder = (a, b) => {
+    return a;
+  }
 
   constructor(
     private location: Location,

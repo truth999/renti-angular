@@ -20,18 +20,10 @@
           <div class="row name-info">
             <div class="col-sm-12 col-8 pr-0">
               <h1 class="name font-weight-bolder">{{ tenant.user.firstName }} {{ tenant.user.lastName }}</h1>
-<!--              <p class="info text-muted font-weight-bold"><span class="font-size-lg font-weight-bolder">23</span>, Student @ University of Debrecen</p>-->
             </div>
           </div>
           <div class="row mt-5">
             <div class="col-sm-8">
-<!--              <div class="profile-complete w-100">-->
-<!--                <div class="profile-status d-flex justify-content-between font-weight-bold mb-2">-->
-<!--                  <span>{{ 'PROFILE.PROFILE_COMPLETION' | translate }}:</span>-->
-<!--                  <span>9/12</span>-->
-<!--                </div>-->
-<!--                <p><ngb-progressbar [value]="75" height="10px"></ngb-progressbar></p>-->
-<!--              </div>-->
             </div>
           </div>
         </div>
@@ -79,35 +71,29 @@
               </tr>
               <tr>
                 <td>{{ 'COMMON.NATIONALITY' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.nationality }}</td>
+                <td class="font-weight-bold text-right">
+                  {{ !!tenant.nationality ? countries[tenant.nationality] : '' }}
+                </td>
               </tr>
-<!--              <tr>-->
-<!--                <td>{{ 'COMMON.OCCUPATION' | translate }}:</td>-->
-              <!--                <td class="font-weight-bold text-right">{{ 'COMMON.STUDENT' | translate }}</td>-->
-              <!--              </tr>-->
               <tr>
                 <td>{{ 'PROFILE.SPOKEN_LANGUAGE' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.spokenLanguages }}</td>
+                <td class="font-weight-bold text-right">
+                  <ng-container *ngIf="!!tenant.spokenLanguages && tenant.spokenLanguages.length !== 0">
+                    <span *ngFor="let item of tenant.spokenLanguages; let i = index">
+                      {{ userConfig.spokenLanguages[tenant.spokenLanguages[i]] | translate }}
+                    </span>
+                  </ng-container>
+                </td>
               </tr>
-              <!--              <tr>-->
-              <!--                <td>{{ 'PROFILE.MARITAL_STATUS' | translate }}:</td>-->
-              <!--                <td class="font-weight-bold text-right">{{ 'COMMON.SINGLE' | translate }}</td>-->
-              <!--              </tr>-->
-              <!--              <tr>-->
-              <!--                <td>{{ 'PROFILE.LOOKING_FOR_COTENANCY' | translate }}:</td>-->
-              <!--                <td class="font-weight-bold text-right">{{ 'COMMON.NO' | translate }}</td>-->
-              <!--              </tr>-->
-              <!--              <tr>-->
-              <!--                <td>{{ 'PROFILE.MOVING_WITH_PETS' | translate }}:</td>-->
-              <!--                <td class="font-weight-bold text-right">1 {{ 'COMMON.CAT' | translate }}</td>-->
-              <!--              </tr>-->
               <tr>
                 <td>{{ 'COMMON.CURRENT_CITY' | translate }}:</td>
                 <td class="font-weight-bold text-right">{{ tenant.currentCity }}</td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.HIGHEST_LEVEL_OF_QUALIFICATION' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{ tenant.highestLevelOfQualification }}</td>
+                <td class="font-weight-bold text-right">
+                  {{ !!tenant.highestLevelOfQualification ? (userConfig.highestLevelOfQualification[tenant.highestLevelOfQualification] | translate) : '' }}
+                </td>
               </tr>
               <tr>
                 <td>{{ 'COMMON.JOB_TITLE' | translate }}:</td>
@@ -135,7 +121,9 @@
               </tr>
               <tr>
                 <td>{{ 'COMMON.MONTHLY_INCOME' | translate }}:</td>
-                <td class="font-weight-bold text-right">{{  tenant.monthlyIncome }}</td>
+                <td class="font-weight-bold text-right">
+                  {{ !!tenant.monthlyIncome ? userConfig.monthlyIncome[tenant.monthlyIncome] : '' }}
+                </td>
               </tr>
             </tbody>
           </table>

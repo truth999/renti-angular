@@ -37,11 +37,8 @@
               class="custom-select"
               formControlName="minRentingTime">
         <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-        <option value="1">1 {{ 'COMMON.MONTH' | translate }}</option>
-        <option value="3">3 {{ 'COMMON.MONTHS' | translate }}</option>
-        <option value="6">6 {{ 'COMMON.MONTHS' | translate }}</option>
-        <option value="12">12+ {{ 'COMMON.MONTHS' | translate }}</option>
-        <option value="24">24+ {{ 'COMMON.MONTHS' | translate }}</option>
+        <option *ngFor="let key of Object.keys(offerConfig.minRentingTime)"
+                [value]="key">{{ offerConfig.minRentingTime[key][0] }} {{ offerConfig.minRentingTime[key][1] | translate }}</option>
       </select>
       <div class="invalid-feedback d-block" *ngIf="offerForm.get('minRentingTime').invalid && (offerForm.get('minRentingTime').dirty || offerForm.get('minRentingTime').touched)">
         <span *ngIf="offerForm.get('minRentingTime').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
@@ -88,14 +85,6 @@
         </div>
       </div>
     </div>
-    <!--  <div class="form-group">-->
-    <!--    <label for="person-type">Személy típusa</label>-->
-    <!--    <input type="text" class="form-control" id="person-type" placeholder="Kérem adja meg a személy típusát">-->
-    <!--  </div>-->
-    <!--  <div class="form-group">-->
-    <!--    <label for="social">{{ 'OFFER.SOCIAL_MEDIA_AVAILABILITIES' | translate }}</label>-->
-    <!--    <input type="url" class="form-control" id="social" pattern="https://.*" required>-->
-    <!--  </div>-->
     <div class="form-group">
       <label for="choose">{{ 'OFFER.WHY_CHOOSE_ME' | translate }}?</label>
       <textarea class="form-control"

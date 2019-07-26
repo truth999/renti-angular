@@ -13,6 +13,7 @@ import { ValidateFormFieldsService } from '../../../../core/services/validate-fo
 
 import { environment } from '../../../../../environments/environment';
 import { Validate } from '../../../../../config/validate';
+import { config } from '../../../../../config';
 
 @Component({
   selector: 'app-room-edit',
@@ -24,6 +25,8 @@ export class RoomEditComponent implements OnInit {
   uploadBase = environment.uploadBase;
   roomForm: FormGroup;
   pattern = Validate;
+  roomConfig = config.room;
+  Object = Object;
 
   years: string[];
 

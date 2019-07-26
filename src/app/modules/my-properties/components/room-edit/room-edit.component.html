@@ -95,11 +95,8 @@
                 <td class="text-right py-0 pr-0">
                   <select class="custom-select border-0 w-auto" formControlName="coverage">
                     <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
-                    <option value="tiles">{{ 'COMMON.TILES' | translate }}</option>
-                    <option value="wooden">{{ 'COMMON.LAMINATED_WOODEN' | translate }}</option>
-                    <option value="carpet">{{ 'COMMON.CARPET' | translate }}</option>
-                    <option value="parquetry">{{ 'COMMON.PARQUETRY' | translate }}</option>
-                    <option value="other">{{ 'COMMON.OTHER' | translate }}</option>
+                    <option *ngFor="let key of Object.keys(roomConfig.coverage)"
+                            [value]="key">{{ roomConfig.coverage[key] | translate }}</option>
                   </select>
                 </td>
               </tr>

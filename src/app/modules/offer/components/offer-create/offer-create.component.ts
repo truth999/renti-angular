@@ -9,7 +9,9 @@ import { OfferService } from '../../services/offer.service';
 import { StorageService } from '../../../../core/services/storage.service';
 import { CursorWaitService } from '../../../../core/services/cursor-wait.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
+
 import { Validate } from '../../../../../config/validate';
+import { config } from '../../../../../config';
 
 @Component({
   selector: 'app-offer-create',
@@ -19,6 +21,8 @@ import { Validate } from '../../../../../config/validate';
 export class OfferCreateComponent implements OnInit {
   offerForm: FormGroup;
   pattern = Validate;
+  offerConfig = config.offer;
+  Object = Object;
 
   constructor(
     private location: Location,

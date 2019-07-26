@@ -17,6 +17,7 @@ import { ConfirmModalService } from '../../../../shared/services/modal/confirm-m
 import { Apartment } from '../../../../shared/models';
 
 import { environment } from '../../../../../environments/environment';
+import { config } from '../../../../../config';
 
 const addressFormGroupValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const city = control.get('city');
@@ -37,14 +38,16 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   apartment: Apartment;
   apartmentForm: FormGroup;
   years: string[];
+  apartmentConfig = config.apartment;
+  Object = Object;
 
   uploadBase = environment.uploadBase;
 
-  mediaService = [
-    'UPC', 'DIGI', 'Telekom', 'Other'
-  ];
-
   searchTerms = new EventEmitter<Apartment['address']>();
+
+  keepOrder = (a, b) => {
+    return a;
+  }
 
   constructor(
     private router: Router,
