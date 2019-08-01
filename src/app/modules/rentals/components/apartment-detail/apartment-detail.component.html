@@ -27,7 +27,11 @@
           <div class="d-lg-none position-relative">
             <button class="btn btn-primary btn-sm landlord-info position-absolute d-lg-none"
                     (click)="toggled = true">{{ 'COMMON.ABOUT_LANDLORD' | translate }}</button>
-            <h3 class="mt-4">{{ apartment.name }}</h3>
+            <h3 class="mt-4">
+              {{ apartment.name }}
+              <span *ngIf="apartment.status === 'deleted'"
+                    class="text-danger"> ({{ 'COMMON.DELETED' | translate }})</span>
+            </h3>
             <div class="unit d-flex justify-content-between">
               <span class="mo"><span class="font-weight-bold">{{ apartment.rentalFee | number }}</span>/{{ 'COMMON.MONTH' | translate | lowercase }}</span>
               <span class="square font-weight-bold">
@@ -47,12 +51,13 @@
             </p>
             <div class="button-group d-flex justify-content-between mt-4">
               <button class="btn btn-outline-primary btn-lg"
-                      *ngIf="!favorite"
+                      *ngIf="!favorite && apartment.status !== 'deleted'"
                       (click)="onSaveToFavorites()">{{ 'COMMON.SAVE_TO_FAVORITES' | translate }}</button>
               <button class="btn btn-outline-primary btn-lg"
                       *ngIf="favorite"
                       (click)="onRemoveToFavorites()">{{ 'COMMON.REMOVE_TO_FAVORITES' | translate }}</button>
               <button class="btn btn-primary btn-lg"
+                      *ngIf="apartment.status !== 'deleted'"
                       (click)="onSendOffer()">{{ 'COMMON.SEND_OFFER' | translate }}</button>
             </div>
           </div>
@@ -256,7 +261,11 @@
         </div>
         <div class="col-lg-6">
           <div class="d-none d-lg-block">
-            <h2>{{ apartment.name }}</h2>
+            <h2>
+              {{ apartment.name }}
+              <span *ngIf="apartment.status === 'deleted'"
+                    class="text-danger"> ({{ 'COMMON.DELETED' | translate }})</span>
+            </h2>
             <div class="unit d-flex justify-content-between">
               <span class="mo"><span class="font-weight-bold">{{ apartment.rentalFee | number }}</span>/{{ 'COMMON.MONTH' | translate | lowercase }}</span>
               <span class="square font-weight-bold">
@@ -274,14 +283,16 @@
               {{ apartment.address.floor }}
               {{ apartment.address.door }}
             </p>
-            <div class="button-group d-flex justify-content-between mt-4">
+            <div class="button-group d-flex justify-content-between mt-4"
+                 *ngIf="apartment.status !== 'deleted'">
               <button class="btn btn-outline-primary btn-lg"
-                      *ngIf="!favorite"
+                      *ngIf="!favorite && apartment.status !== 'deleted'"
                       (click)="onSaveToFavorites()">{{ 'COMMON.SAVE_TO_FAVORITES' | translate }}</button>
               <button class="btn btn-outline-primary btn-lg"
                       *ngIf="favorite"
                       (click)="onRemoveToFavorites()">{{ 'COMMON.REMOVE_TO_FAVORITES' | translate }}</button>
               <button class="btn btn-primary btn-lg"
+                      *ngIf="apartment.status !== 'deleted'"
                       (click)="onSendOffer()">{{ 'COMMON.SEND_OFFER' | translate }}</button>
             </div>
             <table class="table mt-4">
@@ -464,7 +475,11 @@
              height="80"
              class="rounded-circle profile-picture mr-5"
              alt="">
-        <h3>{{ apartment.landlord.user.firstName }} {{ apartment.landlord.user.lastName }}</h3>
+        <h3>
+          {{ apartment.landlord.user.firstName }} {{ apartment.landlord.user.lastName }}
+          <span class="text-danger"
+                *ngIf="apartment.landlord.status === 'deleted'">({{ 'COMMON.DELETED' | translate }})</span>
+        </h3>
       </div>
       <div class="feedback mt-3"
            *ngIf="apartment.landlord.feedback.length !== 0">
@@ -473,7 +488,11 @@
         <div class="feedback mt-4"
              *ngFor="let feedback of apartment.landlord.feedback">
           <div class="client d-flex justify-content-between">
-            <span class="client-name font-weight-bold">{{ feedback.tenant.user.firstName }} {{ feedback.tenant.user.lastName }}</span>
+            <span class="client-name font-weight-bold">
+              {{ feedback.tenant.user.firstName }} {{ feedback.tenant.user.lastName }}
+              <span class="text-danger"
+                    *ngIf="feedback.tenant.status === 'deleted'">({{ 'COMMON.DELETED' | translate }})</span>
+            </span>
             <div class="rating-date d-flex">
               <ngb-rating [rate]="feedback.feedbackStar"
                           [readonly]="true"

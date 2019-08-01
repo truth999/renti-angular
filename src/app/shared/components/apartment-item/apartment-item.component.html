@@ -7,7 +7,11 @@
     <span class="badge badge-success image-badge position-absolute">{{ apartment.rank }}% {{ 'COMMON.DATA' | translate }}</span>
   </div>
   <div class="explain">
-    <h6 class="font-size-lg mb-0">{{ apartment.name }}</h6>
+    <h6 class="font-size-lg mb-0">
+      {{ apartment.name }}
+      <span class="text-danger"
+            *ngIf="apartment.status === 'deleted'">({{ 'COMMON.DELETED' | translate }})</span>
+    </h6>
     <p class="mb-0"
        #addressParagraph>
       {{ apartment.address.city }}{{ apartment.address.building || apartment.address.floor || apartment.address.door ? ',' : '' }}

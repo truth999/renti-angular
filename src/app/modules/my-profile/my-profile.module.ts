@@ -14,8 +14,6 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { ChangePasswordComponent } from './components/my-profile/change-password/change-password.component';
 import { DeleteAccountComponent } from './components/my-profile/delete-account/delete-account.component';
 
-import { MyProfileService } from './services/my-profile.service';
-
 @NgModule({
   declarations: [
     TenantComponent,
@@ -24,9 +22,7 @@ import { MyProfileService } from './services/my-profile.service';
     ChangePasswordComponent,
     DeleteAccountComponent,
   ],
-  providers: [
-    MyProfileService,
-  ],
+  providers: [],
   imports: [
     SharedModule,
     ReactiveFormsModule,

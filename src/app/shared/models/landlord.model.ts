@@ -15,4 +15,5 @@ export class Landlord {
   nameOfAgency: string;
   apartments: Apartment[];
   feedback: Feedback[];
+  status: string;
 }

@@ -69,13 +69,13 @@ export const config = {
       university: 'COMMON.UNIVERSITY'
     },
     monthlyIncome: {
-      1: '< 50,000',
-      50000: '50,000 - 100,000',
-      100000: '100,000 - 200,000',
-      200000: '200,000 - 400,000',
-      400000: '400,000 - 700,000',
-      700000: '700,000 - 1,000,000',
-      1000000: '1,000,000+'
+      '1': '< 50,000',
+      '50000': '50,000 - 100,000',
+      '100000': '100,000 - 200,000',
+      '200000': '200,000 - 400,000',
+      '400000': '400,000 - 700,000',
+      '700000': '700,000 - 1,000,000',
+      '1000000': '1,000,000+'
     }
   },
   apartment: {
@@ -128,10 +128,10 @@ export const config = {
       fireplace: 'COMMON.FIREPLACE'
     },
     headroom: {
-      1: '<2M',
-      2: '2.0 - 2.5M',
-      2.5: '2.5 - 3.0M',
-      3: '>3M',
+      '1': '<2M',
+      '2': '2.0 - 2.5M',
+      '2.5': '2.5 - 3.0M',
+      '3': '>3M',
     },
     parking: {
       at_the_street: 'COMMON.AT_THE_STREET',
@@ -162,11 +162,11 @@ export const config = {
   },
   offer: {
     minRentingTime: {
-      1: ['1', 'COMMON.MONTH'],
-      3: ['3', 'COMMON.MONTHS'],
-      6: ['6', 'COMMON.MONTHS'],
-      12: ['12+', 'COMMON.MONTHS'],
-      24: ['24+', 'COMMON.MONTHS']
+      '1': ['1', 'COMMON.MONTH'],
+      '3': ['3', 'COMMON.MONTHS'],
+      '6': ['6', 'COMMON.MONTHS'],
+      '12': ['12+', 'COMMON.MONTHS'],
+      '24': ['24+', 'COMMON.MONTHS']
     }
   },
   excludeLoaderRoutes: [

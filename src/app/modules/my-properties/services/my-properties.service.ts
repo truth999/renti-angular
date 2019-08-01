@@ -27,6 +27,10 @@ export class MyPropertiesService {
     return this.apiService.put(`${this.apartmentUrl}/${apartment._id}`, apartment);
   }
 
+  deleteApartment(id: string): Promise<any> {
+    return this.apiService.delete(`${this.apartmentUrl}/${id}`);
+  }
+
   createRooms(rooms: Room[]): Promise<any> {
     return this.apiService.post(this.roomUrl, rooms);
   }

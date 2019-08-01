@@ -319,10 +319,12 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
   onOpenConfirmModal() {
     const result = {
+      type: 'deleteApartment',
       title: 'DELETE_APARTMENT',
       message: ['ACTION_NOT_REVERSIBLE', 'SURE_DELETE_APARTMENT'],
       btnOk: 'DELETE',
-      btnCancel: 'CANCEL'
+      btnCancel: 'CANCEL',
+      id: this.apartment._id
     };
 
     this.confirmModalService.show(result);

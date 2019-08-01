@@ -255,7 +255,8 @@
     "YMD": "jjjj-mm-tt",
     "AVAILABLE_TENANTS": "Vervügbare Untermieter(in)",
     "AVAILABLE_FLATS": "Available flats",
-    "RESET": "Zurücksetzen"
+    "RESET": "Zurücksetzen",
+    "DELETED": "Deleted"
   },
   "HOME": {
     "TITLE": "Renti - Kanaan der Untermieten",

@@ -21,6 +21,9 @@ import { AppComponent } from './app.component';
 
 import { config } from '../config';
 
+import { MyProfileService } from './modules/my-profile/services/my-profile.service';
+import { MyPropertiesService } from './modules/my-properties/services/my-properties.service';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -60,7 +63,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AgmCoreModule.forRoot(),
     AgmJsMarkerClustererModule
   ],
-  providers: [],
+  providers: [
+    MyProfileService,
+    MyPropertiesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

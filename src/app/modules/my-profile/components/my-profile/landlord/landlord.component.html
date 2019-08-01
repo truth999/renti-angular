@@ -163,7 +163,11 @@
             <div class="feedback mt-4"
                  *ngFor="let feedback of landlord.feedback">
               <div class="client d-flex justify-content-between">
-                <span class="client-name font-weight-bold">{{ feedback.tenant.user.firstName }} {{ feedback.tenant.user.lastName }}</span>
+                <span class="client-name font-weight-bold">
+                  {{ feedback.tenant.user.firstName }} {{ feedback.tenant.user.lastName }}
+                  <span class="text-danger"
+                        *ngIf="feedback.tenant.status === 'deleted'"> ({{ 'COMMON.DELETED' | translate }})</span>
+                </span>
                 <div class="rating-date d-flex">
                   <ngb-rating [rate]="feedback.feedbackStar"
                               [readonly]="true"
@@ -188,6 +192,7 @@
       </div>
     </div>
     <app-change-password></app-change-password>
-    <app-delete-account></app-delete-account>
+    <app-delete-account [type]="AccountTypes.LANDLORD"
+                        [accountId]="landlord._id"></app-delete-account>
   </form>
 </div>

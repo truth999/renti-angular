@@ -255,7 +255,8 @@
     "YMD": "yyyy-mm-dd",
     "AVAILABLE_TENANTS": "Available tenants",
     "AVAILABLE_FLATS": "Available flats",
-    "RESET": "Reset"
+    "RESET": "Reset",
+    "DELETED": "Deleted"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",

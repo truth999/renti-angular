@@ -13,13 +13,16 @@ import { AuthService } from '../../../../../core/services/auth.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
+import { MyProfileService } from '../../../services/my-profile.service';
 
 import { Tenant } from '../../../../../shared/models';
+
 import { environment } from '../../../../../../environments/environment';
+
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
-import { MyProfileService } from '../../../services/my-profile.service';
 import { config } from '../../../../../../config';
+import { CONFIG_CONST } from '../../../../../../config/config-const';
 
 declare var FB: any;
 
@@ -39,6 +42,7 @@ export class TenantComponent implements OnInit {
   feedbackNumber: number;
   userConfig = config.user;
   Object = Object;
+  AccountTypes = CONFIG_CONST.accountType;
 
   tenantForm: FormGroup;
 
@@ -142,8 +146,8 @@ export class TenantComponent implements OnInit {
   buildTenantForm() {
     this.tenantForm = new FormGroup({
       lookingRent: new FormGroup({
-        address: new FormControl(this.tenant.lookingRent.address, Validators.required),
-        location: new FormControl(this.tenant.lookingRent.location)
+        address: new FormControl(!!this.tenant.lookingRent ? this.tenant.lookingRent.address : null, Validators.required),
+        location: new FormControl(!!this.tenant.lookingRent ? this.tenant.lookingRent.location : null)
       }),
       mobile: new FormControl(this.tenant.mobile),
       placeOfBirth: new FormControl(this.tenant.placeOfBirth),

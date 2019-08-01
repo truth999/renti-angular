@@ -34,4 +34,12 @@ export class MyProfileService {
   getInstagramUserDetails(code: string): Promise<any> {
     return this.apiService.get(`${this.instagramUrl}?code=${code}`);
   }
+
+  deleteLandlord(id: string): Promise<any> {
+    return this.apiService.delete(`${this.landlordUrl}/${id}`);
+  }
+
+  deleteTenant(id: string): Promise<any> {
+    return this.apiService.delete(`${this.tenantUrl}/${id}`);
+  }
 }

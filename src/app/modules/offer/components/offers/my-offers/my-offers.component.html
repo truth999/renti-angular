@@ -32,7 +32,7 @@
               <app-apartment-item class="col-lg-6 py-3"
                                   [apartment]="offer.apartment"
                                   [routerLink]="['/app/rentals/apartment', offer.apartment._id]">
-                <button *ngIf="offer.feedbackReady && !offer.tenantFeedback"
+                <button *ngIf="offer.feedbackReady && !offer.tenantFeedback && offer.apartment.status !== 'deleted'"
                         type="button"
                         class="btn btn-primary btn-sm position-absolute"
                         (click)="onGiveFeedback($event, { offerId: offer._id, landlordId: offer.apartment.landlord })">{{ 'OFFER.GIVE_FEEDBACK_LANDLORD' | translate }}</button>

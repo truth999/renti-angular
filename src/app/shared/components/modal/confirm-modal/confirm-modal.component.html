@@ -17,5 +17,6 @@
           type="button" class="btn btn-outline-primary"
           (click)="onClose()">{{ 'COMMON.' + result.btnCancel | translate }}</button>
   <button *ngIf="result.btnOk"
-          type="button" class="btn btn-danger">{{ 'COMMON.' + result.btnOk | translate }}</button>
+          type="button" class="btn btn-danger"
+          (click)="onDelete()">{{ 'COMMON.' + result.btnOk | translate }}</button>
 </div>

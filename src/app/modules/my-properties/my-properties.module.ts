@@ -12,7 +12,6 @@ import { MyPropertiesComponent } from './components/my-properties/my-properties.
 import { ApartmentEditComponent } from './components/apartment-edit/apartment-edit.component';
 
 import { RoomEditComponent } from './components/room-edit/room-edit.component';
-import { MyPropertiesService } from './services/my-properties.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +19,7 @@ import { MyPropertiesService } from './services/my-properties.service';
     ApartmentEditComponent,
     RoomEditComponent
   ],
-  providers: [
-    MyPropertiesService
-  ],
+  providers: [],
   imports: [
     ReactiveFormsModule,
     SharedModule,

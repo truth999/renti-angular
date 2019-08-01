@@ -43,4 +43,5 @@ export class Tenant {
   offers: Offer[];
   feedback: Feedback[];
   favorites: Apartment[];
+  status: string;
 }

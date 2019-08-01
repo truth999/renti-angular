@@ -38,16 +38,19 @@ export class FloorPlanModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (!!this.result.draw && !!this.result.draw.updatedDraw) {
-      this.drawUrl = this.uploadBase + this.result.draw.updatedDraw;
-    }
-
     this.buildForm();
-    this.onAddRoom();
+
+    if (this.updatedDraw.value) {
+      this.drawUrl = this.uploadBase + this.updatedDraw.value;
+    }
   }
 
   buildForm() {
     this.floorPlanForm = new FormGroup({
+      draw: new FormGroup({
+        basicDraw: new FormControl(!!this.result.draw && !!this.result.draw.basicDraw ? this.result.draw.basicDraw : null),
+        updatedDraw: new FormControl(!!this.result.draw && !!this.result.draw.updatedDraw ? this.result.draw.updatedDraw : null)
+      }),
       rooms: new FormArray(this.result.rooms.map(room => {
         return new FormGroup({
           _id: new FormControl(room._id),
@@ -60,6 +63,14 @@ export class FloorPlanModalComponent implements OnInit {
 
   get rooms() {
     return this.floorPlanForm.get('rooms') as FormArray;
+  }
+
+  get basicDraw() {
+    return this.floorPlanForm.get('draw').get('basicDraw');
+  }
+
+  get updatedDraw() {
+    return this.floorPlanForm.get('draw').get('updatedDraw');
   }
 
   onAddRoom() {
@@ -91,12 +102,13 @@ export class FloorPlanModalComponent implements OnInit {
       const fileReader = new FileReader();
 
       fileReader.addEventListener('loadend', async (event: any) => {
-        this.drawUrl = event.target.result;
-        const blobImage = this.imageUploaderService.b64toBlob(this.drawUrl);
+        const blobImage = this.imageUploaderService.b64toBlob(event.target.result);
 
         try {
           const imageName = await this.imageUploaderService.upload(blobImage);
-          this.result.draw.basicDraw = imageName[0];
+          this.updatedDraw.setValue(null);
+          this.basicDraw.setValue(imageName[0]);
+          this.drawUrl = this.uploadBase + this.basicDraw.value;
         } catch (e) {
           console.log('FloorPlanModalComponent->onFileChange->html2canvas', e);
         }
@@ -109,8 +121,8 @@ export class FloorPlanModalComponent implements OnInit {
   }
 
   onReset() {
-    if (this.result.draw && this.result.draw.basicDraw) {
-      this.drawUrl = this.uploadBase + this.result.draw.basicDraw;
+    if (this.basicDraw.value) {
+      this.drawUrl = this.uploadBase + this.basicDraw.value;
     }
   }
 
@@ -263,22 +275,32 @@ export class FloorPlanModalComponent implements OnInit {
           }
         }
 
-        html2canvas(this.draw.nativeElement, { logging: false, useCORS: true }).then(async canvas => {
-          const image = canvas.toDataURL();
-          const blobImage = this.imageUploaderService.b64toBlob(image);
+        if (this.basicDraw.value) {
+          apartment.draw = this.floorPlanForm.get('draw').value;
 
-          try {
-            const imageName = await this.imageUploaderService.upload(blobImage);
-            apartment.draw.updatedDraw = imageName[0];
+          html2canvas(this.draw.nativeElement, { logging: false, useCORS: true }).then(async canvas => {
+            const image = canvas.toDataURL();
+            const blobImage = this.imageUploaderService.b64toBlob(image);
 
-            await this.myPropertiesService.updateApartment(apartment);
+            try {
+              const imageName = await this.imageUploaderService.upload(blobImage);
+              this.updatedDraw.setValue(imageName[0]);
+              apartment.draw = this.floorPlanForm.get('draw').value;
 
-            this.toastrService.success('The apartment is updated successfully.', 'Success!');
-            this.modal.close();
-          } catch (e) {
-            console.log('FloorPlanModalComponent->submit->html2canvas', e);
-          }
-        });
+              await this.myPropertiesService.updateApartment(apartment);
+
+              this.toastrService.success('The apartment is updated successfully.', 'Success!');
+              this.modal.close();
+            } catch (e) {
+              console.log('FloorPlanModalComponent->submit->html2canvas', e);
+            }
+          });
+        } else {
+          await this.myPropertiesService.updateApartment(apartment);
+
+          this.toastrService.success('The apartment is updated successfully.', 'Success!');
+          this.modal.close();
+        }
       } catch (e) {
         console.log('FloorPlanModalComponent->submit', e);
         this.toastrService.error('Something went wrong', 'Error');

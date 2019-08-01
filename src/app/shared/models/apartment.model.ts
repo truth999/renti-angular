@@ -63,4 +63,5 @@ export class Apartment {
   offers: Offer[];
   checked: number;
   createdAt: string;
+  status: string;
 }

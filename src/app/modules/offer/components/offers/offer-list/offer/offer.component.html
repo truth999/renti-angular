@@ -2,7 +2,11 @@
   <div class="avatar text-center">
     <img [src]="!!offer.tenant.profilePicture ? uploadBase + offer.tenant.profilePicture : '/assets/images/profile/blank.png'" alt="" width="80" height="80" class="rounded-pill">
   </div>
-  <h4 class="text-center">{{ offer.tenant.user.firstName }} {{ offer.tenant.user.lastName }}</h4>
+  <h4 class="text-center">
+    {{ offer.tenant.user.firstName }} {{ offer.tenant.user.lastName }}
+    <span class="text-danger"
+          *ngIf="offer.tenant.status === 'deleted'">({{ 'COMMON.DELETED' | translate }})</span>
+  </h4>
 <!--  <p class="text-center text-muted font-weight-bold"><span class="year font-size-lg">23</span>, Student</p>-->
   <table class="table">
     <tbody>
@@ -38,12 +42,12 @@
   </p>
   <button class="btn btn-outline-primary btn-lg w-100 mt-3" (click)="onProfile()">{{ 'OFFER.GO_TO_FULL_PROFILE' | translate }}</button>
   <div class="text-right mt-4"
-       *ngIf="offer.accepted && offer.feedbackReady && !offer.landlordFeedback">
+       *ngIf="offer.accepted && offer.feedbackReady && !offer.landlordFeedback && offer.apartment.status !== 'deleted' && offer.tenant.status !== 'deleted'">
     <button class="btn btn-primary btn-sm"
             (click)="onGiveFeedback({ offerId: offer._id, tenantId: offer.tenant._id })">{{ 'OFFER.GIVE_FEEDBACK_TENANT' | translate }}</button>
   </div>
   <div class="button-group d-flex justify-content-between mt-4"
-       *ngIf="offer.accepted === null">
+       *ngIf="offer.accepted === null && offer.apartment.status !== 'deleted' && offer.tenant.status !== 'deleted'">
     <button class="btn btn-success btn-lg"
             (click)="onAccept()">{{ 'COMMON.ACCEPT' | translate }}</button>
     <button class="btn btn-outline-danger btn-lg"

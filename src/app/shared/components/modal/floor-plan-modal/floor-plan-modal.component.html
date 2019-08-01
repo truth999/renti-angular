@@ -18,7 +18,7 @@
              style="display: none;"
              accept="image/png, image/jpeg, image/jpg"
              (change)="onFileChange($event)">
-      <div class="row my-4">
+      <div class="my-4">
         <div *ngIf="getDrawUrl()"
              class="position-relative mx-auto"
              id="draw"
@@ -31,6 +31,7 @@
         <a href="javascript:void(0);"
            (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_BASIC_FLOOR_PLAN' | translate }}</a>
         <a href="javascript:void(0);"
+           *ngIf="floorPlanForm.get('draw').get('updatedDraw').value"
            (click)="onReset()">{{ 'COMMON.RESET' | translate }}</a>
       </div>
     </div>

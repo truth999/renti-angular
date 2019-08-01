@@ -12,13 +12,16 @@ import { StorageService } from '../../../../../core/services/storage.service';
 import { ImageUploaderService } from '../../../../../core/services/image-uploader.service';
 import { AuthService } from '../../../../../core/services/auth.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
+import { MyProfileService } from '../../../services/my-profile.service';
 
 import { Landlord } from '../../../../../shared/models';
+
 import { environment } from '../../../../../../environments/environment';
+
 import { Countries } from '../../../../../../config/countries';
 import { Validate } from '../../../../../../config/validate';
-import { MyProfileService } from '../../../services/my-profile.service';
 import { config } from '../../../../../../config';
+import { CONFIG_CONST } from '../../../../../../config/config-const';
 
 @Component({
   selector: 'app-my-profile-landlord',
@@ -35,6 +38,7 @@ export class LandlordComponent implements OnInit {
   feedbackNumber: number;
   userConfig = config.user;
   Object = Object;
+  AccountTypes = CONFIG_CONST.accountType;
 
   countries = Countries;
 

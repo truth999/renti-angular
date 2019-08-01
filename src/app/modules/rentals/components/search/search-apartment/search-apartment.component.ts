@@ -65,7 +65,7 @@ export class SearchApartmentComponent implements OnInit {
     try {
       const tenantId = this.storageService.get('tenantId');
       const tenantResponse = await this.authService.getTenant(tenantId);
-      const lookingToRentIn = tenantResponse.tenant.lookingRent.address;
+      const lookingToRentIn = (tenantResponse.tenant.lookingRent ? tenantResponse.tenant.lookingRent.address : '');
 
       const apartmentResponse = await this.rentalsService.getApartments(this.page, lookingToRentIn);
       this.apartments = apartmentResponse.apartments;
