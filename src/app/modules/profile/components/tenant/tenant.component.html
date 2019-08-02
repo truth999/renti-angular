@@ -193,7 +193,7 @@
                         *ngIf="feedback.landlord.status === 'deleted'">({{ 'COMMON.DELETED' | translate }})</span>
                 </span>
                 <div class="rating-date d-flex">
-                  <ngb-rating [rate]="feedback.feedbackStar"
+                  <ngb-rating [rate]="feedback.feedbackStar.overall"
                               [readonly]="true"
                               max="5"
                               class="item-rating mr-1">

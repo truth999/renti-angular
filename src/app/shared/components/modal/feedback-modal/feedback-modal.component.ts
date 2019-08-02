@@ -1,14 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
 import { OfferService } from '../../../../modules/offer/services/offer.service';
 import { StorageService } from '../../../../core/services/storage.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
-import { AuthService } from '../../../../core/services/auth.service';
 
 import { CONFIG_CONST } from '../../../../../config/config-const';
+
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-feedback-modal',
@@ -19,46 +20,110 @@ export class FeedbackModalComponent implements OnInit {
   @Input() result: any;
   feedbackForm: FormGroup;
   AccountType = CONFIG_CONST.accountType;
+  uploadBase = environment.uploadBase;
+  rate: number;
+  feedbackNumber: number;
+  overallRate: number;
 
   constructor(
     private modal: NgbActiveModal,
     private offerService: OfferService,
     private storageService: StorageService,
     private toastrService: ToastrService,
-    private validateFormFieldsService: ValidateFormFieldsService,
-    private authService: AuthService
+    private validateFormFieldsService: ValidateFormFieldsService
   ) { }
 
   ngOnInit() {
+    if (this.result.type === this.AccountType.LANDLORD) {
+      if (this.result.tenant.feedback.length !== 0) {
+        const totalRate = this.result.tenant.feedback.reduce((total, currentValue) => {
+          return total + currentValue.feedbackStar.overall;
+        }, 0);
+        this.rate = parseInt((totalRate / this.result.tenant.feedback.length).toFixed(0), 10) - 1;
+        this.feedbackNumber = this.result.tenant.feedback.length;
+      }
+    }
+
+    if (this.result.type === this.AccountType.TENANT) {
+      if (this.result.landlord.feedback.length !== 0) {
+        const totalRate = this.result.landlord.feedback.reduce((total, currentValue) => {
+          return total + currentValue.feedbackStar.overall;
+        }, 0);
+        this.rate = parseInt((totalRate / this.result.landlord.feedback.length).toFixed(0), 10) - 1;
+        this.feedbackNumber = this.result.landlord.feedback.length;
+      }
+    }
+
     this.buildFeedbackForm();
   }
 
   buildFeedbackForm() {
     this.feedbackForm = new FormGroup({
-      feedbackStar: new FormControl(0),
-      feedbackText: new FormControl(null, Validators.required)
+      feedbackStar: new FormGroup({
+        availability: new FormControl(0),
+        communication: new FormControl(0),
+        cooperation: new FormControl(0),
+        professionalism: new FormControl(0),
+        recommend: new FormControl(0),
+        overall: new FormControl(0)
+      }),
+      feedbackText: new FormControl(null)
     });
+  }
+
+  get availability() {
+    return this.feedbackForm.get('feedbackStar').get('availability').value;
+  }
+
+  get communication() {
+    return this.feedbackForm.get('feedbackStar').get('communication').value;
+  }
+
+  get cooperation() {
+    return this.feedbackForm.get('feedbackStar').get('cooperation').value;
+  }
+
+  get professionalism() {
+    return this.feedbackForm.get('feedbackStar').get('professionalism').value;
+  }
+
+  get recommend() {
+    return this.feedbackForm.get('feedbackStar').get('recommend').value;
+  }
+
+  get overall() {
+    return this.feedbackForm.get('feedbackStar').get('overall');
+  }
+
+  changeRate() {
+    this.overallRate = (this.availability + this.communication + this.cooperation + this.professionalism + this.recommend) / 5;
+
+    this.overall.setValue(this.overallRate);
   }
 
   async submit() {
     if (this.feedbackForm.valid) {
       try {
-        const response = await this.authService.getAuthUser();
-        const accountType = response.user.accountType;
-        if (accountType === this.AccountType.LANDLORD) {
-          const landlordId = this.storageService.get('landlordId');
+        if (this.result.type === this.AccountType.LANDLORD) {
+          const landlordId = this.result.landlordId;
+          const tenantId = this.result.tenant._id;
+          const offerId = this.result.offerId;
           const feedbackData = {
-            ...this.result,
-            ...this.feedbackForm.value
+            ...this.feedbackForm.value,
+            offerId,
+            tenantId
           };
 
           await this.offerService.createFeedbackByLandlord(landlordId, feedbackData);
         }
-        if (accountType === this.AccountType.TENANT) {
-          const tenantId = this.storageService.get('tenantId');
+        if (this.result.type === this.AccountType.TENANT) {
+          const tenantId = this.result.tenantId;
+          const landlordId = this.result.landlord._id;
+          const offerId = this.result.offerId;
           const feedbackData = {
-            ...this.result,
-            ...this.feedbackForm.value
+            ...this.feedbackForm.value,
+            offerId,
+            landlordId
           };
 
           await this.offerService.createFeedbackByTenant(tenantId, feedbackData);

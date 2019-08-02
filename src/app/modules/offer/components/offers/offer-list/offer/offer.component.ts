@@ -8,7 +8,10 @@ import { environment } from '../../../../../../../environments/environment';
 
 import { OfferService } from '../../../../services/offer.service';
 import { FeedbackModalService } from '../../../../../../shared/services/modal/feedback-modal.service';
+import { StorageService } from '../../../../../../core/services/storage.service';
+
 import { config } from '../../../../../../../config';
+import { CONFIG_CONST } from '../../../../../../../config/config-const';
 
 @Component({
   selector: 'app-offer',
@@ -21,15 +24,19 @@ export class OfferComponent implements OnInit {
 
   uploadBase = environment.uploadBase;
   offerConfig = config.offer;
+  AccountTypes = CONFIG_CONST.accountType;
+  landlordId: string;
 
   constructor(
     private router: Router,
     private offerService: OfferService,
     private toastrService: ToastrService,
-    private feedbackModalService: FeedbackModalService
+    private feedbackModalService: FeedbackModalService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
+    this.landlordId = this.storageService.get('landlordId');
   }
 
   onProfile() {

@@ -1,42 +1,171 @@
-<div class="modal-header">
-  <h4 class="modal-title">{{ 'OFFER.GIVE_FEEDBACK_LANDLORD' | translate }}</h4>
-  <button type="button"
-          class="close"
-          aria-label="true"
-          (click)="onClose()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
 <div class="modal-body">
-  <form [formGroup]="feedbackForm"
-        (ngSubmit)="submit()">
-    <div class="form-group d-flex align-items-center">
-      <ngb-rating formControlName="feedbackStar"
-                  max="5"
-                  class="all-rating mr-2">
-        <ng-template let-fill="fill">
-          <i class="icon-star-fill"
-             *ngIf="fill === 100"></i>
-          <i class="icon-star"
-             *ngIf="fill !== 100"></i>
-        </ng-template>
-      </ngb-rating>
-      <span class="font-weight-bold font-size-lg">Score: {{ feedbackForm.value.feedbackStar }}</span>
+  <ng-container *ngIf="result.type === AccountType.LANDLORD">
+    <div class="avatar">
+      <img [src]="result.tenant.profilePicture ? (uploadBase + result.tenant.profilePicture) : '/assets/images/profile/blank.png'"
+           alt="Avatar">
     </div>
-    <div class="form-group">
-      <label for="feedback-text">{{ 'OFFER.YOUR_FEEDBACK' | translate }}:</label>
-      <textarea id="feedback-text"
-                class="form-control"
-                rows="6"
-                formControlName="feedbackText"></textarea>
-      <div class="invalid-feedback d-block" *ngIf="feedbackForm.get('feedbackText').invalid && (feedbackForm.get('feedbackText').dirty || feedbackForm.get('feedbackText').touched)">
-        <span *ngIf="feedbackForm.get('feedbackText').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+    <div class="row">
+      <div class="col-12">
+        <div class="name-info">
+          <h1 class="name font-weight-bolder">{{ result.tenant.user.firstName }} {{ result.tenant.user.lastName }}</h1>
+        </div>
       </div>
     </div>
-    <div class="form-group text-right">
-      <button type="submit"
-              class="btn btn-primary btn-lg">{{ 'OFFER.GIVE_FEEDBACK' | translate }}</button>
+    <div class="row mt-lg-5">
+      <div class="col-12"
+           *ngIf="result.tenant.feedback.length !== 0">
+        <app-feedback [rate]="rate"
+                      [number]="feedbackNumber"></app-feedback>
+      </div>
     </div>
-  </form>
+  </ng-container>
+  <ng-container *ngIf="result.type === AccountType.TENANT">
+    <div class="avatar">
+      <img [src]="result.landlord.profilePicture ? (uploadBase + result.landlord.profilePicture) : '/assets/images/profile/blank.png'"
+           alt="Avatar">
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="name-info">
+          <h1 class="name font-weight-bolder">{{ result.landlord.user.firstName }} {{ result.landlord.user.lastName }}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-lg-5">
+      <div class="col-12"
+           *ngIf="result.landlord.feedback.length !== 0">
+        <app-feedback [rate]="rate"
+                      [number]="feedbackNumber"></app-feedback>
+      </div>
+    </div>
+  </ng-container>
+  <div class="feedback-content">
+    <form [formGroup]="feedbackForm"
+          (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-lg-8">
+          <table class="table"
+                 formGroupName="feedbackStar">
+            <tr>
+              <td class="font-weight-bold font-size-lg border-0 py-0">{{ 'COMMON.AVAILABILITY' | translate }}</td>
+              <td class="border-0 py-0">
+                <ngb-rating formControlName="availability"
+                            (rateChange)="changeRate()"
+                            max="5"
+                            class="all-rating">
+                  <ng-template let-fill="fill">
+                    <i class="icon-star-fill"
+                       *ngIf="fill === 100"></i>
+                    <i class="icon-star"
+                       *ngIf="fill !== 100"></i>
+                  </ng-template>
+                </ngb-rating>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold font-size-lg border-0 py-0">{{ 'COMMON.COMMUNICATION' | translate }}</td>
+              <td class="border-0 py-0">
+                <ngb-rating formControlName="communication"
+                            (rateChange)="changeRate()"
+                            max="5"
+                            class="all-rating">
+                  <ng-template let-fill="fill">
+                    <i class="icon-star-fill"
+                       *ngIf="fill === 100"></i>
+                    <i class="icon-star"
+                       *ngIf="fill !== 100"></i>
+                  </ng-template>
+                </ngb-rating>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold font-size-lg border-0 py-0">{{ 'COMMON.COOPERATION' | translate }}</td>
+              <td class="border-0 py-0">
+                <ngb-rating formControlName="cooperation"
+                            (rateChange)="changeRate()"
+                            max="5"
+                            class="all-rating">
+                  <ng-template let-fill="fill">
+                    <i class="icon-star-fill"
+                       *ngIf="fill === 100"></i>
+                    <i class="icon-star"
+                       *ngIf="fill !== 100"></i>
+                  </ng-template>
+                </ngb-rating>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold font-size-lg border-0 py-0">{{ 'COMMON.PROFESSIONALISM' | translate }}</td>
+              <td class="border-0 py-0">
+                <ngb-rating formControlName="professionalism"
+                            (rateChange)="changeRate()"
+                            max="5"
+                            class="all-rating">
+                  <ng-template let-fill="fill">
+                    <i class="icon-star-fill"
+                       *ngIf="fill === 100"></i>
+                    <i class="icon-star"
+                       *ngIf="fill !== 100"></i>
+                  </ng-template>
+                </ngb-rating>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold font-size-lg border-0 py-0">{{ 'COMMON.WOULD_YOU_RECOMMEND' | translate }}</td>
+              <td class="border-0 py-0">
+                <ngb-rating formControlName="recommend"
+                            (rateChange)="changeRate()"
+                            max="5"
+                            class="all-rating">
+                  <ng-template let-fill="fill">
+                    <i class="icon-star-fill"
+                       *ngIf="fill === 100"></i>
+                    <i class="icon-star"
+                       *ngIf="fill !== 100"></i>
+                  </ng-template>
+                </ngb-rating>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold font-size-lg border-0">{{ 'COMMON.OVERALL' | translate }}</td>
+              <td class="border-0">
+                <ngb-rating [rate]="overallRate"
+                            max="5"
+                            class="all-rating align-middle"
+                            [readonly]="true">
+                  <ng-template let-fill="fill">
+                    <i class="icon-star-fill"
+                       *ngIf="fill === 100"></i>
+                    <i class="icon-star"
+                       *ngIf="fill !== 100"></i>
+                  </ng-template>
+                </ngb-rating>
+                <span class="font-weight-bold align-middle">
+                  {{ overall.value }}
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <label for="feedback-text">{{ 'COMMON.FREE_TEXT_RATING' | translate }}:</label>
+          <textarea id="feedback-text"
+                    class="form-control"
+                    rows="6"
+                    formControlName="feedbackText"></textarea>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <button type="submit"
+                  class="btn btn-primary btn-lg mr-2">{{ 'OFFER.LEAVE_FEEDBACK' | translate }}</button>
+          <button type="button"
+                  class="btn btn-outline-primary btn-lg"
+                  (click)="onClose()">{{ 'COMMON.CANCEL' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
-<div class="modal-footer"></div>

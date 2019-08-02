@@ -256,7 +256,14 @@
     "AVAILABLE_TENANTS": "Available tenants",
     "AVAILABLE_FLATS": "Available flats",
     "RESET": "Reset",
-    "DELETED": "Deleted"
+    "DELETED": "Deleted",
+    "AVAILABILITY": "Availability",
+    "COMMUNICATION": "Communication",
+    "COOPERATION": "Cooperation",
+    "PROFESSIONALISM": "Professionalism",
+    "WOULD_YOU_RECOMMEND": "Would you recommend?",
+    "OVERALL": "Overall",
+    "FREE_TEXT_RATING": "Free text rating"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
@@ -359,7 +366,7 @@
     "GIVE_FEEDBACK_TENANT": "Give the feedback to tenant",
     "GIVE_FEEDBACK_LANDLORD": "Give feedback to landlord",
     "YOUR_FEEDBACK": "Your feedback",
-    "GIVE_FEEDBACK": "Give feedback",
+    "LEAVE_FEEDBACK": "Leave feedback",
     "INCREASING_BASED_RENTAL_FEE": "Increasing based on Rental fee",
     "INCREASING_BASED_MINIMUM_RENTING_TIME": "Increasing based on Minimum renting time",
     "INCREASING_BASED_ARRIVAL_DATE_OFFER": "Increasing based on Arrival date of the offer"

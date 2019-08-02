@@ -256,7 +256,14 @@
     "AVAILABLE_TENANTS": "Vervügbare Untermieter(in)",
     "AVAILABLE_FLATS": "Available flats",
     "RESET": "Zurücksetzen",
-    "DELETED": "Deleted"
+    "DELETED": "Deleted",
+    "AVAILABILITY": "Availability",
+    "COMMUNICATION": "Communication",
+    "COOPERATION": "Cooperation",
+    "PROFESSIONALISM": "Professionalism",
+    "WOULD_YOU_RECOMMEND": "Would you recommend?",
+    "OVERALL": "Overall",
+    "FREE_TEXT_RATING": "Free text rating"
   },
   "HOME": {
     "TITLE": "Renti - Kanaan der Untermieten",
@@ -359,7 +366,7 @@
     "GIVE_FEEDBACK_TENANT": "Geben Sie dem Untermieter eine Rückmeldung",
     "GIVE_FEEDBACK_LANDLORD": "Geben Sie dem Vermieter eine Rückmeldung",
     "YOUR_FEEDBACK": "Ihre Rückmeldung",
-    "GIVE_FEEDBACK": "Rückmeldung geben",
+    "LEAVE_FEEDBACK": "Leave feedback",
     "INCREASING_BASED_RENTAL_FEE": "Erhöhen basierend auf Miete",
     "INCREASING_BASED_MINIMUM_RENTING_TIME": "Erhöhen basierend auf Mietezeit",
     "INCREASING_BASED_ARRIVAL_DATE_OFFER": "Erhöhen basierend auf Datum"

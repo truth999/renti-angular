@@ -62,7 +62,7 @@ export class ApartmentDetailComponent implements OnInit {
       const apartment = response.apartment;
       if (apartment.landlord.feedback !== 0) {
         const totalRate = apartment.landlord.feedback.reduce((total, currentValue) => {
-          return total + currentValue.feedbackStar;
+          return total + currentValue.feedbackStar.overall;
         }, 0);
         this.rate = this.rate = parseInt((totalRate / apartment.landlord.feedback.length).toFixed(0), 10) - 1;
         this.feedbackNumber = apartment.landlord.feedback.length;

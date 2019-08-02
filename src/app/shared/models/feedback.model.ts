@@ -5,7 +5,14 @@ export class Feedback {
   _id: string;
   landlord: Landlord;
   tenant: Tenant;
-  feedbackStar: number;
+  feedbackStar: {
+    availability: number;
+    communication: number;
+    cooperation: number;
+    professionalism: number;
+    recommend: number;
+    overall: number;
+  };
   feedbackText: string;
   updatedAt: string;
 }

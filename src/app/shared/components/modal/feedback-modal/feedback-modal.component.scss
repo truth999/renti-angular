@@ -1,5 +1,47 @@
 @import "~src/assets/styles/scss/variables";
 
+.avatar {
+  @include media-breakpoint-up(sm) {
+    position: absolute;
+    left: $card-spacer-x;
+    top: -2.5rem;
+    z-index: 1;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+
+    @include media-breakpoint-up(sm) {
+      width: 140px;
+      height: 140px;
+      border-radius: 50rem;
+    }
+  }
+}
+
+.name-info {
+  @include media-breakpoint-up(lg) {
+    margin-left: calc(155px + 3rem);
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-top: calc(70px + 1rem);
+  }
+
+  @include media-breakpoint-down(xs) {
+    margin-top: 0;
+  }
+
+  .name {
+    @include media-breakpoint-down(xs) {
+      font-size: 20px;
+    }
+  }
+}
 ngb-rating {
   &:focus {
     outline: none;

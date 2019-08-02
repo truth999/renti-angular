@@ -35,7 +35,7 @@
                 <button *ngIf="offer.feedbackReady && !offer.tenantFeedback && offer.apartment.status !== 'deleted'"
                         type="button"
                         class="btn btn-primary btn-sm position-absolute"
-                        (click)="onGiveFeedback($event, { offerId: offer._id, landlordId: offer.apartment.landlord })">{{ 'OFFER.GIVE_FEEDBACK_LANDLORD' | translate }}</button>
+                        (click)="onGiveFeedback($event, { type: AccountTypes.TENANT, offerId: offer._id, landlord: offer.apartment.landlord, tenantId: tenantId })">{{ 'OFFER.GIVE_FEEDBACK_LANDLORD' | translate }}</button>
               </app-apartment-item>
             </ng-container>
           </div>

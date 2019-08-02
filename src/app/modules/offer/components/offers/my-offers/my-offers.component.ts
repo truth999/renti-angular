@@ -8,6 +8,8 @@ import { FeedbackModalService } from '../../../../../shared/services/modal/feedb
 
 import { Offer, Page } from '../../../../../shared/models';
 
+import { CONFIG_CONST } from '../../../../../../config/config-const';
+
 @Component({
   selector: 'app-my-offers',
   templateUrl: './my-offers.component.html',
@@ -15,8 +17,10 @@ import { Offer, Page } from '../../../../../shared/models';
 })
 export class MyOffersComponent implements OnInit {
   offers: Offer[];
+  tenantId: string;
   page = new Page();
   accepted: boolean;
+  AccountTypes = CONFIG_CONST.accountType;
 
   constructor(
     private location: Location,
@@ -38,6 +42,7 @@ export class MyOffersComponent implements OnInit {
   async getOffers(accepted?: boolean) {
     try {
       const tenantId = this.storageService.get('tenantId');
+      this.tenantId = tenantId;
       const response = typeof accepted === 'undefined'
         ? await this.offerService.getOffersByTenant(this.page, tenantId)
         : await this.offerService.getOffersByTenant(this.page, tenantId, accepted);
@@ -69,6 +74,7 @@ export class MyOffersComponent implements OnInit {
 
   onGiveFeedback(event: Event, feedbackData) {
     event.stopPropagation();
+
     this.feedbackModalService.show(feedbackData);
   }
 

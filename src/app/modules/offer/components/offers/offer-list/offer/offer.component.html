@@ -44,7 +44,7 @@
   <div class="text-right mt-4"
        *ngIf="offer.accepted && offer.feedbackReady && !offer.landlordFeedback && offer.apartment.status !== 'deleted' && offer.tenant.status !== 'deleted'">
     <button class="btn btn-primary btn-sm"
-            (click)="onGiveFeedback({ offerId: offer._id, tenantId: offer.tenant._id })">{{ 'OFFER.GIVE_FEEDBACK_TENANT' | translate }}</button>
+            (click)="onGiveFeedback({ type: AccountTypes.LANDLORD, offerId: offer._id, tenant: offer.tenant, landlordId: landlordId })">{{ 'OFFER.GIVE_FEEDBACK_TENANT' | translate }}</button>
   </div>
   <div class="button-group d-flex justify-content-between mt-4"
        *ngIf="offer.accepted === null && offer.apartment.status !== 'deleted' && offer.tenant.status !== 'deleted'">

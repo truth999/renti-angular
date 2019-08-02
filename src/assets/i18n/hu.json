@@ -256,7 +256,14 @@
     "AVAILABLE_TENANTS": "Elérhető albérlők",
     "AVAILABLE_FLATS": "Available flats",
     "RESET": "Visszaállítás",
-    "DELETED": "Deleted"
+    "DELETED": "Deleted",
+    "AVAILABILITY": "Availability",
+    "COMMUNICATION": "Communication",
+    "COOPERATION": "Cooperation",
+    "PROFESSIONALISM": "Professionalism",
+    "WOULD_YOU_RECOMMEND": "Would you recommend?",
+    "OVERALL": "Overall",
+    "FREE_TEXT_RATING": "Free text rating"
   },
   "HOME": {
     "TITLE": "Renti - az albérletek Kánaánja",
@@ -359,7 +366,7 @@
     "GIVE_FEEDBACK_TENANT": "Adjon visszajelzést az albérlőről",
     "GIVE_FEEDBACK_LANDLORD": "Adjon visszajelzést a kiadó félről",
     "YOUR_FEEDBACK": "Visszajelzés",
-    "GIVE_FEEDBACK": "Adjon visszajelzést",
+    "LEAVE_FEEDBACK": "Leave feedback",
     "INCREASING_BASED_RENTAL_FEE": "Bérleti díj alapján növekvő",
     "INCREASING_BASED_MINIMUM_RENTING_TIME": "Minimum bérlési idő alapján növekvő",
     "INCREASING_BASED_ARRIVAL_DATE_OFFER": "Érkezési dátum alapján növekvő"
