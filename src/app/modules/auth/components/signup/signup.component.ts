@@ -64,6 +64,7 @@ export class SignupComponent implements OnInit {
         const signupData = { ...this.signupForm.value };
         delete signupData.confirmPassword;
         await this.authService.createUser(signupData);
+        this.router.navigate(['/confirmation']);
         // this.router.navigate(['/auth/complete']);
       } catch (e) {
         console.log('SignupComponent->signup', e);
@@ -71,8 +72,6 @@ export class SignupComponent implements OnInit {
         if (e.data && e.data[0].msg && e.data[0].msg === 'ERROR.EMAIL_ALREADY_EXIST') {
           this.message = e.data[0].msg;
         }
-      } finally {
-        this.router.navigate(['/confirmation']);
       }
     } else {
       this.validateFormFieldsService.validate(this.signupForm);
