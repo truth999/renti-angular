@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 import { OfferService } from '../../../services/offer.service';
 import { StorageService } from '../../../../../core/services/storage.service';
 import { FeedbackModalService } from '../../../../../shared/services/modal/feedback-modal.service';
+import { AuthService } from '../../../../../core/services/auth.service';
 
 import { Offer, Page } from '../../../../../shared/models';
 
@@ -23,11 +25,27 @@ export class MyOffersComponent implements OnInit {
   AccountTypes = CONFIG_CONST.accountType;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private offerService: OfferService,
     private storageService: StorageService,
-    private feedbackModalService: FeedbackModalService
-  ) { }
+    private feedbackModalService: FeedbackModalService,
+    private authService: AuthService
+  ) {
+    const userId = this.storageService.get('userId');
+    const queryUserId = this.route.snapshot.queryParams.userId;
+
+    if (!!queryUserId) {
+      if (userId !== queryUserId) {
+        this.authService.logout(this.router.url);
+      } else {
+        const queryOfferId = this.route.snapshot.queryParams.offerId;
+
+        this.onGiveFeedback(queryOfferId);
+      }
+    }
+  }
 
   ngOnInit() {
     this.page.perPage = 10;
@@ -72,10 +90,25 @@ export class MyOffersComponent implements OnInit {
     }
   }
 
-  onGiveFeedback(event: Event, feedbackData) {
-    event.stopPropagation();
+  async onGiveFeedback(offerId, event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
 
-    this.feedbackModalService.show(feedbackData);
+    try {
+      const offerResponse = await this.offerService.getOfferByTenant(offerId);
+      const offer = offerResponse.offer;
+      const feedbackData = {
+        type: this.AccountTypes.TENANT,
+        offerId,
+        landlord: offer.apartment.landlord,
+        tenantId: this.tenantId
+      };
+
+      this.feedbackModalService.show(feedbackData);
+    } catch (e) {
+      console.log('MyOffersComponent->onGiveFeedback', e);
+    }
   }
 
   pageChange(event) {

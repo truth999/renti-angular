@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
@@ -7,7 +7,6 @@ import { StorageService } from './storage.service';
 import { AuthRequest, SignupRequest } from '../../modules/auth/models/auth.model';
 
 import { CONFIG_CONST } from '../../../config/config-const';
-import { AccountTypes } from '../../shared/models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -20,6 +19,7 @@ export class AuthService {
       private apiService: ApiService,
       private storageService: StorageService,
       private router: Router,
+      private route: ActivatedRoute
   ) { }
 
   getToken() {
@@ -82,12 +82,12 @@ export class AuthService {
     this.userId = authInformation.userId;
   }
 
-  logout() {
+  logout(redirectUrl?) {
     this.token = null;
     this.isAuthenticated = false;
     this.userId = null;
     this.clearAuthData();
-    this.router.navigate(['/auth/signin']);
+    this.router.navigate(['/login'], { queryParams: { redirectUrl } });
   }
 
   forgotPassword(email: { email: string }): Promise<any> {
@@ -111,12 +111,17 @@ export class AuthService {
       const expirationDate = new Date(
           now.getTime() + response.expiresIn * 1000
       );
+      const redirectUrl = this.route.snapshot.queryParams.redirectUrl;
       this.saveAuthData(token, expirationDate, this.userId, landlordId, tenantId);
-      if (accountType === this.AccountTypes.LANDLORD) {
-        this.router.navigate(['/app/my-properties']);
-      }
-      if (accountType === this.AccountTypes.TENANT) {
-        this.router.navigate(['app/rentals/search']);
+      if (!!redirectUrl) {
+        this.router.navigateByUrl(redirectUrl);
+      } else {
+        if (accountType === this.AccountTypes.LANDLORD) {
+          this.router.navigate(['/app/my-properties']);
+        }
+        if (accountType === this.AccountTypes.TENANT) {
+          this.router.navigate(['app/rentals/search']);
+        }
       }
     }
   }

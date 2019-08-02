@@ -27,6 +27,14 @@ export class OfferService {
     return this.apiService.get(url);
   }
 
+  getOfferByLandlord(id: string): Promise<any> {
+    return this.apiService.get(`${this.offerUrl}/${id}/landlord`);
+  }
+
+  getOfferByTenant(id: string): Promise<any> {
+    return this.apiService.get(`${this.offerUrl}/${id}/tenant`);
+  }
+
   createOffer(offer: Offer): Promise<any> {
     return this.apiService.post(this.offerUrl, offer);
   }

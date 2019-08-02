@@ -2,16 +2,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+import { OfferService } from '../../../../services/offer.service';
+
 import { Offer } from '../../../../../../shared/models';
 
 import { environment } from '../../../../../../../environments/environment';
 
-import { OfferService } from '../../../../services/offer.service';
-import { FeedbackModalService } from '../../../../../../shared/services/modal/feedback-modal.service';
-import { StorageService } from '../../../../../../core/services/storage.service';
-
 import { config } from '../../../../../../../config';
-import { CONFIG_CONST } from '../../../../../../../config/config-const';
 
 @Component({
   selector: 'app-offer',
@@ -24,19 +21,14 @@ export class OfferComponent implements OnInit {
 
   uploadBase = environment.uploadBase;
   offerConfig = config.offer;
-  AccountTypes = CONFIG_CONST.accountType;
-  landlordId: string;
 
   constructor(
     private router: Router,
     private offerService: OfferService,
-    private toastrService: ToastrService,
-    private feedbackModalService: FeedbackModalService,
-    private storageService: StorageService
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
-    this.landlordId = this.storageService.get('landlordId');
   }
 
   onProfile() {
@@ -71,10 +63,6 @@ export class OfferComponent implements OnInit {
       this.toastrService.error('Something went wrong', 'Error');
       console.log('OfferComponent->onDelete', e);
     }
-  }
-
-  onGiveFeedback(feedbackData) {
-    this.feedbackModalService.show(feedbackData);
   }
 
 }

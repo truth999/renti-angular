@@ -5,6 +5,7 @@ import { LayoutService } from '../../services/layout.service';
 
 import { CONFIG_CONST } from '../../../../config/config-const';
 import { User } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -16,8 +17,7 @@ export class LayoutComponent implements OnInit {
   user: User;
 
   constructor(
-    private authService: AuthService,
-    private layoutService: LayoutService
+    private authService: AuthService
   ) { }
 
   ngOnInit() {

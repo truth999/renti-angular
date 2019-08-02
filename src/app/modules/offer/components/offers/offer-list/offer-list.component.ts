@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,6 +9,8 @@ import { StorageService } from '../../../../../core/services/storage.service';
 import { FeedbackModalService } from '../../../../../shared/services/modal/feedback-modal.service';
 
 import { Offer, Page } from '../../../../../shared/models';
+
+import { CONFIG_CONST } from '../../../../../../config/config-const';
 
 @Component({
   selector: 'app-offer-list',
@@ -19,14 +22,30 @@ export class OfferListComponent implements OnInit {
   page = new Page();
   accepted: boolean;
   sort: string;
+  AccountTypes = CONFIG_CONST.accountType;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private offerService: OfferService,
     private authService: AuthService,
     private storageService: StorageService,
     private feedbackModalService: FeedbackModalService
-  ) { }
+  ) {
+    const userId = this.storageService.get('userId');
+    const queryUserId = this.route.snapshot.queryParams.userId;
+
+    if (!!queryUserId) {
+      if (userId !== queryUserId) {
+        this.authService.logout(this.router.url);
+      } else {
+        const queryOfferId = this.route.snapshot.queryParams.offerId;
+
+        this.onGiveFeedback(queryOfferId);
+      }
+    }
+  }
 
   ngOnInit() {
     this.page.perPage = 10;
@@ -83,6 +102,24 @@ export class OfferListComponent implements OnInit {
   onSort(event) {
     this.sort = event.target.value;
     this.accepted ? this.getOffers(this.sort, this.accepted) : this.getOffers(this.sort);
+  }
+
+  async onGiveFeedback(offerId) {
+    try {
+      const landlordId = this.storageService.get('landlordId');
+      const offerResponse = await this.offerService.getOfferByLandlord(offerId);
+      const offer = offerResponse.offer;
+      const feedbackData = {
+        type: this.AccountTypes.LANDLORD,
+        offerId,
+        tenant: offer.tenant,
+        landlordId
+      };
+
+      this.feedbackModalService.show(feedbackData);
+    } catch (e) {
+      console.log('OfferComponent->onGiveFeedback', e);
+    }
   }
 
   onBack() {

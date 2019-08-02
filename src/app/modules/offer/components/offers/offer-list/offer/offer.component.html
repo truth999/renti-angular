@@ -43,8 +43,7 @@
   <button class="btn btn-outline-primary btn-lg w-100 mt-3" (click)="onProfile()">{{ 'OFFER.GO_TO_FULL_PROFILE' | translate }}</button>
   <div class="text-right mt-4"
        *ngIf="offer.accepted && offer.feedbackReady && !offer.landlordFeedback && offer.apartment.status !== 'deleted' && offer.tenant.status !== 'deleted'">
-    <button class="btn btn-primary btn-sm"
-            (click)="onGiveFeedback({ type: AccountTypes.LANDLORD, offerId: offer._id, tenant: offer.tenant, landlordId: landlordId })">{{ 'OFFER.GIVE_FEEDBACK_TENANT' | translate }}</button>
+    <ng-content></ng-content>
   </div>
   <div class="button-group d-flex justify-content-between mt-4"
        *ngIf="offer.accepted === null && offer.apartment.status !== 'deleted' && offer.tenant.status !== 'deleted'">

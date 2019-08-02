@@ -42,7 +42,10 @@
                *ngIf="offers">
             <div class="col-sm-6 py-3"
                  *ngFor="let offer of offers; let i = index">
-              <app-offer [offer]="offer"></app-offer>
+              <app-offer [offer]="offer">
+                <button class="btn btn-primary btn-sm"
+                        (click)="onGiveFeedback(offer._id)">{{ 'OFFER.GIVE_FEEDBACK_TENANT' | translate }}</button>
+              </app-offer>
             </div>
           </div>
         </ng-template>
