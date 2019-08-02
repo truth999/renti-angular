@@ -11,8 +11,21 @@
   <table class="table">
     <tbody>
     <tr>
-      <td class="border-top-0">{{ 'APARTMENT.RENTAL_FEE' | translate }}:</td>
-      <td class="border-top-0 font-weight-bold text-right">{{ offer.rentalFee | number }}</td>
+      <td class="border-top-0 font-size-lg font-weight-bold">{{ 'APARTMENT.APARTMENT' | translate }}</td>
+      <td class="border-top-0 font-weight-bold text-right">
+        <a *ngIf="offer.apartment.status !== 'deleted'"
+           [routerLink]="['/app/my-properties/apartment/', offer.apartment._id, 'edit']">
+          {{ offer.apartment.name }}
+        </a>
+        <span *ngIf="offer.apartment.status === 'deleted'">
+          {{ offer.apartment.name }}
+          <span class="text-danger">({{ 'COMMON.DELETED' | translate }})</span>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>{{ 'APARTMENT.RENTAL_FEE' | translate }}:</td>
+      <td class="font-weight-bold text-right">{{ offer.rentalFee | number }}</td>
     </tr>
     <tr>
       <td>{{ 'APARTMENT.MINIMUM_RENTING_TIME' | translate }}({{ 'COMMON.MONTHS' | translate }}):</td>
