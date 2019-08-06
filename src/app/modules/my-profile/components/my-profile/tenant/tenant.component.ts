@@ -25,6 +25,7 @@ import { config } from '../../../../../../config';
 import { CONFIG_CONST } from '../../../../../../config/config-const';
 
 declare var FB: any;
+declare var IN: any;
 
 @Component({
   selector: 'app-my-profile-tenant',
@@ -104,26 +105,7 @@ export class TenantComponent implements OnInit {
 
     this.years = this.dateSelectService.getYears();
 
-    (window as any).fbAsyncInit = () => {
-      FB.init({
-        appId: environment.facebook.appId,
-        cookie: true,
-        xfbml: true,
-        version: environment.facebook.version
-      });
-    };
-
-    ((d, s, id) => {
-      let js;
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
+    this.facebookInit();
 
     this.route.queryParams.subscribe(async (params: Params) => {
       if (params.code) {
@@ -284,6 +266,29 @@ export class TenantComponent implements OnInit {
       day = '0' + day;
     }
     return [year, month, day].join('.');
+  }
+
+  facebookInit() {
+    (window as any).fbAsyncInit = () => {
+      FB.init({
+        appId: environment.facebook.appId,
+        cookie: true,
+        xfbml: true,
+        version: environment.facebook.version
+      });
+    };
+
+    ((d, s, id) => {
+      let js;
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
   }
 
   loginFacebook() {

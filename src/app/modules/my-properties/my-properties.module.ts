@@ -10,8 +10,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { MyPropertiesRoutingModule } from './my-properties-routing.module';
 import { MyPropertiesComponent } from './components/my-properties/my-properties.component';
 import { ApartmentEditComponent } from './components/apartment-edit/apartment-edit.component';
-
-import { RoomEditComponent } from './components/room-edit/room-edit.component';
+import { RoomEditComponent } from './components/apartment-edit/room-edit/room-edit.component';
 
 @NgModule({
   declarations: [

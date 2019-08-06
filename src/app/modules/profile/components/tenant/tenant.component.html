@@ -188,9 +188,11 @@
                  *ngFor="let feedback of tenant.feedback">
               <div class="client d-flex justify-content-between">
                 <span class="client-name font-weight-bold">
-                  {{ feedback.landlord.user.firstName }} {{ feedback.landlord.user.lastName }}
+                  <span *ngIf="!!feedback.landlord && feedback.landlord.status !== 'deleted'">
+                    {{ feedback.landlord.user.firstName }} {{ feedback.landlord.user.lastName }}
+                  </span>
                   <span class="text-danger"
-                        *ngIf="feedback.landlord.status === 'deleted'">({{ 'COMMON.DELETED' | translate }})</span>
+                        *ngIf="(!!feedback.landlord && feedback.landlord.status === 'deleted') || !feedback.landlord">{{ 'COMMON.DELETED_USER' | translate }}</span>
                 </span>
                 <div class="rating-date d-flex">
                   <ngb-rating [rate]="feedback.feedbackStar.overall"

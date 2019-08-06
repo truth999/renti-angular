@@ -1,6 +1,5 @@
 import { Component, DoCheck, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
@@ -52,7 +51,6 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location,
     private myPropertiesService: MyPropertiesService,
     private dateSelectService: DateSelectService,
     private toastrService: ToastrService,
@@ -308,7 +306,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   }
 
   onBack() {
-    this.location.back();
+    this.router.navigate(['/app/my-properties']);
   }
 
   onOpenFloorPlanModal() {

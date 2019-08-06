@@ -143,13 +143,14 @@
               <ul class="list-unstyled mt-3">
                 <li class="font-weight-bold my-1"
                     *ngFor="let room of apartment.rooms; let i = index">
-                  <a [routerLink]="['/app/my-properties/room', room._id, 'edit']">
+                  <a [routerLink]="['room', room._id, 'edit']">
                     {{ i + 1 }}: {{ room.name }}
                   </a>
                 </li>
               </ul>
               <a href="javascript:void(0)"
                  (click)="onOpenFloorPlanModal()">{{ 'COMMON.EDIT_FLOOR_PLAN' | translate }}</a>
+              <router-outlet></router-outlet>
             </div>
             <div class="d-block d-lg-none">
               <table class="table mt-4">

@@ -1,0 +1,133 @@
+<div class="room-edit card-lg-screen mt-4"
+     *ngIf="roomForm">
+  <form [formGroup]="roomForm"
+        (ngSubmit)="submit()">
+    <div class="room-name">
+      <label for="name">{{ 'APARTMENT.NAME' | translate }}:</label>
+      <input type="text"
+             class="form-control"
+             id="name"
+             formControlName="name">
+    </div>
+    <div class="room-image mt-2">
+      <input type="file"
+             #picturesChooser
+             style="display: none;"
+             accept="image/png, image/jpeg, image/jpg"
+             multiple
+             (change)="onFilesChange($event)">
+      <div class="row mb-2">
+        <div class="col-lg-3 col-md-4 col-sm-3 col-4 position-relative pb-4"
+             *ngFor="let picture of pictures.controls; let i = index">
+          <div class="img-item position-relative">
+            <img [src]="uploadBase + picture.value"
+                 class="position-absolute rounded w-100 h-100">
+          </div>
+          <i class="icon-delete position-absolute text-danger"
+             (click)="removeRoomPicture(i)"></i>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary btn-lg w-100"
+              (click)="picturesChooser.click()">{{ 'COMMON.UPLOAD_FROM_GALLERY' | translate }}</button>
+    </div>
+    <table class="table mt-2">
+      <tbody>
+      <tr>
+        <td class="border-top-0 py-0 align-middle">{{ 'APARTMENT.SIZE_OF_THE_ROOM' | translate }} (m<sup>2</sup>)</td>
+        <td class="border-top-0 py-0 pr-0">
+          <input type="number"
+                 class="form-control text-right border-0"
+                 min="1"
+                 max="100"
+                 step="1"
+                 inputmode="numeric"
+                 pattern="[0-9]*"
+                 formControlName="size">
+          <div class="invalid-feedback d-block text-right"
+               *ngIf="roomForm.get('size').invalid && (roomForm.get('size').dirty || roomForm.get('size').touched)">
+            <span *ngIf="roomForm.get('size').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+            <span *ngIf="roomForm.get('size').errors.min"
+                  translate
+                  [translateParams]="{ min: roomForm.get('size').errors.min.min }">
+                  ERROR.MIN_FIELD
+                </span>
+            <span *ngIf="roomForm.get('size').errors.max"
+                  translate
+                  [translateParams]="{ max: roomForm.get('size').errors.max.max }">
+                  ERROR.MAX_FIELD
+                </span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.YEAR_OF_RENOVATION' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0 w-auto"
+                  formControlName="yearOfRenovation">
+            <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
+            <option *ngFor="let year of years"
+                    [value]="year">{{ year }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.COVERAGE' | translate }}</td>
+        <td class="text-right py-0 pr-0">
+          <select class="custom-select border-0 w-auto" formControlName="coverage">
+            <option [ngValue]="null">{{ 'COMMON.NOT_SELECTED' | translate }}</option>
+            <option *ngFor="let key of Object.keys(roomConfig.coverage)"
+                    [value]="key">{{ roomConfig.coverage[key] | translate }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.EQUIPPED' | translate }}?</td>
+        <td class="text-right pr-0">
+          <div class="switch">
+            <input type="radio"
+                   id="equipment-no"
+                   [value]="false"
+                   formControlName="equipment">
+            <label for="equipment-no">{{ 'COMMON.NO' | translate }}</label>
+            <input type="radio"
+                   id="equipment-na"
+                   [value]="null"
+                   formControlName="equipment">
+            <label for="equipment-na">{{ 'COMMON.NA' | translate }}</label>
+            <input type="radio"
+                   id="equipment-yes"
+                   [value]="true"
+                   formControlName="equipment">
+            <label for="equipment-yes">{{ 'COMMON.YES' | translate }}</label>
+            <span class="slider"></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="py-0 align-middle">{{ 'APARTMENT.FURNITURE' | translate }}</td>
+        <td class="text-right py-0 pr-0"
+            formArrayName="furniture">
+          <div *ngFor="let furnitureEl of furniture.controls; let i = index"
+               [formGroupName]="i">
+            <input type="text"
+                   class="form-control w-50 d-inline"
+                   placeholder="{{ 'APARTMENT.NAME' | translate }}"
+                   formControlName="furnitureName">
+            <input type="text"
+                   class="form-control w-50 d-inline"
+                   placeholder="{{ 'APARTMENT.TYPE' | translate }}"
+                   formControlName="furnitureType">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="border-top-0">
+          <a href="javascript:" (click)="onAddFurniture()">+ {{ 'COMMON.ADD_NEW' | translate }}</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <button type="submit"
+            class="btn btn-outline-primary btn-lg w-100">{{ 'COMMON.SAVE' | translate }}</button>
+  </form>
+</div>
