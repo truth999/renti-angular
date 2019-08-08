@@ -39,6 +39,7 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   years: string[];
   apartmentConfig = config.apartment;
   Object = Object;
+  placeOptions = config.googleplaceOptions;
 
   uploadBase = environment.uploadBase;
 
@@ -131,7 +132,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
         building: new FormControl(this.apartment.address.building),
         floor: new FormControl(this.apartment.address.floor),
         door: new FormControl(this.apartment.address.door),
-        location: new FormControl(this.apartment.address.location)
+        location: new FormControl(this.apartment.address.location),
+        addressTypes: new FormControl(this.apartment.address.addressTypes)
       }, { validators: addressFormGroupValidator }),
       typeOfBuilding: new FormControl(this.apartment.typeOfBuilding),
       yearOfConstruction: new FormControl(this.apartment.yearOfConstruction),
@@ -254,11 +256,18 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
   }
 
   handleAddressChange(address: Address) {
+    const addressTypes = {};
+
+    address.address_components.map(addressComponent => {
+      addressTypes[addressComponent.types[0]] = addressComponent.long_name;
+    });
+
     this.apartmentForm.get('address').get('city').setValue(address.formatted_address);
     this.apartmentForm.get('address').get('location').setValue({
       lat: address.geometry.location.lat(),
       lng: address.geometry.location.lng()
     });
+    this.apartmentForm.get('address').get('addressTypes').setValue(addressTypes);
     this.searchTerms.emit(this.apartmentForm.get('address').value);
   }
 

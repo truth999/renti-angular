@@ -29,6 +29,7 @@
         <span *ngIf="offerForm.get('rentalFee').errors.min || offerForm.get('rentalFee').errors.max">
           {{ 'ERROR.BETWEEN_MIN_MAX' | translate }}
         </span>
+        <span *ngIf="offerForm.get('rentalFee').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
       </div>
     </div>
     <div class="form-group">

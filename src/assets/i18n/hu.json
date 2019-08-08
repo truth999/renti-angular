@@ -264,7 +264,8 @@
     "PROFESSIONALISM": "Professionalism",
     "WOULD_YOU_RECOMMEND": "Would you recommend?",
     "OVERALL": "Overall",
-    "FREE_TEXT_RATING": "Free text rating"
+    "FREE_TEXT_RATING": "Free text rating",
+    "ENTER_LOCATION": "Enter a location"
   },
   "HOME": {
     "TITLE": "Renti - az albérletek Kánaánja",
@@ -406,6 +407,7 @@
     "PASSWORD_INCORRECT": "Hibás jelszó",
     "ADDRESS_ALREADY_EXIST": "Már létező cím",
     "EMAIL_INCORRECT": "Hibás E-mail cím",
-    "PASSWORD_RESET_FAILED": "A jelszó visszaállítási hivatkozás hibás vagy lejárt."
+    "PASSWORD_RESET_FAILED": "A jelszó visszaállítási hivatkozás hibás vagy lejárt.",
+    "INTEGER_FIELD": "This field must be integer."
   }
 }

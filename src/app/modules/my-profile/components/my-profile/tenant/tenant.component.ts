@@ -44,6 +44,7 @@ export class TenantComponent implements OnInit {
   userConfig = config.user;
   Object = Object;
   AccountTypes = CONFIG_CONST.accountType;
+  placeOptions = config.googleplaceOptions;
 
   tenantForm: FormGroup;
 
@@ -129,7 +130,8 @@ export class TenantComponent implements OnInit {
     this.tenantForm = new FormGroup({
       lookingRent: new FormGroup({
         address: new FormControl(!!this.tenant.lookingRent ? this.tenant.lookingRent.address : null, Validators.required),
-        location: new FormControl(!!this.tenant.lookingRent ? this.tenant.lookingRent.location : null)
+        location: new FormControl(!!this.tenant.lookingRent ? this.tenant.lookingRent.location : null),
+        addressTypes: new FormControl(!!this.tenant.lookingRent ? this.tenant.lookingRent.addressTypes : null)
       }),
       mobile: new FormControl(this.tenant.mobile),
       placeOfBirth: new FormControl(this.tenant.placeOfBirth),
@@ -201,11 +203,18 @@ export class TenantComponent implements OnInit {
   }
 
   handleRentChange(address: Address) {
+    const addressTypes = {};
+
+    address.address_components.map(addressComponent => {
+      addressTypes[addressComponent.types[0]] = addressComponent.long_name;
+    });
+
     this.tenantForm.get('lookingRent').get('address').setValue(address.formatted_address);
     this.tenantForm.get('lookingRent').get('location').setValue({
       lat: address.geometry.location.lat(),
       lng: address.geometry.location.lng()
     });
+    this.tenantForm.get('lookingRent').get('addressTypes').setValue(addressTypes);
   }
 
   handlePlaceChange(address: Address) {

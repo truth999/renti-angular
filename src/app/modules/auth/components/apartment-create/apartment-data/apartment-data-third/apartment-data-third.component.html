@@ -108,6 +108,7 @@
                   translate [translateParams]="{ max: sizeOfGarden.errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="sizeOfGarden.errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>
@@ -157,6 +158,7 @@
                   translate [translateParams]="{ max: sizeOfTerrace.errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="sizeOfTerrace.errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>
@@ -183,6 +185,7 @@
                   [translateParams]="{ max: apartmentDataThirdForm.get('rentalFee').errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="apartmentDataThirdForm.get('rentalFee').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>
@@ -208,6 +211,7 @@
                   [translateParams]="{ max: apartmentDataThirdForm.get('overhead').errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="apartmentDataThirdForm.get('overhead').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>
@@ -233,6 +237,7 @@
                   [translateParams]="{ max: apartmentDataThirdForm.get('deposit').errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="apartmentDataThirdForm.get('deposit').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>

@@ -56,11 +56,13 @@
                   <input ngx-google-places-autocomplete
                          id="rent"
                          class="form-control custom-select"
+                         [options]="placeOptions"
                          (onAddressChange)="handleRentChange($event)"
-                         formControlName="address">
+                         formControlName="address"
+                         placeholder="{{ 'COMMON.ENTER_LOCATION' | translate }}">
                   <div class="invalid-feedback d-block"
-                       *ngIf="tenantForm.get('lookingRent').invalid && (tenantForm.get('lookingRent').dirty || tenantForm.get('lookingRent').touched)">
-                    <span *ngIf="tenantForm.get('lookingRent').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
+                       *ngIf="tenantForm.get('lookingRent').get('address').invalid && (tenantForm.get('lookingRent').get('address').dirty || tenantForm.get('lookingRent').get('address').touched)">
+                    <span *ngIf="tenantForm.get('lookingRent').get('address').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
                   </div>
                 </div>
               </div>
@@ -99,7 +101,8 @@
                          class="form-control border-0 text-right"
                          [options]="{ types: ['(cities)'] }"
                          (onAddressChange)="handlePlaceChange($event)"
-                         formControlName="placeOfBirth">
+                         formControlName="placeOfBirth"
+                         placeholder="{{ 'COMMON.ENTER_LOCATION' | translate }}">
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('placeOfBirth').invalid && (tenantForm.get('placeOfBirth').dirty || tenantForm.get('placeOfBirth').touched)">
                     <span *ngIf="tenantForm.get('placeOfBirth').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>
@@ -158,7 +161,8 @@
                          class="form-control border-0 text-right"
                          [options]="{ types: ['(cities)'] }"
                          (onAddressChange)="handleCurrentCityChange($event)"
-                         formControlName="currentCity">
+                         formControlName="currentCity"
+                         placeholder="{{ 'COMMON.ENTER_LOCATION' | translate }}">
                   <div class="invalid-feedback d-block"
                        *ngIf="tenantForm.get('currentCity').invalid && (tenantForm.get('currentCity').dirty || tenantForm.get('currentCity').touched)">
                     <span *ngIf="tenantForm.get('currentCity').errors.required">{{ 'ERROR.FIELD_REQUIRED' | translate }}</span>

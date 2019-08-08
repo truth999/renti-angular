@@ -31,6 +31,8 @@ export class SearchApartmentComponent implements OnInit {
   searched = false;
   Object = Object;
 
+  placeOptions = config.googleplaceOptions;
+
   keepOrder = (a, b) => {
     return a;
   }
@@ -65,9 +67,9 @@ export class SearchApartmentComponent implements OnInit {
     try {
       const tenantId = this.storageService.get('tenantId');
       const tenantResponse = await this.authService.getTenant(tenantId);
-      const lookingToRentIn = (tenantResponse.tenant.lookingRent ? tenantResponse.tenant.lookingRent.address : '');
+      const lookingToRentIn = (tenantResponse.tenant.lookingRent ? tenantResponse.tenant.lookingRent.addressTypes : '');
 
-      const apartmentResponse = await this.rentalsService.getApartments(this.page, lookingToRentIn);
+      const apartmentResponse = await this.rentalsService.getApartments(this.page, JSON.stringify(lookingToRentIn));
       this.apartments = apartmentResponse.apartments;
       this.page.totalElements = apartmentResponse.totalItems;
       this.page.totalPages = Math.ceil(this.page.totalElements / this.page.perPage);
@@ -79,6 +81,7 @@ export class SearchApartmentComponent implements OnInit {
   buildSearchForm() {
     this.searchForm = new FormGroup({
       address: new FormControl(null),
+      addressTypes: new FormControl(null),
       rentalFee: new FormControl([0, 2000000]),
       furnished: new FormControl(null),
       typeOfBuilding: new FormControl(null),
@@ -118,7 +121,14 @@ export class SearchApartmentComponent implements OnInit {
   }
 
   handleAddressChange(address: Address) {
+    const addressTypes = {};
+
+    address.address_components.map(addressComponent => {
+      addressTypes[addressComponent.types[0]] = addressComponent.long_name;
+    });
+
     this.searchForm.get('address').setValue(address.formatted_address);
+    this.searchForm.get('addressTypes').setValue(addressTypes);
   }
 
   onChangeTypeOfBuilding(event: Event) {
@@ -285,6 +295,10 @@ export class SearchApartmentComponent implements OnInit {
   }
 
   submit() {
+    if (this.searchForm.get('address').value === '') {
+      this.searchForm.get('addressTypes').setValue(null);
+    }
+
     this.searched = true;
     this.getSearchApartments();
   }

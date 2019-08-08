@@ -16,7 +16,8 @@ export class Tenant {
     location: {
       lat: number;
       lng: number;
-    }
+    },
+    addressTypes: any;
   };
   mobile: string;
   profilePicture: string;

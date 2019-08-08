@@ -100,6 +100,14 @@ export class RoomEditComponent implements OnInit {
     this.pictures.removeAt(index);
   }
 
+  onChangeEquipment() {
+    if (!this.roomForm.get('equipment').value) {
+      while (this.furniture.length !== 0) {
+        this.furniture.removeAt(0);
+      }
+    }
+  }
+
   onAddFurniture() {
     this.furniture.push(new FormGroup({
       furnitureName: new FormControl(null),

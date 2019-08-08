@@ -177,4 +177,7 @@ export const config = {
     environment.apiBase + 'map/tenants',
     environment.apiBase + 'map/apartments'
   ],
+  googleplaceOptions: {
+    componentRestrictions: { country: 'hu' }
+  }
 };

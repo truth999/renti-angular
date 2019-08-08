@@ -15,6 +15,7 @@ export class Apartment {
       lat: number;
       lng: number;
     };
+    addressTypes: any;
   };
   typeOfBuilding: string;
   yearOfConstruction: number;

@@ -54,8 +54,9 @@
             <span *ngIf="roomForm.get('size').errors.max"
                   translate
                   [translateParams]="{ max: roomForm.get('size').errors.max.max }">
-                  ERROR.MAX_FIELD
-                </span>
+              ERROR.MAX_FIELD
+            </span>
+            <span *ngIf="roomForm.get('size').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>
@@ -87,23 +88,26 @@
             <input type="radio"
                    id="equipment-no"
                    [value]="false"
-                   formControlName="equipment">
+                   formControlName="equipment"
+                   (change)="onChangeEquipment()">
             <label for="equipment-no">{{ 'COMMON.NO' | translate }}</label>
             <input type="radio"
                    id="equipment-na"
                    [value]="null"
-                   formControlName="equipment">
+                   formControlName="equipment"
+                   (change)="onChangeEquipment()">
             <label for="equipment-na">{{ 'COMMON.NA' | translate }}</label>
             <input type="radio"
                    id="equipment-yes"
                    [value]="true"
-                   formControlName="equipment">
+                   formControlName="equipment"
+                   (change)="onChangeEquipment()">
             <label for="equipment-yes">{{ 'COMMON.YES' | translate }}</label>
             <span class="slider"></span>
           </div>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="roomForm.get('equipment').value">
         <td class="py-0 align-middle">{{ 'APARTMENT.FURNITURE' | translate }}</td>
         <td class="text-right py-0 pr-0"
             formArrayName="furniture">

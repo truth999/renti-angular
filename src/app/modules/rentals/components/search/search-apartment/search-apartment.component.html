@@ -45,8 +45,10 @@
           <input ngx-google-places-autocomplete
                  id="search"
                  class="form-control border"
+                 [options]="placeOptions"
                  (onAddressChange)="handleAddressChange($event)"
-                 formControlName="address">
+                 formControlName="address"
+                 placeholder="{{ 'COMMON.ENTER_LOCATION' | translate }}">
         </div>
       </div>
       <div class="search-price px-3 pt-3">

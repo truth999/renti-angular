@@ -59,6 +59,7 @@
                   [translateParams]="{ max: roomEl.get('size').errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="roomEl.get('size').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </div>
         <div class="remove-button" id="remove{{ i + 1 }}">

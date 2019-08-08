@@ -13,6 +13,7 @@
        formGroupName="address">
     <input ngx-google-places-autocomplete
            class="form-control"
+           [options]="placeOptions"
            (onAddressChange)="handleAddressChange($event)"
            formControlName="city"
            placeholder="{{ 'COMMON.ADDRESS' | translate }}:"
@@ -130,6 +131,7 @@
                   translate [translateParams]="{ max: apartmentDataFirstForm.get('floorsOfBuilding').errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfBuilding').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>
@@ -154,6 +156,7 @@
                   translate [translateParams]="{ max: apartmentDataFirstForm.get('floorsOfApartment').errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="apartmentDataFirstForm.get('floorsOfApartment').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>
@@ -178,6 +181,7 @@
                   translate [translateParams]="{ max: apartmentDataFirstForm.get('size').errors.max.max }">
               ERROR.MAX_FIELD
             </span>
+            <span *ngIf="apartmentDataFirstForm.get('size').errors.pattern">{{ 'ERROR.INTEGER_FIELD' | translate }}</span>
           </div>
         </td>
       </tr>

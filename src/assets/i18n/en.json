@@ -264,7 +264,8 @@
     "PROFESSIONALISM": "Professionalism",
     "WOULD_YOU_RECOMMEND": "Would you recommend?",
     "OVERALL": "Overall",
-    "FREE_TEXT_RATING": "Free text rating"
+    "FREE_TEXT_RATING": "Free text rating",
+    "ENTER_LOCATION": "Enter a location"
   },
   "HOME": {
     "TITLE": "Renti - Canaan of flats",
@@ -406,6 +407,7 @@
     "PASSWORD_INCORRECT": "Password is incorrect",
     "ADDRESS_ALREADY_EXIST": "This address does already exist",
     "EMAIL_INCORRECT": "Your E-mail address is incorrect",
-    "PASSWORD_RESET_FAILED": "Password reset token is invalid or has expired"
+    "PASSWORD_RESET_FAILED": "Password reset token is invalid or has expired",
+    "INTEGER_FIELD": "This field must be integer."
   }
 }

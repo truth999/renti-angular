@@ -196,7 +196,7 @@
     "WOODEN": "Hölzern",
     "BACK": "Zurück",
     "ACCEPT": "Annehmen",
-    "ACCEPTED": "Accepted",
+    "ACCEPTED": "Akzeptiert",
     "DELETE": "Löschen",
     "SEARCH": "Suchen",
     "NOTIFICATIONS": "Nachrichten",
@@ -264,7 +264,8 @@
     "PROFESSIONALISM": "Professionalism",
     "WOULD_YOU_RECOMMEND": "Would you recommend?",
     "OVERALL": "Overall",
-    "FREE_TEXT_RATING": "Free text rating"
+    "FREE_TEXT_RATING": "Free text rating",
+    "ENTER_LOCATION": "Enter a location"
   },
   "HOME": {
     "TITLE": "Renti - Kanaan der Untermieten",
@@ -406,6 +407,7 @@
     "PASSWORD_INCORRECT": "Das Passwort ist inkorrekt.",
     "ADDRESS_ALREADY_EXIST": "Die Adresse existiert bereits.",
     "EMAIL_INCORRECT": "Ihre E-Mailadresse ist falsch.",
-    "PASSWORD_RESET_FAILED": "Das Token zum Zurücksetzen des Kennworts ist ungültig oder abgelaufen."
+    "PASSWORD_RESET_FAILED": "Das Token zum Zurücksetzen des Kennworts ist ungültig oder abgelaufen.",
+    "INTEGER_FIELD": "This field must be integer."
   }
 }

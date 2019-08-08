@@ -32,6 +32,7 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
   searchTerms = new EventEmitter<Apartment['address']>();
   apartmentConfig = config.apartment;
   Object = Object;
+  placeOptions = config.googleplaceOptions;
 
   constructor(
     private apartmentCreateService: ApartmentCreateService,
@@ -50,7 +51,8 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
         building: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.building : null),
         floor: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.floor : null),
         door: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.door : null),
-        location: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.location : null)
+        location: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.location : null),
+        addressTypes: new FormControl(!!this.apartmentData.address ? this.apartmentData.address.addressTypes : null)
       }, { validators: addressFormGroupValidator }),
       typeOfBuilding: new FormControl(!!this.apartmentData ? this.apartmentData.typeOfBuilding : null),
       yearOfConstruction: new FormControl(!!this.apartmentData ? this.apartmentData.yearOfConstruction : null),
@@ -100,11 +102,18 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
   }
 
   handleAddressChange(address: Address) {
+    const addressTypes = {};
+
+    address.address_components.map(addressComponent => {
+      addressTypes[addressComponent.types[0]] = addressComponent.long_name;
+    });
+
     this.apartmentDataFirstForm.get('address').get('city').setValue(address.formatted_address);
     this.apartmentDataFirstForm.get('address').get('location').setValue({
       lat: address.geometry.location.lat(),
       lng: address.geometry.location.lng()
     });
+    this.apartmentDataFirstForm.get('address').get('addressTypes').setValue(addressTypes);
     this.searchTerms.emit(this.apartmentDataFirstForm.get('address').value);
   }
 
