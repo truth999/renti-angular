@@ -98,14 +98,17 @@ export class MyOffersComponent implements OnInit {
     try {
       const offerResponse = await this.offerService.getOfferByTenant(offerId);
       const offer = offerResponse.offer;
-      const feedbackData = {
-        type: this.AccountTypes.TENANT,
-        offerId,
-        landlord: offer.apartment.landlord,
-        tenantId: this.tenantId
-      };
 
-      this.feedbackModalService.show(feedbackData);
+      if (!offer.tenantFeedback) {
+        const feedbackData = {
+          type: this.AccountTypes.TENANT,
+          offerId,
+          landlord: offer.apartment.landlord,
+          tenantId: this.tenantId
+        };
+
+        this.feedbackModalService.show(feedbackData);
+      }
     } catch (e) {
       console.log('MyOffersComponent->onGiveFeedback', e);
     }

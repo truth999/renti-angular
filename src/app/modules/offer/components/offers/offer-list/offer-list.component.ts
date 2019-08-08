@@ -109,14 +109,17 @@ export class OfferListComponent implements OnInit {
       const landlordId = this.storageService.get('landlordId');
       const offerResponse = await this.offerService.getOfferByLandlord(offerId);
       const offer = offerResponse.offer;
-      const feedbackData = {
-        type: this.AccountTypes.LANDLORD,
-        offerId,
-        tenant: offer.tenant,
-        landlordId
-      };
 
-      this.feedbackModalService.show(feedbackData);
+      if (!offer.landlordFeedback) {
+        const feedbackData = {
+          type: this.AccountTypes.LANDLORD,
+          offerId,
+          tenant: offer.tenant,
+          landlordId
+        };
+
+        this.feedbackModalService.show(feedbackData);
+      }
     } catch (e) {
       console.log('OfferComponent->onGiveFeedback', e);
     }
