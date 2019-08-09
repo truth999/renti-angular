@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
@@ -19,7 +20,8 @@ export class AuthService {
       private apiService: ApiService,
       private storageService: StorageService,
       private router: Router,
-      private route: ActivatedRoute
+      private route: ActivatedRoute,
+      private translateService: TranslateService
   ) { }
 
   getToken() {
@@ -113,6 +115,9 @@ export class AuthService {
       );
       const redirectUrl = this.route.snapshot.queryParams.redirectUrl;
       this.saveAuthData(token, expirationDate, this.userId, landlordId, tenantId);
+      if (response.language) {
+        this.translateService.use(response.language);
+      }
       if (!!redirectUrl) {
         this.router.navigateByUrl(redirectUrl);
       } else {

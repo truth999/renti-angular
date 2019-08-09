@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../../../../core/services/auth.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 
 import { CONFIG_CONST } from '../../../../../config/config-const';
-
+import { config } from '../../../../../config';
 import { Validate } from '../../../../../config/validate';
+
+import { Language } from '../../../../shared/models';
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +24,6 @@ export class SignupComponent implements OnInit {
 
   accountType: string;
 
-  passwordCheck = '';
   passwordStrengthBarLabel = '';
   baseColor = '#dbdce8';
 
@@ -30,25 +32,30 @@ export class SignupComponent implements OnInit {
   signupFailed = false;
   message = '';
 
+  supportedLanguages: Language[] = config.supportedLanguages;
+  currentLanguage: Language = this.supportedLanguages[0];
+
   constructor(
     private router: Router,
     private authService: AuthService,
-    private validateFormFieldsService: ValidateFormFieldsService
+    private validateFormFieldsService: ValidateFormFieldsService,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit() {
-    const password = new FormControl('', [Validators.required, Validators.minLength(5)]);
-    const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
+    const password = new FormControl(null, [Validators.required, Validators.minLength(5)]);
+    const confirmPassword = new FormControl(null, CustomValidators.equalTo(password));
 
     this.signupForm = new FormGroup({
       // firstName: new FormControl('', [Validators.required, Validators.pattern(this.pattern.firstName)]),
       // lastName: new FormControl('', [Validators.required, Validators.pattern(this.pattern.lastName)]),
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      accountType: new FormControl('', [Validators.required]),
+      firstName: new FormControl(null, Validators.required),
+      lastName: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      accountType: new FormControl(null, [Validators.required]),
       password,
-      confirmPassword
+      confirmPassword,
+      language: new FormControl(this.currentLanguage.code)
     });
   }
 
@@ -57,13 +64,19 @@ export class SignupComponent implements OnInit {
     this.signupForm.patchValue({ accountType });
   }
 
+  changeLanguage(language: Language) {
+    this.currentLanguage = language;
+    this.signupForm.get('language').setValue(this.currentLanguage.code);
+  }
+
   async signup() {
     if (this.signupForm.valid) {
       try {
         this.signupFailed = false;
         const signupData = { ...this.signupForm.value };
         delete signupData.confirmPassword;
-        await this.authService.createUser(signupData);
+        const userResponse = await this.authService.createUser(signupData);
+        this.translateService.use(userResponse.language);
         this.router.navigate(['/confirmation']);
         // this.router.navigate(['/auth/complete']);
       } catch (e) {

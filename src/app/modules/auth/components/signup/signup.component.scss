@@ -3,6 +3,19 @@
 .card {
   margin-bottom: 70px;
 
+  .language {
+    .dropdown-menu {
+      top: 100% !important;
+      right: 0 !important;
+      left: auto !important;
+      transform: none !important;
+    }
+
+    .flag-icon {
+      background-size: 100%;
+    }
+  }
+
   .continue {
     @include media-breakpoint-down(xs) {
       position: fixed;

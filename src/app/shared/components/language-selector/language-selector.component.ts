@@ -9,7 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./language-selector.component.scss']
 })
 export class LanguageSelectorComponent implements OnInit {
-
   supportedLanguages: Language[] = config.supportedLanguages;
   currentLanguage: Language = this.supportedLanguages[0];
 

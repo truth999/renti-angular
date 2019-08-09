@@ -25,7 +25,7 @@
     "TERMS_CONDITIONS": "Benutzerbedingungen",
     "YOUR_EMAIL": "Ihre E-Mail Adresse",
     "YOUR_PASSWORD": "Ihre Passwort",
-    "I": "Registrieren",
+    "I": "Registrieren:",
     "LANDLORD": "Hausbesitzer",
     "TENANT": "Untermieter",
     "FULL_NAME": "Voller Name",
@@ -265,7 +265,8 @@
     "WOULD_YOU_RECOMMEND": "Would you recommend?",
     "OVERALL": "Overall",
     "FREE_TEXT_RATING": "Free text rating",
-    "ENTER_LOCATION": "Enter a location"
+    "ENTER_LOCATION": "Enter a location",
+    "LANGUAGE": "Language"
   },
   "HOME": {
     "TITLE": "Renti - Kanaan der Untermieten",

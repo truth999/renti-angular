@@ -11,5 +11,6 @@ export class User {
   accountType: AccountTypes;
   landlord: Landlord;
   tenant: Tenant;
+  language: string;
   notification: number;
 }
