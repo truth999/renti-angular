@@ -12,6 +12,7 @@ import { environment } from '../../../../environments/environment';
 export class ApartmentItemComponent implements OnInit {
   @Input() apartment: Apartment;
   @Input() apartmentSummary: boolean;
+  @Input() markAsRead: boolean;
   @ViewChild('addressParagraph') addressParagraph: ElementRef;
 
   uploadBase = environment.uploadBase;

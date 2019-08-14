@@ -54,8 +54,7 @@ export class SignupComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       accountType: new FormControl(null, [Validators.required]),
       password,
-      confirmPassword,
-      language: new FormControl(this.currentLanguage.code)
+      confirmPassword
     });
   }
 
@@ -64,16 +63,16 @@ export class SignupComponent implements OnInit {
     this.signupForm.patchValue({ accountType });
   }
 
-  changeLanguage(language: Language) {
-    this.currentLanguage = language;
-    this.signupForm.get('language').setValue(this.currentLanguage.code);
-  }
+  // changeLanguage(language: Language) {
+  //   this.currentLanguage = language;
+  //   this.signupForm.get('language').setValue(this.currentLanguage.code);
+  // }
 
   async signup() {
     if (this.signupForm.valid) {
       try {
         this.signupFailed = false;
-        const signupData = { ...this.signupForm.value };
+        const signupData = { ...this.signupForm.value, language:  this.translateService.currentLang};
         delete signupData.confirmPassword;
         const userResponse = await this.authService.createUser(signupData);
         this.translateService.use(userResponse.language);

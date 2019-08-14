@@ -12,5 +12,9 @@ export class User {
   landlord: Landlord;
   tenant: Tenant;
   language: string;
-  notification: number;
+  notification: {
+    received: number;
+    accepted: number;
+    rejected: number;
+  };
 }

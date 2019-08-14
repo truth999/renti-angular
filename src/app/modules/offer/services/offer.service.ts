@@ -43,6 +43,10 @@ export class OfferService {
     return this.apiService.put(`${this.offerUrl}/${offer._id}`, offer);
   }
 
+  changeOfferStatus(id: string): Promise<any> {
+    return this.apiService.get(`${this.offerUrl}/${id}/changestatus`);
+  }
+
   createFeedbackByTenant(tenantId: string, feedbackData: any): Promise<any> {
     return this.apiService.post(`${this.feedbackUrl}/tenant/${tenantId}`, feedbackData);
   }

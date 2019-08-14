@@ -42,6 +42,7 @@
     "ngx-gallery": "^5.9.1",
     "ngx-google-places-autocomplete": "^2.0.3",
     "ngx-international-phone-number": "^1.0.4",
+    "ngx-mqtt": "^6.10.0",
     "ngx-toastr": "^10.0.4",
     "ngx-ui-loader": "^7.2.2",
     "nouislider": "^13.1.5",

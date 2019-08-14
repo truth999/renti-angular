@@ -82,6 +82,10 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
           for (const key in term) {
             if (term.hasOwnProperty(key)) {
               params.set(key, term[key]);
+
+              if (key === 'location' || key === 'addressTypes') {
+                params.set(key, JSON.stringify(term[key]));
+              }
             }
           }
           const addressResponse = await this.apartmentCreateService.checkAddress(params.toString());

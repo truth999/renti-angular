@@ -1,4 +1,5 @@
-<div class="card-sm mt-5">
+<div class="card-sm mt-5"
+     [ngClass]="{ 'border border-danger': offer.accepted === null && offer.alert }">
   <div class="avatar text-center">
     <img [src]="!!offer.tenant.profilePicture ? uploadBase + offer.tenant.profilePicture : '/assets/images/profile/blank.png'" alt="" width="80" height="80" class="rounded-pill">
   </div>
@@ -14,6 +15,7 @@
       <td class="border-top-0 font-size-lg font-weight-bold">{{ 'APARTMENT.APARTMENT' | translate }}</td>
       <td class="border-top-0 font-weight-bold text-right">
         <a *ngIf="offer.apartment.status !== 'deleted'"
+           (click)="onChangeStatus()"
            [routerLink]="['/app/my-properties/apartment/', offer.apartment._id, 'edit']">
           {{ offer.apartment.name }}
         </a>

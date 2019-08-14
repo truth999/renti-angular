@@ -23,6 +23,8 @@ import { config } from '../config';
 
 import { MyProfileService } from './modules/my-profile/services/my-profile.service';
 import { MyPropertiesService } from './modules/my-properties/services/my-properties.service';
+import { MqttModule } from 'ngx-mqtt';
+import { environment } from '../environments/environment';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -61,7 +63,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderHttpModule.forRoot({ exclude: config.excludeLoaderRoutes }),
     AgmCoreModule.forRoot(),
-    AgmJsMarkerClustererModule
+    AgmJsMarkerClustererModule,
+    MqttModule.forRoot(environment.mqtt),
   ],
   providers: [
     MyProfileService,

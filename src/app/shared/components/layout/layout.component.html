@@ -30,7 +30,7 @@
             <i class="icon-alert mr-2"></i>
             {{ 'OFFER.OFFERS' | translate }}
             <span class="badge badge-pill badge-primary ml-auto"
-                  *ngIf="user.notification !== 0">{{ user.notification }}</span>
+                  *ngIf="notification !== 0">{{ notification }}</span>
           </a>
         </li>
         <li class="nav-item">
@@ -83,7 +83,7 @@
             <i class="icon-alert mr-2"></i>
             {{ 'OFFER.OFFERS' | translate }}
             <span class="badge badge-pill badge-primary ml-auto"
-                  *ngIf="user.notification !== 0">{{ user.notification }}</span>
+                  *ngIf="notification !== 0">{{ notification }}</span>
           </a>
         </li>
         <li class="nav-item">
@@ -119,7 +119,7 @@
                  class="nav-link position-relative">
                 <i class="icon-alert"></i>
                 <span class="badge badge-pill badge-primary position-absolute"
-                      *ngIf="user.notification !== 0">{{ user.notification }}</span>
+                      *ngIf="notification !== 0">{{ notification }}</span>
               </a>
             </li>
             <li class="nav-item">
@@ -140,7 +140,7 @@
                class="nav-link position-relative">
               <i class="icon-alert"></i>
               <span class="badge badge-pill badge-primary position-absolute"
-                    *ngIf="user.notification !== 0">{{ user.notification }}</span>
+                    *ngIf="notification !== 0">{{ notification }}</span>
             </a>
           </li>
           <li class="nav-item">

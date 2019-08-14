@@ -14,5 +14,11 @@ export const CONFIG_CONST = {
   accountType: {
     LANDLORD: 'landlord',
     TENANT: 'tenant'
+  },
+  notificationType: {
+    RECEIVED: 'received',
+    ACCEPTED: 'accepted',
+    REJECTED: 'rejected',
+    ALL: 'all'
   }
 };

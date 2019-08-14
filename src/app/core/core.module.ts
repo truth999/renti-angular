@@ -21,6 +21,7 @@ import { ValidateFormFieldsService } from './services/validate-form-fields.servi
 import { HomeService } from './services/home.service';
 import { MapModalService } from './services/modal/map-modal.service';
 import { HeatmapService } from '../modules/heatmap/services/heatmap.service';
+import { NotificationsService } from './services/notifications.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HeatmapService } from '../modules/heatmap/services/heatmap.service';
     ValidateFormFieldsService,
     HomeService,
     MapModalService,
-    HeatmapService
+    HeatmapService,
+    NotificationsService
   ],
   entryComponents: [
     MapModalComponent

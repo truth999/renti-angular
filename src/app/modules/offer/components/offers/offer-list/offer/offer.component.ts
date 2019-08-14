@@ -31,7 +31,15 @@ export class OfferComponent implements OnInit {
   ngOnInit() {
   }
 
-  onProfile() {
+  async onProfile() {
+    if (this.offer.accepted === null) {
+      try {
+        await this.offerService.changeOfferStatus(this.offer._id);
+      } catch (e) {
+        console.log('OfferComponent->onProfile', e);
+      }
+    }
+
     this.router.navigate(['/app/profile/tenant', this.offer.tenant._id]);
   }
 
@@ -62,6 +70,16 @@ export class OfferComponent implements OnInit {
     } catch (e) {
       this.toastrService.error('Something went wrong', 'Error');
       console.log('OfferComponent->onDelete', e);
+    }
+  }
+
+  async onChangeStatus() {
+    if (this.offer.accepted === null) {
+      try {
+        await this.offerService.changeOfferStatus(this.offer._id);
+      } catch (e) {
+        console.log('OfferComponent->onChangeStatus', e);
+      }
     }
   }
 

@@ -10,5 +10,10 @@ export const environment = {
   instagram: {
     clientId: 'f2a158ca89c04216ab4753cbf8d4162b',
     redirectUri: 'https://renti-dev.renti.hu/app/my-profile'
+  },
+  mqtt: {
+    hostname: 'localhost',
+    port: 1884,
+    path: '/'
   }
 };

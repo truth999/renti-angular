@@ -11,6 +11,7 @@ import { RentalsService } from '../../services/rentals.service';
 import { StorageService } from '../../../../core/services/storage.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { config } from '../../../../../config';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-apartment-detail',
@@ -36,7 +37,8 @@ export class ApartmentDetailComponent implements OnInit {
     private rentalsService: RentalsService,
     private storageService: StorageService,
     private authService: AuthService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -121,6 +123,7 @@ export class ApartmentDetailComponent implements OnInit {
     try {
       const tenantId = this.storageService.get('tenantId');
       await this.rentalsService.setFavorite(tenantId, { apartmentId: this.apartment._id });
+      this.getFavorite();
       this.toastrService.success('The apartment has saved to favorites successfully.', 'Success!');
     } catch (e) {
       this.toastrService.error('Something went wrong', 'Error');
@@ -132,6 +135,7 @@ export class ApartmentDetailComponent implements OnInit {
     try {
       const tenantId = this.storageService.get('tenantId');
       await this.rentalsService.removeFavorite(tenantId, { apartmentId: this.apartment._id });
+      this.getFavorite();
       this.toastrService.success('The apartment has removed to favorites successfully.', 'Success!');
     } catch (e) {
       this.toastrService.error('Something went wrong', 'Error');
@@ -140,7 +144,8 @@ export class ApartmentDetailComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/app/rentals/search']);
+    // this.router.navigate(['/app/rentals/search']);
+    this.location.back();
   }
 
 }

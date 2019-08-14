@@ -16,4 +16,5 @@ export class Offer {
   landlordFeedback: boolean;
   tenantFeedback: boolean;
   feedbackReady: boolean;
+  alert: boolean;
 }

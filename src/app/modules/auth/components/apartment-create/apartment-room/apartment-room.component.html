@@ -45,6 +45,7 @@
                  max="100"
                  step="1"
                  inputmode="numeric"
+                 pattern="[0-9]*"
                  placeholder="{{ 'APARTMENT.SIZE' | translate }} (m2):"
                  formControlName="size">
           <div class="invalid-feedback d-block" *ngIf="roomEl.get('size').invalid && (roomEl.get('size').dirty || roomEl.get('size').touched)">

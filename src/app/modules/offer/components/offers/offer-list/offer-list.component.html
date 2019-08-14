@@ -14,16 +14,20 @@
       <div class="text-right">
         <select class="custom-select w-auto border-0 font-size-lg font-weight-bold"
                 (change)="onSort($event)">
+          <option value="createdAt">{{ 'OFFER.INCREASING_BASED_ARRIVAL_DATE_OFFER' | translate }}</option>
           <option value="rentalFee">{{ 'OFFER.INCREASING_BASED_RENTAL_FEE' | translate }}</option>
           <option value="minRentingTime">{{ 'OFFER.INCREASING_BASED_MINIMUM_RENTING_TIME' | translate }}</option>
-          <option value="createdAt">{{ 'OFFER.INCREASING_BASED_ARRIVAL_DATE_OFFER' | translate }}</option>
         </select>
       </div>
     </div>
     <!--  <p class="font-weight-bold mt-2">Budapest, Andrássy út 72, 3/32. :</p>-->
     <ngb-tabset (tabChange)="changeTab($event)">
       <ngb-tab id="received">
-        <ng-template ngbTabTitle>{{ 'COMMON.RECEIVED' | translate }}</ng-template>
+        <ng-template ngbTabTitle>
+          {{ 'COMMON.RECEIVED' | translate }}
+          <span class="badge badge-pill badge-primary"
+                *ngIf="notification !== 0">{{ notification }}</span>
+        </ng-template>
         <ng-template ngbTabContent>
           <div class="row"
                *ngIf="offers">

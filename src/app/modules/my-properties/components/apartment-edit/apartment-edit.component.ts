@@ -92,6 +92,10 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
           for (const key in term) {
             if (term.hasOwnProperty(key)) {
               params.set(key, term[key]);
+
+              if (key === 'location' || key === 'addressTypes') {
+                params.set(key, JSON.stringify(term[key]));
+              }
             }
           }
           params.set('id', this.paramsId);

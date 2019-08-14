@@ -24,13 +24,19 @@
         </ng-template>
       </ngb-tab>
       <ngb-tab id="accepted">
-        <ng-template ngbTabTitle>{{ 'COMMON.ACCEPTED' | translate }}</ng-template>
+        <ng-template ngbTabTitle>
+          {{ 'COMMON.ACCEPTED' | translate }}
+          <span class="badge badge-pill badge-primary"
+                *ngIf="notification[NotificationTypes.ACCEPTED] !== 0">{{ notification[NotificationTypes.ACCEPTED] }}</span>
+        </ng-template>
         <ng-template ngbTabContent>
           <div class="row"
                *ngIf="offers">
             <ng-container *ngFor="let offer of offers">
               <app-apartment-item class="col-lg-6 py-3"
                                   [apartment]="offer.apartment"
+                                  [markAsRead]="offer.accepted && offer.alert"
+                                  (click)="onChangeStatus(offer._id)"
                                   [routerLink]="['/app/rentals/apartment', offer.apartment._id]">
                 <button *ngIf="offer.feedbackReady && !offer.tenantFeedback && offer.apartment.status !== 'deleted'"
                         type="button"
@@ -42,13 +48,19 @@
         </ng-template>
       </ngb-tab>
       <ngb-tab id="rejected">
-        <ng-template ngbTabTitle>{{ 'COMMON.REJECTED' | translate }}</ng-template>
+        <ng-template ngbTabTitle>
+          {{ 'COMMON.REJECTED' | translate }}
+          <span class="badge badge-pill badge-primary"
+                *ngIf="notification[NotificationTypes.REJECTED] !== 0">{{ notification[NotificationTypes.REJECTED] }}</span>
+        </ng-template>
         <ng-template ngbTabContent>
           <div class="row"
                *ngIf="offers">
             <ng-container *ngFor="let offer of offers">
               <app-apartment-item class="col-lg-6 py-3"
                                   [apartment]="offer.apartment"
+                                  [markAsRead]="offer.accepted === false && offer.alert"
+                                  (click)="onChangeStatus(offer._id)"
                                   [routerLink]="['/app/rentals/apartment', offer.apartment._id]"></app-apartment-item>
             </ng-container>
           </div>
