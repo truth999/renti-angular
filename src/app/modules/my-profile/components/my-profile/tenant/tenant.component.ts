@@ -206,7 +206,7 @@ export class TenantComponent implements OnInit {
     const addressTypes = {};
 
     address.address_components.map(addressComponent => {
-      addressTypes[addressComponent.types[0]] = addressComponent.long_name;
+      addressTypes[addressComponent.types[0]] = addressComponent.short_name;
     });
 
     this.tenantForm.get('lookingRent').get('address').setValue(address.formatted_address);

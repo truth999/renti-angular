@@ -261,9 +261,10 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
   handleAddressChange(address: Address) {
     const addressTypes = {};
+    console.log(address);
 
     address.address_components.map(addressComponent => {
-      addressTypes[addressComponent.types[0]] = addressComponent.long_name;
+      addressTypes[addressComponent.types[0]] = addressComponent.short_name;
     });
 
     this.apartmentForm.get('address').get('city').setValue(address.formatted_address);

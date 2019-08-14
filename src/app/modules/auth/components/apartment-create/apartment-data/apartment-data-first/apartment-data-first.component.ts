@@ -109,7 +109,7 @@ export class ApartmentDataFirstComponent implements OnInit, DoCheck {
     const addressTypes = {};
 
     address.address_components.map(addressComponent => {
-      addressTypes[addressComponent.types[0]] = addressComponent.long_name;
+      addressTypes[addressComponent.types[0]] = addressComponent.short_name;
     });
 
     this.apartmentDataFirstForm.get('address').get('city').setValue(address.formatted_address);
