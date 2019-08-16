@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { HeatmapService } from '../../../modules/heatmap/services/heatmap.service';
 import { MapModalService } from '../../services/modal/map-modal.service';
@@ -9,7 +9,8 @@ import { MapModalService } from '../../services/modal/map-modal.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  message: string;
   defaultLocation: any;
 
   constructor(
@@ -20,6 +21,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params.message) {
+        this.message = params.message;
+      }
+    });
+
     this.getDefaultLocation();
   }
 
@@ -47,6 +54,10 @@ export class HomeComponent implements OnInit {
     };
 
     this.mapModalService.show(results);
+  }
+
+  ngOnDestroy() {
+    this.message = null;
   }
 
 }

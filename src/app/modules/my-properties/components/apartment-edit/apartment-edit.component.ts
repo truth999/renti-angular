@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MyPropertiesService } from '../../services/my-properties.service';
 import { DateSelectService } from '../../../../shared/services/date-select.service';
@@ -59,7 +60,8 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
     private datepickerConfig: NgbDatepickerConfig,
     private imageUploaderService: ImageUploaderService,
     private floorPlanModalService: FloorPlanModalService,
-    private confirmModalService: ConfirmModalService
+    private confirmModalService: ConfirmModalService,
+    private translate: TranslateService
   ) {
     const today = new Date();
 
@@ -351,10 +353,14 @@ export class ApartmentEditComponent implements OnInit, DoCheck {
 
       try {
         await this.myPropertiesService.updateApartment(apartmentData);
-        this.toastrService.success('The apartment is updated successfully.', 'Success!');
+        const alert = this.translate.instant('ALERT.APARTMENT_UPDATED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
         this.router.navigate(['/app/my-properties']);
       } catch (e) {
-        this.toastrService.error('Something went wrong', 'Error');
+        const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+        const error = this.translate.instant('ALERT.ERROR');
+        this.toastrService.error(alert, error);
         console.log('ApartmentEditComponent->submit', e);
       }
     } else {

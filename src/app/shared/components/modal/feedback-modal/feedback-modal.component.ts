@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 import { OfferService } from '../../../../modules/offer/services/offer.service';
 import { StorageService } from '../../../../core/services/storage.service';
@@ -30,7 +31,8 @@ export class FeedbackModalComponent implements OnInit {
     private offerService: OfferService,
     private storageService: StorageService,
     private toastrService: ToastrService,
-    private validateFormFieldsService: ValidateFormFieldsService
+    private validateFormFieldsService: ValidateFormFieldsService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -128,10 +130,14 @@ export class FeedbackModalComponent implements OnInit {
 
           await this.offerService.createFeedbackByTenant(tenantId, feedbackData);
         }
-        this.toastrService.success('You have given feedback successfully.', 'Success!');
+        const alert = this.translate.instant('ALERT.GIVE_FEEDBACK');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
         this.modal.close();
       } catch (e) {
-        this.toastrService.error('Something went wrong', 'Error');
+        const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+        const error = this.translate.instant('ALERT.ERROR');
+        this.toastrService.error(alert, error);
         console.log('FeedbackModalComponent->submit', e);
       }
     } else {

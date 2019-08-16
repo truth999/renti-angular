@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Apartment } from '../../../../shared/models';
 
@@ -38,7 +39,8 @@ export class ApartmentDetailComponent implements OnInit {
     private storageService: StorageService,
     private authService: AuthService,
     private toastrService: ToastrService,
-    private location: Location
+    private location: Location,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -66,7 +68,7 @@ export class ApartmentDetailComponent implements OnInit {
         const totalRate = apartment.landlord.feedback.reduce((total, currentValue) => {
           return total + currentValue.feedbackStar.overall;
         }, 0);
-        this.rate = this.rate = parseInt((totalRate / apartment.landlord.feedback.length).toFixed(0), 10) - 1;
+        this.rate = totalRate / apartment.landlord.feedback.length;
         this.feedbackNumber = apartment.landlord.feedback.length;
       }
       this.apartment = apartment;
@@ -124,9 +126,13 @@ export class ApartmentDetailComponent implements OnInit {
       const tenantId = this.storageService.get('tenantId');
       await this.rentalsService.setFavorite(tenantId, { apartmentId: this.apartment._id });
       this.getFavorite();
-      this.toastrService.success('The apartment has saved to favorites successfully.', 'Success!');
+      const alert = this.translate.instant('ALERT.SAVED_FAVORITES');
+      const success = this.translate.instant('ALERT.SUCCESS');
+      this.toastrService.success(alert, success);
     } catch (e) {
-      this.toastrService.error('Something went wrong', 'Error');
+      const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+      const error = this.translate.instant('ALERT.ERROR');
+      this.toastrService.error(alert, error);
       console.log('ApartmentDetailComponent->onSaveToFavorites', e);
     }
   }
@@ -136,9 +142,13 @@ export class ApartmentDetailComponent implements OnInit {
       const tenantId = this.storageService.get('tenantId');
       await this.rentalsService.removeFavorite(tenantId, { apartmentId: this.apartment._id });
       this.getFavorite();
-      this.toastrService.success('The apartment has removed to favorites successfully.', 'Success!');
+      const alert = this.translate.instant('ALERT.REMOVED_FAVORITES');
+      const success = this.translate.instant('ALERT.SUCCESS');
+      this.toastrService.success(alert, success);
     } catch (e) {
-      this.toastrService.error('Something went wrong', 'Error');
+      const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+      const error = this.translate.instant('ALERT.ERROR');
+      this.toastrService.error(alert, error);
       console.log('ApartmentDetailComponent->onRemoveToFavorites', e);
     }
   }

@@ -37,7 +37,7 @@ export class LandlordComponent implements OnInit {
         const totalRate = landlord.feedback.reduce((total, currentValue) => {
           return total + currentValue.feedbackStar.overall;
         }, 0);
-        this.rate = parseInt((totalRate / landlord.feedback.length).toFixed(0), 10) - 1;
+        this.rate = totalRate / landlord.feedback.length;
         this.feedbackNumber = landlord.feedback.length;
       }
       this.landlord = landlord;

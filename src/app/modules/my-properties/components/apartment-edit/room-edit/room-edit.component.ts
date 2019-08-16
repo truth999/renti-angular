@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MyPropertiesService } from '../../../services/my-properties.service';
 import { DateSelectService } from '../../../../../shared/services/date-select.service';
@@ -35,7 +36,8 @@ export class RoomEditComponent implements OnInit {
     private toastrService: ToastrService,
     private dateSelectService: DateSelectService,
     private imageUploaderService: ImageUploaderService,
-    private validateFormFieldsService: ValidateFormFieldsService
+    private validateFormFieldsService: ValidateFormFieldsService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -124,9 +126,13 @@ export class RoomEditComponent implements OnInit {
 
       try {
         await this.myPropertiesService.updateRoom(roomData);
-        this.toastrService.success('The room is updated successfully.', 'Success!');
+        const alert = this.translate.instant('ALERT.ROOM_UPDATED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
       } catch (e) {
-        this.toastrService.error('Something went wrong', 'Error');
+        const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+        const error = this.translate.instant('ALERT.ERROR');
+        this.toastrService.error(alert, error);
         console.log('RoomEditComponent->submit', e);
       }
     } else {

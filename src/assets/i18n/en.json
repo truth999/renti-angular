@@ -291,7 +291,11 @@
     "TAKE_MINUTES": "Take 2 min to register",
     "BY_REGISTERING": "By registering, I agree to Renti’s",
     "PROMOTION_EMAIL": "I agree to sign up for promotion emails from Renti",
-    "STARTING_WITH_LOOKING_TO_RENT_IN": "Starting with Looking to rent in"
+    "STARTING_WITH_LOOKING_TO_RENT_IN": "Starting with Looking to rent in",
+    "TOKEN_EXPIRED": "We were unable to find a valid token. Your token may have expired.",
+    "NOT_FOUND_USER_FOR_TOKEN": "We were unable to find a user for this token.",
+    "USER_ALREADY_VERIFIED": "This user has already been verified.",
+    "LOGIN_NOW": "Thank you for verifying your email! Please log in now!"
   },
   "PROFILE": {
     "SINGLE_TENANT": "Single tenant",
@@ -410,5 +414,23 @@
     "EMAIL_INCORRECT": "Your E-mail address is incorrect",
     "PASSWORD_RESET_FAILED": "Password reset token is invalid or has expired",
     "INTEGER_FIELD": "This field must be integer."
+  },
+  "ALERT": {
+    "SUCCESS": "Success!",
+    "ERROR": "Error!",
+    "LANDLORD_UPDATED": "The landlord is updated successfully.",
+    "TENANT_UPDATED": "The tenant is updated successfully.",
+    "APARTMENT_UPDATED": "The apartment is updated successfully.",
+    "ROOM_UPDATED": "The room is updated successfully.",
+    "PASSWORD_UPDATED": "The password is updated successfully.",
+    "GIVE_FEEDBACK": "You have given feedback successfully.",
+    "PASSWORD_CHANGED": "Your password has been changed successfully.",
+    "SAVED_FAVORITES": "The apartment has saved to favorites successfully.",
+    "REMOVED_FAVORITES": "The apartment has removed to favorites successfully.",
+    "APARTMENT_DELETED": "The apartment is deleted successfully.",
+    "ACCOUNT_DELETED": "Your account is deleted successfully.",
+    "OFFER_REJECTED": "The offer is rejected successfully.",
+    "PROFILE_PICTURE_DELETED": "The profile picture is deleted successfully.",
+    "SOMETHING_WENT_WRONG": "Something went wrong."
   }
 }

@@ -38,7 +38,7 @@ export class TenantComponent implements OnInit {
         const totalRate = tenant.feedback.reduce((total, currentValue) => {
           return total + currentValue.feedbackStar.overall;
         }, 0);
-        this.rate = parseInt((totalRate / tenant.feedback.length).toFixed(0), 10) - 1;
+        this.rate = totalRate / tenant.feedback.length;
         this.feedbackNumber = tenant.feedback.length;
       }
       this.tenant = tenant;

@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import html2canvas from 'html2canvas';
+import { TranslateService } from '@ngx-translate/core';
 
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
 import { MyPropertiesService } from '../../../../modules/my-properties/services/my-properties.service';
@@ -34,7 +35,8 @@ export class FloorPlanModalComponent implements OnInit {
     private myPropertiesService: MyPropertiesService,
     private validateFormFieldsService: ValidateFormFieldsService,
     private imageUploaderService: ImageUploaderService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -289,7 +291,9 @@ export class FloorPlanModalComponent implements OnInit {
 
               await this.myPropertiesService.updateApartment(apartment);
 
-              this.toastrService.success('The apartment is updated successfully.', 'Success!');
+              const alert = this.translate.instant('ALERT.APARTMENT_UPDATED');
+              const success = this.translate.instant('ALERT.SUCCESS');
+              this.toastrService.success(alert, success);
               this.modal.close();
             } catch (e) {
               console.log('FloorPlanModalComponent->submit->html2canvas', e);
@@ -298,12 +302,16 @@ export class FloorPlanModalComponent implements OnInit {
         } else {
           await this.myPropertiesService.updateApartment(apartment);
 
-          this.toastrService.success('The apartment is updated successfully.', 'Success!');
+          const alert = this.translate.instant('ALERT.APARTMENT_UPDATED');
+          const success = this.translate.instant('ALERT.SUCCESS');
+          this.toastrService.success(alert, success);
           this.modal.close();
         }
       } catch (e) {
         console.log('FloorPlanModalComponent->submit', e);
-        this.toastrService.error('Something went wrong', 'Error');
+        const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+        const error = this.translate.instant('ALERT.ERROR');
+        this.toastrService.error(alert, error);
       }
     } else {
       this.validateFormFieldsService.validate(this.floorPlanForm);

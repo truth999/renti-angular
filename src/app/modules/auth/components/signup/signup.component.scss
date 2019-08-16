@@ -3,6 +3,10 @@
 .card {
   margin-bottom: 70px;
 
+  .card-title {
+    line-height: 1.5;
+  }
+
   .language {
     .dropdown-menu {
       top: 100% !important;

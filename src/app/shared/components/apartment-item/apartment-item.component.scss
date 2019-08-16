@@ -31,6 +31,12 @@
   .explain {
     margin-left: 6.5rem;
 
+    .apartment-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     p {
       height: $font-size-base * 3 * $line-height-base;
     }

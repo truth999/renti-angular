@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MyPropertiesService } from '../../../../modules/my-properties/services/my-properties.service';
 import { MyProfileService } from '../../../../modules/my-profile/services/my-profile.service';
@@ -21,7 +22,8 @@ export class ConfirmModalComponent implements OnInit {
     private myProfileService: MyProfileService,
     private authService: AuthService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -38,7 +40,9 @@ export class ConfirmModalComponent implements OnInit {
 
         this.modal.dismiss();
 
-        this.toastrService.success('The apartment is deleted successfully.', 'Success');
+        const alert = this.translate.instant('ALERT.APARTMENT_DELETED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
 
         this.router.navigate(['/app/my-properties']);
       }
@@ -48,7 +52,9 @@ export class ConfirmModalComponent implements OnInit {
 
         this.modal.dismiss();
 
-        this.toastrService.success('Your account is deleted successfully.', 'Success');
+        const alert = this.translate.instant('ALERT.ACCOUNT_DELETED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
 
         this.authService.logout();
       }
@@ -58,12 +64,16 @@ export class ConfirmModalComponent implements OnInit {
 
         this.modal.dismiss();
 
-        this.toastrService.success('Your account is deleted successfully.', 'Success');
+        const alert = this.translate.instant('ALERT.ACCOUNT_DELETED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
 
         this.authService.logout();
       }
     } catch (e) {
-      this.toastrService.error('Something went wrong', 'Error');
+      const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+      const error = this.translate.instant('ALERT.ERROR');
+      this.toastrService.error(alert, error);
 
       console.log('ConfirmModalComponent->onDelete');
     }

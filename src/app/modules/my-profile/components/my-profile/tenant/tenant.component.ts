@@ -5,6 +5,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
@@ -65,7 +66,8 @@ export class TenantComponent implements OnInit {
     private imageUploaderService: ImageUploaderService,
     private toastrService: ToastrService,
     private validateFormFieldsService: ValidateFormFieldsService,
-    private datepickerConfig: NgbDatepickerConfig
+    private datepickerConfig: NgbDatepickerConfig,
+    private translate: TranslateService
   ) {
     const today = new Date();
 
@@ -87,7 +89,7 @@ export class TenantComponent implements OnInit {
           return total + currentValue.feedbackStar.overall;
         }, 0);
 
-        this.rate = parseInt((totalRate / tenant.feedback.length).toFixed(0), 10) - 1;
+        this.rate = totalRate / tenant.feedback.length;
         this.feedbackNumber = tenant.feedback.length;
       }
 
@@ -259,7 +261,9 @@ export class TenantComponent implements OnInit {
       this.tenantForm.patchValue({profilePicture: filenames[0]});
     } catch (e) {
       console.log('TenantComponent->uploadProfilePicture->error', e);
-      this.toastrService.error('Something went wrong', 'Error');
+      const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+      const error = this.translate.instant('ALERT.ERROR');
+      this.toastrService.error(alert, error);
     }
   }
 
@@ -334,11 +338,15 @@ export class TenantComponent implements OnInit {
         };
         await this.myProfileService.updateTenant(tenant);
 
-        this.toastrService.success('The tenant is updated successfully.', 'Success!');
+        const alert = this.translate.instant('ALERT.TENANT_UPDATED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
       } catch (e) {
         console.log('TenantComponent->update->error', e);
 
-        this.toastrService.error('Something went wrong', 'Error');
+        const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+        const error = this.translate.instant('ALERT.ERROR');
+        this.toastrService.error(alert, error);
       }
     } else {
       this.validateFormFieldsService.validate(this.tenantForm);

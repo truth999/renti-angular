@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CustomValidators } from 'ng2-validation';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MyProfileService } from '../../../services/my-profile.service';
 import { ValidateFormFieldsService } from '../../../../../core/services/validate-form-fields.service';
@@ -21,7 +22,8 @@ export class ChangePasswordComponent implements OnInit {
     private myProfileService: MyProfileService,
     private storageService: StorageService,
     private validateFormFieldsService: ValidateFormFieldsService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -44,14 +46,18 @@ export class ChangePasswordComponent implements OnInit {
         await this.myProfileService.updateUser(userId, passwordData);
         this.passwordInvalid = false;
         this.message = '';
-        this.toastrService.success('The password is updated successfully.', 'Success!');
+        const alert = this.translate.instant('ALERT.PASSWORD_UPDATED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
       } catch (e) {
         console.log('ChangePasswordComponent->submit', e);
         if (e.message === 'PASSWORD_INCORRECT') {
           this.passwordInvalid = true;
           this.message = e.message;
         } else {
-          this.toastrService.error('Something went wrong', 'Error');
+          const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+          const error = this.translate.instant('ALERT.ERROR');
+          this.toastrService.error(alert, error);
         }
       }
     } else {

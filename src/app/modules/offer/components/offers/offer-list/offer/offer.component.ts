@@ -1,14 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 import { OfferService } from '../../../../services/offer.service';
+import { NotificationsService } from '../../../../../../core/services/notifications.service';
 
 import { Offer } from '../../../../../../shared/models';
 
 import { environment } from '../../../../../../../environments/environment';
 
 import { config } from '../../../../../../../config';
+import { CONFIG_CONST } from '../../../../../../../config/config-const';
 
 @Component({
   selector: 'app-offer',
@@ -21,11 +24,14 @@ export class OfferComponent implements OnInit {
 
   uploadBase = environment.uploadBase;
   offerConfig = config.offer;
+  private NotificationTypes = CONFIG_CONST.notificationType;
 
   constructor(
     private router: Router,
     private offerService: OfferService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private translate: TranslateService,
+    private notificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -51,6 +57,7 @@ export class OfferComponent implements OnInit {
       };
 
       await this.offerService.updateOffer(offer);
+      this.notificationsService.clean(this.NotificationTypes.RECEIVED);
       this.router.navigate(['/app/offers', this.offer.tenant._id, 'success']);
     } catch (e) {
       console.log('OfferComponent->onSuccess', e);
@@ -65,10 +72,15 @@ export class OfferComponent implements OnInit {
       };
 
       await this.offerService.updateOffer(offer);
-      this.toastrService.success('The offer is rejected successfully.', 'Success!');
+      this.notificationsService.clean(this.NotificationTypes.RECEIVED);
+      const alert = this.translate.instant('ALERT.OFFER_REJECTED');
+      const success = this.translate.instant('ALERT.SUCCESS');
+      this.toastrService.success(alert, success);
       this.offerChanged.emit();
     } catch (e) {
-      this.toastrService.error('Something went wrong', 'Error');
+      const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+      const error = this.translate.instant('ALERT.ERROR');
+      this.toastrService.error(alert, error);
       console.log('OfferComponent->onDelete', e);
     }
   }

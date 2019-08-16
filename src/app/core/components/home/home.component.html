@@ -6,35 +6,50 @@
         <img src="assets/images/logo.png" alt="Renti" class="logo-image">
       </a>
     </div>
-    <div class="banner-text mt-5">
+    <div class="banner-text mt-5"
+         *ngIf="!message">
       <h1 class="banner-title font-weight-bold mb-3">{{ 'HOME.TITLE' | translate }}</h1>
       <h3 class="banner-subtitle">{{ 'HOME.FIND_YOUR' | translate }}:</h3>
     </div>
+    <div class="container-fluid mt-5"
+         *ngIf="message">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-8 offset-lg-4 offset-md-3 offset-sm-2">
+          <div class="card">
+            <div class="card-body">
+              <h5>{{ 'SIGNUP.' + message | translate }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section class="items d-flex position-relative">
-    <div class="buttons-wrapper d-flex position-absolute align-items-center justify-content-around w-100">
-      <button class="btn btn-primary btn-lg item-button"
-              (click)="onOpenMapModal('flat')">
+  <ng-container *ngIf="!message">
+    <section class="items d-flex position-relative">
+      <div class="buttons-wrapper d-flex position-absolute align-items-center justify-content-around w-100">
+        <button class="btn btn-primary btn-lg item-button"
+                (click)="onOpenMapModal('flat')">
         <span class="d-block"
               [innerHTML]="'HOME.SELECT1' | translate"></span>
-      </button>
-      <button class="btn btn-primary btn-lg item-button"
-              (click)="onOpenMapModal('tenant')">
+        </button>
+        <button class="btn btn-primary btn-lg item-button"
+                (click)="onOpenMapModal('tenant')">
         <span class="d-block"
               [innerHTML]="'HOME.SELECT2' | translate"></span>
-      </button>
-      <span class="vs position-absolute font-weight-bold font-size-lg">{{ 'COMMON.OR' | translate }}</span>
-    </div>
-    <div class="item item-left d-flex flex-grow-1 justify-content-center"></div>
-    <div class="item item-right d-flex flex-grow-1 justify-content-center"></div>
-  </section>
-  <section class="footer-menu text-center pb-sm-5">
-    <ul class="list-unstyled font-size-lg">
-      <li class="mb-4"><a routerLink="/"><img src="assets/images/logo.png" alt="Renti" class="logo-image"></a></li>
-      <li><a href="#" class="h4">{{ 'COMMON.TERMS_CONDITIONS' | translate }}</a></li>
-    </ul>
-    <p class="footer-text text-muted">{{ 'COMMON.ALL_RIGHT' | translate }}</p>
-  </section>
+        </button>
+        <span class="vs position-absolute font-weight-bold font-size-lg">{{ 'COMMON.OR' | translate }}</span>
+      </div>
+      <div class="item item-left d-flex flex-grow-1 justify-content-center"></div>
+      <div class="item item-right d-flex flex-grow-1 justify-content-center"></div>
+    </section>
+    <section class="footer-menu text-center pb-sm-5">
+      <ul class="list-unstyled font-size-lg">
+        <li class="mb-4"><a routerLink="/"><img src="assets/images/logo.png" alt="Renti" class="logo-image"></a></li>
+        <li><a href="#" class="h4">{{ 'COMMON.TERMS_CONDITIONS' | translate }}</a></li>
+      </ul>
+      <p class="footer-text text-muted">{{ 'COMMON.ALL_RIGHT' | translate }}</p>
+    </section>
+  </ng-container>
   <section class="auth py-2 position-fixed shadow w-100 bg-white">
     <div class="container">
       <div class="row">

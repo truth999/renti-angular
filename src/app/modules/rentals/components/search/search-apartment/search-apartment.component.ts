@@ -269,6 +269,25 @@ export class SearchApartmentComponent implements OnInit {
     this.searchForm.get('rentalFee').setValue([0, 2000000]);
   }
 
+  collapseFilters() {
+    this.moreFilters = !this.moreFilters;
+
+    if (!this.moreFilters) {
+      const address = this.searchForm.get('address').value;
+      const addressTypes = this.searchForm.get('addressTypes').value;
+      const rentalFee = this.searchForm.get('rentalFee').value;
+      const furnished = this.searchForm.get('furnished').value;
+      const rightNow = this.searchForm.get('dateOfMovingIn').get('rightNow').value;
+
+      this.searchForm.reset();
+      this.searchForm.get('address').setValue(address);
+      this.searchForm.get('addressTypes').setValue(addressTypes);
+      this.searchForm.get('rentalFee').setValue(rentalFee);
+      this.searchForm.get('furnished').setValue(furnished);
+      this.searchForm.get('dateOfMovingIn').get('rightNow').setValue(rightNow);
+    }
+  }
+
   async getSearchApartments() {
     try {
       const response = await this.rentalsService.getSearchApartments(this.page, this.searchForm.value);

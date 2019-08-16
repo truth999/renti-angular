@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../../../../core/services/auth.service';
 import { ValidateFormFieldsService } from '../../../../core/services/validate-form-fields.service';
@@ -23,7 +24,8 @@ export class ResetPasswordComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private validateFormFieldsService: ValidateFormFieldsService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -47,7 +49,9 @@ export class ResetPasswordComponent implements OnInit {
         delete password.confirmPassword;
         await this.authService.resetPasssword(token, password);
         this.error = false;
-        this.toastrService.success('Your password has been changed successfully', 'Success');
+        const alert = this.translate.instant('ALERT.PASSWORD_CHANGED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
         this.router.navigate(['/login']);
       } catch (e) {
         if (e.message === 'PASSWORD_RESET_FAILED') {
@@ -55,7 +59,9 @@ export class ResetPasswordComponent implements OnInit {
           this.message = e.message;
         } else {
           console.log('ResetPasswordComponent->submit', e);
-          this.toastrService.error('Something went wrong', 'Error');
+          const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+          const error = this.translate.instant('ALERT.ERROR');
+          this.toastrService.error(alert, error);
         }
       }
     } else {

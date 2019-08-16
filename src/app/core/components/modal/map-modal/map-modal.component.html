@@ -30,8 +30,8 @@
               <div class="apartment-image position-relative mr-3">
                 <img [src]="apartment.setAsPicture ? (uploadBase + apartment.setAsPicture) : (apartment.pictures.length !== 0 ? (uploadBase + apartment.pictures[0]) : '/assets/images/empty_image.png')"
                      alt=""
-                     width="100"
-                     height="100">
+                     width="120"
+                     height="120">
                 <span class="badge badge-success image-badge position-absolute">{{ apartment.rank }}% {{ 'COMMON.DATA' | translate }}</span>
               </div>
               <div class="apartment-content d-flex flex-column justify-content-between">

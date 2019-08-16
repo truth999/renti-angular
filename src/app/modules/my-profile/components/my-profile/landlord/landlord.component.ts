@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { PhotoEditModalService } from '../../../../../shared/services/modal/photo-edit-modal.service';
 import { PhotoUploadModalService } from '../../../../../shared/services/modal/photo-upload-modal.service';
@@ -59,7 +60,8 @@ export class LandlordComponent implements OnInit {
     private authService: AuthService,
     private toastrService: ToastrService,
     private validateFormFielsService: ValidateFormFieldsService,
-    private datepickerConfig: NgbDatepickerConfig
+    private datepickerConfig: NgbDatepickerConfig,
+    private translate: TranslateService
   ) {
     const today = new Date();
 
@@ -80,7 +82,7 @@ export class LandlordComponent implements OnInit {
         const totalRate = landlord.feedback.reduce((total, currentValue) => {
           return total + currentValue.feedbackStar.overall;
         }, 0);
-        this.rate = parseInt((totalRate / landlord.feedback.length).toFixed(0), 10) - 1;
+        this.rate = totalRate / landlord.feedback.length;
         this.feedbackNumber = landlord.feedback.length;
       }
       this.landlord = landlord;
@@ -173,10 +175,14 @@ export class LandlordComponent implements OnInit {
         ...this.landlordForm.value,
       };
       await this.myProfileService.updateLandlord(landlord);
-      this.toastrService.success('The profile picture is deleted successfully.', 'Success!');
+      const alert = this.translate.instant('ALERT.PROFILE_PICTURE_DELETED');
+      const success = this.translate.instant('ALERT.SUCCESS');
+      this.toastrService.success(alert, success);
     } catch (e) {
       console.log('LandlordComponent->onDeletePhoto->error', e);
-      this.toastrService.error('Something went wrong', 'Error');
+      const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+      const error = this.translate.instant('ALERT.ERROR');
+      this.toastrService.error(alert, error);
     }
   }
 
@@ -187,7 +193,9 @@ export class LandlordComponent implements OnInit {
       this.landlordForm.patchValue({profilePicture: filenames[0]});
     } catch (e) {
       console.log('LandlordComponent->uploadProfilePicture->error', e);
-      this.toastrService.error('Something went wrong', 'Error');
+      const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+      const error = this.translate.instant('ALERT.ERROR');
+      this.toastrService.error(alert, error);
     }
   }
 
@@ -223,11 +231,15 @@ export class LandlordComponent implements OnInit {
 
         await this.myProfileService.updateLandlord(landlord);
 
-        this.toastrService.success('The landlord is updated successfully.', 'Success!');
+        const alert = this.translate.instant('ALERT.LANDLORD_UPDATED');
+        const success = this.translate.instant('ALERT.SUCCESS');
+        this.toastrService.success(alert, success);
       } catch (e) {
         console.log('LandlordComponent->update->error', e);
 
-        this.toastrService.error('Something went wrong', 'Error');
+        const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+        const error = this.translate.instant('ALERT.ERROR');
+        this.toastrService.error(alert, error);
       }
     } else {
       this.validateFormFielsService.validate(this.landlordForm);

@@ -8,7 +8,7 @@
     <span class="badge badge-success image-badge position-absolute">{{ apartment.rank }}% {{ 'COMMON.DATA' | translate }}</span>
   </div>
   <div class="explain">
-    <h6 class="font-size-lg mb-0">
+    <h6 class="font-size-lg mb-0 apartment-name">
       {{ apartment.name }}
       <span class="text-danger"
             *ngIf="apartment.status === 'deleted'">({{ 'COMMON.DELETED' | translate }})</span>

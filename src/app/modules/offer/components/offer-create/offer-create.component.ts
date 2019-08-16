@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 import { OfferService } from '../../services/offer.service';
 import { StorageService } from '../../../../core/services/storage.service';
@@ -33,7 +34,8 @@ export class OfferCreateComponent implements OnInit {
     private toastrService: ToastrService,
     private cursorWaitService: CursorWaitService,
     private validateFormFields: ValidateFormFieldsService,
-    private datepickerConfig: NgbDatepickerConfig
+    private datepickerConfig: NgbDatepickerConfig,
+    private translate: TranslateService
   ) {
     const today = new Date();
 
@@ -91,7 +93,9 @@ export class OfferCreateComponent implements OnInit {
         await this.offerService.createOffer(offerData);
         this.router.navigate(['/app/offers/create-success']);
       } catch (e) {
-        this.toastrService.error('Something went wrong', 'Error');
+        const alert = this.translate.instant('ALERT.SOMETHING_WENT_WRONG');
+        const error = this.translate.instant('ALERT.ERROR');
+        this.toastrService.error(alert, error);
         console.log('OfferCreateComponent->submit', e);
       }
     } else {

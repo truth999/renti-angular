@@ -162,21 +162,34 @@
           </div>
           <div class="social mt-4">
             <h5 class="font-weight-bolder">{{ 'PROFILE.MY_SOCIAL_PROFILES' | translate }}:</h5>
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <img src="/assets/images/social/facebook.png" alt="" class="img-fluid">
+            <ul class="list-inline"
+                *ngIf="tenant.socialMediaAvailabilities">
+              <li class="list-inline-item"
+                  *ngIf="tenant.socialMediaAvailabilities.facebook">
+                <a [href]="tenant.socialMediaAvailabilities.facebook"
+                   target="_blank">
+                  <img src="/assets/images/social/facebook.png"
+                       alt="Facebook"
+                       class="img-fluid">
+                </a>
               </li>
-              <li class="list-inline-item">
-                <img src="/assets/images/social/twitter.png" alt="" class="img-fluid">
+              <li class="list-inline-item"
+                  *ngIf="tenant.socialMediaAvailabilities.linkedin">
+                <a [href]="tenant.socialMediaAvailabilities.linkedin"
+                   target="_blank">
+                  <img src="/assets/images/social/linkedin.png"
+                       alt="Linkedin"
+                       class="img-fluid">
+                </a>
               </li>
-              <li class="list-inline-item">
-                <img src="/assets/images/social/twitch.png" alt="" class="img-fluid">
-              </li>
-              <li class="list-inline-item">
-                <img src="/assets/images/social/youtube.png" alt="" class="img-fluid">
-              </li>
-              <li class="list-inline-item">
-                <img src="/assets/images/social/instagram.png" alt="" class="img-fluid">
+              <li class="list-inline-item"
+                  *ngIf="tenant.socialMediaAvailabilities.instagram">
+                <a [href]="tenant.socialMediaAvailabilities.instagram"
+                   target="_blank">
+                  <img src="/assets/images/social/instagram.png"
+                       alt="Instagram"
+                       class="img-fluid">
+                </a>
               </li>
             </ul>
           </div>
