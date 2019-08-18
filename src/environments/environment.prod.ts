@@ -12,7 +12,7 @@ export const environment = {
     redirectUri: 'https://renti-dev.renti.hu/app/my-profile'
   },
   mqtt: {
-    hostname: 'http://renti-dev.renti.hu',
+    hostname: 'renti-dev.renti.hu',
     port: 1884,
     path: '/'
   }

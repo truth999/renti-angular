@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  apiBase: 'http://192.168.1.9:8080/api/v1/',
-  uploadApiBase: 'http://192.168.1.9:8080/api/v1/upload/',
+  apiBase: 'http://localhost:8080/api/v1/',
+  uploadApiBase: 'http://localhost:8080/api/v1/upload/',
   uploadBase: 'https://storage.googleapis.com/renti-dev/',
   facebook: {
     appId: '1052481898283144',
@@ -14,7 +14,6 @@ export const environment = {
   mqtt: {
     hostname: 'renti-dev.renti.hu',
     port: 1884,
-    path: '/',
-    protocol: 'wss'
+    path: '/'
   }
 };

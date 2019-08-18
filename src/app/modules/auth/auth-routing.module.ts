@@ -15,10 +15,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'confirmation', component: AuthAlertComponent },
-  { path: 'auth/complete', component: AuthCompleteComponent, canLoad: [AuthGuard], canActivate: [AuthGuard] },
+  { path: 'auth/complete', component: AuthCompleteComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
-  { path: 'apartment-create', component: ApartmentCreateComponent, canLoad: [AuthGuard], canActivate: [AuthGuard] },
+  { path: 'apartment-create', component: ApartmentCreateComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

@@ -46,12 +46,20 @@ export class NotificationsService {
     }
   }
 
-  clean(type) {
+  clean(type, received?: boolean) {
     const count = this.notifications[type];
 
-    this.notifications[type] = 0;
+    if (!received) {
+      this.notifications[type] = 0;
+    }
+
     this.notifications.all -= count;
 
+    this.notificationsChanged.next(this.notifications);
+  }
+
+  cleanReceived() {
+    this.notifications.received = 0;
     this.notificationsChanged.next(this.notifications);
   }
 }

@@ -254,7 +254,7 @@
     "EDIT_FLOOR_PLAN": "Grundriss bearbeiten",
     "YMD": "jjjj-mm-tt",
     "AVAILABLE_TENANTS": "Vervügbare Untermieter(in)",
-    "AVAILABLE_FLATS": "Available flats",
+    "AVAILABLE_FLATS": "Verfügbare Untermiete",
     "RESET": "Zurücksetzen",
     "DELETED": "Gelöscht",
     "DELETED_USER": "Gelöschte(r) Benutzer/in",
@@ -292,10 +292,10 @@
     "BY_REGISTERING": "Mit Registration nehme ich Renti Bedingungen",
     "PROMOTION_EMAIL": "Ich akzeptiere das Renti für mich Promotions E-Mails sendet",
     "STARTING_WITH_LOOKING_TO_RENT_IN": "Will be not used",
-    "TOKEN_EXPIRED": "We were unable to find a valid token. Your token may have expired.",
-    "NOT_FOUND_USER_FOR_TOKEN": "We were unable to find a user for this token.",
-    "USER_ALREADY_VERIFIED": "This user has already been verified.",
-    "LOGIN_NOW": "Thank you for verifying your email! Please log in now!"
+    "TOKEN_EXPIRED": "Ihr Aktivierungscode ist abgelaufen.",
+    "NOT_FOUND_USER_FOR_TOKEN": "Wir konnten keinen Benutzer für diese Aktivierung finden.",
+    "USER_ALREADY_VERIFIED": "Dieser Benutzer wurde bereits verifiziert.",
+    "LOGIN_NOW": "Danke für das Verifizieren deiner E-Mail! Bitte loggen Sie sich jetzt ein!"
   },
   "PROFILE": {
     "SINGLE_TENANT": "Single tenant",
@@ -416,19 +416,20 @@
     "INTEGER_FIELD": "Dieses Feld muss eine Ganzzahl sein."
   },
   "ALERT": {
-    "LANDLORD_UPDATED": "The landlord is updated successfully.",
-    "TENANT_UPDATED": "The tenant is updated successfully.",
-    "APARTMENT_UPDATED": "The apartment is updated successfully.",
-    "ROOM_UPDATED": "The room is updated successfully.",
-    "PASSWORD_UPDATED": "The password is updated successfully.",
-    "GIVE_FEEDBACK": "You have given feedback successfully.",
-    "PASSWORD_CHANGED": "Your password has been changed successfully.",
-    "SAVED_FAVORITES": "The apartment has saved to favorites successfully.",
-    "REMOVED_FAVORITES": "The apartment has removed to favorites successfully.",
-    "APARTMENT_DELETED": "The apartment is deleted successfully.",
-    "ACCOUNT_DELETED": "Your account is deleted successfully.",
-    "OFFER_REJECTED": "The offer is rejected successfully.",
-    "PROFILE_PICTURE_DELETED": "The profile picture is deleted successfully.",
-    "SOMETHING_WENT_WRONG": "Something went wrong."
+    "SUCCESS": "Erfolgreich geändert!",
+    "ERROR": "Fehler!",
+    "PROFILE_UPDATED": "Ihr Profil wurde erfolgreich aktualisiert.",
+    "APARTMENT_UPDATED": "Ihre Untermiete wurde erfolgreich aktualisiert.",
+    "ROOM_UPDATED": "Ihr Zimmer wurde erfolgreich aktualisiert.",
+    "PASSWORD_UPDATED": "Das Passwort wurde erfolgreich aktualisiert.",
+    "GIVE_FEEDBACK": "Sie haben erfolgreich Feedback gegeben.",
+    "PASSWORD_CHANGED": "Ihr Passwort wurde erfolgreich geändert..",
+    "SAVED_FAVORITES": "Die Untermiete wurde erfolgreich unter Favoriten gespeichert.",
+    "REMOVED_FAVORITES": "Die Untermiete wurde erfolgreich aus den Favoriten entfernt.",
+    "APARTMENT_DELETED": "Die Untermiete wurde erfolgreich gelöscht.",
+    "ACCOUNT_DELETED": "Ihr Account wurde erfolgreich gelöscht.",
+    "OFFER_REJECTED": "Das Angebot wird abgelehnt.",
+    "PROFILE_PICTURE_DELETED": "Das Profilbild wurde erfolgreich gelöscht.",
+    "SOMETHING_WENT_WRONG": "Fehler."
   }
 }

@@ -23,7 +23,7 @@ import { config } from '../config';
 
 import { MyProfileService } from './modules/my-profile/services/my-profile.service';
 import { MyPropertiesService } from './modules/my-properties/services/my-properties.service';
-import { MqttModule } from 'ngx-mqtt';
+import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
 import { environment } from '../environments/environment';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,6 +39,13 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   logoPosition: POSITION.centerCenter,
   logoSize: 120,
   logoUrl: 'assets/images/logo-no-title.png',
+};
+
+export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: environment.mqtt.hostname,
+  port: environment.mqtt.port,
+  path: '/',
+  protocol: 'ws'
 };
 
 @NgModule({
@@ -64,7 +71,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderHttpModule.forRoot({ exclude: config.excludeLoaderRoutes }),
     AgmCoreModule.forRoot(),
     AgmJsMarkerClustererModule,
-    MqttModule.forRoot(environment.mqtt),
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
   ],
   providers: [
     MyProfileService,

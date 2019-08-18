@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
 import { OfferService } from '../../../../services/offer.service';
-import { NotificationsService } from '../../../../../../core/services/notifications.service';
 
 import { Offer } from '../../../../../../shared/models';
 
@@ -24,14 +23,12 @@ export class OfferComponent implements OnInit {
 
   uploadBase = environment.uploadBase;
   offerConfig = config.offer;
-  private NotificationTypes = CONFIG_CONST.notificationType;
 
   constructor(
     private router: Router,
     private offerService: OfferService,
     private toastrService: ToastrService,
-    private translate: TranslateService,
-    private notificationsService: NotificationsService
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -57,7 +54,6 @@ export class OfferComponent implements OnInit {
       };
 
       await this.offerService.updateOffer(offer);
-      this.notificationsService.clean(this.NotificationTypes.RECEIVED);
       this.router.navigate(['/app/offers', this.offer.tenant._id, 'success']);
     } catch (e) {
       console.log('OfferComponent->onSuccess', e);
@@ -72,7 +68,6 @@ export class OfferComponent implements OnInit {
       };
 
       await this.offerService.updateOffer(offer);
-      this.notificationsService.clean(this.NotificationTypes.RECEIVED);
       const alert = this.translate.instant('ALERT.OFFER_REJECTED');
       const success = this.translate.instant('ALERT.SUCCESS');
       this.toastrService.success(alert, success);

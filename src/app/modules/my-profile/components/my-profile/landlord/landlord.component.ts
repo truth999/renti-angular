@@ -231,7 +231,7 @@ export class LandlordComponent implements OnInit {
 
         await this.myProfileService.updateLandlord(landlord);
 
-        const alert = this.translate.instant('ALERT.LANDLORD_UPDATED');
+        const alert = this.translate.instant('ALERT.PROFILE_UPDATED');
         const success = this.translate.instant('ALERT.SUCCESS');
         this.toastrService.success(alert, success);
       } catch (e) {

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IMqttMessage, MqttService } from 'ngx-mqtt';
 
@@ -25,6 +26,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private storageService: StorageService,
     private mqttService: MqttService,
@@ -60,6 +62,16 @@ export class LayoutComponent implements OnInit, OnDestroy {
       this.notification = this.notificationsService.getLiveNotifications(this.NotificationTypes.ALL);
     } catch (e) {
       console.log('LayoutComponent->getAccountType', e);
+    }
+  }
+
+  onApp() {
+    if (this.user.accountType === this.AccountTypes.LANDLORD) {
+      this.router.navigate(['/app/my-properties']);
+    } else {
+      if (this.user.accountType === this.AccountTypes.TENANT) {
+        this.router.navigate(['/app/rentals/search']);
+      }
     }
   }
 

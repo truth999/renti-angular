@@ -254,7 +254,7 @@
     "EDIT_FLOOR_PLAN": "Alaprajz szerkesztése",
     "YMD": "éééé-hh-nn",
     "AVAILABLE_TENANTS": "Elérhető albérlők",
-    "AVAILABLE_FLATS": "Available flats",
+    "AVAILABLE_FLATS": "Elérhető apartmanok",
     "RESET": "Visszaállítás",
     "DELETED": "Törölt",
     "DELETED_USER": "Törölt felhasználó",
@@ -292,10 +292,10 @@
     "BY_REGISTERING": "A regisztrációval elfogadom a Renti",
     "PROMOTION_EMAIL": "Beleegyezek hogy a Renti promóciós E-mail-eket küldjön számomra",
     "STARTING_WITH_LOOKING_TO_RENT_IN": "Apartman keresés megkezdése",
-    "TOKEN_EXPIRED": "We were unable to find a valid token. Your token may have expired.",
-    "NOT_FOUND_USER_FOR_TOKEN": "We were unable to find a user for this token.",
-    "USER_ALREADY_VERIFIED": "This user has already been verified.",
-    "LOGIN_NOW": "Thank you for verifying your email! Please log in now!"
+    "TOKEN_EXPIRED": "Az aktiváló kód lejárt.",
+    "NOT_FOUND_USER_FOR_TOKEN": "Nem található felhasználó az adott aktiváló kódhoz.",
+    "USER_ALREADY_VERIFIED": "Ezt a felhasználónevet már aktiválták.",
+    "LOGIN_NOW": "Köszönjük a megerősítést, beléphet az oldalra."
   },
   "PROFILE": {
     "SINGLE_TENANT": "Magánszemély",
@@ -416,19 +416,20 @@
     "INTEGER_FIELD": "Csak egész számok adhatók meg."
   },
   "ALERT": {
-    "LANDLORD_UPDATED": "The landlord is updated successfully.",
-    "TENANT_UPDATED": "The tenant is updated successfully.",
-    "APARTMENT_UPDATED": "The apartment is updated successfully.",
-    "ROOM_UPDATED": "The room is updated successfully.",
-    "PASSWORD_UPDATED": "The password is updated successfully.",
-    "GIVE_FEEDBACK": "You have given feedback successfully.",
-    "PASSWORD_CHANGED": "Your password has been changed successfully.",
-    "SAVED_FAVORITES": "The apartment has saved to favorites successfully.",
-    "REMOVED_FAVORITES": "The apartment has removed to favorites successfully.",
-    "APARTMENT_DELETED": "The apartment is deleted successfully.",
-    "ACCOUNT_DELETED": "Your account is deleted successfully.",
-    "OFFER_REJECTED": "The offer is rejected successfully.",
-    "PROFILE_PICTURE_DELETED": "The profile picture is deleted successfully.",
-    "SOMETHING_WENT_WRONG": "Something went wrong."
+    "SUCCESS": "Sikeres módosítás!",
+    "ERROR": "Hiba!",
+    "PROFILE_UPDATED": "A profilja sikeresen frissítve.",
+    "APARTMENT_UPDATED": "Albérlete sikeresen frissítve.",
+    "ROOM_UPDATED": "A szoba sikeresen frissítve.",
+    "PASSWORD_UPDATED": "Sikeres jelszó frissítés.",
+    "GIVE_FEEDBACK": "Sikeres visszajelzés.",
+    "PASSWORD_CHANGED": "Sikeres jelszóváltoztatás.",
+    "SAVED_FAVORITES": "Mentve a Kedvencek közé.",
+    "REMOVED_FAVORITES": "Törölve a Kedvencekből.",
+    "APARTMENT_DELETED": "Az albérlet sikeresen törölve.",
+    "ACCOUNT_DELETED": "A profilja sikeresen törölve.",
+    "OFFER_REJECTED": "Az ajánlat elutasításra került.",
+    "PROFILE_PICTURE_DELETED": "A profil képe törlésre került.",
+    "SOMETHING_WENT_WRONG": "Hiba."
   }
 }

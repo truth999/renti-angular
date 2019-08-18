@@ -7,7 +7,8 @@
         <i class="icon-close"></i>
       </div>
       <div class="nav-logo position-absolute text-center border-bottom w-100 py-4">
-        <a routerLink="/app"
+        <a (click)="onApp()"
+           style="cursor: pointer;"
            appMenuClose>
           <img src="/assets/images/logo.png"
                width="40">

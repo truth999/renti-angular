@@ -73,6 +73,13 @@ export class OfferListComponent implements OnInit, OnDestroy {
         this.getOffers(this.sort);
       }
     });
+
+    setTimeout(() => {
+      this.notificationsService.clean(this.NotificationTypes.RECEIVED, true);
+      setTimeout(() => {
+        this.notificationsService.cleanReceived();
+      }, 1000);
+    });
   }
 
   async getOffers(sort, accepted?: boolean) {
@@ -161,7 +168,9 @@ export class OfferListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

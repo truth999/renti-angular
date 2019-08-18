@@ -418,18 +418,17 @@
   "ALERT": {
     "SUCCESS": "Success!",
     "ERROR": "Error!",
-    "LANDLORD_UPDATED": "The landlord is updated successfully.",
-    "TENANT_UPDATED": "The tenant is updated successfully.",
-    "APARTMENT_UPDATED": "The apartment is updated successfully.",
+    "PROFILE_UPDATED": "Your profile is updated successfully.",
+    "APARTMENT_UPDATED": " Your flat is updated successfully.",
     "ROOM_UPDATED": "The room is updated successfully.",
     "PASSWORD_UPDATED": "The password is updated successfully.",
     "GIVE_FEEDBACK": "You have given feedback successfully.",
     "PASSWORD_CHANGED": "Your password has been changed successfully.",
-    "SAVED_FAVORITES": "The apartment has saved to favorites successfully.",
-    "REMOVED_FAVORITES": "The apartment has removed to favorites successfully.",
+    "SAVED_FAVORITES": "The apartment has been saved to favorites successfully.",
+    "REMOVED_FAVORITES": "The apartment has been removed from favorites successfully.",
     "APARTMENT_DELETED": "The apartment is deleted successfully.",
     "ACCOUNT_DELETED": "Your account is deleted successfully.",
-    "OFFER_REJECTED": "The offer is rejected successfully.",
+    "OFFER_REJECTED": "The offer is rejected.",
     "PROFILE_PICTURE_DELETED": "The profile picture is deleted successfully.",
     "SOMETHING_WENT_WRONG": "Something went wrong."
   }
